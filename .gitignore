@@ -1,0 +1,18 @@
+# Build Artifacts
+everyday-heroes-compiled*
+everyday-heroes.lock
+packs/*.db
+
+# IDE
+.idea/
+.nova/
+.vs/
+.vscode/
+*.code-workspace
+*.iml
+
+# Node Modules
+node_modules/
+
+# OS Specific
+.DS_Store

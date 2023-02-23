@@ -1,0 +1,36 @@
+{
+  "Actor": {
+    "types": ["character", "npc"],
+    "templates": {
+      
+    },
+    "htmlFields": [],
+    "character": {
+      
+    },
+    "npc": {
+      
+    }
+  },
+  "Item": {
+    "types": ["archetype", "class", "background", "profession"],
+    "templates": {
+      
+    },
+    "htmlFields": {
+      
+    },
+    "archetype": {
+      
+    },
+    "class": {
+      
+    },
+    "background": {
+      
+    },
+    "profession": {
+      
+    }
+  }
+}

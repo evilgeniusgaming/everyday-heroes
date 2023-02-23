@@ -1,0 +1,76 @@
+{
+  "id": "everyday-heroes",
+  "title": "Everyday Heroes",
+  "description": "The core system for the Everyday Heroes role-playing game.",
+  "version": "0.1.0",
+  "compatibility": {
+    "minimum": "10.291",
+    "verified": "10"
+  },
+  "url": "https://github.com/evilgeniusgaming/everyday-heroes",
+  "manifest": "https://raw.githubusercontent.com/evilgeniusgaming/everyday-heroes/main/system.json",
+  "download": "https://github.com/evilgeniusgaming/everyday-heroes/releases/download/release-0.1.0/everyday-heroes-release-0.1.0.zip",
+  "authors": [
+    {
+      "name": "Jeff ‘Arbron’ Hitchcock",
+      "url": "https://github.com/arbron",
+      "email": "jeff@szed.co",
+      "discord": "arbron#6515",
+      "twitter": "@arbron",
+      "flags": {}
+    }
+  ],
+  "esmodules": [
+    "./everyday-heroes.mjs"
+  ],
+  "styles": [
+    "./everyday-heroes.css"
+  ],
+  "packs": [
+    {
+      "name": "archetypes",
+      "label": "Archetypes",
+      "system": "everyday-heroes",
+      "path": "packs/archetypes.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "classes",
+      "label": "Classes",
+      "system": "everyday-heroes",
+      "path": "packs/classes.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "backgrounds",
+      "label": "Backgrounds",
+      "system": "everyday-heroes",
+      "path": "packs/backgrounds.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "professions",
+      "label": "Professions",
+      "system": "everyday-heroes",
+      "path": "packs/professions.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json",
+      "flags": {}
+    }
+  ],
+  "flags": {}
+}
