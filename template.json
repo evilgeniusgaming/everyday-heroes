@@ -1,12 +1,67 @@
 {
   "Actor": {
     "types": ["character", "npc"],
-    "templates": {
-      
-    },
-    "htmlFields": [],
+    "templates": {},
+    "htmlFields": [
+      "biography.value",
+      "biography.public",
+      "biography.notes"
+    ],
     "character": {
-      
+      "abilities": {},
+      "attributes": {
+        "defense": {
+          "ability": "",
+          "bonus": ""
+        },
+        "death": {
+          "success": 0,
+          "failure": 0,
+          "bonus": ""
+        },
+        "exhaustion": 0,
+        "hp": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          }
+        },
+        "initiative": {
+          "bonus": ""
+        }
+      },
+      "biography": {
+        "value": "",
+        "public": "",
+        "notes": "",
+        "attachments": [],
+        "beliefs": [],
+        "motivations": [],
+        "quirks": [],
+        "virtues": [],
+        "age": "",
+        "ancestry": "",
+        "eyes": "",
+        "flaws": "",
+        "hair": "",
+        "height": "",
+        "marital": "",
+        "pronouns": "",
+        "role": "",
+        "skin": "",
+        "weight": ""
+      },
+      "bonuses": {
+        
+      },
+      "resources": {
+        "archetype": {
+          "value": 0
+        },
+        "inspiration": false
+      },
+      "skills": {}
     },
     "npc": {
       
@@ -15,22 +70,46 @@
   "Item": {
     "types": ["archetype", "class", "background", "profession"],
     "templates": {
-      
+      "description": {
+        "description": {
+          "value": "",
+          "chat": "",
+          "source": ""
+        }
+      }
     },
-    "htmlFields": {
-      
-    },
+    "htmlFields": [
+      "description.value",
+      "description.chat"
+    ],
     "archetype": {
-      
+      "templates": ["description"],
+      "identifier": {
+        "value": ""
+      },
+      "advancements": []
     },
     "class": {
-      
+      "templates": ["description"],
+      "identifier": {
+        "value": "",
+        "archetype": ""
+      },
+      "advancements": []
     },
     "background": {
-      
+      "templates": ["description"],
+      "identifier": {
+        "value": ""
+      },
+      "advancements": []
     },
     "profession": {
-      
+      "templates": ["description"],
+      "identifier": {
+        "value": ""
+      },
+      "advancements": []
     }
   }
 }
