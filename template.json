@@ -19,7 +19,6 @@
           "failure": 0,
           "bonus": ""
         },
-        "exhaustion": 0,
         "hp": {
           "value": 0,
           "bonuses": {
@@ -37,13 +36,13 @@
         "notes": "",
         "attachments": [],
         "beliefs": [],
+        "flaws": [],
         "motivations": [],
         "quirks": [],
         "virtues": [],
         "age": "",
         "ancestry": "",
         "eyes": "",
-        "flaws": "",
         "hair": "",
         "height": "",
         "marital": "",
@@ -54,6 +53,9 @@
       },
       "bonuses": {
         
+      },
+      "details": {
+        "level": 1
       },
       "resources": {
         "archetype": {

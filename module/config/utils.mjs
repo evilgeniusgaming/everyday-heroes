@@ -9,15 +9,14 @@ const _preLocalizationRegistrations = {};
 
 /**
  * Mark the provided config key to be pre-localized during the init stage.
- * @param {string} configKeyPath            Key path within the configuration object.
+ * @param {string} configKeyPath  - Key path within the configuration object.
  * @param {object} [options={}]
- * @param {string} [options.key]            If each entry in the config enum is an object,
- *                                          localize and sort using this property.
- * @param {string[]} [options.keys=[]]      Array of localization keys. First key listed will be used for sorting
- *                                          if multiple are provided.
- * @param {boolean} [options.sort=false]    Sort this config enum, using the key if set.
- * @param {object} [options.registrations]  Location where the registration information will be stored. If not
- *                                          set then the global registration store will be used.
+ * @param {string} [options.key] - If each entry in the config enum is an object, localize and sort using this property.
+ * @param {string[]} [options.keys=[]] - Array of localization keys. First key listed will be used for sorting
+ *                                       if multiple are provided.
+ * @param {boolean} [options.sort=false] - Sort this config enum, using the key if set.
+ * @param {object} [options.registrations] - Location where the registration information will be stored. If not
+ *                                           set then the global registration store will be used.
  */
 export function preLocalize(configKeyPath, { key, keys=[], sort=false, registrations }={}) {
 	if ( key ) keys.unshift(key);
@@ -29,9 +28,9 @@ export function preLocalize(configKeyPath, { key, keys=[], sort=false, registrat
 
 /**
  * Execute previously defined pre-localization tasks on the provided config object.
- * @param {object} config           The config object to localize and sort. *Will be mutated.*
- * @param {object} [registrations]  Object of localization registrations. If not set then the global registration
- *                                  store will be used.
+ * @param {object} config - The config object to localize and sort. *Will be mutated.*
+ * @param {object} [registrations] - Object of localization registrations. If not set then the global registration
+ *                                   store will be used.
  */
 export function performPreLocalization(config, registrations) {
 	registrations ??= _preLocalizationRegistrations;
@@ -46,8 +45,8 @@ export function performPreLocalization(config, registrations) {
 
 /**
  * Localize the values of a configuration object by translating them in-place.
- * @param {object} obj       The configuration object to localize.
- * @param {string[]} [keys]  List of inner keys that should be localized if this is an object.
+ * @param {object} obj - The configuration object to localize.
+ * @param {string[]} [keys] - List of inner keys that should be localized if this is an object.
  */
 export function localizeObject(obj, keys) {
 	for ( const [k, v] of Object.entries(obj) ) {

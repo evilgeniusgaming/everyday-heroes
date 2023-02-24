@@ -3,4 +3,12 @@
  */
 export default class ActorEH extends Actor {
 
+	prepareBaseData() {
+		this.system.prepareBaseData?.();
+	}
+
+	prepareDerivedData() {
+		this.system.prepareDerivedData?.();
+	}
+
 }

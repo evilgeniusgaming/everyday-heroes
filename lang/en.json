@@ -1,5 +1,9 @@
 {
 
+"EH.Abilities.Label[one]": "Ability",
+"EH.Abilities.Label[other]": "Abilities",
+"EH.Abilities.Score[one]": "Ability Score",
+"EH.Abilities.Score[other]": "Ability Scores",
 "EH.Abilities.Charisma.Label": "Charisma",
 "EH.Abilities.Charisma.Abbreviation": "cha",
 "EH.Abilities.Constitution.Label": "Constitution",
@@ -12,7 +16,36 @@
 "EH.Abilities.Strength.Abbreviation": "str",
 "EH.Abilities.Wisdom.Label": "Wisdom",
 "EH.Abilities.Wisdom.Abbreviation": "wis",
+"EH.Abilities.Bonuses.Check": "Ability Check Bonus",
+"EH.Abilities.Bonuses.Save": "Saving Throw Bonus",
 
+"EH.Actor.Types.Character[one]": "Player Character",
+"EH.Actor.Types.Character[other]": "Player Characters",
+"EH.Actor.Types.NPC[one]": "Non-Player Character",
+"EH.Actor.Types.NPC[other]": "Non-Player Characters",
+
+"EH.Biography.Label": "Biography",
+"EH.Biography.Age": "Age",
+"EH.Biography.Ancestry": "Ancestry",
+"EH.Biography.Attachements": "Attachements",
+"EH.Biography.Beliefs": "Beliefs",
+"EH.Biography.Eyes": "Eyes",
+"EH.Biography.Flaws": "Flaws",
+"EH.Biography.Hair": "Hair",
+"EH.Biography.Height": "Height",
+"EH.Biography.MaritalStatus": "Marital Status",
+"EH.Biography.Motivations": "Motivations",
+"EH.Biography.Notes": "Notes",
+"EH.Biography.Pronouns": "Pronouns",
+"EH.Biography.Public": "Public Biography",
+"EH.Biography.Quirks": "Quirks",
+"EH.Biography.Role": "Role",
+"EH.Biography.Skin": "Skin",
+"EH.Biography.Virtues": "Virtues",
+"EH.Biography.Weight": "Weight",
+
+"EH.Conditions.Label[one]": "Condition",
+"EH.Conditions.Label[other]": "Conditions",
 "EH.Conditions.Blinded.Label": "Blinded",
 "EH.Conditions.Burning.Label": "Burning",
 "EH.Conditions.Deafened.Label": "Deafened",
@@ -36,6 +69,41 @@
 "EH.Equipment.Types.Improvised.Label": "Improvised",
 "EH.Equipment.Types.Military.Label": "Military",
 
+"EH.Item.Types.Archetype[one]": "Archetype",
+"EH.Item.Types.Archetype[other]": "Archetypes",
+"EH.Item.Types.Background[one]": "Background",
+"EH.Item.Types.Background[other]": "Backgrounds",
+"EH.Item.Types.Class[one]": "Class",
+"EH.Item.Types.Class[other]": "Classes",
+"EH.Item.Types.Profession[one]": "Profession",
+"EH.Item.Types.Profession[other]": "Professions",
+
+"EH.Proficiency.Label[one]": "Proficiency",
+"EH.Proficiency.Label[other]": "Proficiencies",
+"EH.Proficiency.Levels.Expertise": "Expertise",
+"EH.Proficiency.Levels.None": "Not Proficient",
+"EH.Proficiency.Levels.Proficient": "Proficient",
+"EH.Proficiency.Multiplier": "Proficiency Multiplier",
+"EH.Proficiency.Rounding": "Proficiency Rounding",
+
+"EH.Measurement.Length.Feet.Label[one]": "Foot",
+"EH.Measurement.Length.Feet.Label[other]": "Feet",
+"EH.Measurement.Length.Feet.Abbreviation": "ft",
+"EH.Measurement.Length.Meters.Label[one]": "Meter",
+"EH.Measurement.Length.Meters.Label[other]": "Meters",
+"EH.Measurement.Length.Meters.Abbreviation": "m",
+"EH.Measurement.Units": "Units",
+
+"EH.Resources.Label[one]": "Resource",
+"EH.Resources.Label[other]": "Resources",
+"EH.Resources.Inspiration": "Inspiration",
+
+"EH.Sheets.Character": "Default Everyday Heroes Character Sheet",
+"EH.Sheets.Item": "Default Everyday Heroes Item Sheet",
+"EH.Sheets.NPC": "Default Everyday Heroes Character Sheet",
+
+"EH.Skills.Label[one]": "Skill",
+"EH.Skills.Label[other]": "Skills",
 "EH.Skills.Acrobatics.Label": "Acrobatics",
 "EH.Skills.ArtsAndCrafts.Label": "Arts and Crafts",
 "EH.Skills.Athletics.Label": "Athletics",
@@ -57,6 +125,8 @@
 "EH.Skills.Stealth.Label": "Stealth",
 "EH.Skills.Streetwise.Label": "Streetwise",
 "EH.Skills.Survival.Label": "Survival",
-"EH.Skills.Vehicles.Label": "Vehicles"
+"EH.Skills.Vehicles.Label": "Vehicles",
+"EH.Skills.Bonuses.Check": "Skill Check Bonus",
+"EH.Skills.Bonuses.Passive": "Passive Bonus"
 
 }

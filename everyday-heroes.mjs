@@ -27,9 +27,26 @@ Hooks.once("init", function() {
 
 	CONFIG.Actor.documentClass = documents.ActorEH;
 	CONFIG.Actor.systemDataModels = data.actor.config;
+	CONFIG.Actor.typeLabels = {
+		character: "EH.Actor.Types.Character[one]",
+		npc: "EH.Actor.Types.NPC[one]"
+	};
+	DocumentSheetConfig.registerSheet(Actor, "everyday-heroes", applications.actor.CharacterSheetEH, {
+		types: ["character"],
+		makeDefault: true,
+		label: "EH.Sheets.Character"
+	});
 
 	CONFIG.Item.documentClass = documents.ItemEH;
 	CONFIG.Item.systemDataModels = data.item.config;
+	CONFIG.Item.typeLabels = {
+		archetype: "EH.Item.Types.Archetype[one]",
+		background: "EH.Item.Types.Background[one]",
+		class: "EH.Item.Types.Class[one]",
+		profession: "EH.Item.Types.Profession[one]"
+	};
+
+	utils.registerHandlebarsHelpers();
 });
 
 Hooks.once("setup", function() {

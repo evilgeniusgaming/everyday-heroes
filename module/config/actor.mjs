@@ -132,6 +132,14 @@ preLocalize("conditions", { key: "label", sort: true });
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Maximum character level.
+ * @type {number}
+ */
+export const maxLevel = 10;
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Configuration data for skills.
  *
  * @typedef {object} SkillConfiguration

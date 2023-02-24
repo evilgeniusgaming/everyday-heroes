@@ -176,7 +176,7 @@
     "jsdoc/require-description-complete-sentence": "off",
     "jsdoc/require-example": "off",
     "jsdoc/require-file-overview": "off",
-    "jsdoc/require-hyphen-before-param-description": ["warn", "never"],
+    "jsdoc/require-hyphen-before-param-description": ["warn", "always"],
     "jsdoc/require-jsdoc": "warn",
     "jsdoc/require-param": "warn",
     "jsdoc/require-param-description": "off",
