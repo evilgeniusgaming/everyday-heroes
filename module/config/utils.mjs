@@ -20,9 +20,9 @@ const _preLocalizationRegistrations = {};
  *                                          set then the global registration store will be used.
  */
 export function preLocalize(configKeyPath, { key, keys=[], sort=false, registrations }={}) {
-  if ( key ) keys.unshift(key);
-  registrations ??= _preLocalizationRegistrations;
-  registrations[configKeyPath] = { keys, sort };
+	if ( key ) keys.unshift(key);
+	registrations ??= _preLocalizationRegistrations;
+	registrations[configKeyPath] = { keys, sort };
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -34,12 +34,12 @@ export function preLocalize(configKeyPath, { key, keys=[], sort=false, registrat
  *                                  store will be used.
  */
 export function performPreLocalization(config, registrations) {
-  registrations ??= _preLocalizationRegistrations;
-  for ( const [keyPath, settings] of Object.entries(registrations) ) {
-    const target = foundry.utils.getProperty(config, keyPath);
-    localizeObject(target, settings.keys);
-    if ( settings.sort ) foundry.utils.setProperty(config, keyPath, sortObjectEntries(target, settings.keys[0]));
-  }
+	registrations ??= _preLocalizationRegistrations;
+	for ( const [keyPath, settings] of Object.entries(registrations) ) {
+		const target = foundry.utils.getProperty(config, keyPath);
+		localizeObject(target, settings.keys);
+		if ( settings.sort ) foundry.utils.setProperty(config, keyPath, sortObjectEntries(target, settings.keys[0]));
+	}
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -50,29 +50,29 @@ export function performPreLocalization(config, registrations) {
  * @param {string[]} [keys]  List of inner keys that should be localized if this is an object.
  */
 export function localizeObject(obj, keys) {
-  for ( const [k, v] of Object.entries(obj) ) {
-    const type = typeof v;
-    if ( type === "string" ) {
-      obj[k] = game.i18n.localize(v);
-      continue;
-    }
+	for ( const [k, v] of Object.entries(obj) ) {
+		const type = typeof v;
+		if ( type === "string" ) {
+			obj[k] = game.i18n.localize(v);
+			continue;
+		}
 
-    if ( type !== "object" ) {
-      console.error(new Error(
-        `Pre-localized configuration values must be a string or object, ${type} found for "${k}" instead.`
-      ));
-      continue;
-    }
-    if ( !keys?.length ) {
-      console.error(new Error(
-        "Localization keys must be provided for pre-localizing when target is an object."
-      ));
-      continue;
-    }
+		if ( type !== "object" ) {
+			console.error(new Error(
+				`Pre-localized configuration values must be a string or object, ${type} found for "${k}" instead.`
+			));
+			continue;
+		}
+		if ( !keys?.length ) {
+			console.error(new Error(
+				"Localization keys must be provided for pre-localizing when target is an object."
+			));
+			continue;
+		}
 
-    for ( const key of keys ) {
-      if ( !v[key] ) continue;
-      v[key] = game.i18n.localize(v[key]);
-    }
-  }
+		for ( const key of keys ) {
+			if ( !v[key] ) continue;
+			v[key] = game.i18n.localize(v[key]);
+		}
+	}
 }

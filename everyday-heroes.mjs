@@ -12,42 +12,42 @@ import * as documents from "./module/documents/_module.mjs";
 import * as utils from "./module/utils.mjs";
 
 globalThis.EverydayHeroes = {
-  applications,
-  config,
-  data,
-  documents,
-  utils
+	applications,
+	config,
+	data,
+	documents,
+	utils
 };
 
 Hooks.once("init", function() {
-  game.everydayHeroes = globalThis.EverydayHeroes;
-  console.log(`Everyday Heroes | Initializing the Everyday Heroes Game System - Version ${game.system.version}`);
+	game.everydayHeroes = globalThis.EverydayHeroes;
+	console.log(`Everyday Heroes | Initializing the Everyday Heroes Game System - Version ${game.system.version}`);
 
-  CONFIG.EverydayHeroes = config;
+	CONFIG.EverydayHeroes = config;
 
-  CONFIG.Actor.documentClass = documents.ActorEH;
-  CONFIG.Actor.systemDataModels = data.actor.config;
+	CONFIG.Actor.documentClass = documents.ActorEH;
+	CONFIG.Actor.systemDataModels = data.actor.config;
 
-  CONFIG.Item.documentClass = documents.ItemEH;
-  CONFIG.Item.systemDataModels = data.item.config;
+	CONFIG.Item.documentClass = documents.ItemEH;
+	CONFIG.Item.systemDataModels = data.item.config;
 });
 
 Hooks.once("setup", function() {
-  // Setup stuff here
+	// Setup stuff here
 });
 
 Hooks.once("i18nInit", function() {
-  config.utils.performPreLocalization(config);
+	config.utils.performPreLocalization(config);
 });
 
 Hooks.once("ready", function() {
-  // Perform global migrations here if necessary
+	// Perform global migrations here if necessary
 });
 
 export {
-  applications,
-  config,
-  data,
-  documents,
-  utils
+	applications,
+	config,
+	data,
+	documents,
+	utils
 };

@@ -14,24 +14,24 @@ import { preLocalize } from "./utils.mjs";
  * @enum {EquipmentTypeConfiguration}
  */
 export const equipmentTypes = {
-  basic: {
-    label: "EH.Equipment.Types.Basic.Label"
-  },
-  advanced: {
-    label: "EH.Equipment.Types.Advanced.Label",
-    requires: "basic"
-  },
-  historical: {
-    label: "EH.Equipment.Types.Historical.Label",
-    requires: "basic"
-  },
-  improvised: {
-    label: "EH.Equipment.Types.Improvised.Label",
-    requires: "basic"
-  },
-  military: {
-    label: "EH.Equipment.Types.Military.Label",
-    requires: "advanced"
-  }
+	basic: {
+		label: "EH.Equipment.Types.Basic.Label"
+	},
+	advanced: {
+		label: "EH.Equipment.Types.Advanced.Label",
+		requires: "basic"
+	},
+	historical: {
+		label: "EH.Equipment.Types.Historical.Label",
+		requires: "basic"
+	},
+	improvised: {
+		label: "EH.Equipment.Types.Improvised.Label",
+		requires: "basic"
+	},
+	military: {
+		label: "EH.Equipment.Types.Military.Label",
+		requires: "advanced"
+	}
 };
 preLocalize("equipmentTypes", { key: "label" });
