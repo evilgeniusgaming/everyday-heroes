@@ -12,7 +12,15 @@
 			{{> "eh.character-details"}}
 		</div>
 		<div class="tab" data-group="primary" data-tab="features">
-			Features
+			{{#each features as |section|}}
+				<h2>{{localize section.label}}</h2>
+				<h3>{{section.primary.item.name}}</h3>
+				<ul>
+					{{#each section.items}}
+						<li>{{this.name}}</li>
+					{{/each}}
+				</ul>
+			{{/each}}
 		</div>
 		<div class="tab" data-group="primary" data-tab="inventory">
 			<section class="proficiencies">

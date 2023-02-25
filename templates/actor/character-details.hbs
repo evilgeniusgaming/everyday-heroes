@@ -10,19 +10,19 @@
 			</fieldset>
 			<fieldset class="class">
 				<label>{{localize "EH.Item.Types.Class[one]"}}</label>
-				<span>{{actor.details.class}}</span>
+				<span>{{system.details.class.name}}</span>
 			</fieldset>
 			<fieldset class="archetype">
 				<label>{{localize "EH.Item.Types.Archetype[one]"}}</label>
-				<span>{{actor.details.archetype}}</span>
+				<span>{{system.details.archetype.name}}</span>
 			</fieldset>
 			<fieldset class="background">
 				<label>{{localize "EH.Item.Types.Background[one]"}}</label>
-				<span>{{actor.details.background}}</span>
+				<span>{{system.details.background.name}}</span>
 			</fieldset>
 			<fieldset class="profession">
 				<label>{{localize "EH.Item.Types.Profession[one]"}}</label>
-				<span>{{actor.details.profession}}</span>
+				<span>{{system.details.profession.name}}</span>
 			</fieldset>
 			<fieldset class="level">
 				<label>Level</label>
@@ -36,7 +36,7 @@
 			<fieldset class="speed">
 				<label>Speed</label>
 				<input type="number" name="system.attributes.movement.value"
-						 	value="{{system.attributes.movement.value}}" step="0.1" min="0">
+					value="{{system.attributes.movement.value}}" step="0.1" min="0">
 			</fieldset>
 			<fieldset class="languages">
 				<label>Languages</label>
@@ -51,12 +51,14 @@
 				<div class="ability" data-key="{{key}}">
 					<label>{{ability.label}}</label>
 					<aside class="modifier">{{ability.mod}}</aside>
-					<input class="value" type="number" name="system.abilities.{{key}}.value"
-							 	value="{{ability.value}}" step="1" min="1">
-					<div class="save">
-						<input type="hidden" name="system.abilities.{{key}}.proficiency.multiplier" value="">
-						<span class="proficiency-selector"></span>
-						{{ability.save}}
+					<div>
+						<input class="value" type="number" name="system.abilities.{{key}}.value"
+							value="{{ability.value}}" step="1" min="1">
+						<div class="save">
+							<input type="hidden" name="system.abilities.{{key}}.proficiency.multiplier" value="">
+							<span class="proficiency-selector"></span>
+							{{ability.save}}
+						</div>
 					</div>
 				</div>
 			{{/each}}
@@ -85,12 +87,12 @@
 				<fieldset class="current-hp">
 					<label>Current HP</label>
 					<input type="number" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}"
-							 	step="1" min="0" max="{{system.attributes.hp.max}}">
+						step="1" min="0" max="{{system.attributes.hp.max}}">
 				</fieldset>
 				<fieldset class="temp-hp">
 					<label>Temp HP</label>
 					<input type="number" name="system.attributes.hp.temp" value="{{system.attributes.hp.temp}}"
-							 	step="1" min="0">
+						step="1" min="0">
 				</fieldset>
 				<fieldset class="hit-dice">
 					<label>Hit Dice</label>
@@ -112,10 +114,22 @@
 			</div>
 		</div>
 		<div class="summary">
-			Proficiency
-			Defense
-			Initiative
-			Passive Perception
+			<fieldset class="proficiency">
+				<label>Proficiency Bonus</label>
+				<span>{{system.attributes.prof}}</span>
+			</fieldset>
+			<fieldset class="defense">
+				<label>Defense</label>
+				<span>{{system.attributes.defense.value}}</span>
+			</fieldset>
+			<fieldset class="initiative">
+				<label>Initiative</label>
+				<span>{{system.attributes.initiative.value}}</span>
+			</fieldset>
+			<fieldset class="passive-perception">
+				<label>Passive Perception</label>
+				<span>{{system.skills.perc.passive}}</span>
+			</fieldset>
 		</div>
 		<div class="resources">
 			Genius/Focus/Influence

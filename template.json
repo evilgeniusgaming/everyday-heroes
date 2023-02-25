@@ -70,7 +70,7 @@
     }
   },
   "Item": {
-    "types": ["archetype", "class", "background", "profession"],
+    "types": ["archetype", "class", "background", "profession", "talent", "specialfeature", "feat"],
     "templates": {
       "description": {
         "description": {
@@ -112,6 +112,34 @@
         "value": ""
       },
       "advancements": []
+    },
+    "talent": {
+      "templates": ["description"],
+      "identifier": {
+        "value": ""
+      },
+      "type": {
+        "value": ""
+      }
+    },
+    "specialfeature": {
+      "templates": ["description"],
+      "identifier": {
+        "value": ""
+      },
+      "type": {
+        "value": ""
+      }
+    },
+    "feat": {
+      "templates": ["description"],
+      "identifier": {
+        "value": ""
+      },
+      "type": {
+        "value": "",
+        "category": ""
+      }
     }
   }
 }

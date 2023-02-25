@@ -1,8 +1,13 @@
 :root {
-	--eh-border-color-strong: rgb(0, 0, 0);
-	--eh-border-color-weak: rgba(0, 0, 0, 0.5);
-
+	--eh-background-color-black: rgb(28, 31, 31);
 	--eh-background-color-dark: rgb(119, 125, 126);
 	--eh-background-color-mid: rgb(207, 210, 205);
 	--eh-background-color-light: rgb(244, 244, 240);
+	--eh-background-color-white: rgb(255, 255, 255);
+
+	--eh-border-color-strong: rgb(0, 0, 0);
+	--eh-border-color-weak: rgba(0, 0, 0, 0.5);
+
+	--eh-text-color-black: rgb(0, 0, 0);
+	--eh-text-color-white: rgb(255, 255, 255);
 }

@@ -152,6 +152,7 @@ export default class CharacterData extends foundry.abstract.DataModel {
 	prepareDerivedData() {
 		this.#prepareAbilities();
 		this.#prepareSkills();
+		this.#prepareDetails();
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -180,6 +181,28 @@ export default class CharacterData extends foundry.abstract.DataModel {
 				this.attributes.prof, skill.proficiency.multiplier, skill.proficiency.rounding
 			);
 			skill.passive = 10 + skill.mod + skill.proficiency.flat;
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	#prepareDetails() {
+		for ( const item of this.parent.items ) {
+			// TODO: Add actor warning if more than one archetype, class, background, or profession exist
+			switch (item.type) {
+				case "archetype":
+					this.details.archetype = item;
+					break;
+				case "class":
+					this.details.class = item;
+					break;
+				case "background":
+					this.details.background = item;
+					break;
+				case "profession":
+					this.details.profession = item;
+					break;
+			}
 		}
 	}
 }

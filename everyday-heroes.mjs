@@ -43,7 +43,10 @@ Hooks.once("init", function() {
 		archetype: "EH.Item.Types.Archetype[one]",
 		background: "EH.Item.Types.Background[one]",
 		class: "EH.Item.Types.Class[one]",
-		profession: "EH.Item.Types.Profession[one]"
+		profession: "EH.Item.Types.Profession[one]",
+		talent: "EH.Item.Types.Talent[one]",
+		specialfeature: "EH.Item.Types.SpecialFeature[one]",
+		feat: "EH.Item.Types.Feat[one]"
 	};
 
 	utils.registerHandlebarsHelpers();
