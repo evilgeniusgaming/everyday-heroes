@@ -3,6 +3,7 @@ export default class CharacterSheetEH extends ActorSheet {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ["everyday-heroes", "sheet", "actor", "character"],
 			template: "systems/everyday-heroes/templates/actor/character-sheet.hbs",
+			tabs: [{navSelector: 'nav[data-group="primary"]', contentSelector: "main", initial: "details"}],
 			width: 720,
 			height: 680
 		});

@@ -1,131 +1,27 @@
 <form class="{{cssClass}}" autocomplete="off">
 
-	<header class="hero-id">
-		<div class="image">
-			<img src="{{actor.img}}" data-edit="img">
-		</div>
-		<div>
-			<fieldset class="name">
-				<label>{{localize "Name"}}</label>
-				<input type="string" name="name" value="{{actor.name}}">
-			</fieldset>
-			<fieldset class="class">
-				<label>{{localize "EH.Item.Types.Class[one]"}}</label>
-				<span>{{actor.details.class}}</span>
-			</fieldset>
-			<fieldset class="archetype">
-				<label>{{localize "EH.Item.Types.Archetype[one]"}}</label>
-				<span>{{actor.details.archetype}}</span>
-			</fieldset>
-			<fieldset class="background">
-				<label>{{localize "EH.Item.Types.Background[one]"}}</label>
-				<span>{{actor.details.background}}</span>
-			</fieldset>
-			<fieldset class="profession">
-				<label>{{localize "EH.Item.Types.Profession[one]"}}</label>
-				<span>{{actor.details.profession}}</span>
-			</fieldset>
-			<fieldset class="level">
-				<label>Level</label>
-				<input type="number" name="system.details.level" value="{{system.details.level}}"
-				       step="1" min="1" max="10">
-			</fieldset>
-			<fieldset class="wealth">
-				<label>Wealth</label>
-				<span>{{actor.details.wealth}}</span>
-			</fieldset>
-			<fieldset class="speed">
-				<label>Speed</label>
-				<input type="number" name="system.attributes.movement.value"
-				       value="{{system.attributes.movement.value}}" step="0.1" min="0">
-			</fieldset>
-			<fieldset class="languages">
-				<label>Languages</label>
-				<span>{{actor.traits.languages.summary}}</span>
-			</fieldset>
-		</div>
-	</header>
+	<nav data-group="primary">
+		<a data-tab="details">Details</a>
+		<a data-tab="features">Features</a>
+		<a data-tab="inventory">Inventory</a>
+		<a data-tab="biography">Biography</a>
+	</nav>
 
-	<section class="abilities-and-skills">
-		<div class="abilities">
-			{{#each abilities as |ability key|}}
-				<div class="ability" data-key="{{key}}">
-					<label>{{ability.label}}</label>
-					<aside class="modifier">{{ability.mod}}</aside>
-					<input class="value" type="number" name="system.abilities.{{key}}.value"
-								 value="{{ability.value}}" step="1" min="1">
-					<div class="save">
-						<input type="hidden" name="system.abilities.{{key}}.proficiency.multiplier" value="">
-						<span class="proficiency-selector"></span>
-						{{ability.save}}
-					</div>
-				</div>
-			{{/each}}
+	<main>
+		<div class="tab" data-group="primary" data-tab="details">
+			{{> "eh.character-details"}}
 		</div>
-		<div class="skills">
-			{{#each skills as |skill key|}}
-				<div class="skill" data-key="{{key}}">
-					<label>{{skill.label}}</label>
-					<span class="abbreviation">{{skill.abilityAbbreviation}}</span>
-					<span class="proficiency-selector">
-						<input type="hidden" name="system.skills.{{key}}.proficiency.multiplier" value="">
-					</span>
-					<span class="modifier">{{skill.mod}}</span>
-				</div>
-			{{/each}}
+		<div class="tab" data-group="primary" data-tab="features">
+			Features
 		</div>
-	</section>
-
-	<section class="attributes">
-		<div class="health">
-			<div class="hp">
-				<fieldset class="max-hp">
-					<label>Max HP</label>
-					<span>{{system.attributes.hp.max}}</span>
-				</fieldset>
-				<fieldset class="current-hp">
-					<label>Current HP</label>
-					<input type="number" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}"
-								 step="1" min="0" max="{{system.attributes.hp.max}}">
-				</fieldset>
-				<fieldset class="temp-hp">
-					<label>Temp HP</label>
-					<input type="number" name="system.attributes.hp.temp" value="{{system.attributes.hp.temp}}"
-					       step="1" min="0">
-				</fieldset>
-				<fieldset class="hit-dice">
-					<label>Hit Dice</label>
-					<span>{{system.attributes.hd.summary}}</span>
-				</fieldset>
-				<fieldset class="total-dmg">
-					<label>Total DMG</label>
-					<span>{{system.attributes.hp.damage}}</span>
-				</fieldset>
-			</div>
-			<div class="death-saves">
-				<label>Death Saves</label>
-				<fieldset class="success">
-					<label>Success</label>
-				</fieldset>
-				<fieldset class="failure">
-					<label>Failure</label>
-				</fieldset>
-			</div>
+		<div class="tab" data-group="primary" data-tab="inventory">
+			<section class="proficiencies">
+				Equipment Proficiencies
+			</section>
 		</div>
-		<div class="summary">
-			Proficiency
-			Defense
-			Initiative
-			Passive Perception
+		<div class="tab" data-group="primary" data-tab="biography">
+			Biography
 		</div>
-		<div class="resources">
-			Genius/Focus/Influence
-			Inspiration
-		</div>
-	</section>
-
-	<section class="proficiencies">
-		Equipment Proficiencies
-	</section>
+	</main>
 
 </form>

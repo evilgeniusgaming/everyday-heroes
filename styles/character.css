@@ -1,76 +1,133 @@
 .character.sheet {
 	container-type: size;
 }
+.character.sheet .window-content {
+	padding: 0;
+}
 
-.character.sheet form {
+.character.sheet nav[data-group="primary"] {
+	display: flex;
+	margin: 0 0.5rem;
+	padding: 0;
+	margin-block-start: -100px;
+	padding-block-start: 100px;
+	box-shadow: -10px 5px 20px 0px rgba(29, 43, 56, 0.75);
+	border-radius: 0 0 20px 20px;
+}
+.character.sheet nav[data-group="primary"] a {
+	display: block;
+	flex-grow: 1;
+	padding-block: 0.5rem;
+	border: 1px solid var(--eh-border-color-weak);
+	border-block-start: none;
+	background-color: var(--eh-background-color-mid);
+	text-align: center;
+}
+.character.sheet nav[data-group="primary"] a.active {
+	background-color: var(--eh-background-color-dark);
+	color: white;
+}
+.character.sheet nav[data-group="primary"] a:first-of-type {
+	border-bottom-left-radius: 20px;
+}
+.character.sheet nav[data-group="primary"] a:last-of-type {
+	border-bottom-right-radius: 20px;
+}
+.character.sheet nav[data-group="primary"] a:not(:last-of-type) {
+	border-inline-end: none;
+}
+
+.character.sheet main {
+	padding: 0.5rem;
+}
+
+.character.sheet [data-tab="details"] > section {
 	display: grid;
 	grid-template-areas:
 	  "header header"
 		"abilities-and-skills attributes";
-		"abilities-and-skills proficiencies"
 }
 
-.character.sheet .hero-id {
+.character.sheet [data-tab="details"] .hero-id {
 	grid-area: header;
 
-	/* container: hero-id / size; */
 	display: grid;
-	/* grid-template-columns: 100cqb 1fr; */
+	overflow: hidden;
 	grid-template-areas: "image details";
 
 	border: 1px solid var(--eh-border-color-strong);
 	border-radius: 20px;
+	background-color: var(--eh-background-color-light);
 }
 
-.character.sheet .hero-id > div.image {
+.character.sheet [data-tab="details"] .hero-id > div.image {
 	grid-area: image;
+	max-height: 150px;
+	aspect-ratio: 1;
 }
-.character.sheet .hero-id > div.image img {
-	max-height: 200px;
+.character.sheet [data-tab="details"] .hero-id > div.image img {
+	height: 100%;
+	aspect-ratio: 1;
 }
-.character.sheet .hero-id > div:not(.image) {
+.character.sheet [data-tab="details"] .hero-id > div:not(.image) {
 	grid-area: details;
 	display: flex;
 	flex-wrap: wrap;
+	margin-inline-start: 1em;
+	padding-block-end: 0.5em;
 }
-.character.sheet .hero-id fieldset {
+.character.sheet [data-tab="details"] .hero-id fieldset {
+	display: flex;
+	align-items: end;
 	margin: 0;
 	border: none;
-}
-.character.sheet .hero-id fieldset:not(:last-of-type) {
 	border-block-end: 1px solid var(--eh-border-color-strong);
+	padding: 0;
 }
-.character.sheet .hero-id fieldset:is(.name, .languages) {
-	flex-basis: 100%;
+.character.sheet [data-tab="details"] .hero-id fieldset:is(.name, .languages) {
+	flex: 1 0 100%;
 }
-.character.sheet .hero-id fieldset:is(.class, .archetype, .background, .profession) {
-	flex-basis: 50%;
+.character.sheet [data-tab="details"] .hero-id fieldset:is(.class, .archetype, .background, .profession) {
+	flex: 1 0 50%;
 }
-.character.sheet .hero-id fieldset:is(.level, .wealth, .speed) {
-	flex-basis: 33%;
+.character.sheet [data-tab="details"] .hero-id fieldset:is(.level, .wealth, .speed) {
+	flex: 1 0 33%;
+}
+.character.sheet [data-tab="details"] .hero-id fieldset > label {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.character.sheet [data-tab="details"] .hero-id fieldset > :not(label) {
+	flex-grow: 1;
+	border: none;
+	background: none;
+	margin-inline: 0.5em;
+	padding: 0;
+	padding-inline-start: 0.5em;
+	font-size: var(--font-size-16);
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Abilities & Skills                       */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.character.sheet .abilities-and-skills {
+.character.sheet [data-tab="details"] .abilities-and-skills {
 	grid-area: abilities-and-skills;
 	display: grid;
 	grid-template-areas: "abilities skills";
 }
 
-.character.sheet .abilities {
+.character.sheet [data-tab="details"] .abilities {
 	grid-area: abilities;
 	display: grid;
 	grid-template-columns: max-content auto max-content;
 }
-.character.sheet .abilities .ability {
+.character.sheet [data-tab="details"] .abilities .ability {
 	grid-column: 1 / 4;
 	display: grid;
 	grid-template-columns: subgrid;
 }
-.character.sheet .abilities .ability label {
+.character.sheet [data-tab="details"] .abilities .ability label {
 	grid-column: 1 / 4;
 	margin-inline-start: 1em;
 	padding-inline-start: 0.25em;
@@ -80,7 +137,7 @@
 	background-color: var(--eh-border-color-strong);
 	color: var(--color-text-light-0);
 }
-.character.sheet .abilities .ability .modifier {
+.character.sheet [data-tab="details"] .abilities .ability .modifier {
 	grid-column: 1;
 	aspect-ratio: 1;
 	width: calc(2em + 2px);
@@ -90,7 +147,7 @@
 	text-align: center;
 	line-height: calc(1.5em + 2px);
 }
-.character.sheet .abilities .ability .value {
+.character.sheet [data-tab="details"] .abilities .ability .value {
 	grid-column: 2;
 	border: none;
 	background: none;
@@ -100,44 +157,44 @@
 	width: 4em;
 	min-width: unset;
 }
-.character.sheet .abilities .ability .save {
+.character.sheet [data-tab="details"] .abilities .ability .save {
 	grid-column: 3;
 	min-width: 2em;
 }
 
-.character.sheet .skills {
+.character.sheet [data-tab="details"] .skills {
 	grid-area: skills;
 	display: grid;
 	grid-template-columns: auto max-content max-content max-content;
 	border: 8px solid var(--eh-border-color-strong);
 	border-radius: 1em;
 }
-.character.sheet .skills .skill {
+.character.sheet [data-tab="details"] .skills .skill {
 	grid-column: 1 / 5;
 	display: grid;
 	grid-template-columns: subgrid;
 	padding-inline: 0.5em;
 }
-.character.sheet .skills .skill:not(:last-of-type) {
+.character.sheet [data-tab="details"] .skills .skill:not(:last-of-type) {
 	border-bottom: 1px solid var(--eh-border-color-weak);
 }
-.character.sheet .skills .skill label {
+.character.sheet [data-tab="details"] .skills .skill label {
 	grid-column: 1;
 	border-inline-end: 1px solid var(--eh-border-color-weak);
 }
-.character.sheet .skills .skill:first-of-type > * {
+.character.sheet [data-tab="details"] .skills .skill:first-of-type > * {
 	padding-block-start: 0.25em;
 }
-.character.sheet .skills .skill:last-of-type > * {
+.character.sheet [data-tab="details"] .skills .skill:last-of-type > * {
 	padding-block-end: 0.25em;
 }
-.character.sheet .skills .skill .abbreviation {
+.character.sheet [data-tab="details"] .skills .skill .abbreviation {
 	grid-column: 2;
 }
-.character.sheet .skills .skill .proficiency-selector {
+.character.sheet [data-tab="details"] .skills .skill .proficiency-selector {
 	grid-column: 3;
 }
-.character.sheet .skills .skill .modifier {
+.character.sheet [data-tab="details"] .skills .skill .modifier {
 	grid-column: 4;
 }
 
@@ -145,6 +202,6 @@
 /*  Attributes                               */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.character.sheet .attributes {
+.character.sheet [data-tab="details"] .attributes {
 	grid-area: attributes;
 }

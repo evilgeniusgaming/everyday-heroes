@@ -47,6 +47,7 @@ Hooks.once("init", function() {
 	};
 
 	utils.registerHandlebarsHelpers();
+	utils.registerHandlebarsPartials();
 });
 
 Hooks.once("setup", function() {

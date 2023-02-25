@@ -44,3 +44,25 @@ export function registerHandlebarsHelpers() {
 		"eh-itemContext": itemContext
 	});
 }
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Handlebars Partials                      */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Register & pre-load handlebars partial templates.
+ * @returns {Promise}
+ */
+export async function registerHandlebarsPartials() {
+	const partials = [
+		"systems/everyday-heroes/templates/actor/character-details.hbs"
+	];
+
+	const paths = {};
+	for ( const path of partials ) {
+		paths[path] = path;
+		paths[`eh.${path.split("/").pop().replace(".hbs", "")}`] = path;
+	}
+
+	return loadTemplates(paths);
+}
