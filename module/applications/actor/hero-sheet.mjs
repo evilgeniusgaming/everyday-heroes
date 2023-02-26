@@ -1,8 +1,8 @@
-export default class CharacterSheetEH extends ActorSheet {
+export default class HeroSheetEH extends ActorSheet {
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ["everyday-heroes", "sheet", "actor", "character"],
-			template: "systems/everyday-heroes/templates/actor/character-sheet.hbs",
+			classes: ["everyday-heroes", "sheet", "actor", "hero"],
+			template: "systems/everyday-heroes/templates/actor/hero-sheet.hbs",
 			tabs: [{navSelector: 'nav[data-group="primary"]', contentSelector: "main", initial: "details"}],
 			width: 820,
 			height: 720

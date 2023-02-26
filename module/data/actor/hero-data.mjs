@@ -5,7 +5,7 @@ import Proficiency from "../../documents/proficiency.mjs";
 /**
  * Data definition for Character actors.
  */
-export default class CharacterData extends foundry.abstract.DataModel {
+export default class HeroData extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
 			abilities: new MappingField(new foundry.data.fields.SchemaField({

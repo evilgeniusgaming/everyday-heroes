@@ -1,12 +1,12 @@
-import CharacterData from "./character-data.mjs";
+import HeroData from "./hero-data.mjs";
 import NPCData from "./npc-data.mjs";
 
 export {
-	CharacterData,
+	HeroData,
 	NPCData
 };
 
 export const config = {
-	character: CharacterData,
+	hero: HeroData,
 	npc: NPCData
 };

@@ -1,13 +1,13 @@
 {
   "Actor": {
-    "types": ["character", "npc"],
+    "types": ["hero", "npc"],
     "templates": {},
     "htmlFields": [
       "biography.value",
       "biography.public",
       "biography.notes"
     ],
-    "character": {
+    "hero": {
       "abilities": {},
       "attributes": {
         "defense": {

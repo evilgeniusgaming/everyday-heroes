@@ -132,7 +132,7 @@ preLocalize("conditions", { key: "label", sort: true });
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
- * Maximum character level.
+ * Maximum hero level.
  * @type {number}
  */
 export const maxLevel = 10;

@@ -28,13 +28,13 @@ Hooks.once("init", function() {
 	CONFIG.Actor.documentClass = documents.ActorEH;
 	CONFIG.Actor.systemDataModels = data.actor.config;
 	CONFIG.Actor.typeLabels = {
-		character: "EH.Actor.Types.Character[one]",
+		hero: "EH.Actor.Types.Hero[one]",
 		npc: "EH.Actor.Types.NPC[one]"
 	};
-	DocumentSheetConfig.registerSheet(Actor, "everyday-heroes", applications.actor.CharacterSheetEH, {
-		types: ["character"],
+	DocumentSheetConfig.registerSheet(Actor, "everyday-heroes", applications.actor.HeroSheetEH, {
+		types: ["hero"],
 		makeDefault: true,
-		label: "EH.Sheets.Character"
+		label: "EH.Sheets.Hero"
 	});
 
 	CONFIG.Item.documentClass = documents.ItemEH;

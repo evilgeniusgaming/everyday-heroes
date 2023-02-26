@@ -19,8 +19,8 @@
 "EH.Abilities.Bonuses.Check": "Ability Check Bonus",
 "EH.Abilities.Bonuses.Save": "Saving Throw Bonus",
 
-"EH.Actor.Types.Character[one]": "Player Character",
-"EH.Actor.Types.Character[other]": "Player Characters",
+"EH.Actor.Types.Hero[one]": "Hero",
+"EH.Actor.Types.Hero[other]": "Heroes",
 "EH.Actor.Types.NPC[one]": "Non-Player Character",
 "EH.Actor.Types.NPC[other]": "Non-Player Characters",
 
@@ -104,9 +104,9 @@
 "EH.Resources.Label[other]": "Resources",
 "EH.Resources.Inspiration": "Inspiration",
 
-"EH.Sheets.Character": "Default Everyday Heroes Character Sheet",
-"EH.Sheets.Item": "Default Everyday Heroes Item Sheet",
-"EH.Sheets.NPC": "Default Everyday Heroes Character Sheet",
+"EH.Sheets.Hero": "Default Hero Sheet",
+"EH.Sheets.Item": "Default Item Sheet",
+"EH.Sheets.NPC": "Default NPC Sheet",
 
 "EH.Skills.Label[one]": "Skill",
 "EH.Skills.Label[other]": "Skills",

@@ -1,19 +1,19 @@
-.character.sheet {
+.hero.sheet {
 	container-type: size;
 }
-.character.sheet .window-content {
+.hero.sheet .window-content {
 	padding: 0;
 }
-.character.sheet > header {
+.hero.sheet > header {
 	z-index: 5;
 }
-.character.sheet fieldset {
+.hero.sheet fieldset {
 	margin: 0;
 	border: none;
 	padding: 0;
 }
 
-.character.sheet nav[data-group="primary"] {
+.hero.sheet nav[data-group="primary"] {
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -27,7 +27,7 @@
 	box-shadow: -10px 5px 20px 0px rgba(29, 43, 56, 0.75);
 	border-radius: 0 0 20px 20px;
 }
-.character.sheet nav[data-group="primary"] a {
+.hero.sheet nav[data-group="primary"] a {
 	display: block;
 	flex-grow: 1;
 	padding-block: 0.5rem;
@@ -36,26 +36,26 @@
 	background-color: var(--eh-background-color-mid);
 	text-align: center;
 }
-.character.sheet nav[data-group="primary"] a.active {
+.hero.sheet nav[data-group="primary"] a.active {
 	background-color: var(--eh-background-color-dark);
 	color: var(--eh-text-color-white);
 }
-.character.sheet nav[data-group="primary"] a:first-of-type {
+.hero.sheet nav[data-group="primary"] a:first-of-type {
 	border-bottom-left-radius: 20px;
 }
-.character.sheet nav[data-group="primary"] a:last-of-type {
+.hero.sheet nav[data-group="primary"] a:last-of-type {
 	border-bottom-right-radius: 20px;
 }
-.character.sheet nav[data-group="primary"] a:not(:last-of-type) {
+.hero.sheet nav[data-group="primary"] a:not(:last-of-type) {
 	border-inline-end: none;
 }
 
-.character.sheet main {
+.hero.sheet main {
 	padding: 0.5rem;
 	padding-block-start: 3rem;
 }
 
-.character.sheet [data-tab="details"] > section {
+.hero.sheet [data-tab="details"] > section {
 	display: grid;
 	grid-template-areas:
 	  "header header"
@@ -66,7 +66,7 @@
 /*  Hero ID                                  */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.character.sheet [data-tab="details"] .hero-id {
+.hero.sheet [data-tab="details"] .hero-id {
 	grid-area: header;
 
 	display: grid;
@@ -79,41 +79,41 @@
 	background-color: var(--eh-background-color-light);
 }
 
-.character.sheet [data-tab="details"] .hero-id > div.image {
+.hero.sheet [data-tab="details"] .hero-id > div.image {
 	grid-area: image;
 	max-height: 150px;
 	aspect-ratio: 1;
 }
-.character.sheet [data-tab="details"] .hero-id > div.image img {
+.hero.sheet [data-tab="details"] .hero-id > div.image img {
 	height: 100%;
 	aspect-ratio: 1;
 }
-.character.sheet [data-tab="details"] .hero-id > div:not(.image) {
+.hero.sheet [data-tab="details"] .hero-id > div:not(.image) {
 	grid-area: details;
 	display: flex;
 	flex-wrap: wrap;
 	margin-inline-start: 1em;
 	padding-block-end: 0.5em;
 }
-.character.sheet [data-tab="details"] .hero-id fieldset {
+.hero.sheet [data-tab="details"] .hero-id fieldset {
 	display: flex;
 	align-items: end;
 	border-block-end: 1px solid var(--eh-border-color-strong);
 }
-.character.sheet [data-tab="details"] .hero-id fieldset:is(.name, .languages) {
+.hero.sheet [data-tab="details"] .hero-id fieldset:is(.name, .languages) {
 	flex: 1 0 100%;
 }
-.character.sheet [data-tab="details"] .hero-id fieldset:is(.class, .archetype, .background, .profession) {
+.hero.sheet [data-tab="details"] .hero-id fieldset:is(.class, .archetype, .background, .profession) {
 	flex: 1 0 50%;
 }
-.character.sheet [data-tab="details"] .hero-id fieldset:is(.level, .wealth, .speed) {
+.hero.sheet [data-tab="details"] .hero-id fieldset:is(.level, .wealth, .speed) {
 	flex: 1 0 33%;
 }
-.character.sheet [data-tab="details"] .hero-id fieldset > label {
+.hero.sheet [data-tab="details"] .hero-id fieldset > label {
 	font-weight: bold;
 	text-transform: uppercase;
 }
-.character.sheet [data-tab="details"] .hero-id fieldset > :not(label) {
+.hero.sheet [data-tab="details"] .hero-id fieldset > :not(label) {
 	flex-grow: 1;
 	border: none;
 	background: none;
@@ -127,7 +127,7 @@
 /*  Abilities & Skills                       */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.character.sheet [data-tab="details"] .abilities-and-skills {
+.hero.sheet [data-tab="details"] .abilities-and-skills {
 	grid-area: abilities-and-skills;
 	display: grid;
 	grid-template-areas: "abilities skills";
@@ -137,18 +137,18 @@
 	margin-inline-start: 1.5em;
 }
 
-.character.sheet [data-tab="details"] .abilities {
+.hero.sheet [data-tab="details"] .abilities {
 	grid-area: abilities;
 	display: grid;
 	grid-template-columns: max-content auto max-content;
 	margin-inline-start: -1.5em;
 }
-.character.sheet [data-tab="details"] .abilities .ability {
+.hero.sheet [data-tab="details"] .abilities .ability {
 	grid-column: 1 / 4;
 	display: grid;
 	grid-template-columns: subgrid;
 }
-.character.sheet [data-tab="details"] .abilities .ability label {
+.hero.sheet [data-tab="details"] .abilities .ability label {
 	grid-column: 1 / 4;
 	margin-inline-start: 1em;
 	padding: 0.25em 0.5em;
@@ -158,7 +158,7 @@
 	background-color: var(--eh-border-color-strong);
 	color: var(--color-text-light-0);
 }
-.character.sheet [data-tab="details"] .abilities .ability .modifier {
+.hero.sheet [data-tab="details"] .abilities .ability .modifier {
 	grid-column: 1;
 	aspect-ratio: 1;
 	z-index: 2;
@@ -171,7 +171,7 @@
 	text-align: center;
 	line-height: calc(1.5em + 8px);
 }
-.character.sheet [data-tab="details"] .abilities .ability > div {
+.hero.sheet [data-tab="details"] .abilities .ability > div {
 	grid-column: 2 / 4;
 	display: grid;
 	grid-template-columns: subgrid;
@@ -179,7 +179,7 @@
 	padding-inline-start: 1.5em;
 	background-color: var(--eh-background-color-white);
 }
-.character.sheet [data-tab="details"] .abilities .ability > div .value {
+.hero.sheet [data-tab="details"] .abilities .ability > div .value {
 	grid-column: 1;
 	border: none;
 	background: none;
@@ -189,13 +189,13 @@
 	width: 4em;
 	min-width: unset;
 }
-.character.sheet [data-tab="details"] .abilities .ability > div .save {
+.hero.sheet [data-tab="details"] .abilities .ability > div .save {
 	grid-column: 2;
 	min-width: 2em;
 	border-inline-start: 1px solid var(--eh-border-color-weak);
 }
 
-.character.sheet [data-tab="details"] .skills {
+.hero.sheet [data-tab="details"] .skills {
 	grid-area: skills;
 	display: grid;
 	grid-template-columns: auto max-content max-content max-content;
@@ -203,32 +203,32 @@
 	border-radius: 1em;
 	background-color: var(--eh-background-color-white);
 }
-.character.sheet [data-tab="details"] .skills .skill {
+.hero.sheet [data-tab="details"] .skills .skill {
 	grid-column: 1 / 5;
 	display: grid;
 	grid-template-columns: subgrid;
 	padding-inline: 0.5em;
 }
-.character.sheet [data-tab="details"] .skills .skill:not(:last-of-type) {
+.hero.sheet [data-tab="details"] .skills .skill:not(:last-of-type) {
 	border-bottom: 1px solid var(--eh-border-color-weak);
 }
-.character.sheet [data-tab="details"] .skills .skill label {
+.hero.sheet [data-tab="details"] .skills .skill label {
 	grid-column: 1;
 	border-inline-end: 1px solid var(--eh-border-color-weak);
 }
-.character.sheet [data-tab="details"] .skills .skill:first-of-type > * {
+.hero.sheet [data-tab="details"] .skills .skill:first-of-type > * {
 	padding-block-start: 0.25em;
 }
-.character.sheet [data-tab="details"] .skills .skill:last-of-type > * {
+.hero.sheet [data-tab="details"] .skills .skill:last-of-type > * {
 	padding-block-end: 0.25em;
 }
-.character.sheet [data-tab="details"] .skills .skill .abbreviation {
+.hero.sheet [data-tab="details"] .skills .skill .abbreviation {
 	grid-column: 2;
 }
-.character.sheet [data-tab="details"] .skills .skill .proficiency-selector {
+.hero.sheet [data-tab="details"] .skills .skill .proficiency-selector {
 	grid-column: 3;
 }
-.character.sheet [data-tab="details"] .skills .skill .modifier {
+.hero.sheet [data-tab="details"] .skills .skill .modifier {
 	grid-column: 4;
 }
 
@@ -236,12 +236,12 @@
 /*  Health                                   */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.character.sheet [data-tab="details"] .attributes {
+.hero.sheet [data-tab="details"] .attributes {
 	grid-area: attributes;
 	margin-inline-start: 1em;
 }
 
-.character.sheet [data-tab="details"] .attributes .health {
+.hero.sheet [data-tab="details"] .attributes .health {
   display: grid;
 	overflow: clip;
 	border: 2px solid var(--eh-border-color-strong);
@@ -250,7 +250,7 @@
 	background-color: var(--eh-background-color-black);
 	color: var(--eh-text-color-white);
 }
-.character.sheet [data-tab="details"] .attributes .health .hp {
+.hero.sheet [data-tab="details"] .attributes .health .hp {
 	grid-area: hp;
 	display: grid;
 	grid-template-columns: 2fr 2fr 1fr;
@@ -261,43 +261,43 @@
 	background-color: var(--eh-background-color-white);
 	color: var(--eh-text-color-black);
 }
-.character.sheet [data-tab="details"] .attributes .health .death-saves {
+.hero.sheet [data-tab="details"] .attributes .health .death-saves {
 	grid-area: death-saves;
 	padding: 0.25em 0.5em;
 }
-.character.sheet [data-tab="details"] .attributes .health .hp fieldset {
+.hero.sheet [data-tab="details"] .attributes .health .hp fieldset {
 	padding: 0.25em;
 }
-.character.sheet [data-tab="details"] .attributes .health .hp fieldset.max-hp {
+.hero.sheet [data-tab="details"] .attributes .health .hp fieldset.max-hp {
 	grid-area: max-hp;
 }
-.character.sheet [data-tab="details"] .attributes .health .hp fieldset.current-hp {
+.hero.sheet [data-tab="details"] .attributes .health .hp fieldset.current-hp {
 	grid-area: current-hp;
 }
-.character.sheet [data-tab="details"] .attributes .health .hp fieldset.temp-hp {
+.hero.sheet [data-tab="details"] .attributes .health .hp fieldset.temp-hp {
 	grid-area: temp-hp;
 }
-.character.sheet [data-tab="details"] .attributes .health .hp fieldset.hit-dice {
+.hero.sheet [data-tab="details"] .attributes .health .hp fieldset.hit-dice {
 	grid-area: hit-dice;
 }
-.character.sheet [data-tab="details"] .attributes .health .hp fieldset.total-dmg {
+.hero.sheet [data-tab="details"] .attributes .health .hp fieldset.total-dmg {
 	grid-area: total-dmg;
 }
-.character.sheet [data-tab="details"] .attributes .health .hp fieldset:is(.max-hp, .current-hp) {
+.hero.sheet [data-tab="details"] .attributes .health .hp fieldset:is(.max-hp, .current-hp) {
 	border-block-end: 1px solid var(--eh-border-color-weak);
 }
-.character.sheet [data-tab="details"] .attributes .health .hp fieldset:is(.max-hp, .current-hp, .hit-dice, .total-dmg) {
+.hero.sheet [data-tab="details"] .attributes .health .hp fieldset:is(.max-hp, .current-hp, .hit-dice, .total-dmg) {
 	border-inline-end: 1px solid var(--eh-border-color-weak);
 }
-.character.sheet [data-tab="details"] .attributes .health label {
+.hero.sheet [data-tab="details"] .attributes .health label {
 	text-align: center;
 	line-height: 0.8em;
 	padding-block: 0.25em;
 }
-.character.sheet [data-tab="details"] .attributes .health :not(:is(.hit-dice, .total-dmg)) label {
+.hero.sheet [data-tab="details"] .attributes .health :not(:is(.hit-dice, .total-dmg)) label {
 	display: block;
 }
-.character.sheet [data-tab="details"] .attributes .health :is(fieldset:is(.max-hp, .current-hp), div.death-saves) > label {
+.hero.sheet [data-tab="details"] .attributes .health :is(fieldset:is(.max-hp, .current-hp), div.death-saves) > label {
 	font-weight: bold;
 	text-transform: uppercase;
 }
@@ -306,7 +306,7 @@
 /*  Attributes                               */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.character.sheet [data-tab="details"] .attributes .summary {
+.hero.sheet [data-tab="details"] .attributes .summary {
 	display: grid;
 	margin-block-start: 1em;
 	grid-template-columns: repeat(4, 1fr);
@@ -314,20 +314,20 @@
 	background-color: var(--eh-background-color-white);
 	color: var(--eh-text-color-black);
 }
-.character.sheet [data-tab="details"] .attributes .summary fieldset {
+.hero.sheet [data-tab="details"] .attributes .summary fieldset {
 	padding: 0.25em;
 	text-align: center;
 }
-.character.sheet [data-tab="details"] .attributes .summary fieldset:not(:last-of-type) {
+.hero.sheet [data-tab="details"] .attributes .summary fieldset:not(:last-of-type) {
 	border-inline-end: 2px solid var(--eh-border-color-strong);
 }
-.character.sheet [data-tab="details"] .attributes .summary fieldset label {
+.hero.sheet [data-tab="details"] .attributes .summary fieldset label {
 	display: block;
 	/* padding-block: 0.25em; */
 	font-weight: bold;
 	text-transform: uppercase;
 	line-height: 0.8em;
 }
-.character.sheet [data-tab="details"] .attributes .summary fieldset span {
+.hero.sheet [data-tab="details"] .attributes .summary fieldset span {
 	font-size: 2em;
 }
