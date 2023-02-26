@@ -15,6 +15,7 @@
           "bonus": ""
         },
         "death": {
+          "status": "alive",
           "success": 0,
           "failure": 0,
           "bonus": ""

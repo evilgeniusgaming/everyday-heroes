@@ -8,6 +8,7 @@
 import * as applications from "./module/applications/_module.mjs";
 import config from "./module/config/_module.mjs";
 import * as data from "./module/data/_module.mjs";
+import * as dice from "./module/dice/_module.mjs";
 import * as documents from "./module/documents/_module.mjs";
 import * as utils from "./module/utils.mjs";
 
@@ -15,40 +16,19 @@ globalThis.EverydayHeroes = {
 	applications,
 	config,
 	data,
+	dice,
 	documents,
 	utils
 };
 
 Hooks.once("init", function() {
-	game.everydayHeroes = globalThis.EverydayHeroes;
 	console.log(`Everyday Heroes | Initializing the Everyday Heroes Game System - Version ${game.system.version}`);
-
+	game.everydayHeroes = globalThis.EverydayHeroes;
 	CONFIG.EverydayHeroes = config;
-
-	CONFIG.Actor.documentClass = documents.ActorEH;
-	CONFIG.Actor.systemDataModels = data.actor.config;
-	CONFIG.Actor.typeLabels = {
-		hero: "EH.Actor.Types.Hero[one]",
-		npc: "EH.Actor.Types.NPC[one]"
-	};
-	DocumentSheetConfig.registerSheet(Actor, "everyday-heroes", applications.actor.HeroSheetEH, {
-		types: ["hero"],
-		makeDefault: true,
-		label: "EH.Sheets.Hero"
-	});
-
-	CONFIG.Item.documentClass = documents.ItemEH;
-	CONFIG.Item.systemDataModels = data.item.config;
-	CONFIG.Item.typeLabels = {
-		archetype: "EH.Item.Types.Archetype[one]",
-		background: "EH.Item.Types.Background[one]",
-		class: "EH.Item.Types.Class[one]",
-		profession: "EH.Item.Types.Profession[one]",
-		talent: "EH.Item.Types.Talent[one]",
-		specialfeature: "EH.Item.Types.SpecialFeature[one]",
-		feat: "EH.Item.Types.Feat[one]"
-	};
-
+	applications.registerSheets();
+	data.registerSystemDataModels();
+	dice.registerDice();
+	documents.registerDocumentClasses();
 	utils.registerHandlebarsHelpers();
 	utils.registerHandlebarsPartials();
 });
@@ -69,6 +49,7 @@ export {
 	applications,
 	config,
 	data,
+	dice,
 	documents,
 	utils
 };

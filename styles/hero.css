@@ -122,6 +122,9 @@
 	padding-inline-start: 0.5em;
 	font-size: var(--font-size-16);
 }
+.hero.sheet [data-tab="details"] .hero-id fieldset > input {
+	padding-block-start: 0.3em;
+}
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Abilities & Skills                       */
@@ -300,6 +303,12 @@
 .hero.sheet [data-tab="details"] .attributes .health :is(fieldset:is(.max-hp, .current-hp), div.death-saves) > label {
 	font-weight: bold;
 	text-transform: uppercase;
+}
+.hero.sheet [data-tab="details"] .attributes .health :is(span, input) {
+	border: none;
+	background: none;
+	font-size: var(--font-size-24);
+	text-align: center;
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -63,6 +63,18 @@
 "EH.Conditions.Stunned.Label": "Stunned",
 "EH.Conditions.Unconcious.Label": "Unconcious",
 
+"EH.DeathSaves.Label[one]": "Death Save",
+"EH.DeathSaves.Label[other]": "Death Saves",
+"EH.DeathSaves.Success": "Success",
+"EH.DeathSaves.Failure": "Failure",
+"EH.DeathSaves.Message.CriticalSuccess": "{name} critically succeeded on a death saving throw and has regained 1 Hit Point!",
+"EH.DeathSaves.Message.Failure": "{name} has succeeded on {label} and is now stable.",
+"EH.DeathSaves.Message.Success": "{name} has died after failing {label}…",
+"EH.DeathSaves.Status.Alive": "Alive",
+"EH.DeathSaves.Status.Dead": "Dead",
+"EH.DeathSaves.Status.Dying": "Dying",
+"EH.DeathSaves.Status.Stable": "Stable",
+
 "EH.Equipment.Types.Advanced.Label": "Advanced",
 "EH.Equipment.Types.Basic.Label": "Basic",
 "EH.Equipment.Types.Historical.Label": "Historical",

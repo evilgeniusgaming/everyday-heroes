@@ -132,6 +132,31 @@ preLocalize("conditions", { key: "label", sort: true });
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Configuration information for death saves.
+ * @type {object}
+ */
+export const deathSave = {
+	target: 10,
+	successThreshold: 3,
+	failureThreshold: 3
+};
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Status of the character within the death-save process.
+ * @enum {string}
+ */
+export const deathStatus = {
+	alive: "EH.DeathSaves.Status.Alive",
+	dying: "EH.DeathSaves.Status.Dying",
+	dead: "EH.DeathSaves.Status.Dead",
+	stable: "EH.DeathSaves.Status.Stable"
+};
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Maximum hero level.
  * @type {number}
  */

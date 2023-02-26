@@ -30,6 +30,7 @@ export default class HeroData extends foundry.abstract.DataModel {
 					bonus: new FormulaField({labe: ""})
 				}, {label: ""}),
 				death: new foundry.data.fields.SchemaField({
+					status: new foundry.data.fields.StringField({initial: "alive", blank: false, label: ""}),
 					success: new foundry.data.fields.NumberField({
 						nullable: false, initial: 0, min: 0, integer: true, label: ""
 					}),

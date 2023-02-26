@@ -126,4 +126,45 @@ export default class HeroSheetEH extends ActorSheet {
 		}
 	}
 
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Action Handlers                          */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	activateListeners(jQuery) {
+		super.activateListeners(jQuery);
+		const html = jQuery[0];
+
+		// Roll Action Listeners
+		for ( const element of html.querySelectorAll('[data-action="roll"') ) {
+			element.addEventListener("click", this._onRollAction.bind(this));
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Handle one of the rolling actions on the sheet.
+	 * @param {Event} event - Triggering click event.
+	 * @returns {Promise}
+	 */
+	_onRollAction(event) {
+		event.preventDefault();
+		switch (event.target.dataset.type) {
+			case "ability":
+				return this.actor.rollAbility(event.target.dataset.key);
+			case "ability-check":
+				return this.actor.rollAbilityCheck(event.target.dataset.key);
+			case "ability-save":
+				return this.actor.rollAbilitySave(event.target.dataset.key);
+			case "death-save":
+				return this.actor.rollDeathSave();
+			case "initiative":
+				return console.log("Initiative rolls not yet implemented");
+			case "skill":
+				return this.actor.rollSkill(event.target.dataset.key);
+			default:
+				return console.log(`Invalid roll type clicked ${event.target.dataset.type}.`);
+		}
+	}
+
 }
