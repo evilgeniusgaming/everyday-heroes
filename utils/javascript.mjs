@@ -22,41 +22,43 @@ const LINTING_PATHS = ["./everyday-heroes.mjs", "./module/"];
 
 /**
  * Compile javascript source files into a single output file.
+ * @returns {*}
  *
  * - `gulp buildJS` - Compile all javascript files into into single file & build source maps.
  */
 async function compileJavascript() {
-  const bundle = await rollup({
-    input: "./everyday-heroes.mjs",
-    plugins: [nodeResolve()]
-  });
-  await bundle.write({
-    file: "./everyday-heroes-compiled.mjs",
-    format: "es",
-    sourcemap: true,
-    sourcemapFile: "everyday-heroes.mjs"
-  });
+	const bundle = await rollup({
+		input: "./everyday-heroes.mjs",
+		plugins: [nodeResolve()]
+	});
+	await bundle.write({
+		file: "./everyday-heroes-compiled.mjs",
+		format: "es",
+		sourcemap: true,
+		sourcemapFile: "everyday-heroes.mjs"
+	});
 }
 export const compile = compileJavascript;
 
 
 /**
  * Lint javascript sources and optionally applies fixes.
+ * @returns {*}
  *
  * - `gulp lint` - Lint all javascript files.
  * - `gulp lint --fix` - Lint and apply available fixes automatically.
  */
 function lintJavascript() {
-  const applyFixes = !!parsedArgs.fix;
-  const tasks = LINTING_PATHS.map(path => {
-    const src = path.endsWith("/") ? `${path}**/*.mjs` : path;
-    const dest = path.endsWith("/") ? path : `${path.split("/").slice(0, -1).join("/")}/`;
-    return gulp
-      .src(src)
-      .pipe(eslint({fix: applyFixes}))
-      .pipe(eslint.format())
-      .pipe(gulpIf(file => file.eslint != null && file.eslint.fixed, gulp.dest(dest)));
-  });
-  return mergeStream(tasks);
+	const applyFixes = !!parsedArgs.fix;
+	const tasks = LINTING_PATHS.map(path => {
+		const src = path.endsWith("/") ? `${path}**/*.mjs` : path;
+		const dest = path.endsWith("/") ? path : `${path.split("/").slice(0, -1).join("/")}/`;
+		return gulp
+			.src(src)
+			.pipe(eslint({fix: applyFixes}))
+			.pipe(eslint.format())
+			.pipe(gulpIf(file => file.eslint != null && file.eslint.fixed, gulp.dest(dest)));
+	});
+	return mergeStream(tasks);
 }
 export const lint = lintJavascript;

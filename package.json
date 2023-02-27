@@ -9,6 +9,7 @@
 		"fancy-log": "^2.0.0",
 		"fs": "^0.0.1-security",
 		"gulp": "^4.0.2",
+		"gulp-concat-css": "^3.1.0",
 		"gulp-eslint7": "^0.3.2",
 		"gulp-if": "^3.0.0",
 		"merge-stream": "^2.0.0",
