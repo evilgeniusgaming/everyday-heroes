@@ -55,7 +55,7 @@ export default class ChallengeDie extends Die {
 	get isCriticalFailure() {
 		if ( !this.isValid || !this._evaluated ) return undefined;
 		if ( !Number.isNumeric(this.options.criticalFailure) ) return false;
-		return this.total >= this.options.criticalFailure;
+		return this.total <= this.options.criticalFailure;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

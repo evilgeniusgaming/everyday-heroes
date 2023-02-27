@@ -158,6 +158,8 @@ export default class HeroSheetEH extends ActorSheet {
 				return this.actor.rollAbilitySave(event.target.dataset.key);
 			case "death-save":
 				return this.actor.rollDeathSave();
+			case "hit-die":
+				return this.actor.rollHitDie();
 			case "initiative":
 				return console.log("Initiative rolls not yet implemented");
 			case "skill":

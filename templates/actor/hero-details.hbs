@@ -102,25 +102,36 @@
 						step="1" min="0">
 				</fieldset>
 				<fieldset class="hit-dice">
-					<label>Hit Dice</label>
-					<span>{{system.attributes.hd.summary}}</span>
+					<label>
+						<a data-action="roll" data-type="hit-die">{{localize "EH.HitDice.Label[other]"}}</a>
+					</label>
+					<span>
+						{{#if system.attributes.hd.denomination}}
+							{{system.attributes.hd.available}} x {{system.attributes.hd.denomination}}
+						{{/if}}
+					</span>
 				</fieldset>
 				<fieldset class="total-dmg">
-					<label>Total DMG</label>
-					<span>{{system.attributes.hp.damage}}</span>
+					{{#unless (eq system.attributes.hp.value 0)}}
+						<label>Total DMG</label>
+						<span>{{system.attributes.hp.damage}}</span>
+					{{else}}
+						<label>Status</label>
+						<span>{{system.attributes.death.status}}</span>
+					{{/unless}}
 				</fieldset>
 			</div>
 			{{#if (eq system.attributes.hp.value 0)}}
 				<div class="death-saves">
 					<label>
-						<a data-action="roll" data-type="death-save">{{localize "EH.DeathSaves.Label"}}</a>
+						<a data-action="roll" data-type="death-save">{{localize "EH.Death.Label[other]"}}</a>
 					</label>
 					<fieldset class="success">
-						<label>{{localize "EH.DeathSaves.Success"}}</label>
+						<label>{{localize "EH.Death.Success"}}</label>
 						<span>{{system.attributes.death.success}}</span>
 					</fieldset>
 					<fieldset class="failure">
-						<label>{{localize "EH.DeathSaves.Failure"}}</label>
+						<label>{{localize "EH.Death.Failure"}}</label>
 						<span>{{system.attributes.death.failure}}</span>
 					</fieldset>
 				</div>

@@ -148,10 +148,10 @@ export const deathSave = {
  * @enum {string}
  */
 export const deathStatus = {
-	alive: "EH.DeathSaves.Status.Alive",
-	dying: "EH.DeathSaves.Status.Dying",
-	dead: "EH.DeathSaves.Status.Dead",
-	stable: "EH.DeathSaves.Status.Stable"
+	alive: "EH.Death.Status.Alive",
+	dying: "EH.Death.Status.Dying",
+	dead: "EH.Death.Status.Dead",
+	stable: "EH.Death.Status.Stable"
 };
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

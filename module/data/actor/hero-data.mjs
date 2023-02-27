@@ -39,6 +39,9 @@ export default class HeroData extends foundry.abstract.DataModel {
 					}),
 					bonus: new FormulaField({label: ""})
 				}, {label: ""}),
+				hd: new foundry.data.fields.SchemaField({
+					spent: new foundry.data.fields.NumberField({initial: 0, min: 0, integer: true, label: ""})
+				}, {label: "EH.HitDice.Labe[other]"}),
 				hp: new foundry.data.fields.SchemaField({
 					value: new foundry.data.fields.NumberField({
 						nullable: false, initial: 0, min: 0, integer: true, label: ""
@@ -143,7 +146,6 @@ export default class HeroData extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareBaseData() {
-		this.attributes.hd ??= {};
 		// TODO: Set hit dice sized based on archetype
 		this.attributes.prof = Proficiency.calculateMod(this.details.level);
 	}
@@ -154,6 +156,8 @@ export default class HeroData extends foundry.abstract.DataModel {
 		this.#prepareAbilities();
 		this.#prepareSkills();
 		this.#prepareDetails();
+
+		this.attributes.hd.available = this.details.level - this.attributes.hd.spent;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -8,7 +8,7 @@ import BaseRoll from "./base-roll.mjs";
  * @property {object} [data={}] - The roll data used to resolve the formula.
  * @property {Event} [event] - Event that triggered the roll.
  * @property {boolean} [fastForward] - Should roll configuration dialog be skipped?
- * @property {ChallengeRollOptions} [options]
+ * @property {ChallengeRollOptions} [options] - Options passed through to the roll.
  */
 
 /**
@@ -20,15 +20,6 @@ import BaseRoll from "./base-roll.mjs";
  * @property {number} [criticalSuccess] - The value of the challenge die to be considered a critical success.
  * @property {number} [criticalFailure] - The value of the challenge die to be considered a critical failure.
  * @property {number} [target] - The total roll result that must be met for the roll to be considered a success.
- */
-
-/**
- * Message configuration data used when creating roll messages.
- *
- * @typedef {object} ChallengeRollMessageConfiguration
- * @property {boolean} [create=true] - Should a message be created when this roll is complete?
- * @property {string} [rollMode] - The roll mode to apply to this message from `CONFIG.Dice.rollModes`.
- * @property {object} [data={}] - Additional data used when creating the message.
  */
 
 /**
@@ -50,7 +41,7 @@ export default class ChallengeRoll extends BaseRoll {
 	/**
 	 * Construct and perform a Challenge Roll through the standard workflow.
 	 * @param {ChallengeRollConfiguration} config - Roll configuration data.
-	 * @param {ChallengeRollMessageConfiguration} message - Configuration data that guides roll message creation.
+	 * @param {RollMessageConfiguration} message - Configuration data that guides roll message creation.
 	 */
 	static async build(config={}, message={}) {
 		const formula = [(new CONFIG.Dice.ChallengeDie()).formula].concat(config.parts ?? []).join(" + ");

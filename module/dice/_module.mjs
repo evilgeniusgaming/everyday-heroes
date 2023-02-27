@@ -7,6 +7,7 @@ import DamageRoll from "./damage-roll.mjs";
  * Register the various roll types provided by Everyday Heroes during initialization.
  */
 export function registerDice() {
+	CONFIG.Dice.BaseRoll = BaseRoll;
 	CONFIG.Dice.ChallengeDie = ChallengeDie;
 	CONFIG.Dice.ChallengeRoll = ChallengeRoll;
 	CONFIG.Dice.DamageRoll = DamageRoll;
