@@ -3,6 +3,10 @@
  */
 export default class ActorEH extends Actor {
 
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Data Preparation                         */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	prepareBaseData() {
 		this.system.prepareBaseData?.();
 	}

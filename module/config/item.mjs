@@ -1,4 +1,15 @@
+import * as advancement from "../documents/advancement/_module.mjs";
 import { preLocalize } from "./utils.mjs";
+
+/**
+ * Advancement types that can be added to items.
+ * @enum {typeof Advancement}
+ */
+export const advancementTypes = {
+	HitPoints: advancement.HitPointsAdvancement
+};
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
  * Configuration data for equipment types.

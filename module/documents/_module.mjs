@@ -23,4 +23,5 @@ export function registerDocumentClasses() {
 }
 
 export {ActorEH, ItemEH};
+export * as advancement from "./advancement/_module.mjs";
 export {default as Proficiency} from "./proficiency.mjs";

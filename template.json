@@ -90,7 +90,7 @@
       "identifier": {
         "value": ""
       },
-      "advancements": []
+      "advancement": []
     },
     "class": {
       "templates": ["description"],
@@ -98,21 +98,21 @@
         "value": "",
         "archetype": ""
       },
-      "advancements": []
+      "advancement": []
     },
     "background": {
       "templates": ["description"],
       "identifier": {
         "value": ""
       },
-      "advancements": []
+      "advancement": []
     },
     "profession": {
       "templates": ["description"],
       "identifier": {
         "value": ""
       },
-      "advancements": []
+      "advancement": []
     },
     "talent": {
       "templates": ["description"],

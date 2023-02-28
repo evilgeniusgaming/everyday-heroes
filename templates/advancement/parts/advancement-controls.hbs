@@ -1,0 +1,25 @@
+<div class="form-group">
+	<label>{{localize "EH.Advancement.Core.Title"}}</label>
+	<div class="form-fields">
+		<input type="text" name="title" value="{{src.title}}" placeholder="{{default.title}}">
+	</div>
+</div>
+
+<div class="form-group">
+	<label>{{localize "EH.Advancement.Core.Icon"}}</label>
+	<div class="form-fields">
+		{{filePicker type="image" target="icon"}}
+		<input type="text" name="icon" value="{{src.icon}}" placeholder="{{default.icon}}">
+	</div>
+</div>
+
+{{#if showLevelSelector}}
+	<div class="form-group">
+		<label>{{localize "EverydayHeroes.Level.Label[other]"}}</label>
+		<div class="form-fields">
+			<select name="level" data-dtype="Number">
+				{{selectOptions levels selected=level}}
+			</select>
+		</div>
+	</div>
+{{/if}}

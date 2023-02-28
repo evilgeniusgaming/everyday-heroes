@@ -9,6 +9,8 @@ export {
 	ClassData,
 	ProfessionData
 };
+export {default as AdvancementTemplate} from "./templates/advancement-template.mjs";
+export {default as DescribedTemplate} from "./templates/described-template.mjs";
 
 export const config = {
 	archetype: ArchetypeData,

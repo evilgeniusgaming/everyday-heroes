@@ -1,1 +1,1 @@
-export {default as HeroSheetEH} from "./hero-sheet.mjs";
+export {default as HeroSheet} from "./hero-sheet.mjs";

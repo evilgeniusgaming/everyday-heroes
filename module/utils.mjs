@@ -56,13 +56,14 @@ export function registerHandlebarsHelpers() {
 export async function registerHandlebarsPartials() {
 	const partials = [
 		"systems/everyday-heroes/templates/actor/hero-biography.hbs",
-		"systems/everyday-heroes/templates/actor/hero-details.hbs"
+		"systems/everyday-heroes/templates/actor/hero-details.hbs",
+		"systems/everyday-heroes/templates/advancement/parts/advancement-controls.hbs"
 	];
 
 	const paths = {};
 	for ( const path of partials ) {
 		paths[path] = path;
-		paths[`eh.${path.split("/").pop().replace(".hbs", "")}`] = path;
+		paths[`everydayHeroes.${path.split("/").pop().replace(".hbs", "")}`] = path;
 	}
 
 	return loadTemplates(paths);

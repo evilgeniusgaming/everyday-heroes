@@ -1,4 +1,8 @@
-export default class HeroSheetEH extends ActorSheet {
+/**
+ * Sheet that represents a Hero actor.
+ */
+export default class HeroSheet extends ActorSheet {
+
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ["everyday-heroes", "sheet", "actor", "hero"],
