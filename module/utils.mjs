@@ -55,6 +55,7 @@ export function registerHandlebarsHelpers() {
  */
 export async function registerHandlebarsPartials() {
 	const partials = [
+		"systems/everyday-heroes/templates/actor/hero-biography.hbs",
 		"systems/everyday-heroes/templates/actor/hero-details.hbs"
 	];
 

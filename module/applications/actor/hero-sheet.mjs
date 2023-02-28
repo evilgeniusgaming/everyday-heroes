@@ -11,6 +11,24 @@ export default class HeroSheetEH extends ActorSheet {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/**
+	 * Is the editor expanded on the biography tab.
+	 * @type {boolean}
+	 */
+	editorExpanded = false;
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Which editor is currently visible on the biography tab.
+	 * @type {string}
+	 */
+	editorSelected = "biography";
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Context Preparation                      */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	async getData(options) {
 		const context = await super.getData(options);
 
@@ -38,6 +56,17 @@ export default class HeroSheetEH extends ActorSheet {
 		}
 
 		this.prepareItems(context);
+
+		const enrichmentContext = {
+			secrets: this.actor.isOwner, rollData: this.actor.getRollData(), async: true, relativeTo: this.actor
+		};
+		context.enriched = {
+			biography: await TextEditor.enrichHTML(context.system.biography.value, enrichmentContext),
+			public: await TextEditor.enrichHTML(context.system.biography.public, enrichmentContext),
+			notes: await TextEditor.enrichHTML(context.system.biography.notes, enrichmentContext)
+		};
+		context.editorExpanded = this.editorExpanded;
+		context.editorSelected = this.editorSelected;
 
 		return context;
 	}

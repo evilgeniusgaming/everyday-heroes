@@ -100,13 +100,7 @@ export default class HeroData extends foundry.abstract.DataModel {
 				pronouns: new foundry.data.fields.StringField({label: "EH.Biography.Pronouns"}),
 				role: new foundry.data.fields.StringField({label: "EH.Biography.Role"}),
 				skin: new foundry.data.fields.StringField({label: "EH.Biography.Skin"}),
-				weight: new foundry.data.fields.SchemaField({
-					value: new foundry.data.fields.NumberField({
-						nullable: true, initial: null, min: 0, step: 0.1, label: "EH.Biography.Weight"
-					}),
-					units: new foundry.data.fields.StringField({initial: "ft", label: "EH.Measurement.Units"})
-					// TODO: Set default based on default units setting
-				}, {label: "EH.Biography.Weight"})
+				weight: new foundry.data.fields.StringField({label: "EH.Biography.Weight"})
 			}),
 			bonuses: new foundry.data.fields.SchemaField({
 				// TODO: Figure out what bonuses are needed

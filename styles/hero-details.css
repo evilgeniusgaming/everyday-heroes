@@ -1,0 +1,285 @@
+.hero.sheet [data-tab="details"] > section {
+	display: grid;
+	grid-template-areas:
+		"header header"
+		"abilities-and-skills attributes";
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Hero ID                                  */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.hero.sheet [data-tab="details"] .hero-id {
+	grid-area: header;
+
+	display: grid;
+	overflow: hidden;
+	grid-template-areas: "image details";
+
+	margin-block-end: 0.5em;
+	border: 1px solid var(--eh-border-color-strong);
+	border-radius: 20px;
+	background-color: var(--eh-background-color-light);
+}
+
+.hero.sheet [data-tab="details"] .hero-id > div.image {
+	grid-area: image;
+	max-height: 150px;
+	aspect-ratio: 1;
+}
+.hero.sheet [data-tab="details"] .hero-id > div.image img {
+	height: 100%;
+	aspect-ratio: 1;
+}
+.hero.sheet [data-tab="details"] .hero-id > div:not(.image) {
+	grid-area: details;
+	display: flex;
+	flex-wrap: wrap;
+	margin-inline-start: 1em;
+	padding-block-end: 0.5em;
+}
+.hero.sheet [data-tab="details"] .hero-id fieldset {
+	display: flex;
+	align-items: end;
+	border-block-end: 1px solid var(--eh-border-color-strong);
+}
+.hero.sheet [data-tab="details"] .hero-id fieldset:is(.name, .languages) {
+	flex: 1 0 100%;
+}
+.hero.sheet [data-tab="details"] .hero-id fieldset:is(.class, .archetype, .background, .profession) {
+	flex: 1 0 50%;
+}
+.hero.sheet [data-tab="details"] .hero-id fieldset:is(.level, .wealth, .speed) {
+	flex: 1 0 33%;
+}
+.hero.sheet [data-tab="details"] .hero-id fieldset > label {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.hero.sheet [data-tab="details"] .hero-id fieldset > :not(label) {
+	flex-grow: 1;
+	border: none;
+	background: none;
+	margin-inline: 0.5em;
+	padding: 0;
+	padding-inline-start: 0.5em;
+	font-size: var(--font-size-16);
+}
+.hero.sheet [data-tab="details"] .hero-id fieldset > input {
+	padding-block-start: 0.3em;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Abilities & Skills                       */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.hero.sheet [data-tab="details"] .abilities-and-skills {
+	grid-area: abilities-and-skills;
+	display: grid;
+	grid-template-areas: "abilities skills";
+	align-items: start;
+	background-color: var(--eh-border-color-strong);
+	border-radius: 0 20px 20px 0;
+	margin-inline-start: 1.5em;
+}
+
+.hero.sheet [data-tab="details"] .abilities {
+	grid-area: abilities;
+	display: grid;
+	grid-template-columns: max-content auto max-content;
+	margin-inline-start: -1.5em;
+}
+.hero.sheet [data-tab="details"] .abilities .ability {
+	grid-column: 1 / 4;
+	display: grid;
+	grid-template-columns: subgrid;
+}
+.hero.sheet [data-tab="details"] .abilities .ability label {
+	grid-column: 1 / 4;
+	margin-inline-start: 1em;
+	padding: 0.25em 0.5em;
+	font-size: var(--font-size-18);
+	font-weight: bold;
+	text-transform: uppercase;
+	background-color: var(--eh-border-color-strong);
+	color: var(--color-text-light-0);
+}
+.hero.sheet [data-tab="details"] .abilities .ability .modifier {
+	grid-column: 1;
+	aspect-ratio: 1;
+	z-index: 2;
+	width: calc(2em + 8px);
+	margin-block: -4px;
+	border: 4px solid var(--eh-border-color-strong);
+	border-radius: 50%;
+	background-color: var(--eh-background-color-white);
+	font-size: var(--font-size-18);
+	text-align: center;
+	line-height: calc(1.5em + 8px);
+}
+.hero.sheet [data-tab="details"] .abilities .ability > div {
+	grid-column: 2 / 4;
+	display: grid;
+	grid-template-columns: subgrid;
+	margin-inline-start: -1.5em;
+	padding-inline-start: 1.5em;
+	background-color: var(--eh-background-color-white);
+}
+.hero.sheet [data-tab="details"] .abilities .ability > div .value {
+	grid-column: 1;
+	border: none;
+	background: none;
+	height: 2em;
+	padding-left: 0.5em;
+	font-size: var(--font-size-18);
+	width: 4em;
+	min-width: unset;
+}
+.hero.sheet [data-tab="details"] .abilities .ability > div .save {
+	grid-column: 2;
+	min-width: 2em;
+	border-inline-start: 1px solid var(--eh-border-color-weak);
+}
+
+.hero.sheet [data-tab="details"] .skills {
+	grid-area: skills;
+	display: grid;
+	grid-template-columns: auto max-content max-content max-content;
+	border: 8px solid var(--eh-border-color-strong);
+	border-radius: 1em;
+	background-color: var(--eh-background-color-white);
+}
+.hero.sheet [data-tab="details"] .skills .skill {
+	grid-column: 1 / 5;
+	display: grid;
+	grid-template-columns: subgrid;
+	padding-inline: 0.5em;
+}
+.hero.sheet [data-tab="details"] .skills .skill:not(:last-of-type) {
+	border-bottom: 1px solid var(--eh-border-color-weak);
+}
+.hero.sheet [data-tab="details"] .skills .skill label {
+	grid-column: 1;
+	border-inline-end: 1px solid var(--eh-border-color-weak);
+}
+.hero.sheet [data-tab="details"] .skills .skill:first-of-type > * {
+	padding-block-start: 0.25em;
+}
+.hero.sheet [data-tab="details"] .skills .skill:last-of-type > * {
+	padding-block-end: 0.25em;
+}
+.hero.sheet [data-tab="details"] .skills .skill .abbreviation {
+	grid-column: 2;
+}
+.hero.sheet [data-tab="details"] .skills .skill .proficiency-selector {
+	grid-column: 3;
+}
+.hero.sheet [data-tab="details"] .skills .skill .modifier {
+	grid-column: 4;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Health                                   */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.hero.sheet [data-tab="details"] .attributes {
+	grid-area: attributes;
+	margin-inline-start: 1em;
+}
+
+.hero.sheet [data-tab="details"] .attributes .health {
+	display: grid;
+	overflow: clip;
+	border: 2px solid var(--eh-border-color-strong);
+	border-radius: 15px 0 0 15px;
+	grid-template-areas: "hp death-saves";
+	background-color: var(--eh-background-color-black);
+	color: var(--eh-text-color-white);
+}
+.hero.sheet [data-tab="details"] .attributes .health .hp {
+	grid-area: hp;
+	display: grid;
+	grid-template-columns: 2fr 2fr 1fr;
+	grid-template-areas:
+		"max-hp current-hp temp-hp"
+		"hit-dice total-dmg temp-hp";
+	border-radius: 13px;
+	background-color: var(--eh-background-color-white);
+	color: var(--eh-text-color-black);
+}
+.hero.sheet [data-tab="details"] .attributes .health .death-saves {
+	grid-area: death-saves;
+	padding: 0.25em 0.5em;
+}
+.hero.sheet [data-tab="details"] .attributes .health .hp fieldset {
+	padding: 0.25em;
+}
+.hero.sheet [data-tab="details"] .attributes .health .hp fieldset.max-hp {
+	grid-area: max-hp;
+}
+.hero.sheet [data-tab="details"] .attributes .health .hp fieldset.current-hp {
+	grid-area: current-hp;
+}
+.hero.sheet [data-tab="details"] .attributes .health .hp fieldset.temp-hp {
+	grid-area: temp-hp;
+}
+.hero.sheet [data-tab="details"] .attributes .health .hp fieldset.hit-dice {
+	grid-area: hit-dice;
+}
+.hero.sheet [data-tab="details"] .attributes .health .hp fieldset.total-dmg {
+	grid-area: total-dmg;
+}
+.hero.sheet [data-tab="details"] .attributes .health .hp fieldset:is(.max-hp, .current-hp) {
+	border-block-end: 1px solid var(--eh-border-color-weak);
+}
+.hero.sheet [data-tab="details"] .attributes .health .hp fieldset:is(.max-hp, .current-hp, .hit-dice, .total-dmg) {
+	border-inline-end: 1px solid var(--eh-border-color-weak);
+}
+.hero.sheet [data-tab="details"] .attributes .health label {
+	text-align: center;
+	line-height: 0.8em;
+	padding-block: 0.25em;
+}
+.hero.sheet [data-tab="details"] .attributes .health :not(:is(.hit-dice, .total-dmg)) label {
+	display: block;
+}
+.hero.sheet [data-tab="details"] .attributes .health :is(fieldset:is(.max-hp, .current-hp), div.death-saves) > label {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.hero.sheet [data-tab="details"] .attributes .health :is(span, input) {
+	border: none;
+	background: none;
+	font-size: var(--font-size-24);
+	text-align: center;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Attributes                               */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.hero.sheet [data-tab="details"] .attributes .summary {
+	display: grid;
+	margin-block-start: 1em;
+	grid-template-columns: repeat(4, 1fr);
+	border: 2px solid var(--eh-border-color-strong);
+	background-color: var(--eh-background-color-white);
+	color: var(--eh-text-color-black);
+}
+.hero.sheet [data-tab="details"] .attributes .summary fieldset {
+	padding: 0.25em;
+	text-align: center;
+}
+.hero.sheet [data-tab="details"] .attributes .summary fieldset:not(:last-of-type) {
+	border-inline-end: 2px solid var(--eh-border-color-strong);
+}
+.hero.sheet [data-tab="details"] .attributes .summary fieldset label {
+	display: block;
+	/* padding-block: 0.25em; */
+	font-weight: bold;
+	text-transform: uppercase;
+	line-height: 0.8em;
+}
+.hero.sheet [data-tab="details"] .attributes .summary fieldset span {
+	font-size: 2em;
+}
