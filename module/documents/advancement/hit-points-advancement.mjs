@@ -1,6 +1,6 @@
 import Advancement from "./advancement.mjs";
-// import HitPointsConfig from "../../applications/advancement/hit-points-config.mjs";
-// import HitPointsFlow from "../../applications/advancement/hit-points-flow.mjs";
+import HitPointsConfig from "../../applications/advancement/hit-points-config.mjs";
+import HitPointsFlow from "../../applications/advancement/hit-points-flow.mjs";
 import { HitPointsConfigurationData, HitPointsValueData } from "../../data/advancement/hit-points-data.mjs";
 // import { simplifyBonus } from "../../utils.mjs";
 
@@ -25,8 +25,8 @@ export default class HitPointsAdvancement extends Advancement {
 			multiLevel: true,
 			validItemTypes: new Set(["archetype"]),
 			apps: {
-				// config: HitPointsConfig,
-				// flow: HitPointsFlow
+				config: HitPointsConfig,
+				flow: HitPointsFlow
 			}
 		});
 	}
@@ -74,7 +74,7 @@ export default class HitPointsAdvancement extends Advancement {
 	 * @returns {number|null} - Hit points for level or null if none have been taken.
 	 */
 	valueForLevel(level) {
-		return this.constructor.valueForLevel(this.value, this.hitDieValue, level);
+		return this.constructor.valueForLevel(this.value.granted ?? {}, this.hitDieValue, level);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -92,7 +92,7 @@ export default class HitPointsAdvancement extends Advancement {
 
 		if ( value === "max" ) return hitDieValue;
 		if ( value === "avg" ) return (hitDieValue / 2) + 1;
-		return value;
+		return Number(value);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -102,7 +102,7 @@ export default class HitPointsAdvancement extends Advancement {
 	 * @returns {number}  Hit points currently selected.
 	 */
 	total() {
-		return Object.keys(this.value).reduce((total, level) => total + this.valueForLevel(parseInt(level)), 0);
+		return Object.keys(this.value.granted ?? {}).reduce((t, l) => t + this.valueForLevel(parseInt(l)), 0);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -113,7 +113,7 @@ export default class HitPointsAdvancement extends Advancement {
 	 * @returns {number} - Total hit points plus modifier.
 	 */
 	getAdjustedTotal(mod) {
-		return Object.keys(this.value).reduce((total, level) => {
+		return Object.keys(this.value.granted ?? {}).reduce((total, level) => {
 			return total + Math.max(this.valueForLevel(parseInt(level)) + mod, 1);
 		}, 0);
 	}
@@ -138,7 +138,7 @@ export default class HitPointsAdvancement extends Advancement {
 	#getApplicableValue(value) {
 		const abilityId = CONFIG.EverydayHeroes.defaultAbilities.hitPoints || "con";
 		value = Math.max(value + (this.actor.system.abilities[abilityId]?.mod ?? 0), 1);
-		value += simplifyBonus(this.actor.system.attributes.hp.bonuses.level, this.actor.getRollData());
+		// value += simplifyBonus(this.actor.system.attributes.hp.bonuses.level, this.actor.getRollData());
 		return value;
 	}
 
@@ -150,7 +150,7 @@ export default class HitPointsAdvancement extends Advancement {
 		this.actor.updateSource({
 			"system.attributes.hp.value": this.actor.system.attributes.hp.value + this.#getApplicableValue(value)
 		});
-		this.updateSource({ value: data });
+		this.updateSource({ "value.granted": data });
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -168,7 +168,7 @@ export default class HitPointsAdvancement extends Advancement {
 			"system.attributes.hp.value": this.actor.system.attributes.hp.value - this.#getApplicableValue(value)
 		});
 		const source = { [level]: this.value[level] };
-		this.updateSource({ [`value.-=${level}`]: null });
+		this.updateSource({ [`value.granted.-=${level}`]: null });
 		return source;
 	}
 }

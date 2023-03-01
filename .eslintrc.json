@@ -123,6 +123,7 @@
     "keyword-spacing": ["warn", {"overrides": {"catch": {"before": true, "after": false}}}],
     "max-len": ["warn", {
       "code": 120,
+      "tabWidth": 2,
       "ignoreTrailingComments": true,
       "ignoreUrls": true,
       "ignoreStrings": true,

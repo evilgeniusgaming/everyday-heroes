@@ -1,3 +1,6 @@
+import AdvancementConfirmationDialog from "../applications/advancement/advancement-confirmation-dialog.mjs";
+import AdvancementManager from "../applications/advancement/advancement-manager.mjs";
+
 /**
  * Extended version of `Actor` class to support Everyday Heroes features.
  */
@@ -15,10 +18,6 @@ export default class ActorEH extends Actor {
 
 	prepareDerivedData() {
 		this.system.prepareDerivedData?.();
-
-		// TODO: Remove these when archetypes properly processed
-		this.system.attributes.hd.denomination = "d8";
-		this.system.attributes.hp.max = 50;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -463,4 +462,26 @@ export default class ActorEH extends Actor {
 		return roll;
 	}
 
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Socket Event Handlers                    */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _preUpdate(changed, options, user) {
+		if ( options.isAdvancement ) return;
+
+		const changedLevel = foundry.utils.getProperty(changed, "system.details.level");
+		const delta = changedLevel - this.system.details.level;
+		if ( changedLevel && delta ) {
+			foundry.utils.setProperty(changed, "system.details.level", this.system.details.level);
+			this.updateSource(changed);
+			const manager = AdvancementManager.forLevelChange(this, delta);
+			if ( manager.steps.length ) {
+				if ( delta > 0 ) return manager.render(true);
+				try {
+					const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forLevelDown(this);
+					if ( shouldRemoveAdvancements ) return manager.render(true);
+				} catch(err) { }
+			}
+		}
+	}
 }

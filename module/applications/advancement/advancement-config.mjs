@@ -6,6 +6,8 @@
  * @param {object} [options={}] - Additional options passed to FormApplication.
  * @param {string} [options.dropKeyPath=null] - Path within advancement configuration where dropped items are stored.
  *                                              If populated, will enable default drop & delete behavior.
+ *
+ * @copyright Adapted from the [dnd5e system]{@link https://github.com/foundryvtt/dnd5e}
  */
 export default class AdvancementConfig extends FormApplication {
 	constructor(advancement, options={}) {

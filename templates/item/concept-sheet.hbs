@@ -1,6 +1,6 @@
 <form class="{{cssClass}}" autocomplete="off">
 
-	<header>{{log this}}
+	<header>
 		<div class="image">
 			<img src="{{item.img}}" data-edit="img">
 		</div>
@@ -65,7 +65,7 @@
 						</h3>
 						{{#if (and @root.editable data.configured (ne level "unconfigured"))}}
 							<fieldset>
-								<a data-action="modify-choices">{{localize "EH.Advancement.Core.Action.ModifyChoices"}}</a>
+								<a data-action="modify-choices">{{localize "EH.Advancement.Core.Action.Modify"}}</a>
 							</fieldset>
 						{{/if}}
 

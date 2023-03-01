@@ -7,6 +7,14 @@ import TypeField from "../../fields/type-field.mjs";
  * @property {Advancement[]} advancement - Advancement collection.
  */
 export default class AdvancementTemplate extends foundry.abstract.DataModel {
+
+	/**
+	 * Flag indicating this item supports advancements.
+	 */
+	static hasAdvancement = true;
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static defineSchema() {
 		return {
 			advancement: new AdvancementField(

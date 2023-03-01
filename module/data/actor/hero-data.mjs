@@ -141,6 +141,7 @@ export default class HeroData extends foundry.abstract.DataModel {
 
 	prepareBaseData() {
 		// TODO: Set hit dice sized based on archetype
+		this.attributes.hd.available = Math.clamped(0, this.details.level - this.attributes.hd.spent, this.details.level);
 		this.attributes.prof = Proficiency.calculateMod(this.details.level);
 	}
 
@@ -150,8 +151,7 @@ export default class HeroData extends foundry.abstract.DataModel {
 		this.#prepareAbilities();
 		this.#prepareSkills();
 		this.#prepareDetails();
-
-		this.attributes.hd.available = this.details.level - this.attributes.hd.spent;
+		this.#prepareHitPoints();
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -191,6 +191,7 @@ export default class HeroData extends foundry.abstract.DataModel {
 			switch (item.type) {
 				case "archetype":
 					this.details.archetype = item;
+					this.attributes.hd.denomination = item.system.advancement.byType("HitPoints")[0]?.configuration.hitDie;
 					break;
 				case "class":
 					this.details.class = item;
@@ -203,6 +204,18 @@ export default class HeroData extends foundry.abstract.DataModel {
 					break;
 			}
 		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	#prepareHitPoints() {
+		const hp = this.attributes.hp;
+		const abilityId = CONFIG.EverydayHeroes.defaultAbilities.hitPoints ?? "con";
+		const abilityMod = this.abilities[abilityId]?.mod ?? 0;
+		const base = this.details.archetype?.system.advancement.byType("HitPoints")[0]?.getAdjustedTotal(abilityMod) ?? 0;
+		// const levelBonus = simplifyBonus(hp.bonuses.level, rollData) * this.details.level;
+		// const overallBonus = simplifyBonus(hp.bonuses.overall, rollData);
+		hp.max = base;// + levelBonus + overallBonus;
 	}
 }
 

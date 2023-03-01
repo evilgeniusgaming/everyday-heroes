@@ -5,6 +5,8 @@
  * @param {ItemEH} item - Item to which this advancement will be added.
  * @param {object} [dialogData={}] - An object of dialog data which configures how the modal window is rendered.
  * @param {object} [options={}] - Dialog rendering options.
+ *
+ * @copyright Adapted from the [dnd5e system]{@link https://github.com/foundryvtt/dnd5e}
  */
 export default class AdvancementSelection extends Dialog {
 	constructor(item, dialogData={}, options={}) {

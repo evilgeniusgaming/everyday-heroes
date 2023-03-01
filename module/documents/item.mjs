@@ -9,7 +9,6 @@ export default class ItemEH extends Item {
 
 	prepareBaseData() {
 		this.system.prepareBaseData?.();
-		this.system.prepareAdvancement?.();
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
