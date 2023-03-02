@@ -1,0 +1,15 @@
+<section>
+	<section class="proficiencies">
+		Equipment Proficiencies
+	</section>
+
+	{{#each inventory as |section|}}
+		<h2>{{localize section.label}}</h2>
+		<h3>{{section.primary.item.name}}</h3>
+		<ul>
+			{{#each section.items}}
+				<li>{{this.name}}</li>
+			{{/each}}
+		</ul>
+	{{/each}}
+</section>

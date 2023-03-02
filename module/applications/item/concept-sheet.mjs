@@ -1,3 +1,6 @@
+import AdvancementManager from "../advancement/advancement-manager.mjs";
+import AdvancementSelection from "../advancement/advancement-selection.mjs";
+
 /**
  * Sheet that represents Archetype, Class, Background, and Profession items.
  */
@@ -162,17 +165,15 @@ export default class ConceptSheet extends ItemSheet {
 	 * @returns {Promise|void}
 	 */
 	_onAdvancementAction(target, action) {
-		console.log(action);
 		const id = target.closest("[data-advancement-id]")?.dataset.advancementId;
 		const advancement = this.item.system.advancement.get(id);
 		if ( ["edit", "delete", "duplicate"].includes(action) && !advancement ) return;
 		switch (action) {
-			case "add": return EverydayHeroes.applications.advancement.AdvancementSelection.createDialog(this.item);
+			case "add": return AdvancementSelection.createDialog(this.item);
 			case "edit": return new advancement.constructor.metadata.apps.config(advancement).render(true);
 			case "delete":
 				if ( this.item.isEmbedded ) {
-					manager = EverydayHeroes.applications.advancement.AdvancementManager
-						.forDeletedAdvancement(this.item.actor, this.item.id, id);
+					manager = AdvancementManager.forDeletedAdvancement(this.item.actor, this.item.id, id);
 					if ( manager.steps.length ) return manager.render(true);
 				}
 				return this.item.deleteAdvancement(id);

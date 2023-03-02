@@ -10,19 +10,27 @@
 			</fieldset>
 			<fieldset class="class">
 				<label>{{localize "EH.Item.Types.Class[one]"}}</label>
-				<span>{{system.details.class.name}}</span>
+				<a data-action="item" data-type="edit" data-id="{{system.details.class.id}}">
+					{{system.details.class.name}}
+				</a>
 			</fieldset>
 			<fieldset class="archetype">
 				<label>{{localize "EH.Item.Types.Archetype[one]"}}</label>
-				<span>{{system.details.archetype.name}}</span>
+				<a data-action="item" data-type="edit" data-id="{{system.details.archetype.id}}">
+					{{system.details.archetype.name}}
+				</a>
 			</fieldset>
 			<fieldset class="background">
 				<label>{{localize "EH.Item.Types.Background[one]"}}</label>
-				<span>{{system.details.background.name}}</span>
+				<a data-action="item" data-type="edit" data-id="{{system.details.background.id}}">
+					{{system.details.background.name}}
+				</a>
 			</fieldset>
 			<fieldset class="profession">
 				<label>{{localize "EH.Item.Types.Profession[one]"}}</label>
-				<span>{{system.details.profession.name}}</span>
+				<a data-action="item" data-type="edit" data-id="{{system.details.profession.id}}">
+					{{system.details.profession.name}}
+				</a>
 			</fieldset>
 			<fieldset class="level">
 				<label>Level</label>
@@ -106,7 +114,7 @@
 					</label>
 					<span>
 						{{#if system.attributes.hd.denomination}}
-							{{system.attributes.hd.available}} x {{system.attributes.hd.denomination}}
+							{{system.attributes.hd.available}}{{system.attributes.hd.denomination}}
 						{{/if}}
 					</span>
 				</fieldset>

@@ -48,7 +48,7 @@ export function sortObjectEntries(obj, sortKey) {
  * @returns {string}
  */
 function itemContext(context, options) {
-	if ( arguments.length !== 2 ) throw new Error("#dnd5e-with requires exactly one argument");
+	if ( arguments.length !== 2 ) throw new Error("#eh-itemContext requires exactly one argument");
 	if ( foundry.utils.getType(context) === "function" ) context = context.call(this);
 
 	const ctx = options.data.root.itemContext?.[context.id];
@@ -81,14 +81,17 @@ export function registerHandlebarsHelpers() {
  */
 export async function registerHandlebarsPartials() {
 	const partials = [
-		"systems/everyday-heroes/templates/actor/parts/actor-proficiency-selector.hbs",
-		"systems/everyday-heroes/templates/actor/hero-biography.hbs",
-		"systems/everyday-heroes/templates/actor/hero-details.hbs",
-		"systems/everyday-heroes/templates/advancement/parts/advancement-controls.hbs"
+		"actor/parts/actor-proficiency-selector.hbs",
+		"actor/hero-biography.hbs",
+		"actor/hero-details.hbs",
+		"actor/hero-features.hbs",
+		"actor/hero-inventory.hbs",
+		"advancement/parts/advancement-controls.hbs"
 	];
 
 	const paths = {};
-	for ( const path of partials ) {
+	for ( let path of partials ) {
+		path = `systems/everyday-heroes/templates/${path}`;
 		paths[path] = path;
 		paths[`everydayHeroes.${path.split("/").pop().replace(".hbs", "")}`] = path;
 	}

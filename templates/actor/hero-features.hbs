@@ -1,0 +1,45 @@
+{{#each features as |section id|}}
+	<section data-section-id="{{id}}">
+			<header>
+				<h2>{{localize section.label}}</h2>
+				{{#with section.primary.item as |item|}}
+					<div class="primary-item" data-id="{{item.id}}">
+						<h3>
+							<div class="image" style="background-image: url('{{item.img}}')"></div>
+							<a data-action="item" data-type="edit">{{item.name}}</a>
+						</h3>
+						{{#if @root.editable}}
+							<fieldset>
+								<a data-action="item" data-type="edit" data-tooltip="EH.Item.Action.Edit">
+									<i class="fas fa-edit"></i>
+								</a>
+								<a data-action="item" data-type="delete" data-tooltip="EH.Item.Action.Delete">
+									<i class="fas fa-trash"></i>
+								</a>
+							</fieldset>
+						{{/if}}
+					</div>
+				{{/with}}
+			</header>
+			<ol class="item-list">
+				{{#each section.items as |item|}}
+					<li data-id="{{item.id}}">
+						<h4>
+							<div class="image" style="background-image: url('{{item.img}}')"></div>
+							<a data-action="item" data-type="expand">{{item.name}}</a>
+						</h4>
+						{{#if @root.editable}}
+							<fieldset>
+								<a data-action="item" data-type="edit" data-tooltip="EH.Item.Action.Edit">
+									<i class="fas fa-edit"></i>
+								</a>
+								<a data-action="item" data-type="delete" data-tooltip="EH.Item.Action.Delete">
+									<i class="fas fa-trash"></i>
+								</a>
+							</fieldset>
+						{{/if}}
+					</li>
+				{{/each}}
+			</ol>
+	</section>
+{{/each}}

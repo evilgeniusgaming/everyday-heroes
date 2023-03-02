@@ -1,3 +1,6 @@
+import AdvancementConfirmationDialog from "../advancement/advancement-confirmation-dialog.mjs";
+import AdvancementManager from "../advancement/advancement-manager.mjs";
+
 /**
  * Sheet that represents a Hero actor.
  */
@@ -173,6 +176,11 @@ export default class HeroSheet extends ActorSheet {
 			element.addEventListener("contextmenu", this._onCycleProficiency.bind(this));
 		}
 
+		// Item Action Listeners
+		for ( const element of html.querySelectorAll('[data-action="item"]') ) {
+			element.addEventListener("click", this._onItemAction.bind(this));
+		}
+
 		// Roll Action Listeners
 		for ( const element of html.querySelectorAll('[data-action="roll"]') ) {
 			element.addEventListener("click", this._onRollAction.bind(this));
@@ -200,19 +208,51 @@ export default class HeroSheet extends ActorSheet {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Handle on of the item actions in the features or inventory lists.
+	 * @param {Event} event - Triggering click event.
+	 * @returns {Promise}
+	 */
+	async _onItemAction(event) {
+		event.preventDefault();
+		const id = event.currentTarget.closest("[data-id]")?.dataset.id;
+		const item = id ? this.actor.items.get(id) : null;
+		switch (event.currentTarget.dataset.type) {
+			case "add":
+				return console.log("ADD ITEM");
+			case "edit":
+				return item?.sheet.render(true);
+			case "expand":
+				return console.log("EXPAND ITEM", id);
+			case "delete":
+				const manager = AdvancementManager.forDeletedItem(this.actor, id);
+				if ( manager.steps.length ) {
+					try {
+						if ( await AdvancementConfirmationDialog.forDelete(item) ) return manager.render(true);
+					} catch(err) { return; }
+				}
+				return item.deleteDialog();
+			default:
+				return console.warn(`Invalid item action type clicked ${event.currentTarget.dataset.type}.`);
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Handle one of the rolling actions on the sheet.
 	 * @param {Event} event - Triggering click event.
 	 * @returns {Promise}
 	 */
 	_onRollAction(event) {
 		event.preventDefault();
-		switch (event.target.dataset.type) {
+		const { type, key } = event.currentTarget.dataset;
+		switch (type) {
 			case "ability":
-				return this.actor.rollAbility(event.target.dataset.key);
+				return this.actor.rollAbility(key);
 			case "ability-check":
-				return this.actor.rollAbilityCheck(event.target.dataset.key);
+				return this.actor.rollAbilityCheck(key);
 			case "ability-save":
-				return this.actor.rollAbilitySave(event.target.dataset.key);
+				return this.actor.rollAbilitySave(key);
 			case "death-save":
 				return this.actor.rollDeathSave();
 			case "hit-die":
@@ -220,10 +260,14 @@ export default class HeroSheet extends ActorSheet {
 			case "initiative":
 				return console.log("Initiative rolls not yet implemented");
 			case "skill":
-				return this.actor.rollSkill(event.target.dataset.key);
+				return this.actor.rollSkill(key);
 			default:
-				return console.log(`Invalid roll type clicked ${event.target.dataset.type}.`);
+				return console.warn(`Invalid roll type clicked ${type}.`);
 		}
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Drag & Drop                              */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 }

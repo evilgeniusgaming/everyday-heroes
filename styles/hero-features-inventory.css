@@ -1,0 +1,60 @@
+.hero.sheet :is([data-tab="features"], [data-type="inventory"]) > section {
+	display: grid;
+	grid-template-columns: auto max-content;
+	border: 1px solid var(--eh-border-color-weak);
+	border-radius: 10px;
+	background-color: var(--eh-background-color-light);
+}
+.hero.sheet :is([data-tab="features"], [data-type="inventory"]) > section:not(:last-of-type) {
+	margin-block-end: -20px;
+	padding-block-end: 20px;
+}
+.hero.sheet :is([data-tab="features"], [data-type="inventory"]) :is(header, .primary-item, .item-list, .item-list li) {
+	grid-column: 1 / -1;
+	display: grid;
+	grid-template-columns: subgrid;
+}
+.hero.sheet :is([data-tab="features"], [data-type="inventory"]) :is(h3, h4) {
+	display: flex;
+	align-items: center;
+	border: none;
+	gap: 0.5em;
+}
+.hero.sheet :is([data-tab="features"], [data-type="inventory"]) :is(h3, h4) .image {
+	width: 25px;
+	height: 25px;
+	border-radius: 5px;
+	background-color: var(--eh-background-color-dark);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.hero.sheet :is([data-tab="features"], [data-type="inventory"]) > section header {
+	margin: -1px;
+	margin-block-end: 0;
+	border: 1px solid var(--eh-border-color-weak);
+	border-radius: 10px 10px 0 0;
+	padding: 0.25em 0.5em;
+	background-color: var(--eh-background-color-mid);
+}
+.hero.sheet :is([data-tab="features"], [data-type="inventory"]) > section header h2 {
+	grid-column: 1 / -1;
+	margin: 0;
+	border: none;
+	font-size: var(--font-size-16);
+	font-variant: small-caps;
+	font-weight: bold;
+}
+.hero.sheet :is([data-tab="features"], [data-type="inventory"]) > section header .primary-item {
+	margin-block-start: 0.5em;
+}
+.hero.sheet :is([data-tab="features"], [data-type="inventory"]) > section header .primary-item fieldset {
+	grid-column: -2 / -1;
+}
+
+.hero.sheet :is([data-tab="features"], [data-type="inventory"]) > section .item-list {
+	list-style: none;
+	padding-inline: 0.5em;
+}
+.hero.sheet :is([data-tab="features"], [data-type="inventory"]) > section .item-list li {
+
+}
