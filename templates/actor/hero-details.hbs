@@ -49,18 +49,19 @@
 		<div class="abilities">
 			{{#each abilities as |ability key|}}
 				<div class="ability" data-key="{{key}}">
+					<div class="angle"></div>
 					<label>
 						<a data-action="roll" data-type="ability" data-key="{{key}}">{{ability.label}}</a>
 					</label>
 					<aside class="modifier">
 						<a data-action="roll" data-type="ability-check" data-key="{{key}}">{{ability.mod}}</a>
 					</aside>
-					<div>
+					<div class="contents">
 						<input class="value" type="number" name="system.abilities.{{key}}.value"
 							value="{{ability.value}}" step="1" min="1">
 						<div class="save">
-							<input type="hidden" name="system.abilities.{{key}}.proficiency.multiplier" value="">
-							<span class="proficiency-selector"></span>
+							{{> "everydayHeroes.actor-proficiency-selector" type="single"
+							  name=(concat "system.abilities." key ".saveProficiency") value=ability.saveProficiency}}
 							<a data-action="roll" data-type="ability-save" data-key="{{key}}">{{ability.save}}</a>
 						</div>
 					</div>
@@ -74,10 +75,8 @@
 						<a data-action="roll" data-type="skill" data-key="{{key}}">{{skill.label}}</a>
 					</label>
 					<span class="abbreviation">{{skill.abilityAbbreviation}}</span>
-					<span class="proficiency-selector">
-						<input type="hidden" name="system.skills.{{key}}.proficiency.multiplier" value="{{skill.proficiency.multiplier}}">
-						<input type="hidden" name="system.skills.{{key}}.proficiency.rounding" value="{{skill.proficiency.rounding}}">
-					</span>
+					{{> "everydayHeroes.actor-proficiency-selector" type="double"
+						name=(concat "system.skills." key ".proficiency") value=skill.proficiency}}
 					<span class="modifier">{{skill.mod}}</span>
 				</div>
 			{{/each}}

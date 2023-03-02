@@ -86,7 +86,7 @@
 .hero.sheet [data-tab="details"] .abilities {
 	grid-area: abilities;
 	display: grid;
-	grid-template-columns: max-content auto max-content;
+	grid-template-columns: 1.5em max-content auto max-content;
 	margin-inline-start: -1.5em;
 }
 .hero.sheet [data-tab="details"] .abilities .ability {
@@ -94,9 +94,17 @@
 	display: grid;
 	grid-template-columns: subgrid;
 }
+.hero.sheet [data-tab="details"] .abilities .ability > div.angle {
+	grid-column: 1;
+	z-index: 1;
+	width: 2em;
+	height: calc(100% + 0.5em);
+	background-color: var(--eh-background-color-black);
+	transform: skew(-20deg) translateX(1em);
+}
 .hero.sheet [data-tab="details"] .abilities .ability label {
-	grid-column: 1 / 4;
-	margin-inline-start: 1em;
+	grid-column: 2 / 4;
+	z-index: 2;
 	padding: 0.25em 0.5em;
 	font-size: var(--font-size-18);
 	font-weight: bold;
@@ -107,7 +115,7 @@
 .hero.sheet [data-tab="details"] .abilities .ability .modifier {
 	grid-column: 1;
 	aspect-ratio: 1;
-	z-index: 2;
+	z-index: 4;
 	width: calc(2em + 8px);
 	margin-block: -4px;
 	border: 4px solid var(--eh-border-color-strong);
@@ -117,28 +125,34 @@
 	text-align: center;
 	line-height: calc(1.5em + 8px);
 }
-.hero.sheet [data-tab="details"] .abilities .ability > div {
+.hero.sheet [data-tab="details"] .abilities .ability > div.contents {
 	grid-column: 2 / 4;
 	display: grid;
 	grid-template-columns: subgrid;
-	margin-inline-start: -1.5em;
 	padding-inline-start: 1.5em;
 	background-color: var(--eh-background-color-white);
 }
-.hero.sheet [data-tab="details"] .abilities .ability > div .value {
+.hero.sheet [data-tab="details"] .abilities .ability > div.contents .value {
 	grid-column: 1;
-	border: none;
-	background: none;
-	height: 2em;
-	padding-left: 0.5em;
-	font-size: var(--font-size-18);
 	width: 4em;
+	height: 2em;
 	min-width: unset;
+	border: none;
+	padding-left: 0.5em;
+	background: none;
+	font-size: var(--font-size-18);
+	text-align: center;
 }
-.hero.sheet [data-tab="details"] .abilities .ability > div .save {
+.hero.sheet [data-tab="details"] .abilities .ability > div.contents .save {
 	grid-column: 2;
+	display: flex;
+	flex-wrap: wrap;
 	min-width: 2em;
 	border-inline-start: 1px solid var(--eh-border-color-weak);
+}
+.hero.sheet [data-tab="details"] .abilities .ability > div.contents .save > * {
+	flex-basis: 100%;
+	text-align: center;
 }
 
 .hero.sheet [data-tab="details"] .skills {
@@ -153,6 +167,7 @@
 	grid-column: 1 / 5;
 	display: grid;
 	grid-template-columns: subgrid;
+	align-items: first baseline;
 	padding-inline: 0.5em;
 }
 .hero.sheet [data-tab="details"] .skills .skill:not(:last-of-type) {
@@ -160,7 +175,9 @@
 }
 .hero.sheet [data-tab="details"] .skills .skill label {
 	grid-column: 1;
+	height: 100%;
 	border-inline-end: 1px solid var(--eh-border-color-weak);
+	padding-inline-end: 0.25em;
 }
 .hero.sheet [data-tab="details"] .skills .skill:first-of-type > * {
 	padding-block-start: 0.25em;
@@ -170,12 +187,32 @@
 }
 .hero.sheet [data-tab="details"] .skills .skill .abbreviation {
 	grid-column: 2;
+	padding-inline: 0.25em;
+	font-size: var(--font-size-11);
+	text-transform: uppercase;
 }
-.hero.sheet [data-tab="details"] .skills .skill .proficiency-selector {
+.hero.sheet [data-tab="details"] .skills .skill [data-action="cycle-proficiency"] {
 	grid-column: 3;
+	height: 1rem;
 }
 .hero.sheet [data-tab="details"] .skills .skill .modifier {
 	grid-column: 4;
+	text-align: right;
+}
+
+.hero.sheet [data-tab="details"] [data-action="cycle-proficiency"] {
+	cursor: pointer;
+}
+.hero.sheet [data-tab="details"] [data-action="cycle-proficiency"]:hover .selector-icon {
+	filter: drop-shadow(0 0 3px var(--color-shadow-primary));
+}
+.hero.sheet [data-tab="details"] [data-action="cycle-proficiency"] .selector-icon {
+	min-width: 1.25rem;
+	min-height: 1rem;
+	width: 100%;
+	background-size: 1.125rem;
+	background-repeat: no-repeat;
+	background-position-x: center;
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -248,6 +285,7 @@
 	text-transform: uppercase;
 }
 .hero.sheet [data-tab="details"] .attributes .health :is(span, input) {
+	display: block;
 	border: none;
 	background: none;
 	font-size: var(--font-size-24);

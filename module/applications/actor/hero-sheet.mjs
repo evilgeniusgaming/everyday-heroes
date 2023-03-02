@@ -167,10 +167,34 @@ export default class HeroSheet extends ActorSheet {
 		super.activateListeners(jQuery);
 		const html = jQuery[0];
 
+		// Proficiency Selector Listeners
+		for ( const element of html.querySelectorAll('[data-action="cycle-proficiency"]') ) {
+			element.addEventListener("click", this._onCycleProficiency.bind(this));
+			element.addEventListener("contextmenu", this._onCycleProficiency.bind(this));
+		}
+
 		// Roll Action Listeners
-		for ( const element of html.querySelectorAll('[data-action="roll"') ) {
+		for ( const element of html.querySelectorAll('[data-action="roll"]') ) {
 			element.addEventListener("click", this._onRollAction.bind(this));
 		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Handle clicking on the proficiency selector for abilities or skills.
+	 * @param {Event} event - Triggering click event.
+	 * @returns {Promise|void}
+	 */
+	_onCycleProficiency(event) {
+		event.preventDefault();
+		if ( event.currentTarget.classList.contains("disabled") ) return;
+		const name = event.currentTarget.dataset.name;
+		const input = event.currentTarget.querySelector(`input[name="${name}.multiplier"]`);
+		const value = foundry.utils.getProperty(this.actor._source, `${name}.multiplier`) ?? 0;
+		const levels = event.currentTarget.dataset.type === "single" ? 2 : 3;
+		input.value = (value + (event.type === "contextmenu" ? levels - 1 : 1)) % levels;
+		return this._onSubmit(event);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 512 512" width="256px" height="256px" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <path d="M 356 256 C 356 283.49 344.907 308.389 326.954 326.466 L 185.476 185.103 C 203.558 167.116 228.481 156 256 156 C 311.228 156 356 200.772 356 256 Z" style="" transform="matrix(0, -1, 1, 0, 0.000004, 511.999925)" bx:origin="0.413572 0.586627"/>
+  <ellipse style="stroke: rgb(0, 0, 0); stroke-width: 19px; fill: none;" cx="256" cy="256" rx="100" ry="100"/>
+</svg>

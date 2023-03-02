@@ -1,5 +1,6 @@
 import FormulaField from "../fields/formula-field.mjs";
 import MappingField from "../fields/mapping-field.mjs";
+import { simplifyBonus } from "../../utils.mjs";
 import Proficiency from "../../documents/proficiency.mjs";
 
 /**
@@ -19,6 +20,7 @@ export default class HeroData extends foundry.abstract.DataModel {
 				}, {label: "EH.Proficiency.Label[one]"}),
 				bonuses: new foundry.data.fields.SchemaField({
 					check: new FormulaField({label: "EH.Abilities.Bonuses.Check"}),
+					dc: new FormulaField({label: "EH.Abilities.Bonuses.DC"}),
 					save: new FormulaField({label: "EH.Abilities.Bonuses.Save"})
 				})
 			}), {
@@ -103,7 +105,15 @@ export default class HeroData extends foundry.abstract.DataModel {
 				weight: new foundry.data.fields.StringField({label: "EH.Biography.Weight"})
 			}),
 			bonuses: new foundry.data.fields.SchemaField({
-				// TODO: Figure out what bonuses are needed
+				ability: new foundry.data.fields.SchemaField({
+					check: new FormulaField({label: "EH.Abilities.Bonuses.Check"}),
+					dc: new FormulaField({label: "EH.Abilities.Bonuses.DC"}),
+					save: new FormulaField({label: "EH.Abilities.Bonuses.Save"})
+				}),
+				skill: new foundry.data.fields.SchemaField({
+					check: new FormulaField({label: "EH.Skills.Bonuses.Check"}),
+					passive: new FormulaField({label: "EH.Skills.Bonuses.Passive"})
+				})
 			}, {label: ""}),
 			conditions: new foundry.data.fields.SchemaField({
 				// TODO: Figure out how to track exhaustion and intoxication and support custom conditions with levels
@@ -111,7 +121,6 @@ export default class HeroData extends foundry.abstract.DataModel {
 			details: new foundry.data.fields.SchemaField({
 				level: new foundry.data.fields.NumberField({
 					nullable: false, initial: 1, min: 1, max: CONFIG.EverydayHeroes.maxLevel, integer: true, label: ""
-					// TODO: Move max level into config
 				})
 			}),
 			resources: new foundry.data.fields.SchemaField({
@@ -157,29 +166,44 @@ export default class HeroData extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	#prepareAbilities() {
-		for ( const [id, ability] of Object.entries(this.abilities) ) {
+		const rollData = this.parent.getRollData();
+		const globalDCBonus = simplifyBonus(this.bonuses.ability?.dc, rollData);
+		const globalCheckBonus = simplifyBonus(this.bonuses.ability?.check, rollData);
+		const globalSaveBonus = simplifyBonus(this.bonuses.ability?.save, rollData);
+		for ( const ability of Object.values(this.abilities) ) {
 			ability.mod = Math.floor((ability.value - 10) / 2);
+
 			// TODO: Add jack of all trades
 			ability.checkProficiency = new Proficiency(this.attributes.prof);
 			ability.saveProficiency = new Proficiency(this.attributes.prof, ability.saveProficiency.multiplier);
-			// TODO: Add various bonuses
-			ability.save = ability.mod + ability.saveProficiency.flat;
-			ability.dc = 8 + ability.mod + this.attributes.prof;
+
+			ability.checkBonus = globalCheckBonus + simplifyBonus(ability.bonuses.check, rollData);
+			ability.check = ability.mod + ability.checkProficiency.flat + ability.checkBonus;
+			ability.saveBonus = globalSaveBonus + simplifyBonus(ability.bonuses.save, rollData);
+			ability.save = ability.mod + ability.saveProficiency.flat + ability.saveBonus;
+			ability.dcBonus = globalDCBonus + simplifyBonus(ability.bonuses.dc, rollData);
+			ability.dc = 8 + ability.mod + this.attributes.prof + ability.dcBonus;
 		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	#prepareSkills() {
-		for ( const [id, skill] of Object.entries(this.skills) ) {
-			const ability = this.abilities[skill.ability];
-			// TODO: Add jack of all trades
-			// TODO: Add various bonuses
-			skill.mod = ability?.mod ?? 0;
+		const rollData = this.parent.getRollData();
+		const globalCheckBonus = simplifyBonus(this.bonuses.ability.check, rollData)
+			+ simplifyBonus(this.bonuses.skill.check, rollData);
+		const globalPassiveBonus = simplifyBonus(this.bonuses.skill.passive, rollData);
+		for ( const skill of Object.values(this.skills) ) {
 			skill.proficiency = new Proficiency(
 				this.attributes.prof, skill.proficiency.multiplier, skill.proficiency.rounding
 			);
-			skill.passive = 10 + skill.mod + skill.proficiency.flat;
+			// TODO: Add jack of all trades
+
+			const ability = this.abilities[skill.ability];
+			skill.bonus = globalCheckBonus + simplifyBonus(ability?.bonuses.check, rollData)
+				+ simplifyBonus(skill.bonuses.check, rollData);
+			skill.mod = (ability?.mod ?? 0) + skill.bonus + skill.proficiency.flat;
+			skill.passive = 10 + skill.mod + globalPassiveBonus + simplifyBonus(skill.bonuses.passive, rollData);
 		}
 	}
 
@@ -209,13 +233,14 @@ export default class HeroData extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	#prepareHitPoints() {
+		const rollData = this.parent.getRollData();
 		const hp = this.attributes.hp;
 		const abilityId = CONFIG.EverydayHeroes.defaultAbilities.hitPoints ?? "con";
 		const abilityMod = this.abilities[abilityId]?.mod ?? 0;
 		const base = this.details.archetype?.system.advancement.byType("HitPoints")[0]?.getAdjustedTotal(abilityMod) ?? 0;
-		// const levelBonus = simplifyBonus(hp.bonuses.level, rollData) * this.details.level;
-		// const overallBonus = simplifyBonus(hp.bonuses.overall, rollData);
-		hp.max = base;// + levelBonus + overallBonus;
+		const levelBonus = simplifyBonus(hp.bonuses.level, rollData) * this.details.level;
+		const overallBonus = simplifyBonus(hp.bonuses.overall, rollData);
+		hp.max = base + levelBonus + overallBonus;
 	}
 }
 

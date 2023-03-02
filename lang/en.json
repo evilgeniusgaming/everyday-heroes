@@ -21,6 +21,7 @@
 "EH.Abilities.Action.SaveGeneric": "Saving Throw",
 "EH.Abilities.Action.SaveSpecific": "{ability} Saving Throw",
 "EH.Abilities.Bonuses.Check": "Ability Check Bonus",
+"EH.Abilities.Bonuses.DC": "DC Bonus",
 "EH.Abilities.Bonuses.Save": "Saving Throw Bonus",
 
 "EH.Action.Roll": "Roll {type}",

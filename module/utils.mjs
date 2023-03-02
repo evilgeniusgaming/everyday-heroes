@@ -1,3 +1,29 @@
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Formulas                                 */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Convert a bonus value to a simple integer for displaying on the sheet.
+ * @param {number|string|null} bonus - Bonus formula.
+ * @param {object} [data={}] - Data to use for replacing @ strings.
+ * @returns {number} - Simplified bonus as an integer.
+ */
+export function simplifyBonus(bonus, data={}) {
+	if ( !bonus ) return 0;
+	if ( Number.isNumeric(bonus) ) return Number(bonus);
+	try {
+		const roll = new Roll(bonus, data);
+		return roll.isDeterministic ? Roll.safeEval(roll.formula) : 0;
+	} catch(error) {
+		console.error(error);
+		return 0;
+	}
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Object Helpers                           */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 /**
  * Sort the provided object by its values or by an inner sortKey.
  * @param {object} obj - The object to sort.
@@ -55,6 +81,7 @@ export function registerHandlebarsHelpers() {
  */
 export async function registerHandlebarsPartials() {
 	const partials = [
+		"systems/everyday-heroes/templates/actor/parts/actor-proficiency-selector.hbs",
 		"systems/everyday-heroes/templates/actor/hero-biography.hbs",
 		"systems/everyday-heroes/templates/actor/hero-details.hbs",
 		"systems/everyday-heroes/templates/advancement/parts/advancement-controls.hbs"
