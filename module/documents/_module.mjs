@@ -12,13 +12,22 @@ export function registerDocumentClasses() {
 	};
 	CONFIG.Item.documentClass = ItemEH;
 	CONFIG.Item.typeLabels = {
+		// Concept
 		archetype: "EH.Item.Types.Archetype[one]",
 		background: "EH.Item.Types.Background[one]",
 		class: "EH.Item.Types.Class[one]",
 		profession: "EH.Item.Types.Profession[one]",
+
+		// Features
 		talent: "EH.Item.Types.Talent[one]",
 		specialfeature: "EH.Item.Types.SpecialFeature[one]",
-		feat: "EH.Item.Types.Feat[one]"
+		feat: "EH.Item.Types.Feat[one]",
+
+		// Equipment
+		armor: "EH.Item.Types.Armor[one]",
+		weapon: "EH.Item.Types.Weapon[one]",
+		explosive: "EH.Item.Types.Explosive[one]",
+		gear: "EH.Item.Types.Gear[one]"
 	};
 }
 

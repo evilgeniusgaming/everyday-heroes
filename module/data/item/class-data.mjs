@@ -4,5 +4,7 @@ import DescribedTemplate from "./templates/described-template.mjs";
 
 /**
  * Data definition for Class items.
+ * @mixes {@link AdvancementTemplate}
+ * @mixes {@link DescribedTemplate}
  */
 export default class ClassData extends SystemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {}

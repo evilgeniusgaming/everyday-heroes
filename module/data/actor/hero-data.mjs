@@ -243,7 +243,3 @@ export default class HeroData extends foundry.abstract.DataModel {
 		hp.max = base + levelBonus + overallBonus;
 	}
 }
-
-// Data: required, nullable, initial, validate, label, hint, validationError
-// String: blank, trim, choices
-// Number: min, max, step, integer, positive, choices

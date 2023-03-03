@@ -4,5 +4,7 @@ import DescribedTemplate from "./templates/described-template.mjs";
 
 /**
  * Data definition for Profession items.
+ * @mixes {@link AdvancementTemplate}
+ * @mixes {@link DescribedTemplate}
  */
 export default class ProfessionData extends SystemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {}

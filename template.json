@@ -71,14 +71,23 @@
     }
   },
   "Item": {
-    "types": ["archetype", "class", "background", "profession", "talent", "specialfeature", "feat"],
+    "types": ["archetype", "class", "background", "profession", "talent", "specialfeature", "feat", "armor", "weapon", "explosive", "gear"],
     "templates": {
+      "damage": {
+        "number": null,
+        "die": null,
+        "type": ""
+      },
       "description": {
         "description": {
           "value": "",
           "chat": "",
           "source": ""
         }
+      },
+      "physical": {
+        "bulk": 0,
+        "price": 0
       }
     },
     "htmlFields": [
@@ -140,6 +149,54 @@
       "type": {
         "value": "",
         "category": ""
+      }
+    },
+    "armor": {
+      "templates": ["description", "physical"],
+      "type": {
+        "value": "armor",
+        "category": "basic"
+      },
+      "properties": [],
+      "armorValue": 0
+    },
+    "weapon": {
+      "templates": ["damage", "description", "physical"],
+      "type": {
+        "value": "melee",
+        "category": "basic"
+      },
+      "properties": [],
+      "penetrationValue": 0,
+      "range": {
+        "short": null,
+        "long": null,
+        "reach": null,
+        "units": "ft"
+      },
+      "reload": "",
+      "rounds": {
+        "spent": 0,
+        "capacity": null,
+        "burst": null
+      }
+    },
+    "explosive": {
+      "templates": ["damage", "description", "physical"],
+      "type": {
+        "category": "basic"
+      },
+      "properties": [],
+      "dc": null,
+      "radius": {
+        "value": null,
+        "units": "ft"
+      }
+    },
+    "gear": {
+      "templates": ["description", "physical"],
+      "type": {
+        "value": "loot"
       }
     }
   }
