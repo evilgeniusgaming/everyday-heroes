@@ -15,7 +15,18 @@ export default class GearData extends SystemDataModel.mixin(DescribedTemplate, P
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.StringField({label: "EH.Weapon.Types.Label"})
-			})
+			}, {label: "EH.Equipment.Type.Label"})
+		});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Data Preparation                         */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedTypeLabel() {
+		this.type.label = game.i18n.format("EH.Equipment.Type.DetailedLabel", {
+			category: "", type: "",
+			subtype: CONFIG.EverydayHeroes.gearTypes[this.type.value] ?? ""
 		});
 	}
 }

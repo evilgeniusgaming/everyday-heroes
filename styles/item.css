@@ -1,0 +1,114 @@
+@import "./concept.css";
+@import "./physical.css";
+
+.item.sheet {
+	container-type: size;
+}
+
+.item.sheet form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.item.sheet form > main {
+	flex-grow: 1;
+}
+.item.sheet form > main .tab {
+	height: 100%;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Header                                   */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.item.sheet form > header {
+	display: grid;
+	grid-template-columns: max-content auto min-content;
+}
+
+.item.sheet form > header > div.image {
+	grid-column: 1;
+	z-index: 4;
+	border: 1px solid var(--eh-border-color-strong);
+	border-radius: 20px 0 0 20px;
+	background-color: var(--eh-background-color-dark);
+	overflow: clip;
+}
+.item.sheet form > header > div.image img {
+	border: none;
+	max-width: 100px;
+	aspect-ratio: 1;
+}
+
+.item.sheet form > header > div.fields {
+	grid-column: 2;
+	z-index: 4;
+	border: 1px solid var(--eh-border-color-strong);
+	border-inline-start: none;
+	border-bottom-right-radius: 20px;
+	background-color: var(--eh-background-color-mid);
+}
+.item.sheet form > header > div.fields fieldset {
+	display: flex;
+	align-items: first baseline;
+	border: none;
+	gap: 0.5em;
+}
+.item.sheet form > header > div.fields fieldset label {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.item.sheet form > header > div.fields fieldset :is(span, input) {
+	flex-grow: 1;
+	border: none;
+	border-radius: 8px;
+	padding-inline: 0.25em;
+	background-color: var(--eh-background-color-white);
+	font-family: var(--font-primary);
+	font-size: var(--font-size-18);
+	line-height: 1.5em;
+}
+
+.item.sheet form > header > nav {
+	grid-column: 3;
+	z-index: 2;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	margin-inline-start: -10px
+}
+.item.sheet form > header > nav a {
+	display: block;
+	flex: 1 0 100%;
+	border: 1px solid var(--eh-border-color-weak);
+	padding-block: 0.5rem;
+	padding-inline: 20px 10px;
+	background-color: var(--eh-background-color-mid);
+	text-align: center;
+}
+.item.sheet form > header > nav a.active {
+	background: var(--eh-background-color-dark);
+	color: var(--eh-text-color-white);
+}
+.item.sheet form > header > nav a:first-of-type {
+	border-top-right-radius: 10px;
+}
+.item.sheet form > header > nav a:last-of-type {
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Description                              */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.item.sheet main > [data-tab="description"] {
+	border: 2px solid var(--eh-border-color-strong);
+	border-radius: 20px;
+	padding: calc(1em - 5px) 1em;
+	background-color: var(--eh-background-color-white);
+}
+.item.sheet main > [data-tab="description"] .editor {
+	height: 100%;
+	min-height: 12em;
+}

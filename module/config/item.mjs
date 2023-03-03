@@ -26,22 +26,22 @@ export const advancementTypes = {
  */
 export const equipmentCategories = {
 	basic: {
-		label: "EH.Equipment.Cateogry.Basic.Label"
+		label: "EH.Equipment.Category.Basic.Label"
 	},
 	advanced: {
-		label: "EH.Equipment.Cateogry.Advanced.Label",
+		label: "EH.Equipment.Category.Advanced.Label",
 		requires: "basic"
 	},
 	historical: {
-		label: "EH.Equipment.Cateogry.Historical.Label",
+		label: "EH.Equipment.Category.Historical.Label",
 		requires: "basic"
 	},
 	improvised: {
-		label: "EH.Equipment.Cateogry.Improvised.Label",
+		label: "EH.Equipment.Category.Improvised.Label",
 		requires: "basic"
 	},
 	military: {
-		label: "EH.Equipment.Cateogry.Military.Label",
+		label: "EH.Equipment.Category.Military.Label",
 		requires: "advanced"
 	}
 };
@@ -100,7 +100,8 @@ export const equipmentProperties = {
 	},
 	finesse: {
 		label: "EH.Weapon.Properties.Finesse.Label",
-		hint: ""
+		hint: "",
+		condition: {"system.type.value": "melee"}
 	},
 	fullAuto: {
 		label: "EH.Weapon.Properties.FullAuto.Label",
@@ -136,7 +137,8 @@ export const equipmentProperties = {
 	},
 	reach: {
 		label: "EH.Weapon.Properties.Reach.Label",
-		hint: ""
+		hint: "",
+		condition: {"system.type.value": "melee"}
 	},
 	restricted: {
 		label: "EH.Weapon.Properties.Restricted.Label",
@@ -195,6 +197,7 @@ export const equipmentProperties = {
 		hint: ""
 	}
 };
+preLocalize("equipmentProperties", { key: "label", sort: true });
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -216,3 +219,44 @@ export const applicableProperties = {
 		"slowFiring", "special", "stationary", "stunning", "thrown", "twoHanded", "unreliable", "versatile"
 	]
 };
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Armor                                    */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * General armor types.
+ * @enum {string}
+ */
+export const armorTypes = {
+	armor: "EH.Armor.Types.Armor.Label",
+	shield: "EH.Armor.Types.Shield.Label"
+};
+preLocalize("armorTypes");
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Gear                                    */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * General gear types.
+ * @enum {string}
+ */
+export const gearTypes = {
+	
+};
+preLocalize("gearTypes");
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Weapons                                  */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * General weapon types.
+ * @enum {string}
+ */
+export const weaponTypes = {
+	melee: "EH.Weapon.Types.Melee.Label",
+	ranged: "EH.Weapon.Types.Ranged.Label"
+};
+preLocalize("weaponTypes");

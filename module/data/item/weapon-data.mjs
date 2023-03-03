@@ -35,7 +35,7 @@ export default class WeaponData extends SystemDataModel.mixin(DamageTemplate, De
 			type: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.StringField({initial: "melee", label: "EH.Weapon.Types.Label"}),
 				category: new foundry.data.fields.StringField({intial: "basic", label: "EH.Equipment.Category.Label[one]"})
-			}),
+			}, {label: "EH.Equipment.Type.Label"}),
 			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
 				label: "EH.Weapon.Properties.Label"
 			}),
@@ -66,6 +66,40 @@ export default class WeaponData extends SystemDataModel.mixin(DamageTemplate, De
 				attack: new FormulaField({label: "EH.Weapon.Bonuses.Attack.Label"}),
 				damage: new FormulaField({label: "EH.Weapon.Bonuses.Damage.Label"})
 			})
+		});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Getters                                  */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Is range a relevant concept for this weapon?
+	 * @type {boolean}
+	 */
+	get usesRange() {
+		return (this.type.value === "ranged") || this.properties.has("thrown");
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Are rounds a relevant concept for this weapon?
+	 * @type {boolean}
+	 */
+	get usesRounds() {
+		return (this.type.value === "ranged");
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Data Preparation                         */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedTypeLabel() {
+		this.type.label = game.i18n.format("EH.Equipment.Type.DetailedLabel", {
+			category: CONFIG.EverydayHeroes.equipmentCategories[this.type.category]?.label ?? "",
+			type: game.i18n.localize("EH.Item.Types.Weapon[one]"),
+			subtype: CONFIG.EverydayHeroes.weaponTypes[this.type.value] ?? ""
 		});
 	}
 }

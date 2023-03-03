@@ -132,6 +132,59 @@ preLocalize("conditions", { key: "label", sort: true });
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Configuration data for NPC creature types.
+ *
+ * @typedef {object} CreatureTypeConfiguration
+ * @property {string} label - Localized label.
+ * @property {object} [subtypes] - Object containing suggested sub-types for this type.
+ */
+
+/**
+ * Types of creatures that NPCs can be.
+ * @enum {CreatureTypeConfiguration}
+ */
+export const creatureTypes = {
+	animal: {
+		label: "EH.CreatureTypes.Animal.Label",
+		subtypes: {
+			prehistoric: "EH.CreatureTypes.Prehistoric.Label",
+			swarm: "EH.CreatureTypes.Swarm.Label"
+		}
+	},
+	monster: {
+		label: "EH.CreatureTypes.Monster.Label",
+		subtypes: {
+			alien: "EH.CreatureTypes.Alien.Label",
+			demon: "EH.CreatureTypes.Demon.Label",
+			shifter: "EH.CreatureTypes.Shifter.Label",
+			undead: "EH.CreatureTypes.Undead.Label"
+		}
+	},
+	person: {
+		label: "EH.CreatureTypes.Person.Label",
+		subtypes: {
+			human: "EH.CreatureTypes.Human.Label",
+			mutant: "EH.CreatureTypes.Mutant.Label"
+		}
+	},
+	robot: {
+		label: "EH.CreatureTypes.Robot.Label",
+		subtypes: {
+			autonomous: "EH.CreatureTypes.Autonomous.Label",
+			futuristic: "EH.CreatureTypes.Futuristic.Label",
+			remoteControlled: "EH.CreatureTypes.RemoteControlled.Label"
+		}
+	}
+};
+preLocalize("creatureTypes", { key: "label", sort: true });
+preLocalize("creatureTypes.animal.subtypes", { sort: true });
+preLocalize("creatureTypes.monster.subtypes", { sort: true });
+preLocalize("creatureTypes.person.subtypes", { sort: true });
+preLocalize("creatureTypes.robot.subtypes", { sort: true });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Configuration information for death saves.
  * @type {object}
  */
@@ -161,6 +214,26 @@ export const deathStatus = {
  * @type {number}
  */
 export const maxLevel = 10;
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Possible roles for NPCs.
+ * @enum {string}
+ */
+export const roles = {
+	fodder: "EH.Roles.Fodder.Label",
+	hulk: "EH.Roles.Hulk.Label",
+	killer: "EH.Roles.Killer.Label",
+	leader: "EH.Roles.Leader.Label",
+	loner: "EH.Roles.Loner.Label",
+	melee: "EH.Roles.Melee.Label",
+	ranged: "EH.Roles.Ranged.Label",
+	shadow: "EH.Roles.Shadow.Label",
+	support: "EH.Roles.Support.Label",
+	tank: "EH.Roles.Tank.Label"
+};
+preLocalize("roles", { sort: true });
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

@@ -23,7 +23,7 @@ export default class ArmorData extends SystemDataModel.mixin(DescribedTemplate, 
 			type: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.StringField({intial: "armor", label: "EH.Armor.Types.Label"}),
 				category: new foundry.data.fields.StringField({intial: "basic", label: "EH.Equipment.Category.Label[one]"})
-			}),
+			}, {label: "EH.Equipment.Type.Label"}),
 			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
 				label: "EH.Weapon.Properties.Label"
 			}),
@@ -35,6 +35,18 @@ export default class ArmorData extends SystemDataModel.mixin(DescribedTemplate, 
 			bonuses: new foundry.data.fields.SchemaField({
 				save: new FormulaField({label: "EH.Armor.Bonuses.Save.Label"})
 			})
+		});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Data Preparation                         */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedTypeLabel() {
+		this.type.label = game.i18n.format("EH.Equipment.Type.DetailedLabel", {
+			category: CONFIG.EverydayHeroes.equipmentCategories[this.type.category]?.label ?? "",
+			type: "",
+			subtype: CONFIG.EverydayHeroes.armorTypes[this.type.value] ?? ""
 		});
 	}
 }

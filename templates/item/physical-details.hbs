@@ -1,0 +1,156 @@
+<section>
+
+	{{#if (everydayHeroes-has item "system.type.category")}}
+		<fieldset>
+			<label>{{localize "EH.Equipment.Category.Label[one]"}}</label>
+			<select name="system.type.category">
+				{{selectOptions CONFIG.equipmentCategories selected=system.type.category labelAttr="label" blank=""}}
+			</select>
+		</fieldset>
+	{{/if}}
+
+	{{#if itemSubTypes}}
+		<fieldset>
+			<label>{{localize "EH.Equipment.Type.Label"}}</label>
+			<select name="system.type.value">
+				{{selectOptions itemSubTypes selected=system.type.value blank=""}}
+			</select>
+		</fieldset>
+	{{/if}}
+
+	{{#if itemProperties}}
+		<div class="properties">
+			{{#each itemProperties as |property key|}}
+				<fieldset>
+					<label>{{property.label}}</label>
+					<input type="checkbox" name="system.properties.{{key}}" {{checked property.checked}}>
+				</fieldset>
+			{{/each}}
+		</div>
+	{{/if}}
+
+	{{#if (everydayHeroes-has item "system.armorValue")}}
+		<fieldset>
+			<label>{{localize "EH.Equipment.Traits.ArmorValue.Label"}}</label>
+			<input type="number" name="system.armorValue" value="{{system.armorValue}}">
+			<p class="hint">{{localize "EH.Equipment.Traits.ArmorValue.Hint"}}</p>
+		</fieldset>
+	{{/if}}
+
+	{{#if (everydayHeroes-has item "system.penetrationValue")}}
+		<fieldset>
+			<label>{{localize "EH.Equipment.Traits.PenetrationValue.Label"}}</label>
+			<input type="number" name="system.penetrationValue" value="{{system.penetrationValue}}">
+			<p class="hint">{{localize "EH.Equipment.Traits.PenetrationValue.Hint"}}</p>
+		</fieldset>
+	{{/if}}
+
+	{{#if (everydayHeroes-has item "system.damage")}}
+		<fieldset>
+			<label>{{localize "EH.Equipment.Traits.Damage.Label"}}</label>
+			{{#unless (eq system.damage.type "")}}
+				<input type="number" name="system.damage.number" value="{{system.damage.number}}" placeholder="1">
+				<select name="system.damage.denomination">
+					{{selectOptions diceSteps selected=system.damage.denomination}}
+				</select>
+			{{/unless}}
+			<select name="system.damage.type">
+				{{selectOptions CONFIG.damageTypes selected=system.damage.type blank=(localize "EH.Damage.None")}}
+			</select>
+			<p class="hint">{{localize "EH.Equipment.Traits.Damage.Hint"}}</p>
+		</fieldset>
+	{{/if}}
+
+	{{#if (and (everydayHeroes-has item "system.dc") (ne system.damage.type ""))}}
+		<fieldset>
+			<label>{{localize "EH.Weapon.DC.Label"}}</label>
+			<input type="number" name="system.dc", value="{{system.dc}}">
+		</fieldset>
+	{{/if}}
+
+	{{#if (everydayHeroes-has item "system.radius")}}
+		<fieldset>
+			<label>{{localize "EH.Equipment.Traits.Radius.Label"}}</label>
+			<input type="number" name="system.radius.value" value="{{system.radius.value}}">
+			<select name="system.radius.units">
+				{{selectOptions CONFIG.lengthUnits selected=system.radius.value labelAttr="label"}}
+			</select>
+			<p class="hint">{{localize "EH.Equipment.Traits.Radius.Hint"}}</p>
+		</fieldset>
+	{{/if}}
+
+	{{#if item.system.usesRange}}
+		<fieldset>
+			<label>{{localize "EH.Equipment.Traits.Range.Label"}}</label>
+			<input type="number" name="system.range.short" value="{{system.range.short}}">
+			<input type="number" name="system.range.long" value="{{system.range.long}}">
+			<select name="system.range.units">
+				{{selectOptions CONFIG.lengthUnits selected=system.range.value labelAttr="label"}}
+			</select>
+		</fieldset>
+	{{/if}}
+
+	{{#if itemProperties.reach.checked}}
+		<fieldset>
+			<label>{{localize "EH.Equipment.Traits.Range.Reach"}}</label>
+			<input type="number" name="system.range.reach" value="{{system.range.reach}}">
+		</fieldset>
+	{{/if}}
+
+	{{#if item.system.usesRounds}}
+		<fieldset>
+			<label>{{localize "EH.Equipment.Traits.Rounds.Label"}}</label>
+			<input type="number" name="system.rounds.value" value="{{system.rounds.value}}">
+			<input type="number" name="system.rounds.capacity" value="{{system.rounds.capacity}}">
+			<p class="hint">{{localize "EH.Equipment.Traits.Rounds.Hint"}}</p>
+		</fieldset>
+
+		{{#if system.rounds.capacity}}
+			<fieldset>
+				<label>{{localize "EH.Equipment.Traits.Reload.Label"}}</label>
+				<select name="system.reload">
+					{{selectOptions CONFIG.actionTypesReload selected=system.reload}}
+				</select>
+			</fieldset>
+		{{/if}}
+
+		{{#if itemProperties.burst.checked}}
+			<fieldset>
+				<label>{{localize "EH.Weapon.Properties.Burst.Label"}}</label>
+				<input type="number" name="system.round.burst" value="{{system.rounds.burst}}">
+				<p class="hint">{{localize "EH.Weapon.Properties.Burst.Hint"}}</p>
+			</fieldset>
+		{{/if}}
+	{{/if}}
+
+	<h3>Bonuses</h3>
+
+	{{#if (everydayHeroes-has item "system.bonuses.attack")}}
+		<fieldset>
+			<label>{{localize "EH.Weapon.Bonuses.Attack.Label"}}</label>
+			<input type="text" name="system.bonuses.attack" value="{{system.bonuses.attack}}">
+		</fieldset>
+	{{/if}}
+
+	{{#if (everydayHeroes-has item "system.bonuses.dc")}}
+		<fieldset>
+			<label>{{localize "EH.Weapon.Bonuses.DC.Label"}}</label>
+			<input type="text" name="system.bonuses.dc" value="{{system.bonuses.dc}}">
+		</fieldset>
+	{{/if}}
+
+	{{#if (everydayHeroes-has item "system.bonuses.damage")}}
+		<fieldset>
+			<label>{{localize "EH.Weapon.Bonuses.Damage.Label"}}</label>
+			<input type="text" name="system.bonuses.damage" value="{{system.bonuses.damage}}">
+		</fieldset>
+	{{/if}}
+
+	{{#if (everydayHeroes-has item "system.bonuses.save")}}
+		<fieldset>
+			<label>{{localize "EH.Armor.Bonuses.Save.Label"}}</label>
+			<input type="text" name="system.bonuses.save" value="{{system.bonuses.save}}">
+		</fieldset>
+	{{/if}}
+
+</section>

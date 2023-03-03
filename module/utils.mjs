@@ -25,6 +25,20 @@ export function simplifyBonus(bonus, data={}) {
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Convert a object that contains boolean values to a set of keys whose values were `true`.
+ * @param {Object<string, boolean>} obj
+ * @returns {Set<string>}
+ */
+export function objectToSet(obj) {
+	return Object.entries(obj).reduce((set, [k, v]) => {
+		if ( v === true ) set.add(k);
+		return set;
+	}, new Set());
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Sort the provided object by its values or by an inner sortKey.
  * @param {object} obj - The object to sort.
  * @param {string} [sortKey] - An inner key upon which to sort.
@@ -39,6 +53,18 @@ export function sortObjectEntries(obj, sortKey) {
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Handlebars Helpers                       */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * A helper that determines if the provided item has a certain property.
+ * @param {object} context - Current evaluation context.
+ * @param {object} options - Handlebars options.
+ * @returns {boolean}
+ */
+function has(context, options) {
+	return foundry.utils.getProperty(context, options) !== undefined;
+}
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
@@ -67,7 +93,8 @@ function itemContext(context, options) {
  */
 export function registerHandlebarsHelpers() {
 	Handlebars.registerHelper({
-		"eh-itemContext": itemContext
+		"everydayHeroes-has": has,
+		"everydayHeroes-itemContext": itemContext
 	});
 }
 
@@ -86,7 +113,8 @@ export async function registerHandlebarsPartials() {
 		"actor/hero-details.hbs",
 		"actor/hero-features.hbs",
 		"actor/hero-inventory.hbs",
-		"advancement/parts/advancement-controls.hbs"
+		"advancement/parts/advancement-controls.hbs",
+		"item/physical-details.hbs"
 	];
 
 	const paths = {};

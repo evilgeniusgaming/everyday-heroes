@@ -74,9 +74,11 @@
     "types": ["archetype", "class", "background", "profession", "talent", "specialfeature", "feat", "armor", "weapon", "explosive", "gear"],
     "templates": {
       "damage": {
-        "number": null,
-        "die": null,
-        "type": ""
+        "damage": {
+          "number": null,
+          "die": null,
+          "type": ""
+        }
       },
       "description": {
         "description": {
@@ -195,6 +197,7 @@
         "category": "basic"
       },
       "properties": [],
+      "penetrationValue": 0,
       "dc": null,
       "radius": {
         "value": null,

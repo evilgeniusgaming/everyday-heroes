@@ -26,9 +26,13 @@ export default class ExplosiveData extends SystemDataModel.mixin(DamageTemplate,
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
 				category: new foundry.data.fields.StringField({intial: "basic", label: "EH.Equipment.Category.Label[one]"})
-			}),
+			}, {label: "EH.Equipment.Type.Label"}),
 			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
 				label: "EH.Weapon.Properties.Label"
+			}),
+			penetrationValue: new foundry.data.fields.NumberField({
+				min: 0, integer: true,
+				label: "EH.Equipment.Traits.PenetrationValue.Label", hint: "EH.Equipment.Traits.PenetrationValue.Hint"
 			}),
 			dc: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.Weapon.DC.Label"}),
 			radius: new foundry.data.fields.SchemaField({
@@ -40,6 +44,18 @@ export default class ExplosiveData extends SystemDataModel.mixin(DamageTemplate,
 				damage: new FormulaField({label: "EH.Weapon.Bonuses.Damage.Label"}),
 				dc: new FormulaField({label: "EH.Weapon.Bonuses.DC.Label"})
 			})
+		});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Data Preparation                         */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedTypeLabel() {
+		this.type.label = game.i18n.format("EH.Equipment.Type.DetailedLabel", {
+			category: CONFIG.EverydayHeroes.equipmentCategories[this.type.category]?.label ?? "",
+			type: game.i18n.localize("EH.Item.Types.Explosive[one]"),
+			subtype: ""
 		});
 	}
 }
