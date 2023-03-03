@@ -12,11 +12,11 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  */
 export default class GearData extends SystemDataModel.mixin(DescribedTemplate, PhysicalTemplate) {
 	static defineSchema() {
-		return {
+		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.StringField({label: "EH.Weapon.Types.Label"})
 			})
-		};
+		});
 	}
 }
 

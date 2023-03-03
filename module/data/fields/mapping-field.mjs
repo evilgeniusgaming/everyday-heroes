@@ -40,7 +40,7 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 		this.model = model;
 	}
 
-	/* -------------------------------------------- */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/** @inheritdoc */
 	static get _defaults() {
@@ -51,7 +51,7 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 		});
 	}
 
-	/* -------------------------------------------- */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/** @inheritdoc */
 	_cleanType(value, options) {
@@ -59,7 +59,7 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 		return value;
 	}
 
-	/* -------------------------------------------- */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/** @inheritdoc */
 	getInitialValue(data) {
@@ -71,7 +71,7 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 		return initial;
 	}
 
-	/* -------------------------------------------- */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
 	 * Get the initial value for the provided key.
@@ -84,7 +84,7 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 		return this.initialValue?.(key, initial, object) ?? initial;
 	}
 
-	/* -------------------------------------------- */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/** @override */
 	_validateType(value, options={}) {
@@ -93,7 +93,7 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 		if ( !foundry.utils.isEmpty(errors) ) throw new foundry.data.fields.ModelValidationError(errors);
 	}
 
-	/* -------------------------------------------- */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
 	 * Validate each value of the object.
@@ -110,7 +110,7 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 		return errors;
 	}
 
-	/* -------------------------------------------- */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/** @override */
 	initialize(value, model, options={}) {
@@ -124,5 +124,14 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 			obj[key] = this.model.initialize(data, model, options);
 		}
 		return obj;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_getField(path) {
+		if ( path.length === 0 ) return this;
+		else if ( path.length === 1 ) return this.model;
+		path.shift();
+		return this.model._getField(path);
 	}
 }

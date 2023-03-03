@@ -158,7 +158,11 @@
         "category": "basic"
       },
       "properties": [],
-      "armorValue": 0
+      "armorValue": 0,
+      "damaged": false,
+      "bonuses": {
+        "save": ""
+      }
     },
     "weapon": {
       "templates": ["damage", "description", "physical"],
@@ -179,6 +183,10 @@
         "spent": 0,
         "capacity": null,
         "burst": null
+      },
+      "bonuses": {
+        "attack": "",
+        "damage": ""
       }
     },
     "explosive": {
@@ -191,6 +199,10 @@
       "radius": {
         "value": null,
         "units": "ft"
+      },
+      "bonuses": {
+        "damage": "",
+        "dc": ""
       }
     },
     "gear": {

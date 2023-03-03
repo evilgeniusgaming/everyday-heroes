@@ -20,7 +20,7 @@ export default class FormulaField extends foundry.data.fields.StringField {
 		});
 	}
 
-	/* -------------------------------------------- */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/** @inheritdoc */
 	_validateType(value) {

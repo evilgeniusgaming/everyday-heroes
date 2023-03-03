@@ -73,6 +73,8 @@
 "EH.Advancement.HitPoints.Fixed": "Take Fixed",
 "EH.Advancement.HitPoints.MaxAtFirstLevel": "Max at 1st Level: <strong>{max}</strong>",
 
+"EH.Armor.Damaged": "Damaged",
+"EH.Armor.Bonuses.Save.Label": "Armor Save Bonus",
 "EH.Armor.Properties.Label": "Armor Properties",
 "EH.Armor.Properties.Awkward.Label": "Awkward",
 "EH.Armor.Properties.Ballistic.Label": "Ballistic",
@@ -224,6 +226,7 @@
 "EH.Proficiency.Multiplier": "Proficiency Multiplier",
 "EH.Proficiency.Rounding": "Proficiency Rounding",
 
+"EH.Measurement.Radius.Label": "Radius",
 "EH.Measurement.Length.Feet.Label[one]": "Foot",
 "EH.Measurement.Length.Feet.Label[other]": "Feet",
 "EH.Measurement.Length.Feet.Abbreviation": "ft",
@@ -270,6 +273,10 @@
 "EH.Skills.Bonuses.Check": "Skill Check Bonus",
 "EH.Skills.Bonuses.Passive": "Passive Bonus",
 
+"EH.Weapon.DC.Label": "Explosive Damage Save DC",
+"EH.Weapon.Bonuses.Attack.Label": "Attack Bonus",
+"EH.Weapon.Bonuses.Damage.Label": "Damage Bonus",
+"EH.Weapon.Bonuses.DC.Label": "DC Bonus",
 "EH.Weapon.Properties.Label": "Weapon Properties",
 "EH.Weapon.Properties.Aquatic.Label": "Aquatic",
 "EH.Weapon.Properties.Belt.Label": "Belt",

@@ -7,4 +7,6 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * @mixes {@link AdvancementTemplate}
  * @mixes {@link DescribedTemplate}
  */
-export default class ArchetypeData extends SystemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {}
+export default class ArchetypeData extends SystemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {
+	// TODO: During preparation, add derived hitDie property
+}
