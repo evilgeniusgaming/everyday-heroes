@@ -25,6 +25,7 @@ export default class ExplosiveData extends SystemDataModel.mixin(DamageTemplate,
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
+				value: new foundry.data.fields.StringField({initial: "grenade", label: "EH.Explosive.Types.Label"}),
 				category: new foundry.data.fields.StringField({intial: "basic", label: "EH.Equipment.Category.Label[one]"})
 			}, {label: "EH.Equipment.Type.Label"}),
 			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
@@ -54,7 +55,8 @@ export default class ExplosiveData extends SystemDataModel.mixin(DamageTemplate,
 	prepareDerivedTypeLabel() {
 		this.type.label = game.i18n.format("EH.Equipment.Type.DetailedLabel", {
 			category: CONFIG.EverydayHeroes.equipmentCategories[this.type.category]?.label ?? "",
-			type: game.i18n.localize("EH.Item.Types.Explosive[one]"),
+			type: CONFIG.EverydayHeroes.explosiveTypes[this.type.value]
+				?? game.i18n.localize("EH.Item.Types.Explosive[one]"),
 			subtype: ""
 		});
 	}

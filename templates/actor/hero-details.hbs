@@ -33,12 +33,12 @@
 				</a>
 			</fieldset>
 			<fieldset class="level">
-				<label>Level</label>
+				<label>Level</label>{{!-- TODO: Localize --}}
 				<input type="number" name="system.details.level" value="{{system.details.level}}"
 						 	step="1" min="1" max="10">
 			</fieldset>
 			<fieldset class="wealth">
-				<label>Wealth</label>
+				<label>Wealth</label>{{!-- TODO: Localize --}}
 				<span>{{actor.details.wealth}}</span>
 			</fieldset>
 			<fieldset class="speed">
@@ -47,7 +47,7 @@
 					value="{{system.attributes.movement.value}}" step="0.1" min="0">
 			</fieldset>
 			<fieldset class="languages">
-				<label>Languages</label>
+				<label>Languages</label>{{!-- TODO: Localize --}}
 				<span>{{actor.traits.languages.summary}}</span>
 			</fieldset>
 		</div>
@@ -95,16 +95,16 @@
 		<div class="health">
 			<div class="hp">
 				<fieldset class="max-hp">
-					<label>Max HP</label>
+					<label>Max HP</label>{{!-- TODO: Localize --}}
 					<span>{{system.attributes.hp.max}}</span>
 				</fieldset>
 				<fieldset class="current-hp">
-					<label>Current HP</label>
+					<label>Current HP</label>{{!-- TODO: Localize --}}
 					<input type="number" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}"
 						step="1" min="0" max="{{system.attributes.hp.max}}">
 				</fieldset>
 				<fieldset class="temp-hp">
-					<label>Temp HP</label>
+					<label>Temp HP</label>{{!-- TODO: Localize --}}
 					<input type="number" name="system.attributes.hp.temp" value="{{system.attributes.hp.temp}}"
 						step="1" min="0">
 				</fieldset>
@@ -120,10 +120,10 @@
 				</fieldset>
 				<fieldset class="total-dmg">
 					{{#unless (eq system.attributes.hp.value 0)}}
-						<label>Total DMG</label>
+						<label>Total DMG</label>{{!-- TODO: Localize --}}
 						<span>{{system.attributes.hp.damage}}</span>
 					{{else}}
-						<label>Status</label>
+						<label>Status</label>{{!-- TODO: Localize --}}
 						<span>{{system.attributes.death.status}}</span>
 					{{/unless}}
 				</fieldset>
@@ -146,11 +146,11 @@
 		</div>
 		<div class="summary">
 			<fieldset class="proficiency">
-				<label>Proficiency Bonus</label>
+				<label>Proficiency Bonus</label>{{!-- TODO: Localize --}}
 				<span>{{system.attributes.prof}}</span>
 			</fieldset>
 			<fieldset class="defense">
-				<label>Defense</label>
+				<label>Defense</label>{{!-- TODO: Localize --}}
 				<span>{{system.attributes.defense.value}}</span>
 			</fieldset>
 			<fieldset class="initiative">

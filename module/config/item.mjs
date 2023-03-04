@@ -221,6 +221,22 @@ export const applicableProperties = {
 };
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Ammunition                               */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * General ammunition types.
+ * @enum {string}
+ */
+export const ammunitionTypes = {
+	pistol: "EH.Ammunition.Types.Pistol.Label",
+	rifle: "EH.Ammunition.Types.Rifle.Label",
+	shotgun: "EH.Ammunition.Types.Shotgun.Label",
+	machineGun: "EH.Ammunition.Types.MachineGun.Label"
+};
+preLocalize("ammunitionTypes");
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Armor                                    */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -235,7 +251,22 @@ export const armorTypes = {
 preLocalize("armorTypes");
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-/*  Gear                                    */
+/*  Explosive                                */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * General explosive types.
+ * @enum {string}
+ */
+export const explosiveTypes = {
+	grenade: "EH.Explosive.Types.Grenade.Label",
+	rocket: "EH.Explosive.Types.Rocket.Label",
+	mine: "EH.Explosive.Types.Mine.Label"
+};
+preLocalize("explosiveTypes");
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Gear                                     */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
@@ -243,7 +274,15 @@ preLocalize("armorTypes");
  * @enum {string}
  */
 export const gearTypes = {
-	
+	everydayStuff: "EH.Gear.Types.EverydayStuff.Label",
+	equipmentPack: "EH.Gear.Types.EquipmentPack.Label",
+	specializedKit: "EH.Gear.Types.SpecializedKit.Label",
+	firearmAccessory: "EH.Gear.Types.FirearmAccessory.Label",
+	carryingCase: "EH.Gear.Types.CarryingCase.Label",
+	electronics: "EH.Gear.Types.Electronics.Label",
+	hardware: "EH.Gear.Types.Hardware.Label",
+	specialtyGoods: "EH.Gear.Types.SpecialtyGoods.Label",
+	sportingGoods: "EH.Gear.Types.SportingGoods.Label"
 };
 preLocalize("gearTypes");
 

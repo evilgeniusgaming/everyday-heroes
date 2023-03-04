@@ -6,17 +6,17 @@
 		</div>
 		<div class="fields">
 			<fieldset>
-				<label>Name</label>
+				<label>{{localize "Name"}}</label>
 				<input name="name" value="{{item.name}}">
 			</fieldset>
 			<fieldset>
-				<label>Type</label>
+				<label>Type</label>{{!-- TODO: Localize --}}
 				<span>{{item.type}}</span>
 			</fieldset>
 		</div>
 		<nav data-group="primary">
-			<a data-tab="description">Description</a>
-			<a data-tab="advancement">Advancement</a>
+			<a data-tab="description">Description</a>{{!-- TODO: Localize --}}
+			<a data-tab="advancement">Advancement</a>{{!-- TODO: Localize --}}
 		</nav>
 	</header>
 
@@ -87,9 +87,7 @@
 										</fieldset>
 									{{/if}}
 									{{#if this.summary}}
-										<div class="summary">
-										
-										</div>
+										<div class="summary">{{this.summary}}</div>
 									{{/if}}
 								</li>
 							{{/each}}

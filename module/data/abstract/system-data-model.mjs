@@ -53,10 +53,7 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
 		const schema = {};
 		for ( const template of this._schemaTemplates ) {
-			if ( !template.defineSchema ) {
-				throw new Error(`Invalid Everyday Heroes template mixin ${template} defined on class ${this.constructor}`);
-			}
-			this.mergeSchema(schema, template.defineSchema());
+			this.mergeSchema(schema, this[`${template.name}_defineSchema`]?.() ?? {});
 		}
 		return schema;
 	}
@@ -110,8 +107,11 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 		});
 
 		for ( const template of templates ) {
+			let defineSchema;
+
 			// Take all static methods and fields from template and mix in to base class
 			for ( const [key, descriptor] of Object.entries(Object.getOwnPropertyDescriptors(template)) ) {
+				if ( key === "defineSchema" ) defineSchema = descriptor;
 				if ( this._immiscible.has(key) ) continue;
 				Object.defineProperty(Base, key, descriptor);
 			}
@@ -120,6 +120,11 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 			for ( const [key, descriptor] of Object.entries(Object.getOwnPropertyDescriptors(template.prototype)) ) {
 				if ( ["constructor"].includes(key) ) continue;
 				Object.defineProperty(Base.prototype, key, descriptor);
+			}
+
+			// Copy over defineSchema with a custom name
+			if ( defineSchema ) {
+				Object.defineProperty(Base, `${template.name}_defineSchema`, defineSchema);
 			}
 		}
 

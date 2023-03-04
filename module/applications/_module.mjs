@@ -16,7 +16,7 @@ export function registerSheets() {
 		label: "EH.Sheets.Concept"
 	});
 	DocumentSheetConfig.registerSheet(Item, "everyday-heroes", item.PhysicalSheet, {
-		types: ["armor", "weapon", "explosive", "gear"],
+		types: ["ammunition", "armor", "weapon", "explosive", "gear"],
 		makeDefault: true,
 		label: "EH.Sheets.Physical"
 	});

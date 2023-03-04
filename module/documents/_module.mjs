@@ -24,6 +24,7 @@ export function registerDocumentClasses() {
 		feat: "EH.Item.Types.Feat[one]",
 
 		// Equipment
+		ammunition: "EH.Item.Types.Ammunition[one]",
 		armor: "EH.Item.Types.Armor[one]",
 		weapon: "EH.Item.Types.Weapon[one]",
 		explosive: "EH.Item.Types.Explosive[one]",

@@ -53,7 +53,7 @@
 		</fieldset>
 	{{/if}}
 
-	{{#if (everydayHeroes-has item "system.damage")}}
+	{{#if (eq item.system.damageMode "regular")}}
 		<fieldset class="triple">
 			<label>{{localize "EH.Equipment.Traits.Damage.Label"}}</label>
 			{{#if item.system.hasDamage}}
@@ -66,6 +66,39 @@
 				{{selectOptions CONFIG.damageTypes selected=system.damage.type blank=(localize "EH.Damage.None")}}
 			</select>
 			<p class="hint">{{localize "EH.Equipment.Traits.Damage.Hint"}}</p>
+		</fieldset>
+	{{else if (eq item.system.damageMode "modification")}}
+		<fieldset class="triple">
+			<label>{{localize "EH.Equipment.Traits.DamageModification.Label"}}</label>
+			<select name="system.damage.number">{{!-- TODO: Localize & auto generate these steps --}}
+				{{#select system.damage.number}}
+					<option value="-4">-4 dice</option>
+					<option value="-3">-3 dice</option>
+					<option value="-2">-2 dice</option>
+					<option value="-1">-1 die</option>
+					<option value="0">0</option>
+					<option value="1">+1 die</option>
+					<option value="2">+2 dice</option>
+					<option value="3">+3 dice</option>
+					<option value="4">+4 dice</option>
+				{{/select}}
+			</select>
+			<select name="system.damage.denomination">{{!-- TODO: Localize & auto generate these steps --}}
+				<option value="-4">-4 steps</option>
+				<option value="-3">-3 steps</option>
+				<option value="-2">-2 steps</option>
+				<option value="-1">-1 step</option>
+				<option value="0">0</option>
+				<option value="1">+1 step</option>
+				<option value="2">+2 steps</option>
+				<option value="3">+3 steps</option>
+				<option value="4">+4 steps</option>
+			</select>
+			<select name="system.damage.type">
+				{{selectOptions CONFIG.damageTypes selected=system.damage.type
+				  blank=(localize "EH.Equipment.Traits.DamageModification.NoChange")}}
+			</select>
+			<p class="hint">{{localize "EH.Equipment.Traits.DamageModification.Hint"}}</p>
 		</fieldset>
 	{{/if}}
 

@@ -71,7 +71,7 @@
     }
   },
   "Item": {
-    "types": ["archetype", "class", "background", "profession", "talent", "specialfeature", "feat", "armor", "weapon", "explosive", "gear"],
+    "types": ["archetype", "class", "background", "profession", "talent", "specialfeature", "feat", "armor", "weapon", "ammunition", "explosive", "gear"],
     "templates": {
       "damage": {
         "damage": {
@@ -188,6 +188,16 @@
       },
       "bonuses": {
         "attack": "",
+        "damage": ""
+      }
+    },
+    "ammunition": {
+      "templates": ["damage", "description", "physical"],
+      "type": {
+        "value": ""
+      },
+      "penetrationValue": 0,
+      "bonuses": {
         "damage": ""
       }
     },
