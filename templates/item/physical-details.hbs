@@ -18,12 +18,20 @@
 		</fieldset>
 	{{/if}}
 
+	<h3>
+		{{#if (eq item.type "armor")}}{{localize "EH.Armor.Properties.Label"}}
+		{{else if (eq item.type "explosive")}}{{localize "EH.Explosive.Properties.Label"}}
+		{{else}}{{localize "EH.Weapon.Properties.Label"}}{{/if}}
+	</h3>
+
 	{{#if itemProperties}}
 		<div class="properties">
 			{{#each itemProperties as |property key|}}
 				<fieldset>
-					<label>{{property.label}}</label>
-					<input type="checkbox" name="system.properties.{{key}}" {{checked property.checked}}>
+					<label>
+						<input type="checkbox" name="system.properties.{{key}}" {{checked property.checked}}>
+						{{property.label}}
+					</label>
 				</fieldset>
 			{{/each}}
 		</div>
@@ -46,14 +54,14 @@
 	{{/if}}
 
 	{{#if (everydayHeroes-has item "system.damage")}}
-		<fieldset>
+		<fieldset class="triple">
 			<label>{{localize "EH.Equipment.Traits.Damage.Label"}}</label>
-			{{#unless (eq system.damage.type "")}}
+			{{#if item.system.hasDamage}}
 				<input type="number" name="system.damage.number" value="{{system.damage.number}}" placeholder="1">
 				<select name="system.damage.denomination">
 					{{selectOptions diceSteps selected=system.damage.denomination}}
 				</select>
-			{{/unless}}
+			{{/if}}
 			<select name="system.damage.type">
 				{{selectOptions CONFIG.damageTypes selected=system.damage.type blank=(localize "EH.Damage.None")}}
 			</select>
@@ -61,7 +69,7 @@
 		</fieldset>
 	{{/if}}
 
-	{{#if (and (everydayHeroes-has item "system.dc") (ne system.damage.type ""))}}
+	{{#if (and (everydayHeroes-has item "system.dc") item.system.hasDamage)}}
 		<fieldset>
 			<label>{{localize "EH.Weapon.DC.Label"}}</label>
 			<input type="number" name="system.dc", value="{{system.dc}}">
@@ -69,7 +77,7 @@
 	{{/if}}
 
 	{{#if (everydayHeroes-has item "system.radius")}}
-		<fieldset>
+		<fieldset class="triple">
 			<label>{{localize "EH.Equipment.Traits.Radius.Label"}}</label>
 			<input type="number" name="system.radius.value" value="{{system.radius.value}}">
 			<select name="system.radius.units">
@@ -80,7 +88,7 @@
 	{{/if}}
 
 	{{#if item.system.usesRange}}
-		<fieldset>
+		<fieldset class="triple">
 			<label>{{localize "EH.Equipment.Traits.Range.Label"}}</label>
 			<input type="number" name="system.range.short" value="{{system.range.short}}">
 			<input type="number" name="system.range.long" value="{{system.range.long}}">
@@ -98,7 +106,7 @@
 	{{/if}}
 
 	{{#if item.system.usesRounds}}
-		<fieldset>
+		<fieldset class="triple">
 			<label>{{localize "EH.Equipment.Traits.Rounds.Label"}}</label>
 			<input type="number" name="system.rounds.value" value="{{system.rounds.value}}">
 			<input type="number" name="system.rounds.capacity" value="{{system.rounds.capacity}}">

@@ -4,6 +4,18 @@
 export default class ItemEH extends Item {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Getters                                  */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Singular type label for this item (e.g. "Weapon", "Archetype").
+	 * @type {string}
+	 */
+	get typeLabel() {
+		return game.i18n.localize(CONFIG.Item.typeLabels[this.type]);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

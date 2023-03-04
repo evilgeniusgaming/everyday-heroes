@@ -1,15 +1,33 @@
-<section>
-	<section class="proficiencies">
-		Equipment Proficiencies
-	</section>
-
-	{{#each inventory as |section|}}
-		<h2>{{localize section.label}}</h2>
-		<h3>{{section.primary.item.name}}</h3>
-		<ul>
-			{{#each section.items}}
-				<li>{{this.name}}</li>
-			{{/each}}
-		</ul>
-	{{/each}}
+<section class="proficiencies">
+	Equipment Proficiencies
 </section>
+
+{{#each inventory as |section id|}}
+	<section data-section-id="{{id}}">
+			<header>
+				<h2>{{localize section.label}}</h2>
+			</header>
+			<ol class="item-list">
+				{{#each section.items as |item|}}
+					<li class="item" data-item-id="{{item.id}}">
+						<h4>
+							<div class="image" style="background-image: url('{{item.img}}')"></div>
+							<a data-action="item" data-type="expand">{{item.name}}</a>
+						</h4>
+						{{#if @root.editable}}
+							<fieldset>
+								<a data-action="item" data-type="edit"
+									data-tooltip="{{localize 'EH.Item.Action.Edit' type=item.typeLabel}}">
+									<i class="fas fa-edit"></i>
+								</a>
+								<a data-action="item" data-type="delete"
+									data-tooltip="{{localize 'EH.Item.Action.Delete' type=item.typeLabel}}">
+									<i class="fas fa-trash"></i>
+								</a>
+							</fieldset>
+						{{/if}}
+					</li>
+				{{/each}}
+			</ol>
+	</section>
+{{/each}}

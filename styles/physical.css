@@ -1,0 +1,90 @@
+.physical.sheet [data-tab="details"] > section {
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr 1fr;
+	border: 1px solid var(--eh-border-color-strong);
+	border-radius: 10px;
+	padding: 0.5em;
+	background-color: var(--eh-background-color-mid);
+}
+.physical.sheet [data-tab="details"] h3 {
+	grid-column: 1 / -1;
+	border: none;	
+}
+.physical.sheet [data-tab="details"] fieldset {
+	margin: 0;
+	border: none;
+	padding: 0;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Fields                                   */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.physical.sheet [data-tab="details"] section > fieldset {
+	grid-column: 1 / -1;
+	display: grid;
+	grid-template-columns: subgrid;
+	margin-block: 0.5em;
+}
+.physical.sheet [data-tab="details"] section > fieldset label {
+	grid-column: 1;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.physical.sheet [data-tab="details"] section > fieldset input {
+	grid-column: 2 / -1;
+	width: unset;
+	border: none;
+	border-radius: 5px;
+	background-color: var(--eh-background-color-white);
+}
+.physical.sheet [data-tab="details"] section > fieldset.triple input {
+	grid-column: unset;
+}
+.physical.sheet [data-tab="details"] section > fieldset .hint {
+	grid-column: 1 / -1;
+	flex: 1 0 100%;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Properties                               */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.physical.sheet [data-tab="details"] .properties {
+	grid-column: 1 / -1;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	border: 1px solid var(--eh-border-color-strong);
+	border-radius: 4px;
+	background-color: var(--eh-background-color-black);
+	color: var(--eh-text-color-white);
+	font-size: var(--font-size-14);
+	font-variant: small-caps;
+}
+.physical.sheet [data-tab="details"] .properties > fieldset {
+	margin: 1px;
+	border-radius: 4px;
+	background-color: var(--eh-background-color-dark);
+}
+.physical.sheet [data-tab="details"] .properties > fieldset:has([checked]) {
+	background-color: var(--eh-background-color-light);
+	color: var(--eh-text-color-black);
+}
+.physical.sheet [data-tab="details"] .properties > fieldset label {
+	display: flex;
+	align-items: center;
+	gap: 0.25em;
+}
+.physical.sheet [data-tab="details"] .properties > fieldset input {
+	appearance: none;
+	border: 1px solid var(--eh-border-color-strong);
+	border-radius: 50%;
+	background-color: var(--eh-background-color-white);
+	filter: none;
+}
+.physical.sheet [data-tab="details"] .properties > fieldset input[checked] {
+	background-color: var(--eh-input-color-checked);
+}
+.physical.sheet [data-tab="details"] .properties > fieldset :is(label, input) {
+	cursor: pointer;
+}

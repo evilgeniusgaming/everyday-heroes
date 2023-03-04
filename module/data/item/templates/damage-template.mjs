@@ -18,6 +18,18 @@ export default class DamageTemplate extends foundry.abstract.DataModel {
 			}, {label: "EH.Equipment.Traits.Damage.Label", hint: "EH.Equipment.Traits.Damage.Hint"})
 		};
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Getters                                  */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Has a damage type been specified for this item?
+	 * @type {boolean}
+	 */
+	get hasDamage() {
+		return this.damage.type !== "";
+	}
 }
 
 // Data: required, nullable, initial, validate, label, hint, validationError

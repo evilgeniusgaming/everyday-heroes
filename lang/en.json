@@ -205,7 +205,7 @@
 "EH.Equipment.Traits.PriceLevel.Label": "Price Level",
 "EH.Equipment.Traits.PriceLevel.Hint": "Price level is a general measure of how expensive something is. If the price level is equal or lower than your Wealth Level, then you can buy the item freely.",
 "EH.Equipment.Traits.Radius.Label": "Radius",
-"EH.Equipment.Traits.Radius.Hint": "This value lists the blast radius for explosives, measured in feet. Each combatant in that radius is subject to the effects of the explosion.",
+"EH.Equipment.Traits.Radius.Hint": "This value lists the blast radius for explosives. Each combatant in that radius is subject to the effects of the explosion.",
 "EH.Equipment.Traits.Range.Label": "Range",
 "EH.Equipment.Traits.Range.Hint": "This is the distance at which you can target a ranged weapon. If two numbers are listed, the second number is its long range. Attacks made at a distance farther than its range but within its long range have disadvantage on the attack roll.",
 "EH.Equipment.Traits.Range.Long": "Long Range",
@@ -222,6 +222,8 @@
 "EH.Equipment.Type.Label": "Type",
 "EH.Equipment.Type.DetailedLabel": "{category} {subtype} {type}",
 
+"EH.Explosive.Properties.Label": "Explosive Properties",
+
 "EH.HitDice.Label[one]": "Hit Die",
 "EH.HitDice.Label[other]": "Hit Dice",
 
@@ -229,6 +231,14 @@
 "EH.HitPoints.Label[other]": "Hit Points",
 "EH.HitPoints.Abbreviation": "hp",
 
+"EH.Item.Label[one]": "Item",
+"EH.Item.Label[other]": "Items",
+"EH.Item.Action.Create": "Create {type}",
+"EH.Item.Action.Delete": "Delete {type}",
+"EH.Item.Action.Edit": "Edit {type}",
+"EH.Item.Action.Equip": "Equip {type}",
+"EH.Item.Types.Ammunition[one]": "Ammunition",
+"EH.Item.Types.Ammunition[other]": "Ammunition",
 "EH.Item.Types.Archetype[one]": "Archetype",
 "EH.Item.Types.Archetype[other]": "Archetypes",
 "EH.Item.Types.Armor[one]": "Armor",

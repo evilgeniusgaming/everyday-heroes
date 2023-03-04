@@ -36,10 +36,6 @@ export default class PhysicalSheet extends ItemSheet {
 		}
 		context.itemSubTypes = foundry.utils.getProperty(CONFIG.EverydayHeroes, `${context.item.type}Types`);
 
-		// context.diceSteps = CONFIG.EverydayHeroes.diceSteps.reduce((obj, n) => {
-		// 	obj[n] = `d${n}`;
-		// 	return obj;
-		// }, {});
 		context.diceSteps = Object.fromEntries(CONFIG.EverydayHeroes.diceSteps.map(n => [n, `d${n}`]));
 
 		const enrichmentContext = {

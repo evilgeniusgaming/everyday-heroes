@@ -12,7 +12,8 @@ export default class HeroSheet extends ActorSheet {
 			template: "systems/everyday-heroes/templates/actor/hero-sheet.hbs",
 			tabs: [{navSelector: 'nav[data-group="primary"]', contentSelector: "main", initial: "details"}],
 			width: 820,
-			height: 720
+			height: 720,
+			dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
 		});
 	}
 
@@ -87,6 +88,17 @@ export default class HeroSheet extends ActorSheet {
 	prepareItems(context) {
 		context.itemContext = {};
 
+		context.equipped = {
+			armor: {
+				label: "EH.Item.Types.Armor[other]",
+				items: []
+			},
+			weapons: {
+				label: "EH.Item.Types.Weapon[other]",
+				items: []
+			}
+		};
+
 		context.features = {
 			archetype: {
 				label: "EH.Item.Types.Archetype[one]",
@@ -95,7 +107,9 @@ export default class HeroSheet extends ActorSheet {
 					dataset: {type: "archetype"}
 				},
 				items: [],
-				dataset: {type: "talent", "system.type.value": "archetype"}
+				create: [
+					{ dataset: {type: "talent", "system.type.value": "archetype"} }
+				]
 			},
 			class: {
 				label: "EH.Item.Types.Class[one]",
@@ -104,7 +118,9 @@ export default class HeroSheet extends ActorSheet {
 					dataset: {type: "class"}
 				},
 				items: [],
-				dataset: {type: "talent", "system.type.value": "class"}
+				create: [
+					{ dataset: {type: "talent", "system.type.value": "class"} }
+				]
 			},
 			background: {
 				label: "EH.Item.Types.Background[one]",
@@ -113,7 +129,9 @@ export default class HeroSheet extends ActorSheet {
 					dataset: {type: "background"}
 				},
 				items: [],
-				dataset: {type: "talent", "system.type.value": "background"}
+				create: [
+					{ dataset: {type: "talent", "system.type.value": "background"} }
+				]
 			},
 			profession: {
 				label: "EH.Item.Types.Profession[one]",
@@ -122,19 +140,79 @@ export default class HeroSheet extends ActorSheet {
 					dataset: {type: "profession"}
 				},
 				items: [],
-				dataset: {type: "talent", "system.type.value": "profession"}
+				create: [
+					{ dataset: {type: "talent", "system.type.value": "profession"} }
+				]
 			},
 			feats: {
 				label: "EH.Item.Types.Feat[other]",
 				items: [],
-				dataset: {type: "feat"}
+				create: [
+					{ dataset: {type: "feat"} }
+				]
 			}
 		};
 
-		for ( const item of context.actor.items ) {
-			// TODO: Add additional item context here
-			// const ctx = context.itemContext[item.id] ??= {};
+		const formatter = new Intl.ListFormat(game.i18n.lang, {style: "short", type: "conjunction"});
+		context.inventory = {
+			armor: {
+				label: "EH.Item.Types.Armor[other]",
+				items: [],
+				options: { equippable: true },
+				create: [
+					{
+						label: "EH.Item.Types.Armor[one]",
+						icon: "artwork/svg/equipment/armor.svg",
+						dataset: {type: "armor"}
+					}
+				]
+			},
+			weapons: {
+				label: "EH.Item.Types.Weapon[other]",
+				items: [],
+				options: { equippable: true },
+				create: [
+					{
+						label: "EH.Item.Types.Weapon[one]",
+						icon: "artwork/svg/equipment/weapon.svg",
+						dataset: {type: "weapon"}
+					}
+				]
+			},
+			ammunitionExplosives: {
+				label: formatter.format([
+					game.i18n.localize("EH.Item.Types.Ammunition[other]"),
+					game.i18n.localize("EH.Item.Types.Explosive[other]")
+				]),
+				items: [],
+				create: [
+					{
+						label: "EH.Item.Types.Ammunition[one]",
+						icon: "artwork/svg/equipment/ammunition.svg",
+						dataset: {type: "ammunition"}
+					},
+					{
+						label: "EH.Item.Types.Explosive[one]",
+						icon: "artwork/svg/equipment/explosive.svg",
+						dataset: {type: "explosive"}
+					}
+				]
+			},
+			gear: {
+				label: "EH.Item.Types.Gear[other]",
+				items: [],
+				create: [
+					{
+						label: "EH.Item.Types.Gear[one]",
+						icon: "artwork/svg/equipment/gear.svg",
+						dataset: {type: "gear"}
+					}
+				]
+			}
+		};
 
+		const items = [...context.actor.items].sort((a, b) => a.sort - b.sort);
+		for ( const item of items ) {
 			switch (item.type) {
 				case "archetype":
 					context.features.archetype.primary.item = item;
@@ -158,8 +236,24 @@ export default class HeroSheet extends ActorSheet {
 				case "feat":
 					context.features.feats.items.push(item);
 					break;
+				case "armor":
+					context.inventory.armor.items.push(item);
+					break;
+				case "weapon":
+					context.inventory.weapons.items.push(item);
+					break;
+				case "ammunition":
+				case "explosive":
+					context.inventory.ammunitionExplosives.items.push(item);
+					break;
+				case "gear":
+					context.inventory.gear.items.push(item);
+					break;
 			}
 		}
+
+		// TODO: Add additional create buttons for archetype, class, background, & profession if a primary
+		// item doesn't exist for those categories.
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -214,7 +308,7 @@ export default class HeroSheet extends ActorSheet {
 	 */
 	async _onItemAction(event) {
 		event.preventDefault();
-		const id = event.currentTarget.closest("[data-id]")?.dataset.id;
+		const id = event.currentTarget.closest("[data-id]")?.dataset.itemId;
 		const item = id ? this.actor.items.get(id) : null;
 		switch (event.currentTarget.dataset.type) {
 			case "add":
