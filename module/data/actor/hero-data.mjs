@@ -1,3 +1,4 @@
+import SystemDataModel from "../abstract/system-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import { simplifyBonus } from "../../utils.mjs";
@@ -6,7 +7,7 @@ import Proficiency from "../../documents/proficiency.mjs";
 /**
  * Data definition for Character actors.
  */
-export default class HeroData extends foundry.abstract.DataModel {
+export default class HeroData extends SystemDataModel {
 	static defineSchema() {
 		return {
 			abilities: new MappingField(new foundry.data.fields.SchemaField({
@@ -110,6 +111,8 @@ export default class HeroData extends foundry.abstract.DataModel {
 					dc: new FormulaField({label: "EH.Abilities.Bonuses.DC"}),
 					save: new FormulaField({label: "EH.Abilities.Bonuses.Save"})
 				}),
+				attack: new MappingField(new FormulaField()),
+				damage: new MappingField(new FormulaField()),
 				skill: new foundry.data.fields.SchemaField({
 					check: new FormulaField({label: "EH.Skills.Bonuses.Check"}),
 					passive: new FormulaField({label: "EH.Skills.Bonuses.Passive"})
@@ -122,6 +125,12 @@ export default class HeroData extends foundry.abstract.DataModel {
 				level: new foundry.data.fields.NumberField({
 					nullable: false, initial: 1, min: 1, max: CONFIG.EverydayHeroes.maxLevel, integer: true, label: ""
 				})
+			}),
+			items: new foundry.data.fields.SchemaField({
+				equipped: new foundry.data.fields.SetField(
+					new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, {idOnly: true}),
+					{label: ""}
+				)
 			}),
 			resources: new foundry.data.fields.SchemaField({
 				inspiration: new foundry.data.fields.BooleanField({label: "EH.Resources.Inspiration"})
@@ -140,7 +149,11 @@ export default class HeroData extends foundry.abstract.DataModel {
 					check: new FormulaField({label: "EH.Skills.Bonuses.Check"}),
 					passive: new FormulaField({deterministic: true, label: "EH.Skills.Bonuses.Passive"})
 				})
-			}), {initialKeys: CONFIG.EverydayHeroes.skills, prepareKeys: true, label: "EH.Skills.Label[other]"})
+			}), {initialKeys: CONFIG.EverydayHeroes.skills, prepareKeys: true, label: "EH.Skills.Label[other]"}),
+			traits: new foundry.data.fields.SchemaField({
+				languages: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {label: ""}),
+				equipment: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {label: ""})
+			})
 		};
 	}
 
@@ -149,23 +162,13 @@ export default class HeroData extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareBaseData() {
-		// TODO: Set hit dice sized based on archetype
 		this.attributes.hd.available = Math.clamped(0, this.details.level - this.attributes.hd.spent, this.details.level);
 		this.attributes.prof = Proficiency.calculateMod(this.details.level);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	prepareDerivedData() {
-		this.#prepareAbilities();
-		this.#prepareSkills();
-		this.#prepareDetails();
-		this.#prepareHitPoints();
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	#prepareAbilities() {
+	prepareDerivedAbilities() {
 		const rollData = this.parent.getRollData();
 		const globalDCBonus = simplifyBonus(this.bonuses.ability?.dc, rollData);
 		const globalCheckBonus = simplifyBonus(this.bonuses.ability?.check, rollData);
@@ -188,7 +191,7 @@ export default class HeroData extends foundry.abstract.DataModel {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	#prepareSkills() {
+	prepareDerivedSkills() {
 		const rollData = this.parent.getRollData();
 		const globalCheckBonus = simplifyBonus(this.bonuses.ability.check, rollData)
 			+ simplifyBonus(this.bonuses.skill.check, rollData);
@@ -209,13 +212,13 @@ export default class HeroData extends foundry.abstract.DataModel {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	#prepareDetails() {
+	prepareDerivedDetails() {
 		for ( const item of this.parent.items ) {
 			// TODO: Add actor warning if more than one archetype, class, background, or profession exist
 			switch (item.type) {
 				case "archetype":
 					this.details.archetype = item;
-					this.attributes.hd.denomination = item.system.advancement.byType("HitPoints")[0]?.configuration.hitDie;
+					this.attributes.hd.denomination = item.system.hitDie;
 					break;
 				case "class":
 					this.details.class = item;
@@ -232,7 +235,7 @@ export default class HeroData extends foundry.abstract.DataModel {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	#prepareHitPoints() {
+	prepareDerivedHitPoints() {
 		const rollData = this.parent.getRollData();
 		const hp = this.attributes.hp;
 		const abilityId = CONFIG.EverydayHeroes.defaultAbilities.hitPoints ?? "con";
@@ -241,5 +244,19 @@ export default class HeroData extends foundry.abstract.DataModel {
 		const levelBonus = simplifyBonus(hp.bonuses.level, rollData) * this.details.level;
 		const overallBonus = simplifyBonus(hp.bonuses.overall, rollData);
 		hp.max = base + levelBonus + overallBonus;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedInitiative() {
+		const rollData = this.parent.getRollData();
+		const init = this.attributes.initiative;
+		const abilityKey = init.ability ?? CONFIG.EverydayHeroes.defaultAbilities.initiative;
+		const ability = this.abilities[abilityKey] ?? {};
+		init.prof = new Proficiency(this.attributes.proficiency, 0);
+		const initBonus = simplifyBonus(init.bonus, rollData);
+		const abilityBonus = simplifyBonus(ability.bonuses?.check, rollData);
+		const globalBonus = simplifyBonus(this.bonuses.ability.check, rollData);
+		init.mod = (ability.mod ?? 0) + initBonus + abilityBonus + globalBonus;
 	}
 }

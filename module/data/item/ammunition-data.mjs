@@ -33,10 +33,6 @@ export default class AmmunitionData extends SystemDataModel.mixin(
 				integer: true,
 				label: "EH.Equipment.Traits.PenetrationValue.Label", hint: ""
 			}),
-			damage: new foundry.data.fields.SchemaField({
-				number: new foundry.data.fields.NumberField({min: undefined}),
-				denomination: new foundry.data.fields.NumberField({min: undefined})
-			}),
 			bonuses: new foundry.data.fields.SchemaField({
 				damage: new FormulaField({label: "EH.Weapon.Bonuses.Damage.Label"})
 			})

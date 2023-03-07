@@ -1,5 +1,6 @@
 import AdvancementConfirmationDialog from "../applications/advancement/advancement-confirmation-dialog.mjs";
 import AdvancementManager from "../applications/advancement/advancement-manager.mjs";
+import Proficiency from "./proficiency.mjs";
 
 /**
  * Extended version of `Actor` class to support Everyday Heroes features.
@@ -18,6 +19,21 @@ export default class ActorEH extends Actor {
 
 	prepareDerivedData() {
 		this.system.prepareDerivedData?.();
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * @inheritdoc
+	 * @param {object} [options]
+	 * @param {boolean} [options.deterministic] - Whether to force deterministic values for data properties that could be
+	 *                                            either a die term or a flat term.
+	 */
+	getRollData({ deterministic=false }={}) {
+		const data = { ...super.getRollData() };
+		data.prof = new Proficiency(this.system.attributes.prof, 1);
+		if ( deterministic ) data.prof = data.prof.flat;
+		return data;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -46,7 +62,16 @@ export default class ActorEH extends Actor {
 		}
 
 		// Ability-specific check bonus
+		if ( ability.bonuses.check ) {
+			parts.push("@bonus");
+			data.bonus = Roll.replaceFormulaData(ability.bonuses.check, data);
+		}
+
 		// Global check bonus
+		if ( this.system.bonuses.ability.check ) {
+			parts.push("@globalBonus");
+			data.globalBonus = Roll.replaceFormulaData(this.system.bonuses.ability.check, data);
+		}
 
 		const rollConfig = foundry.utils.mergeObject({
 			data
@@ -119,7 +144,16 @@ export default class ActorEH extends Actor {
 		}
 
 		// Ability-specific save bonus
+		if ( ability.bonuses.save ) {
+			parts.push("@bonus");
+			data.bonus = Roll.replaceFormulaData(ability.bonuses.save, data);
+		}
+
 		// Global save bonus
+		if ( this.system.bonuses.ability.save ) {
+			parts.push("@globalBonus");
+			data.globalBonus = Roll.replaceFormulaData(this.system.bonuses.ability.save, data);
+		}
 
 		const rollConfig = foundry.utils.mergeObject({
 			data
@@ -182,7 +216,16 @@ export default class ActorEH extends Actor {
 		const data = this.getRollData();
 
 		// Death save bonus
+		if ( death.bonus ) {
+			parts.push("@bonus");
+			data.bonus = Roll.replaceFormulaData(death.bonus, data);
+		}
+
 		// Global save bonus
+		if ( this.system.bonuses.ability.save ) {
+			parts.push("@globalBonus");
+			data.globalBonus = Roll.replaceFormulaData(this.system.bonuses.ability.save, data);
+		}
 
 		const rollConfig = foundry.utils.mergeObject({
 			data
@@ -411,9 +454,29 @@ export default class ActorEH extends Actor {
 		}
 
 		// Ability-specific check bonus
+		if ( ability?.bonuses.check ) {
+			const abilityCheckKey = `${data.defaultAbility}CheckBonus`;
+			parts.push(`@${abilityCheckKey}`);
+			data[abilityCheckKey] = Roll.replaceFormulaData(ability.bonuses.check, data);
+		}
+
 		// Global ability check bonus
+		if ( this.system.bonuses.ability.check ) {
+			parts.push("@globalCheckBonus");
+			data.globalCheckBonus = Roll.replaceFormulaData(this.system.bonuses.ability.check, data);
+		}
+
 		// Skill-specific bonus
+		if ( skill.bonuses.check ) {
+			parts.push("@bonus");
+			data.bonus = Roll.replaceFormulaData(skill.bonuses.check, data);
+		}
+
 		// Global skill check bonus
+		if ( this.system.bonuses.skill.check ) {
+			parts.push("@globalSkillBonus");
+			data.globalSkillBonus = Roll.replaceFormulaData(this.system.bonuses.skill.check, data);
+		}
 
 		const rollConfig = foundry.utils.mergeObject({
 			data
@@ -463,10 +526,52 @@ export default class ActorEH extends Actor {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Actor Modification                       */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Apply damage to the actor.
+	 * @param {object[]} damage - Damage descriptions to apply.
+	 * @param {object} [options={}]
+	 * @param {boolean} [options.ignoreImmunity=false] - Should this actor's damage immunity be ignored?
+	 * @param {boolean} [options.ignoreReduction=false] - Should this actor's damage reduction be ignored?
+	 * @returns {Promise<ActorEH>} - The actor after the update has been performed.
+	 */
+	async applyDamage(damage, options={}) {
+		// TODO: Implement damage application with damage reduction, immunity, etc.
+		console.log("applyDamage");
+		return null;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Apply temp HP to the actor, but only if it's more than the actor's current temp HP.
+	 * @param {number} amount - Amount of temp HP to apply.
+	 * @returns {Promise<ActorEH>} - The actor after the update has been performed.
+	 */
+	async applyTempHP(amount=0) {
+		const current = this.system.attributes.hp.temp;
+		return amount > current ? this.update({"system.attributes.hp.temp": amount}) : this;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Socket Event Handlers                    */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async _preUpdate(changed, options, user) {
+		const changedHP = foundry.utils.getProperty(changed, "system.attributes.hp.value");
+		if ( changedHP !== undefined ) {
+			if ( changedHP > 0 ) {
+				foundry.utils.setProperty(changed, "system.attributes.death.status", "alive");
+				foundry.utils.setProperty(changed, "system.attributes.death.success", 0);
+				foundry.utils.setProperty(changed, "system.attributes.death.failure", 0);
+			} else if ( this.system.attributes.death.status === "alive" ) {
+				foundry.utils.setProperty(changed, "system.attributes.death.status", "dying");
+			}
+			console.log(changed);
+		}
+
 		if ( options.isAdvancement ) return;
 
 		const changedLevel = foundry.utils.getProperty(changed, "system.details.level");

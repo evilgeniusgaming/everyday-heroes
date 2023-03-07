@@ -16,6 +16,11 @@
 						</h4>
 						{{#if @root.editable}}
 							<fieldset>
+								<a class="{{#if item.isEquipped}}equipped{{else}}unequipped{{/if}}" data-action="item" data-type="equip"
+									data-tooltip="{{#if item.isEquipped}}{{localize 'EH.Item.Action.Unequip' type=item.typeLabel}}
+									{{~else}}{{localize 'EH.Item.Action.Equip' type=item.typeLabel}}{{/if}}">
+									<i class="{{#if item.isEquipped}}fa-solid fa-hand{{else}}fa-regular fa-hand{{/if}}"></i>
+								</a>
 								<a data-action="item" data-type="edit"
 									data-tooltip="{{localize 'EH.Item.Action.Edit' type=item.typeLabel}}">
 									<i class="fas fa-edit"></i>
@@ -25,7 +30,23 @@
 									<i class="fas fa-trash"></i>
 								</a>
 							</fieldset>
+						{{else}}
+							<fieldset>
+								<a data-action="item" data-type="edit"
+									data-tooltip="{{localize 'EH.Item.Action.View' type=item.typeLabel}}">
+									<i class="fa-regular fa-eye"></i>
+								</a>
+							</fieldset>
 						{{/if}}
+						<nav class="actions">
+							{{#each item.system.rollActions as |action|}}
+								<div class="action" data-action="roll-item" data-tooltip="{{action.tooltip}}"
+									{{everydayHeroes-dataset action.data}}>
+									<figure style="background-image: url('{{action.icon}}');"></figure>
+									<span>{{action.label}}</span>
+								</div>
+							{{/each}}
+						</nav>
 					</li>
 				{{/each}}
 			</ol>

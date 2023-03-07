@@ -58,13 +58,20 @@
       "details": {
         "level": 1
       },
+      "items": {
+        "equipped": []
+      },
       "resources": {
         "archetype": {
           "value": 0
         },
         "inspiration": false
       },
-      "skills": {}
+      "skills": {},
+      "traits": {
+        "languages": [],
+        "equipment": []
+      }
     },
     "npc": {
       

@@ -213,6 +213,7 @@ export default class HeroSheet extends ActorSheet {
 
 		const items = [...context.actor.items].sort((a, b) => a.sort - b.sort);
 		for ( const item of items ) {
+			const ctx = context.itemContext[item.id] ??= { actions: [] };
 			switch (item.type) {
 				case "archetype":
 					context.features.archetype.primary.item = item;
@@ -241,10 +242,14 @@ export default class HeroSheet extends ActorSheet {
 					break;
 				case "weapon":
 					context.inventory.weapons.items.push(item);
+					ctx.actions.push({ label: "Fire" });
+					if ( item.system.properties.has("burst") ) ctx.actions.push({ label: "Burst" });
+					ctx.actions.push({ label: "Damage" });
 					break;
 				case "ammunition":
 				case "explosive":
 					context.inventory.ammunitionExplosives.items.push(item);
+					ctx.actions.push({ label: "Damage" });
 					break;
 				case "gear":
 					context.inventory.gear.items.push(item);
@@ -275,6 +280,11 @@ export default class HeroSheet extends ActorSheet {
 			element.addEventListener("click", this._onItemAction.bind(this));
 		}
 
+		// Item Roll Action Listeners
+		for ( const element of html.querySelectorAll('[data-action="roll-item"]') ) {
+			element.addEventListener("click", this._onItemRoll.bind(this));
+		}
+
 		// Roll Action Listeners
 		for ( const element of html.querySelectorAll('[data-action="roll"]') ) {
 			element.addEventListener("click", this._onRollAction.bind(this));
@@ -302,19 +312,25 @@ export default class HeroSheet extends ActorSheet {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
-	 * Handle on of the item actions in the features or inventory lists.
+	 * Handle one of the item actions in the features or inventory lists.
 	 * @param {Event} event - Triggering click event.
 	 * @returns {Promise}
 	 */
 	async _onItemAction(event) {
 		event.preventDefault();
-		const id = event.currentTarget.closest("[data-id]")?.dataset.itemId;
+		const id = event.currentTarget.closest("[data-item-id]")?.dataset.itemId;
 		const item = id ? this.actor.items.get(id) : null;
 		switch (event.currentTarget.dataset.type) {
 			case "add":
 				return console.log("ADD ITEM");
 			case "edit":
 				return item?.sheet.render(true);
+			case "equip":
+				const equippedItems = this.actor.system.items.equipped;
+				if ( equippedItems.has(id) ) equippedItems.delete(id);
+				else equippedItems.add(id);
+				// TODO: Coercing this to array won't be necessary in V11
+				return this.actor.update({"system.items.equipped": Array.from(equippedItems)});
 			case "expand":
 				return console.log("EXPAND ITEM", id);
 			case "delete":
@@ -327,6 +343,41 @@ export default class HeroSheet extends ActorSheet {
 				return item.deleteDialog();
 			default:
 				return console.warn(`Invalid item action type clicked ${event.currentTarget.dataset.type}.`);
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Handle an item's roll action.
+	 * @param {Event} event - Triggering click event.
+	 * @returns {Promise}
+	 */
+	async _onItemRoll(event) {
+		event.preventDefault();
+		const id = event.currentTarget.closest("[data-item-id]")?.dataset.itemId;
+		const item = id ? this.actor.items.get(id) : null;
+		if ( !item ) return null;
+
+		// Prepare the options passed to the roll
+		const { type, ...dataset } = event.currentTarget.dataset;
+		delete dataset.action;
+		delete dataset.tooltip;
+		Object.entries(dataset).forEach(([k, v]) => {
+			if ( v === "true" ) dataset[k] = true;
+			else if ( v === "false" ) dataset[k] = false;
+			else if ( Number.isNumeric(v) ) dataset[k] = Number(v);
+		});
+
+		switch (type) {
+			case "armor-save":
+				return item.rollArmorSave({ options: dataset });
+			case "attack":
+				return item.rollAttack({ options: dataset });
+			case "damage":
+				return item.rollDamage({ options: dataset });
+			default:
+				return console.warn(`Invalid item roll type clicked ${type}.`);
 		}
 	}
 

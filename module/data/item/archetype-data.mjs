@@ -8,5 +8,13 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * @mixes {@link DescribedTemplate}
  */
 export default class ArchetypeData extends SystemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {
-	// TODO: During preparation, add derived hitDie property
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Data Preparation                         */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedHitDie() {
+		const hpAdvancement = this.advancement.byType("HitPoints")?.[0];
+		this.hitDie = hpAdvancement.hitDieValue;
+	}
 }

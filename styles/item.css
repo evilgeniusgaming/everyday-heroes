@@ -1,10 +1,6 @@
 @import "./concept.css";
 @import "./physical.css";
 
-.item.sheet {
-	container-type: size;
-}
-
 .item.sheet form {
 	display: flex;
 	flex-direction: column;

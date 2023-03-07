@@ -1,3 +1,17 @@
 @import "./styles/variables.css";
 @import "./styles/actor.css";
 @import "./styles/item.css";
+
+.everyday-heroes.sheet {
+	container-type: size;
+	overflow: clip;
+	background: var(--eh-sheet-window-background);
+	backdrop-filter: var(--eh-sheet-backdrop-filter);
+	--webkit-backdrop-filter: var(--eh-sheet-backdrop-filter);
+}
+.everyday-heroes.sheet .window-header {
+	background-color: var(--eh-background-color-black);
+}
+.everyday-heroes.sheet .window-content {
+	background: var(--eh-sheet-content-background);
+}

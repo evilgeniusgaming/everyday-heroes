@@ -53,26 +53,56 @@ export default class DamageTemplate extends foundry.abstract.DataModel {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Data Preparation                         */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedDamageDice() {
+		this.damage.dice = `${this.damage.number ?? 1}d${this.damage.denomination ?? CONFIG.EverydayHeroes.diceSteps[0]}`;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Helper Methods                           */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
-	 * Modify the damage provided by this item with another. If the other item has a "regular" damage type
-	 * then it will replace this item's damage. If it has a "modification" damage type then it will be used
-	 * to alter this item's damage.
-	 * @param {ItemEH} other - Other item with which to modify the damage.
+	 * Key for the ability that adds to damage rolls for this item.
+	 * @param {string} type - Attack type (e.g. "melee", "ranged", "burst", "thrown").
+	 * @returns {string|null}
+	 */
+	damageAbility(type) {
+		return null;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Construct the damage formula for this item. Returns nothing if damage mode is "modification".
+	 * @param {string} type - Attack type (e.g. "melee", "ranged", "burst", "thrown").
+	 * @returns {string}
+	 */
+	damageFormula(type) {
+		if ( this.constructor.damageMode !== "regular" ) return "";
+		const ability = this.parent?.actor?.system.abilities[this.damageAbility(type)];
+		if ( !ability?.mod ) return this.damage.dice;
+		return `${this.damage.dice} + ${ability.mod}`;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Modify a "regular" damage object with changes from a "modification" damage object.
+	 * @param {object} original - Regular damage object to be modified.
+	 * @param {object} other - Modification damage object with which to modify the original.
 	 * @returns {object}
 	 */
-	modifyDamage(other) {
-		const damage = this.toObject().damage;
-		if ( other.system.constructor.damageMode === "regular" ) {
-			return foundry.utils.mergeObject(damage, other.system.toObject().damage);
-		}
-		damage.number = (damage.number ?? 1) + (other.system.damage.number ?? 0);
+	modifyDamage(original, other) {
+		const damage = foundry.utils.deepClone(original);
+		damage.number = (damage.number ?? 1) + (other.number ?? 0);
 		damage.denomination = EverydayHeroes.dice.utils.stepDenomination(
-			damage.denomination, other.system.damage.denomination
+			damage.denomination, other.denomination
 		);
-		if ( other.system.damage.type ) damage.type = other.system.damage.type;
+		if ( other.type ) damage.type = other.type;
+		damage.dice = `${damage.number ?? 1}d${damage.denomination ?? CONFIG.EverydayHeroes.diceSteps[0]}`;
 		return damage;
 	}
 }

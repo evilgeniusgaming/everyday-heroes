@@ -56,6 +56,23 @@ export function sortObjectEntries(obj, sortKey) {
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * A helper that converts the provided object into a series of `data-` entries.
+ * @param {object} context - Current evaluation context.
+ * @param {object} options - Handlebars options.
+ * @returns {string}
+ */
+function dataset(context, options) {
+	const entries = [];
+	for ( let [key, value] of Object.entries(context) ) {
+		key = key.replace(/[A-Z]+(?![a-z])|[A-Z]/g, (a, b) => (b ? "-" : "") + a.toLowerCase());
+		entries.push(`data-${key}="${value}"`);
+	}
+	return new Handlebars.SafeString(entries.join(" "));
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * A helper that determines if the provided item has a certain property.
  * @param {object} context - Current evaluation context.
  * @param {object} options - Handlebars options.
@@ -93,6 +110,7 @@ function itemContext(context, options) {
  */
 export function registerHandlebarsHelpers() {
 	Handlebars.registerHelper({
+		"everydayHeroes-dataset": dataset,
 		"everydayHeroes-has": has,
 		"everydayHeroes-itemContext": itemContext
 	});

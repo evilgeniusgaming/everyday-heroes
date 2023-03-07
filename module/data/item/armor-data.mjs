@@ -1,3 +1,4 @@
+import Proficiency from "../../documents/proficiency.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
@@ -39,7 +40,49 @@ export default class ArmorData extends SystemDataModel.mixin(DescribedTemplate, 
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Getters                                  */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Can armor saving throws be performed by this item?
+	 * @type {boolean}
+	 */
+	get hasArmorSave() {
+		return true;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Build a list of roll actions for this item.
+	 * @type {object[]}
+	 */
+	get rollActions() {
+		return [
+			{
+				label: "+4", // TOOD: Add armor save value
+				tooltip: game.i18n.format("EH.Action.Roll", {type: game.i18n.localize("EH.Armor.Action.Save.Label")}),
+				icon: "systems/everyday-heroes/artwork/svg/action/armor-save.svg",
+				data: {
+					type: "armor-save",
+					disadvantage: this.damaged
+				}
+			}
+		];
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedProficiency() {
+		// TODO: Adjust based on actor's actual equipment proficiencies
+		this.proficiency = new Proficiency(
+			this.parent.actor?.system.attributes.prof,
+			this.parent.actor?.system.traits.equipment.has(this.type.category) ? 1 : 0
+		);
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedTypeLabel() {
@@ -49,4 +92,5 @@ export default class ArmorData extends SystemDataModel.mixin(DescribedTemplate, 
 			subtype: CONFIG.EverydayHeroes.armorTypes[this.type.value] ?? ""
 		});
 	}
+
 }

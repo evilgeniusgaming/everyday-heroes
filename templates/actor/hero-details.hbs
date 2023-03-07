@@ -114,7 +114,7 @@
 					</label>
 					<span>
 						{{#if system.attributes.hd.denomination}}
-							{{system.attributes.hd.available}}{{system.attributes.hd.denomination}}
+							{{system.attributes.hd.available}}d{{system.attributes.hd.denomination}}
 						{{/if}}
 					</span>
 				</fieldset>
@@ -155,7 +155,7 @@
 			</fieldset>
 			<fieldset class="initiative">
 				<label><a data-action="roll" data-type="initiative">Initiative</a></label>
-				<span>{{system.attributes.initiative.value}}</span>
+				<span>{{system.attributes.initiative.mod}}</span>
 			</fieldset>
 			<fieldset class="passive-perception">
 				<label>Passive Perception</label>

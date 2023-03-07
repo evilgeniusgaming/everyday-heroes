@@ -1,11 +1,13 @@
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
+import AttackTemplate from "./templates/attack-template.mjs";
 import DamageTemplate from "./templates/damage-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
 import PhysicalTemplate from "./templates/physical-template.mjs";
 
 /**
  * Data definition for Explosive items.
+ * @mixes {@link AttackTemplate}
  * @mixes {@link DamageTemplate}
  * @mixes {@link DescribedTemplate}
  * @mixes {@link PhysicalTemplate}
@@ -21,7 +23,9 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @property {string} bonuses.damage - Bonus to the explosive's damage.
  * @property {string} bonuses.dc - Bonus to the explosive's DC.
  */
-export default class ExplosiveData extends SystemDataModel.mixin(DamageTemplate, DescribedTemplate, PhysicalTemplate) {
+export default class ExplosiveData extends SystemDataModel.mixin(
+	AttackTemplate, DamageTemplate, DescribedTemplate, PhysicalTemplate
+) {
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
@@ -35,7 +39,7 @@ export default class ExplosiveData extends SystemDataModel.mixin(DamageTemplate,
 				min: 0, integer: true,
 				label: "EH.Equipment.Traits.PenetrationValue.Label", hint: "EH.Equipment.Traits.PenetrationValue.Hint"
 			}),
-			dc: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.Weapon.DC.Label"}),
+			dc: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.Explosive.DC.Label"}),
 			radius: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: ""}),
 				units: new foundry.data.fields.StringField({label: "EH.Measurement.Units"})
@@ -59,5 +63,13 @@ export default class ExplosiveData extends SystemDataModel.mixin(DamageTemplate,
 				?? game.i18n.localize("EH.Item.Types.Explosive[one]"),
 			subtype: ""
 		});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Helper Methods                           */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	attackAbility(type) {
+		return CONFIG.EverydayHeroes.defaultAbilities.ranged;
 	}
 }

@@ -3,11 +3,8 @@ import BaseRoll from "./base-roll.mjs";
 /**
  * Challenge roll configuration data.
  *
- * @typedef {object} ChallengeRollConfiguration
+ * @typedef {BaseRollConfiguration} ChallengeRollConfiguration
  * @property {string[]} [parts=[]] - Parts used to construct the roll formula, not including the challenge die.
- * @property {object} [data={}] - The roll data used to resolve the formula.
- * @property {Event} [event] - Event that triggered the roll.
- * @property {boolean} [fastForward] - Should roll configuration dialog be skipped?
  * @property {ChallengeRollOptions} [options] - Options passed through to the roll.
  */
 

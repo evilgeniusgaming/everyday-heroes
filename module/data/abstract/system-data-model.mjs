@@ -113,13 +113,13 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 			for ( const [key, descriptor] of Object.entries(Object.getOwnPropertyDescriptors(template)) ) {
 				if ( key === "defineSchema" ) defineSchema = descriptor;
 				if ( this._immiscible.has(key) ) continue;
-				Object.defineProperty(Base, key, descriptor);
+				Object.defineProperty(Base, key, { ...descriptor, enumerable: true });
 			}
 
 			// Take all instance methods and fields from template and mix in to base class
 			for ( const [key, descriptor] of Object.entries(Object.getOwnPropertyDescriptors(template.prototype)) ) {
 				if ( ["constructor"].includes(key) ) continue;
-				Object.defineProperty(Base.prototype, key, descriptor);
+				Object.defineProperty(Base.prototype, key, { ...descriptor, enumerable: true });
 			}
 
 			// Copy over defineSchema with a custom name

@@ -1,11 +1,13 @@
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
+import AttackTemplate from "./templates/attack-template.mjs";
 import DamageTemplate from "./templates/damage-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
 import PhysicalTemplate from "./templates/physical-template.mjs";
 
 /**
  * Data definition for Weapon items.
+ * @mixes {@link AttackTemplate}
  * @mixes {@link DamageTemplate}
  * @mixes {@link DescribedTemplate}
  * @mixes {@link PhysicalTemplate}
@@ -29,7 +31,9 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @property {string} bonuses.attack - Bonus to the weapon's attack rolls.
  * @property {string} bonuses.damage - Bonus to the weapon's damage rolls.
  */
-export default class WeaponData extends SystemDataModel.mixin(DamageTemplate, DescribedTemplate, PhysicalTemplate) {
+export default class WeaponData extends SystemDataModel.mixin(
+	AttackTemplate, DamageTemplate, DescribedTemplate, PhysicalTemplate
+) {
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
@@ -74,6 +78,40 @@ export default class WeaponData extends SystemDataModel.mixin(DamageTemplate, De
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Build a list of roll actions for this item.
+	 * @type {object[]}
+	 */
+	get rollActions() {
+		// Attack
+		//   Burst (if "burst" property)
+		//   Offhand (if "light" property, or unarmed strike)
+		//   Thrown (if melee with "thrown" property)
+		// Damage
+		//   Burst (if "burst" property)
+		//   Offhand (if "light" property, or unarmed strike)
+		return [
+			{
+				label: "+4", // TOOD: Add attack mod value
+				tooltip: game.i18n.format("EH.Action.Roll", {type: game.i18n.localize("EH.Weapon.Action.AttackGeneric.Label")}),
+				icon: `systems/everyday-heroes/artwork/svg/action/attack-${this.type.value === "ranged" ? "ranged" : "melee"}.svg`,
+				data: {
+					type: "attack"
+				}
+			},
+			{
+				label: "1d10 + 4", // TOOD: Add damage formula
+				tooltip: game.i18n.format("EH.Action.Roll", {type: game.i18n.localize("EH.Weapon.Action.DamageGeneric.Label")}),
+				icon: "systems/everyday-heroes/artwork/svg/action/damage.svg",
+				data: {
+					type: "damage"
+				}
+			}
+		];
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Is range a relevant concept for this weapon?
 	 * @type {boolean}
 	 */
@@ -101,5 +139,33 @@ export default class WeaponData extends SystemDataModel.mixin(DamageTemplate, De
 			type: game.i18n.localize("EH.Item.Types.Weapon[one]"),
 			subtype: CONFIG.EverydayHeroes.weaponTypes[this.type.value] ?? ""
 		});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Helper Methods                           */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	attackAbility(type) {
+		type ??= this.type.value;
+		if ( type === "burst" ) type = "ranged";
+		if ( type === "offhand" ) type = "melee";
+		const def = CONFIG.EverydayHeroes.defaultAbilities;
+
+		// Finesse, higher of dexterity or strength
+		if ( this.properties.has("finesse") ) {
+			const abilities = this.parent?.actor?.system.abilities;
+			if ( !abilities ) return ["ranged", "thrown"].includes(type) ? def.ranged : def.melee;
+			if ( abilities[def.ranged]?.mod > abilities[def.melee]?.mod ) return def.ranged;
+			return def.melee;
+		}
+
+		return type === "ranged" ? def.ranged : def.melee;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	damageAbility(type) {
+		if ( type === "offhand" ) return null;
+		return this.attackAbility();
 	}
 }

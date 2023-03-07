@@ -12,4 +12,8 @@
 
 	--eh-text-color-black: rgb(0, 0, 0);
 	--eh-text-color-white: rgb(255, 255, 255);
+
+	--eh-sheet-backdrop-filter: brightness(300%) contrast(50%) saturate(50%) blur(6px);
+	--eh-sheet-content-background: none;
+	--eh-sheet-window-background: none;
 }
