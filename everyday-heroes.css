@@ -15,3 +15,14 @@
 .everyday-heroes.sheet .window-content {
 	background: var(--eh-sheet-content-background);
 }
+
+.everyday-heroes.sheet .stripes {
+	background-image: url("artwork/interface/stripes.svg");
+	background-size: auto 100%;
+}
+.everyday-heroes.sheet .stripes.left {
+	background-position-x: right;
+}
+.everyday-heroes.sheet .stripes.right {
+	background-position-x: left;
+}

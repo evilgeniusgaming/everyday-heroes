@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 910 512" width="910" height="512" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <style>@import "../../everyday-heroes.css";</style>
+  <rect class="stripe" width="455" height="512" style="fill: var(--stripe-fill, var(--eh-background-color-black));" x="256" transform="matrix(1, 0, -0.64552, 1, -316.493713, 0)" bx:origin="0 0.5"/>
+  <rect class="stripe" width="455" height="512" style="fill: var(--stripe-fill, var(--eh-background-color-black));" x="256" transform="matrix(1, 0, -0.64552, 1, 593.506287, 0)" bx:origin="0 0.5"/>
+</svg>

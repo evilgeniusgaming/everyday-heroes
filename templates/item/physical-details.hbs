@@ -19,9 +19,13 @@
 	{{/if}}
 
 	<h3>
-		{{#if (eq item.type "armor")}}{{localize "EH.Armor.Properties.Label"}}
-		{{else if (eq item.type "explosive")}}{{localize "EH.Explosive.Properties.Label"}}
-		{{else}}{{localize "EH.Weapon.Properties.Label"}}{{/if}}
+		<span class="left stripes"></span>
+		<span class="center">
+			{{#if (eq item.type "armor")}}{{localize "EH.Armor.Properties.Label"}}
+			{{else if (eq item.type "explosive")}}{{localize "EH.Explosive.Properties.Label"}}
+			{{else}}{{localize "EH.Weapon.Properties.Label"}}{{/if}}
+		</span>
+		<span class="right stripes"></span>
 	</h3>
 
 	{{#if itemProperties}}
@@ -139,9 +143,8 @@
 	{{/if}}
 
 	{{#if item.system.usesRounds}}
-		<fieldset class="triple">
+		<fieldset>
 			<label>{{localize "EH.Equipment.Traits.Rounds.Label"}}</label>
-			<input type="number" name="system.rounds.value" value="{{system.rounds.value}}">
 			<input type="number" name="system.rounds.capacity" value="{{system.rounds.capacity}}">
 			<p class="hint">{{localize "EH.Equipment.Traits.Rounds.Hint"}}</p>
 		</fieldset>
@@ -164,7 +167,11 @@
 		{{/if}}
 	{{/if}}
 
-	<h3>Bonuses</h3>
+	<h3>
+		<span class="left stripes"></span>
+		<span class="center">Bonuses</span>{{!-- TODO: Localize --}}
+		<span class="right stripes"></span>
+	</h3>
 
 	{{#if (everydayHeroes-has item "system.bonuses.attack")}}
 		<fieldset>
