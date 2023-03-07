@@ -1,28 +1,30 @@
 @import "./styles/variables.css";
+@import "./styles/controls.css";
+@import "./styles/forms.css";
 @import "./styles/actor.css";
+@import "./styles/dialog.css";
 @import "./styles/item.css";
 
-.everyday-heroes.sheet {
-	container-type: size;
+.everyday-heroes.window-app {
 	overflow: clip;
 	background: var(--eh-sheet-window-background);
 	backdrop-filter: var(--eh-sheet-backdrop-filter);
 	--webkit-backdrop-filter: var(--eh-sheet-backdrop-filter);
 }
-.everyday-heroes.sheet .window-header {
+.everyday-heroes.window-app .window-header {
 	background-color: var(--eh-background-color-black);
 }
-.everyday-heroes.sheet .window-content {
+.everyday-heroes.window-app .window-content {
 	background: var(--eh-sheet-content-background);
 }
 
-.everyday-heroes.sheet .stripes {
+.everyday-heroes.window-app .stripes {
 	background-image: url("artwork/interface/stripes.svg");
 	background-size: auto 100%;
 }
-.everyday-heroes.sheet .stripes.left {
+.everyday-heroes.window-app .stripes.left {
 	background-position-x: right;
 }
-.everyday-heroes.sheet .stripes.right {
+.everyday-heroes.window-app .stripes.right {
 	background-position-x: left;
 }

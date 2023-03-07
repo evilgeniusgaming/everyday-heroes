@@ -228,11 +228,7 @@
 .hero.sheet [data-tab="details"] .attributes .health {
 	display: grid;
 	overflow: clip;
-	border: 2px solid var(--eh-border-color-strong);
-	border-radius: 15px 0 0 15px;
 	grid-template-areas: "hp death-saves";
-	background-color: var(--eh-background-color-black);
-	color: var(--eh-text-color-white);
 }
 .hero.sheet [data-tab="details"] .attributes .health .hp {
 	grid-area: hp;
@@ -241,13 +237,20 @@
 	grid-template-areas:
 		"max-hp current-hp temp-hp"
 		"hit-dice total-dmg temp-hp";
-	border-radius: 13px;
+	border: 2px solid var(--eh-border-color-strong);
+	border-radius: 15px;
 	background-color: var(--eh-background-color-white);
 	color: var(--eh-text-color-black);
+	z-index: 2;
 }
 .hero.sheet [data-tab="details"] .attributes .health .death-saves {
 	grid-area: death-saves;
+	margin-inline-start: -1em;
 	padding: 0.25em 0.5em;
+	padding-inline-start: 1.5em;
+	background-color: var(--eh-background-color-black);
+	color: var(--eh-text-color-white);
+	z-index: 1;
 }
 .hero.sheet [data-tab="details"] .attributes .health .hp fieldset {
 	padding: 0.25em;
@@ -294,10 +297,10 @@
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-/*  Attributes                               */
+/*  Summary & Resources                      */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.hero.sheet [data-tab="details"] .attributes .summary {
+.hero.sheet [data-tab="details"] .attributes :is(.summary, .resources) {
 	display: grid;
 	margin-block-start: 1em;
 	grid-template-columns: repeat(4, 1fr);
@@ -305,20 +308,19 @@
 	background-color: var(--eh-background-color-white);
 	color: var(--eh-text-color-black);
 }
-.hero.sheet [data-tab="details"] .attributes .summary fieldset {
+.hero.sheet [data-tab="details"] .attributes :is(.summary, .resources) fieldset {
 	padding: 0.25em;
 	text-align: center;
 }
-.hero.sheet [data-tab="details"] .attributes .summary fieldset:not(:last-of-type) {
+.hero.sheet [data-tab="details"] .attributes :is(.summary, .resources) fieldset:not(:last-of-type) {
 	border-inline-end: 2px solid var(--eh-border-color-strong);
 }
-.hero.sheet [data-tab="details"] .attributes .summary fieldset label {
+.hero.sheet [data-tab="details"] .attributes :is(.summary, .resources) fieldset label {
 	display: block;
-	/* padding-block: 0.25em; */
 	font-weight: bold;
 	text-transform: uppercase;
 	line-height: 0.8em;
 }
-.hero.sheet [data-tab="details"] .attributes .summary fieldset span {
+.hero.sheet [data-tab="details"] .attributes :is(.summary, .resources) fieldset span {
 	font-size: 2em;
 }

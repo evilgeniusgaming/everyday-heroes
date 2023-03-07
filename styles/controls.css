@@ -1,0 +1,39 @@
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Skewed Buttons                           */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.everyday-heroes nav.skewed {
+	transform: skew(-16deg);
+	margin-block-start: 1em;
+	margin-inline: 0.25em;
+	border: 2px solid var(--eh-border-color-strong);
+	background-color: var(--eh-background-color-white);
+}
+.everyday-heroes nav.skewed ul {
+	display: flex;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.everyday-heroes nav.skewed li {
+	flex-grow: 1;
+	padding: 0.25em;
+	text-align: center;
+}
+.everyday-heroes nav.skewed li:hover {
+	box-shadow: inset 0 0 5px var(--color-shadow-primary);
+}
+.everyday-heroes nav.skewed li:not(:last-of-type) {
+	border-inline-end: 1px solid var(--eh-border-color-weak);
+}
+.everyday-heroes nav.skewed li > :is(a, button) {
+	display: block;
+	transform: skew(16deg);
+	margin: 0;
+	border: none;
+	background: none;
+}
+.everyday-heroes nav.skewed li > :is(a, button):hover {
+	box-shadow: none;
+	text-shadow: none;
+}

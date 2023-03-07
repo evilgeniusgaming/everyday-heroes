@@ -1,3 +1,4 @@
+import RestDialog from "../applications/actor/rest-dialog.mjs";
 import AdvancementConfirmationDialog from "../applications/advancement/advancement-confirmation-dialog.mjs";
 import AdvancementManager from "../applications/advancement/advancement-manager.mjs";
 import Proficiency from "./proficiency.mjs";
@@ -34,6 +35,202 @@ export default class ActorEH extends Actor {
 		data.prof = new Proficiency(this.system.attributes.prof, 1);
 		if ( deterministic ) data.prof = data.prof.flat;
 		return data;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Resting                                  */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Configuration options for a rest.
+	 *
+	 * @typedef {object} RestConfiguration
+	 * @property {string} type - Type of rest performed (e.g. "short" or "long").
+	 * @property {boolean} dialog - Present a dialog window for any rest configuration.
+	 * @property {boolean} chat - Should a chat message be created to summarize the results of the rest?
+	 */
+
+	/**
+	 * Results from a rest operation.
+	 *
+	 * @typedef {object} RestResult
+	 * @property {string} type - Type of rest performed (e.g. "short" or "long").
+	 * @property {number} hitPointsDelta - Hit points recovered during the rest.
+	 * @property {number} hitDiceDelta - Hit dice spent or recovered during the rest.
+	 * @property {object} actorUpdates - Updates applied to the actor.
+	 * @property {object[]} itemUpdates - Updates applied to the actor's items.
+	 * @property {BaseRoll[]} rolls - Any rolls that occurred during the rest process, not including hit dice.
+	 */
+
+	/**
+	 * Take a short rest, possibly spending hit dice and recovering resources and item uses.
+	 * @param {RestConfiguration} [config={}] - Configuration options for a short rest.
+	 * @returns {Promise<RestResult|void>} - Final result of the rest operation.
+	 */
+	async shortRest(config={}) {
+		return this.rest(foundry.utils.mergeObject({ type: "short", dialog: true, chat: true }, config));
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Take a long rest, possibly recovering hit points, resources, and item uses.
+	 * @param {RestConfiguration} [config={}] - Configuration options for a long rest.
+	 * @returns {Promise<RestResult|void>} - Final result of the rest operation.
+	 */
+	async longRest(config={}) {
+		return this.rest(foundry.utils.mergeObject({ type: "long", dialog: true, chat: true }, config));
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Perform all of the changes needed when the actor rests.
+	 * @param {RestConfiguration} [config={}] - Configuration options for the rest.
+	 * @param {object} [deltas={}] - Any changes that have been made earlier in the process.
+	 * @returns {Promise<RestResult>} - Final result of the rest operation.
+	 */
+	async rest(config={}, deltas={}) {
+		const initialHitDice = this.system.attributes.hd.spent;
+		const initialHitPoints = this.system.attributes.hp.value;
+
+		/**
+		 * A hook event that fires before the rest dialog is shown.
+		 * @function everydayHeroes.preRestConfiguration
+		 * @memberof hookEvents
+		 * @param {ActorEH} actor - The actor that is being rested.
+		 * @param {RestConfiguration} config - Configuration options for the rest.
+		 * @returns {boolean} - Explicitly return `false` to prevent the rest from being started.
+		 */
+		if ( Hooks.call("everydayHeroes.preRestConfiguration", this, config) === false ) return;
+
+		const result = {
+			type: config.type,
+			deltas: {},
+			actorUpdates: {},
+			itemUpdates: [],
+			rolls: []
+		};
+		if ( config.dialog ) {
+			try { foundry.utils.mergeObject(result, await RestDialog.rest(this, config)); }
+			catch(err) { return; }
+		}
+
+		/**
+		 * A hook event that fires after the rest dialog is shown.
+		 * @function everydayHeroes.restConfiguration
+		 * @memberof hookEvents
+		 * @param {ActorEH} actor - The actor that is being rested.
+		 * @param {RestConfiguration} config - Configuration options for the rest.
+		 * @param {RestResult} result - Details on the rest to be completed.
+		 * @returns {boolean} - Explicitly return `false` to prevent the rest from being continued.
+		 */
+		if ( Hooks.call("everydayHeroes.restConfiguration", this, config, result) === false ) return;
+
+		result.deltas.hitDice = (result.deltas.hitDice ?? 0) + initialHitDice - this.system.attributes.hd.spent;
+		result.deltas.hitPoints = (result.deltas.hitPoints ?? 0) + this.system.attributes.hp.value - initialHitPoints;
+
+		this._getRestHitDiceRecovery(config, result);
+		this._getRestHitPointRecovery(config, result);
+		this._getRestItemUseRecovery(config, result);
+		this._getRestResourceRecovery(config, result);
+
+		/**
+		 * A hook event that fires after rest result is calculated, but before any updates are performed.
+		 * @function everydayHeroes.preRestCompleted
+		 * @memberof hookEvents
+		 * @param {ActorEH} actor - The actor that is being rested.
+		 * @param {RestResult} result - Details on the rest to be completed.
+		 * @returns {boolean} - Explicitly return `false` to prevent the rest updates from being performed.
+		 */
+		if ( Hooks.call("everydayHeroes.preRestCompleted", this, result) === false ) return result;
+
+		await this.update(result.actorUpdates);
+		await this.updateEmbeddedDocuments("Item", result.itemUpdates);
+
+		if ( chat ) await this._displayRestResultMessage(result);
+
+		/**
+		 * A hook event that fires when the rest process is completed for an actor.
+		 * @function everydayHeroes.restCompleted
+		 * @memberof hookEvents
+		 * @param {ActorEH} actor - The actor that just completed resting.
+		 * @param {RestResult} result - Details on the rest completed.
+		 */
+		Hooks.callAll("everydayHeroes.restCompleted", this, result);
+
+		return result;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Perform any hit dice recover needed for this rest.
+	 * @param {RestConfiguration} [config={}] - Configuration options for the rest.
+	 * @param {RestResult} [result={}] - Rest result being constructed.
+	 */
+	_getRestHitDiceRecovery(config={}, result={}) {
+		if ( config.type !== "long" ) return;
+		const hd = this.system.attributes.hd;
+		const maxRecovered = Math.max(Math.floor(hd.max / 2), 1);
+		const final = Math.clamped(0, hd.spent - maxRecovered, hd.max);
+		foundry.utils.mergeObject(result, {
+			deltas: {
+				hitDice: (result.deltas?.hitDice ?? 0) + hd.spent - final
+			},
+			actorUpdates: {
+				"system.attributes.hd.spent": final
+			}
+		});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Perform any hit point recovery needed for this rest.
+	 * @param {RestConfiguration} [config={}] - Configuration options for the rest.
+	 * @param {RestResult} [result={}] - Rest result being constructed.
+	 */
+	_getRestHitPointRecovery(config={}, result={}) {
+		if ( config.type !== "long" ) return;
+		const hp = this.system.attributes.hp;
+		foundry.utils.mergeObject(result, {
+			deltas: {
+				hitPoints: (result.deltas?.hitPoints ?? 0) + hp.max - hp.value
+			},
+			actorUpdates: {
+				"system.attributes.hp.value": hp.max,
+				"system.attributes.hp.temp": 0
+			}
+		});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Perform any recovery of item uses for this rest.
+	 * @param {RestConfiguration} [config={}] - Configuration options for the rest.
+	 * @param {RestResult} [result={}] - Rest result being constructed.
+	 */
+	_getRestItemUseRecovery(config={}, result={}) {
+		
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Perform any resource recovery for this rest.
+	 * @param {RestConfiguration} [config={}] - Configuration options for the rest.
+	 * @param {RestResult} [result={}] - Rest result being constructed.
+	 */
+	_getRestResourceRecovery(config={}, result={}) {
+		
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _displayRestResultMessage(result) {
+		console.log(result);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -349,6 +546,7 @@ export default class ActorEH extends Actor {
 	 * Configuration data for a hit die roll.
 	 *
 	 * @typedef {BaseRollConfiguration} HitDieRollConfiguration
+	 * @property {boolean} [advantage=false] - Should two hit dice be rolled and the highest taken?
 	 * @property {boolean} [modifySpentHitDie=true] - Should the actor's spent hit die count be updated?
 	 * @property {boolean} [modifyHitPoints=true] - Should the actor's hit points be updated after the roll?
 	 */
@@ -365,9 +563,13 @@ export default class ActorEH extends Actor {
 		if ( !this.system.attributes.hd.available ) return console.warn("No hit dice to spend");
 		// TODO: Show UI warning message for both of these
 
+		const num = config.advantage ? 2 : 1;
+		const mod = config.advantage ? "kh" : "";
 		const rollConfig = foundry.utils.mergeObject({
 			fastForward: true,
-			parts: [`max(0, 1${denomination} + @abilities.${CONFIG.EverydayHeroes.defaultAbilities.hitPoints}.mod)`],
+			parts: [
+				`max(0, ${num}d${denomination}${mod} + @abilities.${CONFIG.EverydayHeroes.defaultAbilities.hitPoints}.mod)`
+			],
 			// TODO: Format this so negative cons subtract, rather than add a negative
 			data: this.getRollData()
 		}, config);
@@ -392,7 +594,7 @@ export default class ActorEH extends Actor {
 		 * @param {ActorEH} actor - Actor for which the hit die is to be rolled.
 		 * @param {HitDieRollConfiguration} config - Configuration data for the pending roll.
 		 * @param {RollMessageConfiguration} message - Configuration data for the roll's message.
-		 * @param {string} denomination - Size of hit die to be rolled.
+		 * @param {number} denomination - Size of hit die to be rolled.
 		 * @returns {boolean} - Explicitly return `false` to prevent hit die from being rolled.
 		 */
 		if ( Hooks.call("everydayHeroes.preRollHitDie", this, rollConfig, messageConfig, denomination) === false ) return;
@@ -419,10 +621,33 @@ export default class ActorEH extends Actor {
 		 */
 		if ( Hooks.call("everydayHeroes.rollHitDie", this, roll, updates) === false ) return roll;
 
-		console.log(updates);
 		if ( !foundry.utils.isEmpty(updates) ) await this.update(updates);
 
 		return roll;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Roll initiative.
+	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
+	 * @param {RollMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @returns {Promise<ChallengeRoll|void>}
+	 */
+	async rollInitiative(config={}, message={}) {
+		console.log("rollInitiative", config, message);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Roll a luck saving throw.
+	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
+	 * @param {RollMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @returns {Promise<ChallengeRoll|void>}
+	 */
+	async rollLuckSave(config={}, message={}) {
+		console.log("rollLuckSave", config, message);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -478,9 +703,7 @@ export default class ActorEH extends Actor {
 			data.globalSkillBonus = Roll.replaceFormulaData(this.system.bonuses.skill.check, data);
 		}
 
-		const rollConfig = foundry.utils.mergeObject({
-			data
-		}, config);
+		const rollConfig = foundry.utils.mergeObject({ data }, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
 		const flavor = game.i18n.format("EH.Skills.Action.CheckSpecific", {
@@ -569,11 +792,9 @@ export default class ActorEH extends Actor {
 			} else if ( this.system.attributes.death.status === "alive" ) {
 				foundry.utils.setProperty(changed, "system.attributes.death.status", "dying");
 			}
-			console.log(changed);
 		}
 
 		if ( options.isAdvancement ) return;
-
 		const changedLevel = foundry.utils.getProperty(changed, "system.details.level");
 		const delta = changedLevel - this.system.details.level;
 		if ( changedLevel && delta ) {

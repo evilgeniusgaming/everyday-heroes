@@ -128,6 +128,30 @@ export default class ChallengeRoll extends BaseRoll {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Is the result of this roll a failure? Returns `undefined` if roll isn't evaluated.
+	 * @type {boolean|void}
+	 */
+	get isFailure() {
+		if ( !this.isValidRoll || !this._evaluated ) return undefined;
+		if ( !Number.isNumeric(this.options.target) ) return false;
+		return this.total < this.options.target;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Is the result of this roll a success? Returns `undefined` if roll isn't evaluated.
+	 * @type {boolean|void}
+	 */
+	get isSuccess() {
+		if ( !this.isValidRoll || !this._evaluated ) return undefined;
+		if ( !Number.isNumeric(this.options.target) ) return false;
+		return this.total >= this.options.target;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Is this a valid challenge role?
 	 * @type {boolean}
 	 */

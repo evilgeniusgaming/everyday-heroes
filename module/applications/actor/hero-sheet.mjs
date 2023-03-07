@@ -280,6 +280,10 @@ export default class HeroSheet extends ActorSheet {
 			element.addEventListener("click", this._onItemAction.bind(this));
 		}
 
+		// Rest Action Listeners
+		html.querySelector('[data-action="long-rest"]').addEventListener("click", this.actor.longRest.bind(this.actor));
+		html.querySelector('[data-action="short-rest"]').addEventListener("click", this.actor.shortRest.bind(this.actor));
+
 		// Item Roll Action Listeners
 		for ( const element of html.querySelectorAll('[data-action="roll-item"]') ) {
 			element.addEventListener("click", this._onItemRoll.bind(this));
@@ -403,7 +407,9 @@ export default class HeroSheet extends ActorSheet {
 			case "hit-die":
 				return this.actor.rollHitDie();
 			case "initiative":
-				return console.log("Initiative rolls not yet implemented");
+				return this.actor.rollInitiative();
+			case "luck":
+				return this.actor.rollLuckSave();
 			case "skill":
 				return this.actor.rollSkill(key);
 			default:

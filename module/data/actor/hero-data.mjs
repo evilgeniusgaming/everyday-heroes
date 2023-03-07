@@ -162,7 +162,7 @@ export default class HeroData extends SystemDataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareBaseData() {
-		this.attributes.hd.available = Math.clamped(0, this.details.level - this.attributes.hd.spent, this.details.level);
+		this.attributes.hd.max = this.details.level;
 		this.attributes.prof = Proficiency.calculateMod(this.details.level);
 	}
 
@@ -218,7 +218,6 @@ export default class HeroData extends SystemDataModel {
 			switch (item.type) {
 				case "archetype":
 					this.details.archetype = item;
-					this.attributes.hd.denomination = item.system.hitDie;
 					break;
 				case "class":
 					this.details.class = item;
@@ -231,6 +230,14 @@ export default class HeroData extends SystemDataModel {
 					break;
 			}
 		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedHitDice() {
+		const hd = this.attributes.hd;
+		hd.available = Math.clamped(0, hd.max - hd.spent, hd.max);
+		hd.denomination = this.details.archetype?.system.hitDie;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

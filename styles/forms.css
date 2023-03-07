@@ -1,0 +1,19 @@
+.everyday-heroes fieldset :is(input, select) {
+	border: none;
+	border-radius: 5px;
+	background-color: var(--eh-background-color-white);
+}
+.everyday-heroes fieldset select {
+	padding-inline: 1em;
+}
+.everyday-heroes fieldset button {
+	border: 1px solid var(--eh-border-color-strong);
+	border-radius: 1em;
+	background-color: var(--eh-background-color-white);
+}
+.everyday-heroes fieldset button:disabled {
+	border-color: var(--eh-border-color-weak);
+}
+.everyday-heroes fieldset button:not(:disabled):hover {
+	box-shadow: inset 0 0 5px var(--color-shadow-primary);
+}

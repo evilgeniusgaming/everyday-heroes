@@ -10,25 +10,25 @@
 			</fieldset>
 			<fieldset class="class">
 				<label>{{localize "EH.Item.Types.Class[one]"}}</label>
-				<a data-action="item" data-type="edit" data-id="{{system.details.class.id}}">
+				<a data-action="item" data-type="edit" data-item-id="{{system.details.class.id}}">
 					{{system.details.class.name}}
 				</a>
 			</fieldset>
 			<fieldset class="archetype">
 				<label>{{localize "EH.Item.Types.Archetype[one]"}}</label>
-				<a data-action="item" data-type="edit" data-id="{{system.details.archetype.id}}">
+				<a data-action="item" data-type="edit" data-item-id="{{system.details.archetype.id}}">
 					{{system.details.archetype.name}}
 				</a>
 			</fieldset>
 			<fieldset class="background">
 				<label>{{localize "EH.Item.Types.Background[one]"}}</label>
-				<a data-action="item" data-type="edit" data-id="{{system.details.background.id}}">
+				<a data-action="item" data-type="edit" data-item-id="{{system.details.background.id}}">
 					{{system.details.background.name}}
 				</a>
 			</fieldset>
 			<fieldset class="profession">
 				<label>{{localize "EH.Item.Types.Profession[one]"}}</label>
-				<a data-action="item" data-type="edit" data-id="{{system.details.profession.id}}">
+				<a data-action="item" data-type="edit" data-item-id="{{system.details.profession.id}}">
 					{{system.details.profession.name}}
 				</a>
 			</fieldset>
@@ -144,6 +144,13 @@
 				</div>
 			{{/if}}
 		</div>
+		<nav class="controls skewed">
+			<ul>
+				<li><a data-action="roll" data-type="luck">Luck Saving Throw</a></li>
+				<li><a data-action="short-rest">{{localize "EH.Rest.Type.Short.Label"}}</a></li>
+				<li><a data-action="long-rest">{{localize "EH.Rest.Type.Long.Label"}}</a></li>
+			</ul>
+		</nav>
 		<div class="summary">
 			<fieldset class="proficiency">
 				<label>Proficiency Bonus</label>{{!-- TODO: Localize --}}
@@ -163,8 +170,19 @@
 			</fieldset>
 		</div>
 		<div class="resources">
-			Genius/Focus/Influence
-			Inspiration
+			<fieldset class="genius">
+				<label>Genius</label>{{!-- TODO: Localize --}}
+			</fieldset>
+			<fieldset class="focus">
+				<label>Focus</label>{{!-- TODO: Localize --}}
+			</fieldset>
+			<fieldset class="influence">
+				<label>Influence</label>{{!-- TODO: Localize --}}
+			</fieldset>
+			<fieldset class="inspiration">
+				<label>Inspiration</label>{{!-- TODO: Localize --}}
+				<input type="checkbox" name="system.resources.inspiration" {{checked system.resources.inspiration}}>
+			</fieldset>
 		</div>
 	</section>
 </section>

@@ -2,7 +2,7 @@ import Advancement from "./advancement.mjs";
 import HitPointsConfig from "../../applications/advancement/hit-points-config.mjs";
 import HitPointsFlow from "../../applications/advancement/hit-points-flow.mjs";
 import { HitPointsConfigurationData, HitPointsValueData } from "../../data/advancement/hit-points-data.mjs";
-// import { simplifyBonus } from "../../utils.mjs";
+import { simplifyBonus } from "../../utils.mjs";
 
 /**
  * Advancement that presents the player with the option to roll hit points at each level or select the average value.
@@ -19,7 +19,7 @@ export default class HitPointsAdvancement extends Advancement {
 				value: HitPointsValueData
 			},
 			order: 10,
-			icon: "systems/dnd5e/icons/svg/hit-points.svg",
+			icon: "systems/dnd5e/artwork/svg/advancement/hit-points.svg",
 			title: game.i18n.localize("EH.Advancement.HitPoints.Title"),
 			hint: game.i18n.localize("EH.Advancement.HitPoints.Hint"),
 			multiLevel: true,
@@ -138,7 +138,7 @@ export default class HitPointsAdvancement extends Advancement {
 	#getApplicableValue(value) {
 		const abilityId = CONFIG.EverydayHeroes.defaultAbilities.hitPoints || "con";
 		value = Math.max(value + (this.actor.system.abilities[abilityId]?.mod ?? 0), 1);
-		// value += simplifyBonus(this.actor.system.attributes.hp.bonuses.level, this.actor.getRollData());
+		value += simplifyBonus(this.actor.system.attributes.hp.bonuses.level, this.actor.getRollData());
 		return value;
 	}
 

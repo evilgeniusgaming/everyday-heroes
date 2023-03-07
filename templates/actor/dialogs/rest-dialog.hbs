@@ -1,0 +1,48 @@
+<form class="dialog-content {{config.type}}" autocomplete="off">
+	<section class="main-form">
+		<p>{{content}}</p>
+
+		{{#if showMedical}}
+			<fieldset class="medical">
+				<label>{{localize "EH.Rest.MedicalAttention.Label"}}</label>
+				<select name="medical" {{disabled result.medicalRoll}}>
+					{{#select result.medicalAttention}}
+						<option value="">{{localize "None"}}</option>
+						<option value="provide">{{localize "EH.Rest.Action.Medical.Provide"}}</option>
+						<option value="receive">{{localize "EH.Rest.Action.Medical.Receive"}}</option>
+					{{/select}}
+				</select>
+				<p class="hint">{{localize "EH.Rest.MedicalAttention.Hint"}}</p>
+			</fieldset>
+		{{/if}}
+	
+		{{#if (eq result.medicalAttention "provide")}}
+			<fieldset>
+				<button data-action="roll-medicine" {{disabled result.medicalRoll}}>
+					{{#if result.medicalRoll.isSuccess}}
+						<i class="fa-solid fa-heart-circle-plus"></i> {{localize "EH.Rest.MedicalAttention.Result.Success"}}
+					{{else if result.medicalRoll.isFailure}}
+						<i class="fa-solid fa-heart-circle-xmark"></i> {{localize "EH.Rest.MedicalAttention.Result.Failure"}}
+					{{else}}
+						<i class="fa-solid fa-suitcase-medical"></i> Attempt Medical Care {{!-- TODO: Localize --}}
+					{{/if}}
+				</button>
+			</fieldset>
+		{{else if showHitDice}}
+			<fieldset class="hit-dice">
+				<label>Hit Dice</label>
+				<button data-action="roll-hit-die" {{disabled (eq hd.available 0)}}>
+					<i class="fas fa-dice-d{{hd.denomination}}"></i> {{localize "EH.Action.Roll" type=(concat "d" hd.denomination)}}
+				</button>
+			</fieldset>
+		{{/if}}
+	</section>
+
+	<nav class="dialog-buttons skewed">
+		<ul>
+			{{#each buttons as |button id|}}
+				<li><button class="dialog-button" data-button="{{id}}">{{{button.icon}}} {{{button.label}}}</button></li>
+			{{/each}}
+		</ul>
+	</nav>
+</form>
