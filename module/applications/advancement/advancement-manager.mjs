@@ -143,6 +143,8 @@ export default class AdvancementManager extends Application {
 	 */
 	static forNewAdvancement(actor, itemId, advancements, options) {
 		const manager = new this(actor, options);
+		/*
+		TODO: Implement advancement on new advancement
 		const clonedItem = manager.clone.items.get(itemId);
 		if ( !clonedItem || !advancements.length ) return manager;
 
@@ -175,6 +177,7 @@ export default class AdvancementManager extends Application {
 			if ( matchingFlow ) manager.steps.push({ type: "restore", flow: matchingFlow, automatic: true });
 			else manager.steps.push({ type: "forward", flow });
 		});
+		*/
 
 		return manager;
 	}
@@ -212,13 +215,15 @@ export default class AdvancementManager extends Application {
 	/**
 	 * Construct a manager for modifying choices on an item at a specific level.
 	 * @param {ActorEH} actor - Actor from which the choices should be modified.
-	 * @param {object} itemId - ID of the item whose choices are to be changed.
+	 * @param {string} itemId - ID of the item whose choices are to be changed.
 	 * @param {number} level - Level at which the choices are being changed.
 	 * @param {object} options - Rendering options passed to the application.
 	 * @returns {AdvancementManager} - Prepared manager. Steps count can be used to determine if advancements are needed.
 	 */
 	static forModifyChoices(actor, itemId, level, options) {
 		const manager = new this(actor, options);
+		/*
+		TODO: Implement modifying choices
 		const clonedItem = manager.clone.items.get(itemId);
 		if ( !clonedItem ) return manager;
 
@@ -233,6 +238,7 @@ export default class AdvancementManager extends Application {
 
 		// Create restore advancements for other levels
 		flows.filter(f => f.level > level).forEach(flow => manager.steps.push({ type: "restore", flow, automatic: true }));
+		*/
 
 		return manager;
 	}
@@ -249,6 +255,8 @@ export default class AdvancementManager extends Application {
 	 */
 	static forDeletedAdvancement(actor, itemId, advancementId, options) {
 		const manager = new this(actor, options);
+		/*
+		TODO: Implement deleting advancement
 		const clonedItem = manager.clone.items.get(itemId);
 		const advancement = clonedItem?.advancement.byId[advancementId];
 		if ( !advancement ) return manager;
@@ -266,6 +274,7 @@ export default class AdvancementManager extends Application {
 			.forEach(flow => manager.steps.push({ type: "reverse", flow, automatic: true }));
 
 		if ( manager.steps.length ) manager.steps.push({ type: "delete", advancement, automatic: true });
+		*/
 
 		return manager;
 	}

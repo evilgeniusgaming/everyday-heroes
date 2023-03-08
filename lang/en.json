@@ -57,7 +57,9 @@
 "EH.Advancement.Confirmation.Message.Delete": "Deleting this item will also delete all advancement choices made for it. These changes will be removed from your Hero as long as the checkbox below is checked.",
 "EH.Advancement.Confirmation.Message.LevelDown": "Leveling this Hero down will also undo all advancement choices made for it. These changes will be removed from your Hero as long as the checkbox below is checked.",
 "EH.Advancement.Config.Title": "Configure {item} Advancement",
+"EH.Advancement.Config.DropHint": "Drop Items here to add them to this advancement.",
 "EH.Advancement.Config.Warning.Duplicate": "That item already exists on this advancement.",
+"EH.Advancement.Config.Warning.Invalid": "{type} items cannot be added with this advancement type.",
 "EH.Advancement.Config.Warning.Recursive": "You cannot grant an item in its own advancement.",
 "EH.Advancement.Manager.Title": "Advancement Manager",
 "EH.Advancement.Manager.Steps": "Step {current} of {total}",
@@ -77,6 +79,9 @@
 "EH.Advancement.HitPoints.Hint": "Set an archetype's hit die size and track a player's hit points as they gain levels.",
 "EH.Advancement.HitPoints.Fixed": "Take Fixed",
 "EH.Advancement.HitPoints.MaxAtFirstLevel": "Max at 1st Level: <strong>{max}</strong>",
+
+"EH.Advancement.ItemGrant.Title": "Grant Features",
+"EH.Advancement.ItemGrant.Hint": "Grant the character features when they reach a certain level.",
 
 "EH.Ammunition.Types.Label": "Ammunition Type",
 "EH.Ammunition.Types.MachineGun.Label": "Machine Gun",

@@ -213,7 +213,7 @@ export default class ActorEH extends Actor {
 	 * @param {RestResult} [result={}] - Rest result being constructed.
 	 */
 	_getRestItemUseRecovery(config={}, result={}) {
-		
+
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -224,7 +224,7 @@ export default class ActorEH extends Actor {
 	 * @param {RestResult} [result={}] - Rest result being constructed.
 	 */
 	_getRestResourceRecovery(config={}, result={}) {
-		
+
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

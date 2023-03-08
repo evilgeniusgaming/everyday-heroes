@@ -2,7 +2,7 @@
 	{{> "everydayHeroes.advancement-controls"}}
 	<fieldset>
 		<label>{{localize "EH.HitDice.Label[one]"}}</label>
-		<select name="{{configuration.denomination}}">
+		<select name="configuration.denomination">
 			{{selectOptions diceSteps selected=configuration.denomination}}
 		</select>
 	</fieldset>

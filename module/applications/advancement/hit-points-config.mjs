@@ -7,6 +7,7 @@ export default class HitPointsConfig extends AdvancementConfig {
 
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
+			classes: ["everyday-heroes", "advancement", "config", "hit-points"],
 			template: "systems/everyday-heroes/templates/advancement/hit-points-config.hbs"
 		});
 	}

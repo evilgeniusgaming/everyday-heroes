@@ -1,3 +1,5 @@
+import AdvancementManager from "../applications/advancement/advancement-manager.mjs";
+
 /**
  * Extended version of `Item` class to support Everyday Heroes features.
  */

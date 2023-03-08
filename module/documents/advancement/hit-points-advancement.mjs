@@ -19,7 +19,7 @@ export default class HitPointsAdvancement extends Advancement {
 				value: HitPointsValueData
 			},
 			order: 10,
-			icon: "systems/dnd5e/artwork/svg/advancement/hit-points.svg",
+			icon: "systems/everyday-heroes/artwork/svg/advancement/hit-points.svg",
 			title: game.i18n.localize("EH.Advancement.HitPoints.Title"),
 			hint: game.i18n.localize("EH.Advancement.HitPoints.Hint"),
 			multiLevel: true,

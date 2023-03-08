@@ -82,7 +82,7 @@ export default class Advancement extends BaseAdvancement {
 			title: game.i18n.localize("EH.Advancement.Core.Title"),
 			hint: "",
 			multiLevel: false,
-			validItemTypes: new Set(["achetype", "class", "background", "profession"]),
+			validItemTypes: new Set(["archetype", "class", "background", "profession"]),
 			apps: {
 				config: AdvancementConfig,
 				flow: AdvancementFlow
@@ -298,7 +298,7 @@ export default class Advancement extends BaseAdvancement {
 	 * Locally apply this advancement from stored data, if possible. If stored data can not be restored for any reason,
 	 * throw an AdvancementError to display the advancement flow UI.
 	 * @param {number} level - Level being advanced.
-	 * @param {object} data  - Data from {@link Advancement#reverse} needed to restore this advancement.
+	 * @param {object} data - Data from {@link Advancement#reverse} needed to restore this advancement.
 	 * @abstract
 	 */
 	async restore(level, data) { }

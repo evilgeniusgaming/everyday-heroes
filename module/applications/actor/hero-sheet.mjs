@@ -421,4 +421,22 @@ export default class HeroSheet extends ActorSheet {
 	/*  Drag & Drop                              */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	async _onDropItemCreate(itemData) {
+		const items = itemData instanceof Array ? itemData : [itemData];
+
+		const toCreate = [];
+		for ( const item of items ) {
+			// TODO: Check to make sure items of this type are allowed on this actor
+			if ( item.system.advancement?.length ) {
+				const manager = AdvancementManager.forNewItem(this.actor, item);
+				if ( manager.steps.length ) {
+					manager.render(true);
+					return false;
+				}
+			}
+			toCreate.push(result);
+		}
+
+		return this.actor.createEmbeddedDocuments("Item", toCreate);
+	}
 }
