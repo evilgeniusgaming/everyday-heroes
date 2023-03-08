@@ -10,6 +10,7 @@ import config from "./module/config/_module.mjs";
 import * as data from "./module/data/_module.mjs";
 import * as dice from "./module/dice/_module.mjs";
 import * as documents from "./module/documents/_module.mjs";
+import * as settings from "./module/settings.mjs";
 import * as utils from "./module/utils.mjs";
 
 globalThis.EverydayHeroes = {
@@ -18,6 +19,7 @@ globalThis.EverydayHeroes = {
 	data,
 	dice,
 	documents,
+	settings,
 	utils
 };
 
@@ -29,12 +31,14 @@ Hooks.once("init", function() {
 	data.registerSystemDataModels();
 	dice.registerDice();
 	documents.registerDocumentClasses();
+	settings.registerKeybindings();
+	settings.registerSettings();
 	utils.registerHandlebarsHelpers();
 	utils.registerHandlebarsPartials();
 });
 
 Hooks.once("setup", function() {
-	// Setup stuff here
+	settings.applyReduceTransparency();
 });
 
 Hooks.once("i18nInit", function() {
@@ -51,5 +55,6 @@ export {
 	data,
 	dice,
 	documents,
+	settings,
 	utils
 };

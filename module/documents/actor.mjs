@@ -270,9 +270,7 @@ export default class ActorEH extends Actor {
 			data.globalBonus = Roll.replaceFormulaData(this.system.bonuses.ability.check, data);
 		}
 
-		const rollConfig = foundry.utils.mergeObject({
-			data
-		}, config);
+		const rollConfig = foundry.utils.mergeObject({ data }, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
 		const flavor = game.i18n.format("EH.Abilities.Action.CheckSpecific", {
@@ -352,9 +350,7 @@ export default class ActorEH extends Actor {
 			data.globalBonus = Roll.replaceFormulaData(this.system.bonuses.ability.save, data);
 		}
 
-		const rollConfig = foundry.utils.mergeObject({
-			data
-		}, config);
+		const rollConfig = foundry.utils.mergeObject({ data }, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
 		const flavor = game.i18n.format("EH.Abilities.Action.SaveSpecific", {
@@ -424,9 +420,7 @@ export default class ActorEH extends Actor {
 			data.globalBonus = Roll.replaceFormulaData(this.system.bonuses.ability.save, data);
 		}
 
-		const rollConfig = foundry.utils.mergeObject({
-			data
-		}, config);
+		const rollConfig = foundry.utils.mergeObject({ data }, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
 		const flavor = game.i18n.localize("EH.Death.Label[one]");
@@ -630,12 +624,16 @@ export default class ActorEH extends Actor {
 
 	/**
 	 * Roll initiative.
-	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
+	 * @param {object} [options] - Options for the initiative process (see Actor#rollInitiative).
+	 * @param {boolean} [options.dialog=false] - Should the configuration dialog be shown?
+	 * @param {ChallengeRollOptions} [rollOptions] - Additional options passed to the roll.
 	 * @param {RollMessageConfiguration} [message] - Configuration data that guides roll message creation.
-	 * @returns {Promise<ChallengeRoll|void>}
+	 * @returns {Promise<Combat|void>}
 	 */
-	async rollInitiative(config={}, message={}) {
-		console.log("rollInitiative", config, message);
+	async rollInitiative(options={}, rollOptions={}, message={}) {
+		if ( options.dialog ) console.log("Configure initiative dialog");
+		// TODO: Add hooks
+		return super.rollInitiative(options);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -647,7 +645,58 @@ export default class ActorEH extends Actor {
 	 * @returns {Promise<ChallengeRoll|void>}
 	 */
 	async rollLuckSave(config={}, message={}) {
-		console.log("rollLuckSave", config, message);
+		const parts = [];
+		const data = this.getRollData();
+
+		// Global save bonus
+		if ( this.system.bonuses.ability.save ) {
+			parts.push("@globalBonus");
+			data.globalBonus = Roll.replaceFormulaData(this.system.bonuses.ability.save, data);
+		}
+
+		const rollConfig = foundry.utils.mergeObject({
+			data,
+			options: {
+				target: 11
+			}
+		}, config);
+		rollConfig.parts = parts.concat(config.parts ?? []);
+
+		const flavor = game.i18n.format("EH.Luck.Label");
+		const messageConfig = foundry.utils.mergeObject({
+			data: {
+				title: `${flavor}: ${this.name}`,
+				flavor,
+				speaker: ChatMessage.getSpeaker({actor: this}),
+				"flags.everyday-heroes.roll": {
+					type: "luck"
+				}
+			}
+		}, message);
+
+		/**
+		 * A hook event that fires before an luck save is rolled for an Actor.
+		 * @function everydayHeroes.preRollLuckSave
+		 * @memberof hookEvents
+		 * @param {ActorEH} actor - Actor for which the luck save is being rolled.
+		 * @param {ChallengeRollConfiguration} config - Configuration data for the pending roll.
+		 * @param {RollMessageConfiguration} message - Configuration data for the roll's message.
+		 * @returns {boolean} - Explicitly return `false` to prevent ability save from being rolled.
+		 */
+		if ( Hooks.call("everydayHeroes.preRollLuckSave", this, rollConfig, messageConfig) === false ) return;
+
+		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig);
+
+		/**
+		 * A hook event that fires after an luck save has been rolled for an Actor.
+		 * @function everydayHeroes.rollLuckSave
+		 * @memberof hookEvents
+		 * @param {ActorEH} actor - Actor for which the luck save has been rolled.
+		 * @param {D20Roll} roll - The resulting roll.
+		 */
+		if ( roll ) Hooks.callAll("everydayHeroes.rollLuckSave", this, roll);
+
+		return roll;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

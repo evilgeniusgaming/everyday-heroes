@@ -1,4 +1,5 @@
 import ActorEH from "./actor.mjs";
+import CombatantEH from "./combatant.mjs";
 import ItemEH from "./item.mjs";
 
 /**
@@ -10,6 +11,7 @@ export function registerDocumentClasses() {
 		hero: "EH.Actor.Types.Hero[one]",
 		npc: "EH.Actor.Types.NPC[one]"
 	};
+	CONFIG.Combatant.documentClass = CombatantEH;
 	CONFIG.Item.documentClass = ItemEH;
 	CONFIG.Item.typeLabels = {
 		// Concept
@@ -32,6 +34,6 @@ export function registerDocumentClasses() {
 	};
 }
 
-export {ActorEH, ItemEH};
+export {ActorEH, CombatantEH, ItemEH};
 export * as advancement from "./advancement/_module.mjs";
 export {default as Proficiency} from "./proficiency.mjs";

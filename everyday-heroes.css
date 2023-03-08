@@ -5,16 +5,20 @@
 @import "./styles/dialog.css";
 @import "./styles/item.css";
 
-.everyday-heroes.window-app {
+.everyday-heroes.window-app .window-content {
+	background: var(--eh-background-color-light);
+}
+
+body:not(.reduce-transparency) .everyday-heroes.window-app {
 	overflow: clip;
 	background: var(--eh-sheet-window-background);
 	backdrop-filter: var(--eh-sheet-backdrop-filter);
 	--webkit-backdrop-filter: var(--eh-sheet-backdrop-filter);
 }
-.everyday-heroes.window-app .window-header {
+body:not(.reduce-transparency) .everyday-heroes.window-app .window-header {
 	background-color: var(--eh-background-color-black);
 }
-.everyday-heroes.window-app .window-content {
+body:not(.reduce-transparency) .everyday-heroes.window-app .window-content {
 	background: var(--eh-sheet-content-background);
 }
 

@@ -32,7 +32,9 @@
 			<fieldset class="hit-dice">
 				<label>Hit Dice</label>
 				<button data-action="roll-hit-die" {{disabled (eq hd.available 0)}}>
-					<i class="fas fa-dice-d{{hd.denomination}}"></i> {{localize "EH.Action.Roll" type=(concat "d" hd.denomination)}}
+					{{#if (eq result.medicalAttention "receive")}}<i class="fa-solid fa-angles-up"></i>
+					{{else}}<i class="fas fa-dice-d{{hd.denomination}}"></i>{{/if}}
+					{{localize "EH.Action.Roll" type=(concat "d" hd.denomination)}}
 				</button>
 			</fieldset>
 		{{/if}}

@@ -293,6 +293,8 @@
 "EH.Levels.Action.Decrease": "Level Down",
 "EH.Levels.Action.Increase": "Level Up",
 
+"EH.Luck.Label": "Luck Saving Throw",
+
 "EH.Proficiency.Label[one]": "Proficiency",
 "EH.Proficiency.Label[other]": "Proficiencies",
 "EH.Proficiency.Levels.Expertise": "Expertise",
@@ -336,6 +338,11 @@
 "EH.Roles.Shadow.Label": "Shadow",
 "EH.Roles.Support.Label": "Support",
 "EH.Roles.Tank.Label": "Tank",
+
+"EH.Settings.InitiativeTiebreaker.Label": "Initiative Tiebreaker",
+"EH.Settings.InitiativeTiebreaker.Hint": "Add initiative ability score as decimal to help break ties in initiatives.",
+"EH.Settings.ReduceTransparency.Label": "Reduce Transparency",
+"EH.Settings.ReduceTransparency.Hint": "Remove the transparency from behind sheets to reduce visual distraction.",
 
 "EH.Sheets.Concept": "Default Concept Item Sheet",
 "EH.Sheets.Hero": "Default Hero Sheet",

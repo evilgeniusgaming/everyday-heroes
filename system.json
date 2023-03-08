@@ -72,5 +72,7 @@
       "flags": {}
     }
   ],
+  "gridDistance": 5,
+  "gridUnits": "ft",
   "flags": {}
 }
