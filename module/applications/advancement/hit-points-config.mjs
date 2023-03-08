@@ -11,4 +11,11 @@ export default class HitPointsConfig extends AdvancementConfig {
 		});
 	}
 
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	getData(options) {
+		const context = super.getData(options);
+		context.diceSteps = Object.fromEntries(CONFIG.EverydayHeroes.diceSteps.map(n => [n, `d${n}`]));
+		return context;
+	}
 }

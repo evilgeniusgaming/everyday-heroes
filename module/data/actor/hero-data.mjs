@@ -12,7 +12,7 @@ export default class HeroData extends SystemDataModel {
 		return {
 			abilities: new MappingField(new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.NumberField({
-					nullable: false, initial: 0, min: 0, integer: true, label: "EH.Abilities.Score[one]"
+					nullable: false, initial: 10, min: 0, integer: true, label: "EH.Abilities.Score[one]"
 				}),
 				saveProficiency: new foundry.data.fields.SchemaField({
 					multiplier: new foundry.data.fields.NumberField({
@@ -76,8 +76,8 @@ export default class HeroData extends SystemDataModel {
 				value: new foundry.data.fields.HTMLField({label: "EH.Biography.Label"}),
 				public: new foundry.data.fields.HTMLField({label: "EH.Biography.Public"}),
 				notes: new foundry.data.fields.HTMLField({label: "EH.Biography.Notes"}),
-				attachements: new foundry.data.fields.ArrayField(
-					new foundry.data.fields.StringField(), {label: "EH.Biography.Attachements"}
+				attachments: new foundry.data.fields.ArrayField(
+					new foundry.data.fields.StringField(), {label: "EH.Biography.Attachments"}
 				),
 				beliefs: new foundry.data.fields.ArrayField(
 					new foundry.data.fields.StringField(), {label: "EH.Biography.Beliefs"}
@@ -149,12 +149,29 @@ export default class HeroData extends SystemDataModel {
 					check: new FormulaField({label: "EH.Skills.Bonuses.Check"}),
 					passive: new FormulaField({deterministic: true, label: "EH.Skills.Bonuses.Passive"})
 				})
-			}), {initialKeys: CONFIG.EverydayHeroes.skills, prepareKeys: true, label: "EH.Skills.Label[other]"}),
+			}), {
+				initialKeys: CONFIG.EverydayHeroes.skills, initialValue: this._initialSkillValue,
+				prepareKeys: true, label: "EH.Skills.Label[other]"
+			}),
 			traits: new foundry.data.fields.SchemaField({
 				languages: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {label: ""}),
 				equipment: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {label: ""})
 			})
 		};
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Populate the proper initial abilities for the skills.
+	 * @param {string} key - Key for which the initial data will be created.
+	 * @param {object} initial - The initial skill object.
+	 * @returns {object} - Initial skills object with the ability defined.
+	 * @internal
+	 */
+	static _initialSkillValue(key, initial) {
+		initial.ability = CONFIG.EverydayHeroes.skills[key]?.ability ?? initial.ability;
+		return initial;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

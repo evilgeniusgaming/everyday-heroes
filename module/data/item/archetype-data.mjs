@@ -15,6 +15,6 @@ export default class ArchetypeData extends SystemDataModel.mixin(DescribedTempla
 
 	prepareDerivedHitDie() {
 		const hpAdvancement = this.advancement.byType("HitPoints")?.[0];
-		this.hitDie = hpAdvancement.hitDieValue;
+		this.hitDie = hpAdvancement?.configuration.denomination;
 	}
 }

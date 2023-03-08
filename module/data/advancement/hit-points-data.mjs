@@ -3,14 +3,13 @@ import MappingField from "../fields/mapping-field.mjs";
 /**
  * Configuration data for the Hit Points advancement.
  *
- * @property {string} hitDie - Denomination of hit die available as defined in `CONFIG.EverydayHeroes.hitDieTypes`.
+ * @property {string} denomination - Size of hit die available as defined in `CONFIG.EverydayHeroes.diceSteps`.
  */
 export class HitPointsConfigurationData extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
-			hitDie: new foundry.data.fields.StringField({
-				blank: false, initial: "d6", label: "EH.HitDice.Label[one]",
-				validate: v => /d\d+/.test(v), validationError: "must be a dice value in the format d#"
+			denomination: new foundry.data.fields.NumberField({
+				initial: () => CONFIG.EverydayHeroes.diceSteps[0], label: "EH.HitDice.Label[one]"
 			})
 		};
 	}

@@ -42,6 +42,7 @@
 	border: 1px solid var(--eh-border-color-strong);
 	border-inline-start: none;
 	border-bottom-right-radius: 20px;
+	padding: 0.5em;
 	background-color: var(--eh-background-color-mid);
 }
 .item.sheet form > header > div.fields fieldset {
@@ -49,6 +50,9 @@
 	align-items: first baseline;
 	border: none;
 	gap: 0.5em;
+}
+.item.sheet form > header > div.fields fieldset:not(:last-of-type) {
+	margin-block-end: 0.25em;
 }
 .item.sheet form > header > div.fields fieldset label {
 	font-weight: bold;

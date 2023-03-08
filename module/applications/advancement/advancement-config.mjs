@@ -36,7 +36,7 @@ export default class AdvancementConfig extends FormApplication {
 
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ["everyday-heroes", "advancement", "dialog"],
+			classes: ["everyday-heroes", "advancement", "config"],
 			template: "systems/everyday-heroes/templates/advancement/advancement-config.hbs",
 			width: 400,
 			height: "auto",
@@ -72,7 +72,6 @@ export default class AdvancementConfig extends FormApplication {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	/** @inheritdoc */
 	getData() {
 		const levels = Object.fromEntries(Array.fromRange(CONFIG.EverydayHeroes.maxLevel + 1).map(l => [l, l]));
 		if ( ["archetype", "class"].includes(this.item.type) ) delete levels[0];

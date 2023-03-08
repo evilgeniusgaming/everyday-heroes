@@ -72,7 +72,7 @@ export default class AdvancementManager extends Application {
 
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ["everyday-heroes", "advancement-manager"],
+			classes: ["everyday-heroes", "advancement", "manager"],
 			template: "systems/everyday-heroes/templates/advancement/advancement-manager.hbs",
 			width: 460,
 			height: "auto"

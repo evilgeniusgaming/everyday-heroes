@@ -20,6 +20,9 @@
           "failure": 0,
           "bonus": ""
         },
+        "hd": {
+          "spent": 0
+        },
         "hp": {
           "value": 0,
           "bonuses": {
@@ -29,6 +32,10 @@
         },
         "initiative": {
           "bonus": ""
+        },
+        "movement": {
+          "value": 30,
+          "units": ""
         }
       },
       "biography": {
@@ -53,6 +60,18 @@
         "weight": ""
       },
       "bonuses": {
+        "ability": {
+          "check": "",
+          "save": ""
+        },
+        "attack": {},
+        "damage": {},
+        "skill": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "conditions": {
         
       },
       "details": {

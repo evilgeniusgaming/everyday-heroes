@@ -23,11 +23,6 @@
 	padding-inline: 0.5em;
 	background-color: black;
 }
-.physical.sheet [data-tab="details"] fieldset {
-	margin: 0;
-	border: none;
-	padding: 0;
-}
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Fields                                   */

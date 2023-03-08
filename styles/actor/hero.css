@@ -11,11 +11,6 @@
 .hero.sheet > header {
 	z-index: 5;
 }
-.hero.sheet fieldset {
-	margin: 0;
-	border: none;
-	padding: 0;
-}
 
 .hero.sheet nav[data-group="primary"] {
 	position: absolute;

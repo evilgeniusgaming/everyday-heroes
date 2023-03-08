@@ -1,3 +1,8 @@
+.everyday-heroes fieldset {
+	margin: 0;
+	border: none;
+	padding: 0;
+}
 .everyday-heroes fieldset :is(input, select) {
 	border: none;
 	border-radius: 5px;

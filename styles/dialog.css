@@ -20,9 +20,6 @@
 	grid-column: 1 / -1;
 	display: grid;
 	grid-template-columns: subgrid;
-	margin: 0;
-	border: none;
-	padding: 0;
 }
 .everyday-heroes.dialog .main-form fieldset > label {
 	font-weight: bold;

@@ -1,25 +1,31 @@
 <form id="{{appId}}" data-level="{{level}}" data-id="{{advancement.id}}" data-type="{{type}}" autocomplete="off">
-	<h3>{{{title}}}</h3>
-
+	<h3>
+		<span class="left stripes"></span>
+		<span class="center">{{{title}}}</span>
+		<span class="right stripes"></span>
+	</h3>
+{{log this}}
 	{{#if isFirstLevel}}
 
-		<div>
+		<p>
 			{{{localize "EH.Advancement.HitPoints.MaxAtFirstLevel" max=dieValue}}}
 			<input type="hidden" name="useMax" value="true" data-dtype="Boolean">
-		</div>
+		</p>
 
 	{{else}}
 
-		<div class="rolls">
-			<label class="averageLabel">
+		<fieldset class="rolls">
+			<label>
 				<span>{{localize "EH.Advancement.HitPoints.Fixed"}}</span>
 				<input class="averageCheckbox" type="checkbox" name="useAverage" {{checked data.useAverage}}>
 			</label>
-			<input class="rollResult" type="number" name="value" value="{{data.value}}" {{disabled data.useAverage}}>
-			<button class="rollButton" type="button" name="roll" {{disabled data.useAverage}}>
-				<i class="fas fa-dice-d20"></i> {{localize "EH.Action.Roll" die=hitDie}}
-			</button>
-		</div>
+			<div class="fields">
+				<input class="rollResult" type="number" name="value" value="{{data.value}}" {{disabled data.useAverage}}>
+				<button class="rollButton" type="button" name="roll" {{disabled data.useAverage}}>
+					<i class="fas fa-dice-d{{denomination}}"></i> {{localize "EH.Action.Roll" type=(concat "d" denomination)}}
+				</button>
+			</div>
+		</fieldset>
 
 	{{/if}}
 </form>

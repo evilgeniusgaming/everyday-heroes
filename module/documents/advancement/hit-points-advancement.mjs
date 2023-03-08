@@ -40,16 +40,6 @@ export default class HitPointsAdvancement extends Advancement {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * The face value of the hit die used.
-	 * @returns {number}
-	 */
-	get hitDieValue() {
-		return Number(this.configuration.hitDie.substring(1));
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Display Methods                          */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -74,7 +64,7 @@ export default class HitPointsAdvancement extends Advancement {
 	 * @returns {number|null} - Hit points for level or null if none have been taken.
 	 */
 	valueForLevel(level) {
-		return this.constructor.valueForLevel(this.value.granted ?? {}, this.hitDieValue, level);
+		return this.constructor.valueForLevel(this.value.granted ?? {}, this.configuration.denomination, level);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -82,16 +72,16 @@ export default class HitPointsAdvancement extends Advancement {
 	/**
 	 * Hit points given at the provided level.
 	 * @param {object} data - Contents of `value` used to determine this value.
-	 * @param {number} hitDieValue - Face value of the hit die used by this advancement.
+	 * @param {number} denomination - Face value of the hit die used by this advancement.
 	 * @param {number} level - Level for which to get hit points.
 	 * @returns {number|null} - Hit points for level or null if none have been taken.
 	 */
-	static valueForLevel(data, hitDieValue, level) {
+	static valueForLevel(data, denomination, level) {
 		const value = data[level];
 		if ( !value ) return null;
 
-		if ( value === "max" ) return hitDieValue;
-		if ( value === "avg" ) return (hitDieValue / 2) + 1;
+		if ( value === "max" ) return denomination;
+		if ( value === "avg" ) return (denomination / 2) + 1;
 		return Number(value);
 	}
 
@@ -145,7 +135,7 @@ export default class HitPointsAdvancement extends Advancement {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	apply(level, data) {
-		let value = this.constructor.valueForLevel(data, this.hitDieValue, level);
+		let value = this.constructor.valueForLevel(data, this.configuration.denomination, level);
 		if ( value === undefined ) return;
 		this.actor.updateSource({
 			"system.attributes.hp.value": this.actor.system.attributes.hp.value + this.#getApplicableValue(value)

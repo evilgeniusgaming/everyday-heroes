@@ -14,20 +14,19 @@ export default class HitPointsFlow extends AdvancementFlow {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	getData() {
-		const source = this.retainedData ?? this.advancement.value;
-		const value = source[this.level];
+		const source = this.retainedData ?? this.advancement.value ?? {};
+		const value = source.granted?.[this.level];
 
 		// If value is empty, `useAverage` should default to the value selected at the previous level
 		let useAverage = value === "avg";
 		if ( !value ) {
-			const lastValue = source[this.level - 1];
+			const lastValue = source.granted?.[this.level - 1];
 			if ( lastValue === "avg" ) useAverage = true;
 		}
 
 		return foundry.utils.mergeObject(super.getData(), {
 			isFirstLevel: this.level === 1,
-			hitDie: this.advancement.configuration.hitDie,
-			dieValue: this.advancement.hitDieValue,
+			denomination: this.advancement.configuration.denomination,
 			data: {
 				value: Number.isInteger(value) ? value : "",
 				useAverage
@@ -59,7 +58,7 @@ export default class HitPointsFlow extends AdvancementFlow {
 	 */
 	_updateRollResult() {
 		if ( !this.form.elements.useAverage?.checked ) return;
-		this.form.elements.value.value = (this.advancement.hitDieValue / 2) + 1;
+		this.form.elements.value.value = (this.advancement.configuration.denomination / 2) + 1;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
