@@ -1,0 +1,15 @@
+<form id="{{appId}}" data-level="{{level}}" data-id="{{advancement.id}}" data-type="{{type}}">
+	<h3>
+		<span class="left stripes"></span>
+		<span class="center">{{{title}}}</span>
+		<span class="right stripes"></span>
+	</h3>
+
+	<p>
+		<span class="scale-value initial {{#unless initial}}none{{/unless}}">
+			{{#if initial}}{{{initial}}}{{else}}{{localize "None"}}{{/if}}
+		</span>
+		&#x27A1;
+		<span class="scale-value new">{{{final}}}</span>
+	</p>
+</form>

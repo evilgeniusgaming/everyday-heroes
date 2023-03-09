@@ -57,3 +57,17 @@
 	grid-column: 1;
 	justify-content: flex-start;
 }
+.concept.sheet main > [data-tab="advancement"] ol.advancement > li .advancement-name {
+	display: flex;
+	align-items: center;
+}
+.concept.sheet main > [data-tab="advancement"] ol.advancement > li .advancement-name figure {
+	width: 25px;
+	height: 25px;
+	margin: 0;
+	padding-inline-end: 0.5em;
+	background-size: contain;
+}
+.concept.sheet main > [data-tab="advancement"] ol.advancement > li .advancement-name h4 {
+	margin: 0;
+}

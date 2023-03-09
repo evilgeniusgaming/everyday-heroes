@@ -27,14 +27,14 @@ export default class AmmunitionData extends SystemDataModel.mixin(
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.StringField({intial: "basic", label: "EH.Ammunition.Types.Label"})
+				value: new foundry.data.fields.StringField({intial: "basic", label: "EH.Ammunition.Type.Label"})
 			}, {label: "EH.Equipment.Type.Label"}),
 			penetrationValue: new foundry.data.fields.NumberField({
 				integer: true,
-				label: "EH.Equipment.Traits.PenetrationValue.Label", hint: ""
+				label: "EH.Equipment.Trait.PenetrationValue.Label", hint: ""
 			}),
 			bonuses: new foundry.data.fields.SchemaField({
-				damage: new FormulaField({label: "EH.Weapon.Bonuses.Damage.Label"})
+				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label"})
 			})
 		});
 	}
@@ -46,7 +46,7 @@ export default class AmmunitionData extends SystemDataModel.mixin(
 	prepareDerivedTypeLabel() {
 		this.type.label = game.i18n.format("EH.Equipment.Type.DetailedLabel", {
 			category: "",
-			type: game.i18n.localize("EH.Item.Types.Ammunition[one]"),
+			type: game.i18n.localize("EH.Item.Type.Ammunition[one]"),
 			subtype: CONFIG.EverydayHeroes.ammunitionTypes[this.type.value] ?? ""
 		});
 	}

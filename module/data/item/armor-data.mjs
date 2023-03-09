@@ -22,15 +22,15 @@ export default class ArmorData extends SystemDataModel.mixin(DescribedTemplate, 
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.StringField({intial: "armor", label: "EH.Armor.Types.Label"}),
+				value: new foundry.data.fields.StringField({intial: "armor", label: "EH.Armor.Type.Label"}),
 				category: new foundry.data.fields.StringField({intial: "basic", label: "EH.Equipment.Category.Label[one]"})
 			}, {label: "EH.Equipment.Type.Label"}),
 			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-				label: "EH.Weapon.Properties.Label"
+				label: "EH.Weapon.Property.Label"
 			}),
 			armorValue: new foundry.data.fields.NumberField({
 				initial: 0, min: 0, integer: true,
-				label: "EH.Equipment.Traits.ArmorValue.Label", hint: "EH.Equipment.Traits.ArmorValue.Hint"
+				label: "EH.Equipment.Trait.ArmorValue.Label", hint: "EH.Equipment.Trait.ArmorValue.Hint"
 			}),
 			damaged: new foundry.data.fields.BooleanField({label: "EH.Armor.Damaged"}),
 			bonuses: new foundry.data.fields.SchemaField({

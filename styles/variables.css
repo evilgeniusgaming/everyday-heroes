@@ -11,6 +11,7 @@
 	--eh-input-color-checked: rgb(136, 255, 118);
 
 	--eh-text-color-black: rgb(0, 0, 0);
+	--eh-text-color-placeholder: rgb(128, 128, 128);
 	--eh-text-color-white: rgb(255, 255, 255);
 
 	--eh-sheet-backdrop-filter: blur(2px) brightness(200%) contrast(65%) saturate(50%) blur(4px);

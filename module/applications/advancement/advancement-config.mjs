@@ -82,9 +82,12 @@ export default class AdvancementConfig extends FormApplication {
 			src: this.advancement.toObject(),
 			default: {
 				title: this.advancement.constructor.metadata.title,
-				icon: this.advancement.constructor.metadata.icon
+				icon: this.advancement.constructor.metadata.icon,
+				identifier: this.advancement.title.slugify({ strict: true }),
+				identifierHint: this.advancement.constructor.metadata.identifier.hint
 			},
 			levels,
+			showIdentifier: this.advancement.constructor.metadata.identifier.configurable,
 			showLevelSelector: !this.advancement.constructor.metadata.multiLevel
 		};
 		return context;

@@ -1,9 +1,11 @@
 <form autocomplete="off">
-	{{> "everydayHeroes.advancement-controls"}}
-	<fieldset>
-		<label>{{localize "EH.HitDice.Label[one]"}}</label>
-		<select name="configuration.denomination">
-			{{selectOptions diceSteps selected=configuration.denomination}}
-		</select>
-	</fieldset>
+	<section>
+		{{> "everydayHeroes.advancement-controls"}}
+		<fieldset>
+			<label>{{localize "EH.HitDice.Label[one]"}}</label>
+			<select name="configuration.denomination">
+				{{selectOptions diceSteps selected=configuration.denomination}}
+			</select>
+		</fieldset>
+	</section>
 </form>

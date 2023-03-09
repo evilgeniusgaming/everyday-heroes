@@ -3,13 +3,19 @@
 	border: none;
 	padding: 0;
 }
+.everyday-heroes fieldset > label {
+	font-weight: bold;
+	text-transform: uppercase;
+}
 .everyday-heroes fieldset :is(input, select) {
+	flex: 1 0;
 	border: none;
 	border-radius: 5px;
+	padding-inline: 0.5em;
 	background-color: var(--eh-background-color-white);
 }
-.everyday-heroes fieldset select {
-	padding-inline: 1em;
+.everyday-heroes fieldset input::placeholder {
+	color: var(--eh-text-color-placeholder);
 }
 .everyday-heroes fieldset button {
 	border: 1px solid var(--eh-border-color-strong);
@@ -21,4 +27,8 @@
 }
 .everyday-heroes fieldset button:not(:disabled):hover {
 	box-shadow: inset 0 0 5px var(--color-shadow-primary);
+}
+.everyday-heroes fieldset > .fields {
+	display: flex;
+	gap: 0.25em;
 }

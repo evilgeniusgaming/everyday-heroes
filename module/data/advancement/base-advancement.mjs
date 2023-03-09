@@ -1,5 +1,6 @@
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
 import AdvancementDataField from "../fields/advancement-data-field.mjs";
+import IdentifierField from "../fields/identifier-field.mjs";
 
 /**
  * Base data model for advancement.
@@ -24,6 +25,7 @@ export default class BaseAdvancement extends SparseDataModel {
 				required: true, initial: this.typeName, validate: v => v === this.typeName,
 				validationError: `must be the same as the Advancement type name ${this.typeName}`
 			}),
+			identifier: new IdentifierField({label: "", hint: ""}),
 			configuration: new AdvancementDataField(this, {required: true}),
 			value: new AdvancementDataField(this, {required: true}),
 			level: new foundry.data.fields.NumberField({

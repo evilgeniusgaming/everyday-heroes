@@ -20,10 +20,11 @@ export default class TypeField extends foundry.data.fields.ObjectField {
 	/**
 	 * Get the DataModel definition for the specified type.
 	 * @param {object} value - Data being prepared for this field.
+	 * @param {DataField} parent - Parent field for which this is being prepared.
 	 * @returns {typeof DataModel|null} - Data model to use while initializing the field.
 	 */
-	getModel(value) {
-		const type = this.determineType?.(value) ?? null;
+	getModel(value, parent) {
+		const type = this.determineType?.(value, parent) ?? null;
 		if ( foundry.utils.getType(this.modelLookup) === "function" ) return this.modelLookup(type) ?? null;
 		return this.modelLookup?.[type] ?? null;
 	}
@@ -41,7 +42,7 @@ export default class TypeField extends foundry.data.fields.ObjectField {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	initialize(value, model, options={}) {
-		const cls = this.getModel(value);
+		const cls = this.getModel(value, model);
 		if ( cls ) return new cls(value, {parent: model, ...options});
 		return foundry.utils.deepClone(value);
 	}

@@ -8,29 +8,29 @@ import ItemEH from "./item.mjs";
 export function registerDocumentClasses() {
 	CONFIG.Actor.documentClass = ActorEH;
 	CONFIG.Actor.typeLabels = {
-		hero: "EH.Actor.Types.Hero[one]",
-		npc: "EH.Actor.Types.NPC[one]"
+		hero: "EH.Actor.Type.Hero[one]",
+		npc: "EH.Actor.Type.NPC[one]"
 	};
 	CONFIG.Combatant.documentClass = CombatantEH;
 	CONFIG.Item.documentClass = ItemEH;
 	CONFIG.Item.typeLabels = {
 		// Concept
-		archetype: "EH.Item.Types.Archetype[one]",
-		background: "EH.Item.Types.Background[one]",
-		class: "EH.Item.Types.Class[one]",
-		profession: "EH.Item.Types.Profession[one]",
+		archetype: "EH.Item.Type.Archetype[one]",
+		background: "EH.Item.Type.Background[one]",
+		class: "EH.Item.Type.Class[one]",
+		profession: "EH.Item.Type.Profession[one]",
 
 		// Features
-		talent: "EH.Item.Types.Talent[one]",
-		specialfeature: "EH.Item.Types.SpecialFeature[one]",
-		feat: "EH.Item.Types.Feat[one]",
+		talent: "EH.Item.Type.Talent[one]",
+		specialfeature: "EH.Item.Type.SpecialFeature[one]",
+		feat: "EH.Item.Type.Feat[one]",
 
 		// Equipment
-		ammunition: "EH.Item.Types.Ammunition[one]",
-		armor: "EH.Item.Types.Armor[one]",
-		weapon: "EH.Item.Types.Weapon[one]",
-		explosive: "EH.Item.Types.Explosive[one]",
-		gear: "EH.Item.Types.Gear[one]"
+		ammunition: "EH.Item.Type.Ammunition[one]",
+		armor: "EH.Item.Type.Armor[one]",
+		weapon: "EH.Item.Type.Weapon[one]",
+		explosive: "EH.Item.Type.Explosive[one]",
+		gear: "EH.Item.Type.Gear[one]"
 	};
 }
 

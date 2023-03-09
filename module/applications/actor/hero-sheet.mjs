@@ -90,18 +90,18 @@ export default class HeroSheet extends ActorSheet {
 
 		context.equipped = {
 			armor: {
-				label: "EH.Item.Types.Armor[other]",
+				label: "EH.Item.Type.Armor[other]",
 				items: []
 			},
 			weapons: {
-				label: "EH.Item.Types.Weapon[other]",
+				label: "EH.Item.Type.Weapon[other]",
 				items: []
 			}
 		};
 
 		context.features = {
 			archetype: {
-				label: "EH.Item.Types.Archetype[one]",
+				label: "EH.Item.Type.Archetype[one]",
 				primary: {
 					item: null,
 					dataset: {type: "archetype"}
@@ -112,7 +112,7 @@ export default class HeroSheet extends ActorSheet {
 				]
 			},
 			class: {
-				label: "EH.Item.Types.Class[one]",
+				label: "EH.Item.Type.Class[one]",
 				primary: {
 					item: null,
 					dataset: {type: "class"}
@@ -123,7 +123,7 @@ export default class HeroSheet extends ActorSheet {
 				]
 			},
 			background: {
-				label: "EH.Item.Types.Background[one]",
+				label: "EH.Item.Type.Background[one]",
 				primary: {
 					item: null,
 					dataset: {type: "background"}
@@ -134,7 +134,7 @@ export default class HeroSheet extends ActorSheet {
 				]
 			},
 			profession: {
-				label: "EH.Item.Types.Profession[one]",
+				label: "EH.Item.Type.Profession[one]",
 				primary: {
 					item: null,
 					dataset: {type: "profession"}
@@ -145,7 +145,7 @@ export default class HeroSheet extends ActorSheet {
 				]
 			},
 			feats: {
-				label: "EH.Item.Types.Feat[other]",
+				label: "EH.Item.Type.Feat[other]",
 				items: [],
 				create: [
 					{ dataset: {type: "feat"} }
@@ -156,24 +156,24 @@ export default class HeroSheet extends ActorSheet {
 		const formatter = new Intl.ListFormat(game.i18n.lang, {style: "short", type: "conjunction"});
 		context.inventory = {
 			armor: {
-				label: "EH.Item.Types.Armor[other]",
+				label: "EH.Item.Type.Armor[other]",
 				items: [],
 				options: { equippable: true },
 				create: [
 					{
-						label: "EH.Item.Types.Armor[one]",
+						label: "EH.Item.Type.Armor[one]",
 						icon: "artwork/svg/equipment/armor.svg",
 						dataset: {type: "armor"}
 					}
 				]
 			},
 			weapons: {
-				label: "EH.Item.Types.Weapon[other]",
+				label: "EH.Item.Type.Weapon[other]",
 				items: [],
 				options: { equippable: true },
 				create: [
 					{
-						label: "EH.Item.Types.Weapon[one]",
+						label: "EH.Item.Type.Weapon[one]",
 						icon: "artwork/svg/equipment/weapon.svg",
 						dataset: {type: "weapon"}
 					}
@@ -181,29 +181,29 @@ export default class HeroSheet extends ActorSheet {
 			},
 			ammunitionExplosives: {
 				label: formatter.format([
-					game.i18n.localize("EH.Item.Types.Ammunition[other]"),
-					game.i18n.localize("EH.Item.Types.Explosive[other]")
+					game.i18n.localize("EH.Item.Type.Ammunition[other]"),
+					game.i18n.localize("EH.Item.Type.Explosive[other]")
 				]),
 				items: [],
 				create: [
 					{
-						label: "EH.Item.Types.Ammunition[one]",
+						label: "EH.Item.Type.Ammunition[one]",
 						icon: "artwork/svg/equipment/ammunition.svg",
 						dataset: {type: "ammunition"}
 					},
 					{
-						label: "EH.Item.Types.Explosive[one]",
+						label: "EH.Item.Type.Explosive[one]",
 						icon: "artwork/svg/equipment/explosive.svg",
 						dataset: {type: "explosive"}
 					}
 				]
 			},
 			gear: {
-				label: "EH.Item.Types.Gear[other]",
+				label: "EH.Item.Type.Gear[other]",
 				items: [],
 				create: [
 					{
-						label: "EH.Item.Types.Gear[one]",
+						label: "EH.Item.Type.Gear[one]",
 						icon: "artwork/svg/equipment/gear.svg",
 						dataset: {type: "gear"}
 					}

@@ -19,14 +19,14 @@ export default class DamageTemplate extends foundry.abstract.DataModel {
 			damage: new foundry.data.fields.SchemaField({
 				number: new foundry.data.fields.NumberField({
 					initial: null, min: this.damageMode === "regular" ? 0 : undefined, integer: true,
-					label: "EH.Equipment.Traits.Damage.Count.Label"
+					label: "EH.Equipment.Trait.Damage.Count.Label"
 				}),
 				denomination: new foundry.data.fields.NumberField({
 					initial: null, min: this.damageMode === "regular" ? 1 : undefined, integer: true,
-					label: "EH.Equipment.Traits.Damage.Denomination.Label"
+					label: "EH.Equipment.Trait.Damage.Denomination.Label"
 				}),
-				type: new foundry.data.fields.StringField({label: "EH.Equipment.Traits.Damage.Type.Label"})
-			}, {label: "EH.Equipment.Traits.Damage.Label", hint: "EH.Equipment.Traits.Damage.Hint"})
+				type: new foundry.data.fields.StringField({label: "EH.Equipment.Trait.Damage.Type.Label"})
+			}, {label: "EH.Equipment.Trait.Damage.Label", hint: "EH.Equipment.Trait.Damage.Hint"})
 		};
 	}
 

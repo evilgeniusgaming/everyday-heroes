@@ -1,0 +1,40 @@
+<form autocomplete="off">
+	<section class="left column">
+		{{> "everydayHeroes.advancement-controls"}}
+		<fieldset>
+			<label>{{localize "EH.Advancement.ScaleValue.Type.Label"}}</label>
+			<select name="configuration.type">
+				{{selectOptions types selected=configuration.type}}
+			</select>
+			<p class="hint type-hint">
+				{{localize type.hint}}
+			</p>
+		</fieldset>
+	</section>
+
+	<section class="right column level-list scale-values">
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Advancement.ScaleValue.Values.Label"}}</span>
+			<span class="right stripes"></span>
+		</h3>
+		{{#each levels as |data level|}}
+			<fieldset>
+				<label>{{level}}</label>
+				<div class="fields">
+					{{#if (eq @root.configuration.type "dice")}}
+						{{numberInput data.value.number name=(concat "configuration.scale." level ".number") min=1 step=1
+													placeholder=data.placeholder.number}}
+						<select name="configuration.scale.{{level}}.denomination" class="{{data.className}}">
+							{{selectOptions @root.faces selected=data.value.denomination blank=data.placeholder.denomination}}
+						</select>
+					{{else}}
+						<input type="{{#if @root.type.isNumeric}}number{{else}}text{{/if}}" step="any"
+									 name="configuration.scale.{{level}}.value" value="{{data.value.value}}"
+									 data-level="{{level}}" placeholder="{{data.placeholder.value}}">
+					{{/if}}
+				</div>
+			</fieldset>
+		{{/each}}
+	</section>
+</form>

@@ -27,4 +27,18 @@ export default class AdvancementTemplate extends foundry.abstract.DataModel {
 			)
 		};
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Data Preparation                         */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareBaseScaleValues() {
+		const scale = this.scale ??= {};
+		const level = this.parent?.actor?.system.details?.level || this.parent?.actor?.system.details?.cr;
+		if ( !level ) return;
+		const actorScale = this.parent.actor.system.scale ??= {};
+		for ( const advancement of this.advancement.byType("ScaleValue") ) {
+			scale[advancement.identifier] = actorScale[advancement.identifier] = advancement.valueForLevel(level);
+		}
+	}
 }

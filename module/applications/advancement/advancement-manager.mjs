@@ -335,13 +335,13 @@ export default class AdvancementManager extends Application {
 		}
 
 		// Level decreased
-		for ( let offset = -1; offset >= levelDelta; offset-- ) {
+		for ( let offset = 0; offset > levelDelta; offset-- ) {
 			const level = manager.clone.system.details.level + offset;
 			const stepData = { type: "reverse", automatic: true };
-			manager.steps.push({ type: "level", level: level, backwardLevel: level + 1, automatic: true });
 			pushSteps(getItemFlows(level).reverse(), stepData);
 			pushSteps(this.flowsForLevel(manager.clone.system.details.class, level).reverse(), stepData);
 			pushSteps(this.flowsForLevel(manager.clone.system.details.archetype, level).reverse(), stepData);
+			manager.steps.push({ type: "level", level: level - 1, backwardLevel: level, automatic: true });
 		}
 
 		return manager;

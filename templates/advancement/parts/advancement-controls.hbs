@@ -5,11 +5,24 @@
 
 <fieldset>
 	<label>{{localize "EH.Advancement.Core.Icon"}}</label>
-	<div class="form-fields">
+	<div class="fields">
 		{{filePicker type="image" target="icon"}}
 		<input type="text" name="icon" value="{{src.icon}}" placeholder="{{default.icon}}">
 	</div>
 </fieldset>
+
+{{#if showIdentifier}}
+	<fieldset>
+		<label>{{localize "EH.Identifier.Label"}}</label>
+		<input type="text" name="identifier" value="{{src.identifier}}" placeholder="{{default.identifier}}">
+		{{#if default.identifierHint}}
+			<p class="hint">
+				{{{localize default.identifierHint identifier=identifier}}}
+				<a class="identifier-hint-copy" data-tooltip="EH.Identifier.Action.Copy"><i class="far fa-clipboard"></i></a>
+			</p>
+		{{/if}}
+	</fieldset>
+{{/if}}
 
 {{#if showLevelSelector}}
 	<fieldset>

@@ -14,7 +14,7 @@ export default class GearData extends SystemDataModel.mixin(DescribedTemplate, P
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.StringField({label: "EH.Weapon.Types.Label"})
+				value: new foundry.data.fields.StringField({label: "EH.Weapon.Type.Label"})
 			}, {label: "EH.Equipment.Type.Label"})
 		});
 	}

@@ -7,7 +7,8 @@ import { preLocalize } from "./utils.mjs";
  */
 export const advancementTypes = {
 	HitPoints: advancement.HitPointsAdvancement,
-	ItemGrant: advancement.ItemGrantAdvancement
+	ItemGrant: advancement.ItemGrantAdvancement,
+	ScaleValue: advancement.ScaleValueAdvancement
 };
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -64,137 +65,137 @@ preLocalize("equipmentCategories", { key: "label" });
  */
 export const equipmentProperties = {
 	aquatic: {
-		label: "EH.Weapon.Properties.Aquatic.Label",
+		label: "EH.Weapon.Property.Aquatic.Label",
 		hint: ""
 	},
 	awkward: {
-		label: "EH.Armor.Properties.Awkward.Label",
+		label: "EH.Armor.Property.Awkward.Label",
 		hint: ""
 	},
 	ballistic: {
-		label: "EH.Armor.Properties.Ballistic.Label",
+		label: "EH.Armor.Property.Ballistic.Label",
 		hint: ""
 	},
 	belt: {
-		label: "EH.Weapon.Properties.Belt.Label",
+		label: "EH.Weapon.Property.Belt.Label",
 		hint: ""
 	},
 	blinding: {
-		label: "EH.Weapon.Properties.Blinding.Label",
+		label: "EH.Weapon.Property.Blinding.Label",
 		hint: ""
 	},
 	burst: {
-		label: "EH.Weapon.Properties.Burst.Label",
+		label: "EH.Weapon.Property.Burst.Label",
 		hint: ""
 	},
 	concealable: {
-		label: "EH.Armor.Properties.Concealable.Label",
+		label: "EH.Armor.Property.Concealable.Label",
 		hint: ""
 	},
 	deafening: {
-		label: "EH.Weapon.Properties.Deafening.Label",
+		label: "EH.Weapon.Property.Deafening.Label",
 		hint: ""
 	},
 	disguised: {
-		label: "EH.Weapon.Properties.Disguised.Label",
+		label: "EH.Weapon.Property.Disguised.Label",
 		hint: ""
 	},
 	finesse: {
-		label: "EH.Weapon.Properties.Finesse.Label",
+		label: "EH.Weapon.Property.Finesse.Label",
 		hint: "",
 		condition: {"system.type.value": "melee"}
 	},
 	fullAuto: {
-		label: "EH.Weapon.Properties.FullAuto.Label",
+		label: "EH.Weapon.Property.FullAuto.Label",
 		hint: ""
 	},
 	grenade: {
-		label: "EH.Weapon.Properties.Grenade.Label",
+		label: "EH.Weapon.Property.Grenade.Label",
 		hint: ""
 	},
 	heavy: {
-		label: "EH.Weapon.Properties.Heavy.Label",
+		label: "EH.Weapon.Property.Heavy.Label",
 		hint: ""
 	},
 	illuminating: {
-		label: "EH.Weapon.Properties.Illuminating.Label",
+		label: "EH.Weapon.Property.Illuminating.Label",
 		hint: ""
 	},
 	improvised: {
-		label: "EH.Weapon.Properties.Improvised.Label",
+		label: "EH.Weapon.Property.Improvised.Label",
 		hint: ""
 	},
 	indirect: {
-		label: "EH.Weapon.Properties.Indirect.Label",
+		label: "EH.Weapon.Property.Indirect.Label",
 		hint: ""
 	},
 	light: {
-		label: "EH.Weapon.Properties.Light.Label",
+		label: "EH.Weapon.Property.Light.Label",
 		hint: ""
 	},
 	loud: {
-		label: "EH.Weapon.Properties.Loud.Label",
+		label: "EH.Weapon.Property.Loud.Label",
 		hint: ""
 	},
 	reach: {
-		label: "EH.Weapon.Properties.Reach.Label",
+		label: "EH.Weapon.Property.Reach.Label",
 		hint: "",
 		condition: {"system.type.value": "melee"}
 	},
 	restricted: {
-		label: "EH.Weapon.Properties.Restricted.Label",
+		label: "EH.Weapon.Property.Restricted.Label",
 		hint: ""
 	},
 	returning: {
-		label: "EH.Weapon.Properties.Returning.Label",
+		label: "EH.Weapon.Property.Returning.Label",
 		hint: ""
 	},
 	semiAuto: {
-		label: "EH.Weapon.Properties.SemiAuto.Label",
+		label: "EH.Weapon.Property.SemiAuto.Label",
 		hint: ""
 	},
 	shot: {
-		label: "EH.Weapon.Properties.Shot.Label",
+		label: "EH.Weapon.Property.Shot.Label",
 		hint: ""
 	},
 	slowFiring: {
-		label: "EH.Weapon.Properties.SlowFiring.Label",
+		label: "EH.Weapon.Property.SlowFiring.Label",
 		hint: ""
 	},
 	small: {
-		label: "EH.Armor.Properties.Small.Label",
+		label: "EH.Armor.Property.Small.Label",
 		hint: ""
 	},
 	special: {
-		label: "EH.Weapon.Properties.Special.Label",
+		label: "EH.Weapon.Property.Special.Label",
 		hint: ""
 	},
 	stabProof: {
-		label: "EH.Armor.Properties.StabProof.Label",
+		label: "EH.Armor.Property.StabProof.Label",
 		hint: ""
 	},
 	stationary: {
-		label: "EH.Weapon.Properties.Stationary.Label",
+		label: "EH.Weapon.Property.Stationary.Label",
 		hint: ""
 	},
 	stunning: {
-		label: "EH.Weapon.Properties.Stunning.Label",
+		label: "EH.Weapon.Property.Stunning.Label",
 		hint: ""
 	},
 	thrown: {
-		label: "EH.Weapon.Properties.Thrown.Label",
+		label: "EH.Weapon.Property.Thrown.Label",
 		hint: ""
 	},
 	twoHanded: {
-		label: "EH.Weapon.Properties.TwoHanded.Label",
+		label: "EH.Weapon.Property.TwoHanded.Label",
 		hint: ""
 	},
 	unreliable: {
-		label: "EH.Weapon.Properties.Unreliable.Label",
+		label: "EH.Weapon.Property.Unreliable.Label",
 		hint: ""
 	},
 	versatile: {
-		label: "EH.Weapon.Properties.Versatile.Label",
+		label: "EH.Weapon.Property.Versatile.Label",
 		hint: ""
 	}
 };
@@ -230,10 +231,10 @@ export const applicableProperties = {
  * @enum {string}
  */
 export const ammunitionTypes = {
-	pistol: "EH.Ammunition.Types.Pistol.Label",
-	rifle: "EH.Ammunition.Types.Rifle.Label",
-	shotgun: "EH.Ammunition.Types.Shotgun.Label",
-	machineGun: "EH.Ammunition.Types.MachineGun.Label"
+	pistol: "EH.Ammunition.Type.Pistol.Label",
+	rifle: "EH.Ammunition.Type.Rifle.Label",
+	shotgun: "EH.Ammunition.Type.Shotgun.Label",
+	machineGun: "EH.Ammunition.Type.MachineGun.Label"
 };
 preLocalize("ammunitionTypes");
 
@@ -246,8 +247,8 @@ preLocalize("ammunitionTypes");
  * @enum {string}
  */
 export const armorTypes = {
-	armor: "EH.Armor.Types.Armor.Label",
-	shield: "EH.Armor.Types.Shield.Label"
+	armor: "EH.Armor.Type.Armor.Label",
+	shield: "EH.Armor.Type.Shield.Label"
 };
 preLocalize("armorTypes");
 
@@ -260,9 +261,9 @@ preLocalize("armorTypes");
  * @enum {string}
  */
 export const explosiveTypes = {
-	grenade: "EH.Explosive.Types.Grenade.Label",
-	rocket: "EH.Explosive.Types.Rocket.Label",
-	mine: "EH.Explosive.Types.Mine.Label"
+	grenade: "EH.Explosive.Type.Grenade.Label",
+	rocket: "EH.Explosive.Type.Rocket.Label",
+	mine: "EH.Explosive.Type.Mine.Label"
 };
 preLocalize("explosiveTypes");
 
@@ -275,15 +276,15 @@ preLocalize("explosiveTypes");
  * @enum {string}
  */
 export const gearTypes = {
-	everydayStuff: "EH.Gear.Types.EverydayStuff.Label",
-	equipmentPack: "EH.Gear.Types.EquipmentPack.Label",
-	specializedKit: "EH.Gear.Types.SpecializedKit.Label",
-	firearmAccessory: "EH.Gear.Types.FirearmAccessory.Label",
-	carryingCase: "EH.Gear.Types.CarryingCase.Label",
-	electronics: "EH.Gear.Types.Electronics.Label",
-	hardware: "EH.Gear.Types.Hardware.Label",
-	specialtyGoods: "EH.Gear.Types.SpecialtyGoods.Label",
-	sportingGoods: "EH.Gear.Types.SportingGoods.Label"
+	everydayStuff: "EH.Gear.Type.EverydayStuff.Label",
+	equipmentPack: "EH.Gear.Type.EquipmentPack.Label",
+	specializedKit: "EH.Gear.Type.SpecializedKit.Label",
+	firearmAccessory: "EH.Gear.Type.FirearmAccessory.Label",
+	carryingCase: "EH.Gear.Type.CarryingCase.Label",
+	electronics: "EH.Gear.Type.Electronics.Label",
+	hardware: "EH.Gear.Type.Hardware.Label",
+	specialtyGoods: "EH.Gear.Type.SpecialtyGoods.Label",
+	sportingGoods: "EH.Gear.Type.SportingGoods.Label"
 };
 preLocalize("gearTypes");
 
@@ -296,7 +297,7 @@ preLocalize("gearTypes");
  * @enum {string}
  */
 export const weaponTypes = {
-	melee: "EH.Weapon.Types.Melee.Label",
-	ranged: "EH.Weapon.Types.Ranged.Label"
+	melee: "EH.Weapon.Type.Melee.Label",
+	ranged: "EH.Weapon.Type.Ranged.Label"
 };
 preLocalize("weaponTypes");

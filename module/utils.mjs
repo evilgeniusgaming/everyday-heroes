@@ -64,6 +64,25 @@ export function linkForUUID(uuid) {
 	return TextEditor._createContentLink(["", "UUID", uuid]).outerHTML;
 }
 
+/* -------------------------------------------- */
+/*  Validators                                  */
+/* -------------------------------------------- */
+
+/**
+ * Ensure the provided string contains only the characters allowed in identifiers.
+ * @param {string} identifier - Identifier to verify.
+ * @returns {boolean}
+ */
+function isValidIdentifier(identifier) {
+	return /^([a-z0-9_-]+)$/i.test(identifier);
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+export const validators = {
+	isValidIdentifier: isValidIdentifier
+};
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Handlebars Helpers                       */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

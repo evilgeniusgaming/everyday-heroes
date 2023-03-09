@@ -32,17 +32,17 @@ preLocalize("actionTypesReload");
  * @enum {DamageTypeConfiguration}
  */
 export const damageTypes = {
-	acid: "EH.Damage.Types.Acid",
-	ballistic: "EH.Damage.Types.Ballistic",
-	bludgeoning: "EH.Damage.Types.Bludgeoning",
-	cold: "EH.Damage.Types.Cold",
-	electrical: "EH.Damage.Types.Electrical",
-	explosive: "EH.Damage.Types.Explosive",
-	fire: "EH.Damage.Types.Fire",
-	piercing: "EH.Damage.Types.Piercing",
-	poison: "EH.Damage.Types.Poison",
-	psychic: "EH.Damage.Types.Psychic",
-	slashing: "EH.Damage.Types.Slashing"
+	acid: "EH.Damage.Type.Acid",
+	ballistic: "EH.Damage.Type.Ballistic",
+	bludgeoning: "EH.Damage.Type.Bludgeoning",
+	cold: "EH.Damage.Type.Cold",
+	electrical: "EH.Damage.Type.Electrical",
+	explosive: "EH.Damage.Type.Explosive",
+	fire: "EH.Damage.Type.Fire",
+	piercing: "EH.Damage.Type.Piercing",
+	poison: "EH.Damage.Type.Poison",
+	psychic: "EH.Damage.Type.Psychic",
+	slashing: "EH.Damage.Type.Slashing"
 };
 preLocalize("damageTypes", { sort: true });
 

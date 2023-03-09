@@ -20,9 +20,9 @@ export default class HeroData extends SystemDataModel {
 					})
 				}, {label: "EH.Proficiency.Label[one]"}),
 				bonuses: new foundry.data.fields.SchemaField({
-					check: new FormulaField({label: "EH.Abilities.Bonuses.Check"}),
-					dc: new FormulaField({label: "EH.Abilities.Bonuses.DC"}),
-					save: new FormulaField({label: "EH.Abilities.Bonuses.Save"})
+					check: new FormulaField({label: "EH.Abilities.Bonus.Check"}),
+					dc: new FormulaField({label: "EH.Abilities.Bonus.DC"}),
+					save: new FormulaField({label: "EH.Abilities.Bonus.Save"})
 				})
 			}), {
 				initialKeys: CONFIG.EverydayHeroes.abilities, prepareKeys: true, label: "EH.Abilities.Label[other]"
@@ -107,9 +107,9 @@ export default class HeroData extends SystemDataModel {
 			}),
 			bonuses: new foundry.data.fields.SchemaField({
 				ability: new foundry.data.fields.SchemaField({
-					check: new FormulaField({label: "EH.Abilities.Bonuses.Check"}),
-					dc: new FormulaField({label: "EH.Abilities.Bonuses.DC"}),
-					save: new FormulaField({label: "EH.Abilities.Bonuses.Save"})
+					check: new FormulaField({label: "EH.Abilities.Bonus.Check"}),
+					dc: new FormulaField({label: "EH.Abilities.Bonus.DC"}),
+					save: new FormulaField({label: "EH.Abilities.Bonus.Save"})
 				}),
 				attack: new MappingField(new FormulaField()),
 				damage: new MappingField(new FormulaField()),

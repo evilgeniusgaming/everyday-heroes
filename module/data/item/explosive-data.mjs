@@ -29,15 +29,15 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.StringField({initial: "grenade", label: "EH.Explosive.Types.Label"}),
+				value: new foundry.data.fields.StringField({initial: "grenade", label: "EH.Explosive.Type.Label"}),
 				category: new foundry.data.fields.StringField({intial: "basic", label: "EH.Equipment.Category.Label[one]"})
 			}, {label: "EH.Equipment.Type.Label"}),
 			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-				label: "EH.Weapon.Properties.Label"
+				label: "EH.Weapon.Property.Label"
 			}),
 			penetrationValue: new foundry.data.fields.NumberField({
 				min: 0, integer: true,
-				label: "EH.Equipment.Traits.PenetrationValue.Label", hint: "EH.Equipment.Traits.PenetrationValue.Hint"
+				label: "EH.Equipment.Trait.PenetrationValue.Label", hint: "EH.Equipment.Trait.PenetrationValue.Hint"
 			}),
 			dc: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.Explosive.DC.Label"}),
 			radius: new foundry.data.fields.SchemaField({
@@ -46,8 +46,8 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 				// TODO: Set default based on default units setting
 			}),
 			bonuses: new foundry.data.fields.SchemaField({
-				damage: new FormulaField({label: "EH.Weapon.Bonuses.Damage.Label"}),
-				dc: new FormulaField({label: "EH.Weapon.Bonuses.DC.Label"})
+				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label"}),
+				dc: new FormulaField({label: "EH.Weapon.Bonus.DC.Label"})
 			})
 		});
 	}
@@ -60,7 +60,7 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 		this.type.label = game.i18n.format("EH.Equipment.Type.DetailedLabel", {
 			category: CONFIG.EverydayHeroes.equipmentCategories[this.type.category]?.label ?? "",
 			type: CONFIG.EverydayHeroes.explosiveTypes[this.type.value]
-				?? game.i18n.localize("EH.Item.Types.Explosive[one]"),
+				?? game.i18n.localize("EH.Item.Type.Explosive[one]"),
 			subtype: ""
 		});
 	}

@@ -147,34 +147,34 @@ preLocalize("conditions", { key: "label", sort: true });
  */
 export const creatureTypes = {
 	animal: {
-		label: "EH.CreatureTypes.Animal.Label",
+		label: "EH.Creature.Type.Animal.Label",
 		subtypes: {
-			prehistoric: "EH.CreatureTypes.Prehistoric.Label",
-			swarm: "EH.CreatureTypes.Swarm.Label"
+			prehistoric: "EH.Creature.Type.Prehistoric.Label",
+			swarm: "EH.Creature.Type.Swarm.Label"
 		}
 	},
 	monster: {
-		label: "EH.CreatureTypes.Monster.Label",
+		label: "EH.Creature.Type.Monster.Label",
 		subtypes: {
-			alien: "EH.CreatureTypes.Alien.Label",
-			demon: "EH.CreatureTypes.Demon.Label",
-			shifter: "EH.CreatureTypes.Shifter.Label",
-			undead: "EH.CreatureTypes.Undead.Label"
+			alien: "EH.Creature.Type.Alien.Label",
+			demon: "EH.Creature.Type.Demon.Label",
+			shifter: "EH.Creature.Type.Shifter.Label",
+			undead: "EH.Creature.Type.Undead.Label"
 		}
 	},
 	person: {
-		label: "EH.CreatureTypes.Person.Label",
+		label: "EH.Creature.Type.Person.Label",
 		subtypes: {
-			human: "EH.CreatureTypes.Human.Label",
-			mutant: "EH.CreatureTypes.Mutant.Label"
+			human: "EH.Creature.Type.Human.Label",
+			mutant: "EH.Creature.Type.Mutant.Label"
 		}
 	},
 	robot: {
-		label: "EH.CreatureTypes.Robot.Label",
+		label: "EH.Creature.Type.Robot.Label",
 		subtypes: {
-			autonomous: "EH.CreatureTypes.Autonomous.Label",
-			futuristic: "EH.CreatureTypes.Futuristic.Label",
-			remoteControlled: "EH.CreatureTypes.RemoteControlled.Label"
+			autonomous: "EH.Creature.Type.Autonomous.Label",
+			futuristic: "EH.Creature.Type.Futuristic.Label",
+			remoteControlled: "EH.Creature.Type.RemoteControlled.Label"
 		}
 	}
 };

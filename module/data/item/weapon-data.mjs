@@ -37,38 +37,38 @@ export default class WeaponData extends SystemDataModel.mixin(
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.StringField({initial: "melee", label: "EH.Weapon.Types.Label"}),
+				value: new foundry.data.fields.StringField({initial: "melee", label: "EH.Weapon.Type.Label"}),
 				category: new foundry.data.fields.StringField({intial: "basic", label: "EH.Equipment.Category.Label[one]"})
 			}, {label: "EH.Equipment.Type.Label"}),
 			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-				label: "EH.Weapon.Properties.Label"
+				label: "EH.Weapon.Property.Label"
 			}),
 			penetrationValue: new foundry.data.fields.NumberField({
 				min: 0, integer: true,
-				label: "EH.Equipment.Traits.PenetrationValue.Label", hint: "EH.Equipment.Traits.PenetrationValue.Hint"
+				label: "EH.Equipment.Trait.PenetrationValue.Label", hint: "EH.Equipment.Trait.PenetrationValue.Hint"
 			}),
 			range: new foundry.data.fields.SchemaField({
-				short: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Traits.Range.Short"}),
-				long: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Traits.Range.Long"}),
-				reach: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Traits.Range.Reach"}),
+				short: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Short"}),
+				long: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Long"}),
+				reach: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Reach"}),
 				units: new foundry.data.fields.StringField({label: "EH.Measurement.Units"})
 				// TODO: Set default based on default units setting
-			}, {label: "EH.Equipment.Traits.Range.Label", hint: "EH.Equipment.Traits.Range.Hint"}),
+			}, {label: "EH.Equipment.Trait.Range.Label", hint: "EH.Equipment.Trait.Range.Hint"}),
 			reload: new foundry.data.fields.StringField({
-				label: "EH.Equipment.Traits.Reload.Label", hint: "EH.Equipment.Traits.Reload.Hint"
+				label: "EH.Equipment.Trait.Reload.Label", hint: "EH.Equipment.Trait.Reload.Hint"
 			}),
 			rounds: new foundry.data.fields.SchemaField({
 				spent: new foundry.data.fields.NumberField({
-					initial: 0, min: 0, integer: true, label: "EH.Equipment.Traits.Rounds.Spent"
+					initial: 0, min: 0, integer: true, label: "EH.Equipment.Trait.Rounds.Spent"
 				}),
 				capacity: new foundry.data.fields.NumberField({
-					min: 0, integer: true, label: "EH.Equipment.Traits.Rounds.Capacity"
+					min: 0, integer: true, label: "EH.Equipment.Trait.Rounds.Capacity"
 				}),
-				burst: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.Equipment.Traits.Rounds.Burst"})
-			}, {label: "EH.Equipment.Traits.Rounds.Label", hint: "EH.Equipment.Traits.Rounds.Hint"}),
+				burst: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.Equipment.Trait.Rounds.Burst"})
+			}, {label: "EH.Equipment.Trait.Rounds.Label", hint: "EH.Equipment.Trait.Rounds.Hint"}),
 			bonuses: new foundry.data.fields.SchemaField({
-				attack: new FormulaField({label: "EH.Weapon.Bonuses.Attack.Label"}),
-				damage: new FormulaField({label: "EH.Weapon.Bonuses.Damage.Label"})
+				attack: new FormulaField({label: "EH.Weapon.Bonus.Attack.Label"}),
+				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label"})
 			})
 		});
 	}
@@ -136,7 +136,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 	prepareDerivedTypeLabel() {
 		this.type.label = game.i18n.format("EH.Equipment.Type.DetailedLabel", {
 			category: CONFIG.EverydayHeroes.equipmentCategories[this.type.category]?.label ?? "",
-			type: game.i18n.localize("EH.Item.Types.Weapon[one]"),
+			type: game.i18n.localize("EH.Item.Type.Weapon[one]"),
 			subtype: CONFIG.EverydayHeroes.weaponTypes[this.type.value] ?? ""
 		});
 	}

@@ -61,6 +61,9 @@ export default class Advancement extends BaseAdvancement {
 	 * @property {string} icon - Icon used for this advancement type if no user icon is specified.
 	 * @property {string} title - Title to be displayed if no user title is specified.
 	 * @property {string} hint - Description of this type shown in the advancement selection dialog.
+	 * @property {object} identifier
+	 * @property {string} identifier.configurable - Should this identifier be customizable for this advancement type?
+	 * @property {string} identifier.hint - Hint that is shown with the identifier.
 	 * @property {boolean} multiLevel - Can this advancement affect more than one level? If this is set to true,
 	 *                                  the level selection control in the configuration window is hidden and the
 	 *                                  advancement should provide its own implementation of `Advancement#levels`
@@ -81,6 +84,10 @@ export default class Advancement extends BaseAdvancement {
 			icon: "icons/svg/upgrade.svg",
 			title: game.i18n.localize("EH.Advancement.Core.Title"),
 			hint: "",
+			identifier: {
+				configurable: false,
+				hint: ""
+			},
 			multiLevel: false,
 			validItemTypes: new Set(["archetype", "class", "background", "profession"]),
 			apps: {
@@ -154,7 +161,7 @@ export default class Advancement extends BaseAdvancement {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Preparation Methods                         */
+	/*  Preparation Methods                      */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
@@ -163,10 +170,11 @@ export default class Advancement extends BaseAdvancement {
 	prepareData() {
 		this.title = this.title || this.constructor.metadata.title;
 		this.icon = this.icon || this.constructor.metadata.icon;
+		this.identifier = this.identifier || this.title.slugify({strict: true});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Display Methods                             */
+	/*  Display Methods                          */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**

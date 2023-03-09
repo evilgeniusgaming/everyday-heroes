@@ -10,11 +10,11 @@ export default class PhysicalTemplate extends foundry.abstract.DataModel {
 		return {
 			bulk: new foundry.data.fields.NumberField({
 				required: true, nullable: false, initial: 0, min: 0, integer: true,
-				label: "EH.Equipment.Traits.Bulk.Label", hint: "EH.Equipment.Traits.Bulk.Hint"
+				label: "EH.Equipment.Trait.Bulk.Label", hint: "EH.Equipment.Trait.Bulk.Hint"
 			}),
 			price: new foundry.data.fields.NumberField({
 				required: true, nullable: false, initial: 0, min: 0, integer: true,
-				label: "EH.Equipment.Traits.PriceLevel.Label", hint: "EH.Equipment.Traits.PriceLevel.Hint"
+				label: "EH.Equipment.Trait.PriceLevel.Label", hint: "EH.Equipment.Trait.PriceLevel.Hint"
 			})
 		};
 	}
