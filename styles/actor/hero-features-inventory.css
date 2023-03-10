@@ -1,6 +1,7 @@
 .hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section {
 	display: grid;
-	grid-template-columns: auto max-content;
+	grid-template-columns: max-content repeat(3, auto) max-content;
+	gap: 0 1em;
 	overflow: clip;
 	border: 1px solid var(--eh-border-color-weak);
 	border-radius: 10px;
@@ -57,24 +58,24 @@
 	margin-block: 0.25em;
 	padding: 0;
 }
-.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li {
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list > li {
 	align-items: center;
 	padding-block: 0.25em;
 	padding-inline: 0.5em;
 }
-.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li:hover {
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list > li:hover {
 	background-color: var(--eh-background-color-mid);
 }
-.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li h4 {
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list > li h4 {
 	margin: 0;
 }
-.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li .actions {
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list > li .actions {
 	display: flex;
 	justify-content: flex-end;
 	padding: 0.15em;
 	gap: 0.25em;
 }
-.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li .actions .action {
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list > li .actions .action {
 	display: flex;
 	gap: 0.5em;
 	border-radius: 1em;
@@ -82,15 +83,58 @@
 	background-color: var(--eh-background-color-light);
 	cursor: pointer;
 }
-.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li .actions .action:hover {
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list > li .actions .action:hover {
 	outline: 2px solid var(--eh-border-color-strong);
 }
-.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li .actions .action figure {
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list > li .actions .action figure {
 	width: 1.25em;
 	height: 1.25em;
 	margin: 0;
 	background-size: cover;
 }
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Item Controls                            */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li > div {
+	grid-column: 2 / -2;
+	display: grid;
+	grid-template-columns: subgrid;
+	align-items: center;
+	justify-items: start;
+}
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-modes {
+	margin: 0;
+	font-size: var(--font-size-12);
+}
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-modes li {
+	padding: 0;
+}
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-modes li.selected {
+	background-color: var(--eh-background-color-black);
+}
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-modes li.selected:hover {
+	box-shadow: none;
+}
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-modes a {
+	margin-inline: -0.25em;
+	padding: 0.25em 0.75em;
+}
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-modes figure {
+	margin: 0;
+	width: 1.5em;
+	height: 1.5em;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-modes li.selected figure {
+	filter: invert(1);
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Item Actions                             */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 .hero.sheet :is([data-tab="features"], [data-tab="inventory"]) fieldset {
 	display: flex;

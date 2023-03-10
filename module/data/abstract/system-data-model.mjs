@@ -176,6 +176,7 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 */
 	prepareDerivedData() {
 		this.constructor._getMethods(this.constructor.prototype, "prepareDerived").forEach(k => this[k]());
+		if ( !this.parent.isEmbedded ) this.prepareFinalData();
 	}
 
 	/* -------------------------------------------- */

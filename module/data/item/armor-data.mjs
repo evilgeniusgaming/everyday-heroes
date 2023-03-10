@@ -40,7 +40,7 @@ export default class ArmorData extends SystemDataModel.mixin(DescribedTemplate, 
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Getters                                  */
+	/*  Properties                               */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**

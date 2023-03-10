@@ -14,6 +14,40 @@
 							<div class="image" style="background-image: url('{{item.img}}')"></div>
 							<a data-action="item" data-type="expand">{{item.name}}</a>
 						</h4>
+						<div>
+							{{#if item.system.modes}}
+								<nav class="item-modes skewed">
+									<ul>
+										{{#each item.system.modes as |key|}}
+											{{#with (lookup @root.CONFIG.weaponModes key) as |mode|}}
+												<li {{#if (eq item.system.mode key)}}class="selected"{{/if}}>
+													<a data-action="item" data-type="mode" data-key="{{key}}" data-tooltip="{{mode.label}}">
+														<figure style="background-image: url('{{mode.icon}}');"></figure>
+													</a>
+												</li>
+											{{/with}}
+										{{/each}}
+									</ul>
+								</nav>
+							{{/if}}
+							<nav class="actions">
+								{{#if item.system.hasAttack}}
+									<div class="action" data-action="roll-item" data-type="attack" data-tooltip="{{item.system.attackTooltip}}">
+										<figure style="background-image: url('{{item.system.attackIcon}}');"></figure>
+										<span>{{everydayHeroes-number item.system.attackMod sign=true}}</span>
+									</div>
+								{{/if}}
+								{{#if item.system.hasDamage}}
+									<div class="action" data-action="roll-item" data-type="damage" data-tooltip="{{item.system.damageTooltip}}">
+										<figure style="background-image: url('{{item.system.damageIcon}}');"></figure>
+										<span>{{item.system.damageFormula}}</span>
+									</div>
+								{{/if}}
+							</nav>
+							{{#if item.system.ammunition.type}}
+								Ammunition
+							{{/if}}
+						</div>
 						{{#if @root.editable}}
 							<fieldset>
 								<a class="{{#if item.isEquipped}}equipped{{else}}unequipped{{/if}}" data-action="item" data-type="equip"
@@ -38,15 +72,6 @@
 								</a>
 							</fieldset>
 						{{/if}}
-						<nav class="actions">
-							{{#each item.system.rollActions as |action|}}
-								<div class="action" data-action="roll-item" data-tooltip="{{action.tooltip}}"
-									{{everydayHeroes-dataset action.data}}>
-									<figure style="background-image: url('{{action.icon}}');"></figure>
-									<span>{{action.label}}</span>
-								</div>
-							{{/each}}
-						</nav>
 					</li>
 				{{/each}}
 			</ol>

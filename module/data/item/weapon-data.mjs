@@ -47,6 +47,12 @@ export default class WeaponData extends SystemDataModel.mixin(
 				min: 0, integer: true,
 				label: "EH.Equipment.Trait.PenetrationValue.Label", hint: "EH.Equipment.Trait.PenetrationValue.Hint"
 			}),
+			ammunition: new foundry.data.fields.SchemaField({
+				type: new foundry.data.fields.StringField({label: "EH.Ammunition.Type.Label"}),
+				loaded: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, {
+					idOnly: true, label: "EH.Ammunition.Loaded"
+				})
+			}, {label: "EH.Item.Type.Ammunition[other]"}),
 			range: new foundry.data.fields.SchemaField({
 				short: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Short"}),
 				long: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Long"}),
@@ -74,7 +80,61 @@ export default class WeaponData extends SystemDataModel.mixin(
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Getters                                  */
+	/*  Properties                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get attackAbility() {
+		const DEF = CONFIG.EverydayHeroes.defaultAbilities;
+
+		// Finesse, higher of dexterity or strength
+		if ( this.properties.has("finesse") ) {
+			const abilities = this.parent?.actor?.system.abilities;
+			if ( !abilities ) return ["ranged", "thrown"].includes(this.type) ? DEF.ranged : DEF.melee;
+			if ( abilities[DEF.ranged]?.mod > abilities[DEF.melee]?.mod ) return DEF.ranged;
+			return DEF.melee;
+		}
+
+		return ["ranged", "burst"].includes(this.mode) ? DEF.ranged : DEF.melee;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get attackIcon() {
+		return `systems/everyday-heroes/artwork/svg/action/attack-${this.mode}.svg`;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get damageAbility() {
+		if ( this.mode === "offhand" ) return null;
+		return this.attackAbility;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get damageIcon() {
+		return `systems/everyday-heroes/artwork/svg/action/damage-${this.type.value === "ranged" ? "ranged" : "melee"}.svg`;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Subset of `CONFIG.EverydayHeroes.weaponModes` that can be used by this weapon.
+	 * @type {string[]}
+	 */
+	get modes() {
+		const modes = [];
+		if ( this.type.value === "melee" ) {
+			modes.push("melee");
+			if ( this.properties.has("light") ) modes.push("offhand");
+			if ( this.properties.has("thrown") ) modes.push("thrown");
+		} else if ( this.type.value === "ranged" ) {
+			modes.push("ranged");
+			if ( this.properties.has("burst") ) modes.push("burst");
+		}
+		return modes;
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
@@ -142,30 +202,9 @@ export default class WeaponData extends SystemDataModel.mixin(
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Helper Methods                           */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	attackAbility(type) {
-		type ??= this.type.value;
-		if ( type === "burst" ) type = "ranged";
-		if ( type === "offhand" ) type = "melee";
-		const def = CONFIG.EverydayHeroes.defaultAbilities;
-
-		// Finesse, higher of dexterity or strength
-		if ( this.properties.has("finesse") ) {
-			const abilities = this.parent?.actor?.system.abilities;
-			if ( !abilities ) return ["ranged", "thrown"].includes(type) ? def.ranged : def.melee;
-			if ( abilities[def.ranged]?.mod > abilities[def.melee]?.mod ) return def.ranged;
-			return def.melee;
-		}
-
-		return type === "ranged" ? def.ranged : def.melee;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	damageAbility(type) {
-		if ( type === "offhand" ) return null;
-		return this.attackAbility();
+	prepareFinalMode() {
+		const mode = this.parent.actor?.system.items?.modes?.[this.parent.id];
+		this.mode = this.modes.includes(mode) ? mode : this.modes[0];
 	}
 }

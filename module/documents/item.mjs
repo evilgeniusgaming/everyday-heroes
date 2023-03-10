@@ -287,7 +287,7 @@ export default class ItemEH extends Item {
 	 */
 	async rollDamage(config={}, message={}) {
 		if ( !this.hasDamage ) return console.warn(`${this.name} does not support damage rolls.`);
-		const ability = this.actor?.system.abilities[this.system.damageAbility()]; // TODO: Add attack type
+		const ability = this.actor?.system.abilities[this.system.damageAbility];
 		const ammunition = undefined;
 		let damage = this.system.damage;
 
@@ -382,9 +382,15 @@ export default class ItemEH extends Item {
 		// Clear item's ID from equipped parent's lists
 		const updates = {};
 		for ( const [key, collection] of Object.entries(this.parent.system.items ?? {}) ) {
-			const removed = collection.delete(this.id);
-			// TODO: Coercing this to array won't be necessary in V11
-			if ( removed ) updates[`system.items.${key}`] = Array.from(collection);
+			switch (foundry.utils.getType(collection)) {
+				case "Array":
+					const removed = collection.delete(this.id);
+					// TODO: Coercing this to array won't be necessary in V11
+					if ( removed ) updates[`system.items.${key}`] = Array.from(collection);
+					break;
+				case "Object":
+					if ( collection[this.id] !== undefined ) updates[`system.items.${key}.-=${this.id}`] = null;
+			}
 		}
 		if ( !foundry.utils.isEmpty(updates) ) this.parent.udpate(updates);
 	}

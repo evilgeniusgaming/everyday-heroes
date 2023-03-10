@@ -324,7 +324,8 @@ export default class HeroSheet extends ActorSheet {
 		event.preventDefault();
 		const id = event.currentTarget.closest("[data-item-id]")?.dataset.itemId;
 		const item = id ? this.actor.items.get(id) : null;
-		switch (event.currentTarget.dataset.type) {
+		const { type, key } = event.currentTarget.dataset;
+		switch (type) {
 			case "add":
 				return console.log("ADD ITEM");
 			case "edit":
@@ -345,8 +346,11 @@ export default class HeroSheet extends ActorSheet {
 					} catch(err) { return; }
 				}
 				return item.deleteDialog();
+			case "mode":
+				if ( !item || !key ) return;
+				return this.actor.update({[`system.items.modes.${id}`]: key});
 			default:
-				return console.warn(`Invalid item action type clicked ${event.currentTarget.dataset.type}.`);
+				return console.warn(`Invalid item action type clicked ${type}.`);
 		}
 	}
 
@@ -434,7 +438,7 @@ export default class HeroSheet extends ActorSheet {
 					return false;
 				}
 			}
-			toCreate.push(result);
+			toCreate.push(item);
 		}
 
 		return this.actor.createEmbeddedDocuments("Item", toCreate);

@@ -294,6 +294,44 @@ preLocalize("gearTypes");
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Configuration data for weapon modes.
+ *
+ * @typedef {object} WeaponModeConfiguration
+ * @property {string} label - Localized label.
+ * @property {string} icon - Icon.
+ */
+
+/**
+ * Weapon modes that determine different attack or damage values.
+ * @enum {WeaponModeConfiguration}
+ */
+export const weaponModes = {
+	melee: {
+		label: "EH.Weapon.Action.Melee.Label",
+		icon: "systems/everyday-heroes/artwork/svg/action/attack-melee.svg"
+	},
+	offhand: {
+		label: "EH.Weapon.Action.Offhand.Label",
+		icon: "systems/everyday-heroes/artwork/svg/action/attack-offhand.svg"
+	},
+	thrown: {
+		label: "EH.Weapon.Action.Thrown.Label",
+		icon: "systems/everyday-heroes/artwork/svg/action/attack-thrown.svg"
+	},
+	ranged: {
+		label: "EH.Weapon.Action.Ranged.Label",
+		icon: "systems/everyday-heroes/artwork/svg/action/attack-ranged.svg"
+	},
+	burst: {
+		label: "EH.Weapon.Action.Burst.Label",
+		icon: "systems/everyday-heroes/artwork/svg/action/attack-burst.svg"
+	}
+};
+preLocalize("weaponModes", { key: "label" });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * General weapon types.
  * @enum {string}
  */

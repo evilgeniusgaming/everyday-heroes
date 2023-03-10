@@ -31,7 +31,40 @@ export default class DamageTemplate extends foundry.abstract.DataModel {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Getters                                  */
+	/*  Properties                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Key for the ability that adds to damage rolls for this item, taking mode into account if it has one.
+	 * @type {string|null}
+	 */
+	get damageAbility() {
+		return null;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * The simplified damage formula for this item, taking mode into account if it has one.
+	 * @type {string}
+	 */
+	get damageFormula() {
+		if ( this.constructor.damageMode !== "regular" ) return "";
+		const ability = this.parent?.actor?.system.abilities[this.damageAbility];
+		if ( !ability?.mod ) return this.damage.dice;
+		return `${this.damage.dice} + ${ability.mod}`;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Icon display on the damage button.
+	 * @type {string}
+	 */
+	get damageIcon() {
+		return "systems/everyday-heroes/artwork/svg/action/damage-melee.svg";
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
@@ -40,6 +73,16 @@ export default class DamageTemplate extends foundry.abstract.DataModel {
 	 */
 	get damageMode() {
 		return this.constructor.damageMode;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Tooltip displayed for damage button.
+	 * @type {string}
+	 */
+	get damageTooltip() {
+		return game.i18n.format("EH.Action.Roll", { type: game.i18n.localize("EH.Weapon.Action.DamageGeneric.Label") });
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -62,31 +105,6 @@ export default class DamageTemplate extends foundry.abstract.DataModel {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Helper Methods                           */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Key for the ability that adds to damage rolls for this item.
-	 * @param {string} type - Attack type (e.g. "melee", "ranged", "burst", "thrown").
-	 * @returns {string|null}
-	 */
-	damageAbility(type) {
-		return null;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Construct the damage formula for this item. Returns nothing if damage mode is "modification".
-	 * @param {string} type - Attack type (e.g. "melee", "ranged", "burst", "thrown").
-	 * @returns {string}
-	 */
-	damageFormula(type) {
-		if ( this.constructor.damageMode !== "regular" ) return "";
-		const ability = this.parent?.actor?.system.abilities[this.damageAbility(type)];
-		if ( !ability?.mod ) return this.damage.dice;
-		return `${this.damage.dice} + ${ability.mod}`;
-	}
-
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**

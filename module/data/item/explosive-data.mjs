@@ -53,6 +53,26 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Properties                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get attackAbility() {
+		return CONFIG.EverydayHeroes.defaultAbilities.ranged;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get attackIcon() {
+		return "systems/everyday-heroes/artwork/svg/action/attack-explosive.svg";
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get damageIcon() {
+		return "systems/everyday-heroes/artwork/svg/action/damage-explosive.svg";
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -63,13 +83,5 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 				?? game.i18n.localize("EH.Item.Type.Explosive[one]"),
 			subtype: ""
 		});
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Helper Methods                           */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	attackAbility(type) {
-		return CONFIG.EverydayHeroes.defaultAbilities.ranged;
 	}
 }

@@ -74,7 +74,8 @@
         "level": 1
       },
       "items": {
-        "equipped": []
+        "equipped": [],
+        "modes": {}
       },
       "resources": {
         "archetype": {
@@ -196,6 +197,10 @@
       },
       "properties": [],
       "penetrationValue": 0,
+      "ammunition": {
+        "type": "",
+        "loaded": ""
+      },
       "range": {
         "short": null,
         "long": null,

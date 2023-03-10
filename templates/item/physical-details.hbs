@@ -31,7 +31,7 @@
 	{{#if itemProperties}}
 		<div class="properties">
 			{{#each itemProperties as |property key|}}
-				<fieldset {{#if ability.checked}}class="checked"{{/if}}>
+				<fieldset {{#if property.checked}}class="checked"{{/if}}>
 					<label>
 						<input type="checkbox" name="system.properties.{{key}}" {{checked property.checked}}>
 						{{property.label}}
@@ -88,15 +88,17 @@
 				{{/select}}
 			</select>
 			<select name="system.damage.denomination">{{!-- TODO: Localize & auto generate these steps --}}
-				<option value="-4">-4 steps</option>
-				<option value="-3">-3 steps</option>
-				<option value="-2">-2 steps</option>
-				<option value="-1">-1 step</option>
-				<option value="0">0</option>
-				<option value="1">+1 step</option>
-				<option value="2">+2 steps</option>
-				<option value="3">+3 steps</option>
-				<option value="4">+4 steps</option>
+				{{#select system.damage.denomination}}
+					<option value="-4">-4 steps</option>
+					<option value="-3">-3 steps</option>
+					<option value="-2">-2 steps</option>
+					<option value="-1">-1 step</option>
+					<option value="0">0</option>
+					<option value="1">+1 step</option>
+					<option value="2">+2 steps</option>
+					<option value="3">+3 steps</option>
+					<option value="4">+4 steps</option>
+				{{/select}}
 			</select>
 			<select name="system.damage.type">
 				{{selectOptions CONFIG.damageTypes selected=system.damage.type
@@ -143,6 +145,13 @@
 	{{/if}}
 
 	{{#if item.system.usesRounds}}
+		<fieldset>
+			<label>{{localize "EH.Ammunition.Type.Label"}}</label>
+			<select name="system.ammunition.type">
+				{{selectOptions CONFIG.ammunitionTypes selected=system.ammunition.type blank=(localize "None")}}
+			</select>
+		</fieldset>
+
 		<fieldset>
 			<label>{{localize "EH.Equipment.Trait.Rounds.Label"}}</label>
 			<input type="number" name="system.rounds.capacity" value="{{system.rounds.capacity}}">

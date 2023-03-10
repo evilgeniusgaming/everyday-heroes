@@ -5,7 +5,48 @@
 export default class AttackTemplate extends foundry.abstract.DataModel {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Getters                                  */
+	/*  Properties                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Ability modifier used by this item when making attacks, taking mode into account if it has one.
+	 * @returns {string|null}
+	 */
+	get attackAbility() {
+		return null;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Icon display on the attack button.
+	 * @type {string}
+	 */
+	get attackIcon() {
+		return "systems/everyday-heroes/artwork/svg/action/attack-melee.svg";
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * The simplified attack modifier for this item, taking mode into account if it has one.
+	 * @type {number}
+	 */
+	get attackMod() {
+		const ability = this.parent?.actor?.system.abilities?.[this.attackAbility];
+		return ability?.mod ?? 0;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Tooltip displayed for attack button.
+	 * @type {string}
+	 */
+	get attackTooltip() {
+		return game.i18n.format("EH.Action.Roll", { type: game.i18n.localize("EH.Weapon.Action.AttackGeneric.Label") });
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
@@ -14,18 +55,5 @@ export default class AttackTemplate extends foundry.abstract.DataModel {
 	 */
 	get hasAttack() {
 		return true;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Helper Methods                           */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Ability modifier used by this item when making attacks.
-	 * @param {string} type - Attack type (e.g. "melee", "ranged", "burst", "thrown").
-	 * @returns {string|null}
-	 */
-	attackAbility(type) {
-		return null;
 	}
 }

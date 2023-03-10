@@ -12,6 +12,13 @@ export default class ActorEH extends Actor {
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	prepareData() {
+		super.prepareData();
+		this.items.forEach(i => i.system.prepareFinalData?.());
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	prepareBaseData() {
 		this.system.prepareBaseData?.();
 	}

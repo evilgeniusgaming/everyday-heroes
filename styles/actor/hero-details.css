@@ -79,7 +79,6 @@
 	display: grid;
 	grid-template-areas: "abilities skills";
 	align-items: start;
-	background-color: var(--eh-border-color-strong);
 	border-radius: 0 20px 20px 0;
 	margin-inline-start: 1.5em;
 }
@@ -87,6 +86,7 @@
 .hero.sheet [data-tab="details"] .abilities {
 	grid-area: abilities;
 	display: grid;
+	z-index: 1;
 	grid-template-columns: 1.5em max-content auto max-content;
 	margin-inline-start: -1.5em;
 }
@@ -94,6 +94,20 @@
 	grid-column: 1 / 4;
 	display: grid;
 	grid-template-columns: subgrid;
+	margin-inline-end: -8px;
+	border-inline-end: 8px solid var(--eh-border-color-strong);
+}
+.hero.sheet [data-tab="details"] .abilities .ability:first-child > label {
+	margin-inline-end: -1em;
+	padding-inline-end: 1.25em;
+}
+.hero.sheet [data-tab="details"] .abilities .ability:last-child {
+	border-bottom-right-radius: 15px;
+}
+.hero.sheet [data-tab="details"] .abilities .ability:last-child > div.contents {
+	border-block-end: 8px solid var(--eh-border-color-strong);
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 5px;
 }
 .hero.sheet [data-tab="details"] .abilities .ability > div.angle {
 	grid-column: 1;
@@ -159,6 +173,7 @@
 .hero.sheet [data-tab="details"] .skills {
 	grid-area: skills;
 	display: grid;
+	z-index: 2;
 	grid-template-columns: auto max-content max-content max-content;
 	border: 8px solid var(--eh-border-color-strong);
 	border-radius: 1em;

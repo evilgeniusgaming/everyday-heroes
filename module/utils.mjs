@@ -138,6 +138,28 @@ function itemContext(context, options) {
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Format a number based on the current locale.
+ * @param {number} value - A numeric value to format.
+ * @param {object} options
+ * @param {object} options.hash
+ * @param {number} [options.hash.decimals] - Number of decimal digits to display.
+ * @param {boolean} [options.hash.sign] - Should the sign always be displayed?
+ * @returns {string}
+ */
+function numberFormat(value, options) {
+	const formatterOptions = {};
+	if ( options.hash.sign ) formatterOptions.signDisplay = "always";
+	if ( options.hash.decimals !== undefined ) {
+		formatterOptions.minimumFractionDigits = options.hash.decimals;
+		formatterOptions.maximumFractionDigits = options.hash.decimals;
+	}
+	const formatter = new Intl.NumberFormat(game.i18n.lang, formatterOptions);
+	return formatter.format(value);
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Register custom Handlebars helpers for use by the system.
  */
 export function registerHandlebarsHelpers() {
@@ -145,7 +167,8 @@ export function registerHandlebarsHelpers() {
 		"everydayHeroes-dataset": dataset,
 		"everydayHeroes-has": has,
 		"everydayHeroes-itemContext": itemContext,
-		"everydayHeroes-linkForUUID": linkForUUID
+		"everydayHeroes-linkForUUID": linkForUUID,
+		"everydayHeroes-number": numberFormat
 	});
 }
 

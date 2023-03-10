@@ -126,7 +126,8 @@ export default class HeroData extends SystemDataModel {
 				equipped: new foundry.data.fields.SetField(
 					new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, {idOnly: true}),
 					{label: ""}
-				)
+				),
+				modes: new MappingField(new foundry.data.fields.StringField(), {label: ""})
 			}),
 			resources: new foundry.data.fields.SchemaField({
 				inspiration: new foundry.data.fields.BooleanField({label: "EH.Resources.Inspiration"})
