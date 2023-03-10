@@ -28,10 +28,6 @@ export default class HeroData extends SystemDataModel {
 				initialKeys: CONFIG.EverydayHeroes.abilities, prepareKeys: true, label: "EH.Abilities.Label[other]"
 			}),
 			attributes: new foundry.data.fields.SchemaField({
-				defense: new foundry.data.fields.SchemaField({
-					ability: new foundry.data.fields.StringField({label: "EH.Abilities.Label[one]"}),
-					bonus: new FormulaField({labe: ""})
-				}, {label: ""}),
 				death: new foundry.data.fields.SchemaField({
 					status: new foundry.data.fields.StringField({initial: "alive", blank: false, label: ""}),
 					success: new foundry.data.fields.NumberField({
@@ -247,6 +243,30 @@ export default class HeroData extends SystemDataModel {
 					break;
 			}
 		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedDefense() {
+		const defense = this.details.archetype?.system.defense;
+		this.attributes.defense ??= {};
+
+		const highestAbility = { key: undefined, mod: -Infinity };
+		for ( const abilityKey of (defense?.abilities ?? []) ) {
+			const ability = this.abilities[abilityKey];
+			if ( !ability || ability.mod <= highestAbility.mod ) continue;
+			highestAbility.key = abilityKey;
+			highestAbility.mod = ability.mod;
+		}
+		if ( !highestAbility.key ) {
+			highestAbility.key = CONFIG.EverydayHeroes.defaultAbilities.defense;
+			highestAbility.mod = this.abilities[CONFIG.EverydayHeroes.defaultAbilities.defense]?.mod ?? 0;
+		}
+		// TODO: Add global defense bonus
+
+		this.attributes.defense.ability = highestAbility.key;
+		this.attributes.defense.bonus = defense?.bonus ?? 0;
+		this.attributes.defense.value = 10 + highestAbility.mod + this.attributes.defense.bonus;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

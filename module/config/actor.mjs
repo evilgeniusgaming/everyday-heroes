@@ -45,6 +45,7 @@ preLocalize("abilities", { keys: ["label", "abbreviation"] });
  * @enum {string}
  */
 export const defaultAbilities = {
+	defense: "dex",
 	hitPoints: "con",
 	melee: "str",
 	initiative: "dex",

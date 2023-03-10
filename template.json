@@ -10,10 +10,6 @@
     "hero": {
       "abilities": {},
       "attributes": {
-        "defense": {
-          "ability": "",
-          "bonus": ""
-        },
         "death": {
           "status": "alive",
           "success": 0,

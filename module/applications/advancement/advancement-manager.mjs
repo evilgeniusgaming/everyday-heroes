@@ -616,8 +616,6 @@ export default class AdvancementManager extends Application {
 		if ( Hooks.call("everydayHeroes.preAdvancementManagerComplete", this,
 			updates, toCreate, toUpdate, toDelete) === false ) return this.close({ skipConfirmation: true });
 
-		console.log(updates, toCreate, toUpdate, toDelete);
-
 		// Apply changes from clone to original actor
 		await Promise.all([
 			this.actor.update(updates, { diff: false, recursive: false, isAdvancement: true }),

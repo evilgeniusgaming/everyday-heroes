@@ -1,3 +1,50 @@
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Property Lists                           */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.everyday-heroes .properties {
+	display: grid;
+	border: 1px solid var(--eh-border-color-strong);
+	border-radius: 4px;
+	background-color: var(--eh-background-color-black);
+	color: var(--eh-text-color-white);
+	font-size: var(--font-size-14);
+	font-variant: small-caps;
+}
+.everyday-heroes .properties > fieldset {
+	margin: 1px;
+	border-radius: 4px;
+	background-color: var(--eh-background-color-dark);
+}
+/* .everyday-heroes .properties > fieldset:has([checked]) { */
+.everyday-heroes .properties > fieldset.checked {
+	background-color: var(--eh-background-color-light);
+	color: var(--eh-text-color-black);
+}
+.everyday-heroes .properties > fieldset label {
+	display: flex;
+	align-items: center;
+	gap: 0.25em;
+	padding-inline-end: 0.5em;
+}
+.everyday-heroes .properties > fieldset input {
+	appearance: none;
+	border: 1px solid var(--eh-border-color-strong);
+	border-radius: 50%;
+	background-color: var(--eh-background-color-white);
+	filter: none;
+}
+.everyday-heroes .properties > fieldset input[checked] {
+	background-color: var(--eh-input-color-checked);
+}
+.everyday-heroes .properties > fieldset :is(label, input) {
+	cursor: pointer;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Striped Headers                          */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 .everyday-heroes.advancement .striped:is(h1, h2, h3, h4) {
 	display: flex;
 	border: none;

@@ -13,8 +13,19 @@ export default class ArchetypeData extends SystemDataModel.mixin(DescribedTempla
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	prepareDerivedDefense() {
+		this.defense ??= {};
+		const level = this.parent?.actor?.system.details?.level;
+		const defenseAdvancement = this.advancement.byType("Defense")[0];
+		if ( !defenseAdvancement || !level ) return;
+		this.defense.abilities = defenseAdvancement.configuration.abilities;
+		this.defense.bonus = defenseAdvancement.valueForLevel(level)?.value ?? 0;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	prepareDerivedHitDie() {
-		const hpAdvancement = this.advancement.byType("HitPoints")?.[0];
+		const hpAdvancement = this.advancement.byType("HitPoints")[0];
 		this.hitDie = hpAdvancement?.configuration.denomination;
 	}
 }

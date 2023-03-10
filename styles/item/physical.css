@@ -62,39 +62,5 @@
 
 .physical.sheet [data-tab="details"] .properties {
 	grid-column: 1 / -1;
-	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
-	border: 1px solid var(--eh-border-color-strong);
-	border-radius: 4px;
-	background-color: var(--eh-background-color-black);
-	color: var(--eh-text-color-white);
-	font-size: var(--font-size-14);
-	font-variant: small-caps;
-}
-.physical.sheet [data-tab="details"] .properties > fieldset {
-	margin: 1px;
-	border-radius: 4px;
-	background-color: var(--eh-background-color-dark);
-}
-.physical.sheet [data-tab="details"] .properties > fieldset:has([checked]) {
-	background-color: var(--eh-background-color-light);
-	color: var(--eh-text-color-black);
-}
-.physical.sheet [data-tab="details"] .properties > fieldset label {
-	display: flex;
-	align-items: center;
-	gap: 0.25em;
-}
-.physical.sheet [data-tab="details"] .properties > fieldset input {
-	appearance: none;
-	border: 1px solid var(--eh-border-color-strong);
-	border-radius: 50%;
-	background-color: var(--eh-background-color-white);
-	filter: none;
-}
-.physical.sheet [data-tab="details"] .properties > fieldset input[checked] {
-	background-color: var(--eh-input-color-checked);
-}
-.physical.sheet [data-tab="details"] .properties > fieldset :is(label, input) {
-	cursor: pointer;
 }

@@ -7,7 +7,7 @@
 	font-weight: bold;
 	text-transform: uppercase;
 }
-.everyday-heroes fieldset :is(input, select) {
+.everyday-heroes fieldset :is(input:not([type="checkbox"]), select) {
 	flex: 1 0;
 	border: none;
 	border-radius: 5px;

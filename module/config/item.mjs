@@ -6,6 +6,7 @@ import { preLocalize } from "./utils.mjs";
  * @enum {typeof Advancement}
  */
 export const advancementTypes = {
+	Defense: advancement.DefenseAdvancement,
 	HitPoints: advancement.HitPointsAdvancement,
 	ItemGrant: advancement.ItemGrantAdvancement,
 	ScaleValue: advancement.ScaleValueAdvancement

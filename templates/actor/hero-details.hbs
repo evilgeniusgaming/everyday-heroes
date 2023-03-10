@@ -82,7 +82,10 @@
 					<label>
 						<a data-action="roll" data-type="skill" data-key="{{key}}">{{skill.label}}</a>
 					</label>
-					<span class="abbreviation">{{skill.abilityAbbreviation}}</span>
+					<span class="abbreviation">
+						{{skill.abilityAbbreviation}}
+						<input type="hidden" name="system.skills.{{key}}.ability" value="{{skill.ability}}">
+					</span>
 					{{> "everydayHeroes.actor-proficiency-selector" type="double"
 						name=(concat "system.skills." key ".proficiency") value=skill.proficiency}}
 					<span class="modifier">{{skill.mod}}</span>
@@ -128,7 +131,7 @@
 					{{/unless}}
 				</fieldset>
 			</div>
-			{{#if (eq system.attributes.hp.value 0)}}
+			{{#unless (eq system.attributes.death.status "alive")}}
 				<div class="death-saves">
 					<label>
 						<a data-action="roll" data-type="death-save">{{localize "EH.Death.Label[other]"}}</a>
@@ -142,7 +145,7 @@
 						<span>{{system.attributes.death.failure}}</span>
 					</fieldset>
 				</div>
-			{{/if}}
+			{{/unless}}
 		</div>
 		<nav class="controls skewed">
 			<ul>
@@ -157,7 +160,7 @@
 				<span>{{system.attributes.prof}}</span>
 			</fieldset>
 			<fieldset class="defense">
-				<label>Defense</label>{{!-- TODO: Localize --}}
+				<label>{{localize "EH.Defense.Label"}}</label>
 				<span>{{system.attributes.defense.value}}</span>
 			</fieldset>
 			<fieldset class="initiative">

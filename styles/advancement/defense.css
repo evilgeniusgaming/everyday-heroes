@@ -1,0 +1,8 @@
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Config                                   */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.everyday-heroes.advancement.config.defense .properties {
+	grid-column: 1 / -1;
+	grid-template-columns: 1fr 1fr;
+}

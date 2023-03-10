@@ -23,7 +23,7 @@ export class ScaleValueConfigurationData extends foundry.abstract.DataModel {
 
 	static migrateData(source) {
 		super.migrateData(source);
-		Object.values(source.scale ?? {}).forEach(v => TYPES[source.type].migrateData(v));
+		Object.values(source.scale ?? {}).forEach(v => TYPES[source.type]?.migrateData(v));
 	}
 }
 
@@ -121,7 +121,6 @@ export class ScaleValueTypeNumber extends ScaleValueType {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	/** @inheritdoc */
 	static get metadata() {
 		return foundry.utils.mergeObject(super.metadata, {
 			label: "EH.Advancement.ScaleValue.Type.Number.Label",

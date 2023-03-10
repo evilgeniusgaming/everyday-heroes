@@ -19,22 +19,7 @@
 			<span class="right stripes"></span>
 		</h3>
 		{{#each levels as |data level|}}
-			<fieldset>
-				<label>{{level}}</label>
-				<div class="fields">
-					{{#if (eq @root.configuration.type "dice")}}
-						{{numberInput data.value.number name=(concat "configuration.scale." level ".number") min=1 step=1
-													placeholder=data.placeholder.number}}
-						<select name="configuration.scale.{{level}}.denomination" class="{{data.className}}">
-							{{selectOptions @root.faces selected=data.value.denomination blank=data.placeholder.denomination}}
-						</select>
-					{{else}}
-						<input type="{{#if @root.type.isNumeric}}number{{else}}text{{/if}}" step="any"
-									 name="configuration.scale.{{level}}.value" value="{{data.value.value}}"
-									 data-level="{{level}}" placeholder="{{data.placeholder.value}}">
-					{{/if}}
-				</div>
-			</fieldset>
+			{{> "everydayHeroes.advancement-scale-value" data=data level=level}}
 		{{/each}}
 	</section>
 </form>

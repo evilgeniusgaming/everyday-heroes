@@ -31,7 +31,7 @@
 	{{#if itemProperties}}
 		<div class="properties">
 			{{#each itemProperties as |property key|}}
-				<fieldset>
+				<fieldset {{#if ability.checked}}class="checked"{{/if}}>
 					<label>
 						<input type="checkbox" name="system.properties.{{key}}" {{checked property.checked}}>
 						{{property.label}}

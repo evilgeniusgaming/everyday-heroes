@@ -75,6 +75,11 @@
 "EH.Advancement.Manager.Restart.Message": "Are you sure you wish to undo all choices so far?",
 "EH.Advancement.Selection.Title": "Select Advancement Type",
 
+"EH.Advancement.Defense.Title": "Defense",
+"EH.Advancement.Defense.Hint": "Set an archetype's defense ability and its bonus at various levels.",
+"EH.Advancement.Defense.Abilities.Label": "Defense Abilities",
+"EH.Advancement.Defense.Abilities.Hint": "Ability that will be used to calculate defense score. If multiple are selected, the highest will be used.",
+
 "EH.Advancement.HitPoints.Title": "Hit Points",
 "EH.Advancement.HitPoints.Hint": "Set an archetype's hit die size and track a player's hit points as they gain levels.",
 "EH.Advancement.HitPoints.Fixed": "Take Fixed",
@@ -204,6 +209,9 @@
 "EH.Death.Status.Dead": "Dead",
 "EH.Death.Status.Dying": "Dying",
 "EH.Death.Status.Stable": "Stable",
+
+"EH.Defense.Label": "Defense",
+"EH.Defense.Bonus.Label": "Defense Bonus",
 
 "EH.Equipment.Category.Label[one]": "Equipment Category",
 "EH.Equipment.Category.Label[other]": "Equipment Categories",

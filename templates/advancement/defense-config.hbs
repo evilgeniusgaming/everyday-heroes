@@ -1,0 +1,33 @@
+<form autocomplete="off">
+	<section class="left column">
+		{{> "everydayHeroes.advancement-controls"}}
+		<hr>
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Advancement.Defense.Abilities.Label"}}</span>
+			<span class="right stripes"></span>
+		</h3>
+		<p class="hint">{{localize "EH.Advancement.Defense.Abilities.Hint"}}</p>
+		<div class="properties">
+			{{#each abilities as |ability key|}}
+				<fieldset {{#if ability.checked}}class="checked"{{/if}}>
+					<label>
+						<input type="checkbox" name="configuration.abilities.{{key}}" {{checked ability.checked}}>
+						{{ability.label}}
+					</label>
+				</fieldset>
+			{{/each}}
+		</div>
+	</section>
+
+	<section class="right column level-list scale-values">
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Defense.Bonus.Label"}}</span>
+			<span class="right stripes"></span>
+		</h3>
+		{{#each levels as |data level|}}
+			{{> "everydayHeroes.advancement-scale-value" data=data level=level}}
+		{{/each}}
+	</section>
+</form>

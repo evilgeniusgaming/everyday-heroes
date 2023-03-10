@@ -46,7 +46,7 @@ export default class ScaleValueAdvancement extends Advancement {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Display Methods                             */
+	/*  Display Methods                          */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	titleForLevel(level, { configMode=false }={}) {

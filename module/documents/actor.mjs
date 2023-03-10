@@ -834,7 +834,7 @@ export default class ActorEH extends Actor {
 	async _preUpdate(changed, options, user) {
 		const changedHP = foundry.utils.getProperty(changed, "system.attributes.hp.value");
 		if ( changedHP !== undefined ) {
-			if ( changedHP > 0 ) {
+			if ( (changedHP > 0) || (this.system.attributes.hp.max === 0) ) {
 				foundry.utils.setProperty(changed, "system.attributes.death.status", "alive");
 				foundry.utils.setProperty(changed, "system.attributes.death.success", 0);
 				foundry.utils.setProperty(changed, "system.attributes.death.failure", 0);

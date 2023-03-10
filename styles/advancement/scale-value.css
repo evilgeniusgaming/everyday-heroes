@@ -16,14 +16,14 @@
 /*  Flow                                     */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.everyday-heroes.advancement.manager [data-type="ScaleValue"] p {
+.everyday-heroes.advancement.manager :is([data-type="ScaleValue"], [data-type="Defense"]) p {
 	grid-column: 1 / -1;
 	font-size: var(--font-size-20);
 	text-align: center;
 }
-.everyday-heroes.advancement.manager [data-type="ScaleValue"] span.scale-value {
+.everyday-heroes.advancement.manager :is([data-type="ScaleValue"], [data-type="Defense"]) span.scale-value {
 	margin-inline: 0.5em;	
 }
-.everyday-heroes.advancement.manager [data-type="ScaleValue"] span.none {
+.everyday-heroes.advancement.manager :is([data-type="ScaleValue"], [data-type="Defense"]) span.none {
 	font-style: italic;
 }

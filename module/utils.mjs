@@ -165,6 +165,7 @@ export async function registerHandlebarsPartials() {
 		"actor/hero-features.hbs",
 		"actor/hero-inventory.hbs",
 		"advancement/parts/advancement-controls.hbs",
+		"advancement/parts/advancement-scale-value.hbs",
 		"item/physical-details.hbs"
 	];
 

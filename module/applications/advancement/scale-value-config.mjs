@@ -94,7 +94,7 @@ export default class ScaleValueConfig extends AdvancementConfig {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	prepareConfigurationUpdate(configuration) {
+	async prepareConfigurationUpdate(configuration) {
 		// Ensure multiple values in a row are not the same
 		let lastValue = null;
 		for ( const [lvl, value] of Object.entries(configuration.scale) ) {

@@ -49,7 +49,6 @@ export default class HitPointsAdvancement extends Advancement {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	/** @inheritdoc */
 	titleForLevel(level, { configMode=false }={}) {
 		const hp = this.valueForLevel(level);
 		if ( !hp || configMode ) return this.title;
