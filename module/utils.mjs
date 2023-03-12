@@ -105,6 +105,58 @@ function dataset(context, options) {
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * A helper to create a set of <option> elements in a <select> block grouped together
+ * in <optgroup> based on the provided categories.
+ *
+ * @param {SelectChoices} choices - Choices to format.
+ * @param {object} [options]
+ * @param {boolean} [options.localize] - Should the label be localized?
+ * @param {string} [options.blank] - Name for the empty option, if one should be added.
+ * @param {string} [options.labelAttr] - Attribute pointing to label string.
+ * @param {string} [options.chosenAttr] - Attribute pointing to chosen boolean.
+ * @param {string} [options.childrenAttr] - Attribute pointing to array of children.
+ * @returns {Handlebars.SafeString} - Formatted option list.
+ */
+function groupedSelectOptions(choices, options) {
+	const localize = options.localize ?? false;
+	const blank = options.blank ?? null;
+	const labelAttr = options.labelAttr ?? "label";
+	const chosenAttr = options.chosenAttr ?? "chosen";
+	const childrenAttr = options.childrenAttr ?? "children";
+
+	// Create an option
+	const option = (name, label, chosen) => {
+		if ( localize ) label = game.i18n.localize(label);
+		html += `<option value="${name}" ${chosen ? "selected" : ""}>${label}</option>`;
+	};
+
+	// Create an group
+	const group = category => {
+		let label = category[labelAttr];
+		if ( localize ) game.i18n.localize(label);
+		html += `<optgroup label="${label}">`;
+		children(category[childrenAttr]);
+		html += "</optgroup>";
+	};
+
+	// Add children
+	const children = children => {
+		for ( let [name, child] of Object.entries(children) ) {
+			if ( child[childrenAttr] ) group(child);
+			else option(name, child[labelAttr], child[chosenAttr] ?? false);
+		}
+	};
+
+	// Create the options
+	let html = "";
+	if ( blank !== null ) option("", blank);
+	children(choices);
+	return new Handlebars.SafeString(html);
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * A helper that determines if the provided item has a certain property.
  * @param {object} context - Current evaluation context.
  * @param {object} options - Handlebars options.
@@ -115,25 +167,25 @@ function has(context, options) {
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-/**
- * A helper that fetch the appropriate item context from root and adds it to the first block parameter.
- * @param {object} context - Current evaluation context.
- * @param {object} options - Handlebars options.
- * @returns {string}
- */
-function itemContext(context, options) {
-	if ( arguments.length !== 2 ) throw new Error("#eh-itemContext requires exactly one argument");
-	if ( foundry.utils.getType(context) === "function" ) context = context.call(this);
-
-	const ctx = options.data.root.itemContext?.[context.id];
-	if ( !ctx ) {
-		const inverse = options.inverse(this);
-		if ( inverse ) return options.inverse(this);
-	}
-
-	return options.fn(context, { data: options.data, blockParams: [ctx] });
-}
+// 
+// /**
+//  * A helper that fetch the appropriate item context from root and adds it to the first block parameter.
+//  * @param {object} context - Current evaluation context.
+//  * @param {object} options - Handlebars options.
+//  * @returns {string}
+//  */
+// function itemContext(context, options) {
+// 	if ( arguments.length !== 2 ) throw new Error("#everydayHeroes-itemContext requires exactly one argument");
+// 	if ( foundry.utils.getType(context) === "function" ) context = context.call(this);
+// 
+// 	const ctx = options.data.root.itemContext?.[context.id];
+// 	if ( !ctx ) {
+// 		const inverse = options.inverse(this);
+// 		if ( inverse ) return options.inverse(this);
+// 	}
+// 
+// 	return options.fn(context, { data: options.data, blockParams: [ctx] });
+// }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -169,8 +221,9 @@ export function numberFormat(value, options={}) {
 export function registerHandlebarsHelpers() {
 	Handlebars.registerHelper({
 		"everydayHeroes-dataset": dataset,
+		"everydayHeroes-groupedSelectOptions": (choices, options) => groupedSelectOptions(choices, options.hash),
 		"everydayHeroes-has": has,
-		"everydayHeroes-itemContext": itemContext,
+		// "everydayHeroes-itemContext": itemContext,
 		"everydayHeroes-linkForUUID": linkForUUID,
 		"everydayHeroes-number": (value, options) => numberFormat(value, options.hash)
 	});

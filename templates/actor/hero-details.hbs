@@ -98,16 +98,16 @@
 		<div class="health">
 			<div class="hp">
 				<fieldset class="max-hp">
-					<label>Max HP</label>{{!-- TODO: Localize --}}
+					<label>{{localize "EH.HitPoints.Max"}}</label>
 					<span>{{system.attributes.hp.max}}</span>
 				</fieldset>
 				<fieldset class="current-hp">
-					<label>Current HP</label>{{!-- TODO: Localize --}}
+					<label>{{localize "EH.HitPoints.Current"}}</label>
 					<input type="number" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}"
 						step="1" min="0" max="{{system.attributes.hp.max}}">
 				</fieldset>
 				<fieldset class="temp-hp">
-					<label>Temp HP</label>{{!-- TODO: Localize --}}
+					<label>{{localize "EH.HitPoints.Temp"}}</label>
 					<input type="number" name="system.attributes.hp.temp" value="{{system.attributes.hp.temp}}"
 						step="1" min="0">
 				</fieldset>
@@ -126,7 +126,7 @@
 						<label>Total DMG</label>{{!-- TODO: Localize --}}
 						<span>{{system.attributes.hp.damage}}</span>
 					{{else}}
-						<label>Status</label>{{!-- TODO: Localize --}}
+						<label>{{localize "EH.Death.Status.Label"}}</label>
 						<span>{{system.attributes.death.status}}</span>
 					{{/unless}}
 				</fieldset>
@@ -164,7 +164,7 @@
 				<span>{{system.attributes.defense.value}}</span>
 			</fieldset>
 			<fieldset class="initiative">
-				<label><a data-action="roll" data-type="initiative">Initiative</a></label>
+				<label><a data-action="roll" data-type="initiative">{{localize "EH.Initiative.Label"}}</a></label>
 				<span>{{system.attributes.initiative.mod}}</span>
 			</fieldset>
 			<fieldset class="passive-perception">

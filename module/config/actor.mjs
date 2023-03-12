@@ -13,28 +13,28 @@ import { preLocalize } from "./utils.mjs";
  */
 export const abilities = {
 	str: {
-		label: "EH.Abilities.Strength.Label",
-		abbreviation: "EH.Abilities.Strength.Abbreviation"
+		label: "EH.Ability.Strength.Label",
+		abbreviation: "EH.Ability.Strength.Abbreviation"
 	},
 	dex: {
-		label: "EH.Abilities.Dexterity.Label",
-		abbreviation: "EH.Abilities.Dexterity.Abbreviation"
+		label: "EH.Ability.Dexterity.Label",
+		abbreviation: "EH.Ability.Dexterity.Abbreviation"
 	},
 	con: {
-		label: "EH.Abilities.Constitution.Label",
-		abbreviation: "EH.Abilities.Constitution.Abbreviation"
+		label: "EH.Ability.Constitution.Label",
+		abbreviation: "EH.Ability.Constitution.Abbreviation"
 	},
 	int: {
-		label: "EH.Abilities.Intelligence.Label",
-		abbreviation: "EH.Abilities.Intelligence.Abbreviation"
+		label: "EH.Ability.Intelligence.Label",
+		abbreviation: "EH.Ability.Intelligence.Abbreviation"
 	},
 	wis: {
-		label: "EH.Abilities.Wisdom.Label",
-		abbreviation: "EH.Abilities.Wisdom.Abbreviation"
+		label: "EH.Ability.Wisdom.Label",
+		abbreviation: "EH.Ability.Wisdom.Abbreviation"
 	},
 	cha: {
-		label: "EH.Abilities.Charisma.Label",
-		abbreviation: "EH.Abilities.Charisma.Abbreviation"
+		label: "EH.Ability.Charisma.Label",
+		abbreviation: "EH.Ability.Charisma.Abbreviation"
 	}
 };
 preLocalize("abilities", { keys: ["label", "abbreviation"] });
@@ -66,22 +66,22 @@ export const defaultAbilities = {
  */
 export const conditions = {
 	blinded: {
-		label: "EH.Conditions.Blinded.Label"
+		label: "EH.Condition.Blinded.Label"
 	},
 	burning: {
-		label: "EH.Conditions.Burning.Label"
+		label: "EH.Condition.Burning.Label"
 	},
 	deafened: {
-		label: "EH.Conditions.Deafened.Label"
+		label: "EH.Condition.Deafened.Label"
 	},
 	distracted: {
-		label: "EH.Conditions.Distracted.Label"
+		label: "EH.Condition.Distracted.Label"
 	},
 	encumbered: {
-		label: "EH.Conditions.Encumbered.Label"
+		label: "EH.Condition.Encumbered.Label"
 	},
 	exhaustion: {
-		label: "EH.Conditions.Exhaustion.Label",
+		label: "EH.Condition.Exhaustion.Label",
 		levels: {
 			1: {},
 			2: {},
@@ -92,16 +92,16 @@ export const conditions = {
 		}
 	},
 	frightened: {
-		label: "EH.Conditions.Frightened.Label"
+		label: "EH.Condition.Frightened.Label"
 	},
 	grappled: {
-		label: "EH.Conditions.Grappled.Label"
+		label: "EH.Condition.Grappled.Label"
 	},
 	incapacitated: {
-		label: "EH.Conditions.Incapacitated.Label"
+		label: "EH.Condition.Incapacitated.Label"
 	},
 	intoxication: {
-		label: "EH.Conditions.Intoxication.Label",
+		label: "EH.Condition.Intoxication.Label",
 		levels: {
 			1: {},
 			2: {},
@@ -110,22 +110,22 @@ export const conditions = {
 		}
 	},
 	paralyzed: {
-		label: "EH.Conditions.Paralyzed.Label"
+		label: "EH.Condition.Paralyzed.Label"
 	},
 	prone: {
-		label: "EH.Conditions.Prone.Label"
+		label: "EH.Condition.Prone.Label"
 	},
 	restrained: {
-		label: "EH.Conditions.Restrained.Label"
+		label: "EH.Condition.Restrained.Label"
 	},
 	sickened: {
-		label: "EH.Conditions.Sickened.Label"
+		label: "EH.Condition.Sickened.Label"
 	},
 	stunned: {
-		label: "EH.Conditions.Stunned.Label"
+		label: "EH.Condition.Stunned.Label"
 	},
 	unconcious: {
-		label: "EH.Conditions.Unconcious.Label"
+		label: "EH.Condition.Unconcious.Label"
 	}
 };
 preLocalize("conditions", { key: "label", sort: true });
@@ -222,16 +222,16 @@ export const maxLevel = 10;
  * @enum {string}
  */
 export const roles = {
-	fodder: "EH.Roles.Fodder.Label",
-	hulk: "EH.Roles.Hulk.Label",
-	killer: "EH.Roles.Killer.Label",
-	leader: "EH.Roles.Leader.Label",
-	loner: "EH.Roles.Loner.Label",
-	melee: "EH.Roles.Melee.Label",
-	ranged: "EH.Roles.Ranged.Label",
-	shadow: "EH.Roles.Shadow.Label",
-	support: "EH.Roles.Support.Label",
-	tank: "EH.Roles.Tank.Label"
+	fodder: "EH.Role.Fodder.Label",
+	hulk: "EH.Role.Hulk.Label",
+	killer: "EH.Role.Killer.Label",
+	leader: "EH.Role.Leader.Label",
+	loner: "EH.Role.Loner.Label",
+	melee: "EH.Role.Melee.Label",
+	ranged: "EH.Role.Ranged.Label",
+	shadow: "EH.Role.Shadow.Label",
+	support: "EH.Role.Support.Label",
+	tank: "EH.Role.Tank.Label"
 };
 preLocalize("roles", { sort: true });
 
@@ -250,91 +250,91 @@ preLocalize("roles", { sort: true });
  */
 export const skills = {
 	acro: {
-		label: "EH.Skills.Acrobatics.Label",
+		label: "EH.Skill.Acrobatics.Label",
 		ability: "dex"
 	},
 	arts: {
-		label: "EH.Skills.ArtsAndCrafts.Label",
+		label: "EH.Skill.ArtsAndCrafts.Label",
 		ability: "wis"
 	},
 	athl: {
-		label: "EH.Skills.Athletics.Label",
+		label: "EH.Skill.Athletics.Label",
 		ability: "str"
 	},
 	comp: {
-		label: "EH.Skills.Computers.Label",
+		label: "EH.Skill.Computers.Label",
 		ability: "int"
 	},
 	dece: {
-		label: "EH.Skills.Deception.Label",
+		label: "EH.Skill.Deception.Label",
 		ability: "cha"
 	},
 	endu: {
-		label: "EH.Skills.Endurance.Label",
+		label: "EH.Skill.Endurance.Label",
 		ability: "con"
 	},
 	inst: {
-		label: "EH.Skills.Insight.Label",
+		label: "EH.Skill.Insight.Label",
 		ability: "wis"
 	},
 	inti: {
-		label: "EH.Skills.Intimidation.Label",
+		label: "EH.Skill.Intimidation.Label",
 		ability: "cha"
 	},
 	inve: {
-		label: "EH.Skills.Investigation.Label",
+		label: "EH.Skill.Investigation.Label",
 		ability: "int"
 	},
 	mech: {
-		label: "EH.Skills.Mechanics.Label",
+		label: "EH.Skill.Mechanics.Label",
 		ability: "int"
 	},
 	medi: {
-		label: "EH.Skills.Medicine.Label",
+		label: "EH.Skill.Medicine.Label",
 		ability: "int"
 	},
 	nats: {
-		label: "EH.Skills.NaturalSciences.Label",
+		label: "EH.Skill.NaturalSciences.Label",
 		ability: "int"
 	},
 	perc: {
-		label: "EH.Skills.Perception.Label",
+		label: "EH.Skill.Perception.Label",
 		ability: "wis"
 	},
 	perf: {
-		label: "EH.Skills.Performance.Label",
+		label: "EH.Skill.Performance.Label",
 		ability: "cha"
 	},
 	pers: {
-		label: "EH.Skills.Persuasion.Label",
+		label: "EH.Skill.Persuasion.Label",
 		ability: "cha"
 	},
 	secu: {
-		label: "EH.Skills.Security.Label",
+		label: "EH.Skill.Security.Label",
 		ability: "int"
 	},
 	slgt: {
-		label: "EH.Skills.SleightOfHand.Label",
+		label: "EH.Skill.SleightOfHand.Label",
 		ability: "dex"
 	},
 	socs: {
-		label: "EH.Skills.SocialSciences.Label",
+		label: "EH.Skill.SocialSciences.Label",
 		ability: "int"
 	},
 	slth: {
-		label: "EH.Skills.Stealth.Label",
+		label: "EH.Skill.Stealth.Label",
 		ability: "dex"
 	},
 	strt: {
-		label: "EH.Skills.Streetwise.Label",
+		label: "EH.Skill.Streetwise.Label",
 		ability: "wis"
 	},
 	surv: {
-		label: "EH.Skills.Survival.Label",
+		label: "EH.Skill.Survival.Label",
 		ability: "wis"
 	},
 	vehi: {
-		label: "EH.Skills.Vehicles.Label",
+		label: "EH.Skill.Vehicles.Label",
 		ability: "dex"
 	}
 };

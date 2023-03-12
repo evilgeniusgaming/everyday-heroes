@@ -280,7 +280,7 @@ export default class ActorEH extends Actor {
 		const rollConfig = foundry.utils.mergeObject({ data }, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
-		const flavor = game.i18n.format("EH.Abilities.Action.CheckSpecific", {
+		const flavor = game.i18n.format("EH.Ability.Action.CheckSpecific", {
 			ability: CONFIG.EverydayHeroes.abilities[key].label
 		});
 		const messageConfig = foundry.utils.mergeObject({
@@ -360,7 +360,7 @@ export default class ActorEH extends Actor {
 		const rollConfig = foundry.utils.mergeObject({ data }, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
-		const flavor = game.i18n.format("EH.Abilities.Action.SaveSpecific", {
+		const flavor = game.i18n.format("EH.Ability.Action.SaveSpecific", {
 			ability: CONFIG.EverydayHeroes.abilities[key].label
 		});
 		const messageConfig = foundry.utils.mergeObject({
@@ -762,7 +762,7 @@ export default class ActorEH extends Actor {
 		const rollConfig = foundry.utils.mergeObject({ data }, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
-		const flavor = game.i18n.format("EH.Skills.Action.CheckSpecific", {
+		const flavor = game.i18n.format("EH.Skill.Action.CheckSpecific", {
 			skill: CONFIG.EverydayHeroes.skills[key].label
 		});
 		const messageConfig = foundry.utils.mergeObject({

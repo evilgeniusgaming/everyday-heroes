@@ -8,22 +8,22 @@ export function registerSheets() {
 	DocumentSheetConfig.registerSheet(Actor, "everyday-heroes", actor.HeroSheet, {
 		types: ["hero"],
 		makeDefault: true,
-		label: "EH.Sheets.Hero"
+		label: "EH.Sheet.Hero"
 	});
 	DocumentSheetConfig.registerSheet(Item, "everyday-heroes", item.ConceptSheet, {
 		types: ["archetype", "class", "background", "profession"],
 		makeDefault: true,
-		label: "EH.Sheets.Concept"
+		label: "EH.Sheet.Concept"
 	});
 	DocumentSheetConfig.registerSheet(Item, "everyday-heroes", item.FeatureSheet, {
 		types: ["talent", "specialFeature", "plan", "trick", "feat"],
 		makeDefault: true,
-		label: "EH.Sheets.Feature"
+		label: "EH.Sheet.Feature"
 	});
 	DocumentSheetConfig.registerSheet(Item, "everyday-heroes", item.PhysicalSheet, {
 		types: ["ammunition", "armor", "weapon", "explosive", "gear"],
 		makeDefault: true,
-		label: "EH.Sheets.Physical"
+		label: "EH.Sheet.Physical"
 	});
 }
 

@@ -44,7 +44,7 @@ export default class AdvancementConfirmationDialog extends Dialog {
 			game.i18n.localize("EH.Advancement.Confirmation.Message.LevelDown"),
 			{
 				icon: '<i class="fas fa-sort-numeric-down-alt"></i>',
-				label: game.i18n.localize("EH.Levels.Action.Decrease")
+				label: game.i18n.localize("EH.Level.Action.Decrease")
 			}
 		);
 	}

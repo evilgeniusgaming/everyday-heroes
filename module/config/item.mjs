@@ -1,6 +1,11 @@
 import * as advancement from "../documents/advancement/_module.mjs";
 import { preLocalize } from "./utils.mjs";
 
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Advancement                              */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 /**
  * Advancement types that can be added to items.
  * @enum {typeof Advancement}
@@ -12,6 +17,39 @@ export const advancementTypes = {
 	ScaleValue: advancement.ScaleValueAdvancement
 };
 
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Items                                    */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Configuration data for item categories.
+ *
+ * @typedef {LabeledConfiguration} ItemCategoryConfiguration
+ * @property {string[]} types - Types of items that will appear in this category and use its sheet.
+ */
+
+/**
+ * Broad item categories and which types belong within them.
+ * @enum {ItemCategoryConfiguration}
+ */
+export const itemCategories = {
+	concept: {
+		label: "EH.Item.Category.Concept.Label",
+		types: ["archetype", "class", "background", "profession"]
+	},
+	feature: {
+		label: "EH.Item.Category.Feature.Label",
+		types: ["talent", "specialFeature", "plan", "trick", "feat"]
+	},
+	physical: {
+		label: "EH.Item.Category.Physical.Label",
+		types: ["armor", "weapon", "ammunition", "explosive", "gear"]
+	}
+};
+preLocalize("itemCategories", { key: "label" });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Equipment                                */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**

@@ -561,4 +561,56 @@ export default class ItemEH extends Item {
 			this.actor.update({[`system.items.-=${this.id}`]: null});
 		}
 	}
+
+	/* -------------------------------------------- */
+	/*  Importing and Exporting                     */
+	/* -------------------------------------------- */
+
+	static async createDialog(data={}, {parent=null, pack=null, ...options}={}) {
+
+		// Collect data
+		const documentName = this.metadata.name;
+		const types = foundry.utils.deepClone(game.documentTypes[documentName]);
+		const folders = parent ? [] : game.folders.filter(f => (f.type === documentName) && f.displayed);
+		const label = game.i18n.localize(this.metadata.label);
+		const title = game.i18n.format("DOCUMENT.Create", {type: label});
+
+		const categories = {};
+		for ( const [key, value] of Object.entries(CONFIG.EverydayHeroes.itemCategories) ) {
+			categories[key] = { label: value.label, children: {} };
+			for ( const type of value.types ) {
+				categories[key].children[type] = {
+					label: game.i18n.localize(CONFIG[documentName]?.typeLabels?.[type] ?? type)
+				};
+			}
+		}
+
+		// Render the document creation form
+		const html = await renderTemplate("systems/everyday-heroes/templates/item/dialogs/item-create.hbs", {
+			folders,
+			name: data.name || game.i18n.format("DOCUMENT.New", {type: label}),
+			folder: data.folder,
+			hasFolders: folders.length >= 1,
+			type: data.type || CONFIG[documentName]?.defaultType || types[0],
+			categories
+		});
+
+		// Render the confirmation dialog window
+		return Dialog.prompt({
+			title: title,
+			content: html,
+			label: title,
+			callback: html => {
+				const form = html[0].querySelector("form");
+				const fd = new FormDataExtended(form);
+				foundry.utils.mergeObject(data, fd.object, {inplace: true});
+				if ( !data.folder ) delete data.folder;
+				if ( types.length === 1 ) data.type = types[0];
+				if ( !data.name?.trim() ) data.name = this.defaultName();
+				return this.create(data, {parent, pack, renderSheet: true});
+			},
+			rejectClose: false,
+			options
+		});
+	}
 }

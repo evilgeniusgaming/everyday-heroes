@@ -12,7 +12,7 @@ export default class HeroData extends SystemDataModel {
 		return {
 			abilities: new MappingField(new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.NumberField({
-					nullable: false, initial: 10, min: 0, integer: true, label: "EH.Abilities.Score[one]"
+					nullable: false, initial: 10, min: 0, integer: true, label: "EH.Ability.Score[one]"
 				}),
 				saveProficiency: new foundry.data.fields.SchemaField({
 					multiplier: new foundry.data.fields.NumberField({
@@ -20,33 +20,41 @@ export default class HeroData extends SystemDataModel {
 					})
 				}, {label: "EH.Proficiency.Label[one]"}),
 				bonuses: new foundry.data.fields.SchemaField({
-					check: new FormulaField({label: "EH.Abilities.Bonus.Check"}),
-					dc: new FormulaField({label: "EH.Abilities.Bonus.DC"}),
-					save: new FormulaField({label: "EH.Abilities.Bonus.Save"})
+					check: new FormulaField({label: "EH.Ability.Bonus.Check"}),
+					dc: new FormulaField({label: "EH.Ability.Bonus.DC"}),
+					save: new FormulaField({label: "EH.Ability.Bonus.Save"})
 				})
 			}), {
-				initialKeys: CONFIG.EverydayHeroes.abilities, prepareKeys: true, label: "EH.Abilities.Label[other]"
+				initialKeys: CONFIG.EverydayHeroes.abilities, prepareKeys: true, label: "EH.Ability.Label[other]"
 			}),
 			attributes: new foundry.data.fields.SchemaField({
 				death: new foundry.data.fields.SchemaField({
-					status: new foundry.data.fields.StringField({initial: "alive", blank: false, label: ""}),
+					status: new foundry.data.fields.StringField({initial: "alive", blank: false, label: "EH.Death.Status.Label"}),
 					success: new foundry.data.fields.NumberField({
-						nullable: false, initial: 0, min: 0, integer: true, label: ""
+						nullable: false, initial: 0, min: 0, integer: true, label: "EH.Death.Success"
 					}),
 					failure: new foundry.data.fields.NumberField({
-						nullable: false, initial: 0, min: 0, integer: true, label: ""
+						nullable: false, initial: 0, min: 0, integer: true, label: "EH.Death.Failure"
 					}),
-					bonus: new FormulaField({label: ""})
-				}, {label: ""}),
+					bonus: new FormulaField({label: "EH.Death.Bonus"}),
+					overrides: new foundry.data.fields.SchemaField({
+						success: new foundry.data.fields.NumberField({label: "EH.Death.Override.Success"}),
+						failure: new foundry.data.fields.NumberField({label: "EH.Death.Override.Failure"}),
+						target: new foundry.data.fields.NumberField({label: "EH.Death.Override.Target"})
+					})
+				}, {label: "EH.Death.Label[other]"}),
 				hd: new foundry.data.fields.SchemaField({
-					spent: new foundry.data.fields.NumberField({initial: 0, min: 0, integer: true, label: ""})
+					spent: new foundry.data.fields.NumberField({initial: 0, min: 0, integer: true, label: "EH.HitDice.Spent"})
 				}, {label: "EH.HitDice.Labe[other]"}),
 				hp: new foundry.data.fields.SchemaField({
 					value: new foundry.data.fields.NumberField({
-						nullable: false, initial: 0, min: 0, integer: true, label: ""
+						nullable: false, initial: 0, min: 0, integer: true, label: "EH.HitPoints.Current"
 					}),
 					temp: new foundry.data.fields.NumberField({
-						initial: null, min: 0, integer: true, label: ""
+						initial: null, min: 0, integer: true, label: "EH.HitPoints.Temp"
+					}),
+					ability: new foundry.data.fields.StringField({
+						initial: () => CONFIG.EverydayHeroes.defaultAbilities.hitPoints, label: "EH.Ability.Label[one]"
 					}),
 					// TODO: Does Everyday Heroes need temp max support?
 					bonuses: new foundry.data.fields.SchemaField({
@@ -56,10 +64,10 @@ export default class HeroData extends SystemDataModel {
 				}, {label: ""}),
 				initiative: new foundry.data.fields.SchemaField({
 					ability: new foundry.data.fields.StringField({
-						initial: () => CONFIG.EverydayHeroes.defaultAbilities.initiative, label: "EH.Abilities.Label[one]"
+						initial: () => CONFIG.EverydayHeroes.defaultAbilities.initiative, label: "EH.Ability.Label[one]"
 					}),
-					bonus: new FormulaField({label: ""})
-				}),
+					bonus: new FormulaField({label: "EH.Initiative.Bonus.Label"})
+				}, {label: "EH.Initiative.Label"}),
 				movement: new foundry.data.fields.SchemaField({
 					value: new foundry.data.fields.NumberField({
 						nullable: false, initial: 30, min: 0, step: 0.1, label: ""
@@ -103,15 +111,15 @@ export default class HeroData extends SystemDataModel {
 			}),
 			bonuses: new foundry.data.fields.SchemaField({
 				ability: new foundry.data.fields.SchemaField({
-					check: new FormulaField({label: "EH.Abilities.Bonus.Check"}),
-					dc: new FormulaField({label: "EH.Abilities.Bonus.DC"}),
-					save: new FormulaField({label: "EH.Abilities.Bonus.Save"})
+					check: new FormulaField({label: "EH.Ability.Bonus.Check"}),
+					dc: new FormulaField({label: "EH.Ability.Bonus.DC"}),
+					save: new FormulaField({label: "EH.Ability.Bonus.Save"})
 				}),
 				attack: new MappingField(new FormulaField()),
 				damage: new MappingField(new FormulaField()),
 				skill: new foundry.data.fields.SchemaField({
-					check: new FormulaField({label: "EH.Skills.Bonuses.Check"}),
-					passive: new FormulaField({label: "EH.Skills.Bonuses.Passive"})
+					check: new FormulaField({label: "EH.Skill.Bonuses.Check"}),
+					passive: new FormulaField({label: "EH.Skill.Bonuses.Passive"})
 				})
 			}, {label: ""}),
 			conditions: new foundry.data.fields.SchemaField({
@@ -127,10 +135,10 @@ export default class HeroData extends SystemDataModel {
 				mode: new foundry.data.fields.StringField({label: ""})
 			})),
 			resources: new foundry.data.fields.SchemaField({
-				inspiration: new foundry.data.fields.BooleanField({label: "EH.Resources.Inspiration"})
-			}, {label: "EH.Resources.Label[other]"}),
+				inspiration: new foundry.data.fields.BooleanField({label: "EH.Resource.Inspiration"})
+			}, {label: "EH.Resource.Label[other]"}),
 			skills: new MappingField(new foundry.data.fields.SchemaField({
-				ability: new foundry.data.fields.StringField({label: "EH.Abilities.Label[one]"}),
+				ability: new foundry.data.fields.StringField({label: "EH.Ability.Label[one]"}),
 				proficiency: new foundry.data.fields.SchemaField({
 					multiplier: new foundry.data.fields.NumberField({
 						nullable: false, initial: 0, min: 0, max: 2, step: 0.5, label: "EH.Proficiency.Multiplier"
@@ -140,12 +148,12 @@ export default class HeroData extends SystemDataModel {
 					})
 				}, {label: "EH.Proficiency.Label[one]"}),
 				bonuses: new foundry.data.fields.SchemaField({
-					check: new FormulaField({label: "EH.Skills.Bonuses.Check"}),
-					passive: new FormulaField({deterministic: true, label: "EH.Skills.Bonuses.Passive"})
+					check: new FormulaField({label: "EH.Skill.Bonuses.Check"}),
+					passive: new FormulaField({deterministic: true, label: "EH.Skill.Bonuses.Passive"})
 				})
 			}), {
 				initialKeys: CONFIG.EverydayHeroes.skills, initialValue: this._initialSkillValue,
-				prepareKeys: true, label: "EH.Skills.Label[other]"
+				prepareKeys: true, label: "EH.Skill.Label[other]"
 			}),
 			traits: new foundry.data.fields.SchemaField({
 				languages: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {label: ""}),
