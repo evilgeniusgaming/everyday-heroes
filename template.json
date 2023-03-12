@@ -95,20 +95,20 @@
   },
   "Item": {
     "types": [
-      "archetype",
-      "class",
-      "background",
-      "profession",
-      "talent",
-      "specialFeature",
-      "plan",
-      "trick",
-      "feat",
-      "armor",
-      "weapon",
       "ammunition",
+      "archetype",
+      "armor",
+      "background",
+      "class",
       "explosive",
-      "gear"
+      "feat",
+      "gear",
+      "plan",
+      "profession",
+      "specialFeature",
+      "talent",
+      "trick",
+      "weapon"
     ],
     "templates": {
       "activatable": {
@@ -151,7 +151,37 @@
       "description.value",
       "description.chat"
     ],
+    "ammunition": {
+      "templates": ["damage", "description", "physical"],
+      "type": {
+        "value": ""
+      },
+      "penetrationValue": 0,
+      "bonuses": {
+        "damage": ""
+      }
+    },
     "archetype": {
+      "templates": ["description"],
+      "identifier": {
+        "value": ""
+      },
+      "advancement": []
+    },
+    "armor": {
+      "templates": ["description", "physical"],
+      "type": {
+        "value": "armor",
+        "category": "basic"
+      },
+      "properties": [],
+      "armorValue": 0,
+      "damaged": false,
+      "bonuses": {
+        "save": ""
+      }
+    },
+    "background": {
       "templates": ["description"],
       "identifier": {
         "value": ""
@@ -166,43 +196,22 @@
       },
       "advancement": []
     },
-    "background": {
-      "templates": ["description"],
-      "identifier": {
-        "value": ""
-      },
-      "advancement": []
-    },
-    "profession": {
-      "templates": ["description"],
-      "identifier": {
-        "value": ""
-      },
-      "advancement": []
-    },
-    "talent": {
-      "templates": ["description", "activatable"],
-      "identifier": {
-        "value": ""
-      },
+    "explosive": {
+      "templates": ["damage", "description", "physical"],
       "type": {
-        "value": ""
-      }
-    },
-    "specialFeature": {
-      "templates": ["description", "activatable"],
-      "identifier": {
-        "value": ""
+        "category": "basic"
       },
-      "type": {
-        "value": ""
+      "properties": [],
+      "penetrationValue": 0,
+      "dc": null,
+      "radius": {
+        "value": null,
+        "units": "ft"
+      },
+      "bonuses": {
+        "damage": "",
+        "dc": ""
       }
-    },
-    "plan": {
-      "templates": ["description", "activatable"]
-    },
-    "trick": {
-      "templates": ["description", "activatable"]
     },
     "feat": {
       "templates": ["description", "activatable"],
@@ -214,18 +223,43 @@
         "category": ""
       }
     },
-    "armor": {
+    "gear": {
       "templates": ["description", "physical"],
       "type": {
-        "value": "armor",
-        "category": "basic"
-      },
-      "properties": [],
-      "armorValue": 0,
-      "damaged": false,
-      "bonuses": {
-        "save": ""
+        "value": "loot"
       }
+    },
+    "plan": {
+      "templates": ["description", "activatable"]
+    },
+    "profession": {
+      "templates": ["description"],
+      "identifier": {
+        "value": ""
+      },
+      "advancement": [],
+      "wealth": 0
+    },
+    "specialFeature": {
+      "templates": ["description", "activatable"],
+      "identifier": {
+        "value": ""
+      },
+      "type": {
+        "value": ""
+      }
+    },
+    "talent": {
+      "templates": ["description", "activatable"],
+      "identifier": {
+        "value": ""
+      },
+      "type": {
+        "value": ""
+      }
+    },
+    "trick": {
+      "templates": ["description", "activatable"]
     },
     "weapon": {
       "templates": ["damage", "description", "physical"],
@@ -254,39 +288,6 @@
       "bonuses": {
         "attack": "",
         "damage": ""
-      }
-    },
-    "ammunition": {
-      "templates": ["damage", "description", "physical"],
-      "type": {
-        "value": ""
-      },
-      "penetrationValue": 0,
-      "bonuses": {
-        "damage": ""
-      }
-    },
-    "explosive": {
-      "templates": ["damage", "description", "physical"],
-      "type": {
-        "category": "basic"
-      },
-      "properties": [],
-      "penetrationValue": 0,
-      "dc": null,
-      "radius": {
-        "value": null,
-        "units": "ft"
-      },
-      "bonuses": {
-        "damage": "",
-        "dc": ""
-      }
-    },
-    "gear": {
-      "templates": ["description", "physical"],
-      "type": {
-        "value": "loot"
       }
     }
   }

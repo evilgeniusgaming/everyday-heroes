@@ -227,7 +227,7 @@ export default class HeroSheet extends ActorSheet {
 				case "profession":
 					context.features.profession.primary.item = item;
 					break;
-				case "specialfeature":
+				case "specialFeature":
 				case "talent":
 					if ( context.features[item.system.type.value] ) {
 						context.features[item.system.type.value].items.push(item);

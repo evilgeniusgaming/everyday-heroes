@@ -18,7 +18,7 @@
 		</fieldset>
 	{{/if}}
 
-	<h3>
+	<h3 class="striped">
 		<span class="left stripes"></span>
 		<span class="center">
 			{{#if (eq item.type "armor")}}{{localize "EH.Armor.Property.Label"}}
@@ -60,51 +60,73 @@
 	{{#if (eq item.system.damageMode "regular")}}
 		<fieldset class="triple">
 			<label>{{localize "EH.Equipment.Trait.Damage.Label"}}</label>
-			{{#if item.system.hasDamage}}
-				<input type="number" name="system.damage.number" value="{{source.damage.number}}" placeholder="1">
-				<select name="system.damage.denomination">
-					{{selectOptions diceSteps selected=source.damage.denomination}}
-				</select>
-			{{/if}}
-			<select name="system.damage.type">
-				{{selectOptions CONFIG.damageTypes selected=source.damage.type
-					blank=(localize "EH.Damage.None") labelAttr="label"}}
-			</select>
+			<div class="fields">
+				{{#if item.system.hasDamage}}
+					<label>
+						<span>Number</span>{{!-- TODO: Localize --}}
+						<input type="number" name="system.damage.number" value="{{source.damage.number}}" placeholder="1">
+					</label>
+					<label>
+						<span>Denomination</span>{{!-- TODO: Localize --}}
+						<select name="system.damage.denomination">
+							{{selectOptions diceSteps selected=source.damage.denomination}}
+						</select>
+					</label>
+				{{/if}}
+				<label>
+					<span>Type</span>
+					<select name="system.damage.type">
+						{{selectOptions CONFIG.damageTypes selected=source.damage.type
+							blank=(localize "EH.Damage.None") labelAttr="label"}}
+					</select>
+				</label>
+			</div>
 			<p class="hint">{{localize "EH.Equipment.Trait.Damage.Hint"}}</p>
 		</fieldset>
 	{{else if (eq item.system.damageMode "modification")}}
 		<fieldset class="triple">
 			<label>{{localize "EH.Equipment.Trait.DamageModification.Label"}}</label>
-			<select name="system.damage.number">{{!-- TODO: Localize & auto generate these steps --}}
-				{{#select source.damage.number}}
-					<option value="-4">-4 dice</option>
-					<option value="-3">-3 dice</option>
-					<option value="-2">-2 dice</option>
-					<option value="-1">-1 die</option>
-					<option value="0">0</option>
-					<option value="1">+1 die</option>
-					<option value="2">+2 dice</option>
-					<option value="3">+3 dice</option>
-					<option value="4">+4 dice</option>
-				{{/select}}
-			</select>
-			<select name="system.damage.denomination">{{!-- TODO: Localize & auto generate these steps --}}
-				{{#select source.damage.denomination}}
-					<option value="-4">-4 steps</option>
-					<option value="-3">-3 steps</option>
-					<option value="-2">-2 steps</option>
-					<option value="-1">-1 step</option>
-					<option value="0">0</option>
-					<option value="1">+1 step</option>
-					<option value="2">+2 steps</option>
-					<option value="3">+3 steps</option>
-					<option value="4">+4 steps</option>
-				{{/select}}
-			</select>
-			<select name="system.damage.type">
-				{{selectOptions CONFIG.damageTypes selected=source.damage.type labelAttr="label"
-				  blank=(localize "EH.Equipment.Trait.DamageModification.NoChange")}}
-			</select>
+			<div class="fields">
+				<label>
+					<span>Number</span>
+					<select name="system.damage.number">{{!-- TODO: Localize & auto generate these steps --}}
+						{{#select source.damage.number}}
+							<option value="-4">-4 dice</option>
+							<option value="-3">-3 dice</option>
+							<option value="-2">-2 dice</option>
+							<option value="-1">-1 die</option>
+							<option value="0">0</option>
+							<option value="1">+1 die</option>
+							<option value="2">+2 dice</option>
+							<option value="3">+3 dice</option>
+							<option value="4">+4 dice</option>
+						{{/select}}
+					</select>
+				</label>
+				<label>
+					<span>Denomination</span>
+					<select name="system.damage.denomination">{{!-- TODO: Localize & auto generate these steps --}}
+						{{#select source.damage.denomination}}
+							<option value="-4">-4 steps</option>
+							<option value="-3">-3 steps</option>
+							<option value="-2">-2 steps</option>
+							<option value="-1">-1 step</option>
+							<option value="0">0</option>
+							<option value="1">+1 step</option>
+							<option value="2">+2 steps</option>
+							<option value="3">+3 steps</option>
+							<option value="4">+4 steps</option>
+						{{/select}}
+					</select>
+				</label>
+				<label>
+					<span>Type</span>
+					<select name="system.damage.type">
+						{{selectOptions CONFIG.damageTypes selected=source.damage.type labelAttr="label"
+				  		blank=(localize "EH.Equipment.Trait.DamageModification.NoChange")}}
+					</select>
+				</label>
+			</div>
 			<p class="hint">{{localize "EH.Equipment.Trait.DamageModification.Hint"}}</p>
 		</fieldset>
 	{{/if}}
@@ -177,7 +199,7 @@
 		{{/if}}
 	{{/if}}
 
-	<h3>
+	<h3 class="striped">
 		<span class="left stripes"></span>
 		<span class="center">Bonuses</span>{{!-- TODO: Localize --}}
 		<span class="right stripes"></span>

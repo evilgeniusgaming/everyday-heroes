@@ -10,9 +10,15 @@
 				<input name="name" value="{{item.name}}">
 			</fieldset>
 			<fieldset>
-				<label>Type</label>{{!-- TODO: Localize --}}
-				<span>{{item.type}}</span>
+				<label>{{localize "EH.Item.Type.Label"}}</label>
+				<span>{{item.typeLabel}}</span>
 			</fieldset>
+			{{#if (everydayHeroes-has item "system.wealth")}}
+				<fieldset>
+					<label>{{localize "EH.Details.Wealth.Label"}}</label>
+					<input type="number" name="system.wealth" value="{{system.wealth}}">
+				</fieldset>
+			{{/if}}
 		</div>
 		<nav data-group="primary">
 			<a data-tab="description">Description</a>{{!-- TODO: Localize --}}

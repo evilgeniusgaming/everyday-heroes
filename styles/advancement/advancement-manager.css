@@ -43,19 +43,8 @@
 }
 .everyday-heroes.advancement .step form h3 {
 	grid-column: 1 / -1;
-	display: flex;
 	margin: -0.5em;
 	margin-block-end: 0;
-	border: none;
-	background-color: var(--eh-background-color-white);
-	color: var(--eh-text-color-white);
-}
-.everyday-heroes.advancement .step form h3 .stripes {
-	flex-grow: 1;
-}
-.everyday-heroes.advancement .step form h3 .center {
-	padding-inline: 0.5em;
-	background-color: black;
 }
 .everyday-heroes.advancement .step form fieldset {
 	grid-column: 1 / -1;

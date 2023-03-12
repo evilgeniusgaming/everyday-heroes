@@ -1,5 +1,5 @@
 @import "./advancement.css";
-@import "./physical.css";
+@import "./details.css";
 
 .item.sheet form {
 	display: flex;

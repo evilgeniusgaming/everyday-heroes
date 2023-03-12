@@ -14,6 +14,9 @@ export default class HeroData extends SystemDataModel {
 				value: new foundry.data.fields.NumberField({
 					nullable: false, initial: 10, min: 0, integer: true, label: "EH.Ability.Score[one]"
 				}),
+				max: new foundry.data.fields.NumberField({
+					integer: true, min: 0, initial: 20, label: "EH.Ability.Max.Label"
+				}),
 				saveProficiency: new foundry.data.fields.SchemaField({
 					multiplier: new foundry.data.fields.NumberField({
 						nullable: false, initial: 0, min: 0, max: 1, integer: true, label: "EH.Proficiency.Multiplier"
@@ -128,7 +131,10 @@ export default class HeroData extends SystemDataModel {
 			details: new foundry.data.fields.SchemaField({
 				level: new foundry.data.fields.NumberField({
 					nullable: false, initial: 1, min: 1, max: CONFIG.EverydayHeroes.maxLevel, integer: true, label: ""
-				})
+				}),
+				wealth: new foundry.data.fields.SchemaField({
+					bonus: new foundry.data.fields.NumberField({integer: true, label: "EH.Details.Wealth.Bonus.Label"})
+				}, {label: "EH.Details.Wealth.Label"})
 			}),
 			items: new MappingField(new foundry.data.fields.SchemaField({
 				equipped: new foundry.data.fields.BooleanField({label: ""}),
@@ -249,6 +255,7 @@ export default class HeroData extends SystemDataModel {
 					break;
 			}
 		}
+		this.details.wealth.value = (this.details.profession?.system.wealth ?? 0) + this.details.wealth.bonus;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

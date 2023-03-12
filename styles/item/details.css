@@ -1,0 +1,69 @@
+.everyday-heroes.item.sheet [data-tab="details"] > section {
+	display: grid;
+	overflow: clip;
+	grid-template-columns: 2fr 1fr 1fr 1fr;
+	border: 1px solid var(--eh-border-color-strong);
+	border-radius: 10px;
+	padding: 0.5em;
+	background-color: var(--eh-background-color-mid);
+}
+.everyday-heroes.item.sheet [data-tab="details"] h3 {
+	grid-column: 1 / -1;
+	margin-block-start: 1em;
+	margin-inline: -0.5em;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Fields                                   */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.everyday-heroes.item.sheet [data-tab="details"] section > fieldset {
+	grid-column: 1 / -1;
+	display: grid;
+	grid-template-columns: subgrid;
+	gap: 0.25em;
+	margin-block: 0.5em;
+}
+.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > :is(label, legend) {
+	grid-column: 1;
+	align-self: center;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > :is(input, select) {
+	grid-column: 2 / -1;
+	width: unset;
+}
+.everyday-heroes.item.sheet [data-tab="details"] section > fieldset.triple > :is(input, select) {
+	grid-column: unset;
+}
+.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields {
+	grid-column: 2 / -1;
+	display: grid;
+	grid-template-columns: subgrid;
+}
+.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label {
+	display: flex;
+	flex-direction: column;
+}
+.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label > :is(input, select) {
+	flex: 1 0 calc(var(--form-field-height) + 1px);
+}
+.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label > span {
+	font-size: var(--font-size-12);
+	font-variant: small-caps;
+	font-weight: bold;
+}
+.everyday-heroes.item.sheet [data-tab="details"] section > fieldset .hint {
+	grid-column: 1 / -1;
+	flex: 1 0 100%;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Properties                               */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.everyday-heroes.item.sheet [data-tab="details"] .properties {
+	grid-column: 1 / -1;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}

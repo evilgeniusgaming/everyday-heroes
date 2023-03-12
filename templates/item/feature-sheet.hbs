@@ -26,7 +26,61 @@
 				engine="prosemirror" collaborate=false}}
 		</div>
 		<div class="tab" data-group="primary" data-tab="details">
-			Details!!!
+			<section>
+				<fieldset>
+					<label>Activation Cost</label>{{!-- TODO: Localize --}}
+					<select name="system.activation.type">
+						{{selectOptions CONFIG.actionTypesStandard selected=system.activation.type blank=(localize "None")}}
+					</select>
+				</fieldset>
+				<fieldset>
+					<label>Activation Condition</label>{{!-- TODO: Localize --}}
+					<input type="text" name="system.activation.condition" value="{{system.activation.condition}}">
+				</fieldset>
+				<fieldset>
+					<label>Consumption</label>{{!-- TODO: Localize --}}
+					<div class="fields">
+						<label>{{!-- TODO: Should span full width if no type selected --}}
+							<span>Type</span>{{!-- TODO: Localize --}}
+							<select name="system.consumption.type">
+								{{selectOptions CONFIG.consumptionTypes selected=system.consumption.type labelAttr="label" blank=""}}
+							</select>
+						</label>
+						{{#if system.consumption.type}}
+							<label>
+								<span>Amount</span>{{!-- TODO: Localize --}}
+								<input type="number" name="system.consumption.amount" value="{{system.consumption.amount}}">
+							</label>
+							<label>
+								<span>Target</span>{{!-- TODO: Localize --}}
+								{{#if item.isEmbedded}}
+									Select Here
+								{{else}}
+									<input type="text" name="system.consumption.target" value="{{source.consumption.target}}">
+								{{/if}}
+							</label>
+						{{/if}}
+					</div>
+				</fieldset>
+				<fieldset class="triple">
+					<label>Limited Uses</label>{{!-- TODO: Localize --}}
+					<div class="fields">
+						<label>
+							<span>Max Uses</span>{{!-- TODO: Localize --}}
+							<input type="text" name="system.uses.max" value="{{source.uses.max}}">
+						</label>
+						<label>
+							<span>Recovery Period</span>{{!-- TODO: Localize --}}
+							<select name="system.uses.per">
+								{{selectOptions CONFIG.recoveryPeriods selected=system.uses.per labelAttr="label" blank=""}}
+							</select>
+						</label>
+						<label>
+							<span>Amount Recovered</span>{{!-- TODO: Localize --}}
+							<input type="text" name="system.uses.recovery" value="{{system.uses.recovery}}" placeholder="All">
+						</label>
+				</fieldset>
+			</section>
 		</div>
 	</main>
 

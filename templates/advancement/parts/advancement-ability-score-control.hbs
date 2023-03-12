@@ -1,0 +1,31 @@
+<li data-score="{{key}}">
+	<label>{{label}}</label>
+	<a class="adjustment-button" {{#if canDecrease}}data-action="decrease"{{else}}aria-disabled="true"{{/if}}>
+		<i class="fas fa-minus"></i>
+	</a>
+	<input name="{{name}}" type="number" min="{{min}}" max="{{max}}"
+		step="1" value="{{value}}" data-initial="{{initial}}"
+		{{#if isFixed}}readonly aria-readonly="true"{{/if}} {{disabled isDisabled}}>
+	<a class="adjustment-button" {{~#if canIncrease}}data-action="increase"{{else}}aria-disabled="true"{{/if}}>
+		<i class="fas fa-plus"></i>
+	</a>
+	{{#if showDelta}}
+		<div class="delta">
+			{{#if delta}}{{everydayHeroes-number delta sign=true}}{{else}}&nbsp;{{/if}}
+			{{#if isFixed}}
+				<i class="fa-solid fa-lock" data-tooltip="EH.Advancement.ASI.Fixed"></i>
+			{{/if}}
+		</div>
+	{{else if showLocked}}
+		<div class="lock {{#if value}}fixed{{/if}}">
+			{{#unless value}}<a data-action="lock">{{/unless}}
+			{{#if isLocked}}
+				<i class="fa-solid fa-lock"
+					data-tooltip="{{#if value}}EH.Advancement.ASI.Fixed{{else}}EH.Advancement.ASI.Action.Unlock{{/if}}"></i>
+			{{else}}
+				<i class="fa-solid fa-lock-open" data-tooltip="EH.Advancement.ASI.Action.Lock"></i>
+			{{/if}}
+			{{#unless value}}</a>{{/unless}}
+		</div>
+	{{/if}}
+</li>

@@ -1,0 +1,15 @@
+<form autocomplete="off" data-id="{{_id}}" data-type="{{type}}">
+	<section>
+		{{> "everydayHeroes.advancement-controls"}}
+	
+		<ul class="ability-scores">
+			{{> "everydayHeroes.advancement-ability-score-control" points}}
+			<li class="hint">
+				{{localize "EH.Advancement.ASI.Points.Hint"}}
+			</li>
+			{{#each abilities}}
+				{{> "everydayHeroes.advancement-ability-score-control" this}}
+			{{/each}}
+		</ul>
+	</section>
+</form>

@@ -11,11 +11,46 @@ import { preLocalize } from "./utils.mjs";
  * @enum {typeof Advancement}
  */
 export const advancementTypes = {
+	ASI: advancement.ASIAdvancement,
 	Defense: advancement.DefenseAdvancement,
 	HitPoints: advancement.HitPointsAdvancement,
 	ItemGrant: advancement.ItemGrantAdvancement,
 	ScaleValue: advancement.ScaleValueAdvancement
 };
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Consumption & Uses                       */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Types of consumption targets that can be defined.
+ * @enum {LabeledConfiguration}
+ */
+export const consumptionTypes = {
+	resource: {
+		label: "EH.Resource.Label[one]"
+	},
+	hitDice: {
+		label: "EH.HitDice.Label[other]"
+	}
+};
+preLocalize("consumptionTypes", { key: "label" });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * At what point are an item's resources recovered?
+ * @enum {LabeledConfiguration}
+ */
+export const recoveryPeriods = {
+	sr: {
+		label: "EH.Rest.Type.Short.Label"
+	},
+	lr: {
+		label: "EH.Rest.Type.Long.Label"
+	}
+};
+preLocalize("recoveryPeriods", { key: "label" });
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Items                                    */

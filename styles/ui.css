@@ -45,16 +45,16 @@
 /*  Striped Headers                          */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.everyday-heroes.advancement .striped:is(h1, h2, h3, h4) {
+.everyday-heroes .striped:is(h1, h2, h3, h4) {
 	display: flex;
 	border: none;
 	background-color: var(--eh-background-color-white);
 	color: var(--eh-text-color-white);
 }
-.everyday-heroes.advancement .striped:is(h1, h2, h3, h4) .stripes {
+.everyday-heroes .striped:is(h1, h2, h3, h4) .stripes {
 	flex-grow: 1;
 }
-.everyday-heroes.advancement .striped:is(h1, h2, h3, h4) .center {
+.everyday-heroes .striped:is(h1, h2, h3, h4) .center {
 	padding-inline: 0.5em;
 	background-color: black;
 }

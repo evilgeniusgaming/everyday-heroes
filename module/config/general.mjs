@@ -8,6 +8,8 @@ import { preLocalize } from "./utils.mjs";
  */
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Action Economy                           */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
  * Standard action types.
@@ -34,6 +36,8 @@ export const actionTypesReload = {
 };
 preLocalize("actionTypesReload");
 
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Damage                                   */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
@@ -78,6 +82,8 @@ export const damageTypes = {
 preLocalize("damageTypes", { key: "label", sort: true });
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Dice                                     */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
  * Progression of dice sizes used by Everyday Heroes.
@@ -85,6 +91,8 @@ preLocalize("damageTypes", { key: "label", sort: true });
  */
 export const diceSteps = [4, 6, 8, 10, 12];
 
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Measurement                              */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**

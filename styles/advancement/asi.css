@@ -1,0 +1,76 @@
+.everyday-heroes.advancement .ability-scores {
+	grid-column: 1 / -1;
+	contain: layout;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+	margin-block-end: 0;
+	padding: 0;
+	list-style: none;
+	text-align: center;
+}
+.everyday-heroes.advancement .ability-scores > label {
+	grid-column: 1 / -1;
+	margin-block: 0.5em;
+	padding: 0;
+	font-size: var(--font-size-18);
+}
+.everyday-heroes.advancement .ability-scores li {
+	display: grid;
+	grid-template:
+		"label label label label"
+		"minus value value plus"
+		"minus delta delta plus";
+	align-items: center;
+}
+.everyday-heroes.advancement .ability-scores li.hint {
+	grid-column: 2 / -1;
+	display: block;
+	text-align: start;
+	align-self: end;
+}
+
+.everyday-heroes.advancement .ability-scores li label {
+	grid-area: label;
+	font-size: var(--font-size-18);
+}
+
+.everyday-heroes.advancement .ability-scores li a {
+	font-size: var(--font-size-16);
+	padding: 0.5em;
+}
+.everyday-heroes.advancement .ability-scores li a:not([data-action]) {
+	opacity: 33%;
+	cursor: default;
+}
+.everyday-heroes.advancement .ability-scores li a:not([data-action]):hover {
+	text-shadow: none;
+}
+.everyday-heroes.advancement .ability-scores li a.minus {
+	grid-area: minus;
+}
+.everyday-heroes.advancement .ability-scores li a.plus {
+	grid-area: plus;
+}
+
+.everyday-heroes.advancement .ability-scores li input {
+	grid-area: value;
+	height: 1.5em;
+	border: none;
+	background: none;
+	font-size: var(--font-size-28);
+}
+.everyday-heroes.advancement .ability-scores li :is(.delta, .lock) {
+	grid-area: delta;
+	font-size: var(--font-size-16);
+	font-weight: bold;
+}
+.everyday-heroes.advancement .ability-scores li :is(.delta, .lock) i {
+	font-size: var(--font-size-12);
+}
+.everyday-heroes.advancement .ability-scores li .lock:not(.fixed) {
+	cursor: pointer;
+}
+.everyday-heroes.advancement .ability-scores li .lock:not(.fixed):hover {
+	text-shadow: 
+}

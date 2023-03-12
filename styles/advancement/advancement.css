@@ -1,6 +1,7 @@
 @import "./advancement-config.css";
 @import "./advancement-manager.css";
 
+@import "./asi.css";
 @import "./defense.css";
 @import "./hit-points.css";
 @import "./scale-value.css";
