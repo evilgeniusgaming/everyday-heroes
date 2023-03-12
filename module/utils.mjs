@@ -140,18 +140,22 @@ function itemContext(context, options) {
 /**
  * Format a number based on the current locale.
  * @param {number} value - A numeric value to format.
- * @param {object} options
- * @param {object} options.hash
- * @param {number} [options.hash.decimals] - Number of decimal digits to display.
- * @param {boolean} [options.hash.sign] - Should the sign always be displayed?
+ * @param {object} [options={}]
+ * @param {number} [options.decimals] - Number of decimal digits to display.
+ * @param {number} [options.digits] - Number of digits before the decimal point to display.
+ * @param {boolean} [options.sign] - Should the sign always be displayed?
  * @returns {string}
  */
-function numberFormat(value, options) {
+export function numberFormat(value, options={}) {
 	const formatterOptions = {};
-	if ( options.hash.sign ) formatterOptions.signDisplay = "always";
-	if ( options.hash.decimals !== undefined ) {
-		formatterOptions.minimumFractionDigits = options.hash.decimals;
-		formatterOptions.maximumFractionDigits = options.hash.decimals;
+	if ( options.sign ) formatterOptions.signDisplay = "always";
+	if ( options.decimals !== undefined ) {
+		formatterOptions.minimumFractionDigits = options.decimals;
+		formatterOptions.maximumFractionDigits = options.decimals;
+	}
+	if ( options.digits !== undefined ) {
+		formatterOptions.minimumIntegerDigits = options.digits;
+		formatterOptions.maximumIntegerDigits = options.digits;
 	}
 	const formatter = new Intl.NumberFormat(game.i18n.lang, formatterOptions);
 	return formatter.format(value);
@@ -168,7 +172,7 @@ export function registerHandlebarsHelpers() {
 		"everydayHeroes-has": has,
 		"everydayHeroes-itemContext": itemContext,
 		"everydayHeroes-linkForUUID": linkForUUID,
-		"everydayHeroes-number": numberFormat
+		"everydayHeroes-number": (value, options) => numberFormat(value, options.hash)
 	});
 }
 

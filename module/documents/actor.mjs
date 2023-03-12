@@ -248,7 +248,7 @@ export default class ActorEH extends Actor {
 	 * Roll an ability check.
 	 * @param {string} key - The ability ID as defined in `CONFIG.EverydayHeroes.abilities`.
 	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
-	 * @param {RollMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
 	 * @returns {Promise<ChallengeRoll|void>}
 	 */
 	async rollAbilityCheck(key, config={}, message={}) {
@@ -301,7 +301,7 @@ export default class ActorEH extends Actor {
 		 * @memberof hookEvents
 		 * @param {ActorEH} actor - Actor for which the ability check is being rolled.
 		 * @param {ChallengeRollConfiguration} config - Configuration data for the pending roll.
-		 * @param {RollMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
 		 * @param {string} key - The ability ID as defined in `CONFIG.EverydayHeroes.abilities`.
 		 * @returns {boolean} - Explicitly return `false` to prevent ability check from being rolled.
 		 */
@@ -328,7 +328,7 @@ export default class ActorEH extends Actor {
 	 * Roll an ability saving throw.
 	 * @param {string} key - The ability ID as defined in `CONFIG.EverydayHeroes.abilities`.
 	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
-	 * @param {RollMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
 	 * @returns {Promise<ChallengeRoll|void>}
 	 */
 	async rollAbilitySave(key, config={}, message={}) {
@@ -381,7 +381,7 @@ export default class ActorEH extends Actor {
 		 * @memberof hookEvents
 		 * @param {ActorEH} actor - Actor for which the ability save is being rolled.
 		 * @param {ChallengeRollConfiguration} config - Configuration data for the pending roll.
-		 * @param {RollMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
 		 * @param {string} key - The ability ID as defined in `CONFIG.EverydayHeroes.abilities`.
 		 * @returns {boolean} - Explicitly return `false` to prevent ability save from being rolled.
 		 */
@@ -407,7 +407,7 @@ export default class ActorEH extends Actor {
 	/**
 	 * Roll a death saving throw.
 	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
-	 * @param {RollMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
 	 * @returns {Promise<ChallengeRoll|void>}
 	 */
 	async rollDeathSave(config={}, message={}) {
@@ -448,7 +448,7 @@ export default class ActorEH extends Actor {
 		 * @memberof hookEvents
 		 * @param {ActorEH} actor - Actor for which the death save is being rolled.
 		 * @param {ChallengeRollConfiguration} config - Configuration data for the pending roll.
-		 * @param {RollMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
 		 * @returns {boolean} - Explicitly return `false` to prevent death save from being rolled.
 		 */
 		if ( Hooks.call("everydayHeroes.preRollDeathSave", this, rollConfig, messageConfig) === false ) return;
@@ -555,7 +555,7 @@ export default class ActorEH extends Actor {
 	/**
 	 * Roll one of the actor's hit die and add its value to their health.
 	 * @param {HitDieRollConfiguration} config - Configuration information for the roll.
-	 * @param {RollMessageConfiguration} message - Configuration data that guides roll message creation.
+	 * @param {BaseMessageConfiguration} message - Configuration data that guides roll message creation.
 	 * @returns {Promise<BaseRoll|void>}
 	 */
 	async rollHitDie(config={}, message={}) {
@@ -594,7 +594,7 @@ export default class ActorEH extends Actor {
 		 * @memberof hookEvents
 		 * @param {ActorEH} actor - Actor for which the hit die is to be rolled.
 		 * @param {HitDieRollConfiguration} config - Configuration data for the pending roll.
-		 * @param {RollMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
 		 * @param {number} denomination - Size of hit die to be rolled.
 		 * @returns {boolean} - Explicitly return `false` to prevent hit die from being rolled.
 		 */
@@ -634,7 +634,7 @@ export default class ActorEH extends Actor {
 	 * @param {object} [options] - Options for the initiative process (see Actor#rollInitiative).
 	 * @param {boolean} [options.dialog=false] - Should the configuration dialog be shown?
 	 * @param {ChallengeRollOptions} [rollOptions] - Additional options passed to the roll.
-	 * @param {RollMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
 	 * @returns {Promise<Combat|void>}
 	 */
 	async rollInitiative(options={}, rollOptions={}, message={}) {
@@ -648,7 +648,7 @@ export default class ActorEH extends Actor {
 	/**
 	 * Roll a luck saving throw.
 	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
-	 * @param {RollMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
 	 * @returns {Promise<ChallengeRoll|void>}
 	 */
 	async rollLuckSave(config={}, message={}) {
@@ -687,7 +687,7 @@ export default class ActorEH extends Actor {
 		 * @memberof hookEvents
 		 * @param {ActorEH} actor - Actor for which the luck save is being rolled.
 		 * @param {ChallengeRollConfiguration} config - Configuration data for the pending roll.
-		 * @param {RollMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
 		 * @returns {boolean} - Explicitly return `false` to prevent ability save from being rolled.
 		 */
 		if ( Hooks.call("everydayHeroes.preRollLuckSave", this, rollConfig, messageConfig) === false ) return;
@@ -712,7 +712,7 @@ export default class ActorEH extends Actor {
 	 * Roll a skill check.
 	 * @param {string} key - The skill ID as defined in `CONFIG.DND5E.skills`.
 	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
-	 * @param {RollMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
 	 * @returns {Promise<ChallengeRoll|void>}
 	 */
 	async rollSkill(key, config={}, message={}) {
@@ -783,7 +783,7 @@ export default class ActorEH extends Actor {
 		 * @memberof hookEvents
 		 * @param {ActorEH} actor - Actor for which the skill check is being rolled.
 		 * @param {ChallengeRollConfiguration} config - Configuration data for the pending roll.
-		 * @param {RollMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
 		 * @param {string} key - The skill ID as defined in `CONFIG.EverydayHeroes.skills`.
 		 * @returns {boolean} - Explicitly return `false` to prevent skill check from being rolled.
 		 */

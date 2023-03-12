@@ -2,14 +2,14 @@
  * Data model template for items that make attacks. Does not introduce any fields of its own, but provides
  * some data preparation methods and helpers.
  */
-export default class AttackTemplate extends foundry.abstract.DataModel {
+export default class AttackTemplate {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Properties                               */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
-	 * Ability modifier used by this item when making attacks, taking mode into account if it has one.
+	 * Ability modifier used by this Item when making attacks, taking mode into account if it has one.
 	 * @returns {string|null}
 	 */
 	get attackAbility() {
@@ -29,12 +29,13 @@ export default class AttackTemplate extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
-	 * The simplified attack modifier for this item, taking mode into account if it has one.
+	 * The simplified attack modifier for this Item, taking mode into account if it has one.
 	 * @type {number}
 	 */
 	get attackMod() {
 		const ability = this.parent?.actor?.system.abilities?.[this.attackAbility];
-		return ability?.mod ?? 0;
+		// TODO: Take flat bonuses into account
+		return (ability?.mod ?? 0) + (Number.isNumeric(this.proficiency?.term) ? this.proficiency.flat : 0);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -50,7 +51,17 @@ export default class AttackTemplate extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
-	 * Can attack rolls be performed by this item?
+	 * Is it currently possible to attack with this Item?
+	 * @type {boolean}
+	 */
+	get canAttack() {
+		return true;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Can attack rolls be performed by this Item?
 	 * @type {boolean}
 	 */
 	get hasAttack() {

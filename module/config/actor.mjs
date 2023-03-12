@@ -3,8 +3,7 @@ import { preLocalize } from "./utils.mjs";
 /**
  * Configuration data for abilities.
  *
- * @typedef {object} AbilityConfiguration
- * @property {string} label         Localized label.
+ * @typedef {LabeledConfiguration} AbilityConfiguration
  * @property {string} abbreviation  Localized abbreviation.
  */
 
@@ -57,8 +56,7 @@ export const defaultAbilities = {
 /**
  * Configuration data for conditions.
  *
- * @typedef {object} ConditionConfiguration
- * @property {string} label     Localized label.
+ * @typedef {LabeledConfiguration} ConditionConfiguration
  * @property {object} [levels]  Defines various levels of the condition if valid.
  */
 
@@ -137,8 +135,7 @@ preLocalize("conditions", { key: "label", sort: true });
 /**
  * Configuration data for NPC creature types.
  *
- * @typedef {object} CreatureTypeConfiguration
- * @property {string} label - Localized label.
+ * @typedef {LabeledConfiguration} CreatureTypeConfiguration
  * @property {object} [subtypes] - Object containing suggested sub-types for this type.
  */
 
@@ -243,9 +240,8 @@ preLocalize("roles", { sort: true });
 /**
  * Configuration data for skills.
  *
- * @typedef {object} SkillConfiguration
- * @property {string} label    Localized label.
- * @property {string} ability  Default ability used by this skill.
+ * @typedef {LabeledConfiguration} SkillConfiguration
+ * @property {string} ability - Default ability used by this skill.
  */
 
 /**

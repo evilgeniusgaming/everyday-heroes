@@ -1,6 +1,9 @@
 {
   "Actor": {
-    "types": ["hero", "npc"],
+    "types": [
+      "hero",
+      "npc"
+    ],
     "templates": {},
     "htmlFields": [
       "biography.value",
@@ -73,10 +76,7 @@
       "details": {
         "level": 1
       },
-      "items": {
-        "equipped": [],
-        "modes": {}
-      },
+      "items": {},
       "resources": {
         "archetype": {
           "value": 0
@@ -94,8 +94,40 @@
     }
   },
   "Item": {
-    "types": ["archetype", "class", "background", "profession", "talent", "specialfeature", "feat", "armor", "weapon", "ammunition", "explosive", "gear"],
+    "types": [
+      "archetype",
+      "class",
+      "background",
+      "profession",
+      "talent",
+      "specialFeature",
+      "plan",
+      "trick",
+      "feat",
+      "armor",
+      "weapon",
+      "ammunition",
+      "explosive",
+      "gear"
+    ],
     "templates": {
+      "activatable": {
+        "activation": {
+          "type": "",
+          "condition": ""
+        },
+        "consumption": {
+          "amount": 0,
+          "target": "",
+          "type": ""
+        },
+        "uses": {
+          "spent": 0,
+          "max": "",
+          "per": "",
+          "recovery": ""
+        }
+      },
       "damage": {
         "damage": {
           "number": null,
@@ -149,7 +181,7 @@
       "advancement": []
     },
     "talent": {
-      "templates": ["description"],
+      "templates": ["description", "activatable"],
       "identifier": {
         "value": ""
       },
@@ -157,17 +189,23 @@
         "value": ""
       }
     },
-    "specialfeature": {
-      "templates": ["description"],
+    "specialFeature": {
+      "templates": ["description", "activatable"],
       "identifier": {
         "value": ""
       },
       "type": {
         "value": ""
       }
+    },
+    "plan": {
+      "templates": ["description", "activatable"]
+    },
+    "trick": {
+      "templates": ["description", "activatable"]
     },
     "feat": {
-      "templates": ["description"],
+      "templates": ["description", "activatable"],
       "identifier": {
         "value": ""
       },

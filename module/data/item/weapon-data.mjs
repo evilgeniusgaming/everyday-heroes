@@ -3,6 +3,7 @@ import FormulaField from "../fields/formula-field.mjs";
 import AttackTemplate from "./templates/attack-template.mjs";
 import DamageTemplate from "./templates/damage-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
+import EquipmentTemplate from "./templates/equipment-template.mjs";
 import PhysicalTemplate from "./templates/physical-template.mjs";
 
 /**
@@ -10,6 +11,7 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @mixes {@link AttackTemplate}
  * @mixes {@link DamageTemplate}
  * @mixes {@link DescribedTemplate}
+ * @mixes {@link EquipmentTemplate}
  * @mixes {@link PhysicalTemplate}
  *
  * @property {object} type
@@ -27,19 +29,20 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @property {number} rounds.spend - Number of rounds that have been spend from the current magazine.
  * @property {number} rounds.capacity - Capacity of this weapon's magazine.
  * @property {number} rounds.burst - Number of rounds expended while taking burst shot.
+ * @property {string} rounds.type - Type of ammunition that can be loaded into this weapon.
  * @property {object} bonuses
  * @property {string} bonuses.attack - Bonus to the weapon's attack rolls.
  * @property {string} bonuses.damage - Bonus to the weapon's damage rolls.
  */
 export default class WeaponData extends SystemDataModel.mixin(
-	AttackTemplate, DamageTemplate, DescribedTemplate, PhysicalTemplate
+	AttackTemplate, DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate
 ) {
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.StringField({initial: "melee", label: "EH.Weapon.Type.Label"}),
 				category: new foundry.data.fields.StringField({intial: "basic", label: "EH.Equipment.Category.Label[one]"})
-			}, {label: "EH.Equipment.Type.Label"}),
+			}, {label: "EH.Item.Type.Label"}),
 			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
 				label: "EH.Weapon.Property.Label"
 			}),
@@ -47,12 +50,6 @@ export default class WeaponData extends SystemDataModel.mixin(
 				min: 0, integer: true,
 				label: "EH.Equipment.Trait.PenetrationValue.Label", hint: "EH.Equipment.Trait.PenetrationValue.Hint"
 			}),
-			ammunition: new foundry.data.fields.SchemaField({
-				type: new foundry.data.fields.StringField({label: "EH.Ammunition.Type.Label"}),
-				loaded: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, {
-					idOnly: true, label: "EH.Ammunition.Loaded"
-				})
-			}, {label: "EH.Item.Type.Ammunition[other]"}),
 			range: new foundry.data.fields.SchemaField({
 				short: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Short"}),
 				long: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Long"}),
@@ -70,7 +67,11 @@ export default class WeaponData extends SystemDataModel.mixin(
 				capacity: new foundry.data.fields.NumberField({
 					min: 0, integer: true, label: "EH.Equipment.Trait.Rounds.Capacity"
 				}),
-				burst: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.Equipment.Trait.Rounds.Burst"})
+				burst: new foundry.data.fields.NumberField({
+					min: 0, integer: true,
+					label: "EH.Equipment.Trait.Rounds.Burst.Label", hint: "EH.Equipment.Trait.Rounds.Burst.Hint"
+				}),
+				type: new foundry.data.fields.StringField({label: "EH.Ammunition.Type.Label"})
 			}, {label: "EH.Equipment.Trait.Rounds.Label", hint: "EH.Equipment.Trait.Rounds.Hint"}),
 			bonuses: new foundry.data.fields.SchemaField({
 				attack: new FormulaField({label: "EH.Weapon.Bonus.Attack.Label"}),
@@ -105,6 +106,22 @@ export default class WeaponData extends SystemDataModel.mixin(
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	get attackTooltip() {
+		if ( !this.mode ) return super.attackTooltip;
+		const type = game.i18n.format("EH.Weapon.Action.AttackSpecific.Label", {
+			type: CONFIG.EverydayHeroes.weaponModes[this.mode].label
+		});
+		return game.i18n.format("EH.Action.Roll", { type });
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get canAttack() {
+		return this.roundsToSpend <= this.rounds.available;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	get damageAbility() {
 		if ( this.mode === "offhand" ) return null;
 		return this.attackAbility;
@@ -113,7 +130,8 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get damageIcon() {
-		return `systems/everyday-heroes/artwork/svg/action/damage-${this.type.value === "ranged" ? "ranged" : "melee"}.svg`;
+		const type = ["thrown", "ranged", "burst"].includes(this.mode) ? "ranged" : "melee";
+		return `systems/everyday-heroes/artwork/svg/action/damage-${type}.svg`;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -138,35 +156,23 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
-	 * Build a list of roll actions for this item.
-	 * @type {object[]}
+	 * Icon display on the reload button.
+	 * @type {string}
 	 */
-	get rollActions() {
-		// Attack
-		//   Burst (if "burst" property)
-		//   Offhand (if "light" property, or unarmed strike)
-		//   Thrown (if melee with "thrown" property)
-		// Damage
-		//   Burst (if "burst" property)
-		//   Offhand (if "light" property, or unarmed strike)
-		return [
-			{
-				label: "+4", // TOOD: Add attack mod value
-				tooltip: game.i18n.format("EH.Action.Roll", {type: game.i18n.localize("EH.Weapon.Action.AttackGeneric.Label")}),
-				icon: `systems/everyday-heroes/artwork/svg/action/attack-${this.type.value === "ranged" ? "ranged" : "melee"}.svg`,
-				data: {
-					type: "attack"
-				}
-			},
-			{
-				label: "1d10 + 4", // TOOD: Add damage formula
-				tooltip: game.i18n.format("EH.Action.Roll", {type: game.i18n.localize("EH.Weapon.Action.DamageGeneric.Label")}),
-				icon: "systems/everyday-heroes/artwork/svg/action/damage.svg",
-				data: {
-					type: "damage"
-				}
-			}
-		];
+	get reloadIcon() {
+		return "systems/everyday-heroes/artwork/svg/action/reload.svg";
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * How many rounds should be spent when this weapon is fired in the current mode.
+	 * @type {number}
+	 */
+	get roundsToSpend() {
+		if ( !this.usesRounds || !this.rounds.capacity ) return 0;
+		if ( this.mode === "burst" ) return this.rounds.burst || 1;
+		return 1;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -193,18 +199,47 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	prepareDerivedTypeLabel() {
-		this.type.label = game.i18n.format("EH.Equipment.Type.DetailedLabel", {
-			category: CONFIG.EverydayHeroes.equipmentCategories[this.type.category]?.label ?? "",
-			type: game.i18n.localize("EH.Item.Type.Weapon[one]"),
-			subtype: CONFIG.EverydayHeroes.weaponTypes[this.type.value] ?? ""
-		});
+	prepareBaseAmmunition() {
+		const ammunitionId = this.parent?.actor?.system.items?.[this.parent?.id]?.ammunition;
+		const ammunition = this.parent?.actor?.items.get(ammunitionId);
+		if ( !ammunition ) return;
+		this.ammunition = ammunition;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	prepareFinalMode() {
-		const mode = this.parent.actor?.system.items?.modes?.[this.parent.id];
+	prepareBaseMode() {
+		const mode = this.parent?.actor?.system.items?.[this.parent.id]?.mode;
 		this.mode = this.modes.includes(mode) ? mode : this.modes[0];
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedDamage() {
+		if ( this.ammunition ) this.modifyDamage(this.ammunition);
+		if ( this.mode === "burst" ) this.modifyDamage({ number: 1 });
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedPenetrationValue() {
+		this.penetrationValue += this.ammunition?.system.penetrationValue ?? 0;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedRounds() {
+		this.rounds.spent = Math.min(this.rounds.spent, this.rounds.capacity);
+		this.rounds.available = this.rounds.capacity - this.rounds.spent;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedTypeLabel() {
+		this.type.label = game.i18n.format("EH.Item.Type.DetailedLabel", {
+			category: CONFIG.EverydayHeroes.equipmentCategories[this.type.category]?.label ?? "",
+			type: game.i18n.localize("EH.Item.Type.Weapon[one]"),
+			subtype: CONFIG.EverydayHeroes.weaponTypes[this.type.value]?.label ?? ""
+		}).trim();
 	}
 }

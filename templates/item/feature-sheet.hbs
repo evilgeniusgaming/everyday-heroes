@@ -5,21 +5,19 @@
 			<img src="{{item.img}}" data-edit="img">
 		</div>
 		<div class="fields">
-			<fieldset class="primary">
+			<fieldset>
 				<label>{{localize "Name"}}</label>
 				<input name="name" value="{{item.name}}">
 			</fieldset>
 			<fieldset>
-				<label>{{localize "EH.Item.Type.Label"}}</label>
-				<span>{{item.system.type.label}}</span>
+				<label>Type</label>{{!-- TODO: Localize --}}
+				<span>{{system.type.label}}</span>
 			</fieldset>
 		</div>
-			<nav data-group="primary">
-				<a data-tab="description">Description</a>{{!-- TODO: Localize --}}
-				{{#unless (eq item.type "gear")}}
-					<a data-tab="details">Details</a>{{!-- TODO: Localize --}}
-				{{/unless}}
-			</nav>
+		<nav data-group="primary">
+			<a data-tab="description">Description</a>{{!-- TODO: Localize --}}
+			<a data-tab="details">Details</a>{{!-- TODO: Localize --}}
+		</nav>
 	</header>
 
 	<main>
@@ -27,11 +25,9 @@
 			{{editor enriched.description target="system.description.value" button=true editable=editable
 				engine="prosemirror" collaborate=false}}
 		</div>
-		{{#unless (eq item.type "gear")}}
-			<div class="tab" data-group="primary" data-tab="details">
-				{{> "everydayHeroes.physical-details"}}
-			</div>
-		{{/unless}}
+		<div class="tab" data-group="primary" data-tab="details">
+			Details!!!
+		</div>
 	</main>
 
 </form>

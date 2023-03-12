@@ -331,11 +331,7 @@ export default class HeroSheet extends ActorSheet {
 			case "edit":
 				return item?.sheet.render(true);
 			case "equip":
-				const equippedItems = this.actor.system.items.equipped;
-				if ( equippedItems.has(id) ) equippedItems.delete(id);
-				else equippedItems.add(id);
-				// TODO: Coercing this to array won't be necessary in V11
-				return this.actor.update({"system.items.equipped": Array.from(equippedItems)});
+				return this.actor.update({[`system.items.${item.id}.equipped`]: !item.isEquipped});
 			case "expand":
 				return console.log("EXPAND ITEM", id);
 			case "delete":
@@ -348,7 +344,9 @@ export default class HeroSheet extends ActorSheet {
 				return item.deleteDialog();
 			case "mode":
 				if ( !item || !key ) return;
-				return this.actor.update({[`system.items.modes.${id}`]: key});
+				return this.actor.update({[`system.items.${id}.mode`]: key});
+			case "reload":
+				return item?.reload();
 			default:
 				return console.warn(`Invalid item action type clicked ${type}.`);
 		}

@@ -33,6 +33,7 @@ export default class ConceptSheet extends ItemSheet {
 
 		context.CONFIG = CONFIG.EverydayHeroes;
 		context.system = context.item.system;
+		context.source = context.item.system.toObject();
 
 		context.advancementEditable = (this.advancementConfigurable || !context.item.isEmbedded) && context.editable;
 		context.advancement = this.prepareAdvancement();

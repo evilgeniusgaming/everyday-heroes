@@ -1,12 +1,13 @@
-import Proficiency from "../../documents/proficiency.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
+import EquipmentTemplate from "./templates/equipment-template.mjs";
 import PhysicalTemplate from "./templates/physical-template.mjs";
 
 /**
  * Data definition for Armor items.
  * @mixes {@link DescribedTemplate}
+ * @mixes {@link EquipmentTemplate}
  * @mixes {@link PhysicalTemplate}
  *
  * @property {object} type
@@ -18,13 +19,13 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @property {object} bonuses
  * @property {string} bonuses.save - Bonus applied to this armor's saving throws.
  */
-export default class ArmorData extends SystemDataModel.mixin(DescribedTemplate, PhysicalTemplate) {
+export default class ArmorData extends SystemDataModel.mixin(DescribedTemplate, EquipmentTemplate, PhysicalTemplate) {
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.StringField({intial: "armor", label: "EH.Armor.Type.Label"}),
 				category: new foundry.data.fields.StringField({intial: "basic", label: "EH.Equipment.Category.Label[one]"})
-			}, {label: "EH.Equipment.Type.Label"}),
+			}, {label: "EH.Item.Type.Label"}),
 			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
 				label: "EH.Weapon.Property.Label"
 			}),
@@ -43,6 +44,28 @@ export default class ArmorData extends SystemDataModel.mixin(DescribedTemplate, 
 	/*  Properties                               */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	get actions() {
+		return [{
+			label: EverydayHeroes.utils.numberFormat(this.armorSaveMod, { sign: true }),
+			icon: "systems/everyday-heroes/artwork/svg/action/armor-save.svg",
+			tooltip: game.i18n.format("EH.Action.Roll", {type: game.i18n.localize("EH.Armor.Action.Save.Label")}),
+			data: { type: "armor-save", disadvantage: this.damaged }
+		}];
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * The simplified armor save modifier for this item.
+	 * @type {number}
+	 */
+	get armorSaveMod() {
+		// TODO: Take flat bonuses into account
+		return Number.isNumeric(this.proficiency?.term) ? this.proficiency.flat : 0;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	/**
 	 * Can armor saving throws be performed by this item?
 	 * @type {boolean}
@@ -52,45 +75,14 @@ export default class ArmorData extends SystemDataModel.mixin(DescribedTemplate, 
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Build a list of roll actions for this item.
-	 * @type {object[]}
-	 */
-	get rollActions() {
-		return [
-			{
-				label: "+4", // TOOD: Add armor save value
-				tooltip: game.i18n.format("EH.Action.Roll", {type: game.i18n.localize("EH.Armor.Action.Save.Label")}),
-				icon: "systems/everyday-heroes/artwork/svg/action/armor-save.svg",
-				data: {
-					type: "armor-save",
-					disadvantage: this.damaged
-				}
-			}
-		];
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	prepareDerivedProficiency() {
-		// TODO: Adjust based on actor's actual equipment proficiencies
-		this.proficiency = new Proficiency(
-			this.parent.actor?.system.attributes.prof,
-			this.parent.actor?.system.traits.equipment.has(this.type.category) ? 1 : 0
-		);
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
 	prepareDerivedTypeLabel() {
-		this.type.label = game.i18n.format("EH.Equipment.Type.DetailedLabel", {
+		this.type.label = game.i18n.format("EH.Item.Type.DetailedLabel", {
 			category: CONFIG.EverydayHeroes.equipmentCategories[this.type.category]?.label ?? "",
 			type: "",
-			subtype: CONFIG.EverydayHeroes.armorTypes[this.type.value] ?? ""
-		});
+			subtype: CONFIG.EverydayHeroes.armorTypes[this.type.value]?.label ?? ""
+		}).trim();
 	}
-
 }

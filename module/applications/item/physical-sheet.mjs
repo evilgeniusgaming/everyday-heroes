@@ -22,6 +22,7 @@ export default class PhysicalSheet extends ItemSheet {
 
 		context.CONFIG = CONFIG.EverydayHeroes;
 		context.system = context.item.system;
+		context.source = context.item.system.toObject();
 
 		const applicableProperties = CONFIG.EverydayHeroes.applicableProperties[context.item.type];
 		if ( applicableProperties ) {

@@ -122,13 +122,10 @@ export default class HeroData extends SystemDataModel {
 					nullable: false, initial: 1, min: 1, max: CONFIG.EverydayHeroes.maxLevel, integer: true, label: ""
 				})
 			}),
-			items: new foundry.data.fields.SchemaField({
-				equipped: new foundry.data.fields.SetField(
-					new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, {idOnly: true}),
-					{label: ""}
-				),
-				modes: new MappingField(new foundry.data.fields.StringField(), {label: ""})
-			}),
+			items: new MappingField(new foundry.data.fields.SchemaField({
+				equipped: new foundry.data.fields.BooleanField({label: ""}),
+				mode: new foundry.data.fields.StringField({label: ""})
+			})),
 			resources: new foundry.data.fields.SchemaField({
 				inspiration: new foundry.data.fields.BooleanField({label: "EH.Resources.Inspiration"})
 			}, {label: "EH.Resources.Label[other]"}),

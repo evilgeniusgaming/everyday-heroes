@@ -38,7 +38,7 @@ export default class ChallengeRoll extends BaseRoll {
 	/**
 	 * Construct and perform a Challenge Roll through the standard workflow.
 	 * @param {ChallengeRollConfiguration} config - Roll configuration data.
-	 * @param {RollMessageConfiguration} message - Configuration data that guides roll message creation.
+	 * @param {BaseMessageConfiguration} message - Configuration data that guides roll message creation.
 	 */
 	static async build(config={}, message={}) {
 		const formula = [(new CONFIG.Dice.ChallengeDie()).formula].concat(config.parts ?? []).join(" + ");

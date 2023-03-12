@@ -1,6 +1,15 @@
 import { preLocalize } from "./utils.mjs";
 
 /**
+ * General data model for data that just contains a label.
+ *
+ * @typedef {object} LabeledConfiguration
+ * @property {string} label - Localized label.
+ */
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Standard action types.
  * @enum {string}
  */
@@ -29,22 +38,44 @@ preLocalize("actionTypesReload");
 
 /**
  * Damage types available in Everyday Heroes.
- * @enum {DamageTypeConfiguration}
+ * @enum {LabeledConfiguration}
  */
 export const damageTypes = {
-	acid: "EH.Damage.Type.Acid",
-	ballistic: "EH.Damage.Type.Ballistic",
-	bludgeoning: "EH.Damage.Type.Bludgeoning",
-	cold: "EH.Damage.Type.Cold",
-	electrical: "EH.Damage.Type.Electrical",
-	explosive: "EH.Damage.Type.Explosive",
-	fire: "EH.Damage.Type.Fire",
-	piercing: "EH.Damage.Type.Piercing",
-	poison: "EH.Damage.Type.Poison",
-	psychic: "EH.Damage.Type.Psychic",
-	slashing: "EH.Damage.Type.Slashing"
+	acid: {
+		label: "EH.Damage.Type.Acid"
+	},
+	ballistic: {
+		label: "EH.Damage.Type.Ballistic"
+	},
+	bludgeoning: {
+		label: "EH.Damage.Type.Bludgeoning"
+	},
+	cold: {
+		label: "EH.Damage.Type.Cold"
+	},
+	electrical: {
+		label: "EH.Damage.Type.Electrical"
+	},
+	explosive: {
+		label: "EH.Damage.Type.Explosive"
+	},
+	fire: {
+		label: "EH.Damage.Type.Fire"
+	},
+	piercing: {
+		label: "EH.Damage.Type.Piercing"
+	},
+	poison: {
+		label: "EH.Damage.Type.Poison"
+	},
+	psychic: {
+		label: "EH.Damage.Type.Psychic"
+	},
+	slashing: {
+		label: "EH.Damage.Type.Slashing"
+	}
 };
-preLocalize("damageTypes", { sort: true });
+preLocalize("damageTypes", { key: "label", sort: true });
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -57,10 +88,9 @@ export const diceSteps = [4, 6, 8, 10, 12];
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Configuration data for length units.
  *
- *
- * @typedef {object} UnitConfiguration
- * @property {string} label - Localized label.
+ * @typedef {LabeledConfiguration} UnitConfiguration
  * @property {string} abbreviation - Localized abbreviation.
  * @property {string} pluralPrefix - Prefix for the localization keys that represent plural forms of this unit. Will be
  *                                   appended with "[one]", "[few]", "[other]", etc. to match the plural forms of the

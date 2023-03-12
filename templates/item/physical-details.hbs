@@ -11,9 +11,9 @@
 
 	{{#if itemSubTypes}}
 		<fieldset>
-			<label>{{localize "EH.Equipment.Type.Label"}}</label>
+			<label>{{localize "EH.Item.Type.Label"}}</label>
 			<select name="system.type.value">
-				{{selectOptions itemSubTypes selected=system.type.value blank=""}}
+				{{selectOptions itemSubTypes selected=system.type.value blank="" labelAttr="label"}}
 			</select>
 		</fieldset>
 	{{/if}}
@@ -52,7 +52,7 @@
 	{{#if (everydayHeroes-has item "system.penetrationValue")}}
 		<fieldset>
 			<label>{{localize "EH.Equipment.Trait.PenetrationValue.Label"}}</label>
-			<input type="number" name="system.penetrationValue" value="{{system.penetrationValue}}">
+			<input type="number" name="system.penetrationValue" value="{{source.penetrationValue}}">
 			<p class="hint">{{localize "EH.Equipment.Trait.PenetrationValue.Hint"}}</p>
 		</fieldset>
 	{{/if}}
@@ -61,13 +61,14 @@
 		<fieldset class="triple">
 			<label>{{localize "EH.Equipment.Trait.Damage.Label"}}</label>
 			{{#if item.system.hasDamage}}
-				<input type="number" name="system.damage.number" value="{{system.damage.number}}" placeholder="1">
+				<input type="number" name="system.damage.number" value="{{source.damage.number}}" placeholder="1">
 				<select name="system.damage.denomination">
-					{{selectOptions diceSteps selected=system.damage.denomination}}
+					{{selectOptions diceSteps selected=source.damage.denomination}}
 				</select>
 			{{/if}}
 			<select name="system.damage.type">
-				{{selectOptions CONFIG.damageTypes selected=system.damage.type blank=(localize "EH.Damage.None")}}
+				{{selectOptions CONFIG.damageTypes selected=source.damage.type
+					blank=(localize "EH.Damage.None") labelAttr="label"}}
 			</select>
 			<p class="hint">{{localize "EH.Equipment.Trait.Damage.Hint"}}</p>
 		</fieldset>
@@ -75,7 +76,7 @@
 		<fieldset class="triple">
 			<label>{{localize "EH.Equipment.Trait.DamageModification.Label"}}</label>
 			<select name="system.damage.number">{{!-- TODO: Localize & auto generate these steps --}}
-				{{#select system.damage.number}}
+				{{#select source.damage.number}}
 					<option value="-4">-4 dice</option>
 					<option value="-3">-3 dice</option>
 					<option value="-2">-2 dice</option>
@@ -88,7 +89,7 @@
 				{{/select}}
 			</select>
 			<select name="system.damage.denomination">{{!-- TODO: Localize & auto generate these steps --}}
-				{{#select system.damage.denomination}}
+				{{#select source.damage.denomination}}
 					<option value="-4">-4 steps</option>
 					<option value="-3">-3 steps</option>
 					<option value="-2">-2 steps</option>
@@ -101,7 +102,7 @@
 				{{/select}}
 			</select>
 			<select name="system.damage.type">
-				{{selectOptions CONFIG.damageTypes selected=system.damage.type
+				{{selectOptions CONFIG.damageTypes selected=source.damage.type labelAttr="label"
 				  blank=(localize "EH.Equipment.Trait.DamageModification.NoChange")}}
 			</select>
 			<p class="hint">{{localize "EH.Equipment.Trait.DamageModification.Hint"}}</p>
@@ -148,7 +149,7 @@
 		<fieldset>
 			<label>{{localize "EH.Ammunition.Type.Label"}}</label>
 			<select name="system.ammunition.type">
-				{{selectOptions CONFIG.ammunitionTypes selected=system.ammunition.type blank=(localize "None")}}
+				{{selectOptions CONFIG.ammunitionTypes selected=system.ammunition.type blank=(localize "None") labelAttr="label"}}
 			</select>
 		</fieldset>
 
@@ -169,9 +170,9 @@
 
 		{{#if itemProperties.burst.checked}}
 			<fieldset>
-				<label>{{localize "EH.Weapon.Property.Burst.Label"}}</label>
-				<input type="number" name="system.round.burst" value="{{system.rounds.burst}}">
-				<p class="hint">{{localize "EH.Weapon.Property.Burst.Hint"}}</p>
+				<label>{{localize "EH.Equipment.Trait.Rounds.Burst.Label"}}</label>
+				<input type="number" name="system.rounds.burst" value="{{system.rounds.burst}}">
+				<p class="hint">{{localize "EH.Equipment.Trait.Rounds.Burst.Hint"}}</p>
 			</fieldset>
 		{{/if}}
 	{{/if}}

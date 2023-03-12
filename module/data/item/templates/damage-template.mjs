@@ -50,6 +50,7 @@ export default class DamageTemplate extends foundry.abstract.DataModel {
 	 */
 	get damageFormula() {
 		if ( this.constructor.damageMode !== "regular" ) return "";
+		// TODO: Take flat bonuses into account
 		const ability = this.parent?.actor?.system.abilities[this.damageAbility];
 		if ( !ability?.mod ) return this.damage.dice;
 		return `${this.damage.dice} + ${ability.mod}`;
@@ -99,8 +100,11 @@ export default class DamageTemplate extends foundry.abstract.DataModel {
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	prepareDerivedDamageDice() {
-		this.damage.dice = `${this.damage.number ?? 1}d${this.damage.denomination ?? CONFIG.EverydayHeroes.diceSteps[0]}`;
+	prepareBaseDamage() {
+		// Have to manually reset these values here to fix issue with Foundry calling prepareDerivedData twice
+		this.damage.number = this._source.damage.number || 1;
+		this.damage.denomination = this._source.damage.denomination || CONFIG.EverydayHeroes.diceSteps[0];
+		this.damage.dice = `${this.damage.number ?? 1}d${this.damage.denomination}`;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -108,19 +112,15 @@ export default class DamageTemplate extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
-	 * Modify a "regular" damage object with changes from a "modification" damage object.
-	 * @param {object} original - Regular damage object to be modified.
-	 * @param {object} other - Modification damage object with which to modify the original.
-	 * @returns {object}
+	 * Modify this item's damage with changes from a "modification" damage object.
+	 * @param {object} modification - Changes to make to this item's data.
 	 */
-	modifyDamage(original, other) {
-		const damage = foundry.utils.deepClone(original);
-		damage.number = (damage.number ?? 1) + (other.number ?? 0);
-		damage.denomination = EverydayHeroes.dice.utils.stepDenomination(
-			damage.denomination, other.denomination
+	modifyDamage(modification) {
+		this.damage.number += modification.number ?? 0;
+		this.damage.denomination = EverydayHeroes.dice.utils.stepDenomination(
+			this.damage.denomination, modification.denomination
 		);
-		if ( other.type ) damage.type = other.type;
-		damage.dice = `${damage.number ?? 1}d${damage.denomination ?? CONFIG.EverydayHeroes.diceSteps[0]}`;
-		return damage;
+		if ( modification.type ) this.damage.type = modification.type;
+		this.damage.dice = `${this.damage.number ?? 1}d${this.damage.denomination}`;
 	}
 }

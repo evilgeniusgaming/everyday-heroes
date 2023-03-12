@@ -4,8 +4,13 @@ import ArmorData from "./armor-data.mjs";
 import BackgroundData from "./background-data.mjs";
 import ClassData from "./class-data.mjs";
 import ExplosiveData from "./explosive-data.mjs";
+import FeatData from "./feat-data.mjs";
 import GearData from "./gear-data.mjs";
+import PlanData from "./plan-data.mjs";
 import ProfessionData from "./profession-data.mjs";
+import SpecialFeatureData from "./special-feature-data.mjs";
+import TalentData from "./talent-data.mjs";
+import TrickData from "./trick-data.mjs";
 import WeaponData from "./weapon-data.mjs";
 
 export {
@@ -15,8 +20,13 @@ export {
 	BackgroundData,
 	ClassData,
 	ExplosiveData,
+	FeatData,
 	GearData,
+	PlanData,
 	ProfessionData,
+	SpecialFeatureData,
+	TalentData,
+	TrickData,
 	WeaponData
 };
 export {default as AdvancementTemplate} from "./templates/advancement-template.mjs";
@@ -31,7 +41,12 @@ export const config = {
 	background: BackgroundData,
 	class: ClassData,
 	explosive: ExplosiveData,
+	feat: FeatData,
 	gear: GearData,
+	plan: PlanData,
 	profession: ProfessionData,
+	specialFeature: SpecialFeatureData,
+	talent: TalentData,
+	trick: TrickData,
 	weapon: WeaponData
 };

@@ -30,22 +30,26 @@
 									</ul>
 								</nav>
 							{{/if}}
-							<nav class="actions">
-								{{#if item.system.hasAttack}}
-									<div class="action" data-action="roll-item" data-type="attack" data-tooltip="{{item.system.attackTooltip}}">
-										<figure style="background-image: url('{{item.system.attackIcon}}');"></figure>
-										<span>{{everydayHeroes-number item.system.attackMod sign=true}}</span>
+							<nav class="item-actions">
+								{{#each item.system.actions as |action|}}
+									<div class="action{{#if action.disabled}} disabled{{/if}}" data-action="roll-item"
+										data-tooltip="{{action.tooltip}}" {{everydayHeroes-dataset action.data}}>
+										<figure style="background-image: url('{{action.icon}}');"></figure>
+										<span>{{action.label}}</span>
 									</div>
-								{{/if}}
-								{{#if item.system.hasDamage}}
-									<div class="action" data-action="roll-item" data-type="damage" data-tooltip="{{item.system.damageTooltip}}">
-										<figure style="background-image: url('{{item.system.damageIcon}}');"></figure>
-										<span>{{item.system.damageFormula}}</span>
-									</div>
-								{{/if}}
+								{{/each}}
 							</nav>
-							{{#if item.system.ammunition.type}}
-								Ammunition
+							{{#if item.system.rounds.capacity}}
+								<div class="ammunition">
+									<div class="reload action" data-action="item" data-type="reload"
+										data-tooltip="{{localize 'EH.Weapon.Action.Reload.Label'}}">
+										<figure style="background-image: url('{{item.system.reloadIcon}}');"></figure>
+										<span class="available">{{everydayHeroes-number item.system.rounds.available digits=2}}</span>
+										{{!-- TODO: Adjust the number of digits here to match the digits of capacity --}}
+										<span class="seperator">/</span>
+										<span class="capacity">{{everydayHeroes-number item.system.rounds.capacity}}</span>
+									</div>
+								</div>
 							{{/if}}
 						</div>
 						{{#if @root.editable}}

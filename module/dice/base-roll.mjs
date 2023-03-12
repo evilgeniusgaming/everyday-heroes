@@ -10,9 +10,9 @@
  */
 
 /**
- * Message configuration data used when creating roll messages.
+ * Message configuration data used when creating messages.
  *
- * @typedef {object} RollMessageConfiguration
+ * @typedef {object} BaseMessageConfiguration
  * @property {boolean} [create=true] - Should a message be created when this roll is complete?
  * @property {string} [rollMode] - The roll mode to apply to this message from `CONFIG.Dice.rollModes`.
  * @property {object} [data={}] - Additional data used when creating the message.
@@ -34,7 +34,7 @@ export default class BaseRoll extends Roll {
 	/**
 	 * Construct and perform a Base Roll through the standard workflow.
 	 * @param {BaseRollConfiguration} config - Roll configuration data.
-	 * @param {RollMessageConfiguration} message - Configuration data that guides roll message creation.
+	 * @param {BaseMessageConfiguration} message - Configuration data that guides roll message creation.
 	 */
 	static async build(config={}, message={}) {
 		const formula = (config.parts ?? []).join(" + ");

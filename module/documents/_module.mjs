@@ -22,7 +22,9 @@ export function registerDocumentClasses() {
 
 		// Features
 		talent: "EH.Item.Type.Talent[one]",
-		specialfeature: "EH.Item.Type.SpecialFeature[one]",
+		specialFeature: "EH.Item.Type.SpecialFeature[one]",
+		plan: "EH.Item.Type.Plan[one]",
+		trick: "EH.Item.Type.Trick[one]",
 		feat: "EH.Item.Type.Feat[one]",
 
 		// Equipment

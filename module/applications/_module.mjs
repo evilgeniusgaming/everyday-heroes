@@ -15,6 +15,11 @@ export function registerSheets() {
 		makeDefault: true,
 		label: "EH.Sheets.Concept"
 	});
+	DocumentSheetConfig.registerSheet(Item, "everyday-heroes", item.FeatureSheet, {
+		types: ["talent", "specialFeature", "plan", "trick", "feat"],
+		makeDefault: true,
+		label: "EH.Sheets.Feature"
+	});
 	DocumentSheetConfig.registerSheet(Item, "everyday-heroes", item.PhysicalSheet, {
 		types: ["ammunition", "armor", "weapon", "explosive", "gear"],
 		makeDefault: true,

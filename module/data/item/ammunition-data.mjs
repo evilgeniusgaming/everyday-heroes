@@ -14,6 +14,7 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @property {string} type.value - Ammunition type.
  * @property {number} penetrationValue - How does this ammo modify the weapon's penetration value?
  * @property {object} bonuses
+ * @property {string} bonuses.attack - Bonus to the weapon's attack rolls.
  * @property {string} bonuses.damage - Bonus to the weapon's damage rolls.
  */
 export default class AmmunitionData extends SystemDataModel.mixin(
@@ -28,12 +29,13 @@ export default class AmmunitionData extends SystemDataModel.mixin(
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.StringField({intial: "basic", label: "EH.Ammunition.Type.Label"})
-			}, {label: "EH.Equipment.Type.Label"}),
+			}, {label: "EH.Item.Type.Label"}),
 			penetrationValue: new foundry.data.fields.NumberField({
 				integer: true,
 				label: "EH.Equipment.Trait.PenetrationValue.Label", hint: ""
 			}),
 			bonuses: new foundry.data.fields.SchemaField({
+				attack: new FormulaField({label: "EH.Weapon.Bonus.Attack.Label"}),
 				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label"})
 			})
 		});
@@ -44,10 +46,10 @@ export default class AmmunitionData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedTypeLabel() {
-		this.type.label = game.i18n.format("EH.Equipment.Type.DetailedLabel", {
+		this.type.label = game.i18n.format("EH.Item.Type.DetailedLabel", {
 			category: "",
 			type: game.i18n.localize("EH.Item.Type.Ammunition[one]"),
-			subtype: CONFIG.EverydayHeroes.ammunitionTypes[this.type.value] ?? ""
-		});
+			subtype: CONFIG.EverydayHeroes.ammunitionTypes[this.type.value]?.label ?? ""
+		}).trim();
 	}
 }

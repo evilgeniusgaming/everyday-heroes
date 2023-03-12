@@ -3,6 +3,7 @@ import FormulaField from "../fields/formula-field.mjs";
 import AttackTemplate from "./templates/attack-template.mjs";
 import DamageTemplate from "./templates/damage-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
+import EquipmentTemplate from "./templates/equipment-template.mjs";
 import PhysicalTemplate from "./templates/physical-template.mjs";
 
 /**
@@ -10,6 +11,7 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @mixes {@link AttackTemplate}
  * @mixes {@link DamageTemplate}
  * @mixes {@link DescribedTemplate}
+ * @mixes {@link EquipmentTemplate}
  * @mixes {@link PhysicalTemplate}
  *
  * @property {object} type
@@ -24,14 +26,14 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @property {string} bonuses.dc - Bonus to the explosive's DC.
  */
 export default class ExplosiveData extends SystemDataModel.mixin(
-	AttackTemplate, DamageTemplate, DescribedTemplate, PhysicalTemplate
+	AttackTemplate, DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate
 ) {
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.StringField({initial: "grenade", label: "EH.Explosive.Type.Label"}),
 				category: new foundry.data.fields.StringField({intial: "basic", label: "EH.Equipment.Category.Label[one]"})
-			}, {label: "EH.Equipment.Type.Label"}),
+			}, {label: "EH.Item.Type.Label"}),
 			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
 				label: "EH.Weapon.Property.Label"
 			}),
@@ -77,11 +79,11 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedTypeLabel() {
-		this.type.label = game.i18n.format("EH.Equipment.Type.DetailedLabel", {
+		this.type.label = game.i18n.format("EH.Item.Type.DetailedLabel", {
 			category: CONFIG.EverydayHeroes.equipmentCategories[this.type.category]?.label ?? "",
-			type: CONFIG.EverydayHeroes.explosiveTypes[this.type.value]
+			type: CONFIG.EverydayHeroes.explosiveTypes[this.type.value]?.label
 				?? game.i18n.localize("EH.Item.Type.Explosive[one]"),
 			subtype: ""
-		});
+		}).trim();
 	}
 }

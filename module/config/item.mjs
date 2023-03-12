@@ -17,8 +17,7 @@ export const advancementTypes = {
 /**
  * Configuration data for equipment categories.
  *
- * @typedef {object} EquipmentCategoryConfiguration
- * @property {string} label - Localized label.
+ * @typedef {LabeledConfiguration} EquipmentCategoryConfiguration
  * @property {string} [requires] - Key of another category that the player must be proficient in to gain
  *                                 proficiency in this category.
  */
@@ -55,8 +54,7 @@ preLocalize("equipmentCategories", { key: "label" });
 /**
  * Configuration data for equipment categories.
  *
- * @typedef {object} EquipmentCategoryConfiguration
- * @property {string} label - Localized label.
+ * @typedef {LabeledConfiguration} EquipmentCategoryConfiguration
  * @property {string} [hint] - Localized hint.
  */
 
@@ -232,12 +230,20 @@ export const applicableProperties = {
  * @enum {string}
  */
 export const ammunitionTypes = {
-	pistol: "EH.Ammunition.Type.Pistol.Label",
-	rifle: "EH.Ammunition.Type.Rifle.Label",
-	shotgun: "EH.Ammunition.Type.Shotgun.Label",
-	machineGun: "EH.Ammunition.Type.MachineGun.Label"
+	pistol: {
+		label: "EH.Ammunition.Type.Pistol.Label"
+	},
+	rifle: {
+		label: "EH.Ammunition.Type.Rifle.Label"
+	},
+	shotgun: {
+		label: "EH.Ammunition.Type.Shotgun.Label"
+	},
+	machineGun: {
+		label: "EH.Ammunition.Type.MachineGun.Label"
+	}
 };
-preLocalize("ammunitionTypes");
+preLocalize("ammunitionTypes", { key: "label" });
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Armor                                    */
@@ -248,10 +254,14 @@ preLocalize("ammunitionTypes");
  * @enum {string}
  */
 export const armorTypes = {
-	armor: "EH.Armor.Type.Armor.Label",
-	shield: "EH.Armor.Type.Shield.Label"
+	armor: {
+		label: "EH.Armor.Type.Armor.Label"
+	},
+	shield: {
+		label: "EH.Armor.Type.Shield.Label"
+	}
 };
-preLocalize("armorTypes");
+preLocalize("armorTypes", { key: "label" });
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Explosive                                */
@@ -259,14 +269,93 @@ preLocalize("armorTypes");
 
 /**
  * General explosive types.
- * @enum {string}
+ * @enum {LabeledConfiguration}
  */
 export const explosiveTypes = {
-	grenade: "EH.Explosive.Type.Grenade.Label",
-	rocket: "EH.Explosive.Type.Rocket.Label",
-	mine: "EH.Explosive.Type.Mine.Label"
+	grenade: {
+		label: "EH.Explosive.Type.Grenade.Label"
+	},
+	rocket: {
+		label: "EH.Explosive.Type.Rocket.Label"
+	},
+	mine: {
+		label: "EH.Explosive.Type.Mine.Label"
+	}
 };
-preLocalize("explosiveTypes");
+preLocalize("explosiveTypes", { key: "label" });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Feats                                    */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * General feat categories.
+ * @enum {LabeledConfiguration}
+ */
+export const featCategories = {
+	basic: {
+		label: "EH.Feat.Category.Basic.Label"
+	},
+	advanced: {
+		label: "EH.Feat.Category.Advanced.Label"
+	},
+	multiclass: {
+		label: "EH.Feat.Category.Multiclass.Label"
+	}
+};
+preLocalize("featCategories", { key: "label" });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * General feat types.
+ * @enum {LabeledConfiguration}
+ */
+export const featTypes = {
+	minor: {
+		label: "EH.Feat.Type.Minor.Label"
+	},
+	major: {
+		label: "EH.Feat.Type.Major.Label"
+	}
+};
+preLocalize("featTypes", { key: "label" });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Special Features                         */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * General special feature types.
+ * @enum {LabeledConfiguration}
+ */
+export const specialFeatureTypes = {
+	background: {
+		label: "EH.Item.Type.Background[one]"
+	},
+	profession: {
+		label: "EH.Item.Type.Profession[one]"
+	}
+};
+preLocalize("specialFeatureTypes", { key: "label" });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Talents                                  */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * General talent types.
+ * @enum {LabeledConfiguration}
+ */
+export const talentTypes = {
+	archetype: {
+		label: "EH.Item.Type.Archetype[one]"
+	},
+	class: {
+		label: "EH.Item.Type.Class[one]"
+	}
+};
+preLocalize("talentTypes", { key: "label" });
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Gear                                     */
@@ -274,20 +363,38 @@ preLocalize("explosiveTypes");
 
 /**
  * General gear types.
- * @enum {string}
+ * @enum {LabeledConfiguration}
  */
 export const gearTypes = {
-	everydayStuff: "EH.Gear.Type.EverydayStuff.Label",
-	equipmentPack: "EH.Gear.Type.EquipmentPack.Label",
-	specializedKit: "EH.Gear.Type.SpecializedKit.Label",
-	firearmAccessory: "EH.Gear.Type.FirearmAccessory.Label",
-	carryingCase: "EH.Gear.Type.CarryingCase.Label",
-	electronics: "EH.Gear.Type.Electronics.Label",
-	hardware: "EH.Gear.Type.Hardware.Label",
-	specialtyGoods: "EH.Gear.Type.SpecialtyGoods.Label",
-	sportingGoods: "EH.Gear.Type.SportingGoods.Label"
+	everydayStuff: {
+		label: "EH.Gear.Type.EverydayStuff.Label"
+	},
+	equipmentPack: {
+		label: "EH.Gear.Type.EquipmentPack.Label"
+	},
+	specializedKit: {
+		label: "EH.Gear.Type.SpecializedKit.Label"
+	},
+	firearmAccessory: {
+		label: "EH.Gear.Type.FirearmAccessory.Label"
+	},
+	carryingCase: {
+		label: "EH.Gear.Type.CarryingCase.Label"
+	},
+	electronics: {
+		label: "EH.Gear.Type.Electronics.Label"
+	},
+	hardware: {
+		label: "EH.Gear.Type.Hardware.Label"
+	},
+	specialtyGoods: {
+		label: "EH.Gear.Type.SpecialtyGoods.Label"
+	},
+	sportingGoods: {
+		label: "EH.Gear.Type.SportingGoods.Label"
+	}
 };
-preLocalize("gearTypes");
+preLocalize("gearTypes", { key: "label" });
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Weapons                                  */
@@ -296,8 +403,7 @@ preLocalize("gearTypes");
 /**
  * Configuration data for weapon modes.
  *
- * @typedef {object} WeaponModeConfiguration
- * @property {string} label - Localized label.
+ * @typedef {LabeledConfiguration} WeaponModeConfiguration
  * @property {string} icon - Icon.
  */
 
@@ -333,10 +439,14 @@ preLocalize("weaponModes", { key: "label" });
 
 /**
  * General weapon types.
- * @enum {string}
+ * @enum {LabeledConfiguration}
  */
 export const weaponTypes = {
-	melee: "EH.Weapon.Type.Melee.Label",
-	ranged: "EH.Weapon.Type.Ranged.Label"
+	melee: {
+		label: "EH.Weapon.Type.Melee.Label"
+	},
+	ranged: {
+		label: "EH.Weapon.Type.Ranged.Label"
+	}
 };
-preLocalize("weaponTypes");
+preLocalize("weaponTypes", { key: "label" });
