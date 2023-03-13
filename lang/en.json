@@ -318,6 +318,7 @@
 
 "EH.Item.Label[one]": "Item",
 "EH.Item.Label[other]": "Items",
+"EH.Item.Action.Chat": "Display in Chat",
 "EH.Item.Action.Create": "Create {type}",
 "EH.Item.Action.Delete": "Delete {type}",
 "EH.Item.Action.Edit": "Edit {type}",

@@ -1,0 +1,33 @@
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Header                                   */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.everyday-heroes.item.card header {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+}
+.everyday-heroes.item.card header img {
+	flex: 0 0 36px;
+}
+.everyday-heroes.item.card header h3 {
+	flex-grow: 1;
+	margin: 0;
+	border: none;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Content                                  */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.everyday-heroes.item.card .content {
+	font-size: var(--font-size-12);
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Footer                                   */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.everyday-heroes.item.card footer {
+	margin-block-start: 0.25em;
+}

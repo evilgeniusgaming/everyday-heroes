@@ -185,6 +185,69 @@ export default class ItemEH extends Item {
 		}
 		return advancement;
 	}
+	
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Activation & Chat                        */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Activate this item, spending any uses and resource consumption.
+	 * @param {object} [config] - Configuration information for the activation.
+	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides the message creation.
+	 * @returns {Promise}
+	 */
+	async activate(config={}, message={}) {
+		return;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Fetch the data needed to render this item's chat message and expanded state.
+	 * @param {object} [enrichmentContext={}] - Options passed to the `enrichHTML` method.
+	 * @returns {object}
+	 */
+	async chatContext(enrichmentContext={}) {
+		const context = {
+			item: this,
+			actor: this.actor,
+			token: this.actor?.token,
+			system: this.toObject(false).system
+		};
+		enrichmentContext = foundry.utils.mergeObject({
+			secrets: this.isOwner, rollData: this.getRollData(), async: true, relativeTo: this
+		}, enrichmentContext);
+		context.enriched = {
+			description: await TextEditor.enrichHTML(context.system.description.value, enrichmentContext),
+			chat: await TextEditor.enrichHTML(context.system.description.chat, enrichmentContext)
+		};
+		context.tags = this.system.chatTags ?? [];
+		return context;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Display an item's full description in chat.
+	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides the message creation.
+	 * @returns {Promise<ChatMessage|void>}
+	 */
+	async displayInChat(message={}) {
+		const messageConfig = foundry.utils.mergeObject({
+			data: {
+				title: `${this.name}: ${this.actor.name}`,
+				content: await renderTemplate(
+					"systems/everyday-heroes/templates/item/item-card.hbs", await this.chatContext()
+				),
+				speaker: ChatMessage.getSpeaker({actor: this.actor})
+			}
+		}, message);
+
+		// Display chat message
+		if ( messageConfig.create === false ) return;
+		ChatMessage.applyRollMode(messageConfig.data, game.settings.get("core", "rollMode"));
+		return await ChatMessage.create(messageConfig.data);
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Reloading                                */
@@ -270,40 +333,6 @@ export default class ItemEH extends Item {
 		Hooks.callAll("everydayHeroes.reload", this, reloadConfig);
 
 		// TODO: Should this return anything?
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Activation & Chat                        */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Activate this item, spending any uses and resource consumption.
-	 * @param {object} [config] - Configuration information for the activation.
-	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides the message creation.
-	 * @returns {Promise}
-	 */
-	async activate(config={}, message={}) {
-		return;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Fetch the data needed to render this item's chat message and expanded state.
-	 * @param {object} [enrichmentContext={}] - Options passed to the `enrichHTML` method.
-	 * @returns {object}
-	 */
-	async chatContext(enrichmentContext={}) {
-		const context = this.toObject(false).system;
-		enrichmentContext = foundry.utils.mergeObject({
-			secrets: this.isOwner, rollData: this.getRollData(), async: true, relativeTo: this
-		}, enrichmentContext);
-		context.enriched = {
-			description: await TextEditor.enrichHTML(context.description.value, enrichmentContext),
-			chat: await TextEditor.enrichHTML(context.description.chat, enrichmentContext)
-		};
-		context.tags = this.system.chatTags ?? [];
-		return context;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

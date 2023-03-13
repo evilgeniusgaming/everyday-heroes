@@ -25,16 +25,20 @@ export default class PhysicalTemplate extends foundry.abstract.DataModel {
 	/*  Properties                               */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/**
+	 * Prepare tags for physical details of this item.
+	 * @type {ChatTag[]}
+	 */
 	get physicalTags() {
-		return [
-			{
-				label: `${game.i18n.localize("EH.Equipment.Trait.PriceLevel.Label")} ${numberFormat(this.price)}`,
-				class: "property"
-			},
-			{
-				label: `${game.i18n.localize("EH.Equipment.Trait.Bulk.Label")} ${numberFormat(this.bulk)}`,
-				class: "property"
-			}
-		];
+		const tags = [];
+		if ( this.price ) tags.push({
+			label: `${game.i18n.localize("EH.Equipment.Trait.PriceLevel.Label")} ${numberFormat(this.price)}`,
+			class: "property"
+		});
+		if ( this.bulk ) tags.push({
+			label: `${game.i18n.localize("EH.Equipment.Trait.Bulk.Label")} ${numberFormat(this.bulk)}`,
+			class: "property"
+		});
+		return tags;
 	}
 }

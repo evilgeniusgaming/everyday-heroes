@@ -7,6 +7,7 @@
 
 @import "./styles/actor/actor.css";
 @import "./styles/advancement/advancement.css";
+@import "./styles/chat/chat.css";
 @import "./styles/item/item.css";
 
 .everyday-heroes.window-app .window-content {

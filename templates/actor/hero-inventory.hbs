@@ -11,7 +11,10 @@
 				{{#each section.items as |item|}}
 					<li class="item" data-item-id="{{item.id}}">
 						<h4>
-							<div class="image" style="background-image: url('{{item.img}}')"></div>
+							<figure data-action="item" data-type="chat" data-tooltip="EH.Item.Action.Chat"
+								style="background-image: url('{{item.img}}')">
+								<i class="fa-solid fa-comment-dots"></i>
+							</figure>
 							<a data-action="item" data-type="expand">{{item.name}}</a>
 						</h4>
 						<div>

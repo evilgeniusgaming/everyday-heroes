@@ -1,4 +1,36 @@
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Item Tags                                */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.everyday-heroes ul.item-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 3px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: var(--font-size-12);
+}
+.everyday-heroes ul.item-tags li {
+	border: 1px solid var(--eh-border-color-weak);
+	border-radius: 5px;
+	padding-inline: 0.5em;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
+}
+.everyday-heroes ul.item-tags li.type {
+	background-color: var(--eh-tag-color-type);
+}
+.everyday-heroes ul.item-tags li.property {
+	background-color: var(--eh-tag-color-property);
+}
+.everyday-heroes ul.item-tags li.negative.status {
+	background-color: var(--eh-tag-color-status-negative);
+}
+.everyday-heroes ul.item-tags li.positive.status {
+	background-color: var(--eh-tag-color-status-positive);
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Property Lists                           */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

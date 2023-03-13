@@ -342,6 +342,8 @@ export default class HeroSheet extends ActorSheet {
 		switch (type) {
 			case "add":
 				return console.log("ADD ITEM");
+			case "chat":
+				return item?.displayInChat();
 			case "edit":
 				return item?.sheet.render(true);
 			case "equip":
@@ -355,7 +357,7 @@ export default class HeroSheet extends ActorSheet {
 				} else if ( item ) {
 					this.itemsExpanded.add(id);
 					const summary = $(await renderTemplate(
-						"systems/everyday-heroes/templates/item/parts/item-summary.hbs",
+						"systems/everyday-heroes/templates/item/item-summary.hbs",
 						await item.chatContext({secrets: this.actor.isOwner})
 					));
 					container.insertAdjacentElement("beforeend", summary.hide()[0]);

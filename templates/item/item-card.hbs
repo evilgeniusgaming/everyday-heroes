@@ -1,0 +1,24 @@
+<div class="everyday-heroes item card" data-actor-id="{{item.actor.id}}" data-item-id="{{item.id}}"
+  {{#if tokenId}}data-token-id="{{tokenId}}"{{/if}} {{#if isSpell}}data-spell-level="{{item.system.level}}"{{/if}}>
+  <header>
+    <img src="{{item.img}}" title="{{item.name}}" width="36" height="36">
+    <h3 class="item-name">{{item.name}}</h3>
+  </header>{{log this}}
+
+  <div class="content">
+    {{{enriched.description}}}
+  </div>
+
+  <footer>
+		<ul class="item-tags">
+			{{#each tags as |tag|}}
+				{{#unless tag.hidden}}
+					<li class="{{tag.class}}" {{#if tag.tooltip}}data-tooltip="{{tag.tooltip}}"{{/if}}
+						{{everydayHeroes-dataset tag.dataset}}>
+						{{tag.label}}
+					</li>
+				{{/unless}}
+			{{/each}}
+		</ul>
+  </footer>
+</div>

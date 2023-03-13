@@ -12,7 +12,7 @@
 	margin-block-end: -20px;
 	padding-block-end: 20px;
 }
-.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) :is(header, .primary-item, .item-list, .item-list li) {
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) :is(header, .primary-item, .item-list, .item-list > li) {
 	grid-column: 1 / -1;
 	display: grid;
 	grid-template-columns: subgrid;
@@ -23,13 +23,29 @@
 	border: none;
 	gap: 0.5em;
 }
-.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) :is(h3, h4) .image {
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) :is(h3, h4) figure {
 	width: 25px;
 	height: 25px;
+	margin: 0;
 	border-radius: 5px;
 	background-color: var(--eh-background-color-dark);
 	background-repeat: no-repeat;
 	background-size: cover;
+	cursor: pointer;
+}
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) :is(h3, h4) figure[data-action] {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) :is(h3, h4) figure[data-action] > i {
+	display: none;
+}
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) :is(h3, h4) figure[data-action]:hover {
+	background: var(--eh-background-color-light);
+}
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) :is(h3, h4) figure[data-action]:hover > i {
+	display: unset;
 }
 .hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section header {
 	margin: -1px;
@@ -180,27 +196,5 @@
 	font-size: var(--font-size-12);
 }
 .everyday-heroes.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-summary .item-tags {
-	display: flex;
-	gap: 0.5em;
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-.everyday-heroes.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-summary .item-tags li {
-	border: 1px solid var(--eh-border-color-weak);
-	border-radius: 5px;
-	padding-inline: 0.5em;
-	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
-}
-.everyday-heroes.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-summary .item-tags li.type {
-	background-color: var(--eh-tag-color-type);
-}
-.everyday-heroes.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-summary .item-tags li.property {
-	background-color: var(--eh-tag-color-property);
-}
-.everyday-heroes.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-summary .item-tags li.negative.status {
-	background-color: var(--eh-tag-color-status-negative);
-}
-.everyday-heroes.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-summary .item-tags li.positive.status {
-	background-color: var(--eh-tag-color-status-positive);
+	gap: 3px 0.5em;
 }
