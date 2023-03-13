@@ -66,6 +66,22 @@ export default class ArmorData extends SystemDataModel.mixin(DescribedTemplate, 
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	get chatTags() {
+		return [
+			{ label: this.type.label, class: "type" },
+			{
+				label: `${game.i18n.localize(
+					"EH.Equipment.Trait.ArmorValue.Abbreviation")} ${EverydayHeroes.utils.numberFormat(this.armorValue)}`,
+				class: "property"
+			},
+			...this.propertiesTags,
+			...this.physicalTags,
+			{ label: game.i18n.localize("EH.Armor.Damaged"), class: "negative status", hidden: !this.damaged }
+		];
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	/**
 	 * Can armor saving throws be performed by this item?
 	 * @type {boolean}

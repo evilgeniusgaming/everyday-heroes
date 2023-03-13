@@ -122,6 +122,24 @@ export default class WeaponData extends SystemDataModel.mixin(
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	get chatTags() {
+		return [
+			{ label: this.type.label, class: "type" },
+			// TODO: Range
+			// TODO: Rounds
+			// TODO: Reload
+			{
+				label: `${game.i18n.localize(
+					"EH.Equipment.Trait.PenetrationValue.Abbreviation")} ${EverydayHeroes.utils.numberFormat(this.penetrationValue)}`,
+				class: "property"
+			},
+			...this.propertiesTags,
+			...this.physicalTags
+		];
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	get damageAbility() {
 		if ( this.mode === "offhand" ) return null;
 		return this.attackAbility;

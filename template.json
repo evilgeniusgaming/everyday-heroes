@@ -128,6 +128,9 @@
           "recovery": ""
         }
       },
+      "advancement": {
+        "advancement": []
+      },
       "damage": {
         "damage": {
           "number": null,
@@ -162,11 +165,10 @@
       }
     },
     "archetype": {
-      "templates": ["description"],
+      "templates": ["description", "advancement"],
       "identifier": {
         "value": ""
-      },
-      "advancement": []
+      }
     },
     "armor": {
       "templates": ["description", "physical"],
@@ -182,19 +184,17 @@
       }
     },
     "background": {
-      "templates": ["description"],
+      "templates": ["description", "advancement"],
       "identifier": {
         "value": ""
-      },
-      "advancement": []
+      }
     },
     "class": {
-      "templates": ["description"],
+      "templates": ["description", "advancement"],
       "identifier": {
         "value": "",
         "archetype": ""
-      },
-      "advancement": []
+      }
     },
     "explosive": {
       "templates": ["damage", "description", "physical"],
@@ -214,7 +214,7 @@
       }
     },
     "feat": {
-      "templates": ["description", "activatable"],
+      "templates": ["description", "activatable", "advancement"],
       "identifier": {
         "value": ""
       },
@@ -233,11 +233,10 @@
       "templates": ["description", "activatable"]
     },
     "profession": {
-      "templates": ["description"],
+      "templates": ["description", "advancement"],
       "identifier": {
         "value": ""
       },
-      "advancement": [],
       "wealth": 0
     },
     "specialFeature": {

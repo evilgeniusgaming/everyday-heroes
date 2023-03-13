@@ -6,7 +6,7 @@
 					<div class="primary-item" data-item-id="{{item.id}}">
 						<h3>
 							<div class="image" style="background-image: url('{{item.img}}')"></div>
-							<a data-action="item" data-type="edit">{{item.name}}</a>
+							<a data-action="item" data-type="expand">{{item.name}}</a>
 						</h3>
 						{{#if @root.editable}}
 							<fieldset>
@@ -25,6 +25,7 @@
 			</header>
 			<ol class="item-list">
 				{{#each section.items as |item|}}
+				{{#everydayHeroes-itemContext item as |ctx|}}
 					<li data-item-id="{{item.id}}">
 						<h4>
 							<div class="image" style="background-image: url('{{item.img}}')"></div>
@@ -42,7 +43,11 @@
 								</a>
 							</fieldset>
 						{{/if}}
+						{{#if ctx.expandedData}}
+							{{> "everydayHeroes.item-summary" ctx.expandedData}}
+						{{/if}}
 					</li>
+				{{/everydayHeroes-itemContext}}
 				{{/each}}
 			</ol>
 	</section>

@@ -273,6 +273,40 @@ export default class ItemEH extends Item {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Activation & Chat                        */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Activate this item, spending any uses and resource consumption.
+	 * @param {object} [config] - Configuration information for the activation.
+	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides the message creation.
+	 * @returns {Promise}
+	 */
+	async activate(config={}, message={}) {
+		return;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Fetch the data needed to render this item's chat message and expanded state.
+	 * @param {object} [enrichmentContext={}] - Options passed to the `enrichHTML` method.
+	 * @returns {object}
+	 */
+	async chatContext(enrichmentContext={}) {
+		const context = this.toObject(false).system;
+		enrichmentContext = foundry.utils.mergeObject({
+			secrets: this.isOwner, rollData: this.getRollData(), async: true, relativeTo: this
+		}, enrichmentContext);
+		context.enriched = {
+			description: await TextEditor.enrichHTML(context.description.value, enrichmentContext),
+			chat: await TextEditor.enrichHTML(context.description.chat, enrichmentContext)
+		};
+		context.tags = this.system.chatTags ?? [];
+		return context;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Rolls                                    */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -464,19 +498,8 @@ export default class ItemEH extends Item {
 		if ( !this.hasDamage ) return console.warn(`${this.name} does not support damage rolls.`);
 		const ability = this.actor?.system.abilities[this.system.damageAbility];
 		const ammunition = undefined;
-		let damage = this.system.damage;
 
-		// Modify damage based on selected ammunition
-		// if ( ammunition ) {
-		// 	this.system.modifyDamage(damage, ammunition.system.damage);
-		// }
-
-		// Modify damage if this is a burst attack
-		// if ( this.system.mode === "burst" ) {
-		// 	damage = this.system.modifyDamage(damage, { number: 1 });
-		// }
-
-		const parts = [damage.dice];
+		const parts = [this.system.damage.dice];
 		const data = this.getRollData();
 
 		// Add ability modifier

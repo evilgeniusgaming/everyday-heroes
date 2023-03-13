@@ -1,0 +1,14 @@
+<div class="item-summary">
+	{{{enriched.description}}}
+
+	<ul class="item-tags">
+		{{#each tags as |tag|}}
+			{{#unless tag.hidden}}
+				<li class="{{tag.class}}" {{#if tag.tooltip}}data-tooltip="{{tag.tooltip}}"{{/if}}
+					{{everydayHeroes-dataset tag.dataset}}>
+					{{tag.label}}
+				</li>
+			{{/unless}}
+		{{/each}}
+	</ul>
+</div>

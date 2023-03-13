@@ -1,3 +1,5 @@
+import { numberFormat } from "../../../utils.mjs";
+
 /**
  * Data model template for physical items.
  *
@@ -17,5 +19,22 @@ export default class PhysicalTemplate extends foundry.abstract.DataModel {
 				label: "EH.Equipment.Trait.PriceLevel.Label", hint: "EH.Equipment.Trait.PriceLevel.Hint"
 			})
 		};
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Properties                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get physicalTags() {
+		return [
+			{
+				label: `${game.i18n.localize("EH.Equipment.Trait.PriceLevel.Label")} ${numberFormat(this.price)}`,
+				class: "property"
+			},
+			{
+				label: `${game.i18n.localize("EH.Equipment.Trait.Bulk.Label")} ${numberFormat(this.bulk)}`,
+				class: "property"
+			}
+		];
 	}
 }

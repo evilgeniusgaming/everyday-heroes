@@ -2,12 +2,14 @@ import SystemDataModel from "../abstract/system-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import DamageTemplate from "./templates/damage-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
+import EquipmentTemplate from "./templates/equipment-template.mjs";
 import PhysicalTemplate from "./templates/physical-template.mjs";
 
 /**
  * Data definition for Ammunition items.
  * @mixes {@link DamageTemplate}
  * @mixes {@link DescribedTemplate}
+ * @mixes {@link EquipmentTemplate}
  * @mixes {@link PhysicalTemplate}
  *
  * @property {object} type
@@ -18,7 +20,7 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @property {string} bonuses.damage - Bonus to the weapon's damage rolls.
  */
 export default class AmmunitionData extends SystemDataModel.mixin(
-	DamageTemplate, DescribedTemplate, PhysicalTemplate
+	DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate
 ) {
 
 	static damageMode = "modification";

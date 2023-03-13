@@ -10,6 +10,11 @@
 
 	--eh-input-color-checked: rgb(136, 255, 118);
 
+	--eh-tag-color-type: rgb(230, 230, 220);
+	--eh-tag-color-property: rgb(225, 225, 255);
+	--eh-tag-color-status-negative: rgb(255, 225, 225);
+	--eh-tag-color-status-positive: rgb(225, 255, 225);
+
 	--eh-text-color-black: rgb(0, 0, 0);
 	--eh-text-color-placeholder: rgb(128, 128, 128);
 	--eh-text-color-white: rgb(255, 255, 255);

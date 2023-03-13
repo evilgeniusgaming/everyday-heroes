@@ -34,6 +34,14 @@ export default class HeroSheet extends ActorSheet {
 	editorSelected = "biography";
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * IDs for items on the sheet that have been expanded.
+	 * @type {Set<string>}
+	 */
+	itemsExpanded = new Set();
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Context Preparation                      */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -63,7 +71,7 @@ export default class HeroSheet extends ActorSheet {
 			skill.mod = modFormatter.format(skill.mod);
 		}
 
-		this.prepareItems(context);
+		await this.prepareItems(context);
 
 		const enrichmentContext = {
 			secrets: this.actor.isOwner, rollData: this.actor.getRollData(), async: true, relativeTo: this.actor
@@ -85,7 +93,7 @@ export default class HeroSheet extends ActorSheet {
 	 * Prepare the items for display on the sheet.
 	 * @param {object} context - Context object for rendering the sheet. **Will be mutated.**
 	 */
-	prepareItems(context) {
+	async prepareItems(context) {
 		context.itemContext = {};
 
 		context.equipped = {
@@ -255,6 +263,11 @@ export default class HeroSheet extends ActorSheet {
 					context.inventory.gear.items.push(item);
 					break;
 			}
+
+			// Prepare expanded data
+			if ( this.itemsExpanded.has(item.id) ) {
+				ctx.expandedData = await item.chatContext({secrets: this.actor.isOwner});
+			}
 		}
 
 		// TODO: Add additional create buttons for archetype, class, background, & profession if a primary
@@ -322,7 +335,8 @@ export default class HeroSheet extends ActorSheet {
 	 */
 	async _onItemAction(event) {
 		event.preventDefault();
-		const id = event.currentTarget.closest("[data-item-id]")?.dataset.itemId;
+		const container = event.currentTarget.closest("[data-item-id]");
+		const id = container?.dataset.itemId;
 		const item = id ? this.actor.items.get(id) : null;
 		const { type, key } = event.currentTarget.dataset;
 		switch (type) {
@@ -333,7 +347,22 @@ export default class HeroSheet extends ActorSheet {
 			case "equip":
 				return this.actor.update({[`system.items.${item.id}.equipped`]: !item.isEquipped});
 			case "expand":
-				return console.log("EXPAND ITEM", id);
+				if ( this.itemsExpanded.has(id) ) {
+					this.itemsExpanded.delete(id);
+					const summary = $(container.querySelector(".item-summary"));
+					summary.slideUp(200, () => summary.remove());
+					// TODO: Remove this animation if core reduce animation setting is set
+				} else if ( item ) {
+					this.itemsExpanded.add(id);
+					const summary = $(await renderTemplate(
+						"systems/everyday-heroes/templates/item/parts/item-summary.hbs",
+						await item.chatContext({secrets: this.actor.isOwner})
+					));
+					container.insertAdjacentElement("beforeend", summary.hide()[0]);
+					summary.slideDown(200);
+					// TODO: Remove this animation if core reduce animation setting is set
+				}
+				return;
 			case "delete":
 				const manager = AdvancementManager.forDeletedItem(this.actor, id);
 				if ( manager.steps.length ) {
