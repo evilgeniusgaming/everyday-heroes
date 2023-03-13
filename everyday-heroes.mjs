@@ -6,12 +6,12 @@
  */
 
 import * as applications from "./module/applications/_module.mjs";
-import config from "./module/config/_module.mjs";
-import * as data from "./module/data/_module.mjs";
-import * as dice from "./module/dice/_module.mjs";
-import * as documents from "./module/documents/_module.mjs";
-import * as settings from "./module/settings.mjs";
-import * as utils from "./module/utils.mjs";
+import config from "./code/config/_module.mjs";
+import * as data from "./code/data/_module.mjs";
+import * as dice from "./code/dice/_module.mjs";
+import * as documents from "./code/documents/_module.mjs";
+import * as settings from "./code/settings.mjs";
+import * as utils from "./code/utils.mjs";
 
 globalThis.EverydayHeroes = {
 	applications,

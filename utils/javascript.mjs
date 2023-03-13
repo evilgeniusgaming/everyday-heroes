@@ -17,7 +17,7 @@ const parsedArgs = yargs(process.argv).argv;
  * Paths of javascript files that should be linted.
  * @type {string[]}
  */
-const LINTING_PATHS = ["./everyday-heroes.mjs", "./module/"];
+const LINTING_PATHS = ["./everyday-heroes.mjs", "./code/"];
 
 
 /**
