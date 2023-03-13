@@ -3,10 +3,14 @@
   <header>
     <img src="{{item.img}}" title="{{item.name}}" width="36" height="36">
     <h3 class="item-name">{{item.name}}</h3>
-  </header>{{log this}}
+  </header>
 
   <div class="content">
-    {{{enriched.description}}}
+		{{#if (and chatDescription enriched.chat)}}
+			{{{enriched.chat}}}
+		{{else}}
+    	{{{enriched.description}}}
+		{{/if}}
   </div>
 
   <footer>

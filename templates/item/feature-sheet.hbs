@@ -42,21 +42,21 @@
 					<div class="fields">
 						<label>{{!-- TODO: Should span full width if no type selected --}}
 							<span>Type</span>{{!-- TODO: Localize --}}
-							<select name="system.consumption.type">
-								{{selectOptions CONFIG.consumptionTypes selected=system.consumption.type labelAttr="label" blank=""}}
+							<select name="system.resource.type">
+								{{selectOptions CONFIG.consumptionTypes selected=system.resource.type labelAttr="label" blank=""}}
 							</select>
 						</label>
-						{{#if system.consumption.type}}
+						{{#if system.resource.type}}
 							<label>
 								<span>Amount</span>{{!-- TODO: Localize --}}
-								<input type="number" name="system.consumption.amount" value="{{system.consumption.amount}}">
+								<input type="number" name="system.resource.amount" value="{{system.resource.amount}}">
 							</label>
 							<label>
 								<span>Target</span>{{!-- TODO: Localize --}}
 								{{#if item.isEmbedded}}
 									Select Here
 								{{else}}
-									<input type="text" name="system.consumption.target" value="{{source.consumption.target}}">
+									<input type="text" name="system.resource.target" value="{{source.resource.target}}">
 								{{/if}}
 							</label>
 						{{/if}}

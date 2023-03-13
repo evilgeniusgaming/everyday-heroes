@@ -30,6 +30,7 @@
 "EH.Action.Type.Attack": "Attack Action",
 "EH.Action.Type.Bonus": "Bonus Action",
 "EH.Action.Type.Free": "Free Action",
+"EH.Action.Type.None": "No Action",
 "EH.Action.Type.Reaction": "Reaction",
 
 "EH.Actor.Type.Hero[one]": "Hero",

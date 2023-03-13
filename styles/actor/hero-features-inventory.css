@@ -12,7 +12,7 @@
 	margin-block-end: -20px;
 	padding-block-end: 20px;
 }
-.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) :is(header, .primary-item, .item-list, .item-list > li) {
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) :is(header, .primary.item, .item-list, .item-list > li) {
 	grid-column: 1 / -1;
 	display: grid;
 	grid-template-columns: subgrid;
@@ -63,10 +63,10 @@
 	font-variant: small-caps;
 	font-weight: bold;
 }
-.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section header .primary-item {
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section header .primary.item {
 	margin-block-start: 0.5em;
 }
-.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section header .primary-item fieldset {
+.hero.sheet :is([data-tab="features"], [data-tab="inventory"]) > section header .primary.item fieldset {
 	grid-column: -2 / -1;
 }
 

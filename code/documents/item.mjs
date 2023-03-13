@@ -185,19 +185,145 @@ export default class ItemEH extends Item {
 		}
 		return advancement;
 	}
-	
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Activation & Chat                        */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Configuration data for item activation.
+	 *
+	 * @typedef {object} ActivationConfiguration
+	 * @property {boolean} configure - Should the configuration dialog be displayed?
+	 * @property {object} consume
+	 * @property {boolean} consume.resource - Should the item's linked resource be consumed?
+	 * @property {boolean} consume.use - Should one of the item's uses be consumed?
+	 */
+
+	/**
+	 * Updates that will be applied when an item is activated.
+	 *
+	 * @typedef {object} ActivationUpdates
+	 * @property {object} actor - Updates applied to the actor.
+	 * @property {object} item - Updates applied to the item being activated.
+	 * @property {object[]} resource - Updates applied to other items on the actor.
+	 */
+
+	/**
 	 * Activate this item, spending any uses and resource consumption.
-	 * @param {object} [config] - Configuration information for the activation.
+	 * @param {ActivationConfiguration} [config] - Configuration information for the activation.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides the message creation.
 	 * @returns {Promise}
 	 */
 	async activate(config={}, message={}) {
-		return;
+		let item = this;
+
+		const activationConfig = foundry.utils.mergeObject({
+			consume: {
+				resource: !!item.system.resource.target,
+				use: !!item.system.uses.per && (item.system.uses.max > 0)
+			}
+		}, config);
+		if ( activationConfig.configure === undefined ) {
+			activationConfig.configure = Object.values(activationConfig.consume).some(v => v);
+		}
+
+		/**
+		 * A hook event that fires before an item activation is configured.
+		 * @function everydayHeroes.preActivateItem
+		 * @memberof hookEvents
+		 * @param {ItemEH} item - Item being activated.
+		 * @param {ActivationConfiguration} config - Configuration data for the item activation being prepared.
+		 * @param {BaseMessageConfiguration} message - Configuration data for the activation's message.
+		 * @returns {boolean} - Explicitly return `false` to prevent item from being activated.
+		 */
+		if ( Hooks.call("everydayHeroes.preActivateItem", item, activationConfig, message) === false ) return;
+
+		// TODO: Display configuration dialog
+		if ( activationConfig.configure ) {
+			console.log("Configuration Dialog!");
+		}
+
+		/**
+		 * A hook event that fires before an item's resource consumption has been calculated.
+		 * @function everydayHeroes.preItemActivationConsumption
+		 * @memberof hookEvents
+		 * @param {ItemEH} item - Item being activated.
+		 * @param {ActivationConfiguration} config - Configuration data for the item activation being prepared.
+		 * @param {BaseMessageConfiguration} message - Configuration data for the activation's message.
+		 * @returns {boolean} - Explicitly return `false` to prevent item from being activated.
+		 */
+		if ( Hooks.call("everydayHeroes.preItemActivationConsumption", item, activationConfig, message) === false ) return;
+
+		// Prepare usage & resource updates
+		let updates;
+		try {
+			updates = item.prepareActivationUpdates(activationConfig);
+		} catch(err) {
+			// TODO: Display usage issues
+			return;
+		}
+
+		/**
+		 * A hook event that fires after an item's resource consumption has been calculated but before any
+		 * changes have been made.
+		 * @function everydayHeroes.itemActivationConsumption
+		 * @memberof hookEvents
+		 * @param {ItemEH} item - Item being activated.
+		 * @param {ActivationConfiguration} config - Configuration data for the item activation being prepared.
+		 * @param {BaseMessageConfiguration} message - Configuration data for the activation's message.
+		 * @param {ActivationUpdates} updates - Updates to be applied when the item is activated.
+		 * @returns {boolean} - Explicitly return `false` to prevent item from being activated.
+		 */
+		if ( Hooks.call("everydayHeroes.itemActivationConsumption", item,
+			activationConfig, message, updates) === false ) return;
+
+		// Apply usage & resource updates
+		if ( !foundry.utils.isEmpty(updates.actor) ) await this.actor.update(updates.actor);
+		if ( !foundry.utils.isEmpty(updates.item) ) await this.update(updates.item);
+		if ( !foundry.utils.isEmpty(updates.resource) ) await this.actor.updateEmbeddedDocuments("Item", updates.resource);
+
+		// Create the chat card
+		const messageData = await this.displayInChat(message, { chatDescription: true });
+
+		/**
+		 * A hook event that fires when an item is used, after the measured template has been created if one is needed.
+		 * @function everydayHeroes.activateItem
+		 * @memberof hookEvents
+		 * @param {ItemEH} item - Item being activated.
+		 * @param {ActivationConfiguration} config - Configuration data for the item activation.
+		 * @param {ChatMessage|BaseMessageConfiguration} message - Created chat message or the content that would have
+		 *                                                         been used to create it.
+		 */
+		Hooks.callAll("everydayHeroes.activateItem", item, activationConfig, messageData);
+
+		return messageData;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Prepare the updates that will be applied to the actor or to items when this item is activated.
+	 * @param {ActivationConfiguration} config - Configuration data for the item activation being prepared.
+	 * @returns {ActivationUpdates}
+	 * @throws if not enough of a certain resource to activate this item.
+	 */
+	prepareActivationUpdates(config) {
+		const updates = {
+			actor: {},
+			item: {},
+			resource: {}
+		};
+
+		if ( config.consume.resource ) {
+			// TODO: Resource consumption
+		}
+
+		if ( config.consume.uses ) {
+			// TODO: Usage consumption
+		}
+
+		return updates;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -230,22 +356,22 @@ export default class ItemEH extends Item {
 	/**
 	 * Display an item's full description in chat.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides the message creation.
-	 * @returns {Promise<ChatMessage|void>}
+	 * @param {object} [context] - Additional context passed during message rendering.
+	 * @returns {Promise<ChatMessage|BaseMessageConfiguration>} - Created chat message or the content that would have
+	 *                                                            been used to create it.
 	 */
-	async displayInChat(message={}) {
+	async displayInChat(message={}, context={}) {
+		context = foundry.utils.mergeObject(await this.chatContext(), context);
 		const messageConfig = foundry.utils.mergeObject({
+			rollMode: game.settings.get("core", "rollMode"),
 			data: {
 				title: `${this.name}: ${this.actor.name}`,
-				content: await renderTemplate(
-					"systems/everyday-heroes/templates/item/item-card.hbs", await this.chatContext()
-				),
+				content: await renderTemplate("systems/everyday-heroes/templates/item/item-card.hbs", context),
 				speaker: ChatMessage.getSpeaker({actor: this.actor})
 			}
 		}, message);
-
-		// Display chat message
-		if ( messageConfig.create === false ) return;
-		ChatMessage.applyRollMode(messageConfig.data, game.settings.get("core", "rollMode"));
+		if ( messageConfig.create === false ) return messageConfig;
+		ChatMessage.applyRollMode(messageConfig.data, messageConfig.rollMode);
 		return await ChatMessage.create(messageConfig.data);
 	}
 

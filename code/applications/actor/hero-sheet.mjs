@@ -13,7 +13,7 @@ export default class HeroSheet extends ActorSheet {
 			tabs: [{navSelector: 'nav[data-group="primary"]', contentSelector: "main", initial: "details"}],
 			width: 820,
 			height: 720,
-			dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
+			dragDrop: [{dragSelector: ":is(.item-list .item, .primary.item)", dropSelector: null}]
 		});
 	}
 
@@ -407,6 +407,8 @@ export default class HeroSheet extends ActorSheet {
 		});
 
 		switch (type) {
+			case "activate":
+				return item.activate({ options: dataset });
 			case "armor-save":
 				return item.rollArmorSave({ options: dataset });
 			case "attack":

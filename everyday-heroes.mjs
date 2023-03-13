@@ -5,7 +5,7 @@
  * Issue Tracker: https://github.com/evilgeniusgaming/everyday-heroes/issues
  */
 
-import * as applications from "./module/applications/_module.mjs";
+import * as applications from "./code/applications/_module.mjs";
 import config from "./code/config/_module.mjs";
 import * as data from "./code/data/_module.mjs";
 import * as dice from "./code/dice/_module.mjs";

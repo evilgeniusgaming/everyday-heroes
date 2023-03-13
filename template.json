@@ -116,7 +116,7 @@
           "type": "",
           "condition": ""
         },
-        "consumption": {
+        "resource": {
           "amount": 0,
           "target": "",
           "type": ""
