@@ -12,6 +12,15 @@
 	color: var(--eh-text-color-placeholder);
 }
 
+@supports not (grid-template-columns: subgrid) {
+	.scale-values fieldset > label {
+		flex-basis: 1.5em;
+	}
+	.scale-values fieldset > .fields {
+		flex-basis: calc(100% - 2em);
+	}
+}
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Flow                                     */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

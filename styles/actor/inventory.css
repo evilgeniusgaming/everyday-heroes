@@ -1,6 +1,5 @@
 .everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section {
 	display: grid;
-	/* grid-template-columns: max-content repeat(3, auto) max-content; */
 	grid-template-columns: repeat(4, auto) max-content;
 	gap: 0 1em;
 	overflow: clip;
@@ -87,6 +86,15 @@
 	margin: 0;
 }
 
+@supports not (grid-template-columns: subgrid) {
+	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-list {
+		display: block;
+	}
+	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) :is(.item-list > .item, .primary.item) {
+		grid-template-columns: 25% auto max-content;
+	}
+}
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Item Actions                             */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -106,7 +114,7 @@
 	background-size: contain;
 }
 
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-modes {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-modes nav {
 	margin: 0;
 	font-size: var(--font-size-12);
 	border-width: 1px;
@@ -161,12 +169,33 @@
 	white-space: nowrap;
 }
 
+@supports not (grid-template-columns: subgrid) {
+	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li > div {
+		grid-column: unset;
+		display: flex;
+		justify-content: space-between;
+	}
+	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-modes {
+		display: flex;
+		flex-basis: 25%;
+	}
+	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-actions {
+		flex-basis: 50%;
+		justify-content: space-evenly;
+	}
+	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .ammunition {
+		flex-basis: 25%;
+	}
+}
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Item Controls                            */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 .everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) fieldset {
+	grid-column: -1;
 	display: flex;
+	justify-content: flex-end;
 	gap: 0.5em;
 	margin: 0;
 	border: none;
@@ -179,9 +208,11 @@
 .everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) fieldset a:not(:hover, .equipped) {
 	opacity: 0.5;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) fieldset {
-	grid-column: -1;
-	justify-content: flex-end;
+
+@supports not (grid-template-columns: subgrid) {
+	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) fieldset {
+		grid-column: unset;
+	}
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

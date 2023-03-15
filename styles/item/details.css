@@ -59,6 +59,26 @@
 	flex: 1 0 100%;
 }
 
+@supports not (grid-template-columns: subgrid) {
+	.everyday-heroes.item.sheet [data-tab="details"] section > fieldset {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > label {
+		flex-basis: 33%;
+	}
+	.everyday-heroes.item.sheet [data-tab="details"] section > fieldset .fields {
+		display: flex;
+		flex-grow: 1;
+	}
+	.everyday-heroes.item.sheet [data-tab="details"] section > fieldset .fields > * {
+		flex: 1 0 33%;
+	}
+	.everyday-heroes.item.sheet [data-tab="details"] section > fieldset .hint {
+		flex-basis: 100%;
+	}
+}
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Properties                               */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

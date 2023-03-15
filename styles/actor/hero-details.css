@@ -97,10 +97,6 @@
 	margin-inline-end: -8px;
 	border-inline-end: 8px solid var(--eh-border-color-strong);
 }
-.hero.sheet [data-tab="details"] .abilities .ability:first-child > label {
-	margin-inline-end: -1em;
-	padding-inline-end: 1.25em;
-}
 .hero.sheet [data-tab="details"] .abilities .ability:last-child {
 	border-bottom-right-radius: 15px;
 }
@@ -118,14 +114,21 @@
 	transform: skew(-20deg) translateX(1em);
 }
 .hero.sheet [data-tab="details"] .abilities .ability label {
-	grid-column: 2 / 4;
+	grid-column: 1 / 4;
+	transform: skew(-16deg);
 	z-index: 2;
-	padding: 0.25em 0.5em;
+	margin-inline: 1em -1em;
+	padding-block: 0.25em;
+	padding-inline: 1em 1.5em;
 	font-size: var(--font-size-18);
 	font-weight: bold;
 	text-transform: uppercase;
 	background-color: var(--eh-border-color-strong);
 	color: var(--color-text-light-0);
+}
+.hero.sheet [data-tab="details"] .abilities .ability label a {
+	display: block;
+	transform: skew(16deg);
 }
 .hero.sheet [data-tab="details"] .abilities .ability .modifier {
 	grid-column: 1;
@@ -231,6 +234,22 @@
 	background-position-x: center;
 }
 
+@supports not (grid-template-columns: subgrid) {
+	.hero.sheet [data-tab="details"] .abilities .ability > div.contents {
+		margin-inline-start: -1em;
+		padding-inline-start: 0.5em;
+	}
+	.hero.sheet [data-tab="details"] .skills .skill {
+		grid-template-columns: auto 1.75em 1.5em 1em;
+	}
+	.hero.sheet [data-tab="details"] .skills .skill label {
+		border-inline-end: none;
+	}
+	.hero.sheet [data-tab="details"] .skills .skill [data-action="cycle-proficiency"] {
+		padding-block-start: 0.175em;
+	}
+}
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Health                                   */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -327,12 +346,11 @@
 	margin-block-end: -2px;
 	margin-inline-end: -2px;
 	border: 2px solid var(--eh-border-color-strong);
+	align-content: space-between;
 	justify-items: center;
 	padding: 0.25em;
 	background-color: var(--eh-background-color-white);
 	text-align: center;
-}
-.hero.sheet [data-tab="details"] .attributes :is(.summary, .resources) fieldset:not(:last-of-type) {
 }
 .hero.sheet [data-tab="details"] .attributes :is(.summary, .resources) fieldset label {
 	display: block;

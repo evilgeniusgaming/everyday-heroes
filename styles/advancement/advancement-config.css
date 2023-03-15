@@ -44,6 +44,17 @@
 	text-align: center;
 }
 
+@supports not (grid-template-columns: subgrid) {
+	.everyday-heroes.advancement.config form > section > fieldset {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5em;
+	}
+	.everyday-heroes.advancement.config form > section p.hint {
+		flex: 1 0 100%;
+	}
+}
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Item Lists                               */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -72,4 +83,11 @@
 .everyday-heroes.advancement.config form > section.items ol li fieldset {
 	display: flex;
 	gap: 0.5em;
+}
+
+@supports not (grid-template-columns: subgrid) {
+	.everyday-heroes.advancement.config form > section.items ol li {
+		display: flex;
+		justify-content: space-between;
+	}
 }
