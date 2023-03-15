@@ -17,6 +17,7 @@
 "EH.Ability.Wisdom.Label": "Wisdom",
 "EH.Ability.Wisdom.Abbreviation": "wis",
 "EH.Ability.Max.Label": "Maximum Ability Score",
+"EH.Ability.Save.Label": "Saves",
 "EH.Ability.Action.CheckGeneric": "Ability Check",
 "EH.Ability.Action.CheckSpecific": "{ability} Check",
 "EH.Ability.Action.SaveGeneric": "Saving Throw",
@@ -26,6 +27,10 @@
 "EH.Ability.Bonus.Save": "Saving Throw Bonus",
 
 "EH.Action.Roll": "Roll {type}",
+"EH.Action.Passive": "Passive",
+"EH.Action.Reload.Action": "Action Reload",
+"EH.Action.Reload.Bonus": "Bonus Reload",
+"EH.Action.Reload.Free": "Free Reload",
 "EH.Action.Type.Action": "Action",
 "EH.Action.Type.Attack": "Attack Action",
 "EH.Action.Type.Bonus": "Bonus Action",
@@ -113,6 +118,8 @@
 "EH.Advancement.ScaleValue.Type.Number.Hint": "Use this for purely numerical values like flat damage bonuses.",
 
 "EH.Ammunition.Loaded": "Loaded Ammunition",
+"EH.Ammunition.Rounds.Label[one]": "round",
+"EH.Ammunition.Rounds.Label[other]": "rounds",
 "EH.Ammunition.Type.Label": "Ammunition Type",
 "EH.Ammunition.Type.MachineGun.Label": "Machine Gun",
 "EH.Ammunition.Type.Pistol.Label": "Pistol",
@@ -158,6 +165,9 @@
 "EH.Biography.Virtue[other]": "Virtues",
 "EH.Biography.Weight": "Weight",
 
+"EH.ChallengeRating.Label": "Challenge Rating",
+"EH.ChallengeRating.Abbreviation": "CR",
+
 "EH.Condition.Label[one]": "Condition",
 "EH.Condition.Label[other]": "Conditions",
 "EH.Condition.Blinded.Label": "Blinded",
@@ -194,6 +204,7 @@
 "EH.Creature.Type.Undead.Label": "Undead",
 
 "EH.Damage.None": "No Damage",
+"EH.Damage.Specific": "{type} Damage",
 "EH.Damage.Type.Label[one]": "Damage Type",
 "EH.Damage.Type.Label[other]": "Damage Types",
 "EH.Damage.Type.Acid": "Acid",
@@ -234,6 +245,10 @@
 "EH.Details.Wealth.Label": "Wealth",
 "EH.Details.Wealth.Bonus.Label": "Wealth Bonus",
 
+"EH.Dice.Denomination": "Denomination",
+
+"EH.Equipment.Label[one]": "Equipment",
+"EH.Equipment.Label[other]": "Equipment",
 "EH.Equipment.Category.Label[one]": "Equipment Category",
 "EH.Equipment.Category.Label[other]": "Equipment Categories",
 "EH.Equipment.Category.Advanced.Label": "Advanced",
@@ -306,6 +321,7 @@
 "EH.HitPoints.Label[one]": "Hit Point",
 "EH.HitPoints.Label[other]": "Hit Points",
 "EH.HitPoints.Abbreviation": "hp",
+"EH.HitPoints.Formula": "Hit Points Formula",
 "EH.HitPoints.Current": "Current HP",
 "EH.HitPoints.Max": "Max HP",
 "EH.HitPoints.Temp": "Temp HP",
@@ -347,6 +363,8 @@
 "EH.Item.Type.Feat[other]": "Feats",
 "EH.Item.Type.Gear[one]": "Gear",
 "EH.Item.Type.Gear[other]": "Gear",
+"EH.Item.Type.NPCFeature[one]": "NPC Feature",
+"EH.Item.Type.NPCFeature[other]": "NPC Features",
 "EH.Item.Type.Plan[one]": "Plan",
 "EH.Item.Type.Plan[other]": "Plans",
 "EH.Item.Type.Profession[one]": "Profession",
@@ -400,6 +418,8 @@
 "EH.Resource.Label[other]": "Resources",
 "EH.Resource.Inspiration": "Inspiration",
 
+"EH.Role.Label[one]": "Role",
+"EH.Role.Label[other]": "Roles",
 "EH.Role.Fodder.Label": "Fodder",
 "EH.Role.Hulk.Label": "Hulk",
 "EH.Role.Killer.Label": "Killer",
@@ -410,6 +430,10 @@
 "EH.Role.Shadow.Label": "Shadow",
 "EH.Role.Support.Label": "Support",
 "EH.Role.Tank.Label": "Tank",
+
+"EH.Sense.Label[one]": "Sense",
+"EH.Sense.Label[other]": "Senses",
+"EH.Sense.PassivePerception": "passive Perception {number}",
 
 "EH.Settings.InitiativeTiebreaker.Label": "Initiative Tiebreaker",
 "EH.Settings.InitiativeTiebreaker.Hint": "Add initiative ability score as decimal to help break ties in initiatives.",
@@ -422,8 +446,19 @@
 "EH.Sheet.NPC": "Default NPC Sheet",
 "EH.Sheet.Physical": "Default Physical Item Sheet",
 
+"EH.Size.Label": "Size",
+"EH.Size.Huge.Label": "Huge",
+"EH.Size.Gargantuan.Label": "Gargantuan",
+"EH.Size.Large.Label": "Large",
+"EH.Size.Medium.Label": "Medium",
+"EH.Size.Small.Label": "Small",
+"EH.Size.Tiny.Label": "Tiny",
+
+"EH.Speed.Label": "Speed",
+
 "EH.Skill.Label[one]": "Skill",
 "EH.Skill.Label[other]": "Skills",
+"EH.Skill.Passive.Specific": "Passive {skill}",
 "EH.Skill.Acrobatics.Label": "Acrobatics",
 "EH.Skill.ArtsAndCrafts.Label": "Arts and Crafts",
 "EH.Skill.Athletics.Label": "Athletics",
@@ -452,8 +487,9 @@
 "EH.Skill.Bonuses.Check": "Skill Check Bonus",
 "EH.Skill.Bonuses.Passive": "Passive Bonus",
 
-"EH.Weapon.Action.AttackGeneric.Label": "Attack",
-"EH.Weapon.Action.AttackSpecific.Label": "{type} Attack",
+"EH.Weapon.ToHit": "{mod} To Hit",
+"EH.Weapon.Action.AttackGeneric": "Attack",
+"EH.Weapon.Action.AttackSpecific": "{type} Attack",
 "EH.Weapon.Action.Burst.Label": "Burst",
 "EH.Weapon.Action.DamageGeneric.Label": "Damage",
 "EH.Weapon.Action.DamageSpecific.Label": "{type} Damage",
@@ -467,6 +503,12 @@
 "EH.Weapon.Bonus.Attack.Label": "Attack Bonus",
 "EH.Weapon.Bonus.Damage.Label": "Damage Bonus",
 "EH.Weapon.Bonus.DC.Label": "DC Bonus",
+"EH.Weapon.Mode.Burst.Label": "Burst",
+"EH.Weapon.Mode.Offhand.Label": "Off-hand",
+"EH.Weapon.Mode.OneHanded.Label": "One-handed",
+"EH.Weapon.Mode.Thrown.Label": "Thrown",
+"EH.Weapon.Mode.TwoHanded.Label": "Two-handed",
+"EH.Weapon.Mode.TwoHanded.NPCHint": "if wielded in two hands",
 "EH.Weapon.Property.Label": "Weapon Properties",
 "EH.Weapon.Property.Aquatic.Label": "Aquatic",
 "EH.Weapon.Property.Belt.Label": "Belt",

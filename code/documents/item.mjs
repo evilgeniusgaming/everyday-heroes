@@ -220,8 +220,8 @@ export default class ItemEH extends Item {
 
 		const activationConfig = foundry.utils.mergeObject({
 			consume: {
-				resource: !!item.system.resource.target,
-				use: !!item.system.uses.per && (item.system.uses.max > 0)
+				resource: !!item.system.resource?.target,
+				use: !!item.system.uses?.per && (item.system.uses?.max > 0)
 			}
 		}, config);
 		if ( activationConfig.configure === undefined ) {
@@ -376,6 +376,30 @@ export default class ItemEH extends Item {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Helpers                                  */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Description of this item that will appear on the details tab of NPC sheets.
+	 * @returns {Promise<string>}
+	 */
+	async npcDescription() {
+		return this.system.npcDescription?.() ?? await TextEditor.enrichHTML(this.system.description?.value ?? "", {
+			secrets: this.isOwner, rollData: this.getRollData(), async: true, relativeTo: this
+		});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Label that will appear on the details tab of NPC sheets.
+	 * @returns {Promise<string>}
+	 */
+	async npcLabel() {
+		return this.system.npcLabel?.() ?? `<a data-action="roll-item" data-type="activate">${this.name}</a>`;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Reloading                                */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -489,7 +513,7 @@ export default class ItemEH extends Item {
 		}
 
 		// Global save bonus
-		if ( this.actor?.system.bonuses.ability.save ) {
+		if ( this.actor?.system.bonuses?.ability?.save ) {
 			parts.push("@globalBonus");
 			data.globalBonus = Roll.replaceFormulaData(this.actor.system.bonuses.ability.save, data);
 		}
@@ -585,7 +609,7 @@ export default class ItemEH extends Item {
 		}
 
 		// Global attack bonus
-		if ( this.actor?.system.bonuses.attack.all ) {
+		if ( this.actor?.system.bonuses?.attack?.all ) {
 			parts.push("@globalBonus");
 			data.globalBonus = Roll.replaceFormulaData(this.actor.sytem.bonuses.attack.all, data);
 			// TODO: Handle weapon- & category-type global bonuses
@@ -676,7 +700,7 @@ export default class ItemEH extends Item {
 		}
 
 		// Global generic damage bonus
-		if ( this.actor?.system.bonuses.damage.all ) {
+		if ( this.actor?.system.bonuses?.damage?.all ) {
 			parts.push("@globalBonus");
 			data.globalBonus = Roll.replaceFormulaData(this.actor.system.bonuses.damage.all, data);
 		}
@@ -735,7 +759,7 @@ export default class ItemEH extends Item {
 		if ( (userId !== game.user.id) || !this.parent ) return;
 
 		// Clear actor/item relationship information
-		if ( this.actor.system.items[this.id] ) {
+		if ( this.actor.system.items?.[this.id] ) {
 			this.actor.update({[`system.items.-=${this.id}`]: null});
 		}
 	}

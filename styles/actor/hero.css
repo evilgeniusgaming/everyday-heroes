@@ -1,6 +1,5 @@
 @import "./hero-biography.css";
 @import "./hero-details.css";
-@import "./hero-features-inventory.css";
 
 .hero.sheet {
 	container-type: size;

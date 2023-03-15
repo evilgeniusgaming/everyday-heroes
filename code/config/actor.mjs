@@ -238,6 +238,54 @@ preLocalize("roles", { sort: true });
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Configuration data for actor sizes.
+ *
+ * @typedef {LabeledConfiguration} SizeConfiguration
+ * @property {number} token - Default token size.
+ * @property {number} hitDie - Default hit die denomination for NPCs of this size.
+ */
+
+/**
+ * Possible sizes for actors.
+ * @enum {SizeConfiguration}
+ */
+export const sizes = {
+	tiny: {
+		label: "EH.Size.Tiny.Label",
+		token: 0.5,
+		hitDie: 4
+	},
+	small: {
+		label: "EH.Size.Small.Label",
+		token: 1,
+		hitDie: 6
+	},
+	medium: {
+		label: "EH.Size.Medium.Label",
+		token: 1,
+		hitDie: 8
+	},
+	large: {
+		label: "EH.Size.Large.Label",
+		token: 2,
+		hitDie: 10
+	},
+	huge: {
+		label: "EH.Size.Huge.Label",
+		token: 3,
+		hitDie: 12
+	},
+	gargantuan: {
+		label: "EH.Size.Gargantuan.Label",
+		token: 4,
+		hitDie: 20
+	}
+};
+preLocalize("sizes", { key: "label" });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Configuration data for skills.
  *
  * @typedef {LabeledConfiguration} SkillConfiguration

@@ -1,3 +1,4 @@
+import { numberFormat } from "../../utils.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import AttackTemplate from "./templates/attack-template.mjs";
@@ -108,7 +109,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 
 	get attackTooltip() {
 		if ( !this.mode ) return super.attackTooltip;
-		const type = game.i18n.format("EH.Weapon.Action.AttackSpecific.Label", {
+		const type = game.i18n.format("EH.Weapon.Action.AttackSpecific", {
 			type: CONFIG.EverydayHeroes.weaponModes[this.mode].label
 		});
 		return game.i18n.format("EH.Action.Roll", { type });
@@ -130,7 +131,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 			// TODO: Reload
 			{
 				label: `${game.i18n.localize(
-					"EH.Equipment.Trait.PenetrationValue.Abbreviation")} ${EverydayHeroes.utils.numberFormat(this.penetrationValue)}`,
+					"EH.Equipment.Trait.PenetrationValue.Abbreviation")} ${numberFormat(this.penetrationValue)}`,
 				class: "property"
 			},
 			...this.propertiesTags,
@@ -166,6 +167,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 			if ( this.properties.has("thrown") ) modes.push("thrown");
 		} else if ( this.type.value === "ranged" ) {
 			modes.push("ranged");
+			if ( this.properties.has("light") ) modes.push("offhand");
 			if ( this.properties.has("burst") ) modes.push("burst");
 		}
 		return modes;
@@ -227,15 +229,15 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareBaseMode() {
-		const mode = this.parent?.actor?.system.items?.[this.parent.id]?.mode;
+		const mode = this.parent?.actor?.system.items?.[this.parent.id]?.mode ?? this._source.mode;
 		this.mode = this.modes.includes(mode) ? mode : this.modes[0];
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedDamage() {
-		if ( this.ammunition ) this.modifyDamage(this.ammunition);
-		if ( this.mode === "burst" ) this.modifyDamage({ number: 1 });
+		if ( this.ammunition ) this.damage.modify(this.ammunition);
+		if ( this.mode === "burst" ) this.damage.modify({ number: 1 });
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -259,5 +261,101 @@ export default class WeaponData extends SystemDataModel.mixin(
 			type: game.i18n.localize("EH.Item.Type.Weapon[one]"),
 			subtype: CONFIG.EverydayHeroes.weaponTypes[this.type.value]?.label ?? ""
 		}).trim();
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Helpers                                  */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Description of this item that will appear on the details tab of NPC sheets.
+	 * @returns {Promise<string>}
+	 */
+	async npcDescription() {
+		let description = "<p><em>";
+
+		// Type
+		const type = CONFIG.EverydayHeroes.weaponTypes[this.type.value];
+		if ( type ) description += game.i18n.format("EH.Weapon.Action.AttackSpecific", {type: type.label});
+		else description += game.i18n.localize("EH.Weapon.Action.AttackGeneric");
+		description += ":</em> ";
+
+		// To Hit
+		description += `<a data-action="roll-item" data-type="attack">${
+			game.i18n.format("EH.Weapon.ToHit", {mod: numberFormat(this.attackMod, {sign: true})}).toLowerCase()}</a>, `;
+
+		// Penetration Value
+		description += `${game.i18n.localize("EH.Equipment.Trait.PenetrationValue.Abbreviation")} ${
+			numberFormat(this.penetrationValue)}, `;
+
+		// Range
+		if ( ((this.type.value === "ranged") || this.properties.has("thrown")) && this.range.short ) {
+			description += `${game.i18n.localize("EH.Equipment.Trait.Range.Label").toLowerCase()} ${
+				numberFormat(this.range.short)}`;
+			if ( this.range.long > this.range.short ) description += `/${numberFormat(this.range.long)}`;
+			description += ` ${CONFIG.EverydayHeroes.lengthUnits[this.range.units]?.abbreviation}., `;
+			// TODO: Use numberFormat with proper unit formatting
+		}
+
+		// Reach
+		if ( this.type.value === "melee" ) {
+			description += `${game.i18n.localize("EH.Equipment.Trait.Range.Reach").toLowerCase()} ${
+				numberFormat(this.range.reach ?? 5)} `;
+			description += `${CONFIG.EverydayHeroes.lengthUnits[this.range.units]?.abbreviation}., `;
+			// TODO: Use numberFormat with proper unit formatting
+		}
+
+		// Targets
+
+		// Damage types
+		const modes = this.modes;
+		modes.findSplice(m => m === "offhand");
+		const damages = [];
+		for ( const mode of modes ) {
+			const config = CONFIG.EverydayHeroes.weaponModes[mode];
+			const clone = this.parent.clone({"system.mode": mode});
+			// TODO: Modify this so it doesn't have to clone the whole item
+			const type = game.i18n.format("EH.Damage.Specific", {
+				type: CONFIG.EverydayHeroes.damageTypes[clone.system.damage.type]?.label
+			});
+			let string = '<a data-action="roll-item" data-type="damage" data-mode="mode">';
+			string += clone.system.damage.average;
+			if ( clone.system.damage.denomination ) string += ` (${clone.system.damage.formula})`;
+			string += ` ${type.toLowerCase()}</a>`;
+			if ( config.npcHint ) string += ` ${config.npcHint}`;
+			damages.push(string);
+		}
+		const listFormatter = new Intl.ListFormat(game.i18n.lang, {type: "conjunction", style: "short"});
+		description += `<em>Hit:</em> ${listFormatter.format(damages)}.</p> `;
+
+		console.log(this.description.chat);
+		if ( this.description.chat ) {
+			description += await TextEditor.enrichHTML(this.description.chat ?? "", {
+				secrets: this.parent.isOwner, rollData: this.parent.getRollData(), async: true, relativeTo: this.parent
+			});
+			// description = listFormatter.format([description, chatDescription]);
+		} else {
+			// description += ".";
+		}
+
+		return description;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Label that will appear on the details tab of NPC sheets.
+	 * @returns {Promise<string>}
+	 */
+	async npcLabel() {
+		let label = `<a data-action="roll-item" data-type="activate">${this.parent.name}</a>`;
+		if ( this.rounds.capacity ) {
+			label += ' <span>(<a data-action="item" data-type="reload">';
+			label += `${numberFormat(this.rounds.available)}/${numberFormat(this.rounds.capacity)} ${
+				game.i18n.format("EH.Ammunition.Rounds.Label[other]")}`;
+			if ( this.reload ) label += `; ${CONFIG.EverydayHeroes.actionTypesReload[this.reload].toLowerCase()}`;
+			label += "</a>)</span>";
+		}
+		return label;
 	}
 }

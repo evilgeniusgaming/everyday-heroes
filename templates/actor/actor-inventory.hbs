@@ -1,7 +1,3 @@
-<section class="proficiencies">
-	Equipment Proficiencies
-</section>
-
 {{#each inventory as |section id|}}
 	<section data-section-id="{{id}}">
 			<header>
@@ -37,8 +33,12 @@
 								{{#each item.system.actions as |action|}}
 									<div class="action{{#if action.disabled}} disabled{{/if}}" data-action="roll-item"
 										data-tooltip="{{action.tooltip}}" {{everydayHeroes-dataset action.data}}>
-										<figure style="background-image: url('{{action.icon}}');"></figure>
-										<span>{{action.label}}</span>
+										{{#if action.icon}}
+											<figure style="background-image: url('{{action.icon}}');"></figure>
+										{{/if}}
+										{{#if action.label}}
+											<span>{{action.label}}</span>
+										{{/if}}
 									</div>
 								{{/each}}
 							</nav>

@@ -1,6 +1,8 @@
 /**
  * Data model template for items that make attacks. Does not introduce any fields of its own, but provides
  * some data preparation methods and helpers.
+ *
+ * @mixin
  */
 export default class AttackTemplate {
 
@@ -45,7 +47,7 @@ export default class AttackTemplate {
 	 * @type {string}
 	 */
 	get attackTooltip() {
-		return game.i18n.format("EH.Action.Roll", { type: game.i18n.localize("EH.Weapon.Action.AttackGeneric.Label") });
+		return game.i18n.format("EH.Action.Roll", { type: game.i18n.localize("EH.Weapon.Action.AttackGeneric") });
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

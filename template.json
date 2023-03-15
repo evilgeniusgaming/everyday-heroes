@@ -24,6 +24,8 @@
         },
         "hp": {
           "value": 0,
+          "temp": 0,
+          "ability": "con",
           "bonuses": {
             "level": "",
             "overall": ""
@@ -90,7 +92,49 @@
       }
     },
     "npc": {
-      
+      "abilities": {},
+      "attributes": {
+        "defense": 10,
+        "hd": {
+          "count": null,
+          "denomination": null,
+          "spent": 0
+        },
+        "hp": {
+          "value": 0,
+          "max": null,
+          "temp": 0,
+          "formula": ""
+        },
+        "initiative": {
+          "bonus": ""
+        },
+        "movement": {
+          "value": 30,
+          "special": {},
+          "units": ""
+        }
+      },
+      "biography": {
+        "value": "",
+        "public": "",
+        "roles": []
+      },
+      "bonuses": {},
+      "conditions": {},
+      "details": {
+        "cr": 0
+      },
+      "items": {},
+      "resources": {},
+      "skills": {},
+      "traits": {
+        "size": "",
+        "type": {
+          "value": "",
+          "tags": []
+        }
+      }
     }
   },
   "Item": {
@@ -103,6 +147,7 @@
       "explosive",
       "feat",
       "gear",
+      "npcFeature",
       "plan",
       "profession",
       "specialFeature",
@@ -227,6 +272,13 @@
       "templates": ["description", "physical"],
       "type": {
         "value": "loot"
+      }
+    },
+    "npcFeature": {
+      "templates": ["description", "activatable"],
+      "recharge": {
+        "charged": true,
+        "target": null
       }
     },
     "plan": {

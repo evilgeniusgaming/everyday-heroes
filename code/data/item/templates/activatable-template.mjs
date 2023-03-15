@@ -2,6 +2,20 @@ import FormulaField from "../../fields/formula-field.mjs";
 
 /**
  * Data model template for an item that can be activated.
+ *
+ * @property {object} activation
+ * @property {string} activation.type - The action type, if any, that is needed to activated this item.
+ * @property {string} activation.condition - Conditions that must be met to activate this item.
+ * @property {object} resource
+ * @property {number} resource.amount - Amount of the given resource consumed on each activation.
+ * @property {string} resource.target - ID or identifier of the target resource being consumed.
+ * @property {string} resource.type - Whether the consumed resource is a sheet resource, item use, hit dice, etc.
+ * @property {object} uses
+ * @property {number} uses.spent - Number of uses that have been used.
+ * @property {string} uses.max - Formula for the maximum uses.
+ * @property {string} uses.per - Recovery period for this item's uses.
+ * @property {string} uses.recovery - Formula used for resource recovery. Blank indicates that all uses are restored.
+ * @mixin
  */
 export default class ActivatableTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {

@@ -90,3 +90,7 @@
 	padding-inline: 0.5em;
 	background-color: black;
 }
+.everyday-heroes section > .striped:is(h1, h2, h3, h4):first-child {
+	margin-block-start: -0.5em;
+	margin-inline: -0.5em;
+}

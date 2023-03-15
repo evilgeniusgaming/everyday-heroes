@@ -1,0 +1,86 @@
+<section class="attributes">
+	<fieldset>
+		<select name="system.traits.size">
+			{{selectOptions CONFIG.sizes selected=system.traits.size labelAttr="label"}}
+		</select>
+		<select name="system.traits.type.value">
+			{{selectOptions CONFIG.creatureTypes selected=system.traits.type.value labelAttr="label"}}
+		</select>
+		{{#if lists.tags}}<span>({{lists.tags}})</span>{{/if}}
+	</fieldset>
+	<fieldset>
+		<label>{{localize "EH.Defense.Label"}}</label>
+		<input type="number" value="{{system.attributes.defense}}">
+	</fieldset>
+	<fieldset>
+		<label>{{localize "EH.HitPoints.Label[other]"}}</label>
+		<input type="number" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}"> /
+		<input type="number" name="system.attributes.hp.max" value="{{system.attributes.hp.max}}">
+		(<input type="text" name="system.attributes.hp.formula" value="{{system.attributes.hp.formula}}">)
+	</fieldset>
+	<fieldset>
+		<label>{{localize "EH.Item.Type.Armor[one]"}}</label>
+		—
+	</fieldset>
+	<fieldset>
+		<label>{{localize "EH.Speed.Label"}}</label>
+		<input type="number" name="system.attributes.movement.value" value="{{system.attributes.movement.value}}">
+	</fieldset>
+	<fieldset class="abilities">
+		{{#each abilities as |ability key|}}
+			<div>
+				<label>
+					<a data-action="roll" data-type="ability-check" data-key="{{key}}">{{ability.abbreviation}}</a>
+				</label>
+				<input type="number" name="system.abilities.{{key}}.value" value="{{ability.value}}">
+				<span>({{ability.mod}})</span>
+			</div>
+		{{/each}}
+	</fieldset>
+	{{#if lists.saves}}
+		<fieldset>
+			<label>{{localize "EH.Ability.Save.Label"}}</label>
+			<span>{{{lists.saves}}}</span>
+		</fieldset>
+	{{/if}}
+	{{#if lists.skills}}
+		<fieldset>
+			<label>{{localize "EH.Skill.Label[other]"}}</label>
+			<span>{{{lists.skills}}}</span>
+		</fieldset>
+	{{/if}}
+	<fieldset>
+		<label>{{localize "EH.Sense.Label[other]"}}</label>
+		<span>{{lists.senses}}</span>
+	</fieldset>
+	<fieldset>
+		<label>{{localize "EH.Role.Label[other]"}}</label>
+		<span>{{lists.roles}}</span>{{!-- TODO: Create way to edit these --}}
+	</fieldset>
+	{{#if lists.equipment}}
+		<fieldset>
+			<label>{{localize "EH.Equipment.Label[other]"}}</label>
+			<span>{{lists.equipment}}</span>
+		</fieldset>
+	{{/if}}
+</section>
+
+{{#each actionSections as |section|}}
+	{{#if section.items.length}}
+		<section class="actions">
+			<h3 class="striped">
+				<span class="left stripes"></span>
+				<span class="center">{{localize section.label}}</span>
+				<span class="right stripes"></span>
+			</h3>
+			{{#each section.items as |item|}}
+			{{#everydayHeroes-itemContext item as |ctx|}}
+				<fieldset data-item-id="{{item.id}}">
+					<label>{{{ctx.label}}}</label>
+					{{{ctx.description}}}
+				</fieldset>
+			{{/everydayHeroes-itemContext}}
+			{{/each}}
+		</section>
+	{{/if}}
+{{/each}}

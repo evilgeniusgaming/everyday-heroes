@@ -26,6 +26,7 @@ export function registerDocumentClasses() {
 		plan: "EH.Item.Type.Plan[one]",
 		trick: "EH.Item.Type.Trick[one]",
 		feat: "EH.Item.Type.Feat[one]",
+		npcFeature: "EH.Item.Type.NPCFeature[one]",
 
 		// Equipment
 		ammunition: "EH.Item.Type.Ammunition[one]",

@@ -6,6 +6,7 @@ import ClassData from "./class-data.mjs";
 import ExplosiveData from "./explosive-data.mjs";
 import FeatData from "./feat-data.mjs";
 import GearData from "./gear-data.mjs";
+import NPCFeatureData from "./npc-feature-data.mjs";
 import PlanData from "./plan-data.mjs";
 import ProfessionData from "./profession-data.mjs";
 import SpecialFeatureData from "./special-feature-data.mjs";
@@ -22,6 +23,7 @@ export {
 	ExplosiveData,
 	FeatData,
 	GearData,
+	NPCFeatureData,
 	PlanData,
 	ProfessionData,
 	SpecialFeatureData,
@@ -29,9 +31,12 @@ export {
 	TrickData,
 	WeaponData
 };
+export {default as ActivatableTemplate} from "./templates/activatable-template.mjs";
 export {default as AdvancementTemplate} from "./templates/advancement-template.mjs";
+export {default as AttackTemplate} from "./templates/attack-template.mjs";
 export {default as DamageTemplate} from "./templates/damage-template.mjs";
 export {default as DescribedTemplate} from "./templates/described-template.mjs";
+export {default as EquipmentTemplate} from "./templates/equipment-template.mjs";
 export {default as PhysicalTemplate} from "./templates/physical-template.mjs";
 
 export const config = {
@@ -43,6 +48,7 @@ export const config = {
 	explosive: ExplosiveData,
 	feat: FeatData,
 	gear: GearData,
+	npcFeature: NPCFeatureData,
 	plan: PlanData,
 	profession: ProfessionData,
 	specialFeature: SpecialFeatureData,

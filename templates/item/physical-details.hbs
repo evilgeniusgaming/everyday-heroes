@@ -57,7 +57,7 @@
 		</fieldset>
 	{{/if}}
 
-	{{#if (eq item.system.damageMode "regular")}}
+	{{#if (eq item.system.damage.mode "regular")}}
 		<fieldset class="triple">
 			<label>{{localize "EH.Equipment.Trait.Damage.Label"}}</label>
 			<div class="fields">
@@ -69,7 +69,7 @@
 					<label>
 						<span>Denomination</span>{{!-- TODO: Localize --}}
 						<select name="system.damage.denomination">
-							{{selectOptions diceSteps selected=source.damage.denomination}}
+							{{selectOptions diceSteps selected=source.damage.denomination blank=""}}
 						</select>
 					</label>
 				{{/if}}
@@ -83,7 +83,7 @@
 			</div>
 			<p class="hint">{{localize "EH.Equipment.Trait.Damage.Hint"}}</p>
 		</fieldset>
-	{{else if (eq item.system.damageMode "modification")}}
+	{{else if (eq item.system.damage.mode "modification")}}
 		<fieldset class="triple">
 			<label>{{localize "EH.Equipment.Trait.DamageModification.Label"}}</label>
 			<div class="fields">
@@ -170,8 +170,8 @@
 	{{#if item.system.usesRounds}}
 		<fieldset>
 			<label>{{localize "EH.Ammunition.Type.Label"}}</label>
-			<select name="system.ammunition.type">
-				{{selectOptions CONFIG.ammunitionTypes selected=system.ammunition.type blank=(localize "None") labelAttr="label"}}
+			<select name="system.rounds.type">
+				{{selectOptions CONFIG.ammunitionTypes selected=system.rounds.type blank=(localize "None") labelAttr="label"}}
 			</select>
 		</fieldset>
 

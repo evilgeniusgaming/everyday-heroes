@@ -39,7 +39,7 @@ export default class ActorEH extends Actor {
 	 */
 	getRollData({ deterministic=false }={}) {
 		const data = { ...super.getRollData() };
-		data.prof = new Proficiency(this.system.attributes.prof, 1);
+		data.prof = new Proficiency(this.system.attributes?.prof ?? 0, 1);
 		if ( deterministic ) data.prof = data.prof.flat;
 		return data;
 	}
@@ -272,7 +272,7 @@ export default class ActorEH extends Actor {
 		}
 
 		// Global check bonus
-		if ( this.system.bonuses.ability.check ) {
+		if ( this.system.bonuses?.ability?.check ) {
 			parts.push("@globalBonus");
 			data.globalBonus = Roll.replaceFormulaData(this.system.bonuses.ability.check, data);
 		}
@@ -352,7 +352,7 @@ export default class ActorEH extends Actor {
 		}
 
 		// Global save bonus
-		if ( this.system.bonuses.ability.save ) {
+		if ( this.system.bonuses?.ability?.save ) {
 			parts.push("@globalBonus");
 			data.globalBonus = Roll.replaceFormulaData(this.system.bonuses.ability.save, data);
 		}
@@ -742,7 +742,7 @@ export default class ActorEH extends Actor {
 		}
 
 		// Global ability check bonus
-		if ( this.system.bonuses.ability.check ) {
+		if ( this.system.bonuses?.ability?.check ) {
 			parts.push("@globalCheckBonus");
 			data.globalCheckBonus = Roll.replaceFormulaData(this.system.bonuses.ability.check, data);
 		}
@@ -754,7 +754,7 @@ export default class ActorEH extends Actor {
 		}
 
 		// Global skill check bonus
-		if ( this.system.bonuses.skill.check ) {
+		if ( this.system.bonuses?.skill?.check ) {
 			parts.push("@globalSkillBonus");
 			data.globalSkillBonus = Roll.replaceFormulaData(this.system.bonuses.skill.check, data);
 		}
@@ -839,6 +839,8 @@ export default class ActorEH extends Actor {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async _preUpdate(changed, options, user) {
+		if ( this.type !== "hero" ) return;
+
 		const changedHP = foundry.utils.getProperty(changed, "system.attributes.hp.value");
 		if ( changedHP !== undefined ) {
 			if ( (changedHP > 0) || (this.system.attributes.hp.max === 0) ) {

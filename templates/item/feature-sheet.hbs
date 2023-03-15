@@ -7,7 +7,7 @@
 		<div class="fields">
 			<fieldset>
 				<label>{{localize "Name"}}</label>
-				<input name="name" value="{{item.name}}">
+				<input type="text" name="name" value="{{item.name}}">
 			</fieldset>
 			<fieldset>
 				<label>Type</label>{{!-- TODO: Localize --}}
@@ -78,6 +78,14 @@
 						<label>
 							<span>Amount Recovered</span>{{!-- TODO: Localize --}}
 							<input type="text" name="system.uses.recovery" value="{{system.uses.recovery}}" placeholder="All">
+						</label>
+				</fieldset>
+				<fieldset class="triple">
+					<label>Recharge</label>{{!-- TODO: Localize --}}
+					<div class="fields">
+						<label>
+							<span>Target</span>{{!-- TODO: Localize --}}
+							<input type="number" name="system.recharge.target" value="{{system.recharge.target}}">
 						</label>
 				</fieldset>
 			</section>

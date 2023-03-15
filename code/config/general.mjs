@@ -30,9 +30,9 @@ preLocalize("actionTypesStandard");
  * 2
  */
 export const actionTypesReload = {
-	action: "EH.Action.Type.Action",
-	bonus: "EH.Action.Type.Bonus",
-	free: "EH.Action.Type.Free"
+	action: "EH.Action.Reload.Action",
+	bonus: "EH.Action.Reload.Bonus",
+	free: "EH.Action.Reload.Free"
 };
 preLocalize("actionTypesReload");
 
@@ -124,4 +124,4 @@ export const lengthUnits = {
 		conversion: 0
 	}
 };
-preLocalize("lengthUnits", { key: "label" });
+preLocalize("lengthUnits", { keys: ["label", "abbreviation"] });

@@ -239,11 +239,12 @@ export function registerHandlebarsHelpers() {
  */
 export async function registerHandlebarsPartials() {
 	const partials = [
-		"actor/parts/actor-proficiency-selector.hbs",
+		"actor/actor-inventory.hbs",
+		"actor/actor-proficiency-selector.hbs",
 		"actor/hero-biography.hbs",
 		"actor/hero-details.hbs",
 		"actor/hero-features.hbs",
-		"actor/hero-inventory.hbs",
+		"actor/npc-details.hbs",
 		"advancement/parts/advancement-ability-score-control.hbs",
 		"advancement/parts/advancement-controls.hbs",
 		"advancement/parts/advancement-scale-value.hbs",

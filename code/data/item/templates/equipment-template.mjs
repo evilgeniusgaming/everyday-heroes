@@ -3,6 +3,8 @@ import { numberFormat } from "../../../utils.mjs";
 
 /**
  * Data model template for items that are an equipment type.
+ *
+ * @mixin
  */
 export default class EquipmentTemplate {
 
@@ -24,7 +26,7 @@ export default class EquipmentTemplate {
 			data: { type: "attack" }
 		});
 		if ( this.hasDamage ) actions.push({
-			label: this.damageFormula,
+			label: this.damage.formula,
 			icon: this.damageIcon,
 			tooltip: this.damageTooltip,
 			data: { type: "damage" }
@@ -89,9 +91,8 @@ export default class EquipmentTemplate {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedProficiency() {
-		this.proficiency = new Proficiency(
-			this.parent.actor?.system.attributes.prof,
-			this.parent.actor?.system.traits.equipment.has(this.type.category) ? 1 : 0
-		);
+		const hasProf = this.parent.actor?.system.traits?.equipment
+		? this.parent.actor.system.traits.equipment.has(this.type.category) : true;
+		this.proficiency = new Proficiency(this.parent.actor?.system.attributes.prof, hasProf ? 1 : 0);
 	}
 }

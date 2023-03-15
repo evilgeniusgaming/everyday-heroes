@@ -1,0 +1,34 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+	<header>
+		<figure>
+			<img src="{{actor.img}}" data-edit="img">
+		</figure>
+		<fieldset class="name">
+			<input type="text" name="name" value="{{actor.name}}">
+		</fieldset>
+		<fieldset class="cr">
+			<label>{{localize "EH.ChallengeRating.Abbreviation"}}</label>
+			<input type="text" name="system.details.cr" value="{{system.details.cr}}">
+		</fieldset>
+		<nav data-group="primary">
+			<a data-tab="details">Details</a>{{!-- TODO: Localize --}}
+			<a data-tab="inventory">Items</a>{{!-- TODO: Localize --}}
+			<a data-tab="biography">Biography</a>{{!-- TODO: Localize --}}
+		</nav>
+	</header>
+
+							{{log this}}
+	<main>
+		<div class="tab" data-group="primary" data-tab="details">
+			{{> "everydayHeroes.npc-details"}}
+		</div>
+		<div class="tab" data-group="primary" data-tab="inventory">
+			{{> "everydayHeroes.actor-inventory"}}
+		</div>
+		<div class="tab" data-group="primary" data-tab="biography">
+			{{editor enriched.description target="system.description.value" button=true editable=editable
+				engine="prosemirror" collaborate=false}}
+		</div>
+	</main>
+</form>
