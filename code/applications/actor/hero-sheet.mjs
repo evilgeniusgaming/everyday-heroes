@@ -188,6 +188,8 @@ export default class HeroSheet extends BaseSheet {
 					}
 					// TODO: Add warning about talent not associated with item type
 				case "feat":
+				case "trick": // TODO: Give these items their own section
+				case "plan": // TODO: Give these items their own section
 					context.features.feats.items.push(item);
 					break;
 				case "armor":

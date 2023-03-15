@@ -173,15 +173,19 @@
 			</fieldset>
 		</div>
 		<div class="resources">
-			<fieldset class="genius">
-				<label>Genius</label>{{!-- TODO: Localize --}}
-			</fieldset>
-			<fieldset class="focus">
-				<label>Focus</label>{{!-- TODO: Localize --}}
-			</fieldset>
-			<fieldset class="influence">
-				<label>Influence</label>{{!-- TODO: Localize --}}
-			</fieldset>
+			{{#each system.resources as |resource key|}}
+				{{#unless resource.disabled}}
+					<fieldset data-resource-key="{{key}}" {{!--style="background-image: url('{{resource.backdrop}}');"--}}>
+						<label>
+							<a data-action="roll" data-type="resource" data-key="{{key}}">{{resource.label}}</a>
+						</label>
+						<span>{{resource.available}}/{{resource.max}}</span>
+						{{#if resource.denomination}}
+							<span class="die">d{{resource.denomination}}</span>
+						{{/if}}
+					</fieldset>
+				{{/unless}}
+			{{/each}}
 			<fieldset class="inspiration">
 				<label>Inspiration</label>{{!-- TODO: Localize --}}
 				<input type="checkbox" name="system.resources.inspiration" {{checked system.resources.inspiration}}>

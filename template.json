@@ -17,7 +17,12 @@
           "status": "alive",
           "success": 0,
           "failure": 0,
-          "bonus": ""
+          "bonus": "",
+          "overrides": {
+            "success": null,
+            "failure": null,
+            "target": null
+          }
         },
         "hd": {
           "spent": 0
@@ -36,6 +41,7 @@
         },
         "movement": {
           "value": 30,
+          "special": {},
           "units": ""
         }
       },
@@ -76,15 +82,14 @@
         
       },
       "details": {
-        "level": 1
+        "level": 1,
+        "wealth": {
+          "bonus": null
+        }
       },
+      "inspiration": true,
       "items": {},
-      "resources": {
-        "archetype": {
-          "value": 0
-        },
-        "inspiration": false
-      },
+      "resources": {},
       "skills": {},
       "traits": {
         "languages": [],
@@ -169,7 +174,7 @@
         "uses": {
           "spent": 0,
           "max": "",
-          "per": "",
+          "period": "",
           "recovery": ""
         }
       },

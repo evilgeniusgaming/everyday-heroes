@@ -42,7 +42,6 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	/** @inheritdoc */
 	static get _defaults() {
 		return foundry.utils.mergeObject(super._defaults, {
 			initialKeys: null,
@@ -53,7 +52,6 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	/** @inheritdoc */
 	_cleanType(value, options) {
 		Object.entries(value).forEach(([k, v]) => value[k] = this.model.clean(v, options));
 		return value;
@@ -61,7 +59,6 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	/** @inheritdoc */
 	getInitialValue(data) {
 		let keys = this.initialKeys;
 		const initial = super.getInitialValue(data);
@@ -86,7 +83,6 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	/** @override */
 	_validateType(value, options={}) {
 		if ( foundry.utils.getType(value) !== "Object" ) throw new Error("must be an Object");
 		const errors = this._validateValues(value, options);
@@ -112,7 +108,6 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	/** @override */
 	initialize(value, model, options={}) {
 		if ( !value ) return value;
 		const obj = {};

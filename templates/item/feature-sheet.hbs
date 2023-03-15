@@ -54,7 +54,9 @@
 							<label>
 								<span>Target</span>{{!-- TODO: Localize --}}
 								{{#if item.isEmbedded}}
-									Select Here
+									<select name="system.resource.target">
+										{{selectOptions resources selected=system.resource.target blank=""}}
+									</select>
 								{{else}}
 									<input type="text" name="system.resource.target" value="{{source.resource.target}}">
 								{{/if}}
@@ -71,8 +73,8 @@
 						</label>
 						<label>
 							<span>Recovery Period</span>{{!-- TODO: Localize --}}
-							<select name="system.uses.per">
-								{{selectOptions CONFIG.recoveryPeriods selected=system.uses.per labelAttr="label" blank=""}}
+							<select name="system.uses.period">
+								{{selectOptions CONFIG.recoveryPeriods selected=system.uses.period labelAttr="label" blank=""}}
 							</select>
 						</label>
 						<label>

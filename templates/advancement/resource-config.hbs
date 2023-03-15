@@ -1,0 +1,37 @@
+<form autocomplete="off">
+	<section class="left column">
+		{{> "everydayHeroes.advancement-controls"}}
+		<hr>
+		<fieldset>
+			<label>{{localize "EH.Advancement.ScaleValue.Type.Label"}}</label>
+			<select name="configuration.type">
+				{{selectOptions types selected=configuration.type}}
+			</select>
+			<p class="hint type-hint">
+				{{localize type.hint}}
+			</p>
+		</fieldset>
+		<fieldset>
+			<label>Period</label>{{!-- TODO: Localize --}}
+			<select name="configuration.recovery.period">
+				{{selectOptions CONFIG.recoveryPeriods selected=configuration.recovery.period blank="" labelAttr="label"}}
+			</select>
+		</fieldset>
+		<fieldset>
+			<label>Formula</label>{{!-- TODO: Localize --}}
+			<input type="text" name="configuration.recovery.formula" value="{{configuration.recovery.formula}}">
+			<p class="hint"></p>
+		</fieldset>
+	</section>
+
+	<section class="right column level-list scale-values">
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Advancement.ScaleValue.Values.Label"}}</span>
+			<span class="right stripes"></span>
+		</h3>
+		{{#each levels as |data level|}}
+			{{> "everydayHeroes.advancement-scale-value" data=data level=level}}
+		{{/each}}
+	</section>
+</form>

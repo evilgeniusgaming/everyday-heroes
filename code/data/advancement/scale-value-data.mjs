@@ -52,6 +52,7 @@ export class ScaleValueType extends foundry.abstract.DataModel {
 	 * @property {string} label - Name of this type.
 	 * @property {string} hint - Hint for this type shown in the scale value configuration.
 	 * @property {boolean} isNumeric - When using the default editing interface, should numeric inputs be used?
+	 * @property {boolean} validResource - Can this scale value type be used for resources?
 	 */
 
 	/**
@@ -62,7 +63,8 @@ export class ScaleValueType extends foundry.abstract.DataModel {
 		return {
 			label: "EH.Advancement.ScaleValue.Type.Generic.Label",
 			hint: "EH.Advancement.ScaleValue.Type.Generic.Hint",
-			isNumeric: false
+			isNumeric: false,
+			validResource: false
 		};
 	}
 
@@ -125,7 +127,8 @@ export class ScaleValueTypeNumber extends ScaleValueType {
 		return foundry.utils.mergeObject(super.metadata, {
 			label: "EH.Advancement.ScaleValue.Type.Number.Label",
 			hint: "EH.Advancement.ScaleValue.Type.Number.Hint",
-			isNumeric: true
+			isNumeric: true,
+			validResource: true
 		});
 	}
 
@@ -161,7 +164,8 @@ export class ScaleValueTypeDice extends ScaleValueType {
 	static get metadata() {
 		return foundry.utils.mergeObject(super.metadata, {
 			label: "EH.Advancement.ScaleValue.Type.Dice.Label",
-			hint: "EH.Advancement.ScaleValue.Type.Dice.Hint"
+			hint: "EH.Advancement.ScaleValue.Type.Dice.Hint",
+			validResource: true
 		});
 	}
 

@@ -231,7 +231,15 @@ export default class ActorEH extends Actor {
 	 * @param {RestResult} [result={}] - Rest result being constructed.
 	 */
 	_getRestResourceRecovery(config={}, result={}) {
-
+		const actorUpdates = {};
+		for ( const [key, resource] of Object.entries(this.system.resources) ) {
+			const period = resource.recovery?.period;
+			if ( !period ) continue;
+			if ( (config.type === "short") && (period === "lr") ) continue;
+			// TODO: Handle recovery formulas
+			actorUpdates[`system.resources.${key}.spent`] = 0;
+		}
+		foundry.utils.mergeObject(result, { actorUpdates });
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -709,8 +717,77 @@ export default class ActorEH extends Actor {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Roll a resource die (if resource has a die) and spend a use.
+	 * @param {string} key - The resource ID as defined in `CONFIG.EverydayHeroes.resources`.
+	 * @param {BaseRollConfiguration} [config] - Configuration information for the roll.
+	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @returns {Promise<BaseRoll|void>}
+	 */
+	async rollResource(key, config={}, message={}) {
+		const resource = this.system.resources[key];
+		if ( !resource ) return console.warn(`Resource "${key}" not found`);
+		if ( !resource.available ) return console.warn(`None of the resource "${resource.label}" is available to spend.`);
+
+		const parts = resource.denomination ? [`1d${resource.denomination}`] : [];
+		const data = this.getRollData();
+
+		// TODO: Verify there is a enough remaining uses to spent this resource
+
+		const rollConfig = foundry.utils.mergeObject({ data }, config);
+		rollConfig.parts = parts.concat(config.parts ?? []);
+
+		const flavor = "";
+		// TODO: Add proper flavor
+		const messageConfig = foundry.utils.mergeObject({
+			data: {
+				title: `${flavor}: ${this.name}`,
+				flavor,
+				speaker: ChatMessage.getSpeaker({actor: this}),
+				"flags.everyday-heroes.roll": {
+					type: "resource",
+					key: key
+				}
+			}
+		}, message);
+
+		/**
+		 * A hook event that fires before an resource is rolled for an Actor.
+		 * @function everydayHeroes.preRollResource
+		 * @memberof hookEvents
+		 * @param {ActorEH} actor - Actor for which the resource is being rolled.
+		 * @param {ChallengeRollConfiguration} config - Configuration data for the pending roll.
+		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {string} key - The resource ID as defined in `CONFIG.EverydayHeroes.resources`.
+		 * @returns {boolean} - Explicitly return `false` to prevent resource from being rolled.
+		 */
+		if ( Hooks.call("everydayHeroes.preRollResource", this, rollConfig, messageConfig, key) === false ) return;
+
+		let roll;
+		if ( rollConfig.parts.length ) roll = await CONFIG.Dice.BaseRoll.build(rollConfig, messageConfig);
+		const updates = { [`system.resources.${key}.spent`]: resource.spent + 1 };
+
+		/**
+		 * A hook event that fires after a resource has been rolled for an Actor, but before the resource has been spent.
+		 * @function everydayHeroes.rollResource
+		 * @memberof hookEvents
+		 * @param {ActorEH} actor - Actor for which the resource has been rolled.
+		 * @param {D20Roll} [roll] - The resulting roll, if one was performed
+		 * @param {string} key - ID of the resource that was rolled as defined in `CONFIG.EverydayHeroes.resources`.
+		 * @param {object} updates - Updates that will be applied to the actor.
+		 * @returns {boolean} - Explicitly return `false` to prevent any changes from being applied to the actor.
+		 */
+		if ( Hooks.call("everydayHeroes.rollResource", this, roll, key, updates) === false ) return roll;
+
+		if ( !foundry.utils.isEmpty(updates) ) this.update(updates);
+
+		return roll;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Roll a skill check.
-	 * @param {string} key - The skill ID as defined in `CONFIG.DND5E.skills`.
+	 * @param {string} key - The skill ID as defined in `CONFIG.EverydayHeroes.skills`.
 	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
 	 * @returns {Promise<ChallengeRoll|void>}

@@ -24,6 +24,11 @@ export default class FeatureSheet extends ItemSheet {
 		context.system = context.item.system;
 		context.source = context.item.system.toObject();
 
+		context.resources = Object.entries(context.item.actor?.system.resources ?? {}).reduce((obj, [key, resource]) => {
+			if ( !resource.disabled ) obj[key] = resource.label;
+			return obj;
+		}, {});
+
 		const enrichmentContext = {
 			secrets: this.item.isOwner, rollData: this.item.getRollData(), async: true, relativeTo: this.item
 		};

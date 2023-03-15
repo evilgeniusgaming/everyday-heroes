@@ -317,23 +317,22 @@
 
 .hero.sheet [data-tab="details"] .attributes :is(.summary, .resources) {
 	display: grid;
+	align-items: stretch;
 	margin-block-start: 1em;
 	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: min-content auto;
-	border: 2px solid var(--eh-border-color-strong);
-	background-color: var(--eh-background-color-white);
 	color: var(--eh-text-color-black);
 }
 .hero.sheet [data-tab="details"] .attributes :is(.summary, .resources) fieldset {
-	grid-row: 1 / -1;
 	display: grid;
-	grid-template-rows: subgrid;
+	margin-block-end: -2px;
+	margin-inline-end: -2px;
+	border: 2px solid var(--eh-border-color-strong);
 	justify-items: center;
 	padding: 0.25em;
+	background-color: var(--eh-background-color-white);
 	text-align: center;
 }
 .hero.sheet [data-tab="details"] .attributes :is(.summary, .resources) fieldset:not(:last-of-type) {
-	border-inline-end: 2px solid var(--eh-border-color-strong);
 }
 .hero.sheet [data-tab="details"] .attributes :is(.summary, .resources) fieldset label {
 	display: block;
@@ -342,5 +341,15 @@
 	line-height: 0.8em;
 }
 .hero.sheet [data-tab="details"] .attributes :is(.summary, .resources) fieldset span {
-	font-size: 2em;
+	font-size: var(--font-size-24);;
+}
+
+.hero.sheet [data-tab="details"] .attributes .resources fieldset {
+	aspect-ratio: 1.25;
+	background-size: 90% auto;
+	background-repeat: no-repeat;
+	background-position: center 1.5em;
+}
+.hero.sheet [data-tab="details"] .attributes .resources fieldset span.die {
+	font-size: var(--font-size-18);
 }

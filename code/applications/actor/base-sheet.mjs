@@ -256,6 +256,8 @@ export default class BaseSheet extends ActorSheet {
 				return this.actor.rollInitiative();
 			case "luck":
 				return this.actor.rollLuckSave();
+			case "resource":
+				return this.actor.rollResource(key);
 			case "skill":
 				return this.actor.rollSkill(key);
 			default:

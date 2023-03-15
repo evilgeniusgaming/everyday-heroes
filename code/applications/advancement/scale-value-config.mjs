@@ -24,7 +24,9 @@ export default class ScaleValueConfig extends AdvancementConfig {
 				|| this.advancement.constructor.metadata.title.slugify(),
 			type: type.metadata,
 			types: Object.fromEntries(
-				Object.entries(TYPES).map(([key, d]) => [key, game.i18n.localize(d.metadata.label)])
+				Object.entries(this.advancement.constructor.TYPES).map(([key, d]) => {
+					return [key, game.i18n.localize(d.metadata.label)];
+				})
 			),
 			faces: Object.fromEntries(TYPES.dice.FACES.map(die => [die, `d${die}`])),
 			levels: this._prepareLevelData()

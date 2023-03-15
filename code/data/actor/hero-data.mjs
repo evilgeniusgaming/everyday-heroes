@@ -6,6 +6,7 @@ import Proficiency from "../../documents/proficiency.mjs";
 import AbilitiesTemplate from "./templates/abilities-template.mjs";
 import InitiativeTemplate from "./templates/initiative-template.mjs";
 import MovementTemplate from "./templates/movement-template.mjs";
+import ResourcesTemplate from "./templates/resources-template.mjs";
 import SkillsTemplate from "./templates/skills-template.mjs";
 
 /**
@@ -13,10 +14,11 @@ import SkillsTemplate from "./templates/skills-template.mjs";
  * @mixes {@link AbilitiesTemplate}
  * @mixes {@link InitiativeTemplate}
  * @mixes {@link MovementTemplate}
+ * @mixes {@link ResourcesTemplate}
  * @mixes {@link SkillsTemplate}
  */
 export default class HeroData extends SystemDataModel.mixin(
-	AbilitiesTemplate, InitiativeTemplate, MovementTemplate, SkillsTemplate
+	AbilitiesTemplate, InitiativeTemplate, MovementTemplate, ResourcesTemplate, SkillsTemplate
 ) {
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
@@ -113,13 +115,11 @@ export default class HeroData extends SystemDataModel.mixin(
 					bonus: new foundry.data.fields.NumberField({integer: true, label: "EH.Details.Wealth.Bonus.Label"})
 				}, {label: "EH.Details.Wealth.Label"})
 			}),
+			inspiration: new foundry.data.fields.BooleanField({label: "EH.Resource.Inspiration"}),
 			items: new MappingField(new foundry.data.fields.SchemaField({
 				equipped: new foundry.data.fields.BooleanField({label: ""}),
 				mode: new foundry.data.fields.StringField({label: ""})
 			})),
-			resources: new foundry.data.fields.SchemaField({
-				inspiration: new foundry.data.fields.BooleanField({label: "EH.Resource.Inspiration"})
-			}, {label: "EH.Resource.Label[other]"}),
 			traits: new foundry.data.fields.SchemaField({
 				languages: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {label: ""}),
 				equipment: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {label: ""})

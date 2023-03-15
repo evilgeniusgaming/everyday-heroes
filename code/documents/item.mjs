@@ -260,6 +260,7 @@ export default class ItemEH extends Item {
 		try {
 			updates = item.prepareActivationUpdates(activationConfig);
 		} catch(err) {
+			ui.notifications.warn(err.message);
 			// TODO: Display usage issues
 			return;
 		}
@@ -284,6 +285,7 @@ export default class ItemEH extends Item {
 		if ( !foundry.utils.isEmpty(updates.resource) ) await this.actor.updateEmbeddedDocuments("Item", updates.resource);
 
 		// Create the chat card
+		// TODO: If a dice resource is consumed, roll that resource and add to chat message
 		const messageData = await this.displayInChat(message, { chatDescription: true });
 
 		/**
@@ -316,13 +318,29 @@ export default class ItemEH extends Item {
 		};
 
 		if ( config.consume.resource ) {
-			// TODO: Resource consumption
+			const res = this.system.resource;
+			// TODO: Support other resource types
+			if ( res.type !== "resource" ) {
+				// TODO: Localize
+				throw new Error("Only resource types are supported at the moment");
+			}
+			const resource = this.actor?.system.resources?.[res.target];
+			if ( !resource ) {
+				// TODO: Localize
+				throw new Error(`Resource "${res.target}" not found to consume.`);
+			}
+			if ( resource.available < res.amount ) {
+				// TODO: Localize
+				throw new Error(`Only ${resource.available} uses of ${resource.label} available, ${res.amount} needed.`);
+			}
+			updates.actor[`system.resources.${res.target}.spent`] = resource.spent + res.amount;
 		}
 
 		if ( config.consume.uses ) {
 			// TODO: Usage consumption
 		}
 
+		console.log(updates);
 		return updates;
 	}
 

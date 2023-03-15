@@ -40,5 +40,11 @@ export default class AdvancementTemplate extends foundry.abstract.DataModel {
 		for ( const advancement of this.advancement.byType("ScaleValue") ) {
 			scale[advancement.identifier] = actorScale[advancement.identifier] = advancement.valueForLevel(level);
 		}
+		const resources = this.parent.actor.system.resources ??= {};
+		for ( const advancement of this.advancement.byType("Resource") ) {
+			const resource = resources[advancement.identifier] ??= {};
+			resource.advancement = advancement;
+			resource.scale = advancement.valueForLevel(level);
+		}
 	}
 }

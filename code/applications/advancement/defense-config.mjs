@@ -8,8 +8,7 @@ export default class DefenseConfig extends ScaleValueConfig {
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ["everyday-heroes", "advancement", "config", "scale-value", "defense", "two-column"],
-			template: "systems/everyday-heroes/templates/advancement/defense-config.hbs",
-			width: 540
+			template: "systems/everyday-heroes/templates/advancement/defense-config.hbs"
 		});
 	}
 

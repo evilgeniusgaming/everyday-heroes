@@ -13,7 +13,7 @@ import FormulaField from "../../fields/formula-field.mjs";
  * @property {object} uses
  * @property {number} uses.spent - Number of uses that have been used.
  * @property {string} uses.max - Formula for the maximum uses.
- * @property {string} uses.per - Recovery period for this item's uses.
+ * @property {string} uses.period - Recovery period for this item's uses.
  * @property {string} uses.recovery - Formula used for resource recovery. Blank indicates that all uses are restored.
  * @mixin
  */
@@ -32,7 +32,7 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 			uses: new foundry.data.fields.SchemaField({
 				spent: new foundry.data.fields.NumberField({initial: 0, min: 0, integer: true, label: ""}),
 				max: new FormulaField({deterministic: true, label: ""}),
-				per: new foundry.data.fields.StringField({label: ""}),
+				period: new foundry.data.fields.StringField({label: ""}),
 				recovery: new FormulaField({label: ""})
 			})
 		};

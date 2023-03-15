@@ -1,3 +1,5 @@
+import MappingField from "../fields/mapping-field.mjs";
+
 /**
  * Data Model variant with some extra methods to support template mix-ins.
  *
@@ -82,7 +84,16 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 				case foundry.data.fields.ArrayField:
 				case foundry.data.fields.SetField:
 					const elementOptions = foundry.utils.mergeObject(a[key].element.options, b[key].element.options);
-					a[key] = new b[key].constructor(new b[key].element.constructor(elementOptions), mergedOptions);
+					const ElementType = (b[key].element || a[key].element).constructor;
+					a[key] = new b[key].constructor(new ElementType(elementOptions), mergedOptions);
+					break;
+				case MappingField:
+					mergedOptions.extraFields = this.mergeSchema(
+						a[key].options.extraFields ?? {}, b[key].options.extraFields ?? {}
+					);
+					const modelOptions = foundry.utils.mergeObject(a[key].model.options, b[key].model.options);
+					const ModelType = (b[key].model || a[key].model).constructor;
+					a[key] = new b[key].constructor(new ModelType(modelOptions), mergedOptions);
 					break;
 				default:
 					a[key] = new b[key].constructor(mergedOptions);

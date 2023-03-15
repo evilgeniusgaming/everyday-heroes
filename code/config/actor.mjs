@@ -218,6 +218,48 @@ export const maxLevel = 10;
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Configuration data for actor resources.
+ *
+ * @typedef {LabeledConfiguration} ResourceConfiguration
+ * @property {string} backdrop - Background displayed around the resource box.
+ * @property {string} formula - Default max formula for the resource.
+ * @property {object} recovery
+ * @property {string} recovery.period - Period over which the resource recovers.
+ * @property {string} recovery.formula - Formula used when recovering this resource. Blank means all uses are recovered.
+ */
+
+/**
+ * Resources that can be provided by archetypes or feats.
+ * @enum {ResourceConfiguration}
+ */
+export const resources = {
+	genius: {
+		label: "EH.Resource.Genius.Label",
+		backdrop: "systems/everyday-heroes/artwork/interface/genius.png",
+		recovery: {
+			period: "lr"
+		}
+	},
+	focus: {
+		label: "EH.Resource.Focus.Label",
+		backdrop: "systems/everyday-heroes/artwork/interface/focus.png",
+		recovery: {
+			period: "sr"
+		}
+	},
+	influence: {
+		label: "EH.Resource.Influence.Label",
+		backdrop: "systems/everyday-heroes/artwork/interface/influence.png",
+		recovery: {
+			period: "sr"
+		}
+	}
+};
+preLocalize("resources", { key: "label" });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Possible roles for NPCs.
  * @enum {string}
  */

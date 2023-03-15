@@ -46,7 +46,7 @@
 "EH.Advancement.Title[one]": "Advancement",
 "EH.Advancement.Title[other]": "Advancements",
 "EH.Advancement.Core.Title": "Custom Title",
-"EH.Advancement.Core.Icon": "Custom Item",
+"EH.Advancement.Core.Icon": "Custom Icon",
 "EH.Advancement.Core.Action.Create": "Create Advancement",
 "EH.Advancement.Core.Action.Delete": "Delete Advancement",
 "EH.Advancement.Core.Action.Disable": "Disable Configuration",
@@ -104,6 +104,9 @@
 
 "EH.Advancement.ItemGrant.Title": "Grant Features",
 "EH.Advancement.ItemGrant.Hint": "Grant the character features when they reach a certain level.",
+
+"EH.Advancement.Resource.Title": "Resource",
+"EH.Advancement.Resource.Hint": "Set up a resource that is displayed on the sheet (such as Influence or Genius).",
 
 "EH.Advancement.ScaleValue.Title": "Scale Value",
 "EH.Advancement.ScaleValue.Hint": "A single value that changes as a Hero increases in level and is made available in roll formulas.",
@@ -416,6 +419,9 @@
 
 "EH.Resource.Label[one]": "Resource",
 "EH.Resource.Label[other]": "Resources",
+"EH.Resource.Focus.Label": "Focus",
+"EH.Resource.Genius.Label": "Genius",
+"EH.Resource.Influence.Label": "Influence",
 "EH.Resource.Inspiration": "Inspiration",
 
 "EH.Role.Label[one]": "Role",

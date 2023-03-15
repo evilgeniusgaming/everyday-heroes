@@ -15,6 +15,7 @@ export const advancementTypes = {
 	Defense: advancement.DefenseAdvancement,
 	HitPoints: advancement.HitPointsAdvancement,
 	ItemGrant: advancement.ItemGrantAdvancement,
+	Resource: advancement.ResourceAdvancement,
 	ScaleValue: advancement.ScaleValueAdvancement
 };
 
