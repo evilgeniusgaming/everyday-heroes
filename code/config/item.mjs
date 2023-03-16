@@ -511,7 +511,7 @@ export const weaponModes = {
 	},
 	twoHanded: {
 		label: "EH.Weapon.Mode.TwoHanded.Label",
-		npcHint: "Eh.Weapon.Mode.TwoHanded.NPCHint",
+		npcHint: "EH.Weapon.Mode.TwoHanded.NPCHint",
 		icons: {
 			melee: "systems/everyday-heroes/artwork/svg/action/attack-melee-two-handed.svg",
 			ranged: "systems/everyday-heroes/artwork/svg/action/attack-ranged-two-handed.svg"

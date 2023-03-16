@@ -343,7 +343,15 @@
       },
       "bonuses": {
         "attack": "",
-        "damage": ""
+        "damage": "",
+        "critical": {
+          "damage": "",
+          "dice": 0
+        }
+      },
+      "overrides": {
+        "ability": "",
+        "criticalThreshold": null
       }
     }
   }

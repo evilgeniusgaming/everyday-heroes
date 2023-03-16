@@ -76,7 +76,19 @@ export default class WeaponData extends SystemDataModel.mixin(
 			}, {label: "EH.Equipment.Trait.Rounds.Label", hint: "EH.Equipment.Trait.Rounds.Hint"}),
 			bonuses: new foundry.data.fields.SchemaField({
 				attack: new FormulaField({label: "EH.Weapon.Bonus.Attack.Label"}),
-				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label"})
+				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label"}),
+				critical: new foundry.data.fields.SchemaField({
+					damage: new FormulaField({
+						label: "EH.Weapon.Bonus.Critical.Damage.Label", hint: "EH.Weapon.Bonus.Critical.Damage.Hint"
+					}),
+					dice: new foundry.data.fields.NumberField({
+						label: "EH.Weapon.Bonus.Critical.Dice.Label", hint: "EH.Weapon.Bonus.Critical.Dice.Hint"
+					})
+				})
+			}),
+			overrides: new foundry.data.fields.SchemaField({
+				ability: new foundry.data.fields.StringField({label: "EH.Weapon.Overrides.Ability"}),
+				criticalThreshold: new foundry.data.fields.NumberField({label: "EH.Weapon.Overrides.CriticalThreshold.Label"})
 			})
 		});
 	}
@@ -86,6 +98,8 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get attackAbility() {
+		if ( this.overrides.ability ) return this.overrides.ability;
+
 		const DEF = CONFIG.EverydayHeroes.defaultAbilities;
 
 		// Finesse, higher of dexterity or strength
@@ -310,10 +324,9 @@ export default class WeaponData extends SystemDataModel.mixin(
 
 		// Damage types
 		const modes = this.modes;
-		modes.findSplice(m => m === "offhand");
+		delete modes.offhand;
 		const damages = [];
-		for ( const mode of modes ) {
-			const config = CONFIG.EverydayHeroes.weaponModes[mode];
+		for ( const [mode, config] of Object.entries(modes) ) {
 			const clone = this.parent.clone({"system.mode": mode});
 			// TODO: Modify this so it doesn't have to clone the whole item
 			const type = game.i18n.format("EH.Damage.Specific", {
@@ -326,7 +339,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 			if ( config.npcHint ) string += ` ${config.npcHint}`;
 			damages.push(string);
 		}
-		const listFormatter = new Intl.ListFormat(game.i18n.lang, {type: "conjunction", style: "short"});
+		const listFormatter = new Intl.ListFormat(game.i18n.lang, {type: "disjunction", style: "short"});
 		description += `<em>Hit:</em> ${listFormatter.format(damages)}.</p> `;
 
 		console.log(this.description.chat);

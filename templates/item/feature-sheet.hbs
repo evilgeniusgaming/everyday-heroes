@@ -10,8 +10,8 @@
 				<input type="text" name="name" value="{{item.name}}">
 			</fieldset>
 			<fieldset>
-				<label>Type</label>{{!-- TODO: Localize --}}
-				<span>{{system.type.label}}</span>
+				<label>{{localize "EH.Item.Type.Label"}}</label>
+				<input value="{{item.system.type.label}}" disabled>
 			</fieldset>
 		</div>
 		<nav data-group="primary">

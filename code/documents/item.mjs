@@ -1,3 +1,5 @@
+import { buildRoll } from "../dice/utils.mjs";
+
 /**
  * Extended version of `Item` class to support Everyday Heroes features.
  */
@@ -516,25 +518,11 @@ export default class ItemEH extends Item {
 	async rollArmorSave(config={}, message={}) {
 		if ( !this.hasArmorSave ) return console.warn(`${this.name} does not support armor saving throws.`);
 
-		const parts = [];
-		const data = this.getRollData();
-
-		if ( this.system.proficiency.hasProficiency ) {
-			parts.push("@prof");
-			data.prof = this.system.proficiency;
-		}
-
-		// Armor's save bonus
-		if ( this.system.bonuses.save ) {
-			parts.push("@bonus");
-			data.bonus = Roll.replaceFormulaData(this.system.bonuses.save, data);
-		}
-
-		// Global save bonus
-		if ( this.actor?.system.bonuses?.ability?.save ) {
-			parts.push("@globalBonus");
-			data.globalBonus = Roll.replaceFormulaData(this.actor.system.bonuses.ability.save, data);
-		}
+		const { parts, data } = buildRoll({
+			prof: this.system.proficiency.hasProficiency ? this.system.proficiency.term : null,
+			bonus: this.system.bonuses.save,
+			globalBonus: this.actor?.system.bonuses?.ability?.save
+		}, this.getRollData());
 
 		const rollConfig = foundry.utils.mergeObject({ data }, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
@@ -599,43 +587,18 @@ export default class ItemEH extends Item {
 		// TODO: Thrown weapons with limited quantities should consume a quantity
 		// But "returning" also needs to be taken into account (probably manually)
 
-		const parts = [];
-		const data = this.getRollData();
-
-		// Ability modifier
-		if ( ability ) {
-			parts.push("@mod");
-			data.mod = ability.mod;
-		}
-
-		// Proficiency
-		if ( this.system.proficiency.hasProficiency ) {
-			parts.push("@prof");
-			data.prof = this.system.proficiency.term;
-		}
-
-		// Weapon-specific bonus
-		if ( this.system.bonuses.attack ) {
-			parts.push("@weaponBonus");
-			data.weaponBonus = Roll.replaceFormulaData(this.system.bonuses.attack, data);
-		}
-
-		// Ammunition-specific bonus
-		if ( ammunition?.system.bonuses.attack ) {
-			parts.push("@ammoBonus");
-			data.ammoBonus = Roll.replaceFormulaData(ammunition.system.bonuses.attack, data);
-		}
-
-		// Global attack bonus
-		if ( this.actor?.system.bonuses?.attack?.all ) {
-			parts.push("@globalBonus");
-			data.globalBonus = Roll.replaceFormulaData(this.actor.sytem.bonuses.attack.all, data);
+		const { parts, data } = buildRoll({
+			mod: ability?.mod,
+			prof: this.system.proficiency.hasProficiency ? this.system.proficiency.term : null,
+			weaponBonus: this.system.bonuses.attack,
+			ammoBonus: ammunition?.system.bonuses.attack,
+			globalBonus: this.actor.system.bonuses.attack.all
 			// TODO: Handle weapon- & category-type global bonuses
-		}
+		}, this.getRollData());
 
 		const rollConfig = foundry.utils.mergeObject({ data }, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
-		// TODO: Handle custom critical thresholds
+		// TODO: Take expanded critical hit thresholds into account
 
 		const flavor = this.system.attackTooltip;
 		const messageConfig = foundry.utils.mergeObject({
@@ -696,39 +659,19 @@ export default class ItemEH extends Item {
 		const ability = this.actor?.system.abilities[this.system.damageAbility];
 		const ammunition = undefined;
 
-		const parts = [this.system.damage.dice];
-		const data = this.getRollData();
-
-		// Add ability modifier
-		if ( ability ) {
-			parts.push("@mod");
-			data.mod = ability.mod;
-		}
-
-		// Weapon damage bonuses
-		if ( this.system.bonuses.damage ) {
-			parts.push("@weaponBonus");
-			data.weaponBonus = Roll.replaceFormulaData(this.system.bonuses.damage, data);
-		}
-
-		// Ammunition damage bonuses
-		if ( ammunition?.system.bonuses.damage ) {
-			parts.push("@ammoBonus");
-			data.ammoBonus = Roll.replaceFormulaData(ammunition.system.bonuses.damage, data);
-		}
-
-		// Global generic damage bonus
-		if ( this.actor?.system.bonuses?.damage?.all ) {
-			parts.push("@globalBonus");
-			data.globalBonus = Roll.replaceFormulaData(this.actor.system.bonuses.damage.all, data);
-		}
-		// Global attack-type specific damage bonus?
-		// Global damage-type specific damage bonus?
+		const { parts, data } = buildRoll({
+			mod: ability?.mod,
+			weaponBonus: this.system.bonuses.damage,
+			ammoBonus: ammunition?.system.bonuses.damage,
+			globalBonus: this.actor?.system.bonuses?.damage?.all
+			// Global attack-type specific damage bonus?
+			// Global damage-type specific damage bonus?
+		}, this.getRollData());
 
 		// TODO: Add support for "Making a Mess" extra critical damage
 
 		const rollConfig = foundry.utils.mergeObject({ data }, config);
-		rollConfig.parts = parts.concat(config.parts ?? []);
+		rollConfig.parts = [this.system.damage.dice].concat(parts).concat(config.parts ?? []);
 
 		const flavor = game.i18n.localize("EH.Weapon.Action.DamageGeneric.Label");
 		const messageConfig = foundry.utils.mergeObject({

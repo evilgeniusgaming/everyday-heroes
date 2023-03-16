@@ -11,7 +11,19 @@
 			</fieldset>
 			<fieldset>
 				<label>{{localize "EH.Item.Type.Label"}}</label>
-				<span>{{item.system.type.label}}</span>
+				<input value="{{item.system.type.label}}" disabled>
+			</fieldset>
+			<fieldset>
+				<div class="fields">
+					<label>
+						<span>{{localize "EH.Equipment.Trait.Bulk.Label"}}</span>
+						<input type="number" name="system.bulk" value="{{system.bulk}}">
+					</label>
+					<label>
+						<span>{{localize "EH.Equipment.Trait.PriceLevel.Label"}}</span>
+						<input type="number" name="system.price" value="{{system.price}}">
+					</label>
+				</div>
 			</fieldset>
 		</div>
 			<nav data-group="primary">

@@ -1,6 +1,7 @@
 import RestDialog from "../applications/actor/rest-dialog.mjs";
 import AdvancementConfirmationDialog from "../applications/advancement/advancement-confirmation-dialog.mjs";
 import AdvancementManager from "../applications/advancement/advancement-manager.mjs";
+import { buildRoll } from "../dice/utils.mjs";
 import Proficiency from "./proficiency.mjs";
 
 /**
@@ -262,28 +263,13 @@ export default class ActorEH extends Actor {
 	async rollAbilityCheck(key, config={}, message={}) {
 		const ability = this.system.abilities[key];
 		if ( !ability ) return;
-		const parts = [];
-		const data = this.getRollData();
 
-		parts.push("@mod");
-		data.mod = ability.mod;
-
-		if ( ability.checkProficiency.hasProficiency ) {
-			parts.push("@prof");
-			data.prof = ability.checkProficiency.term;
-		}
-
-		// Ability-specific check bonus
-		if ( ability.bonuses.check ) {
-			parts.push("@bonus");
-			data.bonus = Roll.replaceFormulaData(ability.bonuses.check, data);
-		}
-
-		// Global check bonus
-		if ( this.system.bonuses?.ability?.check ) {
-			parts.push("@globalBonus");
-			data.globalBonus = Roll.replaceFormulaData(this.system.bonuses.ability.check, data);
-		}
+		const { parts, data } = buildRoll({
+			mod: ability.mod,
+			prof: ability.checkProficiency.hasProficiency ? ability.checkProficiency.term : null,
+			bonus: ability.bonuses.check,
+			globalBonus: this.system.bonuses.ability.check
+		}, this.getRollData());
 
 		const rollConfig = foundry.utils.mergeObject({ data }, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
@@ -342,28 +328,13 @@ export default class ActorEH extends Actor {
 	async rollAbilitySave(key, config={}, message={}) {
 		const ability = this.system.abilities[key];
 		if ( !ability ) return;
-		const parts = [];
-		const data = this.getRollData();
 
-		parts.push("@mod");
-		data.mod = ability.mod;
-
-		if ( ability.saveProficiency.hasProficiency ) {
-			parts.push("@prof");
-			data.prof = ability.saveProficiency.term;
-		}
-
-		// Ability-specific save bonus
-		if ( ability.bonuses.save ) {
-			parts.push("@bonus");
-			data.bonus = Roll.replaceFormulaData(ability.bonuses.save, data);
-		}
-
-		// Global save bonus
-		if ( this.system.bonuses?.ability?.save ) {
-			parts.push("@globalBonus");
-			data.globalBonus = Roll.replaceFormulaData(this.system.bonuses.ability.save, data);
-		}
+		const { parts, data } = buildRoll({
+			mod: ability.mod,
+			prof: ability.saveProficiency.hasProficiency ? ability.saveProficiency.term : null,
+			bonus: ability.bonuses.save,
+			globalBonus: this.system.bonuses.ability.save
+		}, this.getRollData());
 
 		const rollConfig = foundry.utils.mergeObject({ data }, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
@@ -420,20 +391,11 @@ export default class ActorEH extends Actor {
 	 */
 	async rollDeathSave(config={}, message={}) {
 		const death = this.system.attributes.death;
-		const parts = [];
-		const data = this.getRollData();
 
-		// Death save bonus
-		if ( death.bonus ) {
-			parts.push("@bonus");
-			data.bonus = Roll.replaceFormulaData(death.bonus, data);
-		}
-
-		// Global save bonus
-		if ( this.system.bonuses.ability.save ) {
-			parts.push("@globalBonus");
-			data.globalBonus = Roll.replaceFormulaData(this.system.bonuses.ability.save, data);
-		}
+		const { parts, data } = buildRoll({
+			bonus: death.bonus,
+			globalBonus: this.system.bonuses.ability.save
+		}, this.getRollData());
 
 		const rollConfig = foundry.utils.mergeObject({ data }, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
@@ -660,14 +622,9 @@ export default class ActorEH extends Actor {
 	 * @returns {Promise<ChallengeRoll|void>}
 	 */
 	async rollLuckSave(config={}, message={}) {
-		const parts = [];
-		const data = this.getRollData();
-
-		// Global save bonus
-		if ( this.system.bonuses.ability.save ) {
-			parts.push("@globalBonus");
-			data.globalBonus = Roll.replaceFormulaData(this.system.bonuses.ability.save, data);
-		}
+		const { parts, data } = buildRoll({
+			globalBonus: this.system.bonuses.ability.save
+		}, this.getRollData());
 
 		const rollConfig = foundry.utils.mergeObject({
 			data,
@@ -795,46 +752,17 @@ export default class ActorEH extends Actor {
 	async rollSkill(key, config={}, message={}) {
 		const skill = this.system.skills[key];
 		const ability = this.system.abilities[config.ability ?? skill.ability];
-		const parts = [];
-		const data = this.getRollData();
+		const defaultAbility = config.ability ?? skill.ability;
 
-		// Ability Modifier
-		if ( ability ) {
-			parts.push("@mod");
-			data.mod = ability.mod;
-			data.defaultAbility = config.ability ?? skill.ability;
-		}
-
-		// Proficiency
-		if ( skill.proficiency.hasProficiency ) {
-			parts.push("@prof");
-			data.prof = skill.proficiency.term;
-		}
-
-		// Ability-specific check bonus
-		if ( ability?.bonuses.check ) {
-			const abilityCheckKey = `${data.defaultAbility}CheckBonus`;
-			parts.push(`@${abilityCheckKey}`);
-			data[abilityCheckKey] = Roll.replaceFormulaData(ability.bonuses.check, data);
-		}
-
-		// Global ability check bonus
-		if ( this.system.bonuses?.ability?.check ) {
-			parts.push("@globalCheckBonus");
-			data.globalCheckBonus = Roll.replaceFormulaData(this.system.bonuses.ability.check, data);
-		}
-
-		// Skill-specific bonus
-		if ( skill.bonuses.check ) {
-			parts.push("@bonus");
-			data.bonus = Roll.replaceFormulaData(skill.bonuses.check, data);
-		}
-
-		// Global skill check bonus
-		if ( this.system.bonuses?.skill?.check ) {
-			parts.push("@globalSkillBonus");
-			data.globalSkillBonus = Roll.replaceFormulaData(this.system.bonuses.skill.check, data);
-		}
+		const { parts, data } = buildRoll({
+			mod: ability?.mod,
+			prof: skill.proficiency.hasProficiency ? skill.proficiency.term : null,
+			[`${defaultAbility}CheckBonus`]: ability?.bonuses.check,
+			globalCheckBonus: this.system.bonuses?.ability?.check,
+			bonus: skill.bonuses.check,
+			globalSkillBonus: this.system.bonuses?.skill?.check
+		}, this.getRollData());
+		data.defaultAbility = defaultAbility;
 
 		const rollConfig = foundry.utils.mergeObject({ data }, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);

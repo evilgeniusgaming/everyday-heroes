@@ -199,38 +199,75 @@
 		{{/if}}
 	{{/if}}
 
-	<h3 class="striped">
-		<span class="left stripes"></span>
-		<span class="center">Bonuses</span>{{!-- TODO: Localize --}}
-		<span class="right stripes"></span>
-	</h3>
+	{{#if (everydayHeroes-has item "system.bonuses")}}
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">Bonuses</span>{{!-- TODO: Localize --}}
+			<span class="right stripes"></span>
+		</h3>
 
-	{{#if (everydayHeroes-has item "system.bonuses.attack")}}
-		<fieldset>
-			<label>{{localize "EH.Weapon.Bonus.Attack.Label"}}</label>
-			<input type="text" name="system.bonuses.attack" value="{{system.bonuses.attack}}">
-		</fieldset>
+		{{#if (everydayHeroes-has item "system.bonuses.attack")}}
+			<fieldset>
+				<label>{{localize "EH.Weapon.Bonus.Attack.Label"}}</label>
+				<input type="text" name="system.bonuses.attack" value="{{system.bonuses.attack}}">
+			</fieldset>
+		{{/if}}
+
+		{{#if (everydayHeroes-has item "system.bonuses.dc")}}
+			<fieldset>
+				<label>{{localize "EH.Weapon.Bonus.DC.Label"}}</label>
+				<input type="text" name="system.bonuses.dc" value="{{system.bonuses.dc}}">
+			</fieldset>
+		{{/if}}
+
+		{{#if (everydayHeroes-has item "system.bonuses.damage")}}
+			<fieldset>
+				<label>{{localize "EH.Weapon.Bonus.Damage.Label"}}</label>
+				<input type="text" name="system.bonuses.damage" value="{{system.bonuses.damage}}">
+			</fieldset>
+		{{/if}}
+
+		{{#if (everydayHeroes-has item "system.bonuses.critical")}}
+			<fieldset>
+				<label>{{localize "EH.Weapon.Bonus.Critical.Label"}}</label>
+				<div class="fields">
+					<label>
+						<span>{{localize "EH.Weapon.Bonus.Critical.Dice.Label"}}</span>
+						<input type="number" name="system.bonuses.critical.dice" value="{{system.bonuses.critical.dice}}">
+						{{!-- TODO: This should probably be a select --}}
+					</label>
+					<label>
+						<span>{{localize "EH.Weapon.Bonus.Critical.Damage.Label"}}</span>
+						<input type="text" name="system.bonuses.critical.damage" value="{{system.bonuses.critical.damage}}">
+					</label>
+				</div>
+				<p class="hint">{{localize "EH.Weapon.Bonus.Critical.Hint"}}</p>
+			</fieldset>
+		{{/if}}
+
+		{{#if (everydayHeroes-has item "system.bonuses.save")}}
+			<fieldset>
+				<label>{{localize "EH.Armor.Bonuses.Save.Label"}}</label>
+				<input type="text" name="system.bonuses.save" value="{{system.bonuses.save}}">
+			</fieldset>
+		{{/if}}
 	{{/if}}
 
-	{{#if (everydayHeroes-has item "system.bonuses.dc")}}
-		<fieldset>
-			<label>{{localize "EH.Weapon.Bonus.DC.Label"}}</label>
-			<input type="text" name="system.bonuses.dc" value="{{system.bonuses.dc}}">
-		</fieldset>
-	{{/if}}
+	{{#if (everydayHeroes-has item "system.overrides")}}
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">Overrides</span>{{!-- TODO: Localize --}}
+			<span class="right stripes"></span>
+		</h3>
 
-	{{#if (everydayHeroes-has item "system.bonuses.damage")}}
-		<fieldset>
-			<label>{{localize "EH.Weapon.Bonus.Damage.Label"}}</label>
-			<input type="text" name="system.bonuses.damage" value="{{system.bonuses.damage}}">
-		</fieldset>
-	{{/if}}
-
-	{{#if (everydayHeroes-has item "system.bonuses.save")}}
-		<fieldset>
-			<label>{{localize "EH.Armor.Bonuses.Save.Label"}}</label>
-			<input type="text" name="system.bonuses.save" value="{{system.bonuses.save}}">
-		</fieldset>
+		{{#if (everydayHeroes-has item "system.overrides.ability")}}
+			<fieldset>
+				<label>{{localize "EH.Weapon.Overrides.Ability.Label"}}</label>
+				<select name="system.overrides.ability">
+					{{selectOptions CONFIG.abilities selected=system.overrides.ability blank="" labelAttr="label"}}
+				</select>
+			</fieldset>
+		{{/if}}
 	{{/if}}
 
 </section>
