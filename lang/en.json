@@ -388,6 +388,15 @@
 
 "EH.Luck.Label": "Luck Saving Throw",
 
+"EH.Measurement.Radius.Label": "Radius",
+"EH.Measurement.Length.Feet.Label[one]": "Foot",
+"EH.Measurement.Length.Feet.Label[other]": "Feet",
+"EH.Measurement.Length.Feet.Abbreviation": "ft",
+"EH.Measurement.Length.Meters.Label[one]": "Meter",
+"EH.Measurement.Length.Meters.Label[other]": "Meters",
+"EH.Measurement.Length.Meters.Abbreviation": "m",
+"EH.Measurement.Units": "Units",
+
 "EH.Proficiency.Label[one]": "Proficiency",
 "EH.Proficiency.Label[other]": "Proficiencies",
 "EH.Proficiency.Level.Expertise": "Expertise",
@@ -395,6 +404,8 @@
 "EH.Proficiency.Level.Proficient": "Proficient",
 "EH.Proficiency.Multiplier": "Proficiency Multiplier",
 "EH.Proficiency.Rounding": "Proficiency Rounding",
+
+"EH.Recharge.Label": "Recharge",
 
 "EH.Rest.Action.Rest.Label": "Rest",
 "EH.Rest.Action.Medical.Provide": "Provide Medical Care",
@@ -408,17 +419,9 @@
 "EH.Rest.Type.Short.Label": "Short Rest",
 "EH.Rest.Type.Short.Hint": "At the end of a short rest, a character can spend one or more Hit Dice, up to their maximum number of Hit Dice, to recover lost hit points.",
 
-"EH.Measurement.Radius.Label": "Radius",
-"EH.Measurement.Length.Feet.Label[one]": "Foot",
-"EH.Measurement.Length.Feet.Label[other]": "Feet",
-"EH.Measurement.Length.Feet.Abbreviation": "ft",
-"EH.Measurement.Length.Meters.Label[one]": "Meter",
-"EH.Measurement.Length.Meters.Label[other]": "Meters",
-"EH.Measurement.Length.Meters.Abbreviation": "m",
-"EH.Measurement.Units": "Units",
-
 "EH.Resource.Label[one]": "Resource",
 "EH.Resource.Label[other]": "Resources",
+"EH.Resource.Consumption": "{number} {resource}",
 "EH.Resource.Focus.Label": "Focus",
 "EH.Resource.Genius.Label": "Genius",
 "EH.Resource.Influence.Label": "Influence",
@@ -492,6 +495,14 @@
 "EH.Skill.Action.CheckSpecificAbility": "{ability} ({skill}) Check",
 "EH.Skill.Bonuses.Check": "Skill Check Bonus",
 "EH.Skill.Bonuses.Passive": "Passive Bonus",
+
+"EH.Uses.Label": "Limited Uses",
+"EH.Uses.AvailableGeneric.Label": "{available}/{max} uses",
+"EH.Uses.AvailableSpecific.Label": "{available}/{max} per {period}",
+"EH.Uses.Max.Label": "Max Uses",
+"EH.Uses.Spent.Label": "Spent Uses",
+"EH.Uses.Recovery.Formula.Label": "Amount Recovered",
+"EH.Uses.Recovery.Period.Label": "Recovery Period",
 
 "EH.Weapon.ToHit": "{mod} To Hit",
 "EH.Weapon.Action.AttackGeneric": "Attack",

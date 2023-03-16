@@ -222,8 +222,8 @@ export default class ItemEH extends Item {
 
 		const activationConfig = foundry.utils.mergeObject({
 			consume: {
-				resource: !!item.system.resource?.target,
-				use: !!item.system.uses?.per && (item.system.uses?.max > 0)
+				resource: item.system.consumesResource ?? false,
+				use: item.system.consumesUses ?? false
 			}
 		}, config);
 		if ( activationConfig.configure === undefined ) {
@@ -338,11 +338,13 @@ export default class ItemEH extends Item {
 			updates.actor[`system.resources.${res.target}.spent`] = resource.spent + res.amount;
 		}
 
-		if ( config.consume.uses ) {
-			// TODO: Usage consumption
+		if ( config.consume.use ) {
+			const uses = this.system.uses;
+			// TODO: Localize
+			if ( uses.available < 1 ) throw new Error("No limited uses remaining.");
+			updates.item["system.uses.spent"] = uses.spent + 1;
 		}
 
-		console.log(updates);
 		return updates;
 	}
 

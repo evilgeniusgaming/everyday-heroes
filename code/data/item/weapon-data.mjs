@@ -172,6 +172,12 @@ export default class WeaponData extends SystemDataModel.mixin(
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	get isEquippable() {
+		return this.parent?.actor?.type !== "npc";
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	/**
 	 * Subset of `CONFIG.EverydayHeroes.weaponModes` that can be used by this weapon.
 	 * @type {WeaponModeConfiguration[]}

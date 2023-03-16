@@ -26,6 +26,16 @@ export default class PhysicalTemplate extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Can this item be equipped on player sheets?
+	 * @type {boolean}
+	 */
+	get isEquippable() {
+		return false;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Prepare tags for physical details of this item.
 	 * @type {ChatTag[]}
 	 */

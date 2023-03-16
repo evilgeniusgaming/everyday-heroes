@@ -1,49 +1,73 @@
-{{#each inventory as |section id|}}
+{{#each sections as |section id|}}
 	<section data-section-id="{{id}}">
-			<header>
-				<h2>{{localize section.label}}</h2>
-			</header>
-			<ol class="item-list">
-				{{#each section.items as |item|}}
-					<li class="item" data-item-id="{{item.id}}">
-						<h4>
-							<figure data-action="item" data-type="chat" data-tooltip="EH.Item.Action.Chat"
-								style="background-image: url('{{item.img}}')">
-								<i class="fa-solid fa-comment-dots"></i>
-							</figure>
-							<a data-action="item" data-type="expand">{{item.name}}</a>
-						</h4>
-						<div>
-							<div class="item-modes">
-								{{#if item.system.modes}}
-									<nav class="skewed">
-										<ul>
-											{{#each item.system.modes as |mode key|}}
-												<li {{#if (eq item.system.mode key)}}class="selected"{{/if}}>
-													<a data-action="item" data-type="mode" data-key="{{key}}" data-tooltip="{{mode.label}}">
-														<figure style="background-image: url('{{mode.icon}}');"></figure>
-													</a>
-												</li>
-											{{/each}}
-										</ul>
-									</nav>
-								{{/if}}
-							</div>
-							<nav class="item-actions">
-								{{#each item.system.actions as |action|}}
-									<div class="action{{#if action.disabled}} disabled{{/if}}" data-action="roll-item"
-										data-tooltip="{{action.tooltip}}" {{everydayHeroes-dataset action.data}}>
-										{{#if action.icon}}
-											<figure style="background-image: url('{{action.icon}}');"></figure>
-										{{/if}}
-										{{#if action.label}}
-											<span>{{action.label}}</span>
-										{{/if}}
-									</div>
-								{{/each}}
-							</nav>
-							<div class="ammunition">
-								{{#if item.system.rounds.capacity}}
+		<header>
+			<h2>{{localize section.label}}</h2>
+			{{#with section.primary.item as |item|}}
+				<div class="primary item" data-item-id="{{item.id}}">
+					<h3>
+						<figure data-action="item" data-type="chat" data-tooltip="EH.Item.Action.Chat"
+							style="background-image: url('{{item.img}}')">
+							<i class="fa-solid fa-comment-dots"></i>
+						</figure>
+						<a data-action="item" data-type="expand">{{item.name}}</a>
+					</h3>
+					{{#if @root.editable}}
+						<fieldset>
+							<a data-action="item" data-type="edit"
+								data-tooltip="{{localize 'EH.Item.Action.Edit' type=item.typeLabel}}">
+								<i class="fas fa-edit"></i>
+							</a>
+							<a data-action="item" data-type="delete"
+								data-tooltip="{{localize 'EH.Item.Action.Delete' type=item.typeLabel}}">
+								<i class="fas fa-trash"></i>
+							</a>
+						</fieldset>
+					{{/if}}
+				</div>
+			{{/with}}
+		</header>
+		<ol class="item-list">
+			{{#each section.items as |item|}}
+			{{#everydayHeroes-itemContext item as |ctx|}}
+				<li class="item" data-item-id="{{item.id}}">
+					<h4>
+						<figure data-action="item" data-type="chat" data-tooltip="EH.Item.Action.Chat"
+							style="background-image: url('{{item.img}}')">
+							<i class="fa-solid fa-comment-dots"></i>
+						</figure>
+						<a data-action="item" data-type="expand">{{item.name}}</a>
+					</h4>
+					<div>
+						<div class="item-modes">
+							{{#if item.system.modes}}
+								<nav class="skewed">
+									<ul>
+										{{#each item.system.modes as |mode key|}}
+											<li {{#if (eq item.system.mode key)}}class="selected"{{/if}}>
+												<a data-action="item" data-type="mode" data-key="{{key}}" data-tooltip="{{mode.label}}">
+													<figure style="background-image: url('{{mode.icon}}');"></figure>
+												</a>
+											</li>
+										{{/each}}
+									</ul>
+								</nav>
+							{{/if}}
+						</div>
+						<nav class="item-actions">
+							{{#each item.system.actions as |action|}}
+								<div class="action{{#if action.disabled}} disabled{{/if}}" data-action="roll-item"
+									data-tooltip="{{action.tooltip}}" {{everydayHeroes-dataset action.data}}>
+									{{#if action.icon}}
+										<figure style="background-image: url('{{action.icon}}');"></figure>
+									{{/if}}
+									{{#if action.label}}
+										<span>{{action.label}}</span>
+									{{/if}}
+								</div>
+							{{/each}}
+						</nav>
+						<div class="consumption">
+							{{#if item.system.rounds.capacity}}
 								<div class="reload action" data-action="item" data-type="reload"
 									data-tooltip="{{localize 'EH.Weapon.Action.Reload.Label'}}">
 									<figure style="background-image: url('{{item.system.reloadIcon}}');"></figure>
@@ -52,35 +76,47 @@
 									<span class="seperator">/</span>
 									<span class="capacity">{{everydayHeroes-number item.system.rounds.capacity}}</span>
 								</div>
-								{{/if}}
-							</div>
+							{{/if}}
+							{{#if item.system.consumesResource}}
+								<div>{{item.system.resource.label}}</div>
+							{{/if}}
+							{{#if item.system.consumesUses}}
+								<div>{{item.system.uses.label}}</div>
+							{{/if}}
 						</div>
-						{{#if @root.editable}}
-							<fieldset>
+					</div>
+					{{#if @root.editable}}
+						<fieldset>
+							{{#if item.system.isEquippable}}
 								<a class="{{#if item.isEquipped}}equipped{{else}}unequipped{{/if}}" data-action="item" data-type="equip"
 									data-tooltip="{{#if item.isEquipped}}{{localize 'EH.Item.Action.Unequip' type=item.typeLabel}}
 									{{~else}}{{localize 'EH.Item.Action.Equip' type=item.typeLabel}}{{/if}}">
 									<i class="{{#if item.isEquipped}}fa-solid fa-hand{{else}}fa-regular fa-hand{{/if}}"></i>
 								</a>
-								<a data-action="item" data-type="edit"
-									data-tooltip="{{localize 'EH.Item.Action.Edit' type=item.typeLabel}}">
-									<i class="fas fa-edit"></i>
-								</a>
-								<a data-action="item" data-type="delete"
-									data-tooltip="{{localize 'EH.Item.Action.Delete' type=item.typeLabel}}">
-									<i class="fas fa-trash"></i>
-								</a>
-							</fieldset>
-						{{else}}
-							<fieldset>
-								<a data-action="item" data-type="edit"
-									data-tooltip="{{localize 'EH.Item.Action.View' type=item.typeLabel}}">
-									<i class="fa-regular fa-eye"></i>
-								</a>
-							</fieldset>
-						{{/if}}
-					</li>
-				{{/each}}
-			</ol>
+							{{/if}}
+							<a data-action="item" data-type="edit"
+								data-tooltip="{{localize 'EH.Item.Action.Edit' type=item.typeLabel}}">
+								<i class="fas fa-edit"></i>
+							</a>
+							<a data-action="item" data-type="delete"
+								data-tooltip="{{localize 'EH.Item.Action.Delete' type=item.typeLabel}}">
+								<i class="fas fa-trash"></i>
+							</a>
+						</fieldset>
+					{{else}}
+						<fieldset>
+							<a data-action="item" data-type="edit"
+								data-tooltip="{{localize 'EH.Item.Action.View' type=item.typeLabel}}">
+								<i class="fa-regular fa-eye"></i>
+							</a>
+						</fieldset>
+					{{/if}}
+					{{#if ctx.expandedData}}
+						{{> "everydayHeroes.item-summary" ctx.expandedData}}
+					{{/if}}
+				</li>
+			{{/everydayHeroes-itemContext}}
+			{{/each}}
+		</ol>
 	</section>
 {{/each}}

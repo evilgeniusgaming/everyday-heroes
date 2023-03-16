@@ -173,9 +173,25 @@ export default class ActorEH extends Actor {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Does the provided recovery period get recovered with the provided rest configuration?
+	 * @param {RestConfiguration} config - Configuration options for the rest.
+	 * @param {string} period - Recovery period as defined in `CONFIG.EverydayHeroes.recoveryPeriods`.
+	 * @returns {boolean}
+	 * @internal
+	 */
+	_recoversOnPeriod(config, period) {
+		if ( (period === "sr") && ["short", "long"].includes(config.type) ) return true;
+		if ( (period === "lr") && (config.type === "long") ) return true;
+		return false;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Perform any hit dice recover needed for this rest.
 	 * @param {RestConfiguration} [config={}] - Configuration options for the rest.
 	 * @param {RestResult} [result={}] - Rest result being constructed.
+	 * @internal
 	 */
 	_getRestHitDiceRecovery(config={}, result={}) {
 		if ( config.type !== "long" ) return;
@@ -198,6 +214,7 @@ export default class ActorEH extends Actor {
 	 * Perform any hit point recovery needed for this rest.
 	 * @param {RestConfiguration} [config={}] - Configuration options for the rest.
 	 * @param {RestResult} [result={}] - Rest result being constructed.
+	 * @internal
 	 */
 	_getRestHitPointRecovery(config={}, result={}) {
 		if ( config.type !== "long" ) return;
@@ -219,9 +236,21 @@ export default class ActorEH extends Actor {
 	 * Perform any recovery of item uses for this rest.
 	 * @param {RestConfiguration} [config={}] - Configuration options for the rest.
 	 * @param {RestResult} [result={}] - Rest result being constructed.
+	 * @internal
 	 */
 	_getRestItemUseRecovery(config={}, result={}) {
-
+		for ( const item of this.items ) {
+			const updates = result.itemUpdates.findSplice(i => i._id === item.id) ?? {};
+			const uses = item.system.uses;
+			if ( uses?.spent && this._recoversOnPeriod(config, uses?.period) ) {
+				// TODO: Handle recovery formula
+				updates["system.uses.spent"] = 0;
+			}
+			if ( !foundry.utils.isEmpty(updates) ) {
+				updates._id = item.id;
+				result.itemUpdates.push(updates);
+			}
+		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -230,13 +259,13 @@ export default class ActorEH extends Actor {
 	 * Perform any resource recovery for this rest.
 	 * @param {RestConfiguration} [config={}] - Configuration options for the rest.
 	 * @param {RestResult} [result={}] - Rest result being constructed.
+	 * @internal
 	 */
 	_getRestResourceRecovery(config={}, result={}) {
 		const actorUpdates = {};
 		for ( const [key, resource] of Object.entries(this.system.resources) ) {
 			const period = resource.recovery?.period;
-			if ( !period ) continue;
-			if ( (config.type === "short") && (period === "lr") ) continue;
+			if ( !this._recoversOnPeriod(config, period) ) continue;
 			// TODO: Handle recovery formulas
 			actorUpdates[`system.resources.${key}.spent`] = 0;
 		}
@@ -245,6 +274,11 @@ export default class ActorEH extends Actor {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/**
+	 * Display the result of a rest operation in chat.
+	 * @param {RestResult} result - Results of the rest.
+	 * @internal
+	 */
 	async _displayRestResultMessage(result) {
 		console.log(result);
 	}

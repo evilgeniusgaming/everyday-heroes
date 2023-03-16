@@ -26,7 +26,7 @@ export default class AdvancementSelection extends Dialog {
 
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ["everyday-heroes", "sheet", "advancement-selection"],
+			classes: ["everyday-heroes", "dialog", "advancement", "selection"],
 			template: "systems/everyday-heroes/templates/advancement/advancement-selection.hbs",
 			title: "EH.Advancement.Selection.Title",
 			width: 500,

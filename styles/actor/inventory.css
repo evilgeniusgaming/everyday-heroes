@@ -146,7 +146,7 @@
 	padding: 0.15em;
 	gap: 0.25em;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .ammunition {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .consumption {
 	display: flex;
 }
 .everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li > div .action {
@@ -183,7 +183,7 @@
 		flex-basis: 50%;
 		justify-content: space-evenly;
 	}
-	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .ammunition {
+	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .consumption {
 		flex-basis: 25%;
 	}
 }

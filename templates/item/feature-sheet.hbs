@@ -65,31 +65,33 @@
 					</div>
 				</fieldset>
 				<fieldset class="triple">
-					<label>Limited Uses</label>{{!-- TODO: Localize --}}
+					<label>{{localize "EH.Uses.Label"}}</label>
 					<div class="fields">
 						<label>
-							<span>Max Uses</span>{{!-- TODO: Localize --}}
+							<span>{{localize "EH.Uses.Max.Label"}}</span>
 							<input type="text" name="system.uses.max" value="{{source.uses.max}}">
 						</label>
 						<label>
-							<span>Recovery Period</span>{{!-- TODO: Localize --}}
+							<span>{{localize "EH.Uses.Recovery.Period.Label"}}</span>
 							<select name="system.uses.period">
 								{{selectOptions CONFIG.recoveryPeriods selected=system.uses.period labelAttr="label" blank=""}}
 							</select>
 						</label>
 						<label>
-							<span>Amount Recovered</span>{{!-- TODO: Localize --}}
+							<span>{{localize "EH.Uses.Recovery.Formula.Label"}}</span>
 							<input type="text" name="system.uses.recovery" value="{{system.uses.recovery}}" placeholder="All">
 						</label>
 				</fieldset>
-				<fieldset class="triple">
-					<label>Recharge</label>{{!-- TODO: Localize --}}
-					<div class="fields">
-						<label>
-							<span>Target</span>{{!-- TODO: Localize --}}
-							<input type="number" name="system.recharge.target" value="{{system.recharge.target}}">
-						</label>
-				</fieldset>
+				{{#if system.hasRecharge}}
+					<fieldset class="triple">
+						<label>{{localize "EH.Recharge.Label"}}</label>
+						<div class="fields">
+							<label>
+								<span>Target</span>{{!-- TODO: Localize --}}
+								<input type="number" name="system.recharge.target" value="{{system.recharge.target}}">
+							</label>
+					</fieldset>
+				{{/if}}
 			</section>
 		</div>
 	</main>

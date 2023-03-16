@@ -16,8 +16,8 @@ export class ResourceConfigurationData extends ScaleValueConfigurationData {
 	static defineSchema() {
 		return {
 			recovery: new foundry.data.fields.SchemaField({
-				period: new foundry.data.fields.StringField({label: ""}),
-				formula: new FormulaField({label: ""})
+				period: new foundry.data.fields.StringField({label: "EH.Uses.Recovery.Period.Label"}),
+				formula: new FormulaField({label: "EH.Uses.Recovery.Formula.Label"})
 			}),
 			type: new foundry.data.fields.StringField({
 				required: true, initial: "string", choices: TYPES, label: "EH.Advancement.ScaleValue.Type.Label"

@@ -1,3 +1,4 @@
+import { numberFormat } from "../../../utils.mjs";
 import FormulaField from "../../fields/formula-field.mjs";
 
 /**
@@ -14,7 +15,7 @@ import FormulaField from "../../fields/formula-field.mjs";
  * @property {number} uses.spent - Number of uses that have been used.
  * @property {string} uses.max - Formula for the maximum uses.
  * @property {string} uses.period - Recovery period for this item's uses.
- * @property {string} uses.recovery - Formula used for resource recovery. Blank indicates that all uses are restored.
+ * @property {string} uses.formula - Formula used for resource recovery. Blank indicates that all uses are restored.
  * @mixin
  */
 export default class ActivatableTemplate extends foundry.abstract.DataModel {
@@ -30,11 +31,11 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 				type: new foundry.data.fields.StringField({label: ""})
 			}, {label: ""}),
 			uses: new foundry.data.fields.SchemaField({
-				spent: new foundry.data.fields.NumberField({initial: 0, min: 0, integer: true, label: ""}),
-				max: new FormulaField({deterministic: true, label: ""}),
-				period: new foundry.data.fields.StringField({label: ""}),
-				recovery: new FormulaField({label: ""})
-			})
+				spent: new foundry.data.fields.NumberField({initial: 0, min: 0, integer: true, label: "EH.Uses.Spent.Label"}),
+				max: new FormulaField({deterministic: true, label: "EH.Uses.Max.Label"}),
+				period: new foundry.data.fields.StringField({label: "EH.Uses.Recovery.Period.Label"}),
+				formula: new FormulaField({label: "EH.Uses.Recovery.Formula.Label"})
+			}, {label: "EH.Uses.Label"})
 		};
 	}
 
@@ -72,6 +73,26 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Does this item consume some sort of resource?
+	 * @type {boolean}
+	 */
+	get consumesResource() {
+		return !!(this.resource.amount && this.resource.type && this.resource.target);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Does this item consume its own uses?
+	 * @type {boolean}
+	 */
+	get consumesUses() {
+		return !!this.uses.max;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Can this Item be activated?
 	 * @type {boolean}
 	 */
@@ -83,8 +104,30 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	prepareFinalResourceLabel() {
+		const number = numberFormat(this.resource.amount);
+		switch (this.resource.type) {
+			case "resource":
+				const resource = this.parent.actor?.system.resources?.[this.resource.target];
+				this.resource.label = game.i18n.format("EH.Resource.Consumption", {
+					number, resource: resource?.label ?? this.resource.target
+				});
+				break;
+			default:
+				this.resource.label = "";
+				break;
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	prepareFinalUses() {
 		// TODO: Resolve max uses formula
 		this.uses.available = Number(this.uses.max) - this.uses.spent;
+		const period = CONFIG.EverydayHeroes.recoveryPeriods[this.uses.period];
+		this.uses.label = game.i18n.format(`EH.Uses.Available${period ? "Specific" : "Generic"}.Label`, {
+			available: numberFormat(this.uses.available), max: numberFormat(this.uses.max),
+			period: period?.label.toLowerCase()
+		});
 	}
 }
