@@ -48,23 +48,10 @@ export default class Damage extends foundry.abstract.DataModel {
 	 * @type {number}
 	 */
 	get average() {
+		// TODO: Move this into damageTemplate to take advantage of mode
 		const ability = this._actor?.system.abilities[this.parent?.damageAbility]?.mod ?? 0;
 		if ( !this.denomination ) return this.number + ability;
 		return (this.denomination / 2 * this.number) + ability;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * The simplified damage formula for this item, taking mode into account if it has one.
-	 * @type {string}
-	 */
-	get formula() {
-		if ( this.constructor.mode !== "regular" ) return "";
-		// TODO: Take flat bonuses into account
-		const ability = this._actor?.system.abilities[this.parent?.damageAbility];
-		if ( !ability?.mod ) return this.dice;
-		return `${this.dice} + ${ability.mod}`;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -83,8 +70,8 @@ export default class Damage extends foundry.abstract.DataModel {
 
 	prepareBaseData() {
 		// Have to manually reset these values here to fix issue with Foundry calling prepareDerivedData twice
-		// this.number = this._source.number || 1;
-		// this.denomination = this._source.denomination || CONFIG.EverydayHeroes.diceSteps[0];
+		this.number = this._source.number || 1;
+		this.denomination = this._source.denomination || CONFIG.EverydayHeroes.diceSteps[0];
 		if ( this.denomination ) this.dice = `${this.number ?? 1}d${this.denomination}`;
 		else this.dice = this.number ?? 0;
 	}

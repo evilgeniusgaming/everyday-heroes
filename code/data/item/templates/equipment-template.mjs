@@ -26,7 +26,7 @@ export default class EquipmentTemplate {
 			data: { type: "attack" }
 		});
 		if ( this.hasDamage ) actions.push({
-			label: this.damage.formula,
+			label: this.damageFormula,
 			icon: this.damageIcon,
 			tooltip: this.damageTooltip,
 			data: { type: "damage" }

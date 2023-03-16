@@ -18,14 +18,12 @@
 								{{#if item.system.modes}}
 									<nav class="skewed">
 										<ul>
-											{{#each item.system.modes as |key|}}
-												{{#with (lookup @root.CONFIG.weaponModes key) as |mode|}}
-													<li {{#if (eq item.system.mode key)}}class="selected"{{/if}}>
-														<a data-action="item" data-type="mode" data-key="{{key}}" data-tooltip="{{mode.label}}">
-															<figure style="background-image: url('{{mode.icon}}');"></figure>
-														</a>
-													</li>
-												{{/with}}
+											{{#each item.system.modes as |mode key|}}
+												<li {{#if (eq item.system.mode key)}}class="selected"{{/if}}>
+													<a data-action="item" data-type="mode" data-key="{{key}}" data-tooltip="{{mode.label}}">
+														<figure style="background-image: url('{{mode.icon}}');"></figure>
+													</a>
+												</li>
 											{{/each}}
 										</ul>
 									</nav>

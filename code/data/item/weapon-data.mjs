@@ -96,13 +96,16 @@ export default class WeaponData extends SystemDataModel.mixin(
 			return DEF.melee;
 		}
 
-		return ["ranged", "burst"].includes(this.mode) ? DEF.ranged : DEF.melee;
+		return (this.type.value === "ranged") ? DEF.ranged : DEF.melee;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get attackIcon() {
-		return `systems/everyday-heroes/artwork/svg/action/attack-${this.mode}.svg`;
+		const config = CONFIG.EverydayHeroes.weaponModes[this.mode];
+		if ( !config ) return "systems/everyday-heroes/artwork/svg/action/attack-melee-one-handed.svg";
+		if ( !config.icons ) return config.icon;
+		return config.icons[this.type.value];
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -149,7 +152,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get damageIcon() {
-		const type = ["thrown", "ranged", "burst"].includes(this.mode) ? "ranged" : "melee";
+		const type = (this.mode === "thrown") || (this.type.value === "ranged") ? "ranged" : "melee";
 		return `systems/everyday-heroes/artwork/svg/action/damage-${type}.svg`;
 	}
 
@@ -157,18 +160,15 @@ export default class WeaponData extends SystemDataModel.mixin(
 
 	/**
 	 * Subset of `CONFIG.EverydayHeroes.weaponModes` that can be used by this weapon.
-	 * @type {string[]}
+	 * @type {WeaponModeConfiguration[]}
 	 */
 	get modes() {
-		const modes = [];
-		if ( this.type.value === "melee" ) {
-			modes.push("melee");
-			if ( this.properties.has("light") ) modes.push("offhand");
-			if ( this.properties.has("thrown") ) modes.push("thrown");
-		} else if ( this.type.value === "ranged" ) {
-			modes.push("ranged");
-			if ( this.properties.has("light") ) modes.push("offhand");
-			if ( this.properties.has("burst") ) modes.push("burst");
+		const modes = {};
+		for ( const [mode, config] of Object.entries(CONFIG.EverydayHeroes.weaponModes) ) {
+			if ( !config.available(this.parent) ) continue;
+			modes[mode] = foundry.utils.deepClone(config);
+			const icon = modes[mode].icons?.[this.type.value];
+			if ( icon ) modes[mode].icon = icon;
 		}
 		return modes;
 	}
@@ -230,7 +230,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 
 	prepareBaseMode() {
 		const mode = this.parent?.actor?.system.items?.[this.parent.id]?.mode ?? this._source.mode;
-		this.mode = this.modes.includes(mode) ? mode : this.modes[0];
+		this.mode = this.modes[mode] ? mode : Object.keys(this.modes)[0];
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -238,6 +238,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 	prepareDerivedDamage() {
 		if ( this.ammunition ) this.damage.modify(this.ammunition);
 		if ( this.mode === "burst" ) this.damage.modify({ number: 1 });
+		if ( this.properties.has("versatile") && (this.mode === "twoHanded") ) this.damage.modify({ denomination: 1 });
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -320,7 +321,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 			});
 			let string = '<a data-action="roll-item" data-type="damage" data-mode="mode">';
 			string += clone.system.damage.average;
-			if ( clone.system.damage.denomination ) string += ` (${clone.system.damage.formula})`;
+			if ( clone.system.damage.denomination ) string += ` (${clone.system.damageFormula})`;
 			string += ` ${type.toLowerCase()}</a>`;
 			if ( config.npcHint ) string += ` ${config.npcHint}`;
 			damages.push(string);

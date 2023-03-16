@@ -479,42 +479,62 @@ preLocalize("gearTypes", { key: "label" });
  *
  * @typedef {LabeledConfiguration} WeaponModeConfiguration
  * @property {string} npcHint - Extra text that will be displayed on NPC sheets.
- * @property {string} icon - Icon.
+ * @property {string} [icon] - Icon to use for all modes.
+ * @property {object} [icons]
+ * @property {string} [icons.melee] - Melee icon variant.
+ * @property {string} [icons.ranged] - Ranged icon variant.
+ * @property {ModeAvailabilityCallback} available - This method is called to check whether this mode is available for
+ *                                                  the provided weapon.
  */
+
+/**
+	* @callback ModeAvailabilityCallback
+	* @param {ItemEH} item - The weapon against which available should be checked.
+	* @returns {boolean} - Should this mode be displayed for the provided weapon?
+	*/
 
 /**
  * Weapon modes that determine different attack or damage values.
  * @enum {WeaponModeConfiguration}
  */
 export const weaponModes = {
-	melee: {
-		label: "EH.Weapon.Action.Melee.Label",
-		icon: "systems/everyday-heroes/artwork/svg/action/attack-melee.svg"
-	},
-	onehanded: {
+	oneHanded: {
 		label: "EH.Weapon.Mode.OneHanded.Label",
-		icon: "systems/everyday-heroes/artwork/svg/action/attack-melee.svg"
+		icons: {
+			melee: "systems/everyday-heroes/artwork/svg/action/attack-melee-one-handed.svg",
+			ranged: "systems/everyday-heroes/artwork/svg/action/attack-ranged-one-handed.svg"
+		},
+		available: item => {
+			if ( item.system.properties.has("versatile") ) return true;
+			return !item.system.properties.has("twoHanded");
+		}
 	},
-	twohanded: {
+	twoHanded: {
 		label: "EH.Weapon.Mode.TwoHanded.Label",
 		npcHint: "Eh.Weapon.Mode.TwoHanded.NPCHint",
-		icon: "systems/everyday-heroes/artwork/svg/action/attack-melee.svg"
+		icons: {
+			melee: "systems/everyday-heroes/artwork/svg/action/attack-melee-two-handed.svg",
+			ranged: "systems/everyday-heroes/artwork/svg/action/attack-ranged-two-handed.svg"
+		},
+		available: item => {
+			if ( item.system.properties.has("versatile") ) return true;
+			return item.system.properties.has("twoHanded");
+		}
 	},
 	offhand: {
 		label: "EH.Weapon.Mode.Offhand.Label",
-		icon: "systems/everyday-heroes/artwork/svg/action/attack-offhand.svg"
+		icon: "systems/everyday-heroes/artwork/svg/action/attack-offhand.svg",
+		available: item => item.system.properties.has("light")
 	},
 	thrown: {
 		label: "EH.Weapon.Mode.Thrown.Label",
-		icon: "systems/everyday-heroes/artwork/svg/action/attack-thrown.svg"
-	},
-	ranged: {
-		label: "EH.Weapon.Mode.Ranged.Label",
-		icon: "systems/everyday-heroes/artwork/svg/action/attack-ranged.svg"
+		icon: "systems/everyday-heroes/artwork/svg/action/attack-thrown.svg",
+		available: item => (item.system.type.value === "melee") && item.system.properties.has("thrown")
 	},
 	burst: {
 		label: "EH.Weapon.Mode.Burst.Label",
-		icon: "systems/everyday-heroes/artwork/svg/action/attack-burst.svg"
+		icon: "systems/everyday-heroes/artwork/svg/action/attack-burst.svg",
+		available: item => (item.system.type.value === "ranged") && item.system.properties.has("burst")
 	}
 };
 preLocalize("weaponModes", { keys: ["label", "npcHint"] });

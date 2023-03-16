@@ -41,6 +41,19 @@ export default class Damage extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * The simplified damage formula for this item, taking mode into account if it has one.
+	 * @type {number}
+	 */
+	get damageFormula() {
+		const ability = this.parent?.actor?.system.abilities[this.damageAbility];
+		let mod = ability?.mod ?? 0;
+		if ( !mod ) return this.damage.dice;
+		return `${this.damage.dice} + ${mod}`;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Is the damage defined on this item "regular" damage or a "modification" to another damage?
 	 * @type {string}
 	 */

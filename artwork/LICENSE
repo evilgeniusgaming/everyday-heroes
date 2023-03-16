@@ -7,10 +7,13 @@ The dnd5e system for Foundry Virtual Tabletop includes icon artwork licensed fro
 svg/action/armor-save.svg - "Shield reflect" by Lorc under CC BY 3.0
 svg/action/attack-burst.svg - "Bullet impacts" by Delapouite under CC BY 3.0 (modified)
 svg/action/attack-explosive.svg - "Throwing ball" by Delapouite under CC BY 3.0
-svg/action/attack-melee.svg - "Hammer drop" by Lorc under CC BY 3.0
+svg/action/attack-melee-one-handed.svg - "Sword brandish" by Delapouite under CC BY 3.0
+svg/action/attack-melee-two-handed.svg - "TSword brandish" by Delapouite under CC BY 3.0 (modified)
+svg/action/attack-power.svg - "Hammer drop" by Lorc under CC BY 3.0
 svg/action/attack-offhand.svg - "Swords power" by Delapouite under CC BY 3.0
 svg/action/attack-thrown.svg - "Thrown spear" by Lorc under CC BY 3.0
-svg/action/attack-ranged.svg - "Gunshot" by Lorc under CC BY 3.0
+svg/action/attack-ranged-one-handed.svg - "Gunshot" by Lorc under CC BY 3.0
+svg/action/attack-ranged-two-handed.svg - "Reticule" by Lorc under CC BY 3.0
 svg/action/damage-explosive.svg - "Mine explosion" by Lorc under CC BY 3.0
 svg/action/damage-melee.svg - 
 svg/action/damage-ranged.svg - "Meteor impact" by Lorc under CC BY 3.0

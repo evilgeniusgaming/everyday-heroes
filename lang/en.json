@@ -512,6 +512,7 @@
 "EH.Weapon.Mode.Burst.Label": "Burst",
 "EH.Weapon.Mode.Offhand.Label": "Off-hand",
 "EH.Weapon.Mode.OneHanded.Label": "One-handed",
+"EH.Weapon.Mode.Power.Label": "Power",
 "EH.Weapon.Mode.Thrown.Label": "Thrown",
 "EH.Weapon.Mode.TwoHanded.Label": "Two-handed",
 "EH.Weapon.Mode.TwoHanded.NPCHint": "if wielded in two hands",
