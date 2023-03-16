@@ -1,4 +1,5 @@
 import BaseRoll from "./base-roll.mjs";
+import ChallengeConfigurationDialog from "./challenge-configuration-dialog.mjs";
 
 /**
  * Challenge roll configuration data.
@@ -32,35 +33,35 @@ export default class ChallengeRoll extends BaseRoll {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static ConfigurationDialog = ChallengeConfigurationDialog;
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Static Constructor                       */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static async buildConfiguration(roll, config, message, options) {
+		config.options ??= {};
+		config.options.criticalSuccess ??= CONFIG.Dice.ChallengeDie.CRITICAL_SUCCESS_TOTAL;
+		config.options.criticalFailure ??= CONFIG.Dice.ChallengeDie.CRITICAL_FAILURE_TOTAL;
+		// TODO: Check keys pressed to determine advantage mode & whether dialog should be shown
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
 	 * Construct and perform a Challenge Roll through the standard workflow.
 	 * @param {ChallengeRollConfiguration} config - Roll configuration data.
 	 * @param {BaseMessageConfiguration} message - Configuration data that guides roll message creation.
+	 * @param {BaseDialogConfiguration} [options={}] - Data for the roll configuration dialog.
 	 */
-	static async build(config={}, message={}) {
-		const formula = [(new CONFIG.Dice.ChallengeDie()).formula].concat(config.parts ?? []).join(" + ");
-
-		config.options ??= {};
-		config.options.criticalSuccess ??= CONFIG.Dice.ChallengeDie.CRITICAL_SUCCESS_TOTAL;
-		config.options.criticalFailure ??= CONFIG.Dice.ChallengeDie.CRITICAL_FAILURE_TOTAL;
-
-		const roll = new this(formula, config.data, config.options);
-
-		// TODO: Roll configuration dialog
-
-		await roll.evaluate({async: true});
-
-		if ( roll && (message.create !== false) ) await roll.toMessage(message.data, {
-			rollMode: message.rollMode
-		});
-		return roll;
+	static async build(config={}, message={}, options={}) {
+		config.parts = [(new CONFIG.Dice.ChallengeDie()).formula].concat(config.parts ?? []);
+		return super.build(config, message, options);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Instance Properties                      */
+	/*  Properties                               */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**

@@ -75,12 +75,13 @@ export default class ChallengeDie extends Die {
 	 * @param {number} advantageMode - Advantage mode to apply, defined by {@link ChallengeRoll#MODES}.
 	 */
 	applyAdvantage(advantageMode) {
+		console.log(advantageMode);
 		this.options.advantageMode = advantageMode;
-		if ( advantageMode === this.constructor.MODES.NORMAL ) {
-			this.number = 1;
-		} else {
+		if ( advantageMode !== this.constructor.MODES.NORMAL ) {
 			this.number = 2;
 			this.modifiers.push(advantageMode === this.constructor.MODES.ADVANTAGE ? "kh" : "kl");
+		} else {
+			this.number = 1;
 		}
 	}
 }

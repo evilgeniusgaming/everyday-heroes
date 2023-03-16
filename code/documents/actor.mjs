@@ -608,7 +608,7 @@ export default class ActorEH extends Actor {
 		 */
 		if ( Hooks.call("everydayHeroes.preRollHitDie", this, rollConfig, messageConfig, denomination) === false ) return;
 
-		const roll = await CONFIG.Dice.BaseRoll.build(rollConfig, messageConfig);
+		const roll = await CONFIG.Dice.BaseRoll.build(rollConfig, messageConfig, { configure: false });
 
 		const updates = {};
 		if ( rollConfig.modifySpentHitDie !== false ) {

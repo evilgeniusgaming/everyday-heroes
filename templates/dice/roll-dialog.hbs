@@ -1,0 +1,26 @@
+<form class="dialog-content" autocomplete="off">
+	<section class="main-form">
+		<fieldset>
+			<label>Formula</label>{{!-- TODO: Localize --}}
+			<span>{{formula}}</span>
+		</fieldset>
+		<fieldset>
+			<label>Extra Terms</label>{{!-- TODO: Localize --}}
+			<input type="text" name="bonus" value="" placeholder="">
+		</fieldset>
+		<fieldset>
+			<label>Roll Mode</label>{{!-- TODO: Localize --}}
+			<select name="rollMode">
+				{{selectOptions rollModes selected=default.rollMode localize=true}}
+			</select>
+		</fieldset>
+	</section>
+
+	<nav class="dialog-buttons skewed">
+		<ul>
+			{{#each buttons as |button id|}}
+				<li><button class="dialog-button" data-button="{{id}}">{{{button.icon}}} {{{button.label}}}</button></li>
+			{{/each}}
+		</ul>
+	</nav>
+</form>

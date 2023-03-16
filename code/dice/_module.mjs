@@ -21,4 +21,5 @@ export {
 	ChallengeRoll,
 	DamageRoll
 };
+export {default as BaseConfigurationDialog} from "./base-configuration-dialog.mjs";
 export * as utils from "./utils.mjs";
