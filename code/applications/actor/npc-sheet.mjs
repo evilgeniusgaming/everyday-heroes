@@ -157,6 +157,7 @@ export default class NPCSheet extends BaseSheet {
 			}
 		};
 
+		const ammunitionTypes = {};
 		const items = [...context.actor.items].sort((a, b) => a.sort - b.sort);
 		for ( const item of items ) {
 			const ctx = context.itemContext[item.id] ??= {
@@ -171,6 +172,8 @@ export default class NPCSheet extends BaseSheet {
 					context.actionSections.action.items.push(item);
 					break;
 				case "ammunition":
+					ammunitionTypes[item.system.type.value] ??= {};
+					ammunitionTypes[item.system.type.value][item.id] = item;
 				case "explosive":
 					context.inventory.ammunitionExplosives.items.push(item);
 					break;
@@ -188,6 +191,16 @@ export default class NPCSheet extends BaseSheet {
 			if ( this.itemsExpanded.has(item.id) ) {
 				ctx.expandedData = await item.chatContext({secrets: this.actor.isOwner});
 			}
+		}
+
+		// Prepare ammunition lists
+		for ( const item of context.inventory.weapons.items ) {
+			const ctx = context.itemContext[item.id].ammunition ??= {};
+			ctx.defaultLabel = game.i18n.format("EH.Ammunition.Standard.Label", {
+				type: CONFIG.EverydayHeroes.ammunitionTypes[item.system.rounds.type]?.label
+			});
+			ctx.selected = item.system.ammunition?.id;
+			ctx.types = ammunitionTypes[item.system.rounds.type] ?? [];
 		}
 	}
 }

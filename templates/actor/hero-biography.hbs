@@ -1,109 +1,7 @@
 <section>
-	<header class="hero-id">
-		<div class="image">
-			<img src="{{actor.img}}" data-edit="img">
-		</div>
-		<div>
-			{{!--
-				TODO: Should name also be listed here? If it is editable it would require extra logic because of how forms are saved
-			--}}
-			<fieldset class="weight">
-				<label>{{localize "EH.Biography.Weight"}}</label>
-				<input type="text" name="system.biography.weight" value="{{system.biography.weight}}">
-			</fieldset>
-			<fieldset class="height">
-				<label>{{localize "EH.Biography.Height"}}</label>
-				<input type="text" name="system.biography.height" value="{{system.biography.height}}">
-			</fieldset>
-			<fieldset class="hair">
-				<label>{{localize "EH.Biography.Hair"}}</label>
-				<input type="text" name="system.biography.hair" value="{{system.biography.hair}}">
-			</fieldset>
-			<fieldset class="skin">
-				<label>{{localize "EH.Biography.Skin"}}</label>
-				<input type="text" name="system.biography.skin" value="{{system.biography.skin}}">
-			</fieldset>
-			<fieldset class="eyes">
-				<label>{{localize "EH.Biography.Eyes"}}</label>
-				<input type="text" name="system.biography.eyes" value="{{system.biography.eyes}}">
-			</fieldset>
-			<fieldset class="age">
-				<label>{{localize "EH.Biography.Age"}}</label>
-				<input type="text" name="system.biography.age" value="{{system.biography.age}}">
-			</fieldset>
-			<fieldset class="marital-status">
-				<label>{{localize "EH.Biography.MaritalStatus"}}</label>
-				<input type="text" name="system.biography.marital" value="{{system.biography.marital}}">
-			</fieldset>
-			<fieldset class="pronouns">
-				<label>{{localize "EH.Biography.Pronouns"}}</label>
-				<input type="text" name="system.biography.pronouns" value="{{system.biography.pronouns}}">
-			</fieldset>
-		</div>
-	</header>
-
-	<section class="persona">
-		<h2>Persona</h2>
-		<fieldset class="motivations list">
-			<label>{{localize "EH.Biography.Motivation[other]"}}</label>
-			<ul>
-				{{#each system.biography.motivations}}
-					<li><input type="text" name="system.biography.motivations.{{@index}}" value="{{this}}"></li>
-				{{/each}}
-			</ul>
-		</fieldset>
-		<fieldset class="attachments list">
-			<label>{{localize "EH.Biography.Attachment[other]"}}</label>
-			<ul>
-				{{#each system.biography.attachments}}
-					<li><input type="text" name="system.biography.attachments.{{@index}}" value="{{this}}"></li>
-				{{/each}}
-			</ul>
-		</fieldset>
-		<fieldset class="beliefs list">
-			<label>{{localize "EH.Biography.Belief[other]"}}</label>
-			<ul>
-				{{#each system.biography.beliefs}}
-					<li><input type="text" name="system.biography.beliefs.{{@index}}" value="{{this}}"></li>
-				{{/each}}
-			</ul>
-		</fieldset>
-		<fieldset class="ancestry">
-			<label>{{localize "EH.Biography.Ancestry"}}</label>
-			<input type="text" name="system.biography.ancestry" value="{{system.biography.ancestry}}">
-		</fieldset>
-		<fieldset class="quirks list">
-			<label>{{localize "EH.Biography.Quirk[other]"}}</label>
-			<ul>
-				{{#each system.biography.quirks}}
-					<li><input type="text" name="system.biography.quirks.{{@index}}" value="{{this}}"></li>
-				{{/each}}
-			</ul>
-		</fieldset>
-		<fieldset class="virtues list">
-			<label>{{localize "EH.Biography.Virtue[other]"}}</label>
-			<ul>
-				{{#each system.biography.virtues}}
-					<li><input type="text" name="system.biography.virtues.{{@index}}" value="{{this}}"></li>
-				{{/each}}
-			</ul>
-		</fieldset>
-		<fieldset class="flaws list">
-			<label>{{localize "EH.Biography.Flaw[other]"}}</label>
-			<ul>
-				{{#each system.biography.flaws}}
-					<li><input type="text" name="system.biography.flaws.{{@index}}" value="{{this}}"></li>
-				{{/each}}
-			</ul>
-		</fieldset>
-		<fieldset class="role">
-			<label>{{localize "EH.Biography.Role"}}</label>
-			<input type="text" name="system.biography.role" value="{{system.biography.role}}">
-		</fieldset>
-	</section>
-
-	<section class="biography-editor">
-		<h2>
+	<h2 class="striped">
+		<span class="left stripes"></span>
+		<span class="center">
 			<select name="editorSelected">
 				{{#select editorSelected}}
 					<option value="biography">{{localize "EH.Biography.Label"}}</option>
@@ -111,16 +9,17 @@
 					<option value="notes">{{localize "EH.Biography.Notes"}}</option>
 				{{/select}}
 			</select>
-		</h2>
-		{{#if (eq editorSelected "biography")}}
-			{{editor enriched.biography target="system.biography.value" button=true editable=editable
-				engine="prosemirror" collaborate=false}}
-		{{else if (eq editorSelected "public")}}
-			{{editor enriched.public target="system.biography.public" button=true editable=editable
-				engine="prosemirror" collaborate=false}}
-		{{else}}
-			{{editor enriched.notes target="system.biography.notes" button=true editable=editable
-				engine="prosemirror" collaborate=false}}
-		{{/if}}
-	</section>
+		</span>
+		<span class="right stripes"></span>
+	</h2>
+	{{#if (eq editorSelected "biography")}}
+		{{editor enriched.biography target="system.biography.value" button=true editable=editable
+			engine="prosemirror" collaborate=false}}
+	{{else if (eq editorSelected "public")}}
+		{{editor enriched.public target="system.biography.public" button=true editable=editable
+			engine="prosemirror" collaborate=false}}
+	{{else}}
+		{{editor enriched.notes target="system.biography.notes" button=true editable=editable
+			engine="prosemirror" collaborate=false}}
+	{{/if}}
 </section>

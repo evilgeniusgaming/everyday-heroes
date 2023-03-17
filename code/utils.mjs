@@ -258,6 +258,7 @@ export async function registerHandlebarsPartials() {
 		"actor/hero-biography.hbs",
 		"actor/hero-details.hbs",
 		"actor/hero-features.hbs",
+		"actor/hero-persona.hbs",
 		"actor/npc-details.hbs",
 		"advancement/parts/advancement-ability-score-control.hbs",
 		"advancement/parts/advancement-controls.hbs",

@@ -332,6 +332,7 @@
       },
       "properties": [],
       "penetrationValue": 0,
+      "jammed": false,
       "ammunition": {
         "type": "",
         "loaded": ""

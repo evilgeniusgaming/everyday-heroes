@@ -25,17 +25,40 @@ export default class HeroSheet extends BaseSheet {
 	};
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Properties                               */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Is the editor expanded on the biography tab.
-	 * @type {boolean}
-	 */
-	editorExpanded = false;
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Context Preparation                      */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async getData(options) {
+		const context = await super.getData(options);
+
+		context.proficiencies = this.actor.system.traits.equipment.reduce((obj, key) => {
+			obj[key] = true;
+			return obj;
+		}, {});
+
+		return context;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_onChangeInput(event) {
+		super._onChangeInput(event);
+
+		if ( event.target.name === "proficiency" ) {
+			const category = event.target.dataset.category;
+			const collection = this.actor.system.traits.equipment;
+			if ( collection.has(category) ) {
+				collection.delete(category);
+				// TODO: Remove any categories that require this one
+			} else {
+				collection.add(category);
+				// TODO: Add any categories that this one requires
+			}
+			// TODO: No need to coerce to array in V11
+			return this.actor.update({"system.traits.equipment": Array.from(collection)});
+		}
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async prepareItems(context) {
@@ -177,7 +200,6 @@ export default class HeroSheet extends BaseSheet {
 		};
 
 		const ammunitionTypes = {};
-
 		const items = [...context.actor.items].sort((a, b) => a.sort - b.sort);
 		for ( const item of items ) {
 			const ctx = context.itemContext[item.id] ??= { actions: [] };
@@ -229,6 +251,7 @@ export default class HeroSheet extends BaseSheet {
 			}
 		}
 
+		// Prepare ammunition lists
 		for ( const item of context.inventory.weapons.items ) {
 			const ctx = context.itemContext[item.id].ammunition ??= {};
 			ctx.defaultLabel = game.i18n.format("EH.Ammunition.Standard.Label", {
@@ -254,6 +277,45 @@ export default class HeroSheet extends BaseSheet {
 			label: "EH.Item.Type.Profession[one]",
 			dataset: { type: "profession" }
 		});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Action Handlers                          */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	activateListeners(jQuery) {
+		super.activateListeners(jQuery);
+		const html = jQuery[0];
+
+		// Persona Action Listeners
+		for ( const element of html.querySelectorAll('[data-action="persona"]') ) {
+			element.addEventListener("click", this._onPersonaAction.bind(this));
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Handle adding & removing entries from the persona lists.
+	 * @param {Event} event - Triggering click event.
+	 */
+	async _onPersonaAction(event) {
+		event.preventDefault();
+		const type = event.currentTarget.dataset.type;
+		const section = event.target.closest("[data-section]")?.dataset.section;
+		const collection = this.actor.system.biography[section];
+		if ( !collection ) return console.warn(`Persona section ${section} not found.`);
+		switch (type) {
+			case "add":
+				collection.push("");
+				return this.actor.update({[`system.biography.${section}`]: collection});
+			case "remove":
+				const index = event.target.closest("[data-index]");
+				collection.splice(Number(index), 1);
+				return this.actor.update({[`system.biography.${section}`]: collection});
+			default:
+				return console.warn(`Invalid persona action clicked ${type}.`);
+		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

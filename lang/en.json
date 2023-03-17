@@ -260,6 +260,8 @@
 "Equipment.Category.Historical.Label": "Historical",
 "Equipment.Category.Improvised.Label": "Improvised",
 "Equipment.Category.Military.Label": "Military",
+"Equipment.Proficiencies.Label[one]": "Equipment Proficiency",
+"Equipment.Proficiencies.Label[other]": "Equipment Proficiencies",
 "Equipment.Trait.ArmorValue.Label": "Armor Value",
 "Equipment.Trait.ArmorValue.Abbreviation": "AV",
 "Equipment.Trait.ArmorValue.Hint": "Armor Value measures how well armor or a shield protects you against weapons.",
@@ -507,6 +509,7 @@
 "Uses.Recovery.Period.Label": "Recovery Period",
 
 "Weapon.ToHit": "{mod} To Hit",
+"Weapon.Jammed.Label": "Jammed",
 "Weapon.Action.AttackGeneric": "Attack",
 "Weapon.Action.AttackSpecific": "{type} Attack",
 "Weapon.Action.Burst.Label": "Burst",

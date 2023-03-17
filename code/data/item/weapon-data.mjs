@@ -20,6 +20,7 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @property {string} type.category - Equipment category of this item.
  * @property {Set<string>} properties - Weapon's properties.
  * @property {number} penetrationValue - How armor piercing is this weapon?
+ * @property {boolean} jammed - Is this weapon currently jammed?
  * @property {object} range
  * @property {number} range.short - Normal range for ranged or thrown weapons.
  * @property {number} range.long - Long range for ranged or thrown weapons.
@@ -57,6 +58,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 				min: 0, integer: true,
 				label: "EH.Equipment.Trait.PenetrationValue.Label", hint: "EH.Equipment.Trait.PenetrationValue.Hint"
 			}),
+			jammed: new foundry.data.fields.BooleanField({label: "Weapon.Jammed.Label"}),
 			range: new foundry.data.fields.SchemaField({
 				short: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Short"}),
 				long: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Long"}),

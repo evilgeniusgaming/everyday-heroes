@@ -1,0 +1,104 @@
+.hero.sheet [data-tab="persona"] > section {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.5em;
+	align-items: start;
+}
+.hero.sheet [data-tab="persona"] > section > :is(.hero-id, .persona) {
+	overflow: clip;
+	border: 1px solid var(--eh-border-color-strong);
+	border-radius: 20px;
+	background-color: var(--eh-background-color-light);
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Hero ID                                  */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.hero.sheet [data-tab="persona"] .hero-id {
+	display: grid;
+}
+.hero.sheet [data-tab="persona"] .hero-id > figure {
+	margin: 0;
+	aspect-ratio: 1;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.hero.sheet [data-tab="persona"] .hero-id > div {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	padding: 1em;
+	background-color: var(--eh-background-color-mid);
+}
+.hero.sheet [data-tab="persona"] .hero-id fieldset {
+	display: flex;
+	align-items: end;
+}
+.hero.sheet [data-tab="persona"] .hero-id fieldset:is(.name, .marital-status, .pronouns, .ancestry, .role) {
+	flex: 1 0 100%;
+}
+.hero.sheet [data-tab="persona"] .hero-id fieldset:is(.weight, .height, .hair) {
+	flex: 1 0 60%;
+}
+.hero.sheet [data-tab="persona"] .hero-id fieldset:is(.skin, .eyes, .age) {
+	flex: 1 0 30%;
+}
+.hero.sheet [data-tab="persona"] .hero-id fieldset.name { order: 1 }
+.hero.sheet [data-tab="persona"] .hero-id fieldset.weight { order: 2 }
+.hero.sheet [data-tab="persona"] .hero-id fieldset.height { order: 4 }
+.hero.sheet [data-tab="persona"] .hero-id fieldset.hair { order: 6 }
+.hero.sheet [data-tab="persona"] .hero-id fieldset.skin { order: 3 }
+.hero.sheet [data-tab="persona"] .hero-id fieldset.eyes { order: 5 }
+.hero.sheet [data-tab="persona"] .hero-id fieldset.age { order: 7 }
+.hero.sheet [data-tab="persona"] .hero-id fieldset.marital-status { order: 8 }
+.hero.sheet [data-tab="persona"] .hero-id fieldset.pronouns { order: 9 }
+.hero.sheet [data-tab="persona"] .hero-id fieldset.ancestry { order: 10 }
+.hero.sheet [data-tab="persona"] .hero-id fieldset.role { order: 11 }
+.hero.sheet [data-tab="persona"] .hero-id fieldset label {
+	padding-inline-end: 0.5em;
+	font-weight: bold;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+.hero.sheet [data-tab="persona"] .hero-id fieldset input {
+	min-width: 4em;
+	border: none;
+	border-radius: 5px;
+	background-color: var(--eh-background-color-white);
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Persona                                  */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.hero.sheet [data-tab="persona"] .persona {
+	padding: 0.5em;
+	padding-block-end: 1em;
+}
+.hero.sheet [data-tab="persona"] .persona fieldset > label {
+	display: flex;
+	margin: 0.15em -0.5em;
+	padding: 0.1em 0.5em;
+}
+.hero.sheet [data-tab="persona"] .persona fieldset > label:hover {
+	background-color: var(--eh-background-color-mid);
+}
+.hero.sheet [data-tab="persona"] .persona fieldset > label span {
+	display: block;
+	flex-grow: 1;
+}
+.hero.sheet [data-tab="persona"] .persona fieldset > label a {
+	float: right;
+}
+.hero.sheet [data-tab="persona"] .persona fieldset ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.hero.sheet [data-tab="persona"] .persona fieldset li {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+	margin-block-end: 0.5em;
+}

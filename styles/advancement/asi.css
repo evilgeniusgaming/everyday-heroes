@@ -72,5 +72,5 @@
 	cursor: pointer;
 }
 .everyday-heroes.advancement .ability-scores li .lock:not(.fixed):hover {
-	text-shadow: 
+	/* text-shadow:  */
 }

@@ -1,0 +1,82 @@
+<section>
+	<header class="hero-id">
+		<figure style="background-image: url('{{actor.img}}');"></figure>
+		<div>
+			{{!--
+				TODO: Should name also be listed here? If it is editable it would require extra logic because of how forms are saved
+			--}}
+			<fieldset class="weight">
+				<label>{{localize "EH.Biography.Weight"}}</label>
+				<input type="text" name="system.biography.weight" value="{{system.biography.weight}}">
+			</fieldset>
+			<fieldset class="height">
+				<label>{{localize "EH.Biography.Height"}}</label>
+				<input type="text" name="system.biography.height" value="{{system.biography.height}}">
+			</fieldset>
+			<fieldset class="hair">
+				<label>{{localize "EH.Biography.Hair"}}</label>
+				<input type="text" name="system.biography.hair" value="{{system.biography.hair}}">
+			</fieldset>
+			<fieldset class="skin">
+				<label>{{localize "EH.Biography.Skin"}}</label>
+				<input type="text" name="system.biography.skin" value="{{system.biography.skin}}">
+			</fieldset>
+			<fieldset class="eyes">
+				<label>{{localize "EH.Biography.Eyes"}}</label>
+				<input type="text" name="system.biography.eyes" value="{{system.biography.eyes}}">
+			</fieldset>
+			<fieldset class="age">
+				<label>{{localize "EH.Biography.Age"}}</label>
+				<input type="text" name="system.biography.age" value="{{system.biography.age}}">
+			</fieldset>
+			<fieldset class="marital-status">
+				<label>{{localize "EH.Biography.MaritalStatus"}}</label>
+				<input type="text" name="system.biography.marital" value="{{system.biography.marital}}">
+			</fieldset>
+			<fieldset class="pronouns">
+				<label>{{localize "EH.Biography.Pronouns"}}</label>
+				<input type="text" name="system.biography.pronouns" value="{{system.biography.pronouns}}">
+			</fieldset>
+			<fieldset class="ancestry">
+				<label>{{localize "EH.Biography.Ancestry"}}</label>
+				<input type="text" name="system.biography.ancestry" value="{{system.biography.ancestry}}">
+			</fieldset>
+			<fieldset class="role" data-section="role">
+				<label>{{localize "EH.Biography.Role"}}</label>
+				<input type="text" name="system.biography.role" value="{{system.biography.role}}">
+			</fieldset>
+		</div>
+	</header>
+
+	<section class="persona">
+		<h2 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">Persona</span>
+			<span class="right stripes"></span>
+		</h2>
+		{{#*inline "listSection"}}
+			<fieldset class="list" data-section="{{section}}">
+				<label>
+					<span>{{localize label}}</span>
+					<a data-action="persona" data-type="add">
+						<i class="fas fa-plus"></i>
+					</a>
+				</label>
+				<ul>
+					{{#each (lookup system.biography section)}}
+						<li data-index="{{@index}}">
+							<input type="text" name="system.biography.{{section}}.{{@index}}" value="{{this}}">
+							<a data-action="persona" data-type="remove"><i class="fas fa-trash"></i></a>
+						</li>
+					{{/each}}
+				</ul>
+			</fieldset>
+		{{/inline}}
+		{{> listSection section="motivations" label="EH.Biography.Motivation[other]"}}
+		{{> listSection section="attachments" label="EH.Biography.Attachment[other]"}}
+		{{> listSection section="beliefs" label="EH.Biography.Belief[other]"}}
+		{{> listSection section="quirks" label="EH.Biography.Quirk[other]"}}
+		{{> listSection section="virtues" label="EH.Biography.Virtue[other]"}}
+		{{> listSection section="flaws" label="EH.Biography.Flaw[other]"}}
+	</section>
+</section>

@@ -125,10 +125,18 @@ export default class BaseSheet extends ActorSheet {
 
 	_onChangeInput(event) {
 		super._onChangeInput(event);
+
+		// Choose ammunition
 		if ( event.target.name === "ammunition" ) {
 			const ammoId = event.target.value;
 			const weaponId = event.target.closest("[data-item-id]")?.dataset.itemId;
 			this.actor.update({[`system.items.${weaponId}.ammunition`]: ammoId});
+		}
+
+		// Change selected biography editor
+		else if ( event.target.name === "editorSelected" ) {
+			this.editorSelected = event.target.value;
+			this.render();
 		}
 	}
 
