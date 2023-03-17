@@ -339,6 +339,7 @@
 
 "Item.Label[one]": "Item",
 "Item.Label[other]": "Items",
+"Item.New": "New {type}",
 "Item.Action.Chat": "Display in Chat",
 "Item.Action.Create": "Create {type}",
 "Item.Action.Delete": "Delete {type}",

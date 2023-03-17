@@ -61,7 +61,10 @@ export default class HeroSheet extends BaseSheet {
 				},
 				items: [],
 				create: [
-					{ dataset: {type: "talent", "system.type.value": "archetype"} }
+					{
+						label: "EH.Item.Type.Talent[one]",
+						dataset: {type: "talent", "system.type.value": "archetype"}
+					}
 				]
 			},
 			class: {
@@ -72,7 +75,10 @@ export default class HeroSheet extends BaseSheet {
 				},
 				items: [],
 				create: [
-					{ dataset: {type: "talent", "system.type.value": "class"} }
+					{
+						label: "EH.Item.Type.Talent[one]",
+						dataset: {type: "talent", "system.type.value": "class"}
+					}
 				]
 			},
 			background: {
@@ -83,7 +89,10 @@ export default class HeroSheet extends BaseSheet {
 				},
 				items: [],
 				create: [
-					{ dataset: {type: "talent", "system.type.value": "background"} }
+					{
+						label: "EH.Item.Type.SpecialFeature[one]",
+						dataset: {type: "specialFeature", "system.type.value": "background"}
+					}
 				]
 			},
 			profession: {
@@ -94,7 +103,10 @@ export default class HeroSheet extends BaseSheet {
 				},
 				items: [],
 				create: [
-					{ dataset: {type: "talent", "system.type.value": "profession"} }
+					{
+						label: "EH.Item.Type.SpecialFeature[one]",
+						dataset: {type: "specialFeature", "system.type.value": "profession"}
+					}
 				]
 			},
 			feats: {
@@ -226,8 +238,22 @@ export default class HeroSheet extends BaseSheet {
 			ctx.types = ammunitionTypes[item.system.rounds.type] ?? [];
 		}
 
-		// TODO: Add additional create buttons for archetype, class, background, & profession if a primary
-		// item doesn't exist for those categories.
+		if ( !context.features.archetype.primary.item ) context.features.archetype.create.unshift({
+			label: "EH.Item.Type.Archetype[one]",
+			dataset: { type: "archetype" }
+		});
+		if ( !context.features.class.primary.item ) context.features.class.create.unshift({
+			label: "EH.Item.Type.Class[one]",
+			dataset: { type: "class" }
+		});
+		if ( !context.features.background.primary.item ) context.features.background.create.unshift({
+			label: "EH.Item.Type.Background[one]",
+			dataset: { type: "background" }
+		});
+		if ( !context.features.profession.primary.item ) context.features.profession.create.unshift({
+			label: "EH.Item.Type.Profession[one]",
+			dataset: { type: "profession" }
+		});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

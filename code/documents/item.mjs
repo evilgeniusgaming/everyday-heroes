@@ -721,6 +721,16 @@ export default class ItemEH extends Item {
 	/*  Socket Event Handlers                    */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	_preCreate(data, options, user) {
+		super._preCreate(data, options, user);
+		if ( !data.img || data.img === this.constructor.DEFAULT_ICON ) {
+			const img = CONFIG.Item.typeImages[data.type];
+			if ( img ) this.updateSource({img});
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	_onDelete(options, userId) {
 		super._onDelete(options, userId);
 		if ( (userId !== game.user.id) || !this.parent ) return;

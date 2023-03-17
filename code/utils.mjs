@@ -64,9 +64,9 @@ export function linkForUUID(uuid) {
 	return TextEditor._createContentLink(["", "UUID", uuid]).outerHTML;
 }
 
-/* -------------------------------------------- */
-/*  Validators                                  */
-/* -------------------------------------------- */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Validators                               */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
  * Ensure the provided string contains only the characters allowed in identifiers.
@@ -190,6 +190,19 @@ function itemContext(context, options) {
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Stringify the provided object as JSON.
+ * @param {object} context - Current evaluation context.
+ * @param {object} options - Handlebars options.
+ * @returns {string}
+ */
+function jsonStringify(context, options) {
+	const string = encodeURI(JSON.stringify(context));
+	return string;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Format a number based on the current locale.
  * @param {number} value - A numeric value to format.
  * @param {object} [options={}]
@@ -224,6 +237,7 @@ export function registerHandlebarsHelpers() {
 		"everydayHeroes-groupedSelectOptions": (choices, options) => groupedSelectOptions(choices, options.hash),
 		"everydayHeroes-has": has,
 		"everydayHeroes-itemContext": itemContext,
+		"everydayHeroes-jsonStringify": jsonStringify,
 		"everydayHeroes-linkForUUID": linkForUUID,
 		"everydayHeroes-number": (value, options) => numberFormat(value, options.hash)
 	});

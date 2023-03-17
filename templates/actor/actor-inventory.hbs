@@ -2,6 +2,18 @@
 	<section data-section-id="{{id}}">
 		<header>
 			<h2>{{localize section.label}}</h2>
+			<fieldset>
+				{{#each section.create as |create|}}
+					<a data-action="item" data-type="add" data-data="{{everydayHeroes-jsonStringify create.dataset}}">
+						<i class="fas fa-plus"></i>
+						{{#if create.label}}
+							{{localize "EH.Item.Action.Create" type=(localize create.label)}}
+						{{else}}
+							{{localize "EH.Item.Action.Create" type=(localize section.label)}}
+						{{/if}}
+					</a>
+				{{/each}}
+			</fieldset>
 			{{#with section.primary.item as |item|}}
 				<div class="primary item" data-item-id="{{item.id}}">
 					<h3>

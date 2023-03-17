@@ -15,6 +15,35 @@ export function registerDocumentClasses() {
 	CONFIG.ChatMessage.documentClass = ChatMessageEH;
 	CONFIG.Combatant.documentClass = CombatantEH;
 	CONFIG.Item.documentClass = ItemEH;
+	CONFIG.Item.typeIcons = {
+		// Concept
+		archetype: "fa-solid fa-landmark",
+		background: "fa-solid fa-address-card",
+		class: "fa-solid fa-landmark-flag",
+		profession: "fa-solid fa-user-tie",
+
+		// Features
+		talent: "fa-solid fa-users-rectangle",
+		specialFeature: "fa-solid fa-users-rectangle",
+		plan: "fa-solid fa-ruler",
+		trick: "fa-solid fa-ruler",
+		feat: "fa-solid fa-house-user",
+		npcFeature: "fa-solid fa-otter",
+
+		// Physical
+		ammunition: "fa-solid fa-cubes-stacked",
+		armor: "fa-solid fa-shield-halved",
+		weapon: "fa-solid fa-gun",
+		explosive: "fa-solid fa-burst",
+		gear: "fa-solid fa-bag-shopping"
+	};
+	CONFIG.Item.typeImages = {
+		ammunition: "systems/everyday-heroes/artwork/svg/items/ammunition.svg",
+		armor: "systems/everyday-heroes/artwork/svg/items/armor.svg",
+		weapon: "systems/everyday-heroes/artwork/svg/items/weapon.svg",
+		explosive: "systems/everyday-heroes/artwork/svg/items/explosive.svg",
+		gear: "systems/everyday-heroes/artwork/svg/items/gear.svg"
+	};
 	CONFIG.Item.typeLabels = {
 		// Concept
 		archetype: "EH.Item.Type.Archetype[one]",
@@ -30,7 +59,7 @@ export function registerDocumentClasses() {
 		feat: "EH.Item.Type.Feat[one]",
 		npcFeature: "EH.Item.Type.NPCFeature[one]",
 
-		// Equipment
+		// Physical
 		ammunition: "EH.Item.Type.Ammunition[one]",
 		armor: "EH.Item.Type.Armor[one]",
 		weapon: "EH.Item.Type.Weapon[one]",

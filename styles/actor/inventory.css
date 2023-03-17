@@ -55,7 +55,7 @@
 	background-color: var(--eh-background-color-mid);
 }
 .everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section header h2 {
-	grid-column: 1 / -1;
+	grid-column: 1 / -2;
 	margin: 0;
 	border: none;
 	font-size: var(--font-size-16);

@@ -165,7 +165,15 @@ export default class BaseSheet extends ActorSheet {
 		const { type, key } = event.currentTarget.dataset;
 		switch (type) {
 			case "add":
-				return console.log("ADD ITEM");
+				let data;
+				try {
+					data = JSON.parse(decodeURI(event.currentTarget.dataset.data ?? ""));
+					if ( !data.type ) return;
+					data = foundry.utils.mergeObject({
+						name: game.i18n.format("EH.Item.New", {type: game.i18n.localize(CONFIG.Item.typeLabels[data.type])})
+					}, data);
+					return this.actor.createEmbeddedDocuments("Item", [data]);
+				} catch(err) { return; }
 			case "chat":
 				return item?.displayInChat();
 			case "edit":
