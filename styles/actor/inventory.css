@@ -149,6 +149,20 @@
 .everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .consumption {
 	display: flex;
 }
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .consumption .ammunition {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .consumption .ammunition-type {
+	text-align: center;
+}
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .consumption .ammunition-type select {
+	height: 1.5em;
+	border: none;
+	background: none;
+	font-size: var(--font-size-11);
+}
 .everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li > div .action {
 	display: flex;
 	gap: 0.5em;

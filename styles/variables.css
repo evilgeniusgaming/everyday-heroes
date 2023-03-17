@@ -4,9 +4,16 @@
 	--eh-background-color-mid: rgb(207, 210, 205);
 	--eh-background-color-light: rgb(244, 244, 240);
 	--eh-background-color-white: rgb(255, 255, 255);
+	--eh-background-color-failure: rgb(255, 217, 215); /* lch(90%, 10%, 25%) */
+	--eh-background-color-success: rgb(217, 231, 202); /* lch(90%, 10%, 125%) */
 
 	--eh-border-color-strong: rgb(0, 0, 0);
 	--eh-border-color-weak: rgba(0, 0, 0, 0.5);
+
+	--eh-dice-color-critical-failure: rgb(231, 25, 0); /* lch(50%, 75%, 50%) */
+	--eh-dice-color-critical-success: rgb(0, 140, 0);  /* lch(50%, 75%, 120%) */
+	--eh-dice-color-failure: rgb(152, 0, 0);           /* lch(25%, 75%, 50%) */
+	--eh-dice-color-success: rgb(0, 75, 0);            /* lch(25%, 75%, 120%) */
 
 	--eh-input-color-checked: rgb(136, 255, 118);
 

@@ -1,4 +1,5 @@
 import ActorEH from "./actor.mjs";
+import ChatMessageEH from "./chat-message.mjs";
 import CombatantEH from "./combatant.mjs";
 import ItemEH from "./item.mjs";
 
@@ -11,6 +12,7 @@ export function registerDocumentClasses() {
 		hero: "EH.Actor.Type.Hero[one]",
 		npc: "EH.Actor.Type.NPC[one]"
 	};
+	CONFIG.ChatMessage.documentClass = ChatMessageEH;
 	CONFIG.Combatant.documentClass = CombatantEH;
 	CONFIG.Item.documentClass = ItemEH;
 	CONFIG.Item.typeLabels = {

@@ -91,6 +91,13 @@
       "items": {},
       "resources": {},
       "skills": {},
+      "overrides": {
+        "abilities": {
+          "melee": "",
+          "ranged": ""
+        },
+        "criticalThreshold": {}
+      },
       "traits": {
         "languages": [],
         "equipment": []

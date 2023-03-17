@@ -34,6 +34,12 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @property {object} bonuses
  * @property {string} bonuses.attack - Bonus to the weapon's attack rolls.
  * @property {string} bonuses.damage - Bonus to the weapon's damage rolls.
+ * @property {object} bonuses.critical
+ * @property {string} bonuses.critical.damage - Extra critical damage.
+ * @property {number} bonuses.critical.dice - Extra critical damage dice.
+ * @property {object} overrides
+ * @property {string} overrides.ability - Ability used when making attacks with this weapon.
+ * @property {number} overrides.criticalThreshold - Number needed to roll to score a critical hit with this weapon.
  */
 export default class WeaponData extends SystemDataModel.mixin(
 	AttackTemplate, DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate
@@ -100,17 +106,21 @@ export default class WeaponData extends SystemDataModel.mixin(
 	get attackAbility() {
 		if ( this.overrides.ability ) return this.overrides.ability;
 
-		const DEF = CONFIG.EverydayHeroes.defaultAbilities;
+		// Determine abilities to use for ranged & melee attacks
+		let { melee, ranged } = CONFIG.EverydayHeroes.defaultAbilities;
+		const overrides = this.parent?.actor.system.overrides?.abilities ?? {};
+		if ( overrides.melee ) melee = overrides.melee;
+		if ( overrides.ranged ) ranged = overrides.ranged;
 
-		// Finesse, higher of dexterity or strength
+		// Finesse, higher of the abilities
 		if ( this.properties.has("finesse") ) {
 			const abilities = this.parent?.actor?.system.abilities;
-			if ( !abilities ) return ["ranged", "thrown"].includes(this.type) ? DEF.ranged : DEF.melee;
-			if ( abilities[DEF.ranged]?.mod > abilities[DEF.melee]?.mod ) return DEF.ranged;
-			return DEF.melee;
+			if ( !abilities ) return ["ranged", "thrown"].includes(this.type) ? ranged : melee;
+			if ( abilities[ranged]?.mod > abilities[melee]?.mod ) return ranged;
+			return melee;
 		}
 
-		return (this.type.value === "ranged") ? DEF.ranged : DEF.melee;
+		return (this.type.value === "ranged") ? ranged : melee;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -154,6 +164,18 @@ export default class WeaponData extends SystemDataModel.mixin(
 			...this.propertiesTags,
 			...this.physicalTags
 		];
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get criticalThreshold() {
+		// TODO: Replace actor threshold with a more customizable system
+		const threshold = Math.min(
+			this.parent?.actor?.system.overrides?.criticalThreshold?.all ?? Infinity,
+			this.ammunition?.system.overrides.criticalThreshold ?? Infinity,
+			this.overrides.criticalThreshold ?? Infinity
+		);
+		return threshold < Infinity ? threshold : 20;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -256,7 +278,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedDamage() {
-		if ( this.ammunition ) this.damage.modify(this.ammunition);
+		if ( this.ammunition ) this.damage.modify(this.ammunition.system.damage);
 		if ( this.mode === "burst" ) this.damage.modify({ number: 1 });
 		if ( this.properties.has("versatile") && (this.mode === "twoHanded") ) this.damage.modify({ denomination: 1 });
 	}
@@ -264,7 +286,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedPenetrationValue() {
-		this.penetrationValue += this.ammunition?.system.penetrationValue ?? 0;
+		this.penetrationValue = this._source.penetrationValue + (this.ammunition?.system.penetrationValue ?? 0);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -272,6 +294,8 @@ export default class WeaponData extends SystemDataModel.mixin(
 	prepareDerivedRounds() {
 		this.rounds.spent = Math.min(this.rounds.spent, this.rounds.capacity);
 		this.rounds.available = this.rounds.capacity - this.rounds.spent;
+		const digits = Math.max(Math.floor(Math.log10(this.rounds.capacity) + 1), 1);
+		this.rounds.label = `${numberFormat(this.rounds.available, {digits})} / ${numberFormat(this.rounds.capacity)}`;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

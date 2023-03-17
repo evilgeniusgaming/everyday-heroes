@@ -63,6 +63,16 @@ export default class AttackTemplate {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * The number needed to roll on a dice to be considered a critical hit.
+	 * @type {number|null}
+	 */
+	get criticalThreshold() {
+		return null;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Can attack rolls be performed by this Item?
 	 * @type {boolean}
 	 */

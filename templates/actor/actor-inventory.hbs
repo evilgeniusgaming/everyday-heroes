@@ -67,14 +67,23 @@
 							{{/each}}
 						</nav>
 						<div class="consumption">
-							{{#if item.system.rounds.capacity}}
-								<div class="reload action" data-action="item" data-type="reload"
-									data-tooltip="{{localize 'EH.Weapon.Action.Reload.Label'}}">
-									<figure style="background-image: url('{{item.system.reloadIcon}}');"></figure>
-									<span class="available">{{everydayHeroes-number item.system.rounds.available digits=2}}</span>
-									{{!-- TODO: Adjust the number of digits here to match the digits of capacity --}}
-									<span class="seperator">/</span>
-									<span class="capacity">{{everydayHeroes-number item.system.rounds.capacity}}</span>
+							{{#if (or item.system.rounds.capacity item.system.rounds.type)}}
+								<div class="ammunition">
+									{{#if item.system.rounds.capacity}}
+										<div class="reload action" data-action="item" data-type="reload"
+											data-tooltip="{{localize 'EH.Weapon.Action.Reload.Label'}}">
+											<figure style="background-image: url('{{item.system.reloadIcon}}');"></figure>
+											<span>{{item.system.rounds.label}}</span>
+										</div>
+									{{/if}}
+									{{#if item.system.rounds.type}}
+										<div class="ammunition-type">
+											<select name="ammunition">
+												{{selectOptions ctx.ammunition.types selected=ctx.ammunition.selected
+													blank=ctx.ammunition.defaultLabel labelAttr="name"}}
+											</select>
+										</div>
+									{{/if}}
 								</div>
 							{{/if}}
 							{{#if item.system.consumesResource}}

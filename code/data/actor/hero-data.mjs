@@ -104,9 +104,9 @@ export default class HeroData extends SystemDataModel.mixin(
 					passive: new FormulaField({label: "EH.Skill.Bonuses.Passive"})
 				})
 			}, {label: ""}),
-			conditions: new foundry.data.fields.SchemaField({
-				// TODO: Figure out how to track exhaustion and intoxication and support custom conditions with levels
-			}),
+			conditions: new MappingField(new foundry.data.fields.NumberField({
+				min: 0, integer: true
+			}), {label: ""}),
 			details: new foundry.data.fields.SchemaField({
 				level: new foundry.data.fields.NumberField({
 					nullable: false, initial: 1, min: 1, max: CONFIG.EverydayHeroes.maxLevel, integer: true, label: ""
@@ -117,9 +117,17 @@ export default class HeroData extends SystemDataModel.mixin(
 			}),
 			inspiration: new foundry.data.fields.BooleanField({label: "EH.Resource.Inspiration"}),
 			items: new MappingField(new foundry.data.fields.SchemaField({
+				ammunition: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, {idOnly: true, label: ""}),
 				equipped: new foundry.data.fields.BooleanField({label: ""}),
 				mode: new foundry.data.fields.StringField({label: ""})
 			})),
+			overrides: new foundry.data.fields.SchemaField({
+				abilities: new foundry.data.fields.SchemaField({
+					melee: new foundry.data.fields.StringField({label: ""}),
+					ranged: new foundry.data.fields.StringField({label: ""})
+				}),
+				criticalThreshold: new MappingField(new foundry.data.fields.NumberField({initial: 20, min: 1, integer: true}))
+			}, {label: ""}),
 			traits: new foundry.data.fields.SchemaField({
 				languages: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {label: ""}),
 				equipment: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {label: ""})

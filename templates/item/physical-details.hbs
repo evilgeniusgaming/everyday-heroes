@@ -57,7 +57,7 @@
 		</fieldset>
 	{{/if}}
 
-	{{#if (eq item.system.damage.mode "regular")}}
+	{{#if (eq item.system.damageMode "regular")}}
 		<fieldset class="triple">
 			<label>{{localize "EH.Equipment.Trait.Damage.Label"}}</label>
 			<div class="fields">
@@ -83,7 +83,7 @@
 			</div>
 			<p class="hint">{{localize "EH.Equipment.Trait.Damage.Hint"}}</p>
 		</fieldset>
-	{{else if (eq item.system.damage.mode "modification")}}
+	{{else if (eq item.system.damageMode "modification")}}
 		<fieldset class="triple">
 			<label>{{localize "EH.Equipment.Trait.DamageModification.Label"}}</label>
 			<div class="fields">
@@ -266,6 +266,13 @@
 				<select name="system.overrides.ability">
 					{{selectOptions CONFIG.abilities selected=system.overrides.ability blank="" labelAttr="label"}}
 				</select>
+			</fieldset>
+		{{/if}}
+	
+		{{#if (everydayHeroes-has item "system.overrides.criticalThreshold")}}
+			<fieldset>
+				<label>{{localize "EH.Weapon.Overrides.CriticalThreshold.Label"}}</label>
+				<input type="number" name="system.overrides.criticalThreshold" value="{{system.overrides.criticalThreshold}}">
 			</fieldset>
 		{{/if}}
 	{{/if}}

@@ -598,9 +598,13 @@ export default class ItemEH extends Item {
 			// TODO: Handle weapon- & category-type global bonuses
 		}, this.getRollData());
 
-		const rollConfig = foundry.utils.mergeObject({ data }, config);
+		const rollConfig = foundry.utils.mergeObject({
+			data,
+			options: {
+				criticalSuccess: this.system.criticalThreshold
+			}
+		}, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
-		// TODO: Take expanded critical hit thresholds into account
 
 		const flavor = this.system.attackTooltip;
 		const messageConfig = foundry.utils.mergeObject({

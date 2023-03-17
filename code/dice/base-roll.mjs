@@ -39,7 +39,6 @@ import BaseConfigurationDialog from "./base-configuration-dialog.mjs";
 export default class BaseRoll extends Roll {
 	constructor(formula, data, options={}) {
 		super(formula, data, options);
-		this.options._rollType = this.constructor.name;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -96,12 +95,5 @@ export default class BaseRoll extends Roll {
 			rollMode: roll.options.rollMode ?? message.rollMode
 		});
 		return roll;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	static create(formula, data={}, options={}) {
-		const cls = CONFIG.Dice[options._rollType] ?? CONFIG.Dice.rolls[0];
-		return new cls(formula, data, options);
 	}
 }

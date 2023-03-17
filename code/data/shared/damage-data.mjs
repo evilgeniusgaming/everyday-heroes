@@ -7,23 +7,13 @@
  */
 export default class Damage extends foundry.abstract.DataModel {
 
-	/**
-	 * Damage mode to use when constructing the schema, either "regular" or "modification".
-	 * @type {string}
-	 */
-	static mode = "regular";
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
 	static defineSchema() {
 		return {
 			number: new foundry.data.fields.NumberField({
-				initial: null, min: this.damageMode === "regular" ? 0 : undefined, integer: true,
-				label: "EH.Equipment.Trait.Damage.Count.Label"
+				initial: null, min: 0, integer: true, label: "EH.Equipment.Trait.Damage.Count.Label"
 			}),
 			denomination: new foundry.data.fields.NumberField({
-				initial: null, min: this.damageMode === "regular" ? 1 : undefined, integer: true,
-				label: "EH.Equipment.Trait.Damage.Denomination.Label"
+				initial: null, min: 1, integer: true, label: "EH.Equipment.Trait.Damage.Denomination.Label"
 			}),
 			type: new foundry.data.fields.StringField({label: "EH.Equipment.Trait.Damage.Type.Label"})
 		};
@@ -52,16 +42,6 @@ export default class Damage extends foundry.abstract.DataModel {
 		const ability = this._actor?.system.abilities[this.parent?.damageAbility]?.mod ?? 0;
 		if ( !this.denomination ) return this.number + ability;
 		return (this.denomination / 2 * this.number) + ability;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Is the damage defined on this item "regular" damage or a "modification" to another damage?
-	 * @type {string}
-	 */
-	get mode() {
-		return this.constructor.mode;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

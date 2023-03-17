@@ -41,9 +41,6 @@ export default class ChallengeRoll extends BaseRoll {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	static async buildConfiguration(roll, config, message, options) {
-		config.options ??= {};
-		config.options.criticalSuccess ??= CONFIG.Dice.ChallengeDie.CRITICAL_SUCCESS_TOTAL;
-		config.options.criticalFailure ??= CONFIG.Dice.ChallengeDie.CRITICAL_FAILURE_TOTAL;
 		// TODO: Check keys pressed to determine advantage mode & whether dialog should be shown
 	}
 
@@ -57,6 +54,9 @@ export default class ChallengeRoll extends BaseRoll {
 	 */
 	static async build(config={}, message={}, options={}) {
 		config.parts = [(new CONFIG.Dice.ChallengeDie()).formula].concat(config.parts ?? []);
+		config.options ??= {};
+		config.options.criticalSuccess ??= CONFIG.Dice.ChallengeDie.CRITICAL_SUCCESS_TOTAL;
+		config.options.criticalFailure ??= CONFIG.Dice.ChallengeDie.CRITICAL_FAILURE_TOTAL;
 		return super.build(config, message, options);
 	}
 
@@ -113,6 +113,7 @@ export default class ChallengeRoll extends BaseRoll {
 	 * @type {boolean|void}
 	 */
 	get isCriticalSuccess() {
+		this.#createChallengeDie();
 		return this.challengeDie.isCriticalSuccess;
 	}
 
@@ -123,6 +124,7 @@ export default class ChallengeRoll extends BaseRoll {
 	 * @type {boolean|void}
 	 */
 	get isCriticalFailure() {
+		this.#createChallengeDie();
 		return this.challengeDie.isCriticalFailure;
 	}
 

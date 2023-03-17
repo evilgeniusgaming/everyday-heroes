@@ -1,4 +1,5 @@
 import DamageData from "../../shared/damage-data.mjs";
+import DamageModificationData from "../../shared/damage-modification-data.mjs";
 
 /**
  * Data model template for items that cause damage.
@@ -8,11 +9,20 @@ import DamageData from "../../shared/damage-data.mjs";
  */
 export default class Damage extends foundry.abstract.DataModel {
 
+	/**
+	 * Damage mode to use when constructing the schema, either "regular" or "modification".
+	 * @type {string}
+	 */
+	static damageMode = "regular";
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static defineSchema() {
 		return {
-			damage: new foundry.data.fields.EmbeddedDataField(DamageData, {
-				label: "EH.Equipment.Trait.Damage.Label", hint: "EH.Equipment.Trait.Damage.Hint"
-			})
+			damage: new foundry.data.fields.EmbeddedDataField(
+				this.damageMode === "regular" ? DamageData : DamageModificationData,
+				{ label: "EH.Equipment.Trait.Damage.Label", hint: "EH.Equipment.Trait.Damage.Hint" }
+			)
 		};
 	}
 
@@ -86,6 +96,6 @@ export default class Damage extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareBaseDamage() {
-		this.damage.prepareBaseData();
+		this.damage.prepareBaseData?.();
 	}
 }

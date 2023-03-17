@@ -123,6 +123,17 @@ export default class BaseSheet extends ActorSheet {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	_onChangeInput(event) {
+		super._onChangeInput(event);
+		if ( event.target.name === "ammunition" ) {
+			const ammoId = event.target.value;
+			const weaponId = event.target.closest("[data-item-id]")?.dataset.itemId;
+			this.actor.update({[`system.items.${weaponId}.ammunition`]: ammoId});
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	/**
 	 * Handle clicking on the proficiency selector for abilities or skills.
 	 * @param {Event} event - Triggering click event.
