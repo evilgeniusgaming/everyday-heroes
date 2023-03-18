@@ -339,6 +339,12 @@
 "Initiative.Label": "Initiative",
 "Initiative.Bonus.Label": "Initiative Bonus",
 
+"Inline.DC": "DC {dc} {check}",
+"Inline.Check": "{ability} check",
+"Inline.NoActorWarning": "No selected or assigned actor could be found to execute this roll.",
+"Inline.Save": "{ability} saving throw",
+"Inline.Skill": "{ability} ({skill}) check",
+
 "Item.Label[one]": "Item",
 "Item.Label[other]": "Items",
 "Item.New": "New {type}",

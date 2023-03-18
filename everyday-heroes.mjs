@@ -10,6 +10,7 @@ import config from "./code/config/_module.mjs";
 import * as data from "./code/data/_module.mjs";
 import * as dice from "./code/dice/_module.mjs";
 import * as documents from "./code/documents/_module.mjs";
+import * as enrichers from "./code/enrichers.mjs";
 import * as settings from "./code/settings.mjs";
 import * as utils from "./code/utils.mjs";
 
@@ -19,6 +20,7 @@ globalThis.EverydayHeroes = {
 	data,
 	dice,
 	documents,
+	enrichers,
 	settings,
 	utils
 };
@@ -31,6 +33,7 @@ Hooks.once("init", function() {
 	data.registerSystemDataModels();
 	dice.registerDice();
 	documents.registerDocumentClasses();
+	enrichers.registerCustomEnrichers();
 	settings.registerKeybindings();
 	settings.registerSettings();
 	utils.registerHandlebarsHelpers();
@@ -55,6 +58,7 @@ export {
 	data,
 	dice,
 	documents,
+	enrichers,
 	settings,
 	utils
 };

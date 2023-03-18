@@ -12,6 +12,8 @@ export default class ChatMessageEH extends ChatMessage {
 				if ( !result ) continue;
 				if ( roll.isCriticalSuccess ) result.classList.add("critical-success");
 				else if ( roll.isCriticalFailure ) result.classList.add("critical-failure");
+				else if ( roll.isSuccess ) result.classList.add("success");
+				else if ( roll.isFailure ) result.classList.add("failure");
 			}
 		}
 
