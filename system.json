@@ -31,7 +31,7 @@
       "name": "archetypes-classes",
       "label": "Archetypes & Classes",
       "system": "everyday-heroes",
-      "path": "packs/archetypes-classes.db",
+      "path": "./packs/archetypes-classes.db",
       "type": "Item",
       "private": false,
       "flags": {
@@ -42,7 +42,7 @@
       "name": "backgrounds-professions",
       "label": "Backgrounds & Professions",
       "system": "everyday-heroes",
-      "path": "packs/backgrounds-professions.db",
+      "path": "./packs/backgrounds-professions.db",
       "type": "Item",
       "private": false,
       "flags": {
@@ -53,7 +53,7 @@
       "name": "items",
       "label": "Items",
       "system": "everyday-heroes",
-      "path": "packs/items.db",
+      "path": "./packs/items.db",
       "type": "Item",
       "private": false,
       "flags": {
@@ -65,7 +65,7 @@
     {
       "lang": "en",
       "name": "English",
-      "path": "lang/en.json",
+      "path": "./lang/en.json",
       "flags": {}
     }
   ],

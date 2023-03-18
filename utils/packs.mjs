@@ -6,6 +6,7 @@ import mergeStream from "merge-stream";
 import path from "path";
 import through2 from "through2";
 import yargs from "yargs";
+import getSubfolderName from "./folders.mjs";
 
 
 /**
@@ -208,13 +209,13 @@ function extractPacks() {
 			db.loadDatabase();
 
 			db.find({}, (err, entries) => {
-				entries.forEach(entry => {
+				entries.forEach(async entry => {
 					const name = entry.name.toLowerCase();
 					if ( entryName && (entryName !== name) ) return;
 					cleanPackEntry(entry);
 					const output = `${JSON.stringify(entry, null, 2)}\n`;
 					const outputName = name.replace("'", "").replace(/[^a-z0-9]+/gi, " ").trim().replace(/\s+|-{2,}/g, "-");
-					const subfolder = path.join(folder, _getSubfolderName(entry, filename));
+					const subfolder = path.join(folder, await getSubfolderName(entry, filename));
 					if ( !fs.existsSync(subfolder) ) fs.mkdirSync(subfolder, { recursive: true, mode: 0o775 });
 					fs.writeFileSync(path.join(subfolder, `${outputName}.json`), output, { mode: 0o664 });
 				});
@@ -227,17 +228,3 @@ function extractPacks() {
 	return mergeStream(packs);
 }
 export const extract = extractPacks;
-
-
-/**
- * Determine a subfolder name based on which pack is being extracted.
- * @param {object} data - Data for the entry being extracted.
- * @param {string} pack - Name of the pack.
- * @returns {string} - Subfolder name the entry into which the entry should be created. An empty string if none.
- * @private
- */
-function _getSubfolderName(data, pack) {
-	switch (pack) {
-		default: return "";
-	}
-}
