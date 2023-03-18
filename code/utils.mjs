@@ -263,8 +263,10 @@ export async function registerHandlebarsPartials() {
 		"advancement/parts/advancement-ability-score-control.hbs",
 		"advancement/parts/advancement-controls.hbs",
 		"advancement/parts/advancement-scale-value.hbs",
+		"item/feature-details.hbs",
 		"item/item-summary.hbs",
-		"item/physical-details.hbs"
+		"item/physical-details.hbs",
+		"shared/active-effects.hbs"
 	];
 
 	const paths = {};

@@ -101,6 +101,16 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Does this item support active effects?
+	 * @type {boolean}
+	 */
+	get hasEffects() {
+		return true;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

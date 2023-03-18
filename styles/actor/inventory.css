@@ -1,4 +1,4 @@
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section {
 	display: grid;
 	grid-template-columns: repeat(4, auto) max-content;
 	gap: 0 1em;
@@ -7,22 +7,22 @@
 	border-radius: 10px;
 	background-color: var(--eh-background-color-light);
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section:not(:last-of-type) {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section:not(:last-of-type) {
 	margin-block-end: -20px;
 	padding-block-end: 20px;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) :is(header, .primary.item, .item-list, .item-list > li) {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) :is(header, .primary.item, .item-list, .item-list > li) {
 	grid-column: 1 / -1;
 	display: grid;
 	grid-template-columns: subgrid;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) :is(h3, h4) {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) :is(h3, h4) {
 	display: flex;
 	align-items: center;
 	border: none;
 	gap: 0.5em;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) :is(h3, h4) figure {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) :is(h3, h4) figure {
 	width: 25px;
 	height: 25px;
 	margin: 0;
@@ -32,21 +32,21 @@
 	background-size: cover;
 	cursor: pointer;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) :is(h3, h4) figure[data-action] {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) :is(h3, h4) figure[data-action] {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) :is(h3, h4) figure[data-action] > i {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) :is(h3, h4) figure[data-action] > i {
 	display: none;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) :is(h3, h4) figure[data-action]:hover {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) :is(h3, h4) figure[data-action]:hover {
 	background: var(--eh-background-color-light);
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) :is(h3, h4) figure[data-action]:hover > i {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) :is(h3, h4) figure[data-action]:hover > i {
 	display: unset;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section header {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section header {
 	margin: -1px;
 	margin-block-end: 0;
 	border: 1px solid var(--eh-border-color-weak);
@@ -54,7 +54,7 @@
 	padding: 0.25em 0.5em;
 	background-color: var(--eh-background-color-mid);
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section header h2 {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section header h2 {
 	grid-column: 1 / -2;
 	margin: 0;
 	border: none;
@@ -62,35 +62,35 @@
 	font-variant: small-caps;
 	font-weight: bold;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section header .primary.item {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section header .primary.item {
 	margin-block-start: 0.5em;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section header .primary.item fieldset {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section header .primary.item fieldset {
 	grid-column: -2 / -1;
 }
 
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section .item-list {
 	list-style: none;
 	margin-block: 0.25em;
 	padding: 0;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list > li {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section .item-list > li {
 	align-items: center;
 	padding-block: 0.25em;
 	padding-inline: 0.5em;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list > li:hover {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section .item-list > li:hover {
 	background-color: var(--eh-background-color-mid);
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list > li h4 {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section .item-list > li h4 {
 	margin: 0;
 }
 
 @supports not (grid-template-columns: subgrid) {
-	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-list {
+	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) .item-list {
 		display: block;
 	}
-	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) :is(.item-list > .item, .primary.item) {
+	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) :is(.item-list > .item, .primary.item) {
 		grid-template-columns: 25% auto max-content;
 	}
 }
@@ -99,14 +99,14 @@
 /*  Item Actions                             */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li > div {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section .item-list li > div {
 	grid-column: 2 / -2;
 	display: grid;
 	grid-template-columns: subgrid;
 	align-items: center;
 	justify-items: start;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li > div figure {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section .item-list li > div figure {
 	width: 1.25em;
 	height: 1.25em;
 	margin: 0;
@@ -114,90 +114,90 @@
 	background-size: contain;
 }
 
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-modes nav {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) .item-modes nav {
 	margin: 0;
 	font-size: var(--font-size-12);
 	border-width: 1px;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-modes li {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) .item-modes li {
 	padding: 0;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-modes li.selected {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) .item-modes li.selected {
 	background-color: var(--eh-background-color-black);
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-modes li.selected:hover {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) .item-modes li.selected:hover {
 	box-shadow: none;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-modes a {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) .item-modes a {
 	margin-inline: -0.25em;
 	padding: 0.25em 0.75em;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li > div .item-modes figure {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section .item-list li > div .item-modes figure {
 	width: 1.5em;
 	height: 1.5em;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li > div .item-modes li.selected figure {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section .item-list li > div .item-modes li.selected figure {
 	filter: invert(1);
 }
 
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-actions {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) .item-actions {
 	display: flex;
 	justify-content: flex-end;
 	padding: 0.15em;
 	gap: 0.25em;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .consumption {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) .consumption {
 	display: flex;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .consumption .ammunition {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) .consumption .ammunition {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .consumption .ammunition-type {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) .consumption .ammunition-type {
 	text-align: center;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .consumption .ammunition-type select {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) .consumption .ammunition-type select {
 	height: 1.5em;
 	border: none;
 	background: none;
 	font-size: var(--font-size-11);
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li > div .action {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section .item-list li > div .action {
 	display: flex;
 	gap: 0.5em;
 	border-radius: 1em;
 	padding: 0.15em 0.5em;
 	background-color: var(--eh-background-color-light);
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li > div .action.disabled {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section .item-list li > div .action.disabled {
 	opacity: 0.5;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li > div .action:not(.disabled) {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section .item-list li > div .action:not(.disabled) {
 	cursor: pointer;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li > div .action:not(.disabled):hover {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section .item-list li > div .action:not(.disabled):hover {
 	outline: 2px solid var(--eh-border-color-strong);
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li > div .action > span {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section .item-list li > div .action > span {
 	white-space: nowrap;
 }
 
 @supports not (grid-template-columns: subgrid) {
-	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) > section .item-list li > div {
+	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) > section .item-list li > div {
 		grid-column: unset;
 		display: flex;
 		justify-content: space-between;
 	}
-	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-modes {
+	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) .item-modes {
 		display: flex;
 		flex-basis: 25%;
 	}
-	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-actions {
+	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) .item-actions {
 		flex-basis: 50%;
 		justify-content: space-evenly;
 	}
-	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .consumption {
+	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) .consumption {
 		flex-basis: 25%;
 	}
 }
@@ -206,7 +206,7 @@
 /*  Item Controls                            */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) fieldset {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) fieldset {
 	grid-column: -1;
 	display: flex;
 	justify-content: flex-end;
@@ -215,16 +215,16 @@
 	border: none;
 	padding: 0;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) fieldset a {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) fieldset a {
 	padding-inline: 0.5em;
 	align-self: center;
 }
-.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) fieldset a:not(:hover, .equipped) {
+.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) fieldset a:not(:hover, .equipped) {
 	opacity: 0.5;
 }
 
 @supports not (grid-template-columns: subgrid) {
-	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) fieldset {
+	.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) fieldset {
 		grid-column: unset;
 	}
 }
@@ -233,7 +233,7 @@
 /*  Item Summary                             */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.everyday-heroes.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-summary {
+.everyday-heroes.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) .item-summary {
 	grid-column: 1 / -2;
 	display: block;
 	margin-block: 0.5em 0.25em;
@@ -243,6 +243,6 @@
 	box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
 	font-size: var(--font-size-12);
 }
-.everyday-heroes.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"]) .item-summary .item-tags {
+.everyday-heroes.everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) .item-summary .item-tags {
 	gap: 3px 0.5em;
 }

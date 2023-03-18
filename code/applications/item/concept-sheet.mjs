@@ -183,6 +183,8 @@ export default class ConceptSheet extends ItemSheet {
 			case "toggle-configuration":
 				this.advancementConfigurable = !this.advancementConfigurable;
 				return this.render();
+			default:
+				return console.warn(`Everyday Heroes | Invalid advancement action type clicked ${action}.`);
 		}
 	}
 

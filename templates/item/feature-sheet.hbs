@@ -17,6 +17,9 @@
 		<nav data-group="primary">
 			<a data-tab="description">Description</a>{{!-- TODO: Localize --}}
 			<a data-tab="details">Details</a>{{!-- TODO: Localize --}}
+			{{#if item.system.hasEffects}}
+				<a data-tab="effects">Effects</a>{{!-- TODO: Localize --}}
+			{{/if}}
 		</nav>
 	</header>
 
@@ -26,74 +29,13 @@
 				engine="prosemirror" collaborate=false}}
 		</div>
 		<div class="tab" data-group="primary" data-tab="details">
-			<section>
-				<fieldset>
-					<label>Activation Cost</label>{{!-- TODO: Localize --}}
-					<select name="system.activation.type">
-						{{selectOptions CONFIG.actionTypesStandard selected=system.activation.type blank=(localize "None")}}
-					</select>
-				</fieldset>
-				<fieldset>
-					<label>Activation Condition</label>{{!-- TODO: Localize --}}
-					<input type="text" name="system.activation.condition" value="{{system.activation.condition}}">
-				</fieldset>
-				<fieldset>
-					<label>Consumption</label>{{!-- TODO: Localize --}}
-					<div class="fields">
-						<label>{{!-- TODO: Should span full width if no type selected --}}
-							<span>Type</span>{{!-- TODO: Localize --}}
-							<select name="system.resource.type">
-								{{selectOptions CONFIG.consumptionTypes selected=system.resource.type labelAttr="label" blank=""}}
-							</select>
-						</label>
-						{{#if system.resource.type}}
-							<label>
-								<span>Amount</span>{{!-- TODO: Localize --}}
-								<input type="number" name="system.resource.amount" value="{{system.resource.amount}}">
-							</label>
-							<label>
-								<span>Target</span>{{!-- TODO: Localize --}}
-								{{#if item.isEmbedded}}
-									<select name="system.resource.target">
-										{{selectOptions resources selected=system.resource.target blank=""}}
-									</select>
-								{{else}}
-									<input type="text" name="system.resource.target" value="{{source.resource.target}}">
-								{{/if}}
-							</label>
-						{{/if}}
-					</div>
-				</fieldset>
-				<fieldset class="triple">
-					<label>{{localize "EH.Uses.Label"}}</label>
-					<div class="fields">
-						<label>
-							<span>{{localize "EH.Uses.Max.Label"}}</span>
-							<input type="text" name="system.uses.max" value="{{source.uses.max}}">
-						</label>
-						<label>
-							<span>{{localize "EH.Uses.Recovery.Period.Label"}}</span>
-							<select name="system.uses.period">
-								{{selectOptions CONFIG.recoveryPeriods selected=system.uses.period labelAttr="label" blank=""}}
-							</select>
-						</label>
-						<label>
-							<span>{{localize "EH.Uses.Recovery.Formula.Label"}}</span>
-							<input type="text" name="system.uses.recovery" value="{{system.uses.recovery}}" placeholder="All">
-						</label>
-				</fieldset>
-				{{#if system.hasRecharge}}
-					<fieldset class="triple">
-						<label>{{localize "EH.Recharge.Label"}}</label>
-						<div class="fields">
-							<label>
-								<span>Target</span>{{!-- TODO: Localize --}}
-								<input type="number" name="system.recharge.target" value="{{system.recharge.target}}">
-							</label>
-					</fieldset>
-				{{/if}}
-			</section>
+			{{> "everydayHeroes.feature-details"}}
 		</div>
+		{{#if item.system.hasEffects}}
+			<div class="tab" data-group="primary" data-tab="effects">
+				{{> "everydayHeroes.active-effects"}}
+			</div>
+		{{/if}}
 	</main>
 
 </form>

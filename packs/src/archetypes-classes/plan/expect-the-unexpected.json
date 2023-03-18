@@ -1,7 +1,7 @@
 {
   "name": "Expect the Unexpected",
   "type": "plan",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/perception/orb-crystal-ball-scrying.webp",
   "system": {
     "description": {
       "value": "<p>When you enact this plan as an action, you prepare yourself for every form of attack. For the next hour, your Defense bonus is +3.</p><hr /><p><strong>Level 5:</strong> The bonus becomes +4. While this plan is active, you can use this bonus in place of your Strength or Dexterity modifier when making a saving throw.</p><p><strong>Level 9:</strong> The bonus becomes +5.</p>",
@@ -29,7 +29,91 @@
       "class": ""
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "label": "Expect the Unexpected (level 1)",
+      "icon": "icons/magic/perception/orb-crystal-ball-scrying.webp",
+      "origin": "Compendium.everyday-heroes.archetypes-classes.w8RjUntlLaQYUprb",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "_id": "KAMCi3xKUNPAOISK",
+      "changes": [
+        {
+          "key": "system.attributes.defense.bonus",
+          "mode": 2,
+          "value": "+3",
+          "priority": null
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "sort": 0
+    },
+    {
+      "label": "Expect the Unexpected (level 5)",
+      "icon": "icons/magic/perception/orb-crystal-ball-scrying.webp",
+      "origin": "Compendium.everyday-heroes.archetypes-classes.w8RjUntlLaQYUprb",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "_id": "H9QDSoZIN2woS5cr",
+      "changes": [
+        {
+          "key": "system.attributes.defense.bonus",
+          "mode": 2,
+          "value": "+4",
+          "priority": null
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "sort": 0
+    },
+    {
+      "label": "Expect the Unexpected (level 9)",
+      "icon": "icons/magic/perception/orb-crystal-ball-scrying.webp",
+      "origin": "Compendium.everyday-heroes.archetypes-classes.w8RjUntlLaQYUprb",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "_id": "vGMMbfeW0M40wgrt",
+      "changes": [
+        {
+          "key": "system.attributes.defense.bonus",
+          "mode": 2,
+          "value": "+5"
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "sort": 0
+    }
+  ],
   "ownership": {
     "default": 0
   },
@@ -39,7 +123,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679161995056,
-    "modifiedTime": 1679162363338,
+    "modifiedTime": 1679178977697,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

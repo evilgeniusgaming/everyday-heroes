@@ -251,6 +251,17 @@
 
 "Dice.Denomination": "Denomination",
 
+"Effect.New": "New Effect",
+"Effect.Action.Create": "Create Effect",
+"Effect.Action.Delete": "Delete Effect",
+"Effect.Action.Disable": "Disable Effect",
+"Effect.Action.Edit": "Enable Edit",
+"Effect.Action.Enable": "Enable Effect",
+"Effect.Action.View": "View Effect",
+"Effect.State.Passive": "Passive",
+"Effect.State.Inactive": "Inactive",
+"Effect.State.Temporary": "Temporary",
+
 "Equipment.Label[one]": "Equipment",
 "Equipment.Label[other]": "Equipment",
 "Equipment.Category.Label[one]": "Equipment Category",

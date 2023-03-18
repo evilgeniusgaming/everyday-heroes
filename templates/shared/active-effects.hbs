@@ -1,0 +1,48 @@
+{{#each effects as |section id|}}
+	<section data-section-id="{{id}}">
+		<header>
+			<h2>{{localize section.label}}</h2>
+			<fieldset>
+				{{#if @root.editable}}
+					<a data-action="effect" data-type="add" data-tooltip="{{localize 'EH.Effect.Action.Create'}}">
+						<i class="fa-solid fa-plus"></i> Create{{!-- TODO: Localize --}}
+					</a>
+				{{/if}}
+			</fieldset>
+		</header>
+		<ol class="item-list">
+			{{#each section.effects as |effect|}}
+				<li class="item" data-effect-id="{{effect.id}}">
+					<h4>
+						<figure style="background-image: url('{{effect.icon}}')"></figure>
+						<span>{{effect.label}}</a>
+					</h4>
+					<div>
+						<div>{{effect.sourceName}}</div>
+						<div>{{effect.duration.label}}</div>
+					</div>
+					{{#if @root.editable}}
+						<fieldset>
+							<a data-action="effect" data-type="toggle"
+								data-tooltip="EH.Effect.Action.{{#if effect.disabled}}Enable{{else}}Disable{{/if}}">
+								<i class="fa-solid fa-{{#if effect.disabled}}check{{else}}times{{/if}}"></i>
+							</a>
+							<a data-action="effect" data-type="edit" data-tooltip="{{localize 'EH.Effect.Action.Edit'}}">
+								<i class="fa-solid fa-edit"></i>
+							</a>
+							<a data-action="effect" data-type="delete" data-tooltip="{{localize 'EH.Effect.Action.Delete'}}">
+								<i class="fa-solid fa-trash"></i>
+							</a>
+						</fieldset>
+					{{else}}
+						<fieldset>
+							<a data-action="effect" data-type="edit" data-tooltip="{{localize 'EH.Effect.Action.View'}}">
+								<i class="fa-regular fa-eye"></i>
+							</a>
+						</fieldset>
+					{{/if}}
+				</li>
+			{{/each}}
+		</ol>
+	</section>
+{{/each}}

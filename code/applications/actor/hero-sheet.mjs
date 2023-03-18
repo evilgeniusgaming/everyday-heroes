@@ -314,7 +314,7 @@ export default class HeroSheet extends BaseSheet {
 				collection.splice(Number(index), 1);
 				return this.actor.update({[`system.biography.${section}`]: collection});
 			default:
-				return console.warn(`Invalid persona action clicked ${type}.`);
+				return console.warn(`Everyday Heroes | Invalid persona action clicked ${type}.`);
 		}
 	}
 

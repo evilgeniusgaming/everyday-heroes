@@ -1,3 +1,5 @@
+import ActiveEffectEH from "../../documents/active-effect.mjs";
+
 /**
  * Sheet that represents Talent, Special Feature, Plan, Trick, and Feat items.
  */
@@ -24,6 +26,8 @@ export default class FeatureSheet extends ItemSheet {
 		context.system = context.item.system;
 		context.source = context.item.system.toObject();
 
+		context.effects = ActiveEffectEH.prepareActiveEffectSections(context.item.effects);
+
 		context.resources = Object.entries(context.item.actor?.system.resources ?? {}).reduce((obj, [key, resource]) => {
 			if ( !resource.disabled ) obj[key] = resource.label;
 			return obj;
@@ -38,5 +42,19 @@ export default class FeatureSheet extends ItemSheet {
 		};
 
 		return context;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Action Handlers                          */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	activateListeners(jQuery) {
+		super.activateListeners(jQuery);
+		const html = jQuery[0];
+
+		// Effect Listeners
+		for ( const element of html.querySelectorAll('[data-action="effect"]') ) {
+			element.addEventListener("click", ActiveEffectEH.onEffectAction.bind(this));
+		}
 	}
 }

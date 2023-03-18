@@ -1,3 +1,4 @@
+import ActiveEffectEH from "../../documents/active-effect.mjs";
 import AdvancementManager from "../advancement/advancement-manager.mjs";
 import AdvancementConfirmationDialog from "../advancement/advancement-confirmation-dialog.mjs";
 
@@ -42,6 +43,8 @@ export default class BaseSheet extends ActorSheet {
 
 		context.CONFIG = CONFIG.EverydayHeroes;
 		context.system = context.actor.system;
+
+		context.effects = ActiveEffectEH.prepareActiveEffectSections(context.actor.effects);
 
 		const modFormatter = new Intl.NumberFormat(game.i18n.lang, { signDisplay: "exceptZero" });
 
@@ -94,6 +97,11 @@ export default class BaseSheet extends ActorSheet {
 	activateListeners(jQuery) {
 		super.activateListeners(jQuery);
 		const html = jQuery[0];
+
+		// Effect Listeners
+		for ( const element of html.querySelectorAll('[data-action="effect"]') ) {
+			element.addEventListener("click", ActiveEffectEH.onEffectAction.bind(this));
+		}
 
 		// Proficiency Selector Listeners
 		for ( const element of html.querySelectorAll('[data-action="cycle-proficiency"]') ) {
@@ -184,6 +192,14 @@ export default class BaseSheet extends ActorSheet {
 				} catch(err) { return; }
 			case "chat":
 				return item?.displayInChat();
+			case "delete":
+				const manager = AdvancementManager.forDeletedItem(this.actor, id);
+				if ( manager.steps.length ) {
+					try {
+						if ( await AdvancementConfirmationDialog.forDelete(item) ) return manager.render(true);
+					} catch(err) { return; }
+				}
+				return item.deleteDialog();
 			case "edit":
 				return item?.sheet.render(true);
 			case "equip":
@@ -205,21 +221,13 @@ export default class BaseSheet extends ActorSheet {
 					// TODO: Remove this animation if core reduce animation setting is set
 				}
 				return;
-			case "delete":
-				const manager = AdvancementManager.forDeletedItem(this.actor, id);
-				if ( manager.steps.length ) {
-					try {
-						if ( await AdvancementConfirmationDialog.forDelete(item) ) return manager.render(true);
-					} catch(err) { return; }
-				}
-				return item.deleteDialog();
 			case "mode":
 				if ( !item || !key ) return;
 				return this.actor.update({[`system.items.${id}.mode`]: key});
 			case "reload":
 				return item?.reload();
 			default:
-				return console.warn(`Invalid item action type clicked ${type}.`);
+				return console.warn(`Everyday Heroes | Invalid item action type clicked ${type}.`);
 		}
 	}
 
@@ -256,7 +264,7 @@ export default class BaseSheet extends ActorSheet {
 			case "damage":
 				return item.rollDamage({ options: dataset });
 			default:
-				return console.warn(`Invalid item roll type clicked ${type}.`);
+				return console.warn(`Everyday Heroes | Invalid item roll type clicked ${type}.`);
 		}
 	}
 
@@ -288,7 +296,7 @@ export default class BaseSheet extends ActorSheet {
 			case "skill":
 				return this.actor.rollSkill(key);
 			default:
-				return console.warn(`Invalid roll type clicked ${type}.`);
+				return console.warn(`Everyday Heroes | Invalid roll type clicked ${type}.`);
 		}
 	}
 }

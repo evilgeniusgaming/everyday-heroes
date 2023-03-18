@@ -187,7 +187,7 @@ export default class HeroData extends SystemDataModel.mixin(
 		// TODO: Add global defense bonus
 
 		this.attributes.defense.ability = highestAbility.key;
-		this.attributes.defense.bonus = defense?.bonus ?? 0;
+		this.attributes.defense.bonus = Number(this.attributes.defense.bonus ?? 0) + (defense?.bonus ?? 0);
 		this.attributes.defense.value = 10 + highestAbility.mod + this.attributes.defense.bonus;
 	}
 
