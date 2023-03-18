@@ -12,7 +12,7 @@ export default class DefenseAdvancement extends ScaleValueAdvancement {
 			dataModels: {
 				configuration: DefenseConfigurationData
 			},
-			order: 55,
+			order: 15,
 			icon: "systems/everyday-heroes/artwork/svg/advancement/defense.svg",
 			title: game.i18n.localize("EH.Advancement.Defense.Title"),
 			hint: game.i18n.localize("EH.Advancement.Defense.Hint"),

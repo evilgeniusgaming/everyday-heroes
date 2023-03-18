@@ -1,0 +1,48 @@
+{
+  "name": "Expect the Unexpected",
+  "type": "plan",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>When you enact this plan as an action, you prepare yourself for every form of attack. For the next hour, your Defense bonus is +3.</p><hr /><p><strong>Level 5:</strong> The bonus becomes +4. While this plan is active, you can use this bonus in place of your Strength or Dexterity modifier when making a saving throw.</p><p><strong>Level 9:</strong> The bonus becomes +5.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "action",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 1,
+      "target": "genius",
+      "type": "resource"
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "identifier": {
+      "value": "expect-the-unexpected",
+      "class": ""
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679161995056,
+    "modifiedTime": 1679162363338,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "w8RjUntlLaQYUprb"
+}

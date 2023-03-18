@@ -1,0 +1,51 @@
+{
+  "name": "Reckless Attack",
+  "type": "talent",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>At the start of your turn, you can declare you are being reckless. You gain advantage on attack rolls with melee weapons until the end of your turn. Your opponents gain advantage on attack rolls against you until the start of your next turn.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "identifier": {
+      "value": "reckless-attack"
+    },
+    "type": {
+      "value": "archetype",
+      "level": 1
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679160884287,
+    "modifiedTime": 1679160899488,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "4fVReFtHq0TWxtGg"
+}

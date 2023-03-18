@@ -28,40 +28,37 @@
   ],
   "packs": [
     {
-      "name": "archetypes",
-      "label": "Archetypes",
+      "name": "archetypes-classes",
+      "label": "Archetypes & Classes",
       "system": "everyday-heroes",
-      "path": "packs/archetypes.db",
+      "path": "packs/archetypes-classes.db",
       "type": "Item",
       "private": false,
-      "flags": {}
+      "flags": {
+        "type": "concept"
+      }
     },
     {
-      "name": "classes",
-      "label": "Classes",
+      "name": "backgrounds-professions",
+      "label": "Backgrounds & Professions",
       "system": "everyday-heroes",
-      "path": "packs/classes.db",
+      "path": "packs/backgrounds-professions.db",
       "type": "Item",
       "private": false,
-      "flags": {}
+      "flags": {
+        "type": "concept"
+      }
     },
     {
-      "name": "backgrounds",
-      "label": "Backgrounds",
+      "name": "items",
+      "label": "Items",
       "system": "everyday-heroes",
-      "path": "packs/backgrounds.db",
+      "path": "packs/items.db",
       "type": "Item",
       "private": false,
-      "flags": {}
-    },
-    {
-      "name": "professions",
-      "label": "Professions",
-      "system": "everyday-heroes",
-      "path": "packs/professions.db",
-      "type": "Item",
-      "private": false,
-      "flags": {}
+      "flags": {
+        "type": "physical"
+      }
     }
   ],
   "languages": [

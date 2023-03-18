@@ -1,0 +1,93 @@
+{
+  "name": "Strong",
+  "type": "archetype",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>You have trained your body for strength and explosive power. You hit hard, excelling in close combat. As a hero, you fight because others can't.</p><p>Strong heroes are durable fighters who make high damage attacks. They specialize in melee attacks, whether they favor unarmed strikes or close combat weapons.</p><p><strong>Hit Dice:</strong> 1d10 per hero level</p><p><strong>Starting Hit Points:</strong> 10 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d10 (or 6) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Meat Shield):</strong> 10 + Strength modifier + Strong Hero Defense bonus</p>",
+      "chat": "",
+      "source": ""
+    },
+    "advancement": [
+      {
+        "_id": "CedYv9qqZCDj4fsD",
+        "_type": "HitPoints",
+        "identifier": "",
+        "configuration": {
+          "denomination": 10
+        },
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "ZtKzU4PUP353RI3b",
+        "_type": "Defense",
+        "identifier": "",
+        "configuration": {
+          "abilities": [
+            "str"
+          ],
+          "scale": {
+            "1": {
+              "value": 1
+            },
+            "3": {
+              "value": 2
+            },
+            "7": {
+              "value": 3
+            }
+          }
+        },
+        "value": {},
+        "flags": {},
+        "title": "Meat Shield"
+      },
+      {
+        "_id": "jlhrmcbg4AWT9ron",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.uBIk7ZjekA3T4xbK"
+          ]
+        },
+        "level": 2,
+        "flags": {},
+        "title": "Talents"
+      },
+      {
+        "_id": "2O6kB6PMasUPYIt1",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.4fVReFtHq0TWxtGg"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": "Talents"
+      }
+    ],
+    "identifier": {
+      "value": "strong"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679160699605,
+    "modifiedTime": 1679161395235,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "JDzQkR2Zpr6TOQCj"
+}

@@ -154,7 +154,7 @@ export class ScaleValueTypeDice extends ScaleValueType {
 		return {
 			number: new foundry.data.fields.NumberField({nullable: true, integer: true, min: 1}),
 			denomination: new foundry.data.fields.NumberField({
-				nullable: true, initial: () => CONFIG.EverydayHeroes.diceSteps[0], integer: true
+				required: true, initial: () => CONFIG.EverydayHeroes.diceSteps[0], integer: true
 			})
 		};
 	}

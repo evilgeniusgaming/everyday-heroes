@@ -1,0 +1,51 @@
+{
+  "name": "Plans",
+  "type": "talent",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>You have a limited number of plans at your disposal. The total number is:</p><p><strong>Intelligence modifier (minimum 1) + ½ Hero Level (rounded down)</strong></p><p>Select a set of plans equal to the total above from the shared plans list and your class's plan list. As your maximum number of plans grows due to your intelligence or level, you can select additional plans for your list. These selections are semi-permanent. When you gain a level, you can decide to exchange a single plan you know for a different plan.</p><p>The effect of each plan, as well as the action you must take to enact it, is included in the plan's individual description. If a plan calls for a saving throw, the save DC is 8 + your Intelligence modifier + your proficiency bonus. This is your plan DC.</p><p>Plans grow in power as you gain more levels.</p><p>Each plan describes how it improves, and these enhancements are cumulative unless otherwise noted. Heroes multiclassing into Smart Hero have a cap on the level of effect they can access.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "identifier": {
+      "value": "plans"
+    },
+    "type": {
+      "value": "archetype",
+      "level": 1
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679161506923,
+    "modifiedTime": 1679161575038,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "1u27P7JnCXi51npj"
+}

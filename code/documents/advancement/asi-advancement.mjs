@@ -18,6 +18,7 @@ export default class ASIAdvancement extends Advancement {
 			icon: "systems/everyday-heroes/artwork/svg/advancement/asi.svg",
 			title: game.i18n.localize("EH.Advancement.ASI.Title"),
 			hint: game.i18n.localize("EH.Advancement.ASI.Hint"),
+			validItemTypes: new Set(["background", "profession", "feat"]),
 			apps: {
 				config: ASIConfig,
 				flow: ASIFlow

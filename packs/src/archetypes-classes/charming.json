@@ -1,0 +1,169 @@
+{
+  "name": "Charming",
+  "type": "archetype",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>When you smile, the whole world smiles with you. It might be your beauty, your golden voice, or your way with words, but your ability to influence others is the key to your success.</p><p>Charming heroes use influence dice to boost their other die rolls. They focus on helping allies and hindering enemies in combat rather than relying on their own strengths.</p><p><strong>Hit Dice:</strong> 1d8 per hero level</p><p><strong>Starting Hit Points:</strong> 8 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d8 (or 5) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Not in the Face!):</strong> 10 + (Charisma or Dexterity) modifier + Charming Hero Defense bonus</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "advancement": [
+      {
+        "_id": "2KvdAap4XsRPufGM",
+        "_type": "HitPoints",
+        "identifier": "",
+        "configuration": {
+          "denomination": 8
+        },
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "GzvVQRYSBFohNGbi",
+        "_type": "Defense",
+        "identifier": "",
+        "configuration": {
+          "abilities": [
+            "dex",
+            "cha"
+          ],
+          "scale": {
+            "1": {
+              "value": 1
+            },
+            "5": {
+              "value": 2
+            },
+            "9": {
+              "value": 3
+            }
+          }
+        },
+        "value": {},
+        "flags": {},
+        "title": "Not in the Face!"
+      },
+      {
+        "_id": "SO4wHxV40lxvOulC",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.NgPN6q6qwbJXQs5n",
+            "Compendium.everyday-heroes.archetypes-classes.D1FT6lJDXgm6tKnU"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": "Talents"
+      },
+      {
+        "_id": "WT1nt7gFeA3zMyuq",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.3kx5bLlzvDaIQ4M2"
+          ]
+        },
+        "level": 2,
+        "flags": {},
+        "title": "Talents"
+      },
+      {
+        "_id": "Irmmz4u2NX0xdcCZ",
+        "_type": "Resource",
+        "identifier": "influence",
+        "configuration": {
+          "recovery": {
+            "period": "sr",
+            "formula": ""
+          },
+          "type": "dice",
+          "scale": {
+            "1": {
+              "number": 2,
+              "denomination": 6
+            },
+            "2": {
+              "number": 3,
+              "denomination": 6
+            },
+            "4": {
+              "number": 4,
+              "denomination": 6
+            },
+            "5": {
+              "number": 4,
+              "denomination": 8
+            },
+            "6": {
+              "number": 5,
+              "denomination": 8
+            },
+            "8": {
+              "number": 6,
+              "denomination": 8
+            },
+            "9": {
+              "number": 6,
+              "denomination": 10
+            },
+            "10": {
+              "number": 7,
+              "denomination": 10
+            }
+          }
+        },
+        "value": {},
+        "flags": {},
+        "title": "Influence"
+      },
+      {
+        "_id": "JI2uXO0DRXbdNTOt",
+        "_type": "ScaleValue",
+        "identifier": "tricks",
+        "configuration": {
+          "type": "number",
+          "scale": {
+            "1": {
+              "value": 2
+            },
+            "3": {
+              "value": 3
+            },
+            "6": {
+              "value": 4
+            },
+            "9": {
+              "value": 5
+            }
+          }
+        },
+        "value": {},
+        "flags": {},
+        "title": "Tricks"
+      }
+    ],
+    "identifier": {
+      "value": "charming"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679162599889,
+    "modifiedTime": 1679163077449,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "ZGy9FnmUpeF2DkeI"
+}

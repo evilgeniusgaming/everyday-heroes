@@ -1,0 +1,126 @@
+{
+  "name": "Smart",
+  "type": "archetype",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>While others are playing checkers, you're playing 4-dimensional chess. The human mind is the ultimate weapon, and yours is honed to a razor's edge.</p><p>Smart Heroes use their genius to enact plans. Plans are powerful but limited effects that can break the fourth wall, effectively changing the past to affect the present.</p><p><strong>Hit Dice:</strong> 1d6</p><p><strong>Starting Hit Points:</strong> 6 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d6 (or 4) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Superior Tactics):</strong> 10 + Intelligence modifier + Smart Hero Defense bonus</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "advancement": [
+      {
+        "_id": "JS40wmlEhBsNe0YQ",
+        "_type": "HitPoints",
+        "identifier": "",
+        "configuration": {
+          "denomination": 6
+        },
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "lHKbIGMmxN6rmX2U",
+        "_type": "Defense",
+        "identifier": "",
+        "configuration": {
+          "abilities": [
+            "int"
+          ],
+          "scale": {
+            "5": {
+              "value": 1
+            },
+            "9": {
+              "value": 2
+            }
+          }
+        },
+        "value": {},
+        "flags": {},
+        "title": "Superior Tactics"
+      },
+      {
+        "_id": "gppSJVqBwcMXs8Ho",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.1u27P7JnCXi51npj",
+            "Compendium.everyday-heroes.archetypes-classes.67m84PVxB0edNCog"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": "Talents"
+      },
+      {
+        "_id": "kVRPCXZY764UjMuG",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.IF7wcNIdIm7FHie0"
+          ]
+        },
+        "level": 2,
+        "flags": {},
+        "title": "Talents"
+      },
+      {
+        "_id": "P4WI6x89E3TusDcO",
+        "_type": "Resource",
+        "identifier": "genius",
+        "configuration": {
+          "recovery": {
+            "period": "lr",
+            "formula": ""
+          },
+          "type": "number",
+          "scale": {
+            "1": {
+              "value": 2
+            },
+            "2": {
+              "value": 3
+            },
+            "3": {
+              "value": 4
+            },
+            "5": {
+              "value": 5
+            },
+            "7": {
+              "value": 6
+            },
+            "9": {
+              "value": 7
+            }
+          }
+        },
+        "value": {},
+        "flags": {},
+        "title": "Genius"
+      }
+    ],
+    "identifier": {
+      "value": "smart"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679161323376,
+    "modifiedTime": 1679161642590,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "FBLv7Az4ke2UqomX"
+}

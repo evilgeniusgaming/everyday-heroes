@@ -294,7 +294,11 @@
       }
     },
     "plan": {
-      "templates": ["description", "activatable"]
+      "templates": ["description", "activatable"],
+      "identifier": {
+        "value": "",
+        "class": ""
+      }
     },
     "profession": {
       "templates": ["description", "advancement"],
@@ -322,7 +326,11 @@
       }
     },
     "trick": {
-      "templates": ["description", "activatable"]
+      "templates": ["description", "activatable"],
+      "identifier": {
+        "value": "",
+        "class": ""
+      }
     },
     "weapon": {
       "templates": ["damage", "description", "physical"],
