@@ -1,7 +1,7 @@
 {
   "name": "Strong",
   "type": "archetype",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/everyday-heroes/artwork/icons/archetypes/strong.webp",
   "system": {
     "description": {
       "value": "<p>You have trained your body for strength and explosive power. You hit hard, excelling in close combat. As a hero, you fight because others can't.</p><p>Strong heroes are durable fighters who make high damage attacks. They specialize in melee attacks, whether they favor unarmed strikes or close combat weapons.</p><p><strong>Hit Dice:</strong> 1d10 per hero level</p><p><strong>Starting Hit Points:</strong> 10 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d10 (or 6) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Meat Shield):</strong> 10 + Strength modifier + Strong Hero Defense bonus</p>",

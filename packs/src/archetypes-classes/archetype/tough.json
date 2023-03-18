@@ -1,7 +1,7 @@
 {
   "name": "Tough",
   "type": "archetype",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/everyday-heroes/artwork/icons/archetypes/tough.webp",
   "system": {
     "description": {
       "value": "<p>You don't know what it means to give up. No matter what knocks you down, you get up again. Where there is a fight to be found, you'll be in the thick of it, often risking your life to protect others.</p><p>Tough heroes are durable characters, sometimes at the expense of offensive options or out of combat abilities. Many excel at protecting their teammates.</p><p><strong>Hit Dice:</strong> 1d12 per hero level</p><p><strong>Starting Hit Points:</strong> 12 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d12 (or 7) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Thick Skinned):</strong> 10 + (Constitution or Dexterity) modifier + Tough Hero Defense bonus</p>",

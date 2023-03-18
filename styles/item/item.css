@@ -25,6 +25,7 @@
 .item.sheet form > header > div.image {
 	grid-column: 1;
 	z-index: 4;
+	display: flex;
 	border: 1px solid var(--eh-border-color-strong);
 	border-radius: 20px 0 0 20px;
 	background-color: var(--eh-background-color-dark);

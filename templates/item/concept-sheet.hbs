@@ -11,7 +11,7 @@
 			</fieldset>
 			<fieldset>
 				<label>{{localize "EH.Item.Type.Label"}}</label>
-				<input value="{{item.typeLabel}}" disabled>
+				<input value="{{#if item.system.type.label}}{{item.system.type.label}}{{else}}{{item.typeLabel}}{{/if}}" disabled>
 			</fieldset>
 			{{#if (everydayHeroes-has item "system.wealth")}}
 				<fieldset>
