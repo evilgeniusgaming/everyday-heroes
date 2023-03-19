@@ -1,15 +1,14 @@
+import BaseItemSheet from "./base-item-sheet.mjs";
+
 /**
  * Sheet that represents Armor, Weapon, Explosive, and Gear items.
  */
-export default class PhysicalSheet extends ItemSheet {
+export default class PhysicalSheet extends BaseItemSheet {
 
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ["everyday-heroes", "sheet", "physical", "item"],
-			template: "systems/everyday-heroes/templates/item/physical-sheet.hbs",
-			tabs: [{navSelector: 'nav[data-group="primary"]', contentSelector: "main", initial: "description"}],
-			width: 570,
-			height: 500
+			template: "systems/everyday-heroes/templates/item/physical-sheet.hbs"
 		});
 	}
 
@@ -19,10 +18,6 @@ export default class PhysicalSheet extends ItemSheet {
 
 	async getData(options) {
 		const context = await super.getData(options);
-
-		context.CONFIG = CONFIG.EverydayHeroes;
-		context.system = context.item.system;
-		context.source = context.item.system.toObject();
 
 		const applicableProperties = CONFIG.EverydayHeroes.applicableProperties[context.item.type];
 		if ( applicableProperties ) {
@@ -38,14 +33,6 @@ export default class PhysicalSheet extends ItemSheet {
 		context.itemSubTypes = foundry.utils.getProperty(CONFIG.EverydayHeroes, `${context.item.type}Types`);
 
 		context.diceSteps = Object.fromEntries(CONFIG.EverydayHeroes.diceSteps.map(n => [n, `d${n}`]));
-
-		const enrichmentContext = {
-			secrets: this.item.isOwner, rollData: this.item.getRollData(), async: true, relativeTo: this.item
-		};
-		context.enriched = {
-			description: await TextEditor.enrichHTML(context.system.description.value, enrichmentContext),
-			chat: await TextEditor.enrichHTML(context.system.description.chat, enrichmentContext)
-		};
 
 		return context;
 	}
@@ -66,9 +53,5 @@ export default class PhysicalSheet extends ItemSheet {
 		// Return the flattened submission data
 		return foundry.utils.flattenObject(formData);
 	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Drag & Drop                              */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 }

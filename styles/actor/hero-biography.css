@@ -1,4 +1,4 @@
-.hero.sheet [data-tab="biography"] > section {
+.everyday-heroes.sheet [data-tab="biography"] > section {
 	height: 100%;
 	overflow: clip;
 	padding: 0.5em;
@@ -6,12 +6,12 @@
 	border-radius: 20px;
 	background-color: var(--eh-background-color-white);
 }
-.hero.sheet [data-tab="biography"] > section h2 select {
+.everyday-heroes.sheet [data-tab="biography"] > section h2 select {
 	border: none;
 	color: var(--eh-text-color-white);
 	text-align: center;
 }
-.hero.sheet [data-tab="biography"] > section .editor {
+.everyday-heroes.sheet [data-tab="biography"] > section .editor {
 	height: 100%;
 	margin: 0.5em;
 }

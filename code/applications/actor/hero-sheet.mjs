@@ -1,10 +1,10 @@
 import AdvancementManager from "../advancement/advancement-manager.mjs";
-import BaseSheet from "./base-sheet.mjs";
+import BaseActorSheet from "./base-actor-sheet.mjs";
 
 /**
  * Sheet that represents a Hero actor.
  */
-export default class HeroSheet extends BaseSheet {
+export default class HeroSheet extends BaseActorSheet {
 
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
@@ -132,11 +132,34 @@ export default class HeroSheet extends BaseSheet {
 					}
 				]
 			},
-			feats: {
+			trick: {
+				label: "EH.Item.Type.Trick[other]",
+				items: [],
+				create: [
+					{
+						label: "EH.Item.Type.Trick[one]",
+						dataset: {type: "trick"}
+					}
+				]
+			},
+			plan: {
+				label: "EH.Item.Type.Plan[other]",
+				items: [],
+				create: [
+					{
+						label: "EH.Item.Type.Plan[one]",
+						dataset: {type: "plan"}
+					}
+				]
+			},
+			feat: {
 				label: "EH.Item.Type.Feat[other]",
 				items: [],
 				create: [
-					{ dataset: {type: "feat"} }
+					{
+						label: "EH.Item.Type.Feat[one]",
+						dataset: {type: "feat"}
+					}
 				]
 			}
 		};
@@ -155,7 +178,7 @@ export default class HeroSheet extends BaseSheet {
 					}
 				]
 			},
-			weapons: {
+			weapon: {
 				label: "EH.Item.Type.Weapon[other]",
 				items: [],
 				options: { equippable: true },
@@ -167,7 +190,7 @@ export default class HeroSheet extends BaseSheet {
 					}
 				]
 			},
-			ammunitionExplosives: {
+			ammunitionExplosive: {
 				label: formatter.format([
 					game.i18n.localize("EH.Item.Type.Ammunition[other]"),
 					game.i18n.localize("EH.Item.Type.Explosive[other]")
@@ -223,22 +246,26 @@ export default class HeroSheet extends BaseSheet {
 						break;
 					}
 					// TODO: Add warning about talent not associated with item type
+				case "trick":
+					context.features.trick.items.push(item);
+					break;
+				case "plan":
+					context.features.plan.items.push(item);
+					break;
 				case "feat":
-				case "trick": // TODO: Give these items their own section
-				case "plan": // TODO: Give these items their own section
-					context.features.feats.items.push(item);
+					context.features.feat.items.push(item);
 					break;
 				case "armor":
 					context.inventory.armor.items.push(item);
 					break;
 				case "weapon":
-					context.inventory.weapons.items.push(item);
+					context.inventory.weapon.items.push(item);
 					break;
 				case "ammunition":
 					ammunitionTypes[item.system.type.value] ??= {};
 					ammunitionTypes[item.system.type.value][item.id] = item;
 				case "explosive":
-					context.inventory.ammunitionExplosives.items.push(item);
+					context.inventory.ammunitionExplosive.items.push(item);
 					break;
 				case "gear":
 					context.inventory.gear.items.push(item);
@@ -252,7 +279,7 @@ export default class HeroSheet extends BaseSheet {
 		}
 
 		// Prepare ammunition lists
-		for ( const item of context.inventory.weapons.items ) {
+		for ( const item of context.inventory.weapon.items ) {
 			const ctx = context.itemContext[item.id].ammunition ??= {};
 			ctx.defaultLabel = game.i18n.format("EH.Ammunition.Standard.Label", {
 				type: CONFIG.EverydayHeroes.ammunitionTypes[item.system.rounds.type]?.label
@@ -277,6 +304,9 @@ export default class HeroSheet extends BaseSheet {
 			label: "EH.Item.Type.Profession[one]",
 			dataset: { type: "profession" }
 		});
+
+		if ( !context.features.trick.items.length ) delete context.features.trick;
+		if ( !context.features.plan.items.length ) delete context.features.plan;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

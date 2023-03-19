@@ -13,9 +13,9 @@
       "condition": "When you take a short rest."
     },
     "resource": {
-      "amount": 0,
-      "target": "",
-      "type": ""
+      "amount": -1,
+      "target": "genius",
+      "type": "resource"
     },
     "uses": {
       "spent": 0,
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679161585408,
-    "modifiedTime": 1679161626640,
+    "modifiedTime": 1679200770343,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

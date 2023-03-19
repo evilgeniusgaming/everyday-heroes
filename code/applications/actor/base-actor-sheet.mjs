@@ -5,7 +5,7 @@ import AdvancementConfirmationDialog from "../advancement/advancement-confirmati
 /**
  * Base sheet that provides common features for Hero and NPC sheets.
  */
-export default class BaseSheet extends ActorSheet {
+export default class BaseActorSheet extends ActorSheet {
 
 	/**
 	 * Fields that will be enriched during data preparation.

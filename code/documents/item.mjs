@@ -406,9 +406,7 @@ export default class ItemEH extends Item {
 	 * @returns {Promise<string>}
 	 */
 	async npcDescription() {
-		return this.system.npcDescription?.() ?? await TextEditor.enrichHTML(this.system.description?.value ?? "", {
-			secrets: this.isOwner, rollData: this.getRollData(), async: true, relativeTo: this
-		});
+		return this.system.npcDescription?.() ?? "";
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -418,7 +416,7 @@ export default class ItemEH extends Item {
 	 * @returns {Promise<string>}
 	 */
 	async npcLabel() {
-		return this.system.npcLabel?.() ?? `<a data-action="roll-item" data-type="activate">${this.name}</a>`;
+		return this.system.npcLabel?.() ?? "";
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

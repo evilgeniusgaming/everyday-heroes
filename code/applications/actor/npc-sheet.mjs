@@ -1,10 +1,9 @@
-import { numberFormat } from "../../utils.mjs";
-import BaseSheet from "./base-sheet.mjs";
+import BaseActorSheet from "./base-actor-sheet.mjs";
 
 /**
  * Sheet that represents a NPC actor.
  */
-export default class NPCSheet extends BaseSheet {
+export default class NPCSheet extends BaseActorSheet {
 
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {

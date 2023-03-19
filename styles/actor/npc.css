@@ -155,3 +155,14 @@
 	gap: 0 0.25em;
 	justify-content: space-between;
 }
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Biography                                */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.everyday-heroes.npc.sheet [data-tab="biography"] > section {
+	margin-block-start: 1em;
+}
+.everyday-heroes.npc.sheet [data-tab="biography"] > section .editor {
+	min-height: 20em;
+}

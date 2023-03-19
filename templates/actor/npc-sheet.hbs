@@ -26,8 +26,27 @@
 			{{> "everydayHeroes.actor-inventory" sections=inventory}}
 		</div>
 		<div class="tab" data-group="primary" data-tab="biography">
-			{{editor enriched.description target="system.description.value" button=true editable=editable
-				engine="prosemirror" collaborate=false}}
+			<section>
+				<h2 class="striped">
+					<span class="left stripes"></span>
+					<span class="center">
+						<select name="editorSelected">
+							{{#select editorSelected}}
+								<option value="biography">{{localize "EH.Biography.Label"}}</option>
+								<option value="public">{{localize "EH.Biography.Public"}}</option>
+							{{/select}}
+						</select>
+					</span>
+					<span class="right stripes"></span>
+				</h2>
+				{{#if (eq editorSelected "biography")}}
+					{{editor enriched.biography target="system.biography.value" button=true editable=editable
+						engine="prosemirror" collaborate=false}}
+				{{else if (eq editorSelected "public")}}
+					{{editor enriched.public target="system.biography.public" button=true editable=editable
+						engine="prosemirror" collaborate=false}}
+				{{/if}}
+			</section>
 		</div>
 	</main>
 </form>

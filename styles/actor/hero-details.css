@@ -3,6 +3,16 @@
 	grid-template-areas:
 		"header header"
 		"abilities-and-skills attributes";
+	gap: 1em;
+}
+
+@container (width < 700px) {
+	.hero.sheet [data-tab="details"] > section {
+		grid-template-areas:
+			"header"
+			"abilities-and-skills"
+			"attributes";
+	}
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -68,6 +78,12 @@
 .hero.sheet [data-tab="details"] .hero-id fieldset > input {
 	margin-block-start: -0.3em;
 	padding-block-start: 0.3em;
+}
+
+@container (width < 650px) {
+	.hero.sheet [data-tab="details"] .hero-id fieldset:is(.class, .archetype, .background, .profession) {
+		flex: 1 0 100%;
+	}
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -256,7 +272,6 @@
 
 .hero.sheet [data-tab="details"] .attributes {
 	grid-area: attributes;
-	margin-inline-start: 1em;
 }
 
 .hero.sheet [data-tab="details"] .attributes .health {

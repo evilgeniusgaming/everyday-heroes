@@ -1,10 +1,11 @@
 import AdvancementManager from "../advancement/advancement-manager.mjs";
 import AdvancementSelection from "../advancement/advancement-selection.mjs";
+import BaseItemSheet from "./base-item-sheet.mjs";
 
 /**
  * Sheet that represents Archetype, Class, Background, and Profession items.
  */
-export default class ConceptSheet extends ItemSheet {
+export default class ConceptSheet extends BaseItemSheet {
 
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
@@ -31,20 +32,8 @@ export default class ConceptSheet extends ItemSheet {
 	async getData(options) {
 		const context = await super.getData(options);
 
-		context.CONFIG = CONFIG.EverydayHeroes;
-		context.system = context.item.system;
-		context.source = context.item.system.toObject();
-
 		context.advancementEditable = (this.advancementConfigurable || !context.item.isEmbedded) && context.editable;
 		context.advancement = this.prepareAdvancement();
-
-		const enrichmentContext = {
-			secrets: this.item.isOwner, rollData: this.item.getRollData(), async: true, relativeTo: this.item
-		};
-		context.enriched = {
-			description: await TextEditor.enrichHTML(context.system.description.value, enrichmentContext),
-			chat: await TextEditor.enrichHTML(context.system.description.chat, enrichmentContext)
-		};
 
 		return context;
 	}

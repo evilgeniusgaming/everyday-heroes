@@ -49,7 +49,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.StringField({initial: "melee", label: "EH.Weapon.Type.Label"}),
-				category: new foundry.data.fields.StringField({intial: "basic", label: "EH.Equipment.Category.Label[one]"})
+				category: new foundry.data.fields.StringField({label: "EH.Equipment.Category.Label[one]"})
 			}, {label: "EH.Item.Type.Label"}),
 			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
 				label: "EH.Weapon.Property.Label"
@@ -314,10 +314,6 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/*  Helpers                                  */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	/**
-	 * Description of this item that will appear on the details tab of NPC sheets.
-	 * @returns {Promise<string>}
-	 */
 	async npcDescription() {
 		let description = "<p><em>";
 
@@ -374,7 +370,6 @@ export default class WeaponData extends SystemDataModel.mixin(
 		const listFormatter = new Intl.ListFormat(game.i18n.lang, {type: "disjunction", style: "short"});
 		description += `<em>Hit:</em> ${listFormatter.format(damages)}.</p> `;
 
-		console.log(this.description.chat);
 		if ( this.description.chat ) {
 			description += await TextEditor.enrichHTML(this.description.chat ?? "", {
 				secrets: this.parent.isOwner, rollData: this.parent.getRollData(), async: true, relativeTo: this.parent
@@ -389,10 +384,6 @@ export default class WeaponData extends SystemDataModel.mixin(
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	/**
-	 * Label that will appear on the details tab of NPC sheets.
-	 * @returns {Promise<string>}
-	 */
 	async npcLabel() {
 		let label = `<a data-action="roll-item" data-type="activate">${this.parent.name}</a>`;
 		if ( this.rounds.capacity ) {

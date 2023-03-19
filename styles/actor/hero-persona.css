@@ -11,6 +11,12 @@
 	background-color: var(--eh-background-color-light);
 }
 
+@container (width < 700px) {
+	.hero.sheet [data-tab="persona"] > section {
+		grid-template-columns: unset;
+	}
+}
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Hero ID                                  */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

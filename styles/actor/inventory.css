@@ -148,6 +148,7 @@
 }
 .everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) .consumption {
 	display: flex;
+	gap: 1em;
 }
 .everyday-heroes.sheet :is([data-tab="features"], [data-tab="inventory"], [data-tab="effects"]) .consumption .ammunition {
 	display: flex;

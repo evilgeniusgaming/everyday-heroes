@@ -1,17 +1,15 @@
 import ActiveEffectEH from "../../documents/active-effect.mjs";
+import BaseItemSheet from "./base-item-sheet.mjs";
 
 /**
  * Sheet that represents Talent, Special Feature, Plan, Trick, and Feat items.
  */
-export default class FeatureSheet extends ItemSheet {
+export default class FeatureSheet extends BaseItemSheet {
 
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ["everyday-heroes", "sheet", "feature", "item"],
-			template: "systems/everyday-heroes/templates/item/feature-sheet.hbs",
-			tabs: [{navSelector: 'nav[data-group="primary"]', contentSelector: "main", initial: "description"}],
-			width: 570,
-			height: 500
+			template: "systems/everyday-heroes/templates/item/feature-sheet.hbs"
 		});
 	}
 
@@ -22,24 +20,12 @@ export default class FeatureSheet extends ItemSheet {
 	async getData(options) {
 		const context = await super.getData(options);
 
-		context.CONFIG = CONFIG.EverydayHeroes;
-		context.system = context.item.system;
-		context.source = context.item.system.toObject();
-
 		context.effects = ActiveEffectEH.prepareActiveEffectSections(context.item.effects);
 
 		context.resources = Object.entries(context.item.actor?.system.resources ?? {}).reduce((obj, [key, resource]) => {
 			if ( !resource.disabled ) obj[key] = resource.label;
 			return obj;
 		}, {});
-
-		const enrichmentContext = {
-			secrets: this.item.isOwner, rollData: this.item.getRollData(), async: true, relativeTo: this.item
-		};
-		context.enriched = {
-			description: await TextEditor.enrichHTML(context.system.description.value, enrichmentContext),
-			chat: await TextEditor.enrichHTML(context.system.description.chat, enrichmentContext)
-		};
 
 		return context;
 	}
