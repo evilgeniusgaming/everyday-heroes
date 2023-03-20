@@ -64,4 +64,15 @@ export default class NPCData extends SystemDataModel.mixin(
 	prepareBaseData() {
 		this.attributes.prof = Proficiency.calculateMod(this.details.cr);
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedTypeLabel() {
+		const listFormatter = new Intl.ListFormat(game.i18n.lang, {type: "unit", style: "short"});
+		this.traits.type.tagList = listFormatter.format(this.traits.type.tags);
+		this.traits.type.label = `${
+			CONFIG.EverydayHeroes.sizes[this.traits.size]?.label ?? ""} ${
+			CONFIG.EverydayHeroes.creatureTypes[this.traits.type.value]?.label ?? ""}`;
+		if ( this.traits.type.tags.length ) this.traits.type.label += ` (${this.traits.type.tagList})`;
+	}
 }

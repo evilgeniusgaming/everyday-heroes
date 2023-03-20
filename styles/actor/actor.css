@@ -2,3 +2,23 @@
 
 @import "./hero.css";
 @import "./npc.css";
+
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Proficiency Selector                     */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.everyday-heroes.sheet [data-action="cycle-proficiency"] {
+	cursor: pointer;
+}
+.everyday-heroes.sheet [data-action="cycle-proficiency"]:hover .selector-icon {
+	filter: drop-shadow(0 0 3px var(--color-shadow-primary));
+}
+.everyday-heroes.sheet [data-action="cycle-proficiency"] .selector-icon {
+	min-width: 1.25rem;
+	min-height: 1rem;
+	width: 100%;
+	background-size: 1.125rem;
+	background-repeat: no-repeat;
+	background-position-x: center;
+}

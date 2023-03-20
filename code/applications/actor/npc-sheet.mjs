@@ -17,12 +17,35 @@ export default class NPCSheet extends BaseActorSheet {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Properties                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Is the sheet currently in editing mode?
+	 * @type {boolean}
+	 */
+	editingMode = false;
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Context Preparation                      */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async getData(options={}) {
 		const context = await super.getData(options);
+
+		context.availableRoles = Object.entries(CONFIG.EverydayHeroes.roles).reduce((obj, [key, label]) => {
+			obj[key] = { label, disabled: context.system.biography.roles.includes(key) };
+			return obj;
+		}, {});
+		const creatureTypeConfig = CONFIG.EverydayHeroes.creatureTypes[context.system.traits.type.value];
+		context.availableTags = Object.entries(creatureTypeConfig?.subtypes ?? []).reduce((obj, [key, label]) => {
+			obj[key] = { label, disabled: context.system.traits.type.tags.includes(key) };
+			return obj;
+		}, {});
+
 		this.prepareLists(context);
+		context.editingMode = this.editingMode;
+
 		return context;
 	}
 
@@ -38,12 +61,12 @@ export default class NPCSheet extends BaseActorSheet {
 		// TODO: Equipment list
 		context.lists.roles = listFormatter.format(context.system.biography.roles.reduce((arr, role) => {
 			const label = CONFIG.EverydayHeroes.roles[role];
-			if ( label ) arr.push(label);
+			arr.push(label ?? role);
 			return arr;
 		}, []));
 		context.lists.saves = listFormatter.format(Object.entries(context.abilities).reduce((arr, [key, ability]) => {
 			if ( !ability.saveProficiency.hasProficiency ) return arr;
-			arr.push(`<a data-action="roll" data-type="ability-save" data-key="${key}">${ability.label} ${ability.mod}</a>`);
+			arr.push(`<a data-action="roll" data-type="ability-save" data-key="${key}">${ability.label} ${ability.save}</a>`);
 			return arr;
 		}, []));
 		context.lists.skills = listFormatter.format(Object.entries(context.skills).reduce((arr, [key, skill]) => {
@@ -51,7 +74,12 @@ export default class NPCSheet extends BaseActorSheet {
 			arr.push(`<a data-action="roll" data-type="skill" data-key="${key}">${skill.label} ${skill.mod}</a>`);
 			return arr;
 		}, []));
-		context.lists.tags = listFormatter.format(context.system.traits.type.tags);
+
+		if ( context.armor ) {
+			context.lists.armorProperties = listFormatter.format(context.armor.system.properties.map(p =>
+				CONFIG.EverydayHeroes.equipmentProperties[p]?.label.toLowerCase() ?? null
+			).filter(p => p));
+		}
 
 		const senses = [];
 		if ( context.skills.perc ) senses.push(
@@ -192,6 +220,8 @@ export default class NPCSheet extends BaseActorSheet {
 			}
 		}
 
+		context.armor = context.inventory.armor.items[0];
+
 		// Prepare ammunition lists
 		for ( const item of context.inventory.weapons.items ) {
 			const ctx = context.itemContext[item.id].ammunition ??= {};
@@ -201,5 +231,61 @@ export default class NPCSheet extends BaseActorSheet {
 			ctx.selected = item.system.ammunition?.id;
 			ctx.types = ammunitionTypes[item.system.rounds.type] ?? [];
 		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Action Handlers                          */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	activateListeners(jQuery) {
+		super.activateListeners(jQuery);
+		const html = jQuery[0];
+		html.querySelector('[data-action="toggle-editing-mode"]')?.addEventListener("click", event => {
+			this.editingMode = !this.editingMode;
+			this.render();
+		});
+
+		for ( const element of html.querySelectorAll(".tag-input input") ) {
+			element.addEventListener("change", this._onTagAction.bind(this, "add"));
+		}
+		for ( const element of html.querySelectorAll('.tag-input [data-action="delete"]') ) {
+			element.addEventListener("click", this._onTagAction.bind(this, "delete"));
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Handle clicking the delete button on a tag.
+	 * @param {string} type - Action type being handled.
+	 * @param {ClickEvent} event - Triggering click event.
+	 * @returns {Promise}
+	 */
+	async _onTagAction(type, event) {
+		event.preventDefault();
+		const tagInput = event.target.closest(".tag-input");
+		if ( !tagInput ) return;
+		const name = tagInput.dataset.target;
+		const collection = foundry.utils.getProperty(this.actor, name);
+
+		switch (type) {
+			case "add":
+				// Ensure the value entered is a valid tag
+				// const validOptions = Array.from(event.target.list.options).map(o => o.value);
+				// if ( !validOptions.includes(event.target.value) ) return;
+				if ( foundry.utils.getType(collection) === "Array" ) collection.push(event.target.value);
+				else if ( foundry.utils.getType(collection) === "Set" ) collection.add(event.target.value);
+				else console.warn("Invalid collection type found for tag input");
+				break;
+			case "delete":
+				const key = event.target.closest("[data-key]")?.dataset.key;
+				if ( foundry.utils.getType(collection) === "Array" ) collection.findSplice(v => v === key);
+				else if ( foundry.utils.getType(collection) === "Set" ) collection.delete(key);
+				else console.warn("Invalid collection type found for tag input");
+				break;
+			default:
+				return console.warn(`Invalid tag action type ${type}`);
+		}
+		this.actor.update({[name]: Array.from(collection)});
 	}
 }

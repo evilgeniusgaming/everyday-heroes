@@ -38,6 +38,6 @@ export default class DescribedTemplate extends foundry.abstract.DataModel {
 	 * @returns {Promise<string>}
 	 */
 	async npcLabel() {
-		return `<a data-action="roll-item" data-type="activate">${this.name}</a>`;
+		return `<a data-action="roll-item" data-type="activate">${this.parent.name}</a>`;
 	}
 }

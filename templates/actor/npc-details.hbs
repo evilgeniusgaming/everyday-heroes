@@ -1,30 +1,84 @@
 <section class="attributes">
-	<fieldset>
-		<select name="system.traits.size">
-			{{selectOptions CONFIG.sizes selected=system.traits.size labelAttr="label"}}
-		</select>
-		<select name="system.traits.type.value">
-			{{selectOptions CONFIG.creatureTypes selected=system.traits.type.value labelAttr="label"}}
-		</select>
-		{{#if lists.tags}}<span>({{lists.tags}})</span>{{/if}}
+	<fieldset class="types">
+		{{#if editingMode}}
+			<label>{{localize "EH.Creature.Type.Label"}}</label>
+			<select name="system.traits.size">
+				{{selectOptions CONFIG.sizes selected=system.traits.size labelAttr="label"}}
+			</select>
+			<select name="system.traits.type.value">
+				{{selectOptions CONFIG.creatureTypes selected=system.traits.type.value labelAttr="label"}}
+			</select>
+		{{else}}
+			<span><em>{{system.traits.type.label}}</em></span>
+		{{/if}}
 	</fieldset>
+	{{#if editingMode}}
+		<fieldset>
+			<label>{{localize "EH.Creature.Type.Tags.Label"}}</label>
+			<div class="tag-input" data-target="system.traits.type.tags">
+				{{#each system.traits.type.tags as |tag|}}
+					<span class="tag" data-key="{{tag}}">
+						{{#with (lookup (lookup @root.availableTags tag) "label") as |label|}}{{label}}{{else}}{{tag}}{{/with}}
+						<a data-action="delete"><i class="fa-solid fa-delete-left"></i></a>
+					</span>
+				{{/each}}
+				<input list="actor-tag-list-{{actor.id}}">
+				<datalist id="actor-tag-list-{{actor.id}}">
+					{{#each availableTags as |tag key|}}
+						<option value="{{key}}" label="{{tag.label}}" {{disabled tag.disabled}}></option>
+					{{/each}}
+				</datalist>
+			</div>
+		</fieldset>
+	{{/if}}
 	<fieldset>
 		<label>{{localize "EH.Defense.Label"}}</label>
-		<input type="number" value="{{system.attributes.defense}}">
+		{{#if editingMode}}
+			<input type="number" value="{{system.attributes.defense}}">
+		{{else}}
+			<span>{{system.attributes.defense}}</span>
+		{{/if}}
 	</fieldset>
 	<fieldset>
 		<label>{{localize "EH.HitPoints.Label[other]"}}</label>
-		<input type="number" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}"> /
-		<input type="number" name="system.attributes.hp.max" value="{{system.attributes.hp.max}}">
-		(<input type="text" name="system.attributes.hp.formula" value="{{system.attributes.hp.formula}}">)
+		{{#if @root.editable}}
+			<input type="number" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}">
+		{{else}}
+			<span>{{system.attributes.hp.value}}</span>
+		{{/if}} /
+		{{#if editingMode}}
+			<input type="number" name="system.attributes.hp.max" value="{{system.attributes.hp.max}}">
+			(<input type="text" name="system.attributes.hp.formula" value="{{system.attributes.hp.formula}}">)
+		{{else}}
+			<span>{{system.attributes.hp.max}} ({{system.attributes.hp.formula}})</span>
+		{{/if}}
 	</fieldset>
 	<fieldset>
 		<label>{{localize "EH.Item.Type.Armor[one]"}}</label>
-		—
+		{{#if armor}}
+			<span data-item-id="{{armor.id}}">
+				<a data-action="item" data-type="edit">{{armor.name}}</a> (
+				{{~localize "EH.Equipment.Trait.ArmorValue.Abbreviation"}} {{numberFormat armor.system.armorValue}},
+				<a data-action="roll-item" data-type="armor-save"
+					data-tooltip="{{localize 'EH.Action.Roll' type=(localize 'EH.Armor.Action.Save.Label')}}">
+					{{~localize "EH.Armor.Action.Save.Short" number=(numberFormat armor.system.armorSaveMod sign=true)}}</a>
+				{{~#if lists.armorProperties}}, {{lists.armorProperties}}{{/if}})
+		{{else}}
+			&mdsash;
+		{{/if}}
 	</fieldset>
 	<fieldset>
 		<label>{{localize "EH.Speed.Label"}}</label>
-		<input type="number" name="system.attributes.movement.value" value="{{system.attributes.movement.value}}">
+		{{#if editingMode}}
+			<input type="number" name="system.attributes.movement.value" value="{{system.attributes.movement.value}}">
+			<select name="system.attributes.movement.units">
+				{{selectOptions CONFIG.lengthUnits selected=system.attributes.movement.units labelAttr="label"}}
+			</select>
+			{{!-- TODO: Allow editing of special units --}}
+		{{else}}
+			<span>{{numberFormat system.attributes.movement.value}} {{system.attributes.movement.units}}.</span>
+			{{!-- TODO: Format properly using units --}}
+		{{/if}}
 	</fieldset>
 	<fieldset class="abilities">
 		{{#each abilities as |ability key|}}
@@ -32,8 +86,16 @@
 				<label>
 					<a data-action="roll" data-type="ability-check" data-key="{{key}}">{{ability.abbreviation}}</a>
 				</label>
-				<input type="number" name="system.abilities.{{key}}.value" value="{{ability.value}}">
+				{{#if @root.editingMode}}
+					<input type="number" name="system.abilities.{{key}}.value" value="{{ability.value}}">
+				{{else}}
+					<span>{{numberFormat ability.value}}</span>
+				{{/if}}
 				<span>({{ability.mod}})</span>
+				{{#if @root.editingMode}}
+					{{> "everydayHeroes.actor-proficiency-selector" type="single"
+						name=(concat "system.abilities." key ".saveProficiency") value=ability.saveProficiency}}
+				{{/if}}
 			</div>
 		{{/each}}
 	</fieldset>
@@ -46,7 +108,7 @@
 	{{#if lists.skills}}
 		<fieldset>
 			<label>{{localize "EH.Skill.Label[other]"}}</label>
-			<span>{{{lists.skills}}}</span>
+			<span>{{{lists.skills}}}</span>{{!-- TODO: Allow selecting skill proficiency --}}
 		</fieldset>
 	{{/if}}
 	<fieldset>
@@ -55,7 +117,24 @@
 	</fieldset>
 	<fieldset>
 		<label>{{localize "EH.Role.Label[other]"}}</label>
-		<span>{{lists.roles}}</span>{{!-- TODO: Create way to edit these --}}
+		{{#if editingMode}}
+			<div class="tag-input" data-target="system.biography.roles">
+				{{#each system.biography.roles as |role|}}
+					<span class="tag" data-key="{{role}}">
+						{{#with (lookup (lookup @root.availableRoles role) "label") as |label|}}{{label}}{{else}}{{role}}{{/with}}
+						<a data-action="delete"><i class="fa-solid fa-delete-left"></i></a>
+					</span>
+				{{/each}}
+				<input list="actor-roll-list-{{actor.id}}">
+				<datalist id="actor-roll-list-{{actor.id}}">
+					{{#each availableRoles as |role key|}}
+						<option value="{{key}}" label="{{role.label}}" {{disabled role.disabled}}></option>
+					{{/each}}
+				</datalist>
+			</div>
+		{{else}}
+			<span>{{lists.roles}}</span>
+		{{/if}}
 	</fieldset>
 	{{#if lists.equipment}}
 		<fieldset>

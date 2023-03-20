@@ -302,7 +302,7 @@ export default class ActorEH extends Actor {
 			mod: ability.mod,
 			prof: ability.checkProficiency.hasProficiency ? ability.checkProficiency.term : null,
 			bonus: ability.bonuses.check,
-			globalBonus: this.system.bonuses.ability.check
+			globalBonus: this.system.bonuses?.ability?.check
 		}, this.getRollData());
 
 		const rollConfig = foundry.utils.mergeObject({ data }, config);
@@ -367,7 +367,7 @@ export default class ActorEH extends Actor {
 			mod: ability.mod,
 			prof: ability.saveProficiency.hasProficiency ? ability.saveProficiency.term : null,
 			bonus: ability.bonuses.save,
-			globalBonus: this.system.bonuses.ability.save
+			globalBonus: this.system.bonuses?.ability?.save
 		}, this.getRollData());
 
 		const rollConfig = foundry.utils.mergeObject({ data }, config);
@@ -428,7 +428,7 @@ export default class ActorEH extends Actor {
 
 		const { parts, data } = buildRoll({
 			bonus: death.bonus,
-			globalBonus: this.system.bonuses.ability.save
+			globalBonus: this.system.bonuses?.ability?.save
 		}, this.getRollData());
 
 		const rollConfig = foundry.utils.mergeObject({ data }, config);
@@ -657,7 +657,7 @@ export default class ActorEH extends Actor {
 	 */
 	async rollLuckSave(config={}, message={}) {
 		const { parts, data } = buildRoll({
-			globalBonus: this.system.bonuses.ability.save
+			globalBonus: this.system.bonuses?.ability?.save
 		}, this.getRollData());
 
 		const rollConfig = foundry.utils.mergeObject({

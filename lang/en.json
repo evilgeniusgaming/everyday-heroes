@@ -132,6 +132,7 @@
 
 "Armor.Damaged": "Damaged",
 "Armor.Action.Save.Label": "Armor Saving Throw",
+"Armor.Action.Save.Short": "save {number}",
 "Armor.Bonuses.Save.Label": "Armor Save Bonus",
 "Armor.Property.Label": "Armor Properties",
 "Armor.Property.Awkward.Label": "Awkward",
@@ -191,6 +192,8 @@
 "Condition.Stunned.Label": "Stunned",
 "Condition.Unconcious.Label": "Unconcious",
 
+"Creature.Type.Label": "Creature Type",
+"Creature.Type.Tags.Label": "Type Tags",
 "Creature.Type.Alien.Label": "Alien",
 "Creature.Type.Animal.Label": "Animal",
 "Creature.Type.Autonomous.Label": "Autonomous",
