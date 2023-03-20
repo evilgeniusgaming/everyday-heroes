@@ -374,7 +374,7 @@
 	line-height: 0.8em;
 }
 .hero.sheet [data-tab="details"] .attributes :is(.summary, .resources) fieldset span {
-	font-size: var(--font-size-24);;
+	font-size: var(--font-size-24);
 }
 
 .hero.sheet [data-tab="details"] .attributes .resources fieldset {
