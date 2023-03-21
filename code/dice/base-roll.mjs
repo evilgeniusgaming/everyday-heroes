@@ -54,29 +54,16 @@ export default class BaseRoll extends Roll {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
-	 * Apply any type-specific configuration changes during the roll build process. Called before the configuration
-	 * dialog is displayed, if one is set to be shown.
-	 * @param {BaseRoll} roll - The roll being built.
-	 * @param {BaseRollConfiguration} config - Roll configuration data.
-	 * @param {BaseMessageConfiguration} message - Configuration data that guides roll message creation.
-	 * @param {BaseDialogConfiguration} options - Data for the roll configuration dialog.
-	 */
-	static async buildConfiguration(roll, config, message, options) {
-		// TODO: Determine whether the configuration dialog should be displayed
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
 	 * Construct and perform a Base Roll through the standard workflow.
 	 * @param {BaseRollConfiguration} [config={}] - Roll configuration data.
 	 * @param {BaseMessageConfiguration} [message={}] - Configuration data that guides roll message creation.
 	 * @param {BaseDialogConfiguration} [options={}] - Data for the roll configuration dialog.
 	 */
 	static async build(config={}, message={}, options={}) {
+		this.applyKeybindings(config, options);
+
 		const formula = (config.parts ?? []).join(" + ");
 		const roll = new this(formula, config.data, config.options);
-		await this.buildConfiguration(roll, config, message, options);
 
 		if ( options.configure !== false ) {
 			try {
@@ -95,5 +82,16 @@ export default class BaseRoll extends Roll {
 			rollMode: roll.options.rollMode ?? message.rollMode
 		});
 		return roll;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Determines whether the roll should be fast forwarded.
+	 * @param {BaseRollConfiguration} config - Roll configuration data.
+	 * @param {BaseDialogConfiguration} options - Data for the roll configuration dialog.
+	 */
+	static applyKeybindings(config, options) {
+		options.configure ??= true;
 	}
 }

@@ -27,7 +27,7 @@ export default class DamageConfigurationDialog extends BaseConfigurationDialog {
 	static _onDialogSubmit(roll, html, options={}) {
 		super._onDialogSubmit(roll, html, options);
 		roll.options.critical = options.critical;
-		roll.configureDamage();
+		roll.configureRoll();
 		return roll;
 	}
 }

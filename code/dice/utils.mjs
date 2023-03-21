@@ -18,6 +18,27 @@ export function buildRoll(parts, data) {
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Determine which keys are pressed that might trigger the provided keybinding.
+ * @param {Event} event - Triggering event.
+ * @param {string} action - Keybinding action within the `everyday-heroes` namespace.
+ * @returns {boolean} - Should this action be triggered?
+ */
+export function areKeysPressed(event, action) {
+	if ( !event ) return false;
+	const activeModifiers = {
+		[KeyboardManager.MODIFIER_KEYS.CONTROL]: event.ctrlKey || event.metaKey,
+		[KeyboardManager.MODIFIER_KEYS.SHIFT]: event.shiftKey,
+		[KeyboardManager.MODIFIER_KEYS.ALT]: event.altKey
+	};
+	return game.keybindings.get("everyday-heroes", action).some(b => {
+		if ( !game.keyboard.downKeys.has(b.key) ) return false;
+		return b.modifiers.every(m => activeModifiers[m]);
+	});
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Step the provided die denomination up or down based on the provided step, clamping to the ends.
  * @param {number} denomination - Starting denomination to step.
  * @param {number} step - How many steps up or down the denomination should be moved.

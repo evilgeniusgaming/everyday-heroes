@@ -3,6 +3,52 @@
  */
 export function registerKeybindings() {
 	console.log("Everyday Heroes | Registering Keybindings");
+
+	game.keybindings.register("everyday-heroes", "challengeRollNormal", {
+		name: "EH.Keybinding.ChallengeRoll.Normal.Label",
+		editable: [
+			{ key: "ShiftLeft" },
+			{ key: "ShiftRight" }
+		]
+	});
+
+	game.keybindings.register("everyday-heroes", "challengeRollAdvantage", {
+		name: "EH.Keybinding.ChallengeRoll.Advantage.Label",
+		editable: [
+			{ key: "AltLeft" },
+			{ key: "AltRight" }
+		]
+	});
+
+	game.keybindings.register("everyday-heroes", "challengeRollDisadvantage", {
+		name: "EH.Keybinding.ChallengeRoll.Disadvantage.Label",
+		editable: [
+			{ key: "CtrlLeft" },
+			{ key: "CtrlRight" },
+			{ key: "OSLeft" },
+			{ key: "OSRight" }
+		]
+	});
+
+	game.keybindings.register("everyday-heroes", "damageRollNormal", {
+		name: "EH.Keybinding.DamageRoll.Normal.Label",
+		editable: [
+			{ key: "ShiftLeft" },
+			{ key: "ShiftRight" },
+			{ key: "CtrlLeft" },
+			{ key: "CtrlRight" },
+			{ key: "OSLeft" },
+			{ key: "OSRight" }
+		]
+	});
+
+	game.keybindings.register("everyday-heroes", "damageRollCritical", {
+		name: "EH.Keybinding.DamageRoll.Critical.Label",
+		editable: [
+			{ key: "AltLeft" },
+			{ key: "AltRight" }
+		]
+	});
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

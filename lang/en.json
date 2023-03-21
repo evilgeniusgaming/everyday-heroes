@@ -405,6 +405,12 @@
 "Item.Type.Weapon[one]": "Weapon",
 "Item.Type.Weapon[other]": "Weapons",
 
+"Keybinding.ChallengeRoll.Advantage.Label": "Fast Forward Challenge Roll with Advantage",
+"Keybinding.ChallengeRoll.Disadvantage.Label": "Fast Forward Challenge Roll with Disadvantage",
+"Keybinding.ChallengeRoll.Normal.Label": "Fast Forward Challenge Roll",
+"Keybinding.DamageRoll.Critical.Label": "Fast Forward Damage Roll as Critical",
+"Keybinding.DamageRoll.Normal.Label": "Fast Forward Damage Roll",
+
 "Language.Label[one]": "Language",
 "Language.Label[other]": "Languages",
 

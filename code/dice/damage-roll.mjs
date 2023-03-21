@@ -1,5 +1,6 @@
 import BaseRoll from "./base-roll.mjs";
 import DamageConfigurationDialog from "./damage-configuration-dialog.mjs";
+import { areKeysPressed } from "./utils.mjs";
 
 /**
  * Damage roll configuration data.
@@ -29,7 +30,7 @@ export default class DamageRoll extends BaseRoll {
 	constructor(formula, data, options={}) {
 		super(formula, data, options);
 		if ( !this.options.preprocessed ) this.#preprocessFormula();
-		if ( !this.options.configured ) this.configureDamage();
+		if ( !this.options.configured ) this.configureRoll();
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -40,8 +41,23 @@ export default class DamageRoll extends BaseRoll {
 	/*  Static Constructor                       */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	static async buildConfiguration(roll, config, message, options) {
-		// TODO: Check keys pressed to determine critical mode & whether dialog should be shown
+	/**
+	 * Determines whether the roll should be fast forwarded and what the default critical mode should be.
+	 * @param {DamageRollConfiguration} config - Roll configuration data.
+	 * @param {BaseDialogConfiguration} options - Data for the roll configuration dialog.
+	 */
+	static applyKeybindings(config, options) {
+		const keys = {
+			normal: areKeysPressed(config.event, "damageRollNormal"),
+			critical: areKeysPressed(config.event, "damageRollCritical")
+		};
+
+		// Should the roll configuration dialog be displayed?
+		options.configure ??= !Object.values(keys).some(k => k);
+
+		// Determine critical mode
+		config.options ??= {};
+		config.options.critical = config.options.critical || keys.critical;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -119,7 +135,7 @@ export default class DamageRoll extends BaseRoll {
 	/**
 	 * Modify the damage to take criticals into account.
 	 */
-	configureDamage() {
+	configureRoll() {
 		for ( const [i, term] of this.terms.entries() ) {
 			// Multiply dice terms
 			if ( term instanceof DiceTerm ) {

@@ -278,24 +278,24 @@ export default class BaseActorSheet extends ActorSheet {
 		if ( !item ) return null;
 
 		// Prepare the options passed to the roll
-		const { type, ...dataset } = event.currentTarget.dataset;
-		delete dataset.action;
-		delete dataset.tooltip;
-		Object.entries(dataset).forEach(([k, v]) => {
-			if ( v === "true" ) dataset[k] = true;
-			else if ( v === "false" ) dataset[k] = false;
-			else if ( Number.isNumeric(v) ) dataset[k] = Number(v);
+		const { type, ...options } = event.currentTarget.dataset;
+		delete options.action;
+		delete options.tooltip;
+		Object.entries(options).forEach(([k, v]) => {
+			if ( v === "true" ) options[k] = true;
+			else if ( v === "false" ) options[k] = false;
+			else if ( Number.isNumeric(v) ) options[k] = Number(v);
 		});
 
 		switch (type) {
 			case "activate":
-				return item.activate({ options: dataset });
+				return item.activate({ event, options });
 			case "armor-save":
-				return item.rollArmorSave({ options: dataset });
+				return item.rollArmorSave({ event, options });
 			case "attack":
-				return item.rollAttack({ options: dataset });
+				return item.rollAttack({ event, options });
 			case "damage":
-				return item.rollDamage({ options: dataset });
+				return item.rollDamage({ event, options });
 			default:
 				return console.warn(`Everyday Heroes | Invalid item roll type clicked ${type}.`);
 		}
@@ -313,21 +313,21 @@ export default class BaseActorSheet extends ActorSheet {
 		const { type, key } = event.currentTarget.dataset;
 		switch (type) {
 			case "ability-check":
-				return this.actor.rollAbilityCheck(key);
+				return this.actor.rollAbilityCheck(key, { event });
 			case "ability-save":
-				return this.actor.rollAbilitySave(key);
+				return this.actor.rollAbilitySave(key, { event });
 			case "death-save":
-				return this.actor.rollDeathSave();
+				return this.actor.rollDeathSave({ event });
 			case "hit-die":
-				return this.actor.rollHitDie();
+				return this.actor.rollHitDie({ event });
 			case "initiative":
-				return this.actor.rollInitiative();
+				return this.actor.rollInitiative({ event });
 			case "luck":
-				return this.actor.rollLuckSave();
+				return this.actor.rollLuckSave({ event });
 			case "resource":
-				return this.actor.rollResource(key);
+				return this.actor.rollResource(key, { event });
 			case "skill":
-				return this.actor.rollSkill(key);
+				return this.actor.rollSkill(key, { event });
 			default:
 				return console.warn(`Everyday Heroes | Invalid roll type clicked ${type}.`);
 		}

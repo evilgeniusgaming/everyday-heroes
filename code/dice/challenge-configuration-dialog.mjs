@@ -46,10 +46,8 @@ export default class ChallengeConfigurationDialog extends BaseConfigurationDialo
 
 	static _onDialogSubmit(roll, html, options={}) {
 		super._onDialogSubmit(roll, html, options);
-
 		roll.options.advantageMode = options.mode;
-		roll.challengeDie.applyAdvantage(options.mode);
-
+		roll.configureRoll();
 		return roll;
 	}
 }

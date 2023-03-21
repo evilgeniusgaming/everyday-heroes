@@ -1,5 +1,6 @@
 import BaseRoll from "./base-roll.mjs";
 import ChallengeConfigurationDialog from "./challenge-configuration-dialog.mjs";
+import { areKeysPressed } from "./utils.mjs";
 
 /**
  * Challenge roll configuration data.
@@ -30,6 +31,7 @@ export default class ChallengeRoll extends BaseRoll {
 	constructor(formula, data, options={}) {
 		super(formula, data, options);
 		this.#createChallengeDie();
+		if ( !this.options.configured ) this.configureRoll();
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -40,16 +42,10 @@ export default class ChallengeRoll extends BaseRoll {
 	/*  Static Constructor                       */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	static async buildConfiguration(roll, config, message, options) {
-		// TODO: Check keys pressed to determine advantage mode & whether dialog should be shown
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
 	/**
 	 * Construct and perform a Challenge Roll through the standard workflow.
-	 * @param {ChallengeRollConfiguration} config - Roll configuration data.
-	 * @param {BaseMessageConfiguration} message - Configuration data that guides roll message creation.
+	 * @param {ChallengeRollConfiguration} [config={}] - Roll configuration data.
+	 * @param {BaseMessageConfiguration} [message={}] - Configuration data that guides roll message creation.
 	 * @param {BaseDialogConfiguration} [options={}] - Data for the roll configuration dialog.
 	 */
 	static async build(config={}, message={}, options={}) {
@@ -58,6 +54,32 @@ export default class ChallengeRoll extends BaseRoll {
 		config.options.criticalSuccess ??= CONFIG.Dice.ChallengeDie.CRITICAL_SUCCESS_TOTAL;
 		config.options.criticalFailure ??= CONFIG.Dice.ChallengeDie.CRITICAL_FAILURE_TOTAL;
 		return super.build(config, message, options);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Determines whether the roll should be fast forwarded and what the default advantage mode should be.
+	 * @param {ChallengeRollConfiguration} config - Roll configuration data.
+	 * @param {BaseDialogConfiguration} options - Data for the roll configuration dialog.
+	 */
+	static applyKeybindings(config, options) {
+		const keys = {
+			normal: areKeysPressed(config.event, "challengeRollNormal"),
+			advantage: areKeysPressed(config.event, "challengeRollAdvantage"),
+			disadvantage: areKeysPressed(config.event, "challengeRollDisadvantage")
+		};
+
+		// Should the roll configuration dialog be displayed?
+		options.configure ??= !Object.values(keys).some(k => k);
+
+		// Determine advantage mode
+		const advantage = config.advantage || keys.advantage;
+		const disadvantage = config.disadvantage || keys.disadvantage;
+		config.options ??= {};
+		if ( advantage && !disadvantage ) config.options.advantageMode = CONFIG.Dice.ChallengeDie.MODES.ADVANTAGE;
+		else if ( !advantage && disadvantage ) config.options.advantageMode = CONFIG.Dice.ChallengeDie.MODES.DISADVANTAGE;
+		else config.options.advantageMode = CONFIG.Dice.ChallengeDie.MODES.NORMAL;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -93,7 +115,7 @@ export default class ChallengeRoll extends BaseRoll {
 	 * @type {boolean}
 	 */
 	get hasAdvantage() {
-		return this.options.advantageMode === this.constructor.MODES.ADVANTAGE;
+		return this.options.advantageMode === CONFIG.Dice.ChallengeRoll.MODES.ADVANTAGE;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -103,7 +125,7 @@ export default class ChallengeRoll extends BaseRoll {
 	 * @type {boolean}
 	 */
 	get hasDisadvantage() {
-		return this.options.advantageMode === this.constructor.MODES.DISADVANTAGE;
+		return this.options.advantageMode === CONFIG.Dice.ChallengeRoll.MODES.DISADVANTAGE;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -167,14 +189,32 @@ export default class ChallengeRoll extends BaseRoll {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Modify the damage to take advantage and any other modifiers into account.
+	 */
+	configureRoll() {
+		// Advantage or disadvantage
+		this.challengeDie.applyAdvantage(this.options.advantageMode ?? CONFIG.Dice.ChallengeDie.MODES.NORMAL);
+
+		// Critical thresholds & target value
+		if ( this.options.criticalSuccess ) this.challengeDie.options.criticalSuccess = this.options.criticalSuccess;
+		if ( this.options.criticalFailure ) this.challengeDie.options.criticalFailure = this.options.criticalFailure;
+		if ( this.options.target ) this.challengeDie.options.target = this.options.target;
+
+		// Re-compile the underlying formula
+		this._formula = this.constructor.getFormula(this.terms);
+
+		// Mark configuration as complete
+		this.options.configured = true;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Ensure the challenge die for this roll is a proper ChallengeDie, not a regular Die.
 	 */
 	#createChallengeDie() {
 		if ( this.challengeDie instanceof CONFIG.Dice.ChallengeDie ) return;
 		if ( !(this.challengeDie instanceof Die) ) return;
-		const cd = this.challengeDie = new CONFIG.Dice.ChallengeDie({...this.challengeDie});
-		if ( this.options.criticalSuccess ) cd.options.criticalSuccess = this.options.criticalSuccess;
-		if ( this.options.criticalFailure ) cd.options.criticalFailure = this.options.criticalFailure;
-		if ( this.options.target ) cd.options.target = this.options.target;
+		this.challengeDie = new CONFIG.Dice.ChallengeDie({...this.challengeDie});
 	}
 }
