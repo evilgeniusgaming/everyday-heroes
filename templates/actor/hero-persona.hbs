@@ -7,43 +7,43 @@
 			--}}
 			<fieldset class="weight">
 				<label>{{localize "EH.Biography.Weight"}}</label>
-				<input type="text" name="system.biography.weight" value="{{system.biography.weight}}">
+				<input type="text" name="system.biography.weight" value="{{system.biography.weight}}" {{disabled (not editingMode)}}>
 			</fieldset>
 			<fieldset class="height">
 				<label>{{localize "EH.Biography.Height"}}</label>
-				<input type="text" name="system.biography.height" value="{{system.biography.height}}">
+				<input type="text" name="system.biography.height" value="{{system.biography.height}}" {{disabled (not editingMode)}}>
 			</fieldset>
 			<fieldset class="hair">
 				<label>{{localize "EH.Biography.Hair"}}</label>
-				<input type="text" name="system.biography.hair" value="{{system.biography.hair}}">
+				<input type="text" name="system.biography.hair" value="{{system.biography.hair}}" {{disabled (not editingMode)}}>
 			</fieldset>
 			<fieldset class="skin">
 				<label>{{localize "EH.Biography.Skin"}}</label>
-				<input type="text" name="system.biography.skin" value="{{system.biography.skin}}">
+				<input type="text" name="system.biography.skin" value="{{system.biography.skin}}" {{disabled (not editingMode)}}>
 			</fieldset>
 			<fieldset class="eyes">
 				<label>{{localize "EH.Biography.Eyes"}}</label>
-				<input type="text" name="system.biography.eyes" value="{{system.biography.eyes}}">
+				<input type="text" name="system.biography.eyes" value="{{system.biography.eyes}}" {{disabled (not editingMode)}}>
 			</fieldset>
 			<fieldset class="age">
 				<label>{{localize "EH.Biography.Age"}}</label>
-				<input type="text" name="system.biography.age" value="{{system.biography.age}}">
+				<input type="text" name="system.biography.age" value="{{system.biography.age}}" {{disabled (not editingMode)}}>
 			</fieldset>
 			<fieldset class="marital-status">
 				<label>{{localize "EH.Biography.MaritalStatus"}}</label>
-				<input type="text" name="system.biography.marital" value="{{system.biography.marital}}">
+				<input type="text" name="system.biography.marital" value="{{system.biography.marital}}" {{disabled (not editingMode)}}>
 			</fieldset>
 			<fieldset class="pronouns">
 				<label>{{localize "EH.Biography.Pronouns"}}</label>
-				<input type="text" name="system.biography.pronouns" value="{{system.biography.pronouns}}">
+				<input type="text" name="system.biography.pronouns" value="{{system.biography.pronouns}}" {{disabled (not editingMode)}}>
 			</fieldset>
 			<fieldset class="ancestry">
 				<label>{{localize "EH.Biography.Ancestry"}}</label>
-				<input type="text" name="system.biography.ancestry" value="{{system.biography.ancestry}}">
+				<input type="text" name="system.biography.ancestry" value="{{system.biography.ancestry}}" {{disabled (not editingMode)}}>
 			</fieldset>
 			<fieldset class="role" data-section="role">
 				<label>{{localize "EH.Biography.Role"}}</label>
-				<input type="text" name="system.biography.role" value="{{system.biography.role}}">
+				<input type="text" name="system.biography.role" value="{{system.biography.role}}" {{disabled (not editingMode)}}>
 			</fieldset>
 		</div>
 	</header>
@@ -58,15 +58,20 @@
 			<fieldset class="list" data-section="{{section}}">
 				<label>
 					<span>{{localize label}}</span>
-					<a data-action="persona" data-type="add">
-						<i class="fas fa-plus"></i>
-					</a>
+					{{#if @root.editingMode}}
+						<a data-action="persona" data-type="add">
+							<i class="fas fa-plus"></i>
+						</a>
+					{{/if}}
 				</label>
 				<ul>
 					{{#each (lookup system.biography section)}}
 						<li data-index="{{@index}}">
-							<input type="text" name="system.biography.{{section}}.{{@index}}" value="{{this}}">
-							<a data-action="persona" data-type="remove"><i class="fas fa-trash"></i></a>
+							<input type="text" name="system.biography.{{section}}.{{@index}}"
+								value="{{this}}" {{disabled (not @root.editingMode)}}>
+							{{#if @root.editingMode}}
+								<a data-action="persona" data-type="remove"><i class="fas fa-trash"></i></a>
+							{{/if}}
 						</li>
 					{{/each}}
 				</ul>

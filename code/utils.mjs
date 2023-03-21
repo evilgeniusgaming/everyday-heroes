@@ -229,6 +229,58 @@ export function numberFormat(value, options={}) {
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Create a tag input.
+ * @param {string[]|Set<string>} selected - Array or set of currently selected options.
+ * @param {object} options
+ * @returns {Handlebars.SafeString}
+ */
+export function tagInput(selected, options={}) {
+	let { choices, name, labelAttr="label", disabledAttr="disabled", validate=false } = options.hash ?? {};
+	if ( !name ) throw new Error("Name must be defined on a tag input.");
+
+	// Pre-process choices
+	choices = Object.entries(choices ?? {}).reduce((obj, [key, choice]) => {
+		obj[key] = {
+			label: foundry.utils.getType(choice) !== "Object" ? choice : choice[labelAttr],
+			disabled: choice[disabledAttr]
+				?? foundry.utils.getType(selected) === "Array" ? selected.includes(key) : selected.has(key)
+		};
+		return obj;
+	}, {});
+
+	// Build list of tags
+	const tags = [];
+	for ( const key of selected ) {
+		tags.push(`
+			<span class="tag" data-key="${key}">
+		  	${choices?.[key]?.label ?? key} <a data-action="delete"><i class="fa-solid fa-delete-left"></i></a>
+			</span>
+		`);
+	}
+
+	// Build input and data list
+	const dataOptions = [];
+	for ( const [key, choice] of Object.entries(choices) ) {
+		dataOptions.push(`<option value="${key}" label="${choice.label}" ${choice.disabled ? "disabled" : ""}>`);
+	}
+	const listId = `list-${name}-${options.data.root.document?.id}`;
+	const input = dataOptions.length
+		? `<input list="${listId}"><datalist id="${listId}">${dataOptions}</datalist>`
+		: "<input>";
+
+	// Put it all together
+	const validation = validate ? 'data-validate="true"' : "";
+	return new Handlebars.SafeString(`
+		<div class="tag-input" data-target="${name}" ${validation}>
+			${tags.join("\n")}
+			${input}
+		</div>
+	`);
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Register custom Handlebars helpers for use by the system.
  */
 export function registerHandlebarsHelpers() {
@@ -239,7 +291,8 @@ export function registerHandlebarsHelpers() {
 		"everydayHeroes-itemContext": itemContext,
 		"everydayHeroes-jsonStringify": jsonStringify,
 		"everydayHeroes-linkForUUID": linkForUUID,
-		"everydayHeroes-number": (value, options) => numberFormat(value, options.hash)
+		"everydayHeroes-number": (value, options) => numberFormat(value, options.hash),
+		"everydayHeroes-tagInput": tagInput
 	});
 }
 

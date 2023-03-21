@@ -129,8 +129,12 @@ export default class HeroData extends SystemDataModel.mixin(
 				criticalThreshold: new MappingField(new foundry.data.fields.NumberField({initial: 20, min: 1, integer: true}))
 			}, {label: ""}),
 			traits: new foundry.data.fields.SchemaField({
-				languages: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {label: ""}),
-				equipment: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {label: ""})
+				languages: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField(), {
+					label: "EH.Language.Label[other]"
+				}),
+				equipment: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+					label: "Proficiency.Label[other]"
+				})
 			}, {label: ""})
 		});
 	}

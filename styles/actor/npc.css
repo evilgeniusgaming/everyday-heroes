@@ -64,10 +64,6 @@
 .everyday-heroes.npc.sheet form > header nav a:not(:last-of-type) {
 	border-inline-end: 1px solid var(--eh-border-color-weak);
 }
-.everyday-heroes.npc.sheet form > header nav a[data-action="toggle-editing-mode"] {
-	flex-grow: 0;
-	padding-inline-start: 1em;
-}
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Attributes                               */

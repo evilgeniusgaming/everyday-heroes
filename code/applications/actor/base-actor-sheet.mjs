@@ -21,6 +21,14 @@ export default class BaseActorSheet extends ActorSheet {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Is the sheet currently in editing mode?
+	 * @type {boolean}
+	 */
+	editingMode = false;
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Which editor is currently visible on the biography tab.
 	 * @type {string}
 	 */
@@ -69,6 +77,9 @@ export default class BaseActorSheet extends ActorSheet {
 		}
 
 		await this.prepareItems(context);
+		await this.prepareLists(context);
+
+		context.editingMode = this.editingMode;
 
 		const enrichmentContext = {
 			secrets: this.actor.isOwner, rollData: this.actor.getRollData(), async: true, relativeTo: this.actor
@@ -91,12 +102,26 @@ export default class BaseActorSheet extends ActorSheet {
 	async prepareItems(context) {}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Prepare various lists that might be displayed on the actor's sheet.
+	 * @param {object} context - Context object for rendering the sheet. **Will be mutated.**
+	 */
+	async prepareLists(context) {}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Action Handlers                          */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	activateListeners(jQuery) {
 		super.activateListeners(jQuery);
 		const html = jQuery[0];
+
+		// Editing mode
+		html.querySelector('[data-action="toggle-editing-mode"]')?.addEventListener("click", event => {
+			this.editingMode = !this.editingMode;
+			this.render();
+		});
 
 		// Effect Listeners
 		for ( const element of html.querySelectorAll('[data-action="effect"]') ) {
@@ -126,6 +151,14 @@ export default class BaseActorSheet extends ActorSheet {
 		// Roll Action Listeners
 		for ( const element of html.querySelectorAll('[data-action="roll"]') ) {
 			element.addEventListener("click", this._onRollAction.bind(this));
+		}
+
+		// Tag Inputs
+		for ( const element of html.querySelectorAll(".tag-input input") ) {
+			element.addEventListener("change", this._onTagInputAction.bind(this, "add"));
+		}
+		for ( const element of html.querySelectorAll('.tag-input [data-action="delete"]') ) {
+			element.addEventListener("click", this._onTagInputAction.bind(this, "delete"));
 		}
 	}
 
@@ -298,5 +331,41 @@ export default class BaseActorSheet extends ActorSheet {
 			default:
 				return console.warn(`Everyday Heroes | Invalid roll type clicked ${type}.`);
 		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Handle actions associated with tag inputs.
+	 * @param {string} type - Action type being handled.
+	 * @param {ClickEvent} event - Triggering click event.
+	 * @returns {Promise}
+	 */
+	async _onTagInputAction(type, event) {
+		event.preventDefault();
+		const tagInput = event.target.closest(".tag-input");
+		if ( !tagInput ) return;
+		const name = tagInput.dataset.target;
+		const shouldValidate = tagInput.dataset.validate;
+		const collection = foundry.utils.getProperty(this.actor, name);
+
+		switch (type) {
+			case "add":
+				const validOptions = Array.from(event.target.list?.options ?? []).map(o => o.value);
+				if ( shouldValidate && !validOptions.includes(event.target.value) ) return;
+				if ( foundry.utils.getType(collection) === "Array" ) collection.push(event.target.value);
+				else if ( foundry.utils.getType(collection) === "Set" ) collection.add(event.target.value);
+				else console.warn("Invalid collection type found for tag input");
+				break;
+			case "delete":
+				const key = event.target.closest("[data-key]")?.dataset.key;
+				if ( foundry.utils.getType(collection) === "Array" ) collection.findSplice(v => v === key);
+				else if ( foundry.utils.getType(collection) === "Set" ) collection.delete(key);
+				else console.warn("Invalid collection type found for tag input");
+				break;
+			default:
+				return console.warn(`Invalid tag action type ${type}`);
+		}
+		this.actor.update({[name]: Array.from(collection)});
 	}
 }

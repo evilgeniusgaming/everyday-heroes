@@ -2,18 +2,20 @@
 	<section data-section-id="{{id}}">
 		<header>
 			<h2>{{localize section.label}}</h2>
-			<fieldset>
-				{{#each section.create as |create|}}
-					<a data-action="item" data-type="add" data-data="{{everydayHeroes-jsonStringify create.dataset}}">
-						<i class="fas fa-plus"></i>
-						{{#if create.label}}
-							{{localize "EH.Item.Action.Create" type=(localize create.label)}}
-						{{else}}
-							{{localize "EH.Item.Action.Create" type=(localize section.label)}}
-						{{/if}}
-					</a>
-				{{/each}}
-			</fieldset>
+			{{#if @root.editingMode}}
+				<fieldset>
+					{{#each section.create as |create|}}
+						<a data-action="item" data-type="add" data-data="{{everydayHeroes-jsonStringify create.dataset}}">
+							<i class="fas fa-plus"></i>
+							{{#if create.label}}
+								{{localize "EH.Item.Action.Create" type=(localize create.label)}}
+							{{else}}
+								{{localize "EH.Item.Action.Create" type=(localize section.label)}}
+							{{/if}}
+						</a>
+					{{/each}}
+				</fieldset>
+			{{/if}}
 			{{#with section.primary.item as |item|}}
 				<div class="primary item" data-item-id="{{item.id}}">
 					<h3>
@@ -23,7 +25,7 @@
 						</figure>
 						<a data-action="item" data-type="expand">{{item.name}}</a>
 					</h3>
-					{{#if @root.editable}}
+					{{#if (and @root.editable @root.editingMode)}}
 						<fieldset>
 							<a data-action="item" data-type="edit"
 								data-tooltip="{{localize 'EH.Item.Action.Edit' type=item.typeLabel}}">
@@ -106,15 +108,15 @@
 							{{/if}}
 						</div>
 					</div>
-					{{#if @root.editable}}
-						<fieldset>
-							{{#if item.system.isEquippable}}
-								<a class="{{#if item.isEquipped}}equipped{{else}}unequipped{{/if}}" data-action="item" data-type="equip"
-									data-tooltip="{{#if item.isEquipped}}{{localize 'EH.Item.Action.Unequip' type=item.typeLabel}}
-									{{~else}}{{localize 'EH.Item.Action.Equip' type=item.typeLabel}}{{/if}}">
-									<i class="{{#if item.isEquipped}}fa-solid fa-hand{{else}}fa-regular fa-hand{{/if}}"></i>
-								</a>
-							{{/if}}
+					<fieldset>
+						{{#if (and @root.editable item.system.isEquippable)}}
+							<a class="{{#if item.isEquipped}}equipped{{else}}unequipped{{/if}}" data-action="item" data-type="equip"
+								data-tooltip="{{#if item.isEquipped}}{{localize 'EH.Item.Action.Unequip' type=item.typeLabel}}
+								{{~else}}{{localize 'EH.Item.Action.Equip' type=item.typeLabel}}{{/if}}">
+								<i class="{{#if item.isEquipped}}fa-solid fa-hand{{else}}fa-regular fa-hand{{/if}}"></i>
+							</a>
+						{{/if}}
+						{{#if (and @root.editable @root.editingMode)}}
 							<a data-action="item" data-type="edit"
 								data-tooltip="{{localize 'EH.Item.Action.Edit' type=item.typeLabel}}">
 								<i class="fas fa-edit"></i>
@@ -123,15 +125,13 @@
 								data-tooltip="{{localize 'EH.Item.Action.Delete' type=item.typeLabel}}">
 								<i class="fas fa-trash"></i>
 							</a>
-						</fieldset>
-					{{else}}
-						<fieldset>
+						{{else}}
 							<a data-action="item" data-type="edit"
 								data-tooltip="{{localize 'EH.Item.Action.View' type=item.typeLabel}}">
 								<i class="fa-regular fa-eye"></i>
 							</a>
-						</fieldset>
-					{{/if}}
+						{{/if}}
+					</fieldset>
 					{{#if ctx.expandedData}}
 						{{> "everydayHeroes.item-summary" ctx.expandedData}}
 					{{/if}}

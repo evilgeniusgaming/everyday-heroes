@@ -26,7 +26,10 @@ globalThis.EverydayHeroes = {
 };
 
 Hooks.once("init", function() {
-	console.log(`Everyday Heroes | Initializing the Everyday Heroes Game System - Version ${game.system.version}`);
+	console.log(
+		`Everyday Heroes | Initializing the Everyday Heroes Game System - Version ${game.system.version}\n${config.ASCII}`
+	);
+
 	game.everydayHeroes = globalThis.EverydayHeroes;
 	CONFIG.EverydayHeroes = config;
 	applications.registerSheets();

@@ -6,7 +6,7 @@
 		<div>
 			<fieldset class="name">
 				<label>{{localize "Name"}}</label>
-				<input type="text" name="name" value="{{actor.name}}">
+				<input type="text" name="name" value="{{actor.name}}" {{disabled (not editingMode)}}>
 			</fieldset>
 			<fieldset class="class">
 				<label>{{localize "EH.Item.Type.Class[one]"}}</label>
@@ -33,22 +33,26 @@
 				</a>
 			</fieldset>
 			<fieldset class="level">
-				<label>Level</label>{{!-- TODO: Localize --}}
+				<label>{{localize "EH.Level.Label[one]"}}</label>
 				<input type="number" name="system.details.level" value="{{system.details.level}}"
-						 	step="1" min="1" max="10">
+						 	step="1" min="1" max="10" {{disabled (not editingMode)}}>
 			</fieldset>
 			<fieldset class="wealth">
 				<label>{{localize "EH.Details.Wealth.Label"}}</label>
 				<span>{{system.details.wealth.value}}</span>
 			</fieldset>
 			<fieldset class="speed">
-				<label>Speed</label>
+				<label>{{localize "EH.Speed.Label"}}</label>
 				<input type="number" name="system.attributes.movement.value"
-					value="{{system.attributes.movement.value}}" step="0.1" min="0">
+					value="{{system.attributes.movement.value}}" step="0.1" min="0" {{disabled (not editingMode)}}>
 			</fieldset>
 			<fieldset class="languages">
-				<label>Languages</label>{{!-- TODO: Localize --}}
-				<span>{{actor.traits.languages.summary}}</span>
+				<label>{{localize "EH.Language.Label[other]"}}</label>
+				{{#if editingMode}}
+					{{everydayHeroes-tagInput system.traits.languages name="system.traits.languages"}}
+				{{else}}
+					<span>{{lists.languages}}</span>
+				{{/if}}
 			</fieldset>
 		</div>
 	</header>
@@ -65,7 +69,7 @@
 					</aside>
 					<div class="contents">
 						<input class="value" type="number" name="system.abilities.{{key}}.value"
-							value="{{ability.value}}" step="1" min="1">
+							value="{{ability.value}}" step="1" min="1" {{disabled (not @root.editingMode)}}>
 						<div class="save">
 							{{> "everydayHeroes.actor-proficiency-selector" type="single"
 							  name=(concat "system.abilities." key ".saveProficiency") value=ability.saveProficiency}}

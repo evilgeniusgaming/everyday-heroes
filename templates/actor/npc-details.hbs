@@ -15,20 +15,7 @@
 	{{#if editingMode}}
 		<fieldset>
 			<label>{{localize "EH.Creature.Type.Tags.Label"}}</label>
-			<div class="tag-input" data-target="system.traits.type.tags">
-				{{#each system.traits.type.tags as |tag|}}
-					<span class="tag" data-key="{{tag}}">
-						{{#with (lookup (lookup @root.availableTags tag) "label") as |label|}}{{label}}{{else}}{{tag}}{{/with}}
-						<a data-action="delete"><i class="fa-solid fa-delete-left"></i></a>
-					</span>
-				{{/each}}
-				<input list="actor-tag-list-{{actor.id}}">
-				<datalist id="actor-tag-list-{{actor.id}}">
-					{{#each availableTags as |tag key|}}
-						<option value="{{key}}" label="{{tag.label}}" {{disabled tag.disabled}}></option>
-					{{/each}}
-				</datalist>
-			</div>
+			{{!--{{everydayHeroes-tagInput system.traits.type.tags choices=availableTags name="system.traits.type.tags"}}--}}
 		</fieldset>
 	{{/if}}
 	<fieldset>
@@ -118,20 +105,7 @@
 	<fieldset>
 		<label>{{localize "EH.Role.Label[other]"}}</label>
 		{{#if editingMode}}
-			<div class="tag-input" data-target="system.biography.roles">
-				{{#each system.biography.roles as |role|}}
-					<span class="tag" data-key="{{role}}">
-						{{#with (lookup (lookup @root.availableRoles role) "label") as |label|}}{{label}}{{else}}{{role}}{{/with}}
-						<a data-action="delete"><i class="fa-solid fa-delete-left"></i></a>
-					</span>
-				{{/each}}
-				<input list="actor-roll-list-{{actor.id}}">
-				<datalist id="actor-roll-list-{{actor.id}}">
-					{{#each availableRoles as |role key|}}
-						<option value="{{key}}" label="{{role.label}}" {{disabled role.disabled}}></option>
-					{{/each}}
-				</datalist>
-			</div>
+			{{everydayHeroes-tagInput system.biography.roles choices=CONFIG.roles name="system.biography.roles"}}
 		{{else}}
 			<span>{{lists.roles}}</span>
 		{{/if}}

@@ -3,6 +3,14 @@
 @import "./hero.css";
 @import "./npc.css";
 
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Editing Mode                             */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.everyday-heroes.sheet form > nav a[data-action="toggle-editing-mode"] {
+	flex: 0 0 4em;
+	padding-inline: 1em;
+}
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Proficiency Selector                     */

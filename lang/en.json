@@ -405,6 +405,9 @@
 "Item.Type.Weapon[one]": "Weapon",
 "Item.Type.Weapon[other]": "Weapons",
 
+"Language.Label[one]": "Language",
+"Language.Label[other]": "Languages",
+
 "Level.Label[one]": "Level",
 "Level.Label[other]": "Levels",
 "Level.Action.Decrease": "Level Down",

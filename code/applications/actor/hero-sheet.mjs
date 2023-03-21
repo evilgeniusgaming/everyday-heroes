@@ -310,6 +310,20 @@ export default class HeroSheet extends BaseActorSheet {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Prepare type tag, skill, senses, roles, and equipment lists.
+	 * @param {object} context - Context object for rendering the sheet. **Will be mutated.**
+	 */
+	prepareLists(context) {
+		const listFormatter = new Intl.ListFormat(game.i18n.lang, {type: "conjunction", style: "short"});
+		context.lists ??= {};
+		context.lists.languages = listFormatter.format(context.system.traits.languages);
+
+		// TODO: Add special movement types
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Action Handlers                          */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

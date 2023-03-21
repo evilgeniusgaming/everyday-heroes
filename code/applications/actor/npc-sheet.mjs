@@ -17,16 +17,6 @@ export default class NPCSheet extends BaseActorSheet {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Properties                               */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Is the sheet currently in editing mode?
-	 * @type {boolean}
-	 */
-	editingMode = false;
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Context Preparation                      */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -43,50 +33,7 @@ export default class NPCSheet extends BaseActorSheet {
 			return obj;
 		}, {});
 
-		this.prepareLists(context);
-		context.editingMode = this.editingMode;
-
 		return context;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Prepare type tag, skill, senses, roles, and equipment lists.
-	 * @param {object} context - Context object for rendering the sheet. **Will be mutated.**
-	 */
-	prepareLists(context) {
-		const listFormatter = new Intl.ListFormat(game.i18n.lang, {type: "unit", style: "short"});
-		context.lists ??= {};
-		// TODO: Equipment list
-		context.lists.roles = listFormatter.format(context.system.biography.roles.reduce((arr, role) => {
-			const label = CONFIG.EverydayHeroes.roles[role];
-			arr.push(label ?? role);
-			return arr;
-		}, []));
-		context.lists.saves = listFormatter.format(Object.entries(context.abilities).reduce((arr, [key, ability]) => {
-			if ( !ability.saveProficiency.hasProficiency ) return arr;
-			arr.push(`<a data-action="roll" data-type="ability-save" data-key="${key}">${ability.label} ${ability.save}</a>`);
-			return arr;
-		}, []));
-		context.lists.skills = listFormatter.format(Object.entries(context.skills).reduce((arr, [key, skill]) => {
-			if ( !skill.proficiency.hasProficiency ) return arr;
-			arr.push(`<a data-action="roll" data-type="skill" data-key="${key}">${skill.label} ${skill.mod}</a>`);
-			return arr;
-		}, []));
-
-		if ( context.armor ) {
-			context.lists.armorProperties = listFormatter.format(context.armor.system.properties.map(p =>
-				CONFIG.EverydayHeroes.equipmentProperties[p]?.label.toLowerCase() ?? null
-			).filter(p => p));
-		}
-
-		const senses = [];
-		if ( context.skills.perc ) senses.push(
-			game.i18n.format("EH.Sense.PassivePerception", {number: context.skills.perc.passive})
-		);
-		// TODO: Add special senses
-		context.lists.senses = listFormatter.format(senses);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -234,58 +181,38 @@ export default class NPCSheet extends BaseActorSheet {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Action Handlers                          */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	activateListeners(jQuery) {
-		super.activateListeners(jQuery);
-		const html = jQuery[0];
-		html.querySelector('[data-action="toggle-editing-mode"]')?.addEventListener("click", event => {
-			this.editingMode = !this.editingMode;
-			this.render();
-		});
+	prepareLists(context) {
+		const listFormatter = new Intl.ListFormat(game.i18n.lang, {type: "unit", style: "short"});
+		context.lists ??= {};
+		// TODO: Equipment list
+		context.lists.roles = listFormatter.format(context.system.biography.roles.reduce((arr, role) => {
+			const label = CONFIG.EverydayHeroes.roles[role];
+			arr.push(label ?? role);
+			return arr;
+		}, []));
+		context.lists.saves = listFormatter.format(Object.entries(context.abilities).reduce((arr, [key, ability]) => {
+			if ( !ability.saveProficiency.hasProficiency ) return arr;
+			arr.push(`<a data-action="roll" data-type="ability-save" data-key="${key}">${ability.label} ${ability.save}</a>`);
+			return arr;
+		}, []));
+		context.lists.skills = listFormatter.format(Object.entries(context.skills).reduce((arr, [key, skill]) => {
+			if ( !skill.proficiency.hasProficiency ) return arr;
+			arr.push(`<a data-action="roll" data-type="skill" data-key="${key}">${skill.label} ${skill.mod}</a>`);
+			return arr;
+		}, []));
 
-		for ( const element of html.querySelectorAll(".tag-input input") ) {
-			element.addEventListener("change", this._onTagAction.bind(this, "add"));
+		if ( context.armor ) {
+			context.lists.armorProperties = listFormatter.format(context.armor.system.properties.map(p =>
+				CONFIG.EverydayHeroes.equipmentProperties[p]?.label.toLowerCase() ?? null
+			).filter(p => p));
 		}
-		for ( const element of html.querySelectorAll('.tag-input [data-action="delete"]') ) {
-			element.addEventListener("click", this._onTagAction.bind(this, "delete"));
-		}
-	}
 
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Handle clicking the delete button on a tag.
-	 * @param {string} type - Action type being handled.
-	 * @param {ClickEvent} event - Triggering click event.
-	 * @returns {Promise}
-	 */
-	async _onTagAction(type, event) {
-		event.preventDefault();
-		const tagInput = event.target.closest(".tag-input");
-		if ( !tagInput ) return;
-		const name = tagInput.dataset.target;
-		const collection = foundry.utils.getProperty(this.actor, name);
-
-		switch (type) {
-			case "add":
-				// Ensure the value entered is a valid tag
-				// const validOptions = Array.from(event.target.list.options).map(o => o.value);
-				// if ( !validOptions.includes(event.target.value) ) return;
-				if ( foundry.utils.getType(collection) === "Array" ) collection.push(event.target.value);
-				else if ( foundry.utils.getType(collection) === "Set" ) collection.add(event.target.value);
-				else console.warn("Invalid collection type found for tag input");
-				break;
-			case "delete":
-				const key = event.target.closest("[data-key]")?.dataset.key;
-				if ( foundry.utils.getType(collection) === "Array" ) collection.findSplice(v => v === key);
-				else if ( foundry.utils.getType(collection) === "Set" ) collection.delete(key);
-				else console.warn("Invalid collection type found for tag input");
-				break;
-			default:
-				return console.warn(`Invalid tag action type ${type}`);
-		}
-		this.actor.update({[name]: Array.from(collection)});
+		const senses = [];
+		if ( context.skills.perc ) senses.push(
+			game.i18n.format("EH.Sense.PassivePerception", {number: context.skills.perc.passive})
+		);
+		// TODO: Add special senses
+		context.lists.senses = listFormatter.format(senses);
 	}
 }
