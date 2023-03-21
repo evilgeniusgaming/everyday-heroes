@@ -55,6 +55,8 @@ Hooks.once("ready", function() {
 	// Perform global migrations here if necessary
 });
 
+Hooks.on("getChatLogEntryContext", documents.ChatMessageEH.getContextOptions);
+
 export {
 	applications,
 	config,

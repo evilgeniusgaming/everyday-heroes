@@ -69,28 +69,6 @@
         "level": 2,
         "flags": {},
         "title": "Talents"
-      },
-      {
-        "_id": "RodjMZ263CPOpi5V",
-        "_type": "ScaleValue",
-        "identifier": "tough-as-nails",
-        "configuration": {
-          "type": "number",
-          "scale": {
-            "2": {
-              "value": 2
-            },
-            "5": {
-              "value": 3
-            },
-            "9": {
-              "value": 4
-            }
-          }
-        },
-        "value": {},
-        "flags": {},
-        "title": "Tough as Nails"
       }
     ],
     "identifier": {
@@ -107,7 +85,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679161139137,
-    "modifiedTime": 1679161389940,
+    "modifiedTime": 1679438795332,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

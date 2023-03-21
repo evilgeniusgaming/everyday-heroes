@@ -129,6 +129,12 @@ export default class HeroData extends SystemDataModel.mixin(
 				criticalThreshold: new MappingField(new foundry.data.fields.NumberField({initial: 20, min: 1, integer: true}))
 			}, {label: ""}),
 			traits: new foundry.data.fields.SchemaField({
+				damage: new foundry.data.fields.SchemaField({
+					immunity: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+						label: "EH.Damage.Immunity.Label"
+					}),
+					reduction: new MappingField(new FormulaField({deterministic: true}), {label: "EH.Damage.Reduction.Label"})
+				}),
 				languages: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField(), {
 					label: "EH.Language.Label[other]"
 				}),
@@ -214,5 +220,6 @@ export default class HeroData extends SystemDataModel.mixin(
 		const levelBonus = simplifyBonus(hp.bonuses.level, rollData) * this.details.level;
 		const overallBonus = simplifyBonus(hp.bonuses.overall, rollData);
 		hp.max = base + levelBonus + overallBonus;
+		hp.damage = hp.max - hp.value;
 	}
 }

@@ -212,6 +212,12 @@
 
 "Damage.None": "No Damage",
 "Damage.Specific": "{type} Damage",
+"Damage.Immunity.Label": "Damage Immunity",
+"Damage.Reduction.Label": "Damage Reduction",
+"Damage.Action.ApplyDouble": "Apply Double Damage",
+"Damage.Action.ApplyHalf": "Apply Half Damage",
+"Damage.Action.ApplyNegative": "Apply as Healing",
+"Damage.Action.ApplyNormal": "Apply Damage",
 "Damage.Type.Label[one]": "Damage Type",
 "Damage.Type.Label[other]": "Damage Types",
 "Damage.Type.Acid": "Acid",
@@ -473,6 +479,9 @@
 "Role.Support.Label": "Support",
 "Role.Tank.Label": "Tank",
 
+"Roll.Configuration.LabelGeneric": "Roll Configuration",
+"Roll.Configuration.LabelSpecific": "{type} Configuration",
+
 "Sense.Label[one]": "Sense",
 "Sense.Label[other]": "Senses",
 "Sense.PassivePerception": "passive Perception {number}",
@@ -543,6 +552,7 @@
 "Weapon.Action.AttackSpecific": "{type} Attack",
 "Weapon.Action.Burst.Label": "Burst",
 "Weapon.Action.DamageGeneric.Label": "Damage",
+"Weapon.Action.DamageSourced.Label": "{source} Damage",
 "Weapon.Action.DamageSpecific.Label": "{type} Damage",
 "Weapon.Action.Melee.Label": "Melee",
 "Weapon.Action.Offhand.Label": "Off-hand",

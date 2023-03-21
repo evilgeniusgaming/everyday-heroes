@@ -2,6 +2,7 @@ import RestDialog from "../applications/actor/rest-dialog.mjs";
 import AdvancementConfirmationDialog from "../applications/advancement/advancement-confirmation-dialog.mjs";
 import AdvancementManager from "../applications/advancement/advancement-manager.mjs";
 import { buildRoll } from "../dice/utils.mjs";
+import { simplifyBonus } from "../utils.mjs";
 import Proficiency from "./proficiency.mjs";
 
 /**
@@ -865,17 +866,50 @@ export default class ActorEH extends Actor {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Description of a source of damage.
+	 *
+	 * @typedef {object} DamageDescription
+	 * @property {number} value - Amount of damage.
+	 * @property {string} type - Type of damage.
+	 * @property {ActorEH|ItemEH} [source] - Source of the damage.
+	 */
+
+	/**
 	 * Apply damage to the actor.
-	 * @param {object[]} damage - Damage descriptions to apply.
+	 * @param {DamageDescription[]} damage - Damage descriptions to apply.
 	 * @param {object} [options={}]
+	 * @param {number} [options.multiplier=1] - Amount by which to multiply all damage (before damage reduction).
 	 * @param {boolean} [options.ignoreImmunity=false] - Should this actor's damage immunity be ignored?
 	 * @param {boolean} [options.ignoreReduction=false] - Should this actor's damage reduction be ignored?
 	 * @returns {Promise<ActorEH>} - The actor after the update has been performed.
 	 */
 	async applyDamage(damage, options={}) {
-		// TODO: Implement damage application with damage reduction, immunity, etc.
-		console.log("applyDamage");
-		return null;
+		const hp = this.system.attributes.hp;
+
+		// Total damage and apply multiplier
+		let amount = damage.reduce((total, d) => total + d.value, 0);
+		amount = Math.floor(amount * (options.multiplier ?? 1));
+
+		// Apply damage reduction
+		amount -= simplifyBonus(this.system.traits?.damage?.reduction?.all, this.getRollData({deterministic: true}));
+
+		// Subtract from temp HP first & then from normal HP
+		const deltaTemp = amount > 0 ? Math.min(hp.temp, amount) : 0;
+		const deltaHP = Math.clamped(-hp.damage, amount - deltaTemp, hp.value);
+		const updates = {
+			"system.attributes.hp.temp": hp.temp - deltaTemp,
+			"system.attributes.hp.value": hp.value - deltaHP
+		};
+		amount = deltaTemp + deltaHP;
+
+		// TODO: Add apply damage hook here
+
+		// Call core's hook so anything watching token bar changes can respond
+		if ( Hooks.call("modifyTokenAttribute", {
+			attribute: "attributes.hp", value: amount, isDelta: false, isBar: true
+		}, updates) === false ) return false;
+
+		return this.update(updates, { deltaHP: -amount });
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

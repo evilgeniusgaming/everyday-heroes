@@ -656,9 +656,10 @@ export default class ItemEH extends Item {
 	 * Roll damage for this weapon or explosive.
 	 * @param {DamageRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
 	 * @returns {Promise<DamageRoll|void>}
 	 */
-	async rollDamage(config={}, message={}) {
+	async rollDamage(config={}, message={}, dialog={}) {
 		if ( !this.hasDamage ) return console.warn(`${this.name} does not support damage rolls.`);
 		const ability = this.actor?.system.abilities[this.system.damageAbility];
 		const ammunition = undefined;
@@ -674,10 +675,15 @@ export default class ItemEH extends Item {
 
 		// TODO: Add support for "Making a Mess" extra critical damage
 
-		const rollConfig = foundry.utils.mergeObject({ data }, config);
+		const rollConfig = foundry.utils.mergeObject({
+			data,
+			options: {
+				type: this.system.damage.type
+			}
+		}, config);
 		rollConfig.parts = [this.system.damage.dice].concat(parts).concat(config.parts ?? []);
 
-		const flavor = game.i18n.localize("EH.Weapon.Action.DamageGeneric.Label");
+		const flavor = game.i18n.format("EH.Weapon.Action.DamageSourced.Label", {source: this.name});
 		const messageConfig = foundry.utils.mergeObject({
 			data: {
 				title: `${flavor}: ${this.actor?.name ?? ""}`,
@@ -692,6 +698,12 @@ export default class ItemEH extends Item {
 			}
 		}, message);
 
+		const dialogConfig = foundry.utils.mergeObject({
+			options: {
+				title: "Configure Damage"
+			}
+		}, dialog);
+
 		/**
 		 * A hook event that fires before a damage is rolled for an Item.
 		 * @function everydayHeroes.preRollDamage
@@ -699,11 +711,12 @@ export default class ItemEH extends Item {
 		 * @param {ItemEH} item - Item for which the roll is being performed.
 		 * @param {DamageRollConfiguration} config - Configuration data for the pending roll.
 		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
 		 * @returns {boolean} - Explicitly return false to prevent the roll from being performed.
 		 */
-		if ( Hooks.call("everydayHeroes.preRollDamage", this, rollConfig, messageConfig) === false ) return;
+		if ( Hooks.call("everydayHeroes.preRollDamage", this, rollConfig, messageConfig, dialogConfig) === false ) return;
 
-		const roll = await CONFIG.Dice.DamageRoll.build(rollConfig, messageConfig);
+		const roll = await CONFIG.Dice.DamageRoll.build(rollConfig, messageConfig, dialogConfig);
 
 		/**
 		 * A hook event that fires after a damage has been rolled for an Item.

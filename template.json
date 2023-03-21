@@ -99,6 +99,10 @@
         "criticalThreshold": {}
       },
       "traits": {
+        "damage": {
+          "immunity": [],
+          "reduction": {}
+        },
         "languages": [],
         "equipment": []
       }

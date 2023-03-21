@@ -42,7 +42,7 @@ export default class BaseConfigurationDialog extends Dialog {
 	static async configure(roll, options) {
 		return new Promise((resolve, reject) => {
 			new this(roll, {
-				title: options.title ?? "Roll", // TODO: Localize
+				title: options.options?.title ?? game.i18n.localize("EH.Roll.Configuration.LabelGeneric"),
 				buttons: this._dialogButtons(roll, options, resolve, reject),
 				default: "roll", // TODO: Allow this to be set
 				close: () => reject()
