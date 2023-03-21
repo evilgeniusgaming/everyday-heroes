@@ -5,19 +5,15 @@
     <span class="right stripes"></span>
   </h3>
 
-  {{#each items}}
-    <div class="item-name flexrow">
-      <div class="item-image" style="background-image: url('{{this.img}}');"></div>
-      <label class="flexrow">
+  <ul>
+    {{#each items}}
+      <li data-item-uuid="{{this.uuid}}">
         <h4>
+          <fieldset style="background-image: url('{{this.img}}');"></fieldset>
           <a data-uuid="{{uuid}}">{{this.name}}</a>
         </h4>
-        {{#if @root.optional}}
-          <input type="checkbox" name="{{this.uuid}}" {{checked this.checked}}>
-        {{else}}
-          <input type="hidden" name="{{this.uuid}}" value="true" data-dtype="Boolean">
-        {{/if}}
-      </label>
-    </div>
-  {{/each}}
+        <input type="hidden" name="{{this.uuid}}" value="true" data-dtype="Boolean">
+      </li>
+    {{/each}}
+  </ul>
 </form>

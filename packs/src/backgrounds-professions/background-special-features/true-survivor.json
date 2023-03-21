@@ -49,10 +49,9 @@
       "_id": "uGKZ5FtxqhKnwMwP",
       "changes": [
         {
-          "key": "system.attributes.overrides.success",
-          "mode": 3,
-          "value": "2",
-          "priority": null
+          "key": "system.attributes.death.overrides.success",
+          "mode": 5,
+          "value": "2"
         }
       ],
       "tint": null,
@@ -70,7 +69,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679370743949,
-    "modifiedTime": 1679371570958,
+    "modifiedTime": 1679373182445,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

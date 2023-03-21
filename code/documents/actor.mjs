@@ -418,8 +418,16 @@ export default class ActorEH extends Actor {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Configuration data for death saving throw rolls.
+	 *
+	 * @typedef {ChallengeRollConfiguration} DeathSaveRollConfiguration
+	 * @property {number} [successThreshold] - Number of successes required to stabilize.
+	 * @property {number} [failureThreshold] - Number of failures required to die.
+	 */
+
+	/**
 	 * Roll a death saving throw.
-	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
+	 * @param {DeathSaveRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
 	 * @returns {Promise<ChallengeRoll|void>}
 	 */
@@ -431,7 +439,16 @@ export default class ActorEH extends Actor {
 			globalBonus: this.system.bonuses?.ability?.save
 		}, this.getRollData());
 
-		const rollConfig = foundry.utils.mergeObject({ data }, config);
+		const rollConfig = foundry.utils.mergeObject({
+			data,
+			successThreshold: death.overrides.success
+				? death.overrides.success : CONFIG.EverydayHeroes.deathSave.successThreshold,
+			failureThreshold: death.overrides.failure
+				? death.overrides.failure : CONFIG.EverydayHeroes.deathSave.failureThreshold,
+			options: {
+				target: death.overrides.target ? death.overrides.target : undefined
+			}
+		}, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
 		const flavor = game.i18n.localize("EH.Death.Label[one]");
@@ -451,7 +468,7 @@ export default class ActorEH extends Actor {
 		 * @function everydayHeroes.preRollDeathSave
 		 * @memberof hookEvents
 		 * @param {ActorEH} actor - Actor for which the death save is being rolled.
-		 * @param {ChallengeRollConfiguration} config - Configuration data for the pending roll.
+		 * @param {DeathSaveRollConfiguration} config - Configuration data for the pending roll.
 		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
 		 * @returns {boolean} - Explicitly return `false` to prevent death save from being rolled.
 		 */
@@ -478,19 +495,19 @@ export default class ActorEH extends Actor {
 			}
 
 			// Three successes, you're stabilized
-			else if ( successes >= CONFIG.EverydayHeroes.deathSave.successThreshold ) {
+			else if ( successes >= rollConfig.successThreshold ) {
 				details.updates = {
 					"system.attributes.death.status": "stable",
 					"system.attributes.death.success": 0,
 					"system.attributes.death.failure": 0
 				};
 				details.chatString = "EH.Death.Message.Success";
-				details.count = CONFIG.EverydayHeroes.deathSave.successThreshold;
+				details.count = rollConfig.successThreshold;
 			}
 
 			// Increment successes
 			else details.updates = {
-				"system.attributes.death.success": Math.clamped(successes, 0, CONFIG.EverydayHeroes.deathSave.successThreshold)
+				"system.attributes.death.success": Math.clamped(successes, 0, rollConfig.successThreshold)
 			};
 		}
 
@@ -498,13 +515,13 @@ export default class ActorEH extends Actor {
 		else {
 			let failures = (death.failure || 0) + (roll.isCriticalFailure ? 2 : 1);
 			details.updates = {
-				"system.attributes.death.failure": Math.clamped(failures, 0, CONFIG.EverydayHeroes.deathSave.failureThreshold)
+				"system.attributes.death.failure": Math.clamped(failures, 0, rollConfig.failureThreshold)
 			};
 			// Three failures, you're dead
-			if ( failures >= CONFIG.EverydayHeroes.deathSave.failureThreshold ) {
+			if ( failures >= rollConfig.failureThreshold ) {
 				details.updates["system.attributes.death.status"] = "dead";
 				details.chatString = "EH.Death.Message.Failure";
-				details.count = CONFIG.EverydayHeroes.deathSave.failureThreshold;
+				details.count = rollConfig.failureThreshold;
 			}
 		}
 

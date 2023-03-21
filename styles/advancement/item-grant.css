@@ -1,0 +1,19 @@
+.everyday-heroes.advancement.manager [data-type="ItemGrant"] ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.everyday-heroes.advancement.manager [data-type="ItemGrant"] ul li h4 {
+	display: flex;
+	align-items: center;
+	gap: 1em;
+	margin: 0;
+}
+.everyday-heroes.advancement.manager [data-type="ItemGrant"] ul li h4 fieldset {
+	width: 2em;
+	height: 2em;
+	border-radius: 5px;
+	background-color: var(--eh-background-color-dark);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
