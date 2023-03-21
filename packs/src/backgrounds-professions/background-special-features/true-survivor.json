@@ -1,0 +1,79 @@
+{
+  "name": "True Survivor",
+  "type": "specialFeature",
+  "img": "icons/magic/death/hand-dirt-undead-zombie.webp",
+  "system": {
+    "description": {
+      "value": "<p>You need two successful death saving throws to stabilize, rather than three.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "identifier": {
+      "value": "true-survivor"
+    },
+    "type": {
+      "value": "background"
+    }
+  },
+  "effects": [
+    {
+      "label": "True Survivor",
+      "icon": "icons/magic/death/hand-dirt-undead-zombie.webp",
+      "origin": "Item.0KI9tkDbZU9wxqr5",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "_id": "uGKZ5FtxqhKnwMwP",
+      "changes": [
+        {
+          "key": "system.attributes.overrides.success",
+          "mode": 3,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "sort": 0
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679370743949,
+    "modifiedTime": 1679371570958,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "AVcJLWft20891dc8"
+}

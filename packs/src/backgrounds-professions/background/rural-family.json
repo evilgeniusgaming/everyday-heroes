@@ -1,0 +1,59 @@
+{
+  "name": "Rural Family",
+  "type": "background",
+  "img": "icons/environment/settlement/scarecrow.webp",
+  "system": {
+    "description": {
+      "value": "<p>You grew up outside the cities and among straightforward, honest folk. You learned the value of hard work and gained practical skills.</p><p><strong>Ability Score Increase:</strong> Increase your Strength or Constitution score by 1, to a maximum of 20</p><p><strong>Skill Proficiencies:</strong> Mechanics and Survival Equipment</p><p><strong>Proficiencies:</strong> Basic Equipment</p><p><strong>Iconic Equipment:</strong> Your family's old pickup truck (\"she still runs great\")</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "advancement": [
+      {
+        "_id": "AEA6WDntRrovxrSI",
+        "_type": "ASI",
+        "identifier": "",
+        "configuration": {
+          "points": 1,
+          "locked": [
+            "dex",
+            "wis",
+            "int",
+            "cha"
+          ],
+          "fixed": {
+            "str": 0,
+            "dex": 0,
+            "con": 0,
+            "int": 0,
+            "wis": 0,
+            "cha": 0
+          }
+        },
+        "level": 1,
+        "flags": {},
+        "title": "",
+        "value": {}
+      }
+    ],
+    "identifier": {
+      "value": "rural-family"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679369896454,
+    "modifiedTime": 1679370723521,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "JXqQwKtKcDaRezj9"
+}

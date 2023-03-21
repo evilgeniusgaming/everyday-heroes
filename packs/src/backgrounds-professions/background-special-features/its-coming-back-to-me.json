@@ -1,0 +1,50 @@
+{
+  "name": "It's Coming Back to Me",
+  "type": "specialFeature",
+  "img": "icons/sundries/misc/lock-open-yellow.webp",
+  "system": {
+    "description": {
+      "value": "<p>A forgotten skill and language rise from your foggy memory.</p><ul><li><p>At any point during play, you can decide what single additional skill proficiency you learned in your mysterious past. Once the choice is made, it is permanent.</p></li><li><p>At any point during play, you can decide what single additional language you learned in your mysterious past. Once the choice is made, it is permanent.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "identifier": {
+      "value": "its-coming-back-to-me"
+    },
+    "type": {
+      "value": "background"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679371156993,
+    "modifiedTime": 1679371572386,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "Ays5xyXlPRKcbN6k"
+}

@@ -1,0 +1,50 @@
+{
+  "name": "Have You Ever Read",
+  "type": "specialFeature",
+  "img": "icons/sundries/books/book-stack.webp",
+  "system": {
+    "description": {
+      "value": "<p>You can use your proficiency bonus on any ability check to recall knowledge on the subject of authors and literature.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "identifier": {
+      "value": "have-you-ever-read"
+    },
+    "type": {
+      "value": "background"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679371544394,
+    "modifiedTime": 1679371576641,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "VnlqCChBRBzlNOiD"
+}

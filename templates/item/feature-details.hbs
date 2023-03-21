@@ -1,4 +1,14 @@
 <section>
+
+	{{#if itemSubTypes}}
+		<fieldset>
+			<label>{{localize "EH.Item.Type.Label"}}</label>
+			<select name="system.type.value">
+				{{selectOptions itemSubTypes selected=system.type.value blank="" labelAttr="label"}}
+			</select>
+		</fieldset>
+	{{/if}}
+
 	<fieldset>
 		<label>Activation Cost</label>{{!-- TODO: Localize --}}
 		<select name="system.activation.type">
@@ -9,6 +19,7 @@
 		<label>Activation Condition</label>{{!-- TODO: Localize --}}
 		<input type="text" name="system.activation.condition" value="{{system.activation.condition}}">
 	</fieldset>
+
 	<fieldset>
 		<label>Consumption</label>{{!-- TODO: Localize --}}
 		<div class="fields">
@@ -36,6 +47,7 @@
 			{{/if}}
 		</div>
 	</fieldset>
+
 	<fieldset class="triple">
 		<label>{{localize "EH.Uses.Label"}}</label>
 		<div class="fields">
@@ -54,6 +66,7 @@
 				<input type="text" name="system.uses.recovery" value="{{system.uses.recovery}}" placeholder="All">
 			</label>
 	</fieldset>
+
 	{{#if system.hasRecharge}}
 		<fieldset class="triple">
 			<label>{{localize "EH.Recharge.Label"}}</label>
@@ -64,4 +77,5 @@
 				</label>
 		</fieldset>
 	{{/if}}
+
 </section>

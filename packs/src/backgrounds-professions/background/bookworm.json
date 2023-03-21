@@ -1,0 +1,71 @@
+{
+  "name": "Bookworm",
+  "type": "background",
+  "img": "icons/sundries/books/book-open-brown.webp",
+  "system": {
+    "description": {
+      "value": "<p>As a child, you spent your free time reading anything you could get your hands on. You absorbed practical knowledge as you immersed yourself in wonderful stories.</p><p><strong>Ability Score Increase:</strong> Increase your Intelligence or Wisdom score by 1, to a maximum of 20</p><p><strong>Language:</strong> Choose one additional language</p><p><strong>Skill Proficiencies:</strong> Choose either Natural Sciences or Social Sciences</p><p><strong>Iconic Equipment:</strong> A first edition or a rare book, a well-used bookmark</p><p><strong>Special Feature:</strong> @UUID[Compendium.everyday-heroes.backgrounds-professions.VnlqCChBRBzlNOiD]{Have You Ever Read}</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "advancement": [
+      {
+        "_id": "26AJGuYZVIsE2E8W",
+        "_type": "ASI",
+        "identifier": "",
+        "configuration": {
+          "points": 1,
+          "locked": [
+            "str",
+            "dex",
+            "con",
+            "cha"
+          ],
+          "fixed": {
+            "str": 0,
+            "dex": 0,
+            "con": 0,
+            "int": 0,
+            "wis": 0,
+            "cha": 0
+          }
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "3HXwd8VJaMwIYclg",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.backgrounds-professions.VnlqCChBRBzlNOiD"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": "Special Feature"
+      }
+    ],
+    "identifier": {
+      "value": "bookworm"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679369869198,
+    "modifiedTime": 1679371638693,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "8FFr2GRq7RoPQVR3"
+}

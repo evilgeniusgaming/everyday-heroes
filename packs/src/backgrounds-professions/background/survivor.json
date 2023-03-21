@@ -1,0 +1,71 @@
+{
+  "name": "Survivor",
+  "type": "background",
+  "img": "icons/magic/control/silhouette-hold-beam-blue.webp",
+  "system": {
+    "description": {
+      "value": "<p>Something horrible happened to you when you were young. The event left you emotionally scarred but determined to thrive despite your trauma.</p><p><strong>Ability Score Increase:</strong> Increase your Constitution or Wisdom score by 1, to a maximum of 20</p><p><strong>Skill Proficiencies:</strong> Choose either Endurance or Insight</p><p><strong>Iconic Equipment:</strong> A memento from your tragic past that gives you hope</p><p><strong>Special Feature:</strong> @UUID[Compendium.everyday-heroes.backgrounds-professions.AVcJLWft20891dc8]{True Survivor}</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "advancement": [
+      {
+        "_id": "GXxAEz5wFn82JQfv",
+        "_type": "ASI",
+        "identifier": "",
+        "configuration": {
+          "points": 1,
+          "locked": [
+            "dex",
+            "str",
+            "int",
+            "cha"
+          ],
+          "fixed": {
+            "str": 0,
+            "dex": 0,
+            "con": 0,
+            "int": 0,
+            "wis": 0,
+            "cha": 0
+          }
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "au53NlJDrC6oy80W",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.backgrounds-professions.AVcJLWft20891dc8"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": "Special Feature"
+      }
+    ],
+    "identifier": {
+      "value": "survivor"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679369902447,
+    "modifiedTime": 1679371596573,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "M49So97RyS2yLfLc"
+}

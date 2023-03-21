@@ -22,6 +22,8 @@ export default class FeatureSheet extends BaseItemSheet {
 
 		context.effects = ActiveEffectEH.prepareActiveEffectSections(context.item.effects);
 
+		context.itemSubTypes = foundry.utils.getProperty(CONFIG.EverydayHeroes, `${context.item.type}Types`);
+
 		context.resources = Object.entries(context.item.actor?.system.resources ?? {}).reduce((obj, [key, resource]) => {
 			if ( !resource.disabled ) obj[key] = resource.label;
 			return obj;

@@ -1,0 +1,66 @@
+{
+  "name": "Cosmopolitan",
+  "type": "background",
+  "img": "icons/environment/settlement/house-manor.webp",
+  "system": {
+    "description": {
+      "value": "<p>You traveled or read widely and picked up useful knowledge from various cultures. You have the gift of feeling at home wherever you roam.</p><p><strong>Ability Score Increase:</strong> Increase your Wisdom score by 1, to a maximum of 20</p><p><strong>Language:</strong> Choose one additional language</p><p><strong>Skill Proficiencies:</strong> Social Sciences</p><p><strong>Iconic Equipment:</strong> A valuable piece of art from a foreign country</p><p><strong>Special Feature:</strong> @UUID[Compendium.everyday-heroes.backgrounds-professions.f8GJGWQ0DkY3scq4]{Common Tongue}</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "advancement": [
+      {
+        "_id": "igVrqGgLriZfzQhX",
+        "_type": "ASI",
+        "identifier": "",
+        "configuration": {
+          "points": 0,
+          "locked": [],
+          "fixed": {
+            "str": 0,
+            "dex": 0,
+            "con": 0,
+            "int": 0,
+            "wis": 1,
+            "cha": 0
+          }
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "niXPlKGqGyagZ1fz",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.backgrounds-professions.f8GJGWQ0DkY3scq4"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": "Special Feature"
+      }
+    ],
+    "identifier": {
+      "value": "cosmopolitan"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679369875665,
+    "modifiedTime": 1679371626308,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "16apZo3irMZgJ6xV"
+}

@@ -1,0 +1,66 @@
+{
+  "name": "Person of Mystery",
+  "type": "background",
+  "img": "icons/equipment/head/hood-cloth-teal-gold.webp",
+  "system": {
+    "description": {
+      "value": "<p>Your background is a mystery, even to you. You have no official records and only dim recollections of your life. It's not a topic you feel comfortable discussing with others.</p><p><strong>Ability Score Increase:</strong> Increase an ability score of your choice by 1, to a maximum of 20</p><p><strong>Iconic Equipment:</strong> A mysterious locket</p><p><strong>Special Feature:</strong> @UUID[Compendium.everyday-heroes.backgrounds-professions.Ays5xyXlPRKcbN6k]{It's Coming Back to Me}</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "advancement": [
+      {
+        "_id": "14Qmf6UNXUdS7aXr",
+        "_type": "ASI",
+        "identifier": "",
+        "configuration": {
+          "points": 1,
+          "locked": [],
+          "fixed": {
+            "str": 0,
+            "dex": 0,
+            "con": 0,
+            "int": 0,
+            "wis": 0,
+            "cha": 0
+          }
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "1yBdmajMq7XBFiYW",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.backgrounds-professions.Ays5xyXlPRKcbN6k"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": "Special Feature"
+      }
+    ],
+    "identifier": {
+      "value": "person-of-mystery"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679369890597,
+    "modifiedTime": 1679371608113,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "cceu9PQnZ2xHTphi"
+}
