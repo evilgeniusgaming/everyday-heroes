@@ -21,6 +21,19 @@ export function simplifyBonus(bonus, data={}) {
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Document Helpers                         */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Creates an HTML document link for the provided UUID.
+ * @param {string} uuid - UUID for which to produce the link.
+ * @returns {string} - Link to the item or empty string if item wasn't found.
+ */
+export function linkForUUID(uuid) {
+	return TextEditor._createContentLink(["", "UUID", uuid]).outerHTML;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Object Helpers                           */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -52,16 +65,19 @@ export function sortObjectEntries(obj, sortKey) {
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-/*  Document Helpers                         */
+/*  Text Helpers                             */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
- * Creates an HTML document link for the provided UUID.
- * @param {string} uuid - UUID for which to produce the link.
- * @returns {string} - Link to the item or empty string if item wasn't found.
+ * Slugify the provided string with additional improvements to handle works separated by slashes
+ * (e.g. `this/that` becomes `this-that` rather than `thisthat`).
+ * @param {string} text - Text to slugify.
+ * @param {object} options - Options passed to the core slugify function.
+ * @returns {string}
  */
-export function linkForUUID(uuid) {
-	return TextEditor._createContentLink(["", "UUID", uuid]).outerHTML;
+export function slugify(text, options) {
+	text = text.replaceAll(/(\w+)([\\|/])(\w+)/g, "$1-$3");
+	return text.slugify(options);
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

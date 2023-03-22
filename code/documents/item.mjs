@@ -1,4 +1,5 @@
 import { buildRoll } from "../dice/utils.mjs";
+import { slugify } from "../utils.mjs";
 
 /**
  * Extended version of `Item` class to support Everyday Heroes features.
@@ -35,6 +36,13 @@ export default class ItemEH extends Item {
 	 */
 	get hasDamage() {
 		return this.system.hasDamage ?? false;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get identifier() {
+		if ( this.system.identifier?.value ) return this.system.identifier.value;
+		return slugify(this.name, {strict: true});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -768,11 +776,14 @@ export default class ItemEH extends Item {
 	/*  Socket Event Handlers                    */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	_preCreate(data, options, user) {
-		super._preCreate(data, options, user);
+	async _preCreate(data, options, user) {
+		await super._preCreate(data, options, user);
 		if ( !data.img || data.img === this.constructor.DEFAULT_ICON ) {
 			const img = CONFIG.Item.typeImages[data.type];
 			if ( img ) this.updateSource({img});
+		}
+		if ( this.system.hasOwnProperty("identifier") && !this.system.identifier.value ) {
+			this.updateSource({"system.identifier.value": this.identifier});
 		}
 	}
 

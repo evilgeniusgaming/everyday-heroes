@@ -15,6 +15,7 @@ export default class PlanData extends SystemDataModel.mixin(DescribedTemplate, A
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({
+				value: new IdentifierField({label: "Identifier.Label"}),
 				class: new IdentifierField({label: "", hint: ""})
 			})
 		});

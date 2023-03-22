@@ -1,4 +1,5 @@
 import SystemDataModel from "../abstract/system-data-model.mjs";
+import IdentifierField from "../fields/identifier-field.mjs";
 import AdvancementTemplate from "./templates/advancement-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
 
@@ -12,6 +13,9 @@ import DescribedTemplate from "./templates/described-template.mjs";
 export default class ProfessionData extends SystemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
+			identifier: new foundry.data.fields.SchemaField({
+				value: new IdentifierField({label: "Identifier.Label"})
+			}),
 			wealth: new foundry.data.fields.NumberField({
 				nullable: false, initial: 0, min: 0, integer: true, label: "EH.Details.Wealth.Label"
 			})
