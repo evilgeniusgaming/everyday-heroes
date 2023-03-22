@@ -401,6 +401,17 @@ export default class ItemEH extends Item {
 	/*  Helpers                                  */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	getRollData({ deterministic=false }={}) {
+		const rollData = {
+			...(this.actor?.getRollData({ deterministic }) ?? {}),
+			item: this.toObject(false).system
+		};
+		// TODO: Add ability mod & proficiency
+		return rollData;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	/**
 	 * Description of this item that will appear on the details tab of NPC sheets.
 	 * @returns {Promise<string>}

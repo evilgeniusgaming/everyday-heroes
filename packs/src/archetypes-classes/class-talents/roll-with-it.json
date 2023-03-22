@@ -1,0 +1,51 @@
+{
+  "name": "Roll With It",
+  "type": "talent",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>When you take damage from an attack, you can use your reaction to reduce that attack's damage by half.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "reaction",
+      "condition": "When you take damage from an attack."
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "identifier": {
+      "value": "roll-with-it"
+    },
+    "type": {
+      "value": "class",
+      "level": 5
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679458790408,
+    "modifiedTime": 1679459086513,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "z0t1SETPA15q3Vo0"
+}

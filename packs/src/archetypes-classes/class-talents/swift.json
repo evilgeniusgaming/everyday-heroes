@@ -1,0 +1,51 @@
+{
+  "name": "Swift",
+  "type": "talent",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>As a bonus action, you can make a Dexterity (Security) check, a Dexterity (Sleight of Hand) check, use the Hide action, or use the Object Interaction action.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "bonus",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "identifier": {
+      "value": "swift"
+    },
+    "type": {
+      "value": "class",
+      "level": 3
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679458753087,
+    "modifiedTime": 1679459082595,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "fTcKgxBDwEZ0YeKl"
+}

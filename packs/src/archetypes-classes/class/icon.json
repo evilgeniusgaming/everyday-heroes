@@ -1,0 +1,33 @@
+{
+  "name": "Icon",
+  "type": "class",
+  "img": "icons/magic/life/heart-shadow-red.webp",
+  "system": {
+    "description": {
+      "value": "<p><em><q>I'm so cool I got penguins writing me postcards.</q> <strong>—Johnny Blaze</strong></em></p><p>You are too cool for school, a legend among those who know of you. You add something special to everything you do and you make sure everyone knows about it. You're sure you were born to be a hero.</p><p>The icon offers an even mix of offense, defense, and social skills. Their abilities are unique, fun, and versatile, but if you're looking for a powerhouse in combat, this is not the class for you. If you want to be wonderfully ridiculous, you have come to the right place.</p><h4><em><strong>Proficiencies</strong></em></h4><p><strong>Saving Throws:</strong> Dexterity and Charisma</p><p><strong>\u0017Skills:</strong> Choose three from Acrobatics, Athletics, Arts and Crafts, Deception, Intimidation, Performance, Persuasion, and Streetwise</p><p><strong>Equipment:</strong> Basic Equipment and Advanced Equipment</p><p><strong>Celebrity Expertise:</strong> Choose one from Arts and Crafts, Performance, and Persuasion. You must be proficient in a skill to gain expertise in that skill.</p><p><em><strong>Equipment Recommendations</strong></em></p><p><strong>Equipment Pack:</strong> Entertainer Pack</p><p><strong>Weapons:</strong> Pump shotgun or hand cannon</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "advancement": [],
+    "identifier": {
+      "value": "icon",
+      "archetype": "charming"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679454547734,
+    "modifiedTime": 1679455358959,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "e0Ktsf1DtLfb6BGm"
+}

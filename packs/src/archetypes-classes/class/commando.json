@@ -1,0 +1,33 @@
+{
+  "name": "Commando",
+  "type": "class",
+  "img": "icons/weapons/guns/gun-topbarrel.webp",
+  "system": {
+    "description": {
+      "value": "<p><em><q>The wise recruit hopes for peace but prepares for war. For the veteran, peace is like a fallen comrade, something you never get back.</q> <strong>—sue fairfield</strong></em></p><p>You are the consummate warrior, dangerous with any weapon and trained to survive every circumstance. You are ready for whatever the enemy has to throw at you. The only thing you might be unprepared for is peace.</p><p>The commando is an all-around combat class that offers a great blend of defense and offense. Unlike the other tough heroes, they can't directly protect their allies, but they are versatile and can use nearly any weapon. You might consider investing in Dexterity if you want to lean into offensive strategies.</p><h4><em><strong>Proficiencies</strong></em></h4><p><strong>Saving Throws:</strong> Strength and Constitution</p><p><strong>Skills:</strong> Choose two from Athletics, Endurance, Mechanics, Persuasion, Streetwise, Survival, and Vehicles</p><p><strong>Equipment:</strong> Basic Equipment, Advanced Equipment, and Military Equipment</p><p><em><strong>Equipment Recommendations</strong></em></p><p><strong>Equipment Pack:</strong> Soldier Pack</p><p><strong>Weapons:</strong> Assault carbine rifle, 9mm semi-auto pistol, combat knife</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "advancement": [],
+    "identifier": {
+      "value": "commando",
+      "archetype": "tough"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679454534354,
+    "modifiedTime": 1679455415759,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "F2u3BinMJz1qGF0D"
+}

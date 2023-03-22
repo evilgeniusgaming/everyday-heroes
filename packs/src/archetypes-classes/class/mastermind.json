@@ -1,0 +1,33 @@
+{
+  "name": "Mastermind",
+  "type": "class",
+  "img": "icons/tools/scribal/spectacles-glasses.webp",
+  "system": {
+    "description": {
+      "value": "<p><em><q>Never bet against stupid. They never know when to quit and they have a clear numbers advantage.</q> <strong>—Wesley Scott</strong></em></p><p>You are always at least one step ahead of your enemies, plotting, scheming, and planning your next masterstroke. Your allies benefit from your genius as well. If only you could find someone to truly challenge you.</p><p>Mastermind plans involve strategies that were retroactively enacted in the past, to be revealed only in the present moment. This makes the mastermind very powerful outside combat, with the ability to shortcut difficult challenges. In combat, however, they are rather weak and vulnerable.</p><h4><em><strong>Proficiencies</strong></em></h4><p><strong>Saving Throws:</strong> Intelligence and Wisdom</p><p><strong>\u0017Skills:</strong> Choose four from Computers, Deception, Insight, Investigation, Medicine, Natural Sciences, Perception, Persuasion, Security, Social Sciences, and Streetwise</p><p><strong>Equipment:</strong> Basic Equipment</p><p><strong>Mental Expertise:</strong> Choose two from Computers, Deception, Insight, Investigation, Perception, Persuasion, Security, Social Sciences, and Streetwise. You must be proficient in a skill to take expertise in that skill.</p><p><em><strong>Equipment Recommendations</strong></em></p><p><strong>Equipment Pack:</strong> Executive Pack</p><p><strong>Weapons:</strong> Pocket .38 pistol or hunting rifle</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "advancement": [],
+    "identifier": {
+      "value": "mastermind",
+      "archetype": "smart"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679454538649,
+    "modifiedTime": 1679455389657,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "I6Mj7UBrNCnN3L9q"
+}

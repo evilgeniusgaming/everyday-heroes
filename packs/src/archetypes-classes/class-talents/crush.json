@@ -1,0 +1,51 @@
+{
+  "name": "Crush",
+  "type": "talent",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>You have advantage on any Strength check you make to break an object.</p><p>In addition, your melee attacks have +1 Penetration Value.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "identifier": {
+      "value": "crush"
+    },
+    "type": {
+      "value": "class",
+      "level": 1
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679455504696,
+    "modifiedTime": 1679455767206,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "1adFAmJrUgTOpdYc"
+}
