@@ -429,3 +429,15 @@ export const skills = {
 	}
 };
 preLocalize("skills", { key: "label", sort: true });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Attributes that can be tracked on token resource bars.
+ * @type {string[]}
+ */
+export const tokenAttributes = [
+	"abilities.*.value",
+	"attributes.defense.value",
+	"skills.*.passive"
+];

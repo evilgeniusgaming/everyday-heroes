@@ -1,0 +1,21 @@
+<section>
+	<h3 class="striped">
+		<span class="left stripes"></span>
+		<span class="center">
+			<select name="editorSelected">
+				{{#select editorSelected}}
+					<option value="description">{{localize "EH.Item.Description.Label"}}</option>
+					<option value="chat">{{localize "EH.Item.Description.Chat"}}</option>
+				{{/select}}
+			</select>
+		</span>
+		<span class="right stripes"></span>
+	</h3>
+	{{#if (eq editorSelected "description")}}
+		{{editor enriched.description target="system.description.value" button=true editable=editable
+			engine="prosemirror" collaborate=false}}
+	{{else if (eq editorSelected "chat")}}
+		{{editor enriched.chat target="system.description.chat" button=true editable=editable
+			engine="prosemirror" collaborate=false}}
+	{{/if}}
+</section>

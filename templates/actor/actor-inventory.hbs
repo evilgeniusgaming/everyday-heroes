@@ -25,18 +25,23 @@
 						</figure>
 						<a data-action="item" data-type="expand">{{item.name}}</a>
 					</h3>
-					{{#if (and @root.editable @root.editingMode)}}
-						<fieldset>
+					<fieldset>
+						{{#if (and @root.editable @root.editingMode)}}
+								<a data-action="item" data-type="edit"
+									data-tooltip="{{localize 'EH.Item.Action.Edit' type=item.typeLabel}}">
+									<i class="fas fa-edit"></i>
+								</a>
+								<a data-action="item" data-type="delete"
+									data-tooltip="{{localize 'EH.Item.Action.Delete' type=item.typeLabel}}">
+									<i class="fas fa-trash"></i>
+								</a>
+						{{else}}
 							<a data-action="item" data-type="edit"
-								data-tooltip="{{localize 'EH.Item.Action.Edit' type=item.typeLabel}}">
-								<i class="fas fa-edit"></i>
+								data-tooltip="{{localize 'EH.Item.Action.View' type=item.typeLabel}}">
+								<i class="fa-regular fa-eye"></i>
 							</a>
-							<a data-action="item" data-type="delete"
-								data-tooltip="{{localize 'EH.Item.Action.Delete' type=item.typeLabel}}">
-								<i class="fas fa-trash"></i>
-							</a>
-						</fieldset>
-					{{/if}}
+						{{/if}}
+					</fieldset>
 				</div>
 			{{/with}}
 		</header>

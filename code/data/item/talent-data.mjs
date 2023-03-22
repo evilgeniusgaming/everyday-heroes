@@ -16,7 +16,7 @@ export default class TalentData extends SystemDataModel.mixin(DescribedTemplate,
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.StringField({label: ""}),
-				level: new foundry.data.fields.NumberField({label: ""})
+				level: new foundry.data.fields.NumberField({label: "EH.Level.Label[one]"})
 			})
 		});
 	}

@@ -1,4 +1,4 @@
-import { numberFormat } from "../../../utils.mjs";
+import { numberFormat, simplifyBonus } from "../../../utils.mjs";
 import FormulaField from "../../fields/formula-field.mjs";
 
 /**
@@ -97,7 +97,7 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 	 * @type {boolean}
 	 */
 	get hasActivation() {
-		return !!this.activation.type || !!this.activation.condition;
+		return !!this.activation.type || !!this.activation.condition || this.consumesResource || this.consumesUses;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -132,8 +132,15 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareFinalUses() {
-		// TODO: Resolve max uses formula
-		this.uses.available = Number(this.uses.max) - this.uses.spent;
+		try {
+			this.uses.max = simplifyBonus(this.uses.max, this.parent.getRollData({ deterministic: true }));
+		} catch(error) {
+			console.error("Problem!", error);
+			// TODO: Add sheet warnings
+			this.uses.max = 0;
+		}
+
+		this.uses.available = this.uses.max - this.uses.spent;
 		const period = CONFIG.EverydayHeroes.recoveryPeriods[this.uses.period];
 		this.uses.label = game.i18n.format(`EH.Uses.Available${period ? "Specific" : "Generic"}.Label`, {
 			available: numberFormat(this.uses.available), max: numberFormat(this.uses.max),

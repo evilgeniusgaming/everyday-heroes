@@ -103,13 +103,16 @@
 /*  Description                              */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.item.sheet main > [data-tab="description"] {
+.item.sheet main > [data-tab="description"] > section {
+	height: 100%;
 	border: 2px solid var(--eh-border-color-strong);
 	border-radius: 20px;
-	padding: calc(1em - 5px) 1em;
+	padding: 0.5em;
 	background-color: var(--eh-background-color-white);
+	overflow: clip;
 }
-.item.sheet main > [data-tab="description"] .editor {
+.item.sheet main > [data-tab="description"] > section .editor {
 	height: 100%;
 	min-height: 12em;
+	margin-inline: 0.5em;
 }

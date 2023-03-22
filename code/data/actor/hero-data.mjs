@@ -38,6 +38,9 @@ export default class HeroData extends SystemDataModel.mixin(
 						target: new foundry.data.fields.NumberField({label: "EH.Death.Override.Target"})
 					})
 				}, {label: "EH.Death.Label[other]"}),
+				defense: new foundry.data.fields.SchemaField({
+					bonus: new FormulaField({deterministic: true, label: "Defense.Bonus.Label"})
+				}, {label: "Defense.Label"}),
 				hd: new foundry.data.fields.SchemaField({
 					spent: new foundry.data.fields.NumberField({initial: 0, min: 0, integer: true, label: "EH.HitDice.Spent"})
 				}, {label: "EH.HitDice.Labe[other]"}),
@@ -180,11 +183,11 @@ export default class HeroData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedDefense() {
-		const defense = this.details.archetype?.system.defense;
-		this.attributes.defense ??= {};
+		const archetype = this.details.archetype?.system.defense;
+		const defense = this.attributes.defense ??= {};
 
 		const highestAbility = { key: undefined, mod: -Infinity };
-		for ( const abilityKey of (defense?.abilities ?? []) ) {
+		for ( const abilityKey of (archetype?.abilities ?? []) ) {
 			const ability = this.abilities[abilityKey];
 			if ( !ability || ability.mod <= highestAbility.mod ) continue;
 			highestAbility.key = abilityKey;
@@ -194,11 +197,10 @@ export default class HeroData extends SystemDataModel.mixin(
 			highestAbility.key = CONFIG.EverydayHeroes.defaultAbilities.defense;
 			highestAbility.mod = this.abilities[CONFIG.EverydayHeroes.defaultAbilities.defense]?.mod ?? 0;
 		}
-		// TODO: Add global defense bonus
 
-		this.attributes.defense.ability = highestAbility.key;
-		this.attributes.defense.bonus = Number(this.attributes.defense.bonus ?? 0) + (defense?.bonus ?? 0);
-		this.attributes.defense.value = 10 + highestAbility.mod + this.attributes.defense.bonus;
+		defense.ability = highestAbility.key;
+		defense.bonus = simplifyBonus(this.attributes.defense.bonus, this.parent.getRollData()) + (archetype?.bonus ?? 0);
+		defense.value = 10 + highestAbility.mod + defense.bonus;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

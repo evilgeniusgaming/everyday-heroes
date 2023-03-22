@@ -24,6 +24,9 @@
             "target": null
           }
         },
+        "defense": {
+          "bonus": ""
+        },
         "hd": {
           "spent": 0
         },
@@ -326,7 +329,8 @@
         "value": ""
       },
       "type": {
-        "value": ""
+        "value": "",
+        "level": null
       }
     },
     "trick": {

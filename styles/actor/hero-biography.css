@@ -6,11 +6,6 @@
 	border-radius: 20px;
 	background-color: var(--eh-background-color-white);
 }
-.everyday-heroes.sheet [data-tab="biography"] > section h2 select {
-	border: none;
-	color: var(--eh-text-color-white);
-	text-align: center;
-}
 .everyday-heroes.sheet [data-tab="biography"] > section .editor {
 	height: 100%;
 	margin: 0.5em;
