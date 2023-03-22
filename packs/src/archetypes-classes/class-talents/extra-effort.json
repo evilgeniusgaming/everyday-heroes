@@ -1,0 +1,51 @@
+{
+  "name": "Extra Effort",
+  "type": "talent",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>By pushing yourself to the limit, you can take an additional action during your turn. You can do this only once before you finish a short or long rest.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "@scale.extra-effort",
+      "period": "sr",
+      "recovery": "",
+      "formula": ""
+    },
+    "identifier": {
+      "value": "extra-effort"
+    },
+    "type": {
+      "value": "class",
+      "level": 3
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679515477804,
+    "modifiedTime": 1679518447977,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "QfjHV7NcUdyLlbCS"
+}

@@ -8,7 +8,75 @@
       "chat": "",
       "source": "Core Rulebook"
     },
-    "advancement": [],
+    "advancement": [
+      {
+        "_id": "ySgikwGNPH2nWsOm",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.PzshkZ6vIrG3BdJf",
+            "Compendium.everyday-heroes.archetypes-classes.rwC1BJv1ooKzohXQ"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": "Talents"
+      },
+      {
+        "_id": "XykqFlt7Sd1DEkRM",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.j85X4VVhc0mTW6Bw",
+            "Compendium.everyday-heroes.archetypes-classes.TJrWKejE46oqK0ER"
+          ]
+        },
+        "level": 3,
+        "flags": {},
+        "title": "Talents"
+      },
+      {
+        "_id": "bmIunyjkNNudalzj",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.z0t1SETPA15q3Vo0"
+          ]
+        },
+        "level": 5,
+        "flags": {},
+        "title": "Talents"
+      },
+      {
+        "_id": "JhcIV34KuIgdMDWy",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.HLDKLlKX5Pqev5TV"
+          ]
+        },
+        "level": 7,
+        "flags": {},
+        "title": "Talents"
+      },
+      {
+        "_id": "fh2Nr7Oi69sisAw9",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.97ISC3kv7h5vKbxo"
+          ]
+        },
+        "level": 9,
+        "flags": {},
+        "title": "Talents"
+      }
+    ],
     "identifier": {
       "value": "sleuth",
       "archetype": "wise"
@@ -24,7 +92,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679454543935,
-    "modifiedTime": 1679455326494,
+    "modifiedTime": 1679518389412,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

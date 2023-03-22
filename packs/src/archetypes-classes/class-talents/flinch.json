@@ -1,0 +1,51 @@
+{
+  "name": "Flinch",
+  "type": "talent",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>As a reaction, when an opponent within 5 feet that can see you targets you with an attack, you can cause that attack to have disadvantage. They cannot change targets in response to you doing this.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "reaction",
+      "condition": "When an opponent within 5 feet that can see you targets you with an attack."
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "identifier": {
+      "value": "flinch"
+    },
+    "type": {
+      "value": "class",
+      "level": 3
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679517666531,
+    "modifiedTime": 1679518200233,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "vZHDbtjyK5Tbo8l2"
+}

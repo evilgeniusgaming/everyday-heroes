@@ -8,7 +8,22 @@
       "chat": "",
       "source": "Core Rulebook"
     },
-    "advancement": [],
+    "advancement": [
+      {
+        "_id": "UQDxJaiwIEGFgIzi",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.r2UbSqh57Ww7ZLUj",
+            "Compendium.everyday-heroes.archetypes-classes.jNyWa8AMKVXhc0Zz"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": "Talents"
+      }
+    ],
     "identifier": {
       "value": "mastermind",
       "archetype": "smart"
@@ -24,7 +39,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679454538649,
-    "modifiedTime": 1679455389657,
+    "modifiedTime": 1679516748550,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

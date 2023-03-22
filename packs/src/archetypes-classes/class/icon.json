@@ -8,7 +8,74 @@
       "chat": "",
       "source": "Core Rulebook"
     },
-    "advancement": [],
+    "advancement": [
+      {
+        "_id": "KNJH4AuPljWg7MRi",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.JGiJlml2g2LLBZ2P",
+            "Compendium.everyday-heroes.archetypes-classes.vTlstrKJbqJQhgAu"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": "Talents"
+      },
+      {
+        "_id": "1MsfoCFIjoenfZ8a",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.vZHDbtjyK5Tbo8l2"
+          ]
+        },
+        "level": 3,
+        "flags": {},
+        "title": "Talents"
+      },
+      {
+        "_id": "sgGEdiZ2V1ZOovGQ",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.gw9h5ht144ZVePuF"
+          ]
+        },
+        "level": 5,
+        "flags": {},
+        "title": "Talents"
+      },
+      {
+        "_id": "FFemFB9XO0ZknB0K",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.B7l2YYvvH485j1zx"
+          ]
+        },
+        "level": 7,
+        "flags": {},
+        "title": "Talents"
+      },
+      {
+        "_id": "6Eve7qvExe3VdRM7",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.7GvJ2mKrLppEgLjp"
+          ]
+        },
+        "level": 9,
+        "flags": {},
+        "title": "Talents"
+      }
+    ],
     "identifier": {
       "value": "icon",
       "archetype": "charming"
@@ -24,7 +91,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679454547734,
-    "modifiedTime": 1679455358959,
+    "modifiedTime": 1679518269707,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
