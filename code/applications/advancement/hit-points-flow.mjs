@@ -36,7 +36,6 @@ export default class HitPointsFlow extends AdvancementFlow {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	/** @inheritdoc */
 	activateListeners(html) {
 		this.form.querySelector(".averageCheckbox")?.addEventListener("change", event => {
 			this.form.querySelector(".rollResult").disabled = event.target.checked;
@@ -44,8 +43,8 @@ export default class HitPointsFlow extends AdvancementFlow {
 			this._updateRollResult();
 		});
 		this.form.querySelector(".rollButton")?.addEventListener("click", async () => {
-			const roll = await this.advancement.actor.rollClassHitPoints(this.advancement.item);
-			this.form.querySelector(".rollResult").value = roll.total;
+			const roll = await this.advancement.actor.rollHitPoints();
+			this.form.querySelector(".rollResult").value = roll?.total ?? 0;
 		});
 		this._updateRollResult();
 	}
@@ -54,7 +53,7 @@ export default class HitPointsFlow extends AdvancementFlow {
 
 	/**
 	 * Update the roll result display when the average result is taken.
-	 * @protected
+	 * @internal
 	 */
 	_updateRollResult() {
 		if ( !this.form.elements.useAverage?.checked ) return;

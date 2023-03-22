@@ -524,9 +524,10 @@ export default class ItemEH extends Item {
 	 * Roll an armor saving throw.
 	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
 	 * @returns {Promise<ChallengeRoll|void>}
 	 */
-	async rollArmorSave(config={}, message={}) {
+	async rollArmorSave(config={}, message={}, dialog={}) {
 		if ( !this.hasArmorSave ) return console.warn(`${this.name} does not support armor saving throws.`);
 
 		const { parts, data } = buildRoll({
@@ -538,7 +539,7 @@ export default class ItemEH extends Item {
 		const rollConfig = foundry.utils.mergeObject({ data }, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
-		const flavor = game.i18n.localize("EH.Armor.Action.Save.Label");
+		const flavor = game.i18n.format("EH.Action.Roll", { type: game.i18n.localize("EH.Armor.Action.Save.Label") });
 		const messageConfig = foundry.utils.mergeObject({
 			data: {
 				title: `${flavor}: ${this.actor.name}`,
@@ -551,6 +552,14 @@ export default class ItemEH extends Item {
 			}
 		}, message);
 
+		const dialogConfig = foundry.utils.mergeObject({
+			options: {
+				title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", {
+					type: game.i18n.format("EH.Armor.Action.Save.Label")
+				})
+			}
+		}, dialog);
+
 		/**
 		 * A hook event that fires before an armor save is rolled for an Item.
 		 * @function everydayHeroes.preRollArmorSave
@@ -558,11 +567,13 @@ export default class ItemEH extends Item {
 		 * @param {ItemEH} item - Item for which the armor save is being rolled.
 		 * @param {ChallengeRollConfiguration} config - Configuration data for the pending roll.
 		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
 		 * @returns {boolean} - Explicitly return `false` to prevent ability check from being rolled.
 		 */
-		if ( Hooks.call("everydayHeroes.preRollAbilityCheck", this, rollConfig, messageConfig) === false ) return;
+		if ( Hooks.call("everydayHeroes.preRollAbilityCheck", this, rollConfig, messageConfig,
+			dialogConfig) === false ) return;
 
-		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig);
+		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
 
 		/**
 		 * A hook event that fires after an armor save has been rolled for an Item.
@@ -582,15 +593,16 @@ export default class ItemEH extends Item {
 	 * Roll an attack for this weapon.
 	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
 	 * @returns {Promise<ChallengeRoll|void>}
 	 */
-	async rollAttack(config={}, message={}) {
+	async rollAttack(config={}, message={}, dialog={}) {
 		if ( !this.hasAttack ) return console.warn(`${this.name} does not support attack rolls.`);
 		const ability = this.actor?.system.abilities[this.system.damageAbility];
 		const ammunition = undefined;
 
 		// Verify that the weapon has enough rounds left to make the attack
-		if ( this.system.roundsToSpend > this.system.rounds.available ) {
+		if ( this.system.usesRounds && (this.system.roundsToSpend > this.system.rounds?.available) ) {
 			return console.warn("Not enough rounds in weapon.");
 			// TODO: Display this as a UI messages
 		}
@@ -631,6 +643,14 @@ export default class ItemEH extends Item {
 			}
 		}, message);
 
+		const dialogConfig = foundry.utils.mergeObject({
+			options: {
+				title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", {
+					type: game.i18n.format("EH.Weapon.Action.AttackGeneric")
+				})
+			}
+		}, dialog);
+
 		/**
 		 * A hook event that fires before an attack is rolled for an Item.
 		 * @function everydayHeroes.preRollAttack
@@ -638,11 +658,12 @@ export default class ItemEH extends Item {
 		 * @param {ItemEH} item - Item for which the ability check is being rolled.
 		 * @param {ChallengeRollConfiguration} config - Configuration data for the pending roll.
 		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
 		 * @returns {boolean} - Explicitly return `false` to prevent attack from being rolled.
 		 */
-		if ( Hooks.call("everydayHeroes.preRollAttack", this, rollConfig, messageConfig) === false ) return;
+		if ( Hooks.call("everydayHeroes.preRollAttack", this, rollConfig, messageConfig, dialogConfig) === false ) return;
 
-		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig);
+		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
 
 		/**
 		 * A hook event that fires after an attack has been rolled for an Item.
@@ -694,7 +715,9 @@ export default class ItemEH extends Item {
 		}, config);
 		rollConfig.parts = [this.system.damage.dice].concat(parts).concat(config.parts ?? []);
 
-		const flavor = game.i18n.format("EH.Weapon.Action.DamageSourced.Label", {source: this.name});
+		const flavor = game.i18n.format("EH.Action.Roll", {
+			type: game.i18n.format("EH.Weapon.Action.DamageSourced.Label", {source: this.name})
+		});
 		const messageConfig = foundry.utils.mergeObject({
 			data: {
 				title: `${flavor}: ${this.actor?.name ?? ""}`,
@@ -711,7 +734,9 @@ export default class ItemEH extends Item {
 
 		const dialogConfig = foundry.utils.mergeObject({
 			options: {
-				title: "Configure Damage"
+				title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", {
+					type: game.i18n.format("EH.Weapon.Action.DamageGeneric.Label")
+				})
 			}
 		}, dialog);
 

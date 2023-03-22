@@ -2,7 +2,7 @@ import RestDialog from "../applications/actor/rest-dialog.mjs";
 import AdvancementConfirmationDialog from "../applications/advancement/advancement-confirmation-dialog.mjs";
 import AdvancementManager from "../applications/advancement/advancement-manager.mjs";
 import { buildRoll } from "../dice/utils.mjs";
-import { simplifyBonus } from "../utils.mjs";
+import { numberFormat, simplifyBonus } from "../utils.mjs";
 import Proficiency from "./proficiency.mjs";
 
 /**
@@ -278,10 +278,39 @@ export default class ActorEH extends Actor {
 	/**
 	 * Display the result of a rest operation in chat.
 	 * @param {RestResult} result - Results of the rest.
+	 * @returns {Promise<ChatMessage>}
 	 * @internal
 	 */
 	async _displayRestResultMessage(result) {
-		console.log(result);
+		const type = result.type === "short" ? "Short" : "Long";
+
+		// Determine what localization string should be used for the message content
+		let resultType = "Basic";
+		if ( result.deltas.hitPoints && result.deltas.hitDice ) resultType = "Full";
+		else if ( (result.type === "long") && result.deltas.hitPoints ) resultType = "HitPoints";
+		else if ( (result.type === "long") && result.deltas.hitDice ) resultType = "HitDice";
+		const localizationString = `EH.Rest.Result.${type}.${resultType}`;
+
+		// Prepare localization data
+		const pluralRules = new Intl.PluralRules(game.i18n.lang);
+		const localizationData = {
+			name: this.name,
+			hitDice: numberFormat(result.type === "long" ? result.deltas.hitDice : -result.deltas.hitDice),
+			hitDiceLabel: game.i18n.localize(`EH.HitDice.Label[${pluralRules.select(result.deltas.hitDice)}]`).toLowerCase(),
+			hitPoints: numberFormat(result.deltas.hitPoints),
+			hitPointsLabel: game.i18n.localize(`EH.HitPoints.Label[${pluralRules.select(result.deltas.hitPoints)}]`)
+				.toLowerCase()
+		};
+
+		const chatData = {
+			user: game.user.id,
+			speaker: {actor: this, alias: this.name},
+			flavor: game.i18n.localize(`EH.Rest.Type.${type}.Label`),
+			rolls: result.rolls,
+			content: game.i18n.format(localizationString, localizationData)
+		};
+		ChatMessage.applyRollMode(chatData, game.settings.get("core", "rollMode"));
+		return ChatMessage.create(chatData);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -293,9 +322,10 @@ export default class ActorEH extends Actor {
 	 * @param {string} key - The ability ID as defined in `CONFIG.EverydayHeroes.abilities`.
 	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
 	 * @returns {Promise<ChallengeRoll|void>}
 	 */
-	async rollAbilityCheck(key, config={}, message={}) {
+	async rollAbilityCheck(key, config={}, message={}, dialog={}) {
 		const ability = this.system.abilities[key];
 		if ( !ability ) return;
 
@@ -309,9 +339,10 @@ export default class ActorEH extends Actor {
 		const rollConfig = foundry.utils.mergeObject({ data }, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
-		const flavor = game.i18n.format("EH.Ability.Action.CheckSpecific", {
+		const type = game.i18n.format("EH.Ability.Action.CheckSpecific", {
 			ability: CONFIG.EverydayHeroes.abilities[key].label
 		});
+		const flavor = game.i18n.format("EH.Action.Roll", { type });
 		const messageConfig = foundry.utils.mergeObject({
 			data: {
 				title: `${flavor}: ${this.name}`,
@@ -324,6 +355,12 @@ export default class ActorEH extends Actor {
 			}
 		}, message);
 
+		const dialogConfig = foundry.utils.mergeObject({
+			options: {
+				title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", { type })
+			}
+		}, dialog);
+
 		/**
 		 * A hook event that fires before an ability check is rolled for an Actor.
 		 * @function everydayHeroes.preRollAbilityCheck
@@ -331,12 +368,13 @@ export default class ActorEH extends Actor {
 		 * @param {ActorEH} actor - Actor for which the ability check is being rolled.
 		 * @param {ChallengeRollConfiguration} config - Configuration data for the pending roll.
 		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
 		 * @param {string} key - The ability ID as defined in `CONFIG.EverydayHeroes.abilities`.
 		 * @returns {boolean} - Explicitly return `false` to prevent ability check from being rolled.
 		 */
-		if ( Hooks.call("everydayHeroes.preRollAbilityCheck", this, rollConfig, messageConfig, key) === false ) return;
+		if ( Hooks.call("everydayHeroes.preRollAbilityCheck", this, rollConfig, messageConfig, dialogConfig, key) === false ) return;
 
-		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig);
+		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
 
 		/**
 		 * A hook event that fires after an ability check has been rolled for an Actor.
@@ -358,9 +396,10 @@ export default class ActorEH extends Actor {
 	 * @param {string} key - The ability ID as defined in `CONFIG.EverydayHeroes.abilities`.
 	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
 	 * @returns {Promise<ChallengeRoll|void>}
 	 */
-	async rollAbilitySave(key, config={}, message={}) {
+	async rollAbilitySave(key, config={}, message={}, dialog={}) {
 		const ability = this.system.abilities[key];
 		if ( !ability ) return;
 
@@ -374,9 +413,10 @@ export default class ActorEH extends Actor {
 		const rollConfig = foundry.utils.mergeObject({ data }, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
-		const flavor = game.i18n.format("EH.Ability.Action.SaveSpecific", {
+		const type = game.i18n.format("EH.Ability.Action.SaveSpecific", {
 			ability: CONFIG.EverydayHeroes.abilities[key].label
 		});
+		const flavor = game.i18n.format("EH.Action.Roll", { type });
 		const messageConfig = foundry.utils.mergeObject({
 			data: {
 				title: `${flavor}: ${this.name}`,
@@ -389,6 +429,12 @@ export default class ActorEH extends Actor {
 			}
 		}, message);
 
+		const dialogConfig = foundry.utils.mergeObject({
+			options: {
+				title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", { type })
+			}
+		}, dialog);
+
 		/**
 		 * A hook event that fires before an ability save is rolled for an Actor.
 		 * @function everydayHeroes.preRollAbilitySave
@@ -396,12 +442,13 @@ export default class ActorEH extends Actor {
 		 * @param {ActorEH} actor - Actor for which the ability save is being rolled.
 		 * @param {ChallengeRollConfiguration} config - Configuration data for the pending roll.
 		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
 		 * @param {string} key - The ability ID as defined in `CONFIG.EverydayHeroes.abilities`.
 		 * @returns {boolean} - Explicitly return `false` to prevent ability save from being rolled.
 		 */
-		if ( Hooks.call("everydayHeroes.preRollAbilitySave", this, rollConfig, messageConfig, key) === false ) return;
+		if ( Hooks.call("everydayHeroes.preRollAbilitySave", this, rollConfig, messageConfig, dialogConfig, key) === false ) return;
 
-		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig);
+		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
 
 		/**
 		 * A hook event that fires after an ability save has been rolled for an Actor.
@@ -430,9 +477,10 @@ export default class ActorEH extends Actor {
 	 * Roll a death saving throw.
 	 * @param {DeathSaveRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
 	 * @returns {Promise<ChallengeRoll|void>}
 	 */
-	async rollDeathSave(config={}, message={}) {
+	async rollDeathSave(config={}, message={}, dialog={}) {
 		const death = this.system.attributes.death;
 
 		const { parts, data } = buildRoll({
@@ -452,7 +500,8 @@ export default class ActorEH extends Actor {
 		}, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
-		const flavor = game.i18n.localize("EH.Death.Label[one]");
+		const type = game.i18n.localize("EH.Death.Label[one]");
+		const flavor = game.i18n.format("EH.Action.Roll", { type });
 		const messageConfig = foundry.utils.mergeObject({
 			data: {
 				title: `${flavor}: ${this.name}`,
@@ -464,6 +513,12 @@ export default class ActorEH extends Actor {
 			}
 		}, message);
 
+		const dialogConfig = foundry.utils.mergeObject({
+			options: {
+				title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", { type })
+			}
+		}, dialog);
+
 		/**
 		 * A hook event that fires before an death save is rolled for an Actor.
 		 * @function everydayHeroes.preRollDeathSave
@@ -471,11 +526,12 @@ export default class ActorEH extends Actor {
 		 * @param {ActorEH} actor - Actor for which the death save is being rolled.
 		 * @param {DeathSaveRollConfiguration} config - Configuration data for the pending roll.
 		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
 		 * @returns {boolean} - Explicitly return `false` to prevent death save from being rolled.
 		 */
-		if ( Hooks.call("everydayHeroes.preRollDeathSave", this, rollConfig, messageConfig) === false ) return;
+		if ( Hooks.call("everydayHeroes.preRollDeathSave", this, rollConfig, messageConfig, dialogConfig) === false ) return;
 
-		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig);
+		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
 		if ( !roll ) return;
 
 		const details = {};
@@ -576,11 +632,12 @@ export default class ActorEH extends Actor {
 
 	/**
 	 * Roll one of the actor's hit die and add its value to their health.
-	 * @param {HitDieRollConfiguration} config - Configuration information for the roll.
-	 * @param {BaseMessageConfiguration} message - Configuration data that guides roll message creation.
+	 * @param {HitDieRollConfiguration} [config] - Configuration information for the roll.
+	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
 	 * @returns {Promise<BaseRoll|void>}
 	 */
-	async rollHitDie(config={}, message={}) {
+	async rollHitDie(config={}, message={}, dialog={}) {
 		const denomination = this.system.attributes.hd.denomination;
 		if ( !denomination ) return console.warn("No hit die set up");
 		if ( !this.system.attributes.hd.available ) return console.warn("No hit dice to spend");
@@ -597,7 +654,8 @@ export default class ActorEH extends Actor {
 			data: this.getRollData()
 		}, config);
 
-		const flavor = game.i18n.format("EH.Action.Roll", {type: game.i18n.localize("EH.HitDice.Label[one]")});
+		const type = game.i18n.localize("EH.HitDice.Label[one]");
+		const flavor = game.i18n.format("EH.Action.Roll", {type});
 		const messageConfig = foundry.utils.mergeObject({
 			data: {
 				title: `${flavor}: ${this.name}`,
@@ -610,6 +668,13 @@ export default class ActorEH extends Actor {
 			}
 		}, message);
 
+		const dialogConfig = foundry.utils.mergeObject({
+			configure: false,
+			options: {
+				title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", { type })
+			}
+		}, dialog);
+
 		/**
 		 * A hook event that fires before a hit die is rolled for an Actor.
 		 * @function everydayHeroes.preRollHitDie
@@ -617,12 +682,14 @@ export default class ActorEH extends Actor {
 		 * @param {ActorEH} actor - Actor for which the hit die is to be rolled.
 		 * @param {HitDieRollConfiguration} config - Configuration data for the pending roll.
 		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
 		 * @param {number} denomination - Size of hit die to be rolled.
 		 * @returns {boolean} - Explicitly return `false` to prevent hit die from being rolled.
 		 */
-		if ( Hooks.call("everydayHeroes.preRollHitDie", this, rollConfig, messageConfig, denomination) === false ) return;
+		if ( Hooks.call("everydayHeroes.preRollHitDie", this, rollConfig, messageConfig,
+			dialogConfig, denomination) === false ) return;
 
-		const roll = await CONFIG.Dice.BaseRoll.build(rollConfig, messageConfig, { configure: false });
+		const roll = await CONFIG.Dice.BaseRoll.build(rollConfig, messageConfig, dialogConfig);
 
 		const updates = {};
 		if ( rollConfig.modifySpentHitDie !== false ) {
@@ -652,6 +719,79 @@ export default class ActorEH extends Actor {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Roll hit points on level-up or re-roll NPC max hit points.
+	 * @param {BaseRollConfiguration} config - Configuration information for the roll.
+	 * @param {BaseMessageConfiguration} message - Configuration data that guides roll message creation.
+	 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
+	 * @returns {Promise<BaseRoll>}
+	 */
+	async rollHitPoints(config={}, message={}, dialog={}) {
+		// Hero Hit Points
+		if ( this.type === "hero" ) {
+			const denomination = this.system.attributes.hd.denomination;
+			if ( !denomination ) return console.warn("No hit die set up");
+
+			const parts = [`1d${denomination}`];
+			const data = this.getRollData();
+
+			const rollConfig = foundry.utils.mergeObject({ data }, config);
+			rollConfig.parts = parts.concat(config.parts ?? []);
+
+			const type = game.i18n.localize("EH.HitPoints.Label[other]");
+			const flavor = game.i18n.format("EH.Action.Roll", { type });
+			const messageConfig = foundry.utils.mergeObject({
+				data: {
+					title: `${flavor}: ${this.name}`,
+					flavor,
+					speaker: ChatMessage.getSpeaker({actor: this}),
+					"flags.everyday-heroes.roll": {
+						type: "hit-points"
+					}
+				}
+			});
+
+			const dialogConfig = foundry.utils.mergeObject({
+				configure: false,
+				options: {
+					title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", { type })
+				}
+			}, dialog);
+
+			/**
+			 * A hook event that fires before hit points are rolled for an Hero.
+			 * @function everydayHeroes.preRollHeroHitPoints
+			 * @memberof hookEvents
+			 * @param {ActorEH} actor - Actor for which the hit points are being rolled.
+			 * @param {ChallengeRollConfiguration} config - Configuration data for the pending roll.
+			 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
+			 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
+			 * @returns {boolean} - Explicitly return `false` to prevent hit points from being rolled.
+			 */
+			if ( Hooks.call("everydayHeroes.preRollHeroHitPoints", this, rollConfig, messageConfig, dialogConfig) === false ) return;
+
+			const roll = await CONFIG.Dice.BaseRoll.build(rollConfig, messageConfig, dialogConfig);
+
+			/**
+			 * A hook event that fires after hit points have been rolled for an Actor.
+			 * @function everydayHeroes.rollHeroHitPoints
+			 * @memberof hookEvents
+			 * @param {ActorEH} actor - Actor for which the hit points have been rolled.
+			 * @param {D20Roll} [roll] - The resulting roll.
+			 */
+			Hooks.callAll("everydayHeroes.rollHeroHitPoints", this, roll);
+
+			return roll;
+		}
+
+		// NPC Hit Points
+		else {
+			// TODO: Implement NPC hit points rolling
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Roll initiative.
 	 * @param {object} [options] - Options for the initiative process (see Actor#rollInitiative).
 	 * @param {boolean} [options.dialog=false] - Should the configuration dialog be shown?
@@ -671,9 +811,10 @@ export default class ActorEH extends Actor {
 	 * Roll a luck saving throw.
 	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
 	 * @returns {Promise<ChallengeRoll|void>}
 	 */
-	async rollLuckSave(config={}, message={}) {
+	async rollLuckSave(config={}, message={}, dialog={}) {
 		const { parts, data } = buildRoll({
 			globalBonus: this.system.bonuses?.ability?.save
 		}, this.getRollData());
@@ -686,7 +827,8 @@ export default class ActorEH extends Actor {
 		}, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
-		const flavor = game.i18n.format("EH.Luck.Label");
+		const type = game.i18n.format("EH.Luck.Label");
+		const flavor = game.i18n.format("EH.Action.Roll", { type });
 		const messageConfig = foundry.utils.mergeObject({
 			data: {
 				title: `${flavor}: ${this.name}`,
@@ -698,6 +840,12 @@ export default class ActorEH extends Actor {
 			}
 		}, message);
 
+		const dialogConfig = foundry.utils.mergeObject({
+			options: {
+				title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", { type })
+			}
+		}, dialog);
+
 		/**
 		 * A hook event that fires before an luck save is rolled for an Actor.
 		 * @function everydayHeroes.preRollLuckSave
@@ -705,11 +853,12 @@ export default class ActorEH extends Actor {
 		 * @param {ActorEH} actor - Actor for which the luck save is being rolled.
 		 * @param {ChallengeRollConfiguration} config - Configuration data for the pending roll.
 		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
 		 * @returns {boolean} - Explicitly return `false` to prevent ability save from being rolled.
 		 */
-		if ( Hooks.call("everydayHeroes.preRollLuckSave", this, rollConfig, messageConfig) === false ) return;
+		if ( Hooks.call("everydayHeroes.preRollLuckSave", this, rollConfig, messageConfig, dialogConfig) === false ) return;
 
-		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig);
+		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
 
 		/**
 		 * A hook event that fires after an luck save has been rolled for an Actor.
@@ -730,9 +879,10 @@ export default class ActorEH extends Actor {
 	 * @param {string} key - The resource ID as defined in `CONFIG.EverydayHeroes.resources`.
 	 * @param {BaseRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
 	 * @returns {Promise<BaseRoll|void>}
 	 */
-	async rollResource(key, config={}, message={}) {
+	async rollResource(key, config={}, message={}, dialog={}) {
 		const resource = this.system.resources[key];
 		if ( !resource ) return console.warn(`Resource "${key}" not found`);
 		if ( !resource.available ) return console.warn(`None of the resource "${resource.label}" is available to spend.`);
@@ -745,8 +895,8 @@ export default class ActorEH extends Actor {
 		const rollConfig = foundry.utils.mergeObject({ data }, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
-		const flavor = "";
-		// TODO: Add proper flavor
+		const type = resource.label;
+		const flavor = game.i18n.format("EH.Action.Roll", { type });
 		const messageConfig = foundry.utils.mergeObject({
 			data: {
 				title: `${flavor}: ${this.name}`,
@@ -759,6 +909,13 @@ export default class ActorEH extends Actor {
 			}
 		}, message);
 
+		const dialogConfig = foundry.utils.mergeObject({
+			configure: false,
+			options: {
+				title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", { type })
+			}
+		}, dialog);
+
 		/**
 		 * A hook event that fires before an resource is rolled for an Actor.
 		 * @function everydayHeroes.preRollResource
@@ -766,13 +923,14 @@ export default class ActorEH extends Actor {
 		 * @param {ActorEH} actor - Actor for which the resource is being rolled.
 		 * @param {ChallengeRollConfiguration} config - Configuration data for the pending roll.
 		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
 		 * @param {string} key - The resource ID as defined in `CONFIG.EverydayHeroes.resources`.
 		 * @returns {boolean} - Explicitly return `false` to prevent resource from being rolled.
 		 */
-		if ( Hooks.call("everydayHeroes.preRollResource", this, rollConfig, messageConfig, key) === false ) return;
+		if ( Hooks.call("everydayHeroes.preRollResource", this, rollConfig, messageConfig, dialogConfig, key) === false ) return;
 
 		let roll;
-		if ( rollConfig.parts.length ) roll = await CONFIG.Dice.BaseRoll.build(rollConfig, messageConfig);
+		if ( rollConfig.parts.length ) roll = await CONFIG.Dice.BaseRoll.build(rollConfig, messageConfig, dialogConfig);
 		const updates = { [`system.resources.${key}.spent`]: resource.spent + 1 };
 
 		/**
@@ -799,9 +957,10 @@ export default class ActorEH extends Actor {
 	 * @param {string} key - The skill ID as defined in `CONFIG.EverydayHeroes.skills`.
 	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
 	 * @returns {Promise<ChallengeRoll|void>}
 	 */
-	async rollSkill(key, config={}, message={}) {
+	async rollSkill(key, config={}, message={}, dialog={}) {
 		const skill = this.system.skills[key];
 		const ability = this.system.abilities[config.ability ?? skill.ability];
 		const defaultAbility = config.ability ?? skill.ability;
@@ -819,9 +978,10 @@ export default class ActorEH extends Actor {
 		const rollConfig = foundry.utils.mergeObject({ data }, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
-		const flavor = game.i18n.format("EH.Skill.Action.CheckSpecific", {
+		const type = game.i18n.format("EH.Skill.Action.CheckSpecific", {
 			skill: CONFIG.EverydayHeroes.skills[key].label
 		});
+		const flavor = game.i18n.format("EH.Action.Roll", { type });
 		const messageConfig = foundry.utils.mergeObject({
 			data: {
 				title: `${flavor}: ${this.name}`,
@@ -834,6 +994,12 @@ export default class ActorEH extends Actor {
 			}
 		}, message);
 
+		const dialogConfig = foundry.utils.mergeObject({
+			options: {
+				title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", { type })
+			}
+		}, dialog);
+
 		/**
 		 * A hook event that fires before an skill check is rolled for an Actor.
 		 * @function everydayHeroes.preRollSkill
@@ -841,12 +1007,13 @@ export default class ActorEH extends Actor {
 		 * @param {ActorEH} actor - Actor for which the skill check is being rolled.
 		 * @param {ChallengeRollConfiguration} config - Configuration data for the pending roll.
 		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
 		 * @param {string} key - The skill ID as defined in `CONFIG.EverydayHeroes.skills`.
 		 * @returns {boolean} - Explicitly return `false` to prevent skill check from being rolled.
 		 */
-		if ( Hooks.call("everydayHeroes.preRollSkill", this, rollConfig, messageConfig, key) === false ) return;
+		if ( Hooks.call("everydayHeroes.preRollSkill", this, rollConfig, messageConfig, dialogConfig, key) === false ) return;
 
-		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig);
+		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
 
 		/**
 		 * A hook event that fires after a skill check has been rolled for an Actor.
