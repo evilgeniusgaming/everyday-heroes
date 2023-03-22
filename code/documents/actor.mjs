@@ -888,6 +888,7 @@ export default class ActorEH extends Actor {
 
 		// Total damage and apply multiplier
 		let amount = damage.reduce((total, d) => total + d.value, 0);
+		// TODO: Take damage immunity into account
 		amount = Math.floor(amount * (options.multiplier ?? 1));
 
 		// Apply damage reduction

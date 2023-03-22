@@ -34,3 +34,4 @@ export function registerSheets() {
 
 export {actor, item};
 export * as advancement from "./advancement/_module.mjs";
+export * as compendium from "./compendium/_module.mjs";

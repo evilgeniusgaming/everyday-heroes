@@ -1,0 +1,51 @@
+<div class="compendium directory flexcol" data-pack="{{collection.collection}}">
+
+	<!-- Directory Header -->
+	<header class="directory-header flexrow">
+		{{#if v11}}
+			<div class="header-actions action-buttons flexrow">
+				{{#if canCreateDocument}}
+					<button class="create-document"><i class="{{sidebarIcon}}"></i> {{localize 'SIDEBAR.Create' type=label}}</button>
+				{{/if}}
+				{{#if canCreateFolder}}
+					<button class="create-folder"><i class="{{folderIcon}}"></i> {{localize 'FOLDER.Create'}}</button>
+				{{/if}}
+			</div>
+		{{/if}}
+		<div class="header-search flexrow">
+			<i class="fa-solid fa-search"></i>
+			<input type="search" name="search" value="" placeholder="{{localize 'FILES.Search'}}" autocomplete="off">
+			{{#if v11}}
+				<a class="header-control collapse-all" title="{{localize 'FOLDER.Collapse'}}">
+					<i class="fas fa-sort-amount-up fa-fw"></i>
+				</a>
+			{{/if}}
+		</div>
+	</header>
+
+	<!-- Directory Contents -->
+	<ol class="directory-list">
+		{{#each sections}}
+			<h3>{{localize this.label}}</h3>
+			{{#each this.index}}
+				<li class="directory-item document {{@root.documentCls}} flexrow" data-document-id="{{this._id}}">
+					<img class="thumbnail" title="{{this.name}}" alt="{{this.name}}"
+						data-src="{{#if this.thumb}}{{this.thumb}}{{else}}{{this.img}}{{/if}}">
+					<h4 class="document-name"><a>{{this.name}}</a></h4>
+				</li>
+			{{/each}}
+		{{/each}}
+	</ol>
+
+	<!-- Directory Footer -->
+	{{#if footerButtons.length}}
+		<footer class="directory-footer flexrow">
+			{{#each footerButtons}}
+				<button type="button" data-action="{{this.action}}">
+						<i class="{{this.icon}}"></i>
+						{{localize this.label}}
+				</button>
+			{{/each}}
+		</footer>
+	{{/if}}
+</div>

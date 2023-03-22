@@ -1,5 +1,6 @@
 @import "./styles/variables.css";
 
+@import "./styles/compendium.css";
 @import "./styles/controls.css";
 @import "./styles/dialog.css";
 @import "./styles/forms.css";

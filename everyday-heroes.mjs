@@ -52,6 +52,8 @@ Hooks.once("i18nInit", function() {
 });
 
 Hooks.once("ready", function() {
+	applications.compendium.setupCompendiumApps();
+
 	// Perform global migrations here if necessary
 });
 

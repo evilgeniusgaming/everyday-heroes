@@ -68,6 +68,28 @@ export function registerDocumentClasses() {
 		explosive: "EH.Item.Type.Explosive[one]",
 		gear: "EH.Item.Type.Gear[one]"
 	};
+	CONFIG.Item.typeLabelsPlural = {
+		// Concept
+		archetype: "EH.Item.Type.Archetype[other]",
+		background: "EH.Item.Type.Background[other]",
+		class: "EH.Item.Type.Class[other]",
+		profession: "EH.Item.Type.Profession[other]",
+
+		// Features
+		talent: "EH.Item.Type.Talent[other]",
+		specialFeature: "EH.Item.Type.SpecialFeature[other]",
+		plan: "EH.Item.Type.Plan[other]",
+		trick: "EH.Item.Type.Trick[other]",
+		feat: "EH.Item.Type.Feat[other]",
+		npcFeature: "EH.Item.Type.NPCFeature[other]",
+
+		// Physical
+		ammunition: "EH.Item.Type.Ammunition[other]",
+		armor: "EH.Item.Type.Armor[other]",
+		weapon: "EH.Item.Type.Weapon[other]",
+		explosive: "EH.Item.Type.Explosive[other]",
+		gear: "EH.Item.Type.Gear[other]"
+	};
 }
 
 export {ActiveEffectEH, ActorEH, ChatMessageEH, CombatantEH, ItemEH};
