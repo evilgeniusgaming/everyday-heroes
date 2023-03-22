@@ -1,0 +1,69 @@
+{
+  "name": "Journalism",
+  "type": "profession",
+  "img": "icons/sundries/documents/document-sealed-white-red.webp",
+  "system": {
+    "description": {
+      "value": "<p>You're passionate about uncovering things people want to keep hidden and then presenting an engaging report to inform the public about it. Along the way, you discover nefarious deeds, injustices, and buried truths.</p><p><strong>Sample Careers:</strong> Blogger, investigative reporter, journalist, news anchor, paparazzi, photojournalist</p><p><strong>Language:</strong> Choose one additional language</p><p><strong>Ability Score Increase:</strong> Increase your Wisdom and two other ability scores of your choice by 1, to a maximum of 20</p><p><strong>Skill Proficiencies:</strong> Insight, Investigation, and Streetwise</p><p><strong>Iconic Equipment:</strong> Digital recorder, notepad and pencil, press credentials, laptop computer</p><p><strong>Wealth Level:</strong> 2</p><p><strong>Special Feature:</strong> @UUID[Compendium.everyday-heroes.backgrounds-professions.fNJiDLzMvU7qkj8V]{I'm with the Press}</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "advancement": [
+      {
+        "_id": "UZI70JT6osdoo5GK",
+        "_type": "ASI",
+        "identifier": "",
+        "configuration": {
+          "points": 2,
+          "locked": [],
+          "fixed": {
+            "str": 0,
+            "dex": 0,
+            "con": 0,
+            "int": 0,
+            "wis": 1,
+            "cha": 0
+          }
+        },
+        "level": 1,
+        "flags": {},
+        "title": "",
+        "value": {}
+      },
+      {
+        "_id": "YURUxWXCuK6w2Twr",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.backgrounds-professions.fNJiDLzMvU7qkj8V"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": "Special Feature",
+        "value": {}
+      }
+    ],
+    "identifier": {
+      "value": "journalism"
+    },
+    "wealth": 2
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679450987598,
+    "modifiedTime": 1679452022492,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "iQHTrNMd6E8EcmZq"
+}

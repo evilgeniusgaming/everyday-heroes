@@ -1,0 +1,50 @@
+{
+  "name": "That's Need to Know",
+  "type": "specialFeature",
+  "img": "icons/sundries/documents/document-letter-blue.webp",
+  "system": {
+    "description": {
+      "value": "<p>Your extensive access to classified government data gives you advantage on Intelligence (Investigation) checks made to gather information about people and organizations.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "identifier": {
+      "value": "thats-need-to-know"
+    },
+    "type": {
+      "value": "profession"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679451438210,
+    "modifiedTime": 1679451508598,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "b7oggLuw3KfVPK6f"
+}

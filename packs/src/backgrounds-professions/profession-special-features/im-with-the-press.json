@@ -1,0 +1,50 @@
+{
+  "name": "I'm with the Press",
+  "type": "specialFeature",
+  "img": "icons/sundries/misc/admission-ticket-white.webp",
+  "system": {
+    "description": {
+      "value": "<p>You gain advantage on Charisma (Persuasion) checks made to convince people to talk with you and answer basic questions. At the GM's discretion, your credentials may allow you to access off-limit areas.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "identifier": {
+      "value": "im-with-the-press"
+    },
+    "type": {
+      "value": "profession"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679451298861,
+    "modifiedTime": 1679451364916,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "fNJiDLzMvU7qkj8V"
+}
