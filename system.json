@@ -50,15 +50,23 @@
       }
     },
     {
-      "name": "items",
-      "label": "Items",
+      "name": "plans-tricks",
+      "label": "Plans & Tricks",
       "system": "everyday-heroes",
-      "path": "./packs/items.db",
+      "path": "./packs/plans-tricks.db",
       "type": "Item",
       "private": false,
       "flags": {
-        "type": "physical"
+        "type": "concept"
       }
+    },
+    {
+      "name": "tables",
+      "label": "Tables",
+      "path": "./packs/tables.db",
+      "type": "RollTable",
+      "private": false,
+      "flags": {}
     }
   ],
   "languages": [

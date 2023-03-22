@@ -1,0 +1,48 @@
+{
+  "name": "I Have the Perfect Disguise",
+  "type": "plan",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>When you enact this plan as an action, you can reveal a disguise you have prepared for the occasion. This disguise makes you look almost identical to another person you have seen. The disguise can include facial prosthetics, a realistic wig, skin tone adjustments, and anything else required to mimic the chosen person. It can include any normal clothing or uniform, but any identification or badge does not hold up to more than cursory scrutiny. You can make yourself appear up to 3 inches taller or shorter, and up to 25% lighter or heavier, but this does not hold up to any measurements. The disguise is purely visual; you can't change your voice.</p><p>You have advantage on Charisma (Deception) checks to pretend to be the person you are disguised as, as long as the target can see you.</p><p>Anyone trying to see through the disguise must use their action to inspect your appearance and make an Intelligence (Investigation) check against your plan DC. If the check is successful, they see through the disguise. Otherwise, they believe the disguise.</p><p>The disguise lasts for 1 hour before pieces begin falling off and breaking apart, at which point it no longer functions.</p><p><strong>Level 3:</strong> You can add a voice modulator to your disguise, allowing you to mimic the chosen person's voice. You have advantage on Charisma (Deception) checks to pretend to be the person you are disguised as if the target can hear you or see you. In addition, the disguise can make you appear to be up to 1 foot taller or shorter, and up to 50% lighter or heavier, which holds up to basic measurements but not medical exams.</p><p><strong>Level 5:</strong> You can target up to two allies within 30 feet of you instead of yourself, or yourself and one ally within 30 feet, giving a unique disguise to each.</p><p><strong>Level 7:</strong> Any disguise constructed by this plan lasts for up to 8 hours.</p><p><strong>Level 9:</strong> You can affect yourself and up to six allies within 30 feet, giving each an individual disguise.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "action",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 1,
+      "target": "genius",
+      "type": "resource"
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "identifier": {
+      "value": "i-have-the-perfect-disguise",
+      "class": "mastermind"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679521582974,
+    "modifiedTime": 1679521998398,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "m29GbjB2KpgTrNhY"
+}

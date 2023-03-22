@@ -1,0 +1,48 @@
+{
+  "name": "I Had Them Bugged",
+  "type": "plan",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>When you enact this plan, you can name one person you met within the last 24 hours. Since you bugged them at the time, you can ask one question of the GM about that person or their activities. The GM will give you a true answer to your question if you could reasonably have learned the answer from recording the target's actions and communications. The GM might refuse for the sake of the story, but if they do, you may ask another question following the same guidelines. If no question is appropriate, you get your Genius point back. The GM can reveal additional information if they so choose.</p><p><strong>Level 3:</strong> You can ask up to two questions.</p><p><strong>Level 5:</strong> You can name a person you have met within the last week, and you can ask up to three questions. Instead of asking questions, you can perform active surveillance on the target. If you do, you receive up-to-date visual and audio information from their location for the next 10 minutes as if you were there.</p><p><strong>Level 7:</strong> You can ask up to four questions. If you perform active surveillance, you can do so for up to 1 hour.</p><p><strong>Level 9:</strong> You can name any person you have ever met, you can ask up to five questions, and you can perform active surveillance as well as asking these questions.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 1,
+      "target": "genius",
+      "type": "resource"
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "identifier": {
+      "value": "i-had-them-bugged",
+      "class": "mastermind"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679521542150,
+    "modifiedTime": 1679521997216,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "gq8IRATatLKJScQM"
+}

@@ -1,0 +1,48 @@
+{
+  "name": "Taunting Blow",
+  "type": "trick",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>When you hit an opponent with an attack, you can goad that opponent into attacking you. Roll one influence die and add the result to the damage dealt. The target of the attack must make a Wisdom saving throw against your trick DC. On a failed save, the target has disadvantage on all attack rolls against targets other than you until the end of your next turn.</p>",
+      "chat": "<p>Roll one influence die and add the result to the damage dealt. The target of the attack must make a @Save[wis] against your trick DC. On a failed save, the target has disadvantage on all attack rolls against targets other than you until the end of your next turn.</p>",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": "When you hit an opponent with an attack."
+    },
+    "resource": {
+      "amount": 1,
+      "target": "influence",
+      "type": "resource"
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "identifier": {
+      "value": "taunting-blow",
+      "class": "icon"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679520214114,
+    "modifiedTime": 1679520289549,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "LO00bP36CHwC3jts"
+}

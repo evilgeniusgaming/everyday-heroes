@@ -1,0 +1,48 @@
+{
+  "name": "Watch This",
+  "type": "trick",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>After you make an attack roll, Strength (Athletics) check, or Dexterity (Acrobatics) check, but before determining the result, roll an influence die and add it to your result. At least one other person must be able to see you to use this trick.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": "After you make an attack roll, Strength (Athletics) check, or Dexterity (Acrobatics) check, but before determining the result."
+    },
+    "resource": {
+      "amount": 1,
+      "target": "influence",
+      "type": "resource"
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "identifier": {
+      "value": "watch-this",
+      "class": "icon"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679520257949,
+    "modifiedTime": 1679520290990,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "FImQicYqQDJh5sNf"
+}

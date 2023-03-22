@@ -1,0 +1,85 @@
+{
+  "name": "Mushrooms Effects",
+  "img": "icons/magic/nature/mushrooms-fire-glow-blue.webp",
+  "description": "While affected by this poison, a target must roll a d10 at the start of each of its turns to determine what it does:",
+  "results": [
+    {
+      "type": 0,
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "documentCollection": "",
+      "_id": "h6Kb3YYQcQURwmqH",
+      "text": "The target uses all its movement to move in a random direction. To determine the direction, roll a [[/r d8]] and assign a direction to each die face. The target doesn’t take an action this turn.",
+      "img": "icons/svg/d20-black.svg",
+      "documentId": null,
+      "flags": {}
+    },
+    {
+      "type": 0,
+      "weight": 1,
+      "range": [
+        2,
+        6
+      ],
+      "drawn": false,
+      "documentCollection": "",
+      "_id": "aADW6eABwM4Kyd98",
+      "text": "The target doesn’t move or take actions this turn.",
+      "img": "icons/svg/d20-black.svg",
+      "documentId": null,
+      "flags": {}
+    },
+    {
+      "type": 0,
+      "weight": 1,
+      "range": [
+        7,
+        9
+      ],
+      "drawn": false,
+      "documentCollection": "",
+      "_id": "e1BfXR2PdhLx7gie",
+      "text": "The target uses its action to make an attack with whatever it is holding against a randomly determined target within range.",
+      "img": "icons/svg/d20-black.svg",
+      "documentId": null,
+      "flags": {}
+    },
+    {
+      "type": 0,
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "documentCollection": "",
+      "_id": "zCzyERg86B88thR7",
+      "text": "The target can act and move normally but is poisoned during this turn.",
+      "img": "icons/svg/d20-black.svg",
+      "documentId": null,
+      "flags": {}
+    }
+  ],
+  "formula": "1d10",
+  "replacement": true,
+  "displayRoll": true,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679521202560,
+    "modifiedTime": 1679521345326,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "cKRtsGh2488X9WJX"
+}

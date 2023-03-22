@@ -1,0 +1,48 @@
+{
+  "name": "They'll Never See Us Coming",
+  "type": "plan",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>When you enact this plan as an action, you and any allies you choose that can see or hear you gain a +5 bonus to Dexterity (Stealth) checks. This effect lasts for 10 minutes, or until you enact this plan again.</p><p><strong>Level 3:</strong> The bonus lasts for 1 hour.</p><p><strong>Level 5:</strong> The bonus becomes +10.</p><p><strong>Level 7:</strong> The bonus lasts for 4 hours.</p><p><strong>Level 9:</strong> The bonus becomes +15.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "action",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 1,
+      "target": "genius",
+      "type": "resource"
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "identifier": {
+      "value": "theyll-never-see-us-coming",
+      "class": "mastermind"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679521959361,
+    "modifiedTime": 1679522008298,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "tzKxD9h2EfacQL5R"
+}

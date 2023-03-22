@@ -1,0 +1,48 @@
+{
+  "name": "Magnetic Personality",
+  "type": "trick",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>As a bonus action, you can roll an influence die to trick an opponent within 60 feet that can hear you into coming closer. The target must make a Wisdom saving throw against your trick DC. On a failure, it must move up to its speed toward you, taking the safest path. If there is no safe path, it does not move. Whether the target succeeds or fails, add the influence die result to the next attack roll you make against the target this turn.</p>",
+      "chat": "<p>The target must make a @Save[wis] against your trick DC. On a failure, it must move up to its speed toward you, taking the safest path. If there is no safe path, it does not move. Whether the target succeeds or fails, add the influence die result to the next attack roll you make against the target this turn.</p>",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "bonus",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 1,
+      "target": "influence",
+      "type": "resource"
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "identifier": {
+      "value": "magnetic-personality",
+      "class": "icon"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679520114820,
+    "modifiedTime": 1679520288411,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "wDDwgVFEdf3ak9VS"
+}
