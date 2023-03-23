@@ -59,8 +59,9 @@ export function objectToSet(obj) {
  */
 export function sortObjectEntries(obj, sortKey) {
 	let sorted = Object.entries(obj);
-	if ( sortKey ) sorted = sorted.sort((a, b) => a[1][sortKey].localeCompare(b[1][sortKey]));
-	else sorted = sorted.sort((a, b) => a[1].localeCompare(b[1]));
+	const sort = (a, b) => foundry.utils.getType(a) === "string" ? a.localeCompare(b) : a - b;
+	if ( sortKey ) sorted = sorted.sort((a, b) => sort(a[1][sortKey], b[1][sortKey]));
+	else sorted = sorted.sort((a, b) => sort(a[1], b[1]));
 	return Object.fromEntries(sorted);
 }
 
