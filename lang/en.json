@@ -82,6 +82,11 @@
 "Advancement.Manager.Restart.Message": "Are you sure you wish to undo all choices so far?",
 "Advancement.Selection.Title": "Select Advancement Type",
 
+"Advancement.Migration.Title": "Migrate Advancement",
+"Advancement.Migration.Hint": "Select which of the following advancements will be added to {name}.",
+"Advancement.Migration.Action.Add": "Add",
+"Advancement.Migration.Action.Confirm": "Apply Migrations",
+
 "Advancement.ASI.Title": "Ability Score Increase",
 "Advancement.ASI.Hint": "Allow the player to increase one or more ability scores.",
 "Advancement.ASI.Fixed": "Fixed Improvement",
@@ -101,6 +106,8 @@
 "Advancement.HitPoints.Hint": "Set an archetype's hit die size and track a player's hit points as they gain levels.",
 "Advancement.HitPoints.Fixed": "Take Fixed",
 "Advancement.HitPoints.MaxAtFirstLevel": "Max at 1st Level: <strong>{max}</strong>",
+"Advancement.HitPoints.Error.Empty": "Hit points must be rolled or the fixed value must be taken.",
+"Advancement.HitPoints.Error.Invalid": "Hit points must be a valid whole number.",
 
 "Advancement.ItemGrant.Title": "Grant Features",
 "Advancement.ItemGrant.Hint": "Grant the character features when they reach a certain level.",
@@ -354,7 +361,7 @@
 
 "Identifier.Label": "Identifier",
 "Identifier.Action.Copy": "Copy Identifier",
-"Identifier.Warning.Invalid": "Identifier can only contain letters (a-z), numbers (0-9), dashes (-), and underscores (_).",
+"Identifier.Error.Invalid": "Identifier can only contain letters (a-z), numbers (0-9), dashes (-), and underscores (_).",
 
 "Initiative.Label": "Initiative",
 "Initiative.Bonus.Label": "Initiative Bonus",

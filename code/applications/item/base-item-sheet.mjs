@@ -1,5 +1,3 @@
-import ActiveEffectEH from "../../documents/active-effect.mjs";
-
 /**
  * Base sheet that provides common features for Hero and NPC sheets.
  */
@@ -8,6 +6,10 @@ export default class BaseItemSheet extends ItemSheet {
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			tabs: [{navSelector: 'nav[data-group="primary"]', contentSelector: "main", initial: "description"}],
+			dragDrop: [
+				{dragSelector: "[data-effect-id]", dropSelector: '[data-tab="effects"]'},
+				{dragSelector: "[data-advancement-id]", dropSelector: '[data-tab="advancement"]'}
+			],
 			width: 570,
 			height: 500
 		});

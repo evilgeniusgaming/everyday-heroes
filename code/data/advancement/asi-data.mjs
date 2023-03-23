@@ -17,7 +17,7 @@ export class ASIConfigurationData extends foundry.abstract.DataModel {
 			locked: new foundry.data.fields.SetField(new foundry.data.fields.StringField()),
 			fixed: new MappingField(
 				new foundry.data.fields.NumberField({nullable: false, integer: true, initial: 0}),
-				{label: "DND5E.AdvancementAbilityScoreImprovementFixed"}
+				{label: "EH.Advancement.ASI.Fixed"}
 			)
 		};
 	}

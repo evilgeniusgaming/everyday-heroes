@@ -1,4 +1,5 @@
 import AdvancementManager from "../advancement/advancement-manager.mjs";
+import AdvancementMigrationDialog from "../advancement/advancement-migration-dialog.mjs";
 import AdvancementSelection from "../advancement/advancement-selection.mjs";
 import BaseItemSheet from "./base-item-sheet.mjs";
 
@@ -157,6 +158,7 @@ export default class ConceptSheet extends BaseItemSheet {
 	_onAdvancementAction(target, action) {
 		const id = target.closest("[data-advancement-id]")?.dataset.advancementId;
 		const advancement = this.item.system.advancement.get(id);
+		let manager;
 		if ( ["edit", "delete", "duplicate"].includes(action) && !advancement ) return;
 		switch (action) {
 			case "add": return AdvancementSelection.createDialog(this.item);
@@ -168,7 +170,11 @@ export default class ConceptSheet extends BaseItemSheet {
 				}
 				return this.item.deleteAdvancement(id);
 			case "duplicate": return this.item.duplicateAdvancement(id);
-			case "modify-choices": return console.log("MODIFY CHOICES");
+			case "modify-choices":
+				const level = target.closest("[data-level]")?.dataset.level;
+				manager = AdvancementManager.forModifyChoices(this.item.actor, this.item.id, Number(level));
+				if ( level && manager.steps.length ) manager.render(true);
+				return;
 			case "toggle-configuration":
 				this.advancementConfigurable = !this.advancementConfigurable;
 				return this.render();
@@ -230,7 +236,42 @@ export default class ConceptSheet extends BaseItemSheet {
 	 * @param {DragEvent} event - The concluding DragEvent which contains drop data.
 	 * @param {object} data - The data transfer extracted from the event.
 	 */
-	_onDropAdvancement(event, data) {
-		console.log("_onDropAdvancement");
+	async _onDropAdvancement(event, data) {
+		let advancements;
+		let showDialog = false;
+		if ( data.type === "Advancement" ) {
+			advancements = [await fromUuid(data.uuid)];
+		} else if ( data.type === "Item" ) {
+			const item = await Item.implementation.fromDropData(data);
+			if ( !item ) return false;
+			advancements = Array.from(item.system.advancement);
+			showDialog = true;
+		} else {
+			return false;
+		}
+		advancements = advancements.filter(a => {
+			return !this.item.system.advancement.get(a.id)
+				&& a.constructor.metadata.validItemTypes.has(this.item.type)
+				&& a.constructor.availableForItem(this.item);
+		});
+
+		if ( showDialog ) {
+			try {
+				advancements = await AdvancementMigrationDialog.createDialog(this.item, advancements);
+			} catch(error) {
+				return false;
+			}
+		}
+
+		if ( !advancements.length ) return false;
+		if ( this.item.isEmbedded ) {
+			const manager = AdvancementManager.forNewAdvancement(this.item.actor, this.item.id, advancements);
+			if ( manager.steps.length ) return manager.render(true);
+		}
+
+		// If no advancements need to be applied, just add them to the item
+		const advancementCollection = this.item.system.advancement.toObject();
+		advancementCollection.push(...advancements.map(a => a.toObject()));
+		this.item.update({"system.advancement": advancementCollection});
 	}
 }

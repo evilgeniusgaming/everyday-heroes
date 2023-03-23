@@ -143,8 +143,7 @@ export default class AdvancementManager extends Application {
 	 */
 	static forNewAdvancement(actor, itemId, advancements, options) {
 		const manager = new this(actor, options);
-		/*
-		TODO: Implement advancement on new advancement
+
 		const clonedItem = manager.clone.items.get(itemId);
 		if ( !clonedItem || !advancements.length ) return manager;
 
@@ -159,14 +158,14 @@ export default class AdvancementManager extends Application {
 		oldFlows.reverse().forEach(flow => manager.steps.push({ type: "reverse", flow, automatic: true }));
 
 		// Add new advancements
-		const advancementArray = clonedItem.system.advancement.toObject();
-		advancementArray.push(...advancements.map(a => {
+		const advancementCollection = clonedItem.system.advancement.toObject();
+		advancementCollection.push(...advancements.map(a => {
 			const obj = a.toObject();
 			if ( obj.constructor.dataModels?.value ) a.value = (new a.constructor.metadata.dataModels.value()).toObject();
 			else obj.value = foundry.utils.deepClone(a.constructor.metadata.defaults?.value ?? {});
 			return obj;
 		}));
-		clonedItem.updateSource({"system.advancement": advancementArray});
+		clonedItem.updateSource({"system.advancement": advancementCollection});
 
 		const newFlows = Array.fromRange(currentLevel + 1).slice(minimumLevel)
 			.flatMap(l => this.flowsForLevel(clonedItem, l));
@@ -177,7 +176,6 @@ export default class AdvancementManager extends Application {
 			if ( matchingFlow ) manager.steps.push({ type: "restore", flow: matchingFlow, automatic: true });
 			else manager.steps.push({ type: "forward", flow });
 		});
-		*/
 
 		return manager;
 	}
@@ -222,8 +220,7 @@ export default class AdvancementManager extends Application {
 	 */
 	static forModifyChoices(actor, itemId, level, options) {
 		const manager = new this(actor, options);
-		/*
-		TODO: Implement modifying choices
+
 		const clonedItem = manager.clone.items.get(itemId);
 		if ( !clonedItem ) return manager;
 
@@ -238,7 +235,6 @@ export default class AdvancementManager extends Application {
 
 		// Create restore advancements for other levels
 		flows.filter(f => f.level > level).forEach(flow => manager.steps.push({ type: "restore", flow, automatic: true }));
-		*/
 
 		return manager;
 	}
@@ -255,10 +251,9 @@ export default class AdvancementManager extends Application {
 	 */
 	static forDeletedAdvancement(actor, itemId, advancementId, options) {
 		const manager = new this(actor, options);
-		/*
-		TODO: Implement deleting advancement
+
 		const clonedItem = manager.clone.items.get(itemId);
-		const advancement = clonedItem?.advancement.byId[advancementId];
+		const advancement = clonedItem?.system.advancement.get(advancementId);
 		if ( !advancement ) return manager;
 
 		const minimumLevel = advancement.levels[0];
@@ -274,7 +269,6 @@ export default class AdvancementManager extends Application {
 			.forEach(flow => manager.steps.push({ type: "reverse", flow, automatic: true }));
 
 		if ( manager.steps.length ) manager.steps.push({ type: "delete", advancement, automatic: true });
-		*/
 
 		return manager;
 	}

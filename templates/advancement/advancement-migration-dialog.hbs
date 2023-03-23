@@ -1,0 +1,29 @@
+<form class="dialog-content {{config.type}}" autocomplete="off">
+	<section class="main-form">{{log this}}
+		<p>{{localize "EH.Advancement.Migration.Hint" name=item.name}}</p>
+		<ol class="advancement advancement-list">
+			{{#each advancements}}
+				<li data-advancement-id="{{this.id}}">
+					<div class="advancement-name">
+						<figure style="background-image: url('{{this.icon}}');"></figure>
+						<h4>{{{this.title}}}</h4>
+					</div>
+					<fieldset>
+						<input type="checkbox" name="{{this.id}}" checked>
+					</fieldset>
+					{{#if this.summary}}
+						<div class="summary">{{{this.summary}}}</div>
+					{{/if}}
+				</li>
+			{{/each}}
+		</ol>
+	</section>
+
+	<nav class="dialog-buttons skewed">
+		<ul>
+			{{#each buttons as |button id|}}
+				<li><button class="dialog-button" data-button="{{id}}">{{{button.icon}}} {{{button.label}}}</button></li>
+			{{/each}}
+		</ul>
+	</nav>
+</form>

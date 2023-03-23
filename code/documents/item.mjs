@@ -208,6 +208,7 @@ export default class ItemEH extends Item {
 	 * @property {object} consume
 	 * @property {boolean} consume.resource - Should the item's linked resource be consumed?
 	 * @property {boolean} consume.use - Should one of the item's uses be consumed?
+	 * @property {boolean} rollResource - Should a dice resource be automatically rolled if it is consumed?
 	 */
 
 	/**

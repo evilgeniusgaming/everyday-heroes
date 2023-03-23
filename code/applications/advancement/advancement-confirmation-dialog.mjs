@@ -3,7 +3,6 @@
  */
 export default class AdvancementConfirmationDialog extends Dialog {
 
-	/** @inheritdoc */
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			template: "systems/everyday-heroes/templates/advancement/advancement-confirmation-dialog.hbs",

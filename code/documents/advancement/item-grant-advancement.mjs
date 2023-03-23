@@ -102,9 +102,9 @@ export default class ItemGrantAdvancement extends Advancement {
 
 	restore(level, data) {
 		const updates = {};
-		for ( const item of data.items ) {
+		for ( const item of data.added ) {
 			this.actor.updateSource({items: [item]});
-			updates[item._id] = item.flags.dnd5e.sourceId;
+			updates[item._id] = item.flags["everyday-heroes"]?.sourceId;
 		}
 		this.updateSource({[this.storagePath(level)]: updates});
 	}

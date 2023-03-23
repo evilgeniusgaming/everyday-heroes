@@ -26,6 +26,16 @@ export default class PhysicalTemplate extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Should the details tab be displayed on the sheet for this item type?
+	 * @type {boolean}
+	 */
+	get hasDetails() {
+		return true;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Can this item be equipped on player sheets?
 	 * @type {boolean}
 	 */

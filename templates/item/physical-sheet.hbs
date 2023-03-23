@@ -16,21 +16,21 @@
 			<fieldset>
 				<div class="fields">
 					<label>
-						<span>{{localize "EH.Equipment.Trait.Bulk.Label"}}</span>
-						<input type="number" name="system.bulk" value="{{system.bulk}}">
-					</label>
-					<label>
 						<span>{{localize "EH.Equipment.Trait.PriceLevel.Label"}}</span>
 						<input type="number" name="system.price" value="{{system.price}}">
+					</label>
+					<label>
+						<span>{{localize "EH.Equipment.Trait.Bulk.Label"}}</span>
+						<input type="number" name="system.bulk" value="{{system.bulk}}">
 					</label>
 				</div>
 			</fieldset>
 		</div>
 			<nav data-group="primary">
-				<a data-tab="description">Description</a>{{!-- TODO: Localize --}}
-				{{#unless (eq item.type "gear")}}
-					<a data-tab="details">Details</a>{{!-- TODO: Localize --}}
-				{{/unless}}
+				<a data-tab="description">{{localize "EH.Item.Section.Description"}}</a>
+				{{#if item.system.hasDetails}}
+					<a data-tab="details">{{localize "EH.Item.Section.Details"}}</a>{{!-- TODO: Localize --}}
+				{{/if}}
 			</nav>
 	</header>
 
@@ -38,11 +38,11 @@
 		<div class="tab" data-group="primary" data-tab="description">
 			{{> "everydayHeroes.item-description"}}
 		</div>
-		{{#unless (eq item.type "gear")}}
+		{{#if item.system.hasDetails}}
 			<div class="tab" data-group="primary" data-tab="details">
 				{{> "everydayHeroes.physical-details"}}
 			</div>
-		{{/unless}}
+		{{/if}}
 	</main>
 
 </form>

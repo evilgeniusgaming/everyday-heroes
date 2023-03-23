@@ -1,0 +1,72 @@
+<ol class="advancement level-list">
+	{{#if editable}}
+		<li class="primary header">
+			<fieldset class="configuration-mode-control">
+				{{#if item.isEmbedded}}
+					{{#if advancementEditable}}
+						<a data-action="toggle-configuration"
+							data-tooltip="EH.Advancement.Core.Action.Disable">
+							<i class="fas fa-lock-open"></i> {{localize "EH.Advancement.Core.State.Enabled"}}
+						</a>
+					{{else}}
+						<a data-action="toggle-configuration"
+							data-tooltip="EH.Advancement.Core.Action.Enable">
+							<i class="fas fa-lock"></i> {{localize "EH.Advancement.Core.State.Disabled"}}
+						</a>
+					{{/if}}
+				{{/if}}
+			</fieldset>
+			{{#if advancementEditable}}
+				<fieldset>
+					<a data-action="add" data-tooltip="EH.Advancement.Core.Action.Create">
+						<i class="fas fa-plus"></i>
+					</a>
+				</fieldset>
+			{{/if}}
+		</li>
+	{{/if}}
+
+	{{#each advancement as |data level|}}
+		<li class="section" data-level="{{level}}">
+			<div class="header">
+				<h3>
+					{{#if (eq level "unconfigured")}}
+						{{localize "EH.Advancement.Core.Level.None"}}
+					{{else}}
+						{{localize "EH.Advancement.Core.Level.Specific" level=level}}
+					{{/if}}
+				</h3>
+				{{#if (and @root.editable data.configured (ne level "unconfigured"))}}
+					<fieldset>
+						<a data-action="modify-choices">{{localize "EH.Advancement.Core.Action.Modify"}}</a>
+					</fieldset>
+				{{/if}}
+			</div>
+
+			<ol class="advancement advancement-list">
+				{{#each data.items}}
+					<li data-advancement-id="{{this.id}}">
+						<div class="advancement-name">
+							<figure style="background-image: url('{{this.icon}}');"></figure>
+							<h4>{{{this.title}}}</h4>
+						</div>
+						{{#if @root.advancementEditable}}
+							<fieldset>
+								<a data-action="edit" data-tooltip="EH.Advancement.Core.Action.Edit">
+									<i class="fas fa-edit"></i>
+								</a>
+								<a data-action="delete" data-tooltip="EH.Advancement.Core.Action.Delete">
+									<i class="fas fa-trash"></i>
+								</a>
+							</fieldset>
+						{{/if}}
+						{{#if this.summary}}
+							<div class="summary">{{{this.summary}}}</div>
+						{{/if}}
+					</li>
+				{{/each}}
+			</ol>
+
+		</li>
+	{{/each}}
+</ol>

@@ -19,7 +19,7 @@ export default class ItemGrantFlow extends AdvancementFlow {
 	 */
 	async getContext() {
 		const config = this.advancement.configuration.pool;
-		const added = this.retainedData?.items.map(i => foundry.utils.getProperty(i, "flags.dnd5e.sourceId"))
+		const added = this.retainedData?.added.map(i => foundry.utils.getProperty(i, "flags.everyday-heroes.sourceId"))
       ?? this.advancement.value.added;
 		const checked = new Set(Object.values(added ?? {}));
 		return {
@@ -62,8 +62,8 @@ export default class ItemGrantFlow extends AdvancementFlow {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async _updateObject(event, formData) {
-		const retained = this.retainedData?.items.reduce((obj, i) => {
-			obj[foundry.utils.getProperty(i, "flags.dnd5e.sourceId")] = i;
+		const retained = this.retainedData?.added.reduce((obj, i) => {
+			obj[foundry.utils.getProperty(i, "flags.everyday-heroes.sourceId")] = i;
 			return obj;
 		}, {});
 		await this.advancement.apply(this.level, { selected: formData, retained });

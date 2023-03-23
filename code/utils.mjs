@@ -333,6 +333,7 @@ export async function registerHandlebarsPartials() {
 		"advancement/parts/advancement-controls.hbs",
 		"advancement/parts/advancement-scale-value.hbs",
 		"item/feature-details.hbs",
+		"item/item-advancement.hbs",
 		"item/item-description.hbs",
 		"item/item-summary.hbs",
 		"item/physical-details.hbs",
