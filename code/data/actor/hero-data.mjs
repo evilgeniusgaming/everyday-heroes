@@ -103,17 +103,8 @@ export default class HeroData extends SystemDataModel.mixin(
 				weight: new foundry.data.fields.StringField({label: "EH.Biography.Weight"})
 			}),
 			bonuses: new foundry.data.fields.SchemaField({
-				ability: new foundry.data.fields.SchemaField({
-					check: new FormulaField({label: "EH.Ability.Bonus.Check"}),
-					dc: new FormulaField({label: "EH.Ability.Bonus.DC"}),
-					save: new FormulaField({label: "EH.Ability.Bonus.Save"})
-				}),
 				attack: new MappingField(new FormulaField()),
-				damage: new MappingField(new FormulaField()),
-				skill: new foundry.data.fields.SchemaField({
-					check: new FormulaField({label: "EH.Skill.Bonuses.Check"}),
-					passive: new FormulaField({label: "EH.Skill.Bonuses.Passive"})
-				})
+				damage: new MappingField(new FormulaField())
 			}, {label: ""}),
 			conditions: new MappingField(new foundry.data.fields.NumberField({
 				min: 0, integer: true

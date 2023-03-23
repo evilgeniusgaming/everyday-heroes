@@ -351,7 +351,7 @@
 	margin-inline-end: -2px;
 	border: 2px solid var(--eh-border-color-strong);
 	align-content: space-between;
-	justify-items: center;
+	justify-items: stretch;
 	padding: 0.25em;
 	background-color: var(--eh-background-color-white);
 	text-align: center;
@@ -374,4 +374,11 @@
 }
 .hero.sheet [data-tab="details"] .attributes .resources fieldset span.die {
 	font-size: var(--font-size-18);
+}
+
+.hero.sheet [data-tab="details"] .attributes .resources fieldset.inspiration {
+	align-content: stretch;
+}
+.hero.sheet [data-tab="details"] .attributes .resources fieldset.inspiration .fields {
+	justify-content: center;
 }

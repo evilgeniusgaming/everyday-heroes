@@ -6,10 +6,22 @@ import Proficiency from "../../../documents/proficiency.mjs";
 /**
  * Data model template for actors that have skills.
  * @mixin
+ *
+ * @property {object} bonuses
+ * @property {object} bonuses.skill
+ * @property {string} bonuses.skill.check - Global skill check bonus.
+ * @property {string} bonuses.skill.passive - Global passive skill bonus.
+ * @property {Object<string, SkillData>} skills - Actor's skills.
  */
 export default class SkillsTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
+			bonuses: new foundry.data.fields.SchemaField({
+				skill: new foundry.data.fields.SchemaField({
+					check: new FormulaField({label: "EH.Skill.Bonus.Check"}),
+					passive: new FormulaField({deterministic: true, label: "EH.Skill.Bonus.Passive"})
+				})
+			}, {label: "EH.Bonuses.Label"}),
 			skills: new MappingField(new foundry.data.fields.SchemaField({
 				ability: new foundry.data.fields.StringField({label: "EH.Ability.Label[one]"}),
 				proficiency: new foundry.data.fields.SchemaField({
@@ -21,8 +33,8 @@ export default class SkillsTemplate extends foundry.abstract.DataModel {
 					})
 				}, {label: "EH.Proficiency.Label[one]"}),
 				bonuses: new foundry.data.fields.SchemaField({
-					check: new FormulaField({label: "EH.Skill.Bonuses.Check"}),
-					passive: new FormulaField({deterministic: true, label: "EH.Skill.Bonuses.Passive"})
+					check: new FormulaField({label: "EH.Skill.Bonus.Check"}),
+					passive: new FormulaField({deterministic: true, label: "EH.Skill.Bonus.Passive"})
 				})
 			}), {
 				initialKeys: CONFIG.EverydayHeroes.skills, initialValue: this._initialSkillValue,

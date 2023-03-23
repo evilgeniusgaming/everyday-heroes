@@ -1,4 +1,17 @@
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Configuration Links                      */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.everyday-heroes a[data-action="config"] {
+	float: right;
+	color: var(--eh-config-color);
+	font-size: var(--font-size-13);
+}
+.everyday-heroes a[data-action="config"]:hover {
+	text-shadow: 0 0 8px var(--eh-config-color);
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Enrichers                                */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -107,7 +120,7 @@ a.roll-link i {
 	padding-inline: 0.5em;
 	background-color: black;
 }
-.everyday-heroes.sheet .striped:is(h1, h2, h3, h4) select {
+.everyday-heroes .striped:is(h1, h2, h3, h4) select {
 	border: none;
 	color: var(--eh-text-color-white);
 	text-align: center;

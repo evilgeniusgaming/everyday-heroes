@@ -1,4 +1,4 @@
-import RestDialog from "../applications/actor/rest-dialog.mjs";
+import RestDialog from "../applications/actor/dialogs/rest-dialog.mjs";
 import AdvancementConfirmationDialog from "../applications/advancement/advancement-confirmation-dialog.mjs";
 import AdvancementManager from "../applications/advancement/advancement-manager.mjs";
 import { buildRoll } from "../dice/utils.mjs";

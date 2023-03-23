@@ -289,7 +289,6 @@ export default class HeroSheet extends BaseActorSheet {
 			ctx.types = ammunitionTypes[item.system.rounds.type] ?? [];
 			ctx.displayAmmunitionSelector = (!foundry.utils.isEmpty(ctx.types) || ctx.defaultLabel)
 				&& !!item.system.rounds.type;
-			console.log(ctx);
 		}
 
 		if ( !context.features.archetype.primary.item ) context.features.archetype.create.unshift({

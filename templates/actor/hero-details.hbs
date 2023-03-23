@@ -62,7 +62,13 @@
 			{{#each abilities as |ability key|}}
 				<div class="ability" data-key="{{key}}">
 					<label>
-						<a data-action="roll" data-type="ability" data-key="{{key}}">{{ability.label}}</a>
+						{{ability.label}}
+						{{#if @root.editingMode}}
+							<a data-action="config" data-type="ability" data-key="{{key}}"
+								data-tooltip="{{localize 'EH.Action.Configure' type=ability.label}}">
+								<i class="fa-solid fa-cog"></i>
+							</a>
+						{{/if}}
 					</label>
 					<aside class="modifier">
 						<a data-action="roll" data-type="ability-check" data-key="{{key}}">{{ability.mod}}</a>
@@ -84,6 +90,12 @@
 				<div class="skill" data-key="{{key}}">
 					<label>
 						<a data-action="roll" data-type="skill" data-key="{{key}}">{{skill.label}}</a>
+						{{#if @root.editingMode}}
+							<a data-action="config" data-type="skill" data-key="{{key}}"
+								data-tooltip="{{localize 'EH.Action.Configure' type=skill.label}}">
+								<i class="fa-solid fa-cog"></i>
+							</a>
+						{{/if}}
 					</label>
 					<span class="abbreviation">
 						{{skill.abilityAbbreviation}}
@@ -101,7 +113,15 @@
 		<div class="health">
 			<div class="hp">
 				<fieldset class="max-hp">
-					<label>{{localize "EH.HitPoints.Max"}}</label>
+					<label>
+						{{localize "EH.HitPoints.Max"}}
+						{{#if editingMode}}
+							<a data-action="config" data-type="health"
+								data-tooltip="{{localize 'EH.Action.Configure' type=(localize 'EH.Health.Label')}}">
+								<i class="fa-solid fa-cog"></i>
+							</a>
+						{{/if}}
+					</label>
 					<span>{{system.attributes.hp.max}}</span>
 				</fieldset>
 				<fieldset class="current-hp">
@@ -152,18 +172,26 @@
 		</div>
 		<nav class="controls skewed">
 			<ul>
-				<li><a data-action="roll" data-type="luck">Luck Saving Throw</a></li>
+				<li><a data-action="roll" data-type="luck">{{localize "EH.Luck.Label"}}</a></li>
 				<li><a data-action="short-rest">{{localize "EH.Rest.Type.Short.Label"}}</a></li>
 				<li><a data-action="long-rest">{{localize "EH.Rest.Type.Long.Label"}}</a></li>
 			</ul>
 		</nav>
 		<div class="summary">
 			<fieldset class="proficiency">
-				<label>Proficiency Bonus</label>{{!-- TODO: Localize --}}
+				<label>{{localize "EH.Proficiency.Bonus.Label"}}</label>
 				<span>{{system.attributes.prof}}</span>
 			</fieldset>
 			<fieldset class="defense">
-				<label>{{localize "EH.Defense.Label"}}</label>
+				<label>
+					{{localize "EH.Defense.Label"}}
+					{{#if editingMode}}
+						<a data-action="config" data-type="defense"
+							data-tooltip="{{localize 'EH.Action.Configure' type=(localize 'EH.Defense.Label')}}">
+							<i class="fa-solid fa-cog"></i>
+						</a>
+					{{/if}}
+				</label>
 				<span>{{system.attributes.defense.value}}</span>
 			</fieldset>
 			<fieldset class="initiative">
@@ -190,8 +218,10 @@
 				{{/unless}}
 			{{/each}}
 			<fieldset class="inspiration">
-				<label>Inspiration</label>{{!-- TODO: Localize --}}
-				<input type="checkbox" name="system.resources.inspiration" {{checked system.resources.inspiration}}>
+				<label>{{localize "EH.Resource.Inspiration"}}</label>
+				<div class="fields">
+					<input type="checkbox" name="system.resources.inspiration" {{checked system.resources.inspiration}}>
+				</div>
 			</fieldset>
 		</div>
 	</section>

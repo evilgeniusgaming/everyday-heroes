@@ -1,0 +1,44 @@
+<form autocomplete="off">
+	<section>
+		<h2 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">
+				<select name="skillId">
+					{{selectOptions CONFIG.skills selected=skillId labelAttr="label"}}
+				</select>
+			</span>
+			<span class="right stripes"></span>
+		</h2>
+		<fieldset>
+			<label>{{localize "EH.Proficiency.Label[one]"}}</label>
+			<select name="system.skills.{{skillId}}.proficiency.multiplier">
+				{{selectOptions proficiencyLevels selected=skill.proficiency.multiplier}}
+			</select>
+		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Skill.Bonus.Check"}}</label>
+			<input type="text" name="system.skills.{{skillId}}.bonuses.check" value="{{skill.bonuses.check}}">
+		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Skill.Bonus.Passive"}}</label>
+			<input type="text" name="system.skills.{{abilityId}}.bonuses.passive" value="{{skill.bonuses.passive}}">
+		</fieldset>
+	</section>
+
+	<section>
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Skill.Configuration.Global.Label"}}</span>
+			<span class="right stripes"></span>
+		</h3>
+		<p>{{localize "EH.Skill.Configuration.Global.Hint"}}</p>
+		<fieldset>
+			<label>{{localize "EH.Skill.Bonus.Check"}}</label>
+			<input type="text" name="system.bonuses.skill.check" value="{{src.bonuses.skill.check}}">
+		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Skill.Bonus.Passive"}}</label>
+			<input type="text" name="system.bonuses.skill.passive" value="{{src.bonuses.skill.passive}}">
+		</fieldset>
+	</section>
+</form>

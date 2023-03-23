@@ -6,6 +6,13 @@ import Proficiency from "../../../documents/proficiency.mjs";
 /**
  * Data model template for actors that have ability scores.
  * @mixin
+ *
+ * @property {Object<string, AbilityData>} abilities - Ability scores.
+ * @property {object} bonuses
+ * @property {object} bonuses.ability
+ * @property {string} bonuses.ability.check - Global ability check bonus.
+ * @property {string} bonuses.ability.dc - Global ability DC bonus.
+ * @property {string} bonuses.ability.save - Global ability save bonus.
  */
 export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {
@@ -29,7 +36,14 @@ export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 				})
 			}), {
 				initialKeys: CONFIG.EverydayHeroes.abilities, prepareKeys: true, label: "EH.Ability.Label[other]"
-			})
+			}),
+			bonuses: new foundry.data.fields.SchemaField({
+				ability: new foundry.data.fields.SchemaField({
+					check: new FormulaField({label: "EH.Ability.Bonus.Check"}),
+					dc: new FormulaField({label: "EH.Ability.Bonus.DC"}),
+					save: new FormulaField({label: "EH.Ability.Bonus.Save"})
+				})
+			}, {label: "EH.Bonuses.Label"})
 		};
 	}
 
@@ -40,9 +54,9 @@ export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 	prepareDerivedAbilities() {
 		const rollData = this.parent.getRollData();
 		const prof = this.attributes?.prof ?? 0;
-		const globalDCBonus = simplifyBonus(this.bonuses?.ability?.dc, rollData);
-		const globalCheckBonus = simplifyBonus(this.bonuses?.ability?.check, rollData);
-		const globalSaveBonus = simplifyBonus(this.bonuses?.ability?.save, rollData);
+		const globalDCBonus = simplifyBonus(this.bonuses.ability.dc, rollData);
+		const globalCheckBonus = simplifyBonus(this.bonuses.ability.check, rollData);
+		const globalSaveBonus = simplifyBonus(this.bonuses.ability.save, rollData);
 		for ( const ability of Object.values(this.abilities) ) {
 			ability.mod = Math.floor((ability.value - 10) / 2);
 

@@ -1,6 +1,10 @@
 import ActiveEffectEH from "../../documents/active-effect.mjs";
 import AdvancementManager from "../advancement/advancement-manager.mjs";
 import AdvancementConfirmationDialog from "../advancement/advancement-confirmation-dialog.mjs";
+import AbilityConfig from "./dialogs/ability-config.mjs";
+import DefenseConfig from "./dialogs/defense-config.mjs";
+import HealthConfig from "./dialogs/health-config.mjs";
+import SkillConfig from "./dialogs/skill-config.mjs";
 
 /**
  * Base sheet that provides common features for Hero and NPC sheets.
@@ -117,6 +121,11 @@ export default class BaseActorSheet extends ActorSheet {
 		super.activateListeners(jQuery);
 		const html = jQuery[0];
 
+		// Config Action Listeners
+		for ( const element of html.querySelectorAll('[data-action="config"]') ) {
+			element.addEventListener("click", this._onConfig.bind(this));
+		}
+
 		// Editing mode
 		html.querySelector('[data-action="toggle-editing-mode"]')?.addEventListener("click", event => {
 			this.editingMode = !this.editingMode;
@@ -184,8 +193,32 @@ export default class BaseActorSheet extends ActorSheet {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Handle clicking on one of the config buttons.
+	 * @param {ClickEvent} event - Triggering click event.
+	 * @returns {Promise}
+	 */
+	_onConfig(event) {
+		event.preventDefault();
+		const { type, key } = event.currentTarget.dataset;
+		switch (type) {
+			case "ability":
+				return new AbilityConfig(key, this.actor).render(true);
+			case "defense":
+				return new DefenseConfig(this.actor).render(true);
+			case "health":
+				return new HealthConfig(this.actor).render(true);
+			case "skill":
+				return new SkillConfig(key, this.actor).render(true);
+			default:
+				return console.warn(`Everyday Heroes | Invalid config action type clicked ${type}.`);
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Handle clicking on the proficiency selector for abilities or skills.
-	 * @param {Event} event - Triggering click event.
+	 * @param {ClickEvent} event - Triggering click event.
 	 * @returns {Promise|void}
 	 */
 	_onCycleProficiency(event) {
@@ -203,7 +236,7 @@ export default class BaseActorSheet extends ActorSheet {
 
 	/**
 	 * Handle one of the item actions in the features or inventory lists.
-	 * @param {Event} event - Triggering click event.
+	 * @param {ClickEvent} event - Triggering click event.
 	 * @returns {Promise}
 	 */
 	async _onItemAction(event) {

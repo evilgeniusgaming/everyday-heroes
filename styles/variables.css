@@ -10,6 +10,8 @@
 	--eh-border-color-strong: rgb(0, 0, 0);
 	--eh-border-color-weak: rgba(0, 0, 0, 0.5);
 
+	--eh-config-color: rgb(84, 164, 213);
+
 	--eh-dice-color-critical-failure: rgb(231, 25, 0); /* lch(50%, 75%, 50%) */
 	--eh-dice-color-critical-success: rgb(0, 140, 0);  /* lch(50%, 75%, 120%) */
 	--eh-dice-color-failure: rgb(152, 0, 0);           /* lch(25%, 75%, 50%) */

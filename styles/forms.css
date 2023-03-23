@@ -33,6 +33,10 @@
 	gap: 0.25em;
 }
 
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Tag Input                                */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 .everyday-heroes fieldset .tag-input {
 	display: flex;
 	flex-wrap: wrap;

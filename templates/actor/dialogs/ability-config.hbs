@@ -1,0 +1,44 @@
+<form autocomplete="off">
+	<section>
+		<h2 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">
+				<select name="abilityId">
+					{{selectOptions CONFIG.abilities selected=abilityId labelAttr="label"}}
+				</select>
+			</span>
+			<span class="right stripes"></span>
+		</h2>
+		<fieldset>
+			<label>{{localize "EH.Proficiency.Label[one]"}}</label>
+			<select name="system.abilities.{{abilityId}}.saveProficiency.multiplier">
+				{{selectOptions proficiencyLevels selected=ability.saveProficiency.multiplier}}
+			</select>
+		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Ability.Bonus.Save"}}</label>
+			<input type="text" name="system.abilities.{{abilityId}}.bonuses.save" value="{{ability.bonuses.save}}">
+		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Ability.Bonus.Check"}}</label>
+			<input type="text" name="system.abilities.{{abilityId}}.bonuses.check" value="{{ability.bonuses.check}}">
+		</fieldset>
+	</section>
+
+	<section>
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Ability.Configuration.Global.Label"}}</span>
+			<span class="right stripes"></span>
+		</h3>
+		<p>{{localize "EH.Ability.Configuration.Global.Hint"}}</p>
+		<fieldset>
+			<label>{{localize "EH.Ability.Bonus.Save"}}</label>
+			<input type="text" name="system.bonuses.ability.save" value="{{src.bonuses.ability.save}}">
+		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Ability.Bonus.Check"}}</label>
+			<input type="text" name="system.bonuses.ability.check" value="{{src.bonuses.ability.check}}">
+		</fieldset>
+	</section>
+</form>

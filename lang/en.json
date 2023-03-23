@@ -25,7 +25,11 @@
 "Ability.Bonus.Check": "Ability Check Bonus",
 "Ability.Bonus.DC": "DC Bonus",
 "Ability.Bonus.Save": "Saving Throw Bonus",
+"Ability.Configuration.Global.Label": "Global Ability Configuration",
+"Ability.Configuration.Global.Hint": "The following options apply to all abilities.",
+"Ability.Configuration.Specific.Label": "{type} Configuration",
 
+"Action.Configure": "Configure {type}",
 "Action.Roll": "Roll {type}",
 "Action.Passive": "Passive",
 "Action.Reload.Action": "Action Reload",
@@ -177,6 +181,8 @@
 "Biography.Virtue[one]": "Virtue",
 "Biography.Virtue[other]": "Virtues",
 "Biography.Weight": "Weight",
+
+"Bonuses.Label": "Global Bonuses",
 
 "ChallengeRating.Label": "Challenge Rating",
 "ChallengeRating.Abbreviation": "CR",
@@ -348,6 +354,8 @@
 "Gear.Type.SpecialtyGoods.Label": "Specialty Goods",
 "Gear.Type.SportingGoods.Label": "Sporting Goods",
 
+"Health.Label": "Health",
+
 "HitDice.Label[one]": "Hit Die",
 "HitDice.Label[other]": "Hit Dice",
 "HitDice.Spent": "Spent Hit Dice",
@@ -451,7 +459,9 @@
 
 "Proficiency.Label[one]": "Proficiency",
 "Proficiency.Label[other]": "Proficiencies",
+"Proficiency.Bonus.Label": "Proficiency Bonus",
 "Proficiency.Level.Expertise": "Expertise",
+"Proficiency.Level.Half": "Half Proficient",
 "Proficiency.Level.None": "Not Proficient",
 "Proficiency.Level.Proficient": "Proficient",
 "Proficiency.Multiplier": "Proficiency Multiplier",
@@ -556,6 +566,11 @@
 "Skill.Action.CheckSpecificAbility": "{ability} ({skill}) Check",
 "Skill.Action.Check": "Skill Check Bonus",
 "Skill.Action.Passive": "Passive Bonus",
+"Skill.Bonus.Check": "Skill Check Bonus",
+"Skill.Bonus.Passive": "Passive Skill Bonus",
+"Skill.Configuration.Global.Label": "Global Skill Configuration",
+"Skill.Configuration.Global.Hint": "The following options apply to all skills.",
+"Skill.Configuration.Specific.Label": "{type} Configuration",
 
 "Uses.Label": "Limited Uses",
 "Uses.AvailableGeneric.Label": "{available}/{max} uses",
