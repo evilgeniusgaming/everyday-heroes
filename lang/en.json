@@ -128,6 +128,7 @@
 "Advancement.ScaleValue.Type.Number.Hint": "Use this for purely numerical values like flat damage bonuses.",
 
 "Ammunition.Loaded": "Loaded Ammunition",
+"Ammunition.Empty.Label": "No Ammunition Chosen",
 "Ammunition.Standard.Label": "Standard {type} Rounds",
 "Ammunition.Rounds.Label[one]": "round",
 "Ammunition.Rounds.Label[other]": "rounds",

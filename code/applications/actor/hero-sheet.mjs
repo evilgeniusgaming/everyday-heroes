@@ -262,9 +262,9 @@ export default class HeroSheet extends BaseActorSheet {
 					context.inventory.weapon.items.push(item);
 					break;
 				case "ammunition":
+				case "explosive":
 					ammunitionTypes[item.system.type.value] ??= {};
 					ammunitionTypes[item.system.type.value][item.id] = item;
-				case "explosive":
 					context.inventory.ammunitionExplosive.items.push(item);
 					break;
 				case "gear":
@@ -281,11 +281,15 @@ export default class HeroSheet extends BaseActorSheet {
 		// Prepare ammunition lists
 		for ( const item of context.inventory.weapon.items ) {
 			const ctx = context.itemContext[item.id].ammunition ??= {};
-			ctx.defaultLabel = game.i18n.format("EH.Ammunition.Standard.Label", {
-				type: CONFIG.EverydayHeroes.ammunitionTypes[item.system.rounds.type]?.label
-			});
+			const ammunitionTypeConfig = CONFIG.EverydayHeroes.ammunitionTypes[item.system.rounds.type];
+			ctx.defaultLabel = ammunitionTypeConfig ? game.i18n.format("EH.Ammunition.Standard.Label", {
+				type: ammunitionTypeConfig.label
+			}) : game.i18n.localize("EH.Ammunition.Empty.Label");
 			ctx.selected = item.system.ammunition?.id;
 			ctx.types = ammunitionTypes[item.system.rounds.type] ?? [];
+			ctx.displayAmmunitionSelector = (!foundry.utils.isEmpty(ctx.types) || ctx.defaultLabel)
+				&& !!item.system.rounds.type;
+			console.log(ctx);
 		}
 
 		if ( !context.features.archetype.primary.item ) context.features.archetype.create.unshift({

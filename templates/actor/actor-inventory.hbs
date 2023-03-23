@@ -86,7 +86,7 @@
 							{{/each}}
 						</nav>
 						<div class="consumption">
-							{{#if (or item.system.rounds.capacity item.system.rounds.type)}}
+							{{#if (or item.system.rounds.capacity ctx.ammunition.displayAmmunitionSelector)}}
 								<div class="ammunition">
 									{{#if item.system.rounds.capacity}}
 										<div class="reload action" data-action="item" data-type="reload"
@@ -95,7 +95,8 @@
 											<span>{{item.system.rounds.label}}</span>
 										</div>
 									{{/if}}
-									{{#if item.system.rounds.type}}
+									{{log ctx}}
+									{{#if ctx.ammunition.displayAmmunitionSelector}}
 										<div class="ammunition-type">
 											<select name="ammunition">
 												{{selectOptions ctx.ammunition.types selected=ctx.ammunition.selected

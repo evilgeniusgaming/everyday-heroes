@@ -50,7 +50,7 @@ export default class Damage extends foundry.abstract.DataModel {
 
 	prepareBaseData() {
 		// Have to manually reset these values here to fix issue with Foundry calling prepareDerivedData twice
-		this.number = this._source.number || 1;
+		this.number = this._source.number || 0;
 		this.denomination = this._source.denomination || CONFIG.EverydayHeroes.diceSteps[0];
 		if ( this.denomination ) this.dice = `${this.number ?? 1}d${this.denomination}`;
 		else this.dice = this.number ?? 0;
