@@ -9,6 +9,16 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * @mixes {@link DescribedTemplate}
  */
 export default class TrickData extends SystemDataModel.mixin(DescribedTemplate, ActivatableTemplate) {
+
+	static metadata = {
+		type: "trick",
+		category: "feature",
+		localization: "EH.Item.Type.Trick",
+		icon: "fa-solid fa-ruler"
+	};
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({

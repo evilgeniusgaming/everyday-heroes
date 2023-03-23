@@ -20,6 +20,14 @@ import SkillsTemplate from "./templates/skills-template.mjs";
 export default class HeroData extends SystemDataModel.mixin(
 	AbilitiesTemplate, InitiativeTemplate, MovementTemplate, ResourcesTemplate, SkillsTemplate
 ) {
+
+	static metadata = {
+		type: "hero",
+		localization: "EH.Actor.Type.Hero"
+	};
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			attributes: new foundry.data.fields.SchemaField({

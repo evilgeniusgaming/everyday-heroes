@@ -23,6 +23,16 @@ export default class AmmunitionData extends SystemDataModel.mixin(
 	DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate
 ) {
 
+	static metadata = {
+		type: "ammunition",
+		category: "physical",
+		localization: "EH.Item.Type.Ammunition",
+		icon: "fa-solid fa-cubes-stacked",
+		image: "systems/everyday-heroes/artwork/svg/items/ammunition.svg"
+	};
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static damageMode = "modification";
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

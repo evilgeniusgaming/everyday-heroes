@@ -9,6 +9,16 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * @mixes {@link DescribedTemplate}
  */
 export default class ClassData extends SystemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {
+
+	static metadata = {
+		type: "class",
+		category: "concept",
+		localization: "EH.Item.Type.Class",
+		icon: "fa-solid fa-landmark-flag"
+	};
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({

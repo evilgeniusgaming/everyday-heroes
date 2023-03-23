@@ -45,6 +45,17 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
 export default class WeaponData extends SystemDataModel.mixin(
 	AttackTemplate, DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate
 ) {
+
+	static metadata = {
+		type: "weapon",
+		category: "physical",
+		localization: "EH.Item.Type.Weapon",
+		icon: "fa-solid fa-gun",
+		image: "systems/everyday-heroes/artwork/svg/items/weapon.svg"
+	};
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({

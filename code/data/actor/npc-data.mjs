@@ -16,6 +16,14 @@ import SkillsTemplate from "./templates/skills-template.mjs";
 export default class NPCData extends SystemDataModel.mixin(
 	AbilitiesTemplate, InitiativeTemplate, MovementTemplate, SkillsTemplate
 ) {
+
+	static metadata = {
+		type: "npc",
+		localization: "EH.Actor.Type.NPC"
+	};
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			attributes: new foundry.data.fields.SchemaField({

@@ -33,7 +33,8 @@ Hooks.once("init", function() {
 	game.everydayHeroes = globalThis.EverydayHeroes;
 	CONFIG.EverydayHeroes = config;
 	applications.registerSheets();
-	data.registerSystemDataModels();
+	data.utils.registerDataModels("Actor", data.actor.config);
+	data.utils.registerDataModels("Item", data.item.config);
 	dice.registerDice();
 	documents.registerDocumentClasses();
 	enrichers.registerCustomEnrichers();

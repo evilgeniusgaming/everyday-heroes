@@ -28,6 +28,17 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
 export default class ExplosiveData extends SystemDataModel.mixin(
 	AttackTemplate, DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate
 ) {
+
+	static metadata = {
+		type: "explosive",
+		category: "physical",
+		localization: "EH.Item.Type.Explosive",
+		icon: "fa-solid fa-burst",
+		image: "systems/everyday-heroes/artwork/svg/items/explosive.svg"
+	};
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({

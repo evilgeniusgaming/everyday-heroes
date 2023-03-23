@@ -13,6 +13,16 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * @property {number} type.level - Level at which this talent is granted.
  */
 export default class TalentData extends SystemDataModel.mixin(DescribedTemplate, ActivatableTemplate) {
+
+	static metadata = {
+		type: "talent",
+		category: "feature",
+		localization: "EH.Item.Type.Talent",
+		icon: "fa-solid fa-users-rectangle"
+	};
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({

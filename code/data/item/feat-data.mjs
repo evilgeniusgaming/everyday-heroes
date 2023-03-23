@@ -13,6 +13,16 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * @property {string} type.category - Specific category of feat (basic, advanced, multiclass).
  */
 export default class FeatData extends SystemDataModel.mixin(DescribedTemplate, ActivatableTemplate) {
+
+	static metadata = {
+		type: "feat",
+		category: "feature",
+		localization: "EH.Item.Type.Feat",
+		icon: "fa-solid fa-house-user"
+	};
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({

@@ -11,6 +11,17 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @property {string} type.value - What type of gear is this?
  */
 export default class GearData extends SystemDataModel.mixin(DescribedTemplate, PhysicalTemplate) {
+
+	static metadata = {
+		type: "gear",
+		category: "physical",
+		localization: "EH.Item.Type.Gear",
+		icon: "fa-solid fa-bag-shopping",
+		image: "systems/everyday-heroes/artwork/svg/items/gear.svg"
+	};
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({

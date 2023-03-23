@@ -9,6 +9,16 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * @mixes {@link DescribedTemplate}
  */
 export default class BackgroundData extends SystemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {
+
+	static metadata = {
+		type: "background",
+		category: "concept",
+		localization: "EH.Item.Type.Background",
+		icon: "fa-solid fa-address-card"
+	};
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({

@@ -11,6 +11,16 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * @property {number} wealth - Starting wealth level this profession provides.
  */
 export default class ProfessionData extends SystemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {
+
+	static metadata = {
+		type: "profession",
+		category: "concept",
+		localization: "EH.Item.Type.Profession",
+		icon: "fa-solid fa-user-tie"
+	};
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({

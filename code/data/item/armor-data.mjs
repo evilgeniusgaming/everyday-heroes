@@ -20,6 +20,17 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @property {string} bonuses.save - Bonus applied to this armor's saving throws.
  */
 export default class ArmorData extends SystemDataModel.mixin(DescribedTemplate, EquipmentTemplate, PhysicalTemplate) {
+
+	static metadata = {
+		type: "armor",
+		category: "physical",
+		localization: "EH.Item.Type.Armor",
+		icon: "fa-solid fa-shield-halved",
+		image: "systems/everyday-heroes/artwork/svg/items/armor.svg"
+	};
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({

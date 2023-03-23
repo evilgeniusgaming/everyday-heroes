@@ -12,6 +12,16 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * @property {string} type.value - Specific talent type (background or profession).
  */
 export default class SpecialFeatureData extends SystemDataModel.mixin(DescribedTemplate, ActivatableTemplate) {
+
+	static metadata = {
+		type: "specialFeature",
+		category: "feature",
+		localization: "EH.Item.Type.SpecialFeature",
+		icon: "fa-solid fa-users-rectangle"
+	};
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({

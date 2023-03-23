@@ -12,6 +12,16 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * @property {number} recharge.target - Target on a D6 role required to recharge this item's usage.
  */
 export default class NPCFeatureData extends SystemDataModel.mixin(DescribedTemplate, ActivatableTemplate) {
+
+	static metadata = {
+		type: "npcFeature",
+		category: "feature",
+		localization: "EH.Item.Type.NPCFeature",
+		icon: "fa-solid fa-otter"
+	};
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			recharge: new foundry.data.fields.SchemaField({

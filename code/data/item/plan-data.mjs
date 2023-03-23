@@ -12,6 +12,16 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * @property {string} identifier.class - Identifier for the class required to take this plan.
  */
 export default class PlanData extends SystemDataModel.mixin(DescribedTemplate, ActivatableTemplate) {
+
+	static metadata = {
+		type: "plan",
+		category: "feature",
+		localization: "EH.Item.Type.Plan",
+		icon: "fa-solid fa-ruler"
+	};
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({

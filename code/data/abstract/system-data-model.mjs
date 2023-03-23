@@ -21,7 +21,27 @@ import MappingField from "../fields/mapping-field.mjs";
  */
 export default class SystemDataModel extends foundry.abstract.DataModel {
 
-	/** @inheritdoc */
+	/**
+	 * Metadata that describes a system data type.
+	 *
+	 * @typedef {object} SystemDataMetadata
+	 * @property {string} type - Name of type to which this system data model belongs.
+	 * @property {string} [category] - Which category in the create item dialog should this Document be listed?
+	 * @property {string} localization - Base localization key for this type. This should be a localization key that
+	 *                                   accepts plural types (e.g. `EH.Item.Type.Weapon` becomes
+	 *                                   `EH.Item.Type.Weapon[few]` and `EH.Item.Type.Weapon[other]`).
+	 * @property {string} [icon] - Font awesome icon string used for links to this type.
+	 * @property {string} [image] - Default image used when creating a Document of this type.
+	 */
+
+	/**
+	 * Metadata that describes a type.
+	 * @type {SystemDataMetadata}
+	 */
+	static metadata = {};
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static _enableV10Validation = true;
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
