@@ -39,19 +39,25 @@ export default class HeroData extends SystemDataModel.mixin(
 					failure: new foundry.data.fields.NumberField({
 						nullable: false, initial: 0, min: 0, integer: true, label: "EH.Death.Failure"
 					}),
-					bonus: new FormulaField({label: "EH.Death.Bonus"}),
+					bonus: new FormulaField({label: "EH.Death.Bonus.Label"}),
 					overrides: new foundry.data.fields.SchemaField({
-						success: new foundry.data.fields.NumberField({label: "EH.Death.Override.Success"}),
-						failure: new foundry.data.fields.NumberField({label: "EH.Death.Override.Failure"}),
-						target: new foundry.data.fields.NumberField({label: "EH.Death.Override.Target"})
+						success: new foundry.data.fields.NumberField({
+							label: "EH.Death.Override.Success.Label", hint: "EH.Death.Override.Success.hint"
+						}),
+						failure: new foundry.data.fields.NumberField({
+							label: "EH.Death.Override.Failure.Label", hint: "EH.Death.Override.Failure.hint"
+						}),
+						target: new foundry.data.fields.NumberField({
+							label: "EH.Death.Override.Target.Label", hint: "EH.Death.Override.Target.hint"
+						})
 					})
 				}, {label: "EH.Death.Label[other]"}),
 				defense: new foundry.data.fields.SchemaField({
-					bonus: new FormulaField({deterministic: true, label: "Defense.Bonus.Label"})
-				}, {label: "Defense.Label"}),
+					bonus: new FormulaField({deterministic: true, label: "EH.Defense.Bonus.Label"})
+				}, {label: "EH.Defense.Label"}),
 				hd: new foundry.data.fields.SchemaField({
 					spent: new foundry.data.fields.NumberField({initial: 0, min: 0, integer: true, label: "EH.HitDice.Spent"})
-				}, {label: "EH.HitDice.Labe[other]"}),
+				}, {label: "EH.HitDice.Label[other]"}),
 				hp: new foundry.data.fields.SchemaField({
 					value: new foundry.data.fields.NumberField({
 						nullable: false, initial: 0, min: 0, integer: true, label: "EH.HitPoints.Current"
@@ -64,11 +70,11 @@ export default class HeroData extends SystemDataModel.mixin(
 					}),
 					// TODO: Does Everyday Heroes need temp max support?
 					bonuses: new foundry.data.fields.SchemaField({
-						level: new FormulaField({deterministic: true, label: ""}),
-						overall: new FormulaField({deterministic: true, label: ""})
+						level: new FormulaField({deterministic: true, label: "EH.HitPoints.Bonus.Level"}),
+						overall: new FormulaField({deterministic: true, label: "EH.HitPoints.Bonus.Overall"})
 					})
-				}, {label: ""})
-			}, {label: ""}),
+				}, {label: "EH.HitPoints.Label[other]"})
+			}, {label: "EH.Attributes.Label"}),
 			biography: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.HTMLField({label: "EH.Biography.Label"}),
 				public: new foundry.data.fields.HTMLField({label: "EH.Biography.Public"}),
@@ -101,17 +107,17 @@ export default class HeroData extends SystemDataModel.mixin(
 				role: new foundry.data.fields.StringField({label: "EH.Biography.Role"}),
 				skin: new foundry.data.fields.StringField({label: "EH.Biography.Skin"}),
 				weight: new foundry.data.fields.StringField({label: "EH.Biography.Weight"})
-			}),
+			}, {label: "EH.Biography.Label"}),
 			bonuses: new foundry.data.fields.SchemaField({
 				attack: new MappingField(new FormulaField()),
 				damage: new MappingField(new FormulaField())
-			}, {label: ""}),
+			}, {label: "EH.Bonuses.Label"}),
 			conditions: new MappingField(new foundry.data.fields.NumberField({
 				min: 0, integer: true
-			}), {label: ""}),
+			}), {label: "EH.Condition.Label[other]"}),
 			details: new foundry.data.fields.SchemaField({
 				level: new foundry.data.fields.NumberField({
-					nullable: false, initial: 1, min: 1, max: CONFIG.EverydayHeroes.maxLevel, integer: true, label: ""
+					nullable: false, initial: 1, min: 1, max: CONFIG.EverydayHeroes.maxLevel, integer: true, label: "EH.Level.Label[one]"
 				}),
 				wealth: new foundry.data.fields.SchemaField({
 					bonus: new foundry.data.fields.NumberField({integer: true, label: "EH.Details.Wealth.Bonus.Label"})
@@ -141,9 +147,9 @@ export default class HeroData extends SystemDataModel.mixin(
 					label: "EH.Language.Label[other]"
 				}),
 				equipment: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-					label: "Proficiency.Label[other]"
+					label: "EH.Proficiency.Label[other]"
 				})
-			}, {label: ""})
+			}, {label: "EH.Traits.Label"})
 		});
 	}
 

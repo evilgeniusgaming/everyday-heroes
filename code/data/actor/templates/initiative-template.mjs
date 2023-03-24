@@ -5,6 +5,11 @@ import Proficiency from "../../../documents/proficiency.mjs";
 /**
  * Data model template for actors that have initiative.
  * @mixin
+ *
+ * @property {object} attributes
+ * @property {object} attributes.initiative
+ * @property {string} attributes.initiative.ability - Ability used when rolling initiative.
+ * @property {strong} attributes.initiative.bonus - Bonus added to initiative rolls.
  */
 export default class InitiativeTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {

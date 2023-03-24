@@ -23,3 +23,6 @@
 	display: grid;
 	grid-template-columns: subgrid;
 }
+.everyday-heroes.config form > section > fieldset > p {
+	grid-column: 1 / -1;
+}

@@ -2,7 +2,7 @@ import ActiveEffectEH from "../../documents/active-effect.mjs";
 import AdvancementManager from "../advancement/advancement-manager.mjs";
 import AdvancementConfirmationDialog from "../advancement/advancement-confirmation-dialog.mjs";
 import AbilityConfig from "./dialogs/ability-config.mjs";
-import DefenseConfig from "./dialogs/defense-config.mjs";
+import AttributesConfig from "./dialogs/attributes-config.mjs";
 import HealthConfig from "./dialogs/health-config.mjs";
 import SkillConfig from "./dialogs/skill-config.mjs";
 
@@ -203,8 +203,8 @@ export default class BaseActorSheet extends ActorSheet {
 		switch (type) {
 			case "ability":
 				return new AbilityConfig(key, this.actor).render(true);
-			case "defense":
-				return new DefenseConfig(this.actor).render(true);
+			case "attributes":
+				return new AttributesConfig(this.actor).render(true);
 			case "health":
 				return new HealthConfig(this.actor).render(true);
 			case "skill":

@@ -156,6 +156,8 @@
 "Armor.Type.Armor.Label": "Armor",
 "Armor.Type.Shield.Label": "Shield",
 
+"Attributes.Label": "Attributes",
+
 "Biography.Label": "Biography",
 "Biography.Age": "Age",
 "Biography.Ancestry": "Ancestry",
@@ -206,6 +208,8 @@
 "Condition.Stunned.Label": "Stunned",
 "Condition.Unconcious.Label": "Unconcious",
 
+"Configuration.Title": "{type} Configuration",
+
 "Creature.Type.Label": "Creature Type",
 "Creature.Type.Tags.Label": "Type Tags",
 "Creature.Type.Alien.Label": "Alien",
@@ -248,7 +252,7 @@
 
 "Death.Label[one]": "Death Save",
 "Death.Label[other]": "Death Saves",
-"Death.Bonus": "Death Save Bonus",
+"Death.Bonus.Label": "Death Save Bonus",
 "Death.Success": "Success",
 "Death.Failure": "Failure",
 "Death.Message.Label[one]": "death saving throw",
@@ -257,9 +261,12 @@
 "Death.Message.CriticalSuccess": "{name} critically succeeded on a death saving throw and has regained 1 Hit Point!",
 "Death.Message.Failure": "{name} has died after failing {counted}…",
 "Death.Message.Success": "{name} has succeeded on {counted} and is now stable.",
-"Death.Override.Failure": "Failures Required",
-"Death.Override.Success": "Successes Required",
-"Death.Override.Target": "Target Value",
+"Death.Override.Failure.Label": "Failures Required",
+"Death.Override.Failure.Hint": "Number of failures required before the actor dies.",
+"Death.Override.Success.Label": "Successes Required",
+"Death.Override.Success.Hint": "Number of successes required before the actor stabalizes.",
+"Death.Override.Target.Label": "Target Value",
+"Death.Override.Target.Hint": "Value that must be rolled to be considered a success.",
 "Death.Status.Label": "Status",
 "Death.Status.Alive": "Alive",
 "Death.Status.Dead": "Dead",
@@ -367,6 +374,8 @@
 "HitPoints.Current": "Current HP",
 "HitPoints.Max": "Max HP",
 "HitPoints.Temp": "Temp HP",
+"HitPoints.Bonus.Level": "Per Level Bonus",
+"HitPoints.Bonus.Overall": "Overall Bonus",
 
 "Identifier.Label": "Identifier",
 "Identifier.Action.Copy": "Copy Identifier",
@@ -571,6 +580,8 @@
 "Skill.Configuration.Global.Label": "Global Skill Configuration",
 "Skill.Configuration.Global.Hint": "The following options apply to all skills.",
 "Skill.Configuration.Specific.Label": "{type} Configuration",
+
+"Traits.Label": "Traits",
 
 "Uses.Label": "Limited Uses",
 "Uses.AvailableGeneric.Label": "{available}/{max} uses",

@@ -34,6 +34,12 @@ export default class AbilityConfig extends BaseConfig {
 	abilityId;
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get type() {
+		return CONFIG.EverydayHeroes.abilities[this.abilityId]?.label ?? "";
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Context Preparation                      */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

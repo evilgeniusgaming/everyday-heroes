@@ -1,0 +1,31 @@
+<form autocomplete="off">
+	<section>
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Defense.Label"}}</span>
+			<span class="right stripes"></span>
+		</h3>
+		<fieldset>
+			<label>{{localize "EH.Defense.Bonus.Label"}}</label>
+			<input type="number" name="system.attributes.defense.bonus" value="{{src.attributes.defense.bonus}}">
+		</fieldset>
+	</section>
+
+	<section>
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Initiative.Label"}}</span>
+			<span class="right stripes"></span>
+		</h3>
+		<fieldset>
+			<label>{{localize "EH.Ability.Label[one]"}}</label>
+			<select name="system.attributes.initiative.ability">
+				{{selectOptions CONFIG.abilities selected=src.attributes.initiative.ability labelAttr="label"}}
+			</select>
+		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Initiative.Bonus.Label"}}</label>
+			<input type="number" name="system.attributes.initiative.bonus" value="{{src.attributes.initiative.bonus}}">
+		</fieldset>
+	</section>
+</form>

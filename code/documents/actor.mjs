@@ -495,7 +495,7 @@ export default class ActorEH extends Actor {
 			failureThreshold: death.overrides.failure
 				? death.overrides.failure : CONFIG.EverydayHeroes.deathSave.failureThreshold,
 			options: {
-				target: death.overrides.target ? death.overrides.target : undefined
+				target: death.overrides.target ? death.overrides.target : CONFIG.EverydayHeroes.deathSave.target
 			}
 		}, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);

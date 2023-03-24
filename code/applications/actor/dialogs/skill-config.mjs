@@ -34,6 +34,12 @@ export default class SkillConfig extends BaseConfig {
 	skillId;
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get type() {
+		return CONFIG.EverydayHeroes.skills[this.skillId]?.label ?? "";
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Context Preparation                      */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
