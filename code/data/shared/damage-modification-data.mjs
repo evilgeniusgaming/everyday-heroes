@@ -9,10 +9,10 @@ export default class DamageModificationData extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
 			number: new foundry.data.fields.NumberField({
-				initial: null, integer: true, label: "EH.Equipment.Trait.Damage.Count.Label"
+				initial: 0, integer: true, label: "EH.Equipment.Trait.Damage.Count.Label"
 			}),
 			denomination: new foundry.data.fields.NumberField({
-				initial: null, integer: true, label: "EH.Equipment.Trait.Damage.Denomination.Label"
+				initial: 0, integer: true, label: "EH.Equipment.Trait.Damage.Denomination.Label"
 			}),
 			type: new foundry.data.fields.StringField({label: "EH.Equipment.Trait.Damage.Type.Label"})
 		};

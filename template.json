@@ -224,6 +224,10 @@
         "value": ""
       },
       "penetrationValue": 0,
+      "damage": {
+        "number": 0,
+        "die": 0
+      },
       "bonuses": {
         "damage": ""
       }

@@ -285,7 +285,7 @@ export const applicableProperties = {
 		"awkward", "ballistic", "concealable", "small", "stabProof"
 	],
 	explosive: [
-		"blinding", "deafening", "disguised", "grenade", "illuminating", "improvised", "indirect", "loud", "restricted",
+		"blinding", "deafening", "disguised", "grenade", "heavy", "illuminating", "improvised", "indirect", "loud", "restricted",
 		"special", "stunning", "thrown", "unreliable"
 	],
 	weapon: [

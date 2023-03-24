@@ -780,7 +780,7 @@ export default class ItemEH extends Item {
 	async _preCreate(data, options, user) {
 		await super._preCreate(data, options, user);
 		if ( !data.img || data.img === this.constructor.DEFAULT_ICON ) {
-			const img = CONFIG.Item.typeImages[data.type];
+			const img = this.system.constructor.metadata.image;
 			if ( img ) this.updateSource({img});
 		}
 		if ( this.system.hasOwnProperty("identifier") && !this.system.identifier.value ) {
