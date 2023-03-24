@@ -79,7 +79,7 @@ export default class AdvancementConfig extends FormApplication {
 		const context = {
 			CONFIG: CONFIG.EverydayHeroes,
 			...this.advancement.toObject(false),
-			src: this.advancement.toObject(),
+			source: this.advancement.toObject(),
 			default: {
 				title: this.advancement.constructor.metadata.title,
 				icon: this.advancement.constructor.metadata.icon,

@@ -252,6 +252,7 @@
       "type": {
         "value": ""
       },
+      "properties": {},
       "penetrationValue": 0,
       "damage": {
         "number": 0,

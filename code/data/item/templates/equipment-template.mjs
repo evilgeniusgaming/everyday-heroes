@@ -1,3 +1,4 @@
+import { stepDenomination } from "../../../dice/utils.mjs";
 import Proficiency from "../../../documents/proficiency.mjs";
 import { numberFormat } from "../../../utils.mjs";
 
@@ -77,12 +78,18 @@ export default class EquipmentTemplate {
 					label += ` (${range})`;
 					break;
 				case "versatile":
-					label += ` d${"??"}`;
+					if ( !this.damage?.denomination ) break;
+					const versatileDenomination = stepDenomination(this.damage?.denomination, 1);
+					label += ` d${versatileDenomination}`;
 					break;
 			}
 			// TODO: Add tooltips with property descriptions
 			tags.push({ label, class: "property" });
 		}
+		if ( this.parent.isEmbedded ) tags.push({
+			label: game.i18n.localize(`EH.Proficiency.Level.${this.proficiency.hasProficiency ? "Proficient" : "None"}`),
+			class: `${this.proficiency.hasProficiency ? "positive" : "negative"} status`
+		});
 		return tags;
 	}
 

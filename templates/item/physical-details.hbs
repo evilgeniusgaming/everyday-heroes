@@ -29,11 +29,12 @@
 	</h3>
 
 	{{#if itemProperties}}
-		<div class="properties">
+		<div class="properties {{#if propertyModification}}modification{{/if}}">
 			{{#each itemProperties as |property key|}}
-				<fieldset {{#if property.checked}}class="checked"{{/if}}>
+				<fieldset class="{{property.value}}">
 					<label>
-						<input type="checkbox" name="system.properties.{{key}}" {{checked property.checked}}>
+						<input type="checkbox" {{checked property.value}}>
+						<input type="hidden" name="system.properties.{{key}}" value="{{property.value}}">
 						{{property.label}}
 					</label>
 				</fieldset>

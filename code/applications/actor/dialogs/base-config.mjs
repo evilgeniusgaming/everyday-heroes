@@ -35,7 +35,7 @@ export default class BaseConfig extends DocumentSheet {
 	async getData(options) {
 		return foundry.utils.mergeObject({
 			CONFIG: CONFIG.EverydayHeroes,
-			src: this.document.toObject().system,
+			source: this.document.toObject().system,
 			system: this.document.system
 		}, await super.getData(options));
 	}

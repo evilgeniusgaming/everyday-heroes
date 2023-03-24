@@ -46,7 +46,7 @@ export default class SkillConfig extends BaseConfig {
 	async getData(options) {
 		const context = await super.getData(options);
 		context.skillId = this.skillId;
-		context.skill = context.src.skills[this.skillId]
+		context.skill = context.source.skills[this.skillId]
 			?? this.document.system.skills[this.skillId] ?? {};
 		context.proficiencyLevels = {
 			0: game.i18n.localize("EH.Proficiency.Level.None"),

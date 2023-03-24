@@ -294,6 +294,7 @@ export const applicableProperties = {
 		"slowFiring", "special", "stationary", "stunning", "thrown", "twoHanded", "unreliable", "versatile"
 	]
 };
+applicableProperties.ammunition = applicableProperties.weapon;
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Ammunition                               */

@@ -46,7 +46,7 @@ export default class AbilityConfig extends BaseConfig {
 	async getData(options) {
 		const context = await super.getData(options);
 		context.abilityId = this.abilityId;
-		context.ability = context.src.abilities[this.abilityId]
+		context.ability = context.source.abilities[this.abilityId]
 			?? this.document.system.abilities[this.abilityId] ?? {};
 		context.proficiencyLevels = {
 			0: game.i18n.localize("EH.Proficiency.Level.None"),

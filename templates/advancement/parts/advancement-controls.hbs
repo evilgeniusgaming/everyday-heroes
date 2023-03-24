@@ -1,20 +1,20 @@
 <fieldset>
 	<label>{{localize "EH.Advancement.Core.Title"}}</label>
-	<input type="text" name="title" value="{{src.title}}" placeholder="{{default.title}}">
+	<input type="text" name="title" value="{{source.title}}" placeholder="{{default.title}}">
 </fieldset>
 
 <fieldset>
 	<label>{{localize "EH.Advancement.Core.Icon"}}</label>
 	<div class="fields">
 		{{filePicker type="image" target="icon"}}
-		<input type="text" name="icon" value="{{src.icon}}" placeholder="{{default.icon}}">
+		<input type="text" name="icon" value="{{source.icon}}" placeholder="{{default.icon}}">
 	</div>
 </fieldset>
 
 {{#if showIdentifier}}
 	<fieldset>
 		<label>{{localize "EH.Identifier.Label"}}</label>
-		<input type="text" name="identifier" value="{{src.identifier}}" placeholder="{{default.identifier}}">
+		<input type="text" name="identifier" value="{{source.identifier}}" placeholder="{{default.identifier}}">
 		{{#if default.identifierHint}}
 			<p class="hint">
 				{{{localize default.identifierHint identifier=identifier}}}

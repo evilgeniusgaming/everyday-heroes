@@ -300,6 +300,16 @@ export default class WeaponData extends SystemDataModel.mixin(
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	prepareDerivedProperties() {
+		this.properties = new Set(CONFIG.EverydayHeroes.applicableProperties.weapon.filter(p => {
+			if ( this.ammunition?.system.properties[p] === 1 ) return true;
+			else if ( this.ammunition?.system.properties[p] === -1 ) return false;
+			else return this._source.properties.includes(p);
+		}));
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	prepareDerivedRounds() {
 		this.rounds.spent = Math.min(this.rounds.spent, this.rounds.capacity);
 		this.rounds.available = this.rounds.capacity - this.rounds.spent;

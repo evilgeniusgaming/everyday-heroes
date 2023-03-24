@@ -17,7 +17,8 @@
 	--eh-dice-color-failure: rgb(152, 0, 0);           /* lch(25%, 75%, 50%) */
 	--eh-dice-color-success: rgb(0, 75, 0);            /* lch(25%, 75%, 120%) */
 
-	--eh-input-color-checked: rgb(136, 255, 118);
+	--eh-input-color-add: rgb(136, 255, 118);
+	--eh-input-color-remove: rgb(255, 118, 118);
 
 	--eh-tag-color-type: rgb(230, 230, 220);
 	--eh-tag-color-property: rgb(225, 225, 255);

@@ -1,5 +1,6 @@
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
+import MappingField from "../fields/mapping-field.mjs";
 import DamageTemplate from "./templates/damage-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
 import EquipmentTemplate from "./templates/equipment-template.mjs";
@@ -14,6 +15,7 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  *
  * @property {object} type
  * @property {string} type.value - Ammunition type.
+ * @property {Object<string, number>} properties - Properties to add or remove from the weapon.
  * @property {number} penetrationValue - How does this ammo modify the weapon's penetration value?
  * @property {object} bonuses
  * @property {string} bonuses.attack - Bonus to the weapon's attack rolls.
@@ -42,6 +44,9 @@ export default class AmmunitionData extends SystemDataModel.mixin(
 			type: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.StringField({intial: "basic", label: "EH.Ammunition.Type.Label"})
 			}, {label: "EH.Item.Type.Label"}),
+			properties: new MappingField(new foundry.data.fields.NumberField({min: -1, max: 1, integer: true}), {
+				label: "EH.Weapon.Property.Label"
+			}),
 			penetrationValue: new foundry.data.fields.NumberField({
 				integer: true,
 				label: "EH.Equipment.Trait.PenetrationValue.Label", hint: ""

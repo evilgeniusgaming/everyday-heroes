@@ -128,7 +128,7 @@
 	cursor: pointer;
 }
 .everyday-heroes.hero [data-tab="inventory"] .proficiencies input:checked {
-	background-color: var(--eh-input-color-checked);
+	background-color: var(--eh-input-color-add);
 }
 .everyday-heroes.hero [data-tab="inventory"] .proficiencies .background {
 	top: 0;

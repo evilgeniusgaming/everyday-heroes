@@ -79,7 +79,7 @@ a.roll-link i {
 	background-color: var(--eh-background-color-dark);
 }
 /* .everyday-heroes .properties > fieldset:has([checked]) { */
-.everyday-heroes .properties > fieldset.checked {
+.everyday-heroes .properties > fieldset:is(.add, .checked, .remove) {
 	background-color: var(--eh-background-color-light);
 	color: var(--eh-text-color-black);
 }
@@ -97,7 +97,26 @@ a.roll-link i {
 	filter: none;
 }
 .everyday-heroes .properties > fieldset input[checked] {
-	background-color: var(--eh-input-color-checked);
+	background-color: var(--eh-input-color-add);
+}
+.everyday-heroes .properties > fieldset.remove input[checked] {
+	background-color: var(--eh-input-color-remove);
+}
+.everyday-heroes .properties > fieldset input[checked]::after {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-block-start: -2px;
+	font-size: var(--font-size-24);
+	font-weight: bold;
+}
+.everyday-heroes .properties > fieldset.add input[checked]::after {
+	content: "+";
+}
+.everyday-heroes .properties > fieldset.remove input[checked]::after {
+	content: "-";
 }
 .everyday-heroes .properties > fieldset :is(label, input) {
 	cursor: pointer;
