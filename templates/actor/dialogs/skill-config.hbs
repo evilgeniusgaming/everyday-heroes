@@ -17,11 +17,18 @@
 		</fieldset>
 		<fieldset>
 			<label>{{localize "EH.Skill.Bonus.Check"}}</label>
-			<input type="text" name="system.skills.{{skillId}}.bonuses.check" value="{{skill.bonuses.check}}" data-formula-editor>
+			<input type="text" name="system.skills.{{skillId}}.bonuses.check"
+				value="{{skill.bonuses.check}}" data-formula-editor>
+		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Skill.Override.Minimum"}}</label>
+			<input type="text" name="system.skills.{{skillId}}.minimum"
+				value="{{skill.minimum}}" data-formula-editor>
 		</fieldset>
 		<fieldset>
 			<label>{{localize "EH.Skill.Bonus.Passive"}}</label>
-			<input type="text" name="system.skills.{{skillId}}.bonuses.passive" value="{{skill.bonuses.passive}}" data-formula-editor>
+			<input type="text" name="system.skills.{{skillId}}.bonuses.passive"
+				value="{{skill.bonuses.passive}}" data-formula-editor>
 		</fieldset>
 	</section>
 
@@ -35,6 +42,11 @@
 		<fieldset>
 			<label>{{localize "EH.Skill.Bonus.Check"}}</label>
 			<input type="text" name="system.bonuses.skill.check" value="{{src.bonuses.skill.check}}" data-formula-editor>
+		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Skill.Override.Minimum"}}</label>
+			<input type="text" name="system.overrides.skill.minimum"
+				value="{{src.overrides.skill.minimum}}" data-formula-editor>
 		</fieldset>
 		<fieldset>
 			<label>{{localize "EH.Skill.Bonus.Passive"}}</label>

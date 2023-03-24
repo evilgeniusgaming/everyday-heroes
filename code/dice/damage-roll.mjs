@@ -12,7 +12,7 @@ import { areKeysPressed } from "./utils.mjs";
 /**
  * Options that describe a challenge roll.
  *
- * @typedef {object} DamageRollOptions
+ * @typedef {BaseRollOptions} DamageRollOptions
  * @property {boolean} [critical] - Does this roll do critical damage?
  * @property {number} [multiplier=2] - Amount by which to multiply critical damage.
  * @property {boolean} [multiplyNumeric=false] - Should numeric terms be multiplied along side dice during criticals?

@@ -89,7 +89,7 @@ export default class AttackTemplate {
 	get meleeAbility() {
 		return this.parent.actor?.system.bestAbility?.(new Set([
 			CONFIG.EverydayHeroes.defaultAbilities.melee,
-			...this.parent.actor?.system.overrides?.abilities?.melee ?? []
+			...this.parent.actor?.system.overrides?.ability?.melee ?? []
 		])) ?? CONFIG.EverydayHeroes.defaultAbilities.melee;
 	}
 
@@ -102,7 +102,7 @@ export default class AttackTemplate {
 	get rangedAbility() {
 		return this.parent.actor?.system.bestAbility?.(new Set([
 			CONFIG.EverydayHeroes.defaultAbilities.ranged,
-			...this.parent.actor?.system.overrides?.abilities?.ranged ?? []
+			...this.parent.actor?.system.overrides?.ability?.ranged ?? []
 		])) ?? CONFIG.EverydayHeroes.defaultAbilities.ranged;
 	}
 }

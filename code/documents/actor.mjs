@@ -1,7 +1,7 @@
 import RestDialog from "../applications/actor/dialogs/rest-dialog.mjs";
 import AdvancementConfirmationDialog from "../applications/advancement/advancement-confirmation-dialog.mjs";
 import AdvancementManager from "../applications/advancement/advancement-manager.mjs";
-import { buildRoll } from "../dice/utils.mjs";
+import { buildMinimum, buildRoll } from "../dice/utils.mjs";
 import { numberFormat, simplifyBonus } from "../utils.mjs";
 import Proficiency from "./proficiency.mjs";
 
@@ -336,7 +336,12 @@ export default class ActorEH extends Actor {
 			globalBonus: this.system.bonuses?.ability?.check
 		}, this.getRollData());
 
-		const rollConfig = foundry.utils.mergeObject({ data }, config);
+		const rollConfig = foundry.utils.mergeObject({
+			data,
+			options: {
+				minimum: buildMinimum([ability.minimums.check, this.system.overrides?.ability?.minimums.check], data)
+			}
+		}, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
 		const type = game.i18n.format("EH.Ability.Action.CheckSpecific", {
@@ -410,7 +415,12 @@ export default class ActorEH extends Actor {
 			globalBonus: this.system.bonuses?.ability?.save
 		}, this.getRollData());
 
-		const rollConfig = foundry.utils.mergeObject({ data }, config);
+		const rollConfig = foundry.utils.mergeObject({
+			data,
+			options: {
+				minimum: buildMinimum([ability.minimums.save, this.system.overrides?.ability?.minimums.save], data)
+			}
+		}, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
 		const type = game.i18n.format("EH.Ability.Action.SaveSpecific", {
@@ -495,6 +505,7 @@ export default class ActorEH extends Actor {
 			failureThreshold: death.overrides.failure
 				? death.overrides.failure : CONFIG.EverydayHeroes.deathSave.failureThreshold,
 			options: {
+				minimum: buildMinimum([this.system.overrides?.ability?.minimums.save], data),
 				target: death.overrides.target ? death.overrides.target : CONFIG.EverydayHeroes.deathSave.target
 			}
 		}, config);
@@ -822,6 +833,7 @@ export default class ActorEH extends Actor {
 		const rollConfig = foundry.utils.mergeObject({
 			data,
 			options: {
+				minimum: buildMinimum([this.system.overrides?.ability?.minimums.save], data),
 				target: 11
 			}
 		}, config);
@@ -975,7 +987,15 @@ export default class ActorEH extends Actor {
 		}, this.getRollData());
 		data.defaultAbility = defaultAbility;
 
-		const rollConfig = foundry.utils.mergeObject({ data }, config);
+		const rollConfig = foundry.utils.mergeObject({
+			data,
+			options: {
+				minimum: buildMinimum([
+					skill.minimum, ability?.minimums.check,
+					this.system.overrides?.skill?.minimum, this.system.overrides?.ability?.minimums.check
+				], data)
+			}
+		}, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
 		const type = game.i18n.format("EH.Skill.Action.CheckSpecific", {

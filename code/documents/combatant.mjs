@@ -1,3 +1,5 @@
+import { buildMinimum, buildRoll } from "../dice/utils.mjs";
+
 /**
  * Extended version of `Combatant` class to support Everyday Heroes combat concepts.
  */
@@ -28,44 +30,22 @@ export default class CombatantEH extends Combatant {
 		const abilityKey = init.ability ?? CONFIG.EverydayHeroes.defaultAbilities.initiative;
 		const ability = this.actor.system.abilities?.[abilityKey] ?? {};
 
-		const parts = ["1d20"];
-		const data = this.actor.getRollData();
+		let { parts, data } = buildRoll({
+			mod: ability.mod,
+			prof: init.prof?.hasProficiency ? init.prof.term : null,
+			bonus: init.bonus,
+			[`${abilityKey}Bonus`]: ability.bonuses?.check,
+			globalBonus: this.actor.system.bonuses?.ability?.check,
+			tiebreaker: (game.settings.get("everyday-heroes", "initiativeTiebreaker") && ability) ? ability.value / 100 : null
+		}, this.actor.getRollData());
+		parts = ["1d20"].concat(parts);
 
-		if ( ability ) {
-			parts.push("@mod");
-			data.mod = ability.mod;
-		}
+		const rollOptions = foundry.utils.mergeObject({
+			minimum: buildMinimum([
+				ability?.minimums.check, this.actor.system.overrides?.ability?.minimums.check
+			], data)
+		}, options);
 
-		if ( init.prof?.hasProficiency ) {
-			parts.push("@prof");
-			data.prof = init.prof.term;
-		}
-
-		// Initiative-specific bonus
-		if ( init.bonus ) {
-			parts.push("@bonus");
-			data.bonus = Roll.replaceFormulaData(init.bonus, data);
-		}
-
-		// Ability-specific check bonus
-		if ( ability.bonuses?.check ) {
-			parts.push(`@${abilityKey}Bonus`);
-			data[`${abilityKey}Bonus`] = Roll.replaceFormulaData(ability.bonuses.check, data);
-		}
-
-		// Global ability check bonus
-		if ( this.actor.system.bonuses?.ability?.check ) {
-			parts.push("@globalBonus");
-			data.globalBonus = Roll.replaceFormulaData(this.actor.system.bonuses.ability.check, data);
-		}
-
-		// Ability score tiebreaker
-		if ( game.settings.get("everyday-heroes", "initiativeTiebreaker") && ability ) {
-			parts.push("@tiebreaker");
-			data.tiebreaker = ability.value / 100;
-		}
-
-		console.log("getInitiativeRoll", parts, data, options);
-		return new CONFIG.Dice.ChallengeRoll(parts.join(" + "), data, options);
+		return new CONFIG.Dice.ChallengeRoll(parts.join(" + "), data, rollOptions);
 	}
 }

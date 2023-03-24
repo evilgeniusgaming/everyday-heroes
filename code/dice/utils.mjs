@@ -1,21 +1,4 @@
-/**
- * Construct roll parts and populate its data object.
- * @param {object} parts - Information on the parts to be constructed.
- * @param {object} data - Roll data to use and populate while constructing the parts.
- * @returns {{ parts: string[], data: object }}
- */
-export function buildRoll(parts, data) {
-	const finalParts = [];
-	for ( let [key, value] of Object.entries(parts) ) {
-		if ( !value && (value !== 0) ) continue;
-		finalParts.push(`@${key}`);
-		foundry.utils.setProperty(data, key, foundry.utils.getType(value) === "string"
-			? Roll.replaceFormulaData(value, data) : value);
-	}
-	return { parts: finalParts, data };
-}
-
-/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+import { simplifyBonus } from "../utils.mjs";
 
 /**
  * Determine which keys are pressed that might trigger the provided keybinding.
@@ -34,6 +17,44 @@ export function areKeysPressed(event, action) {
 		if ( !game.keyboard.downKeys.has(b.key) ) return false;
 		return b.modifiers.every(m => activeModifiers[m]);
 	});
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Take the provided minimum formulas and find the largest.
+ * @param {object} formulas - Minimum formulas to consider.
+ * @param {object} data - Roll data to use while resolving the formulas.
+ * @returns {number|void}
+ */
+export function buildMinimum(formulas, data) {
+	console.log(formulas);
+	let minimum = -Infinity;
+	for ( const formula of formulas ) {
+		const resolved = simplifyBonus(formula, data);
+		if ( !Number.isNumeric(resolved) || resolved < minimum ) continue;
+		minimum = resolved;
+	}
+	if ( minimum > -Infinity ) return minimum;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Construct roll parts and populate its data object.
+ * @param {object} parts - Information on the parts to be constructed.
+ * @param {object} data - Roll data to use and populate while constructing the parts.
+ * @returns {{ parts: string[], data: object }}
+ */
+export function buildRoll(parts, data) {
+	const finalParts = [];
+	for ( let [key, value] of Object.entries(parts) ) {
+		if ( !value && (value !== 0) ) continue;
+		finalParts.push(`@${key}`);
+		foundry.utils.setProperty(data, key, foundry.utils.getType(value) === "string"
+			? Roll.replaceFormulaData(value, data) : value);
+	}
+	return { parts: finalParts, data };
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -10,7 +10,7 @@ import Proficiency from "../../../documents/proficiency.mjs";
  * @property {object} attributes.initiative
  * @property {string} attributes.initiative.bonus - Bonus added to initiative rolls.
  * @property {object} overrides
- * @property {object} overrides.abilities
+ * @property {object} overrides.ability
  * @property {Set<string>} overrides.ability.initiative - Abilities to consider in place of `dex` for initiative.
  */
 export default class InitiativeTemplate extends foundry.abstract.DataModel {
@@ -22,7 +22,7 @@ export default class InitiativeTemplate extends foundry.abstract.DataModel {
 				}, {label: "EH.Initiative.Label"})
 			}),
 			overrides: new foundry.data.fields.SchemaField({
-				abilities: new foundry.data.fields.SchemaField({
+				ability: new foundry.data.fields.SchemaField({
 					initiative: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
 						label: "EH.Override.Ability.Initiative.Label"
 					})
@@ -41,7 +41,7 @@ export default class InitiativeTemplate extends foundry.abstract.DataModel {
 
 		init.ability = this.bestAbility?.(new Set([
 			CONFIG.EverydayHeroes.defaultAbilities.initiative,
-			...this.overrides.abilities.initiative
+			...this.overrides.ability.initiative
 		])) ?? CONFIG.EverydayHeroes.defaultAbilities.initiative;
 		const ability = this.abilities?.[init.ability] ?? {};
 

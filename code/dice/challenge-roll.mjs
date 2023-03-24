@@ -13,11 +13,12 @@ import { areKeysPressed } from "./utils.mjs";
 /**
  * Options that describe a challenge roll.
  *
- * @typedef {object} ChallengeRollOptions
+ * @typedef {BaseRollOptions} ChallengeRollOptions
  * @property {boolean} [advantage] - Is the roll is granted advantage?
  * @property {boolean} [disadvantage] - Is the roll granted disadvantage?
  * @property {number} [criticalSuccess] - The value of the challenge die to be considered a critical success.
  * @property {number} [criticalFailure] - The value of the challenge die to be considered a critical failure.
+ * @property {number} [minimum] - Minimum number the challenge die can roll.
  * @property {number} [target] - The total roll result that must be met for the roll to be considered a success.
  */
 
@@ -192,8 +193,9 @@ export default class ChallengeRoll extends BaseRoll {
 	 * Modify the damage to take advantage and any other modifiers into account.
 	 */
 	configureRoll() {
-		// Advantage or disadvantage
+		// Directly modify the challenge die
 		this.challengeDie.applyAdvantage(this.options.advantageMode ?? CONFIG.Dice.ChallengeDie.MODES.NORMAL);
+		this.challengeDie.applyMinimum(this.options.minimum ?? 0);
 
 		// Critical thresholds & target value
 		if ( this.options.criticalSuccess ) this.challengeDie.options.criticalSuccess = this.options.criticalSuccess;

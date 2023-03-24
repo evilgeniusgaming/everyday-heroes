@@ -133,7 +133,7 @@ export default class HeroData extends SystemDataModel.mixin(
 				mode: new foundry.data.fields.StringField({label: ""})
 			})),
 			overrides: new foundry.data.fields.SchemaField({
-				abilities: new foundry.data.fields.SchemaField({
+				ability: new foundry.data.fields.SchemaField({
 					hitPoints: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
 						label: "EH.Override.Ability.HitPoints.Label"
 					}),
@@ -225,7 +225,7 @@ export default class HeroData extends SystemDataModel.mixin(
 
 		hp.ability = this.bestAbility(new Set([
 			CONFIG.EverydayHeroes.defaultAbilities.hitPoints,
-			...this.overrides.abilities.hitPoints
+			...this.overrides.ability.hitPoints
 		]));
 
 		const base = this.details.archetype?.system.advancement.byType("HitPoints")[0]

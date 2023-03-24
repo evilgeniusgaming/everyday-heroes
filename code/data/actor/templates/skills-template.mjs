@@ -4,6 +4,18 @@ import { simplifyBonus } from "../../../utils.mjs";
 import Proficiency from "../../../documents/proficiency.mjs";
 
 /**
+ * Data for a skill.
+ *
+ * @typedef {object} SkillData
+ * @property {Set<string>} abilities - Abilities that can be used when rolling this skill, the highest will be default.
+ * @property {Proficiency} proficiency - Proficiency in this skill.
+ * @property {object} bonuses
+ * @property {string} bonuses.check - Bonus to checks with this skill.
+ * @property {string} bonuses.passive - Bonus to this skill's passive score.
+ * @property {string} minimum - Minimum Challenge Die value for this skill.
+ */
+
+/**
  * Data model template for actors that have skills.
  * @mixin
  *
@@ -11,6 +23,9 @@ import Proficiency from "../../../documents/proficiency.mjs";
  * @property {object} bonuses.skill
  * @property {string} bonuses.skill.check - Global skill check bonus.
  * @property {string} bonuses.skill.passive - Global passive skill bonus.
+ * @property {object} overrides
+ * @property {object} overrides.skill
+ * @property {string} overrides.skill.minimum - Global minimum Challenge Die value for skills.
  * @property {Object<string, SkillData>} skills - Actor's skills.
  */
 export default class SkillsTemplate extends foundry.abstract.DataModel {
@@ -22,6 +37,11 @@ export default class SkillsTemplate extends foundry.abstract.DataModel {
 					passive: new FormulaField({deterministic: true, label: "EH.Skill.Bonus.Passive"})
 				})
 			}, {label: "EH.Bonuses.Label"}),
+			overrides: new foundry.data.fields.SchemaField({
+				skill: new foundry.data.fields.SchemaField({
+					minimum: new FormulaField({determinstic: true, label: "EH.Skill.Orverride.Min"})
+				})
+			}, {label: "EH.Override.Label"}),
 			skills: new MappingField(new foundry.data.fields.SchemaField({
 				ability: new foundry.data.fields.StringField({label: "EH.Ability.Label[one]"}),
 				proficiency: new foundry.data.fields.SchemaField({
@@ -35,7 +55,8 @@ export default class SkillsTemplate extends foundry.abstract.DataModel {
 				bonuses: new foundry.data.fields.SchemaField({
 					check: new FormulaField({label: "EH.Skill.Bonus.Check"}),
 					passive: new FormulaField({deterministic: true, label: "EH.Skill.Bonus.Passive"})
-				})
+				}),
+				minimum: new FormulaField({determinstic: true, label: "EH.Skill.Orverride.Minimum"})
 			}), {
 				initialKeys: CONFIG.EverydayHeroes.skills, initialValue: this._initialSkillValue,
 				prepareKeys: true, label: "EH.Skill.Label[other]"

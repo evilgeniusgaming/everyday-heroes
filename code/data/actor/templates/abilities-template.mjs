@@ -4,6 +4,20 @@ import { simplifyBonus } from "../../../utils.mjs";
 import Proficiency from "../../../documents/proficiency.mjs";
 
 /**
+ * Data for an ability.
+ *
+ * @typedef {object} AbilityData
+ * @property {Proficiency} saveProficiency - Proficiency in this skill's saving throws.
+ * @property {object} bonuses
+ * @property {string} bonuses.check - Bonus to checks with this ability.
+ * @property {string} bonuses.dc - Bonus to this ability's DC.
+ * @property {string} bonuses.save - Bonus to this ability's passive score.
+ * @property {string} minimums
+ * @property {string} minimums.check - Minimum Challenge Die value for checks made with this ability.
+ * @property {string} minimums.save - Minimum Challenge Die value for saves made with this ability.
+ */
+
+/**
  * Data model template for actors that have ability scores.
  * @mixin
  *
@@ -13,6 +27,11 @@ import Proficiency from "../../../documents/proficiency.mjs";
  * @property {string} bonuses.ability.check - Global ability check bonus.
  * @property {string} bonuses.ability.dc - Global ability DC bonus.
  * @property {string} bonuses.ability.save - Global ability save bonus.
+ * @property {object} overrides
+ * @property {object} overrides.ability
+ * @property {string} overrides.ability.minimums
+ * @property {string} overrides.ability.minimums.check - Global minimum Challenge Die value for ability checks.
+ * @property {string} overrides.ability.minimums.save - Global minimum Challenge Die value for ability saves.
  */
 export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {
@@ -33,6 +52,10 @@ export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 					check: new FormulaField({label: "EH.Ability.Bonus.Check"}),
 					dc: new FormulaField({label: "EH.Ability.Bonus.DC"}),
 					save: new FormulaField({label: "EH.Ability.Bonus.Save"})
+				}),
+				minimums: new foundry.data.fields.SchemaField({
+					check: new FormulaField({deterministic: true, label: "EH.Ability.Orverride.MinimumCheck"}),
+					save: new FormulaField({deterministic: true, label: "EH.Ability.Orverride.MinimumSave"})
 				})
 			}), {
 				initialKeys: CONFIG.EverydayHeroes.abilities, prepareKeys: true, label: "EH.Ability.Label[other]"
@@ -43,7 +66,15 @@ export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 					dc: new FormulaField({label: "EH.Ability.Bonus.DC"}),
 					save: new FormulaField({label: "EH.Ability.Bonus.Save"})
 				})
-			}, {label: "EH.Bonuses.Label"})
+			}, {label: "EH.Bonuses.Label"}),
+			overrides: new foundry.data.fields.SchemaField({
+				ability: new foundry.data.fields.SchemaField({
+					minimums: new foundry.data.fields.SchemaField({
+						check: new FormulaField({determinstic: true, label: "EH.Ability.Orverride.MinimumCheck"}),
+						save: new FormulaField({determinstic: true, label: "EH.Ability.Orverride.MinimumSave"})
+					})
+				})
+			}, {label: "EH.Override.Label"})
 		};
 	}
 

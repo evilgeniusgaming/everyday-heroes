@@ -9,6 +9,7 @@
 			</span>
 			<span class="right stripes"></span>
 		</h2>
+		<p>{{localize "EH.Ability.Configuration.Hint"}}</p>
 		<fieldset>
 			<label>{{localize "EH.Proficiency.Label[one]"}}</label>
 			<select name="system.abilities.{{abilityId}}.saveProficiency.multiplier">
@@ -17,11 +18,23 @@
 		</fieldset>
 		<fieldset>
 			<label>{{localize "EH.Ability.Bonus.Save"}}</label>
-			<input type="text" name="system.abilities.{{abilityId}}.bonuses.save" value="{{ability.bonuses.save}}" data-formula-editor>
+			<input type="text" name="system.abilities.{{abilityId}}.bonuses.save"
+				value="{{ability.bonuses.save}}" data-formula-editor>
+		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Ability.Override.Minimum.Save"}}</label>
+			<input type="text" name="system.abilities.{{abilityId}}.minimums.save"
+				value="{{ability.minimums.save}}" data-formula-editor>
 		</fieldset>
 		<fieldset>
 			<label>{{localize "EH.Ability.Bonus.Check"}}</label>
-			<input type="text" name="system.abilities.{{abilityId}}.bonuses.check" value="{{ability.bonuses.check}}" data-formula-editor>
+			<input type="text" name="system.abilities.{{abilityId}}.bonuses.check"
+				value="{{ability.bonuses.check}}" data-formula-editor>
+		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Ability.Override.Minimum.Check"}}</label>
+			<input type="text" name="system.abilities.{{abilityId}}.minimums.check"
+				value="{{ability.minimums.check}}" data-formula-editor>
 		</fieldset>
 	</section>
 
@@ -37,8 +50,18 @@
 			<input type="text" name="system.bonuses.ability.save" value="{{src.bonuses.ability.save}}" data-formula-editor>
 		</fieldset>
 		<fieldset>
+			<label>{{localize "EH.Ability.Override.Minimum.Save"}}</label>
+			<input type="text" name="system.overrides.ability.minimums.save"
+				value="{{src.overrides.ability.minimums.save}}" data-formula-editor>
+		</fieldset>
+		<fieldset>
 			<label>{{localize "EH.Ability.Bonus.Check"}}</label>
 			<input type="text" name="system.bonuses.ability.check" value="{{src.bonuses.ability.check}}" data-formula-editor>
+		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Ability.Override.Minimum.Check"}}</label>
+			<input type="text" name="system.overrides.ability.minimums.check"
+				value="{{src.overrides.ability.minimums.check}}" data-formula-editor>
 		</fieldset>
 	</section>
 </form>

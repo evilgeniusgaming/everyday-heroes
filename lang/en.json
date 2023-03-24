@@ -25,9 +25,12 @@
 "Ability.Bonus.Check": "Ability Check Bonus",
 "Ability.Bonus.DC": "DC Bonus",
 "Ability.Bonus.Save": "Saving Throw Bonus",
+"Ability.Configuration.Hint": "Bonuses apply to save or check formulas and minimums prevent the d20 roll from dropping below a certain number.",
 "Ability.Configuration.Global.Label": "Global Ability Configuration",
 "Ability.Configuration.Global.Hint": "The following options apply to all abilities.",
 "Ability.Configuration.Specific.Label": "{type} Configuration",
+"Ability.Override.Minimum.Check": "Ability Check Minimum",
+"Ability.Override.Minimum.Save": "Saving Throw Minimum",
 
 "Action.Add": "Add",
 "Action.Configure": "Configure {type}",
@@ -586,9 +589,11 @@
 "Skill.Action.Passive": "Passive Bonus",
 "Skill.Bonus.Check": "Skill Check Bonus",
 "Skill.Bonus.Passive": "Passive Skill Bonus",
+"Skill.Configuration.Hint": "The bonus applies to skill check formulas and the minimum prevents the d20 roll from dropping below a certain number.",
 "Skill.Configuration.Global.Label": "Global Skill Configuration",
 "Skill.Configuration.Global.Hint": "The following options apply to all skills.",
 "Skill.Configuration.Specific.Label": "{type} Configuration",
+"Skill.Override.Minimum": "Skill Check Minimum",
 
 "Traits.Label": "Traits",
 
