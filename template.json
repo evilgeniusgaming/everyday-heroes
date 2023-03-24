@@ -4,14 +4,45 @@
       "hero",
       "npc"
     ],
-    "templates": {},
+    "templates": {
+      "abilities": {
+        "abilities": {},
+        "bonuses": {
+          "ability": {
+            "check": "",
+            "save": ""
+          }
+        }
+      },
+      "initiative": {
+        "attributes": {
+          "initiative": {
+            "bonus": ""
+          }
+        },
+        "overrides": {
+          "abilities": {
+            "initiative": []
+          }
+        }
+      },
+      "skills": {
+        "bonuses": {
+          "skill": {
+            "check": "",
+            "passive": ""
+          }
+        },
+        "skills": {}
+      }
+    },
     "htmlFields": [
       "biography.value",
       "biography.public",
       "biography.notes"
     ],
     "hero": {
-      "abilities": {},
+      "templates": ["abilities", "initiative", "skills"],
       "attributes": {
         "death": {
           "status": "alive",
@@ -33,14 +64,10 @@
         "hp": {
           "value": 0,
           "temp": 0,
-          "ability": "con",
           "bonuses": {
             "level": "",
             "overall": ""
           }
-        },
-        "initiative": {
-          "bonus": ""
         },
         "movement": {
           "value": 30,
@@ -70,16 +97,8 @@
         "weight": ""
       },
       "bonuses": {
-        "ability": {
-          "check": "",
-          "save": ""
-        },
         "attack": {},
-        "damage": {},
-        "skill": {
-          "check": "",
-          "passive": ""
-        }
+        "damage": {}
       },
       "conditions": {
         
@@ -96,8 +115,9 @@
       "skills": {},
       "overrides": {
         "abilities": {
-          "melee": "",
-          "ranged": ""
+          "hitPoints": [],
+          "melee": [],
+          "ranged": []
         },
         "criticalThreshold": {}
       },
@@ -111,7 +131,7 @@
       }
     },
     "npc": {
-      "abilities": {},
+      "templates": ["abilities", "initiative", "skills"],
       "attributes": {
         "defense": 10,
         "hd": {
@@ -124,9 +144,6 @@
           "max": null,
           "temp": 0,
           "formula": ""
-        },
-        "initiative": {
-          "bonus": ""
         },
         "movement": {
           "value": 30,
@@ -146,7 +163,6 @@
       },
       "items": {},
       "resources": {},
-      "skills": {},
       "traits": {
         "size": "",
         "type": {

@@ -72,4 +72,28 @@ export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 			ability.dc = 8 + ability.mod + prof + ability.dcBonus;
 		}
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Helpers                                  */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Choose the ability with the highest modifier from the provided set.
+	 * @param {Set<string>} [choices] - Abilities to consider in the comparison. If no set if provided, then the best
+	 *                                  of all of the actor's abilities will be chosen.
+	 * @returns {string|undefined}
+	 */
+	bestAbility(choices) {
+		choices ??= new Set(Object.values(CONFIG.EverydayHeroes.abilities));
+
+		const highestAbility = { key: undefined, mod: -Infinity };
+		for ( const key of choices ) {
+			const ability = this.abilities[key];
+			if ( !ability || ability.mod <= highestAbility.mod ) continue;
+			highestAbility.key = key;
+			highestAbility.mod = ability.mod;
+		}
+
+		return highestAbility.key;
+	}
 }

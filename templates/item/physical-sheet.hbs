@@ -11,7 +11,13 @@
 			</fieldset>
 			<fieldset>
 				<label>{{localize "EH.Item.Type.Label"}}</label>
-				<input value="{{#if item.system.type.label}}{{item.system.type.label}}{{else}}{{item.typeLabel}}{{/if}}" disabled>
+				{{#if (and (not item.system.hasDetails) itemSubTypes)}}
+					<select name="system.type.value">
+						{{selectOptions itemSubTypes selected=system.type.value blank="" labelAttr="label"}}
+					</select>
+				{{else}}
+					<input value="{{#if item.system.type.label}}{{item.system.type.label}}{{else}}{{item.typeLabel}}{{/if}}" disabled>
+				{{/if}}
 			</fieldset>
 			<fieldset>
 				<div class="fields">

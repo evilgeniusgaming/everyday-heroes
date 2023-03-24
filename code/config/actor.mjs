@@ -206,6 +206,7 @@ export const deathStatus = {
 	dead: "EH.Death.Status.Dead",
 	stable: "EH.Death.Status.Stable"
 };
+preLocalize("deathStatus");
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

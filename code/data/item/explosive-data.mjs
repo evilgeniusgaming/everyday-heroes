@@ -70,7 +70,7 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get attackAbility() {
-		return CONFIG.EverydayHeroes.defaultAbilities.ranged;
+		return this.rangedAbility;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

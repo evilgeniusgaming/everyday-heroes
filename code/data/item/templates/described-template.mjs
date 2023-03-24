@@ -4,6 +4,7 @@
  * @property {object} description
  * @property {string} description.value - Full item description.
  * @property {string} description.chat - Description displayed in chat messages.
+ * @property {string} description.source - Which book did this item appear?
  * @mixin
  */
 export default class DescribedTemplate extends foundry.abstract.DataModel {
@@ -12,7 +13,8 @@ export default class DescribedTemplate extends foundry.abstract.DataModel {
 		return {
 			description: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.HTMLField({nullable: true, label: ""}),
-				chat: new foundry.data.fields.HTMLField({nullable: true, label: ""})
+				chat: new foundry.data.fields.HTMLField({nullable: true, label: ""}),
+				source: new foundry.data.fields.StringField({label: ""})
 			})
 		};
 	}

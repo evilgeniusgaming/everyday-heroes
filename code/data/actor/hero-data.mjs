@@ -16,6 +16,12 @@ import SkillsTemplate from "./templates/skills-template.mjs";
  * @mixes {@link MovementTemplate}
  * @mixes {@link ResourcesTemplate}
  * @mixes {@link SkillsTemplate}
+ *
+ * @property {object} overrides
+ * @property {object} overrides.ability
+ * @property {Set<string>} overrides.ability.hitPoints - Abilities to consider in place of `con` for hit points.
+ * @property {Set<string>} overrides.ability.melee - Abilities to consider in place of `str` for melee attacks.
+ * @property {Set<string>} overrides.ability.ranged - Abilities to consider in place of `dex` for ranged attacks.
  */
 export default class HeroData extends SystemDataModel.mixin(
 	AbilitiesTemplate, InitiativeTemplate, MovementTemplate, ResourcesTemplate, SkillsTemplate
@@ -64,9 +70,6 @@ export default class HeroData extends SystemDataModel.mixin(
 					}),
 					temp: new foundry.data.fields.NumberField({
 						initial: null, min: 0, integer: true, label: "EH.HitPoints.Temp"
-					}),
-					ability: new foundry.data.fields.StringField({
-						initial: () => CONFIG.EverydayHeroes.defaultAbilities.hitPoints, label: "EH.Ability.Label[one]"
 					}),
 					// TODO: Does Everyday Heroes need temp max support?
 					bonuses: new foundry.data.fields.SchemaField({
@@ -131,11 +134,18 @@ export default class HeroData extends SystemDataModel.mixin(
 			})),
 			overrides: new foundry.data.fields.SchemaField({
 				abilities: new foundry.data.fields.SchemaField({
-					melee: new foundry.data.fields.StringField({label: ""}),
-					ranged: new foundry.data.fields.StringField({label: ""})
-				}),
+					hitPoints: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+						label: "EH.Override.Ability.HitPoints.Label"
+					}),
+					melee: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+						label: "EH.Override.Ability.Melee.Label"
+					}),
+					ranged: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+						label: "EH.Override.Ability.Ranged.Label"
+					})
+				}, {label: "EH.Override.Ability.Label", hint: "EH.Override.Ability.Hint"}),
 				criticalThreshold: new MappingField(new foundry.data.fields.NumberField({initial: 20, min: 1, integer: true}))
-			}, {label: ""}),
+			}, {label: "EH.Override.Label"}),
 			traits: new foundry.data.fields.SchemaField({
 				damage: new foundry.data.fields.SchemaField({
 					immunity: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
@@ -191,21 +201,12 @@ export default class HeroData extends SystemDataModel.mixin(
 		const archetype = this.details.archetype?.system.defense;
 		const defense = this.attributes.defense ??= {};
 
-		const highestAbility = { key: undefined, mod: -Infinity };
-		for ( const abilityKey of (archetype?.abilities ?? []) ) {
-			const ability = this.abilities[abilityKey];
-			if ( !ability || ability.mod <= highestAbility.mod ) continue;
-			highestAbility.key = abilityKey;
-			highestAbility.mod = ability.mod;
-		}
-		if ( !highestAbility.key ) {
-			highestAbility.key = CONFIG.EverydayHeroes.defaultAbilities.defense;
-			highestAbility.mod = this.abilities[CONFIG.EverydayHeroes.defaultAbilities.defense]?.mod ?? 0;
-		}
+		defense.ability = this.bestAbility(archetype?.abilities ?? new Set())
+			?? CONFIG.EverydayHeroes.defaultAbilities.defense;
+		const ability = this.abilities[defense.ability];
 
-		defense.ability = highestAbility.key;
 		defense.bonus = simplifyBonus(this.attributes.defense.bonus, this.parent.getRollData()) + (archetype?.bonus ?? 0);
-		defense.value = 10 + highestAbility.mod + defense.bonus;
+		defense.value = 10 + (ability?.mod ?? 0) + defense.bonus;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -221,12 +222,19 @@ export default class HeroData extends SystemDataModel.mixin(
 	prepareDerivedHitPoints() {
 		const rollData = this.parent.getRollData();
 		const hp = this.attributes.hp;
-		const abilityId = CONFIG.EverydayHeroes.defaultAbilities.hitPoints ?? "con";
-		const abilityMod = this.abilities[abilityId]?.mod ?? 0;
-		const base = this.details.archetype?.system.advancement.byType("HitPoints")[0]?.getAdjustedTotal(abilityMod) ?? 0;
+
+		hp.ability = this.bestAbility(new Set([
+			CONFIG.EverydayHeroes.defaultAbilities.hitPoints,
+			...this.overrides.abilities.hitPoints
+		]));
+
+		const base = this.details.archetype?.system.advancement.byType("HitPoints")[0]
+			?.getAdjustedTotal(this.abilities[hp.ability]?.mod ?? 0) ?? 0;
 		const levelBonus = simplifyBonus(hp.bonuses.level, rollData) * this.details.level;
 		const overallBonus = simplifyBonus(hp.bonuses.overall, rollData);
+
 		hp.max = base + levelBonus + overallBonus;
+		hp.value = Math.clamped(0, hp.value, hp.max);
 		hp.damage = hp.max - hp.value;
 	}
 }

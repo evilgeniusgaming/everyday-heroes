@@ -79,4 +79,30 @@ export default class AttackTemplate {
 	get hasAttack() {
 		return true;
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Ability modifier used for melee attacks.
+	 * @type {string}
+	 */
+	get meleeAbility() {
+		return this.parent.actor?.system.bestAbility?.(new Set([
+			CONFIG.EverydayHeroes.defaultAbilities.melee,
+			...this.parent.actor?.system.overrides?.abilities?.melee ?? []
+		])) ?? CONFIG.EverydayHeroes.defaultAbilities.melee;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Ability modifier used for ranged attacks.
+	 * @type {string}
+	 */
+	get rangedAbility() {
+		return this.parent.actor?.system.bestAbility?.(new Set([
+			CONFIG.EverydayHeroes.defaultAbilities.ranged,
+			...this.parent.actor?.system.overrides?.abilities?.ranged ?? []
+		])) ?? CONFIG.EverydayHeroes.defaultAbilities.ranged;
+	}
 }

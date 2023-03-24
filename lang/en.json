@@ -29,6 +29,7 @@
 "Ability.Configuration.Global.Hint": "The following options apply to all abilities.",
 "Ability.Configuration.Specific.Label": "{type} Configuration",
 
+"Action.Add": "Add",
 "Action.Configure": "Configure {type}",
 "Action.Roll": "Roll {type}",
 "Action.Passive": "Passive",
@@ -88,7 +89,6 @@
 
 "Advancement.Migration.Title": "Migrate Advancement",
 "Advancement.Migration.Hint": "Select which of the following advancements will be added to {name}.",
-"Advancement.Migration.Action.Add": "Add",
 "Advancement.Migration.Action.Confirm": "Apply Migrations",
 
 "Advancement.ASI.Title": "Ability Score Increase",
@@ -370,6 +370,7 @@
 "HitPoints.Label[one]": "Hit Point",
 "HitPoints.Label[other]": "Hit Points",
 "HitPoints.Abbreviation": "hp",
+"HitPoints.Damage": "Total DMG",
 "HitPoints.Formula": "Hit Points Formula",
 "HitPoints.Current": "Current HP",
 "HitPoints.Max": "Max HP",
@@ -465,6 +466,14 @@
 "Measurement.Length.Meters.Label[other]": "Meters",
 "Measurement.Length.Meters.Abbreviation": "m",
 "Measurement.Units": "Units",
+
+"Override.Label": "Overrides",
+"Override.Ability.Label": "Alternative Abilities",
+"Override.Ability.Hint": "Alternative abilities will be considered against the default ability for this calculation and the one with the highest modifier will be chosen.",
+"Override.Ability.HitPoints.Label": "Alternative Hit Points Abilities",
+"Override.Ability.Initiative.Label": "Alternative Initiative Abilities",
+"Override.Ability.Melee.Label": "Alternative Melee Abilities",
+"Override.Ability.Ranged.Label": "Alternative Ranged Abilities",
 
 "Proficiency.Label[one]": "Proficiency",
 "Proficiency.Label[other]": "Proficiencies",

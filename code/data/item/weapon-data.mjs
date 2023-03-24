@@ -118,12 +118,8 @@ export default class WeaponData extends SystemDataModel.mixin(
 
 	get attackAbility() {
 		if ( this.overrides.ability ) return this.overrides.ability;
-
-		// Determine abilities to use for ranged & melee attacks
-		let { melee, ranged } = CONFIG.EverydayHeroes.defaultAbilities;
-		const overrides = this.parent?.actor.system.overrides?.abilities ?? {};
-		if ( overrides.melee ) melee = overrides.melee;
-		if ( overrides.ranged ) ranged = overrides.ranged;
+		const melee = this.meleeAbility;
+		const ranged = this.rangedAbility;
 
 		// Finesse, higher of the abilities
 		if ( this.properties.has("finesse") ) {

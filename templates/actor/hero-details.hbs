@@ -110,18 +110,10 @@
 	</section>
 	
 	<section class="attributes">
-		<div class="health">
+		<div class="health {{system.attributes.death.status}}">
 			<div class="hp">
 				<fieldset class="max-hp">
-					<label>
-						{{localize "EH.HitPoints.Max"}}
-						{{#if editingMode}}
-							<a data-action="config" data-type="health"
-								data-tooltip="{{localize 'EH.Action.Configure' type=(localize 'EH.Health.Label')}}">
-								<i class="fa-solid fa-cog"></i>
-							</a>
-						{{/if}}
-					</label>
+					<label>{{localize "EH.HitPoints.Max"}}</label>
 					<span>{{system.attributes.hp.max}}</span>
 				</fieldset>
 				<fieldset class="current-hp">
@@ -129,11 +121,13 @@
 					<input type="number" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}"
 						step="1" min="0" max="{{system.attributes.hp.max}}">
 				</fieldset>
-				<fieldset class="temp-hp">
-					<label>{{localize "EH.HitPoints.Temp"}}</label>
-					<input type="number" name="system.attributes.hp.temp" value="{{system.attributes.hp.temp}}"
-						step="1" min="0">
-				</fieldset>
+				{{#if (eq system.attributes.death.status "alive")}}
+					<fieldset class="temp-hp">
+						<label>{{localize "EH.HitPoints.Temp"}}</label>
+						<input type="number" name="system.attributes.hp.temp" value="{{system.attributes.hp.temp}}"
+							step="1" min="0">
+					</fieldset>
+				{{/if}}
 				<fieldset class="hit-dice">
 					<label>
 						<a data-action="roll" data-type="hit-die">{{localize "EH.HitDice.Label[other]"}}</a>
@@ -146,11 +140,11 @@
 				</fieldset>
 				<fieldset class="total-dmg">
 					{{#unless (eq system.attributes.hp.value 0)}}
-						<label>Total DMG</label>{{!-- TODO: Localize --}}
+						<label>{{localize "EH.HitPoints.Damage"}}</label>
 						<span>{{system.attributes.hp.damage}}</span>
 					{{else}}
 						<label>{{localize "EH.Death.Status.Label"}}</label>
-						<span>{{system.attributes.death.status}}</span>
+						<span>{{lookup CONFIG.deathStatus system.attributes.death.status}}</span>
 					{{/unless}}
 				</fieldset>
 			</div>
@@ -169,7 +163,14 @@
 					</fieldset>
 				</div>
 			{{/unless}}
+			{{#if editingMode}}
+				<a class="offshoot" data-action="config" data-type="health"
+					data-tooltip="{{localize 'EH.Action.Configure' type=(localize 'EH.Health.Label')}}">
+					<i class="fa-solid fa-cog"></i>
+				</a>
+			{{/if}}
 		</div>
+	
 		<nav class="controls skewed">
 			<ul>
 				<li><a data-action="roll" data-type="luck">{{localize "EH.Luck.Label"}}</a></li>
@@ -177,21 +178,14 @@
 				<li><a data-action="long-rest">{{localize "EH.Rest.Type.Long.Label"}}</a></li>
 			</ul>
 		</nav>
+	
 		<div class="summary">
 			<fieldset class="proficiency">
 				<label>{{localize "EH.Proficiency.Bonus.Label"}}</label>
 				<span>{{system.attributes.prof}}</span>
 			</fieldset>
 			<fieldset class="defense">
-				<label>
-					{{localize "EH.Defense.Label"}}
-					{{#if editingMode}}
-						<a data-action="config" data-type="attributes"
-							data-tooltip="{{localize 'EH.Action.Configure' type=(localize 'EH.Attributes.Label')}}">
-							<i class="fa-solid fa-cog"></i>
-						</a>
-					{{/if}}
-				</label>
+				<label>{{localize "EH.Defense.Label"}}</label>
 				<span>{{system.attributes.defense.value}}</span>
 			</fieldset>
 			<fieldset class="initiative">
@@ -202,7 +196,14 @@
 				<label>Passive Perception</label>
 				<span>{{system.skills.perc.passive}}</span>
 			</fieldset>
+			{{#if editingMode}}
+				<a class="offshoot" data-action="config" data-type="attributes"
+					data-tooltip="{{localize 'EH.Action.Configure' type=(localize 'EH.Attributes.Label')}}">
+					<i class="fa-solid fa-cog"></i>
+				</a>
+			{{/if}}
 		</div>
+	
 		<div class="resources">
 			{{#each system.resources as |resource key|}}
 				{{#unless resource.disabled}}

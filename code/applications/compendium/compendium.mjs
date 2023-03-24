@@ -6,15 +6,19 @@ import { sortObjectEntries } from "../../utils.mjs";
 export default class CompendiumEH extends Compendium {
 
 	/**
-	 * The potential concept sections in the order they should appear.
+	 * The potential sections in the order they should appear.
 	 * @type {string[]}
 	 */
-	static conceptSections = [
-		"archetype", "class", "background", "profession",
-		"archetype-talent", "class-talent", "talent",
-		"background-specialFeature", "profession-specialFeature", "specialFeature",
-		"plan", "trick", "feat"
-	];
+	static get sections() {
+		const concept = [
+			"archetype", "class", "background", "profession",
+			"archetype-talent", "class-talent", "talent",
+			"background-specialFeature", "profession-specialFeature", "specialFeature",
+			"plan", "trick", "feat"
+		];
+		return concept
+			.concat(Object.keys(CONFIG.EverydayHeroes.gearTypes));
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -47,7 +51,7 @@ export default class CompendiumEH extends Compendium {
 	 */
 	_createSections(context) {
 		const sections = {};
-		const { sortValues } = this.constructor.conceptSections.reduce(({sortValues, last}, s) => {
+		const { sortValues } = this.constructor.sections.reduce(({sortValues, last}, s) => {
 			sortValues[s] = last + 10;
 			return {sortValues, last: sortValues[s]};
 		}, {sortValues: {}, last: 0});
@@ -61,6 +65,13 @@ export default class CompendiumEH extends Compendium {
 						game.i18n.localize(CONFIG.Item.typeLabelsPlural[item.type])}`,
 					index: [],
 					sort: sortValues[`${typeValue}-${item.type}`] ?? Infinity
+				};
+			} else if ( item.type === "gear" ) {
+				// TODO: Use plural forms
+				section = sections[typeValue] ??= {
+					label: CONFIG.EverydayHeroes.gearTypes[typeValue]?.label,
+					index: [],
+					sort: sortValues[typeValue] ?? Infinity
 				};
 			} else {
 				section = sections[item.type] ??= {

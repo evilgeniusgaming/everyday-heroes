@@ -7,7 +7,7 @@ export { CompendiumEH };
  */
 export function setupCompendiumApps() {
 	for ( const pack of game.packs ) {
-		if ( pack.metadata.flags?.type !== "concept" ) continue;
+		if ( !pack.metadata.flags?.type ) continue;
 		const app = new CompendiumEH(pack);
 		pack.apps = [app];
 	}

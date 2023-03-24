@@ -59,7 +59,7 @@
 	font-weight: bold;
 	text-transform: uppercase;
 }
-.item.sheet form > header > div.fields fieldset input {
+.item.sheet form > header > div.fields fieldset :is(input, select) {
 	flex-grow: 1;
 	border: none;
 	border-radius: 8px;

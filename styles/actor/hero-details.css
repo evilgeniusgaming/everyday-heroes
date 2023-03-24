@@ -262,6 +262,15 @@
 .hero.sheet [data-tab="details"] .attributes {
 	grid-area: attributes;
 }
+.hero.sheet [data-tab="details"] [data-action="config"].offshoot {
+	display: flex;
+	align-items: center;
+	margin-block-start: 2px;
+	padding-inline: 0.25em;
+	border: 1px solid var(--eh-border-color-strong);
+	border-radius: 0 5px 5px 0;
+	background-color: var(--eh-background-color-mid);
+}
 
 .hero.sheet [data-tab="details"] .attributes .health {
 	display: grid;
@@ -281,6 +290,12 @@
 	color: var(--eh-text-color-black);
 	z-index: 2;
 }
+.hero.sheet [data-tab="details"] .attributes .health:not(.alive) .hp {
+	grid-template-columns: 2fr 2fr;
+	grid-template-areas:
+		"max-hp current-hp"
+		"hit-dice total-dmg";
+}
 .hero.sheet [data-tab="details"] .attributes .health .death-saves {
 	grid-area: death-saves;
 	margin-inline-start: -1em;
@@ -292,6 +307,9 @@
 }
 .hero.sheet [data-tab="details"] .attributes .health .hp fieldset {
 	padding: 0.25em;
+	display: flex;
+	gap: 0.5em;
+	flex-direction: column;
 }
 .hero.sheet [data-tab="details"] .attributes .health .hp fieldset.max-hp {
 	grid-area: max-hp;
@@ -302,6 +320,9 @@
 .hero.sheet [data-tab="details"] .attributes .health .hp fieldset.temp-hp {
 	grid-area: temp-hp;
 }
+.hero.sheet [data-tab="details"] .attributes .health .hp fieldset.temp-hp input {
+	padding-inline: 0;
+}
 .hero.sheet [data-tab="details"] .attributes .health .hp fieldset.hit-dice {
 	grid-area: hit-dice;
 }
@@ -310,6 +331,13 @@
 }
 .hero.sheet [data-tab="details"] .attributes .health .hp fieldset:is(.max-hp, .current-hp) {
 	border-block-end: 1px solid var(--eh-border-color-weak);
+}
+.hero.sheet [data-tab="details"] .attributes .health .hp fieldset:is(.max-hp, .current-hp, .temp-hp) {
+	flex-direction: column;
+}
+.hero.sheet [data-tab="details"] .attributes .health .hp fieldset:is(.hit-dice, .total-dmg) {
+	/* align-items: first baseline;
+	justify-content: space-around; */
 }
 .hero.sheet [data-tab="details"] .attributes .health .hp fieldset:is(.max-hp, .current-hp, .hit-dice, .total-dmg) {
 	border-inline-end: 1px solid var(--eh-border-color-weak);
@@ -333,6 +361,10 @@
 	font-size: var(--font-size-24);
 	text-align: center;
 }
+.hero.sheet [data-tab="details"] .health [data-action="config"].offshoot {
+	margin-block: 15px;
+	margin-inline-start: -1px;
+}
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Summary & Resources                      */
@@ -344,6 +376,9 @@
 	margin-block-start: 1em;
 	grid-template-columns: repeat(4, 1fr);
 	color: var(--eh-text-color-black);
+}
+.hero.sheet [data-tab="details"] .attributes .summary {
+	grid-template-columns: repeat(4, 1fr) min-content;
 }
 .hero.sheet [data-tab="details"] .attributes :is(.summary, .resources) fieldset {
 	display: grid;

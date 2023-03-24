@@ -7,7 +7,7 @@
 		</h3>
 		<fieldset>
 			<label>{{localize "EH.Defense.Bonus.Label"}}</label>
-			<input type="number" name="system.attributes.defense.bonus" value="{{src.attributes.defense.bonus}}">
+			<input type="number" name="system.attributes.defense.bonus" value="{{src.attributes.defense.bonus}}" data-formula-editor>
 		</fieldset>
 	</section>
 
@@ -25,7 +25,20 @@
 		</fieldset>
 		<fieldset>
 			<label>{{localize "EH.Initiative.Bonus.Label"}}</label>
-			<input type="number" name="system.attributes.initiative.bonus" value="{{src.attributes.initiative.bonus}}">
+			<input type="number" name="system.attributes.initiative.bonus"
+				value="{{src.attributes.initiative.bonus}}" data-formula-editor>
+		</fieldset>
+	</section>
+
+	<section>
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Skill.Passive.Specific" skill=(localize "EH.Skill.Perception.Label")}}</span>
+			<span class="right stripes"></span>
+		</h3>
+		<fieldset>
+			<label>{{localize "EH.Skill.Bonus.Passive"}}</label>
+			<input type="text" name="system.skills.perc.bonuses.passive" value="{{src.skills.perc.bonuses.passive}}" data-formula-editor>
 		</fieldset>
 	</section>
 </form>
