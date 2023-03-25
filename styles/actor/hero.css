@@ -66,56 +66,56 @@
 /*  Equipment Proficiencies                  */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies {
 	display: block;
 	padding: 0.5em 1em;
 	--eh-line-color: rgb(196, 0, 0);
 }
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies > h3 {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies > h3 {
 	display: block;
 	font-size: var(--font-size-16);
 	font-weight: bold;
 	text-align: center;
 	text-transform: uppercase;
 }
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies > div {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies > div {
 	contain: content;
 	height: 8em;
 	margin-block-start: -0.75em;
 	font-size: var(--font-size-12);
 }
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies > div > * {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies > div > * {
 	position: absolute;
 }
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies label {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies label {
 	display: flex;
 	align-items: center;
 	font-variant: small-caps;
 	z-index: 4;
 	cursor: pointer;
 }
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies label:hover {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies label:hover {
 	text-shadow: 0 0 8px var(--color-shadow-primary);
 }
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies label.basic {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies label.basic {
 	top: calc(0.5em - 0.5px);
 }
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies label:is(.advanced, .historical, .improvised) {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies label:is(.advanced, .historical, .improvised) {
 	top: calc(3em - 0.5px);
 }
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies label.military {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies label.military {
 	top: calc(5.5em - 0.5px);
 }
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies label:is(.advanced, .military) {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies label:is(.advanced, .military) {
 	left: calc(20% - 1em);
 }
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies label:is(.basic, .historical) {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies label:is(.basic, .historical) {
 	left: calc(50% - 1em + 0.5px);
 }
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies label.improvised {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies label.improvised {
 	left: calc(80% - 1em + 1px);
 }
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies input {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies input {
 	width: 1em;
 	height: 1em;
 	flex: 0 0 1em;
@@ -127,27 +127,27 @@
 	filter: unset;
 	cursor: pointer;
 }
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies input:checked {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies input:checked {
 	background-color: var(--eh-input-color-add);
 }
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies .background {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies .background {
 	top: 0;
 	z-index: 1;
 }
 
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies .background .line {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies .background .line {
 	stroke: var(--eh-border-color-strong);
 	stroke-width: 2px;
 }
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies:has(:is(label.advanced):hover) .line:is(.basic-center, .center-advanced) {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has(:is(label.advanced):hover) .line:is(.basic-center, .center-advanced) {
 	stroke: var(--eh-line-color);
 }
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies:has(:is(label.military):hover) .line:is(.basic-center, .center-advanced, .advanced-military) {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has(:is(label.military):hover) .line:is(.basic-center, .center-advanced, .advanced-military) {
 	stroke: var(--eh-line-color);
 }
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies:has(:is(label.historical):hover) .line:is(.basic-center, .center-historical) {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has(:is(label.historical):hover) .line:is(.basic-center, .center-historical) {
 	stroke: var(--eh-line-color);
 }
-.everyday-heroes.hero [data-tab="inventory"] .proficiencies:has(:is(label.improvised):hover) .line:is(.basic-center, .center-improvised) {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has(:is(label.improvised):hover) .line:is(.basic-center, .center-improvised) {
 	stroke: var(--eh-line-color);
 }

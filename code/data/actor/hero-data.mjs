@@ -123,7 +123,7 @@ export default class HeroData extends SystemDataModel.mixin(
 					nullable: false, initial: 1, min: 1, max: CONFIG.EverydayHeroes.maxLevel, integer: true, label: "EH.Level.Label[one]"
 				}),
 				wealth: new foundry.data.fields.SchemaField({
-					bonus: new foundry.data.fields.NumberField({integer: true, label: "EH.Details.Wealth.Bonus.Label"})
+					bonus: new FormulaField({deterministic: true, label: "EH.Details.Wealth.Bonus.Label"})
 				}, {label: "EH.Details.Wealth.Label"})
 			}),
 			inspiration: new foundry.data.fields.BooleanField({label: "EH.Resource.Inspiration"}),
@@ -192,7 +192,8 @@ export default class HeroData extends SystemDataModel.mixin(
 					break;
 			}
 		}
-		this.details.wealth.value = (this.details.profession?.system.wealth ?? 0) + this.details.wealth.bonus;
+		this.details.wealth.value = (this.details.profession?.system.wealth ?? 0)
+			+ simplifyBonus(this.details.wealth.bonus, this.parent.getRollData());
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

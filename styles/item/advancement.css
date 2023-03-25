@@ -92,3 +92,11 @@
 	margin: 0.25em;
 	padding-inline-start: 2em;
 }
+
+@supports not (grid-template-columns: subgrid) {
+	.everyday-heroes ol.advancement,
+	.everyday-heroes ol.advancement > li,
+	.everyday-heroes ol.advancement > li.section > .header {
+		grid-template-columns: auto max-content;
+	}
+}

@@ -624,7 +624,7 @@ export default class ItemEH extends Item {
 			prof: this.system.proficiency.hasProficiency ? this.system.proficiency.term : null,
 			weaponBonus: this.system.bonuses.attack,
 			ammoBonus: ammunition?.system.bonuses.attack,
-			globalBonus: this.actor.system.bonuses.attack.all
+			globalBonus: this.actor.system.bonuses?.attack?.all
 			// TODO: Handle weapon- & category-type global bonuses
 		}, this.getRollData());
 

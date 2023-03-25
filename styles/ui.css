@@ -114,7 +114,7 @@ a.roll-link i {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-block-start: -2px;
+	/* margin-block-start: -2px; */
 	font-size: var(--font-size-24);
 	font-weight: bold;
 }

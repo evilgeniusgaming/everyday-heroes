@@ -28,7 +28,6 @@ export function areKeysPressed(event, action) {
  * @returns {number|void}
  */
 export function buildMinimum(formulas, data) {
-	console.log(formulas);
 	let minimum = -Infinity;
 	for ( const formula of formulas ) {
 		const resolved = simplifyBonus(formula, data);

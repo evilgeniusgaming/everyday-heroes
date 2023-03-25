@@ -241,11 +241,11 @@
 
 @supports not (grid-template-columns: subgrid) {
 	.hero.sheet [data-tab="details"] .abilities .ability > div.contents {
-		margin-inline-start: -1em;
-		padding-inline-start: 0.5em;
+		margin-inline-start: -2em;
+		padding-inline-start: 1em;
 	}
 	.hero.sheet [data-tab="details"] .skills .skill {
-		grid-template-columns: auto 1.75em 1.5em 1em;
+		grid-template-columns: auto 1.75em 1.5em 1.5em;
 	}
 	.hero.sheet [data-tab="details"] .skills .skill label {
 		border-inline-end: none;

@@ -239,6 +239,12 @@ export default class HeroSheet extends BaseActorSheet {
 				case "profession":
 					context.features.profession.primary.item = item;
 					break;
+				case "trick":
+					context.features.trick.items.push(item);
+					break;
+				case "plan":
+					context.features.plan.items.push(item);
+					break;
 				case "specialFeature":
 				case "talent":
 					if ( context.features[item.system.type.value] ) {
@@ -246,12 +252,6 @@ export default class HeroSheet extends BaseActorSheet {
 						break;
 					}
 					// TODO: Add warning about talent not associated with item type
-				case "trick":
-					context.features.trick.items.push(item);
-					break;
-				case "plan":
-					context.features.plan.items.push(item);
-					break;
 				case "feat":
 					context.features.feat.items.push(item);
 					break;

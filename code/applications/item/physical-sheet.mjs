@@ -22,12 +22,12 @@ export default class PhysicalSheet extends BaseItemSheet {
 		const applicableProperties = CONFIG.EverydayHeroes.applicableProperties[context.item.type];
 		if ( applicableProperties ) {
 			const prop = context.source.properties;
-			const isObj = context.propertyModification = foundry.utils.getType(prop) !== "Set";
+			const isObj = context.propertyModification = foundry.utils.getType(prop) === "Object";
 			context.itemProperties = Object.entries(CONFIG.EverydayHeroes.equipmentProperties)
 				.reduce((obj, [k, v]) => {
 					if ( applicableProperties.includes(k) ) {
 						obj[k] = foundry.utils.deepClone(v);
-						if ( (!isObj && prop.has(k)) || (isObj && (prop[k] === 1)) ) obj[k].value = "add";
+						if ( (!isObj && prop.includes(k)) || (isObj && (prop[k] === 1)) ) obj[k].value = "add";
 						else if ( isObj && (prop[k] === -1) ) obj[k].value = "remove";
 						else obj[k].value = "";
 					}

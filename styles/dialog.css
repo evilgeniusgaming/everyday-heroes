@@ -30,6 +30,12 @@
 	grid-column: 1 / -1;
 }
 
+@supports not (grid-template-columns: subgrid) {
+	.everyday-heroes.dialog .main-form fieldset {
+		grid-template-columns: 33% auto;
+	}
+}
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Resting                                  */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
