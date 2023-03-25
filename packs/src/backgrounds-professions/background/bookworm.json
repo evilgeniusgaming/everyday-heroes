@@ -15,20 +15,11 @@
         "identifier": "",
         "configuration": {
           "points": 1,
-          "locked": [
-            "str",
-            "dex",
-            "con",
-            "cha"
-          ],
-          "fixed": {
-            "str": 0,
-            "dex": 0,
-            "con": 0,
-            "int": 0,
-            "wis": 0,
-            "cha": 0
-          }
+          "fixed": [],
+          "choices": [
+            "int",
+            "wis"
+          ]
         },
         "level": 1,
         "flags": {},
@@ -62,7 +53,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679369869198,
-    "modifiedTime": 1679371638693,
+    "modifiedTime": 1679718365141,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

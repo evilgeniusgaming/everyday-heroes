@@ -15,20 +15,20 @@
         "identifier": "",
         "configuration": {
           "points": 3,
-          "locked": [],
-          "fixed": {
-            "str": 0,
-            "dex": 0,
-            "con": 0,
-            "int": 0,
-            "wis": 0,
-            "cha": 1
-          }
+          "fixed": [
+            "cha"
+          ],
+          "choices": [
+            "str",
+            "dex",
+            "con",
+            "int",
+            "wis"
+          ]
         },
         "level": 1,
         "flags": {},
-        "title": "",
-        "value": {}
+        "title": ""
       },
       {
         "_id": "zAIrJg0CVO9IFR0y",
@@ -41,8 +41,7 @@
         },
         "level": 1,
         "flags": {},
-        "title": "Special Feature",
-        "value": {}
+        "title": "Special Feature"
       }
     ],
     "identifier": {
@@ -60,7 +59,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679450966322,
-    "modifiedTime": 1679452016121,
+    "modifiedTime": 1679719062396,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
