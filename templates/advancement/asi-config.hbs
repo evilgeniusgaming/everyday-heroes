@@ -1,15 +1,49 @@
 <form autocomplete="off" data-id="{{_id}}" data-type="{{type}}">
 	<section>
 		{{> "everydayHeroes.advancement-controls"}}
-	
-		<ul class="ability-scores">
-			{{> "everydayHeroes.advancement-ability-score-control" points}}
-			<li class="hint">
-				{{localize "EH.Advancement.ASI.Points.Hint"}}
-			</li>
-			{{#each abilities}}
-				{{> "everydayHeroes.advancement-ability-score-control" this}}
+	</section>
+
+	<section>
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Advancement.ASI.Fixed.Label"}}</span>
+			<span class="right stripes"></span>
+		</h3>
+		<p class="hint">{{localize "EH.Advancement.ASI.Fixed.Hint"}}</p>
+		<div class="properties">
+			{{#each fixed as |ability key|}}
+				<fieldset {{#if ability.checked}}class="checked"{{/if}}>
+					<label>
+						<input type="checkbox" name="configuration.fixed.{{key}}"
+							{{checked ability.checked}} {{disabled ability.disabled}}>
+						{{ability.label}}
+					</label>
+				</fieldset>
 			{{/each}}
-		</ul>
+		</div>
+	</section>
+
+	<section>
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Advancement.ASI.Choices.Label"}}</span>
+			<span class="right stripes"></span>
+		</h3>
+		<p class="hint">{{localize "EH.Advancement.ASI.Choices.Hint"}}</p>
+		<fieldset>
+			<label>{{localize "EH.Advancement.ASI.Points.Label"}}</label>
+			<input type="number" name="configuration.points" value="{{configuration.points}}">
+		</fieldset>
+		<div class="properties">
+			{{#each choices as |ability key|}}
+				<fieldset {{#if ability.checked}}class="checked"{{/if}}>
+					<label>
+						<input type="checkbox" name="configuration.choices.{{key}}"
+							{{checked ability.checked}} {{disabled ability.disabled}}>
+						{{ability.label}}
+					</label>
+				</fieldset>
+			{{/each}}
+		</div>
 	</section>
 </form>

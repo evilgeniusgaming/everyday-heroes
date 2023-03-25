@@ -36,7 +36,7 @@ export default class ASIAdvancement extends Advancement {
 	 */
 	get points() {
 		return {
-			assigned: Object.values(this.value.improvements ?? {}).reduce((n, c) => n + c, 0),
+			assigned: Object.values(this.value.assignments ?? {}).reduce((n, c) => n + c, 0),
 			total: this.configuration.points + Object.values(this.configuration.fixed).reduce((t, v) => t + v, 0)
 		};
 	}
@@ -46,6 +46,7 @@ export default class ASIAdvancement extends Advancement {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	summaryForLevel(level, { configMode=false }={}) {
+		// TODO: Display summary of fixed & choice while in config mode
 		if ( !this.value.assignments ) return "";
 		return Object.entries(this.value.assignments).reduce((html, [key, value]) => {
 			const name = CONFIG.EverydayHeroes.abilities[key]?.label ?? key;
@@ -61,18 +62,20 @@ export default class ASIAdvancement extends Advancement {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async apply(level, data) {
-		const assignments = foundry.utils.mergeObject(this.configuration.fixed, data.assignments, {inplace: false});
+		data.assignments = new Set([...this.configuration.fixed, ...data.assignments]);
 		const updates = {};
-		for ( const key of Object.keys(assignments) ) {
+		for ( const key of data.assignments ) {
 			const ability = this.actor.system.abilities[key];
 			if ( !ability ) continue;
-			assignments[key] = Math.min(assignments[key], ability.max - ability.value);
-			if ( assignments[key] ) updates[`system.abilities.${key}.value`] = ability.value + assignments[key];
-			else delete assignments[key];
+			const newValue = Math.min(ability.value + 1, ability.max);
+			const delta = ability.max - newValue;
+			if ( delta ) updates[`system.abilities.${key}.value`] = newValue;
+			else data.assignments.delete(key);
 		}
-		data.assignments = assignments;
 		this.actor.updateSource(updates);
 
+		// TODO: No need to coerce into array in v11
+		data.assignments = Array.from(data.assignments);
 		this.updateSource({value: data});
 	}
 
@@ -87,10 +90,10 @@ export default class ASIAdvancement extends Advancement {
 	reverse(level) {
 		const source = foundry.utils.deepClone(this.value);
 		const updates = {};
-		for ( const [key, change] of Object.entries(this.value.assignments ?? {}) ) {
+		for ( const key of this.value.assignments ?? [] ) {
 			const ability = this.actor.system.abilities[key];
 			if ( !ability ) continue;
-			updates[`system.abilities.${key}.value`] = ability.value - change;
+			updates[`system.abilities.${key}.value`] = ability.value - 1;
 		}
 		this.actor.updateSource(updates);
 		this.updateSource({ "value.assignments": null });

@@ -1,24 +1,22 @@
-import MappingField from "../fields/mapping-field.mjs";
-
 /**
  * Configuration data for the Ability Score Improvement advancement type.
  *
- * @property {Set<string>} locked - Abilities that cannot have points added to them.
- * @property {number} points - Number of points that can be assigned to any score.
- * @property {Object<string, number>} fixed - Number of points automatically assigned to a certain score.
+ * @property {Set<string>} fixed - Abilities that automatically get a +1.
+ * @property {number} points - Number of points that can be assigned to the specified scores.
+ * @property {Set<string>} choices - Abilities to which the player can choose to assign points.
  */
 export class ASIConfigurationData extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
-			points: new foundry.data.fields.NumberField({
-				integer: true, min: 0, initial: 0,
-				label: "EH.Advancement.ASI.Points.Label", hint: "EH.Advancement.ASI.Points.Hint"
+			fixed: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+				label: "EH.Advancement.ASI.Fixed.Label", hint: "EH.Advancement.ASI.Fixed.Hint"
 			}),
-			locked: new foundry.data.fields.SetField(new foundry.data.fields.StringField()),
-			fixed: new MappingField(
-				new foundry.data.fields.NumberField({nullable: false, integer: true, initial: 0}),
-				{label: "EH.Advancement.ASI.Fixed"}
-			)
+			points: new foundry.data.fields.NumberField({
+				integer: true, min: 0, initial: 0, label: "EH.Advancement.ASI.Points.Label"
+			}),
+			choices: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+				label: "EH.Advancement.ASI.Choices.Label", hint: "EH.Advancement.ASI.Choices.Hint"
+			})
 		};
 	}
 }
@@ -26,14 +24,14 @@ export class ASIConfigurationData extends foundry.abstract.DataModel {
 /**
  * Value data for the Ability Score Improvement advancement type.
  *
- * @property {Object<string, number>} - Points assigned to individual scores.
+ * @property {Set<string>} - Abilities that received a +1.
  */
 export class ASIValueData extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
-			assignments: new MappingField(new foundry.data.fields.NumberField({
-				nullable: false, integer: true
-			}), {required: false, initial: undefined})
+			assignments: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+				required: false, initial: undefined
+			})
 		};
 	}
 }

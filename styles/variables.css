@@ -19,6 +19,8 @@
 
 	--eh-input-color-add: rgb(136, 255, 118);
 	--eh-input-color-remove: rgb(255, 118, 118);
+	--eh-input-color-disabled: rgb(75, 73, 155);
+	--eh-input-color-disabled-checked: rgb(109, 176, 90);
 
 	--eh-tag-color-type: rgb(230, 230, 220);
 	--eh-tag-color-property: rgb(225, 225, 255);

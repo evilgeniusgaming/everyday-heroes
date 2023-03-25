@@ -96,11 +96,12 @@
 
 "Advancement.ASI.Title": "Ability Score Increase",
 "Advancement.ASI.Hint": "Allow the player to increase one or more ability scores.",
-"Advancement.ASI.Fixed": "Fixed Improvement",
-"Advancement.ASI.Action.Lock": "Lock: Prevent points from being added to this score.",
-"Advancement.ASI.Action.Unlock": "Unlock: Allow points to be added to this score.",
+"Advancement.ASI.Choices.Label": "Choices",
+"Advancement.ASI.Choices.Hint": "These abilities will be able to be assigned a number of points with a maximum of +1 each.",
+"Advancement.ASI.Fixed.Label": "Fixed Improvement",
+"Advancement.ASI.Fixed.Hint": "These abilities will automatically get +1.",
 "Advancement.ASI.Points.Label": "Points",
-"Advancement.ASI.Points.Hint": "Number of points that can be assigned to any ability score below the maximum that doesn't have a fixed improvement set and isn't locked.",
+"Advancement.ASI.Points.Hint": "Number of points that can be assigned to any ability score below the maximum that doesn't have a fixed improvement set.",
 "Advancement.ASI.Points.Remaining[one]": "{points} Point Remaining",
 "Advancement.ASI.Points.Remaining[other]": "{points} Points Remaining",
 

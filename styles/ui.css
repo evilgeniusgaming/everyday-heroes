@@ -99,6 +99,12 @@ a.roll-link i {
 .everyday-heroes .properties > fieldset input[checked] {
 	background-color: var(--eh-input-color-add);
 }
+.everyday-heroes .properties > fieldset input[disabled] {
+	background-color: var(--eh-input-color-disabled);
+}
+.everyday-heroes .properties > fieldset input[checked][disabled] {
+	background-color: var(--eh-input-color-disabled-checked);
+}
 .everyday-heroes .properties > fieldset.remove input[checked] {
 	background-color: var(--eh-input-color-remove);
 }
@@ -118,7 +124,7 @@ a.roll-link i {
 .everyday-heroes .properties > fieldset.remove input[checked]::after {
 	content: "-";
 }
-.everyday-heroes .properties > fieldset :is(label, input) {
+.everyday-heroes .properties > fieldset:not(.disabled) :is(label, input) {
 	cursor: pointer;
 }
 

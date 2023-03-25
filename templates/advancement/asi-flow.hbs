@@ -4,11 +4,18 @@
 		<span class="center">{{{title}}}</span>
 		<span class="right stripes"></span>
 	</h3>
-
-	<ul class="ability-scores">
-		<label>{{pointsRemaining}}</label>
-		{{#each abilities}}
-			{{> "everydayHeroes.advancement-ability-score-control" this}}
+	{{#if advancement.configuration.points}}
+		<p>{{pointsRemaining}}</p>
+	{{/if}}
+	<div class="properties">
+		{{#each abilities as |ability key|}}
+			<fieldset class="{{#if ability.checked}}add{{/if}} {{#if ability.disabled}}disabled{{/if}}">
+				<label>
+					<input type="checkbox" name="assignments.{{key}}"
+						{{checked ability.checked}} {{disabled ability.disabled}}>
+					{{ability.label}}
+				</label>
+			</fieldset>
 		{{/each}}
-	</ul>
+	</div>
 </form>

@@ -3,7 +3,7 @@
  */
 export function registerCustomEnrichers() {
 	CONFIG.TextEditor.enrichers.push({
-		pattern: /@(?<type>Check|Save|Skill)\[(?<config>[^}]+)\](?:{(?<label>[^}]+)})?/g,
+		pattern: /@(?<type>Check|Save|Skill)\[(?<config>[^\]]+)\](?:{(?<label>[^}]+)})?/g,
 		enricher: enrichString
 	});
 

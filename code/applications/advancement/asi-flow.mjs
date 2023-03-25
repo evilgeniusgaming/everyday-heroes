@@ -1,3 +1,4 @@
+import { numberFormat } from "../../utils.mjs";
 import AdvancementFlow from "./advancement-flow.mjs";
 
 /**
@@ -7,9 +8,9 @@ export default class ASIFlow extends AdvancementFlow {
 
 	/**
 	 * Player assignments to abilities.
-	 * @type {Object<string, number>}
+	 * @type {Set<string>}
 	 */
-	assignments = {};
+	assignments = new Set();
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -23,46 +24,35 @@ export default class ASIFlow extends AdvancementFlow {
 
 	async attachRetainedData(data) {
 		super.attachRetainedData(data);
-		this.assignments = this.retainedData.assignments ?? {};
+		this.assignments = this.retainedData.assignments ?? new Set();
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async getData() {
 		const points = {
-			assigned: Object.keys(CONFIG.EverydayHeroes.abilities).reduce((assigned, key) =>
-				assigned + (this.advancement.configuration.fixed[key] ?? 0) + (this.assignments[key] ?? 0)
-			, 0),
+			assigned: this.assignments.size,
+			available: this.advancement.points.total - this.assignments.size,
 			total: this.advancement.points.total
 		};
-		points.available = points.total - points.assigned;
 
-		const abilities = Object.entries(CONFIG.EverydayHeroes.abilities).reduce((obj, [key, data]) => {
-			if ( this.advancement.configuration.locked.has(key) ) return obj;
-			const ability = this.advancement.actor.system.abilities[key];
-			const fixed = this.advancement.configuration.fixed[key] ?? 0;
-			const value = Math.min(ability.value + ((fixed || this.assignments[key]) ?? 0), ability.max);
-			const max = fixed ? value : Math.min(value + points.available, ability.max);
-			obj[key] = {
-				key: key,
-				name: `abilities.${key}`,
-				label: data.label,
-				initial: ability.value,
-				min: fixed ? max : ability.value,
-				max,
-				value,
-				delta: (value - ability.value) ? value - ability.value : null,
-				showDelta: true,
-				isFixed: !!fixed,
-				canIncrease: (value < max) && !fixed,
-				canDecrease: (value > ability.value) && !fixed
+		const abilities = {};
+		for ( const [key, config] of Object.entries(CONFIG.EverydayHeroes.abilities) ) {
+			if ( !this.advancement.configuration.fixed.has(key)
+				&& !this.advancement.configuration.choices.has(key) ) continue;
+			const ability = this.item.actor.system.abilities[key];
+			const maxed = ability.value >= ability.max;
+			const checked = this.assignments.has(key) || (this.advancement.configuration.fixed.has(key) && !maxed);
+			abilities[key] = {
+				label: `${config.label}: ${numberFormat(ability.value + (checked ? 1 : 0))}`,
+				checked,
+				disabled: this.advancement.configuration.fixed.has(key) || (!checked && (!points.available || maxed))
 			};
-			return obj;
-		}, {});
+		}
 
 		const pluralRule = new Intl.PluralRules(game.i18n.lang).select(points.available);
 		return foundry.utils.mergeObject(super.getData(), {
-			abilities, points,
+			abilities,
 			pointsRemaining: game.i18n.format(
 				`EH.Advancement.ASI.Points.Remaining[${pluralRule}]`, {points: points.available}
 			)
@@ -71,41 +61,12 @@ export default class ASIFlow extends AdvancementFlow {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	activateListeners(jQuery) {
-		super.activateListeners(jQuery);
-		const html = jQuery[0];
-		for ( const button of html.querySelectorAll("[data-action]") ) {
-			button.addEventListener("click", this._onClickButton.bind(this));
-		}
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
 	_onChangeInput(event) {
 		super._onChangeInput(event);
 		const input = event.currentTarget;
-		const key = input.closest("[data-score]").dataset.score;
-		const clampedValue = Math.clamped(Number(input.min), input.valueAsNumber, Number(input.max));
-		this.assignments[key] = clampedValue - Number(input.dataset.initial);
-		this.render();
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Handle clicking the plus and minus buttons.
-	 * @param {Event} event - Triggering click event.
-	 */
-	_onClickButton(event) {
-		event.preventDefault();
-		const action = event.currentTarget.dataset.action;
-		const key = event.currentTarget.closest("li").dataset.score;
-
-		this.assignments[key] ??= 0;
-		if ( action === "decrease" ) this.assignments[key] -= 1;
-		else if ( action === "increase" ) this.assignments[key] += 1;
-		else return;
-
+		const key = input.name.replace("assignments.", "");
+		if ( input.checked ) this.assignments.add(key);
+		else this.assignments.delete(key);
 		this.render();
 	}
 
