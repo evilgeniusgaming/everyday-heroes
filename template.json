@@ -119,7 +119,7 @@
       "details": {
         "level": 1,
         "wealth": {
-          "bonus": null
+          "bonus": ""
         }
       },
       "inspiration": true,
