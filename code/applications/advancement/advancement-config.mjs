@@ -73,9 +73,7 @@ export default class AdvancementConfig extends FormApplication {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	getData() {
-		const levels = Object.fromEntries(Array.fromRange(CONFIG.EverydayHeroes.maxLevel + 1).map(l => [l, l]));
-		if ( ["archetype", "class"].includes(this.item.type) ) delete levels[0];
-		else levels[0] = game.i18n.localize("EH.Advancement.Core.Level.Any");
+		const levels = Object.fromEntries(Array.fromRange(CONFIG.EverydayHeroes.maxLevel, 1).map(l => [l, l]));
 		const context = {
 			CONFIG: CONFIG.EverydayHeroes,
 			...this.advancement.toObject(false),

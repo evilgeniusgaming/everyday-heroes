@@ -1,0 +1,70 @@
+<form autocomplete="off" data-id="{{_id}}" data-type="{{type}}">
+	<section>
+		{{#if showType}}
+			<fieldset>
+				<label>{{localize "EH.Advancement.Trait.Type.Label"}}</label>
+				<select name="configuration.type">
+					{{selectOptions types selected=configuration.type labelAttr="label" localize=true}}
+				</select>
+			</fieldset>
+			{{#if (eq configuration.type "skill")}}
+				<fieldset>
+					<label>{{localize "EH.Proficiency.Level.Expertise"}}</label>
+					<input type="checkbox" name="configuration.expertise" {{checked configuration.expertise}}>
+				</fieldset>
+			{{/if}}
+			<hr>
+		{{/if}}
+		{{> "everydayHeroes.advancement-controls"}}
+	</section>
+
+	{{#if fixed}}
+		<section>
+			<h3 class="striped">
+				<span class="left stripes"></span>
+				<span class="center">{{localize "EH.Advancement.Trait.Fixed.Label"}}</span>
+				<span class="right stripes"></span>
+			</h3>
+			<p class="hint">{{fixedHint}}</p>
+			<div class="properties">
+				{{#each fixed as |trait key|}}
+					<fieldset {{#if trait.checked}}class="checked"{{/if}}>
+						<label>
+							<input type="checkbox" name="configuration.fixed.{{key}}"
+								{{checked trait.checked}} {{disabled trait.disabled}}>
+							{{trait.label}}
+						</label>
+					</fieldset>
+				{{/each}}
+			</div>
+		</section>
+	{{/if}}
+
+	<section>
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Advancement.Trait.Choices.Label"}}</span>
+			<span class="right stripes"></span>
+		</h3>
+		{{#if choices}}
+			<p class="hint">{{choicesHint}}</p>
+		{{/if}}
+		<fieldset>
+			<label>{{localize "EH.Advancement.Trait.Points.Label"}}</label>
+			<input type="number" name="configuration.points" value="{{configuration.points}}">
+		</fieldset>
+		{{#if choices}}
+			<div class="properties">
+				{{#each choices as |trait key|}}
+					<fieldset {{#if trait.checked}}class="checked"{{/if}}>
+						<label>
+							<input type="checkbox" name="configuration.choices.{{key}}"
+								{{checked trait.checked}} {{disabled trait.disabled}}>
+							{{trait.label}}
+						</label>
+					</fieldset>
+				{{/each}}
+			</div>
+		{{/if}}
+	</section>
+</form>

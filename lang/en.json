@@ -31,6 +31,8 @@
 "Ability.Configuration.Specific.Label": "{type} Configuration",
 "Ability.Override.Minimum.Check": "Ability Check Minimum",
 "Ability.Override.Minimum.Save": "Saving Throw Minimum",
+"Ability.Proficiency.Label[one]": "Saving Throw Proficiency",
+"Ability.Proficiency.Label[other]": "Saving Throw Proficiencies",
 
 "Action.Add": "Add",
 "Action.Configure": "Configure {type}",
@@ -96,14 +98,6 @@
 
 "Advancement.ASI.Title": "Ability Score Increase",
 "Advancement.ASI.Hint": "Allow the player to increase one or more ability scores.",
-"Advancement.ASI.Choices.Label": "Choices",
-"Advancement.ASI.Choices.Hint": "These abilities will be able to be assigned a number of points with a maximum of +1 each.",
-"Advancement.ASI.Fixed.Label": "Fixed Improvement",
-"Advancement.ASI.Fixed.Hint": "These abilities will automatically get +1.",
-"Advancement.ASI.Points.Label": "Points",
-"Advancement.ASI.Points.Hint": "Number of points that can be assigned to any ability score below the maximum that doesn't have a fixed improvement set.",
-"Advancement.ASI.Points.Remaining[one]": "{points} Point Remaining",
-"Advancement.ASI.Points.Remaining[other]": "{points} Points Remaining",
 
 "Advancement.Defense.Title": "Defense",
 "Advancement.Defense.Hint": "Set an archetype's defense ability and its bonus at various levels.",
@@ -134,6 +128,17 @@
 "Advancement.ScaleValue.Type.Generic.Hint": "Use this for scale values that don't fit into any other category.",
 "Advancement.ScaleValue.Type.Number.Label": "Numeric",
 "Advancement.ScaleValue.Type.Number.Hint": "Use this for purely numerical values like flat damage bonuses.",
+
+"Advancement.Trait.Title": "Proficiency",
+"Advancement.Trait.Hint": "Grant the player proficiency in saves, skills, equipment, or languages.",
+"Advancement.Trait.Choices.Label": "Choices",
+"Advancement.Trait.Choices.Hint": "The player will be able to choose from among these {type}, limited by the number of selections allowed.",
+"Advancement.Trait.Fixed.Label": "Fixed",
+"Advancement.Trait.Fixed.Hint": "These {type} will automatically get {improvement}.",
+"Advancement.Trait.Points.Label": "Count",
+"Advancement.Trait.Points.Remaining[one]": "{points} Selection Remaining",
+"Advancement.Trait.Points.Remaining[other]": "{points} Selections Remaining",
+"Advancement.Trait.Type.Label": "Trait",
 
 "Ammunition.Loaded": "Loaded Ammunition",
 "Ammunition.Empty.Label": "No Ammunition Chosen",
@@ -305,8 +310,8 @@
 "Equipment.Category.Historical.Label": "Historical",
 "Equipment.Category.Improvised.Label": "Improvised",
 "Equipment.Category.Military.Label": "Military",
-"Equipment.Proficiencies.Label[one]": "Equipment Proficiency",
-"Equipment.Proficiencies.Label[other]": "Equipment Proficiencies",
+"Equipment.Proficiency.Label[one]": "Equipment Proficiency",
+"Equipment.Proficiency.Label[other]": "Equipment Proficiencies",
 "Equipment.Trait.ArmorValue.Label": "Armor Value",
 "Equipment.Trait.ArmorValue.Abbreviation": "AV",
 "Equipment.Trait.ArmorValue.Hint": "Armor Value measures how well armor or a shield protects you against weapons.",
@@ -595,6 +600,8 @@
 "Skill.Configuration.Global.Hint": "The following options apply to all skills.",
 "Skill.Configuration.Specific.Label": "{type} Configuration",
 "Skill.Override.Minimum": "Skill Check Minimum",
+"Skill.Proficiency.Label[one]": "Skill Proficiency",
+"Skill.Proficiency.Label[other]": "Skill Proficiencies",
 
 "Traits.Label": "Traits",
 

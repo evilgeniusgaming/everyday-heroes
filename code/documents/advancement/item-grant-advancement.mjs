@@ -1,7 +1,7 @@
-import Advancement from "./advancement.mjs";
 import ItemGrantConfig from "../../applications/advancement/item-grant-config.mjs";
 import ItemGrantFlow from "../../applications/advancement/item-grant-flow.mjs";
 import { ItemGrantConfigurationData, ItemGrantValueData } from "../../data/advancement/item-grant-data.mjs";
+import Advancement from "./advancement.mjs";
 
 /**
  * Advancement that automatically grants one or more items to the player. Presents the player with the option of

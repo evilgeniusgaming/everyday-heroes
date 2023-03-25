@@ -1,6 +1,6 @@
-import ScaleValueAdvancement from "./scale-value-advancement.mjs";
 import ResourceConfig from "../../applications/advancement/resource-config.mjs";
 import { ResourceConfigurationData } from "../../data/advancement/resource-data.mjs";
+import ScaleValueAdvancement from "./scale-value-advancement.mjs";
 
 /**
  * Advancement that represents a character's defense bonus.

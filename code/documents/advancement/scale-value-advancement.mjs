@@ -1,7 +1,7 @@
-import Advancement from "./advancement.mjs";
 import ScaleValueConfig from "../../applications/advancement/scale-value-config.mjs";
 import ScaleValueFlow from "../../applications/advancement/scale-value-flow.mjs";
 import { ScaleValueConfigurationData, TYPES } from "../../data/advancement/scale-value-data.mjs";
+import Advancement from "./advancement.mjs";
 
 /**
  * Advancement that represents a value that scales with character level.

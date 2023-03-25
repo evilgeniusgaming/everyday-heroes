@@ -1,0 +1,28 @@
+<form id="{{appId}}" data-level="{{level}}" data-id="{{advancement.id}}" data-type="{{type}}" autocomplete="off">
+	<h3 class="striped">
+		<span class="left stripes"></span>
+		<span class="center">{{{title}}}</span>
+		<span class="right stripes"></span>
+	</h3>
+	{{#if advancement.configuration.points}}
+		<p>{{pointsRemaining}}</p>
+	{{/if}}
+	{{#if traits}}
+		<div class="properties">
+			{{#each traits as |trait key|}}
+				<fieldset class="{{#if trait.checked}}add{{/if}} {{#if proficiencytraitdisabled}}disabled{{/if}}">
+					<label>
+						<input type="checkbox" name="assignments.{{key}}"
+							{{checked trait.checked}} {{disabled trait.disabled}}>
+						{{trait.label}}
+					</label>
+				</fieldset>
+			{{/each}}
+		</div>
+	{{else}}
+		<fieldset>
+			<label>{{localize traitConfig.label}}</label>
+			{{everydayHeroes-tagInput assignments name="assignments"}}
+		</fieldset>
+	{{/if}}
+</form>

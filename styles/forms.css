@@ -32,31 +32,3 @@
 	display: flex;
 	gap: 0.25em;
 }
-
-/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-/*  Tag Input                                */
-/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-.everyday-heroes fieldset .tag-input {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.5em;
-	padding-inline: 0.25em;
-	padding-block: 0.25em;
-}
-.everyday-heroes fieldset .tag-input > .tag {
-	background-color: var(--eh-tag-color-property);
-	border-radius: 3px;
-	padding-inline: 0.5em;
-}
-.everyday-heroes fieldset .tag-input > .tag > [data-action="delete"] {
-	opacity: 75%;
-	padding-inline-start: 0.25em;
-}
-.everyday-heroes fieldset .tag-input > input {
-	flex: 1 0 3em;
-	width: unset;
-	min-width: 3em;
-	margin: -0.25em;
-	margin-inline-end: 0;
-}

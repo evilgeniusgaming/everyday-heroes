@@ -37,6 +37,13 @@
 	margin-block-start: -0.5em;
 }
 
+.everyday-heroes.advancement.config form > section hr {
+	grid-column: 1 / -1;
+	border: none;
+	border-block-end: 1px solid var(--eh-border-color-weak);
+	margin-inline: -0.5em;
+}
+
 .everyday-heroes.advancement.config form > section p.hint {
 	grid-column: 1 / -1;
 }

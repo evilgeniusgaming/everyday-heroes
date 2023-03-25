@@ -1,6 +1,6 @@
-import ScaleValueAdvancement from "./scale-value-advancement.mjs";
 import DefenseConfig from "../../applications/advancement/defense-config.mjs";
 import { DefenseConfigurationData } from "../../data/advancement/defense-data.mjs";
+import ScaleValueAdvancement from "./scale-value-advancement.mjs";
 
 /**
  * Advancement that represents a character's defense bonus.

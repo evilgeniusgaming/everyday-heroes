@@ -1,3 +1,5 @@
+import BaseAdvancement from "../advancement/base-advancement.mjs";
+
 /**
  * Field that automatically prepares advancements in an {@link AdvancementCollection}.
  */
@@ -17,6 +19,7 @@ export class AdvancementCollection extends Collection {
 		super();
 		this.#model = model;
 		for ( const entry of entries ) {
+			if ( !(entry instanceof BaseAdvancement) ) continue;
 			this.set(entry.id, entry);
 			this.#types[entry.type] ??= [];
 			this.#types[entry.type].push(entry);

@@ -3,9 +3,9 @@
 @import "./advancement-migration.css";
 @import "./advancement-selection.css";
 
-@import "./asi.css";
 @import "./defense.css";
 @import "./hit-points.css";
 @import "./item-grant.css";
 @import "./scale-value.css";
+@import "./trait.css";
 

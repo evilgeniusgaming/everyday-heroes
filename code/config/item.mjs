@@ -16,7 +16,8 @@ export const advancementTypes = {
 	HitPoints: advancement.HitPointsAdvancement,
 	ItemGrant: advancement.ItemGrantAdvancement,
 	Resource: advancement.ResourceAdvancement,
-	ScaleValue: advancement.ScaleValueAdvancement
+	ScaleValue: advancement.ScaleValueAdvancement,
+	Trait: advancement.TraitAdvancement
 };
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

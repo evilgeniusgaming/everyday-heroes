@@ -1,43 +1,33 @@
-import Advancement from "./advancement.mjs";
-import ASIConfig from "../../applications/advancement/asi-config.mjs";
-import ASIFlow from "../../applications/advancement/asi-flow.mjs";
-import { ASIConfigurationData, ASIValueData } from "../../data/advancement/asi-data.mjs";
+import { ASIConfigurationData } from "../../data/advancement/asi-data.mjs";
+import TraitAdvancement from "./trait-advancement.mjs";
 
 /**
  * Advancement that presents the player with the option of improving their ability scores.
  */
-export default class ASIAdvancement extends Advancement {
+export default class ASIAdvancement extends TraitAdvancement {
 
 	static get metadata() {
 		return foundry.utils.mergeObject(super.metadata, {
 			dataModels: {
-				configuration: ASIConfigurationData,
-				value: ASIValueData
+				configuration: ASIConfigurationData
 			},
 			order: 20,
 			icon: "systems/everyday-heroes/artwork/svg/advancement/asi.svg",
 			title: game.i18n.localize("EH.Advancement.ASI.Title"),
 			hint: game.i18n.localize("EH.Advancement.ASI.Hint"),
-			validItemTypes: new Set(["background", "profession", "feat"]),
-			apps: {
-				config: ASIConfig,
-				flow: ASIFlow
-			}
+			validItemTypes: new Set(["background", "profession", "feat"])
 		});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Instance Properties                      */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	/**
-	 * Information on the ASI points available.
-	 * @type {{ assigned: number, total: number }}
-	 */
-	get points() {
+	static get traits() {
 		return {
-			assigned: Object.values(this.value.assignments ?? {}).reduce((n, c) => n + c, 0),
-			total: this.configuration.points + Object.values(this.configuration.fixed).reduce((t, v) => t + v, 0)
+			asi: {
+				label: "EH.Advancement.ASI.Title",
+				hintType: "EH.Ability.Label[other]",
+				hintImprovement: "+1"
+			}
 		};
 	}
 
@@ -55,48 +45,5 @@ export default class ASIAdvancement extends Advancement {
 			html += "</strong></span>\n";
 			return html;
 		}, "");
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Application Methods                      */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	async apply(level, data) {
-		data.assignments = new Set([...this.configuration.fixed, ...data.assignments]);
-		const updates = {};
-		for ( const key of data.assignments ) {
-			const ability = this.actor.system.abilities[key];
-			if ( !ability ) continue;
-			const newValue = Math.min(ability.value + 1, ability.max);
-			const delta = ability.max - newValue;
-			if ( delta ) updates[`system.abilities.${key}.value`] = newValue;
-			else data.assignments.delete(key);
-		}
-		this.actor.updateSource(updates);
-
-		// TODO: No need to coerce into array in v11
-		data.assignments = Array.from(data.assignments);
-		this.updateSource({value: data});
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	restore(level, data) {
-		this.apply(level, data);
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	reverse(level) {
-		const source = foundry.utils.deepClone(this.value);
-		const updates = {};
-		for ( const key of this.value.assignments ?? [] ) {
-			const ability = this.actor.system.abilities[key];
-			if ( !ability ) continue;
-			updates[`system.abilities.${key}.value`] = ability.value - 1;
-		}
-		this.actor.updateSource(updates);
-		this.updateSource({ "value.assignments": null });
-		return source;
 	}
 }

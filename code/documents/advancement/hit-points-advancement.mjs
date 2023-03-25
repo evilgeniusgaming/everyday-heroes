@@ -1,8 +1,8 @@
-import Advancement from "./advancement.mjs";
 import HitPointsConfig from "../../applications/advancement/hit-points-config.mjs";
 import HitPointsFlow from "../../applications/advancement/hit-points-flow.mjs";
 import { HitPointsConfigurationData, HitPointsValueData } from "../../data/advancement/hit-points-data.mjs";
 import { simplifyBonus } from "../../utils.mjs";
+import Advancement from "./advancement.mjs";
 
 /**
  * Advancement that presents the player with the option to roll hit points at each level or select the average value.
@@ -156,8 +156,8 @@ export default class HitPointsAdvancement extends Advancement {
 		this.actor.updateSource({
 			"system.attributes.hp.value": this.actor.system.attributes.hp.value - this.#getApplicableValue(value)
 		});
-		const source = { [level]: this.value[level] };
+		const retainedData = { [level]: this.value[level] };
 		this.updateSource({ [`value.granted.-=${level}`]: null });
-		return source;
+		return retainedData;
 	}
 }

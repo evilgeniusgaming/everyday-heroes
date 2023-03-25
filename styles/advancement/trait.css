@@ -1,0 +1,11 @@
+.everyday-heroes.advancement.config.trait .properties,
+.everyday-heroes.advancement.manager :is([data-type="ASI"], [data-type="Trait"]) .properties {
+	grid-column: 1 / -1;
+	grid-template-columns: 1fr 1fr;
+}
+.everyday-heroes.advancement.manager :is([data-type="ASI"], [data-type="Trait"]) > p {
+	grid-column: 1 / -1;
+	margin: 0;
+	text-align: center;
+}
+
