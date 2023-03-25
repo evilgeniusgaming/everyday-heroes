@@ -46,22 +46,22 @@ export default class NPCData extends SystemDataModel.mixin(
 					formula: new FormulaField({label: "EH.HitPoints.Formula"})
 					// TODO: Determine if this would be better handed directly from the hit dice
 				}, {label: "EH.HitPoints.Label[other]"})
-			}, {label: ""}),
+			}, {label: "EH.Attributes.Label"}),
 			biography: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.HTMLField({label: "EH.Biography.Label"}),
 				public: new foundry.data.fields.HTMLField({label: "EH.Biography.Public"}),
 				roles: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField(), {label: "EH.Role.Label[other]"})
-			}, {label: ""}),
+			}, {label: "EH.Biography.Label"}),
 			details: new foundry.data.fields.SchemaField({
 				cr: new foundry.data.fields.NumberField({initial: 0, min: 0, label: "EH.ChallengeRating.Label"})
-			}, {label: ""}),
+			}, {label: "EH.Details.Label"}),
 			traits: new foundry.data.fields.SchemaField({
 				size: new foundry.data.fields.StringField({initial: "medium", label: "EH.Size.Label"}),
 				type: new foundry.data.fields.SchemaField({
 					value: new foundry.data.fields.StringField({label: ""}),
 					tags: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField(), {label: ""})
 				}, {label: ""})
-			}, {label: ""})
+			}, {label: "EH.Traits.Label"})
 		});
 	}
 
@@ -70,7 +70,7 @@ export default class NPCData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareBaseData() {
-		this.attributes.prof = Proficiency.calculateMod(this.details.cr);
+		this.attributes.prof = Proficiency.calculateMod(Math.max(this.details.cr, 1));
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

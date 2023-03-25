@@ -33,6 +33,8 @@ export default class NPCSheet extends BaseActorSheet {
 			return obj;
 		}, {});
 
+		context.cr = { 0.125: "⅛", 0.25: "¼", 0.5: "½" }[context.system.details.cr] ?? context.system.details.cr;
+
 		return context;
 	}
 
@@ -214,5 +216,22 @@ export default class NPCSheet extends BaseActorSheet {
 		);
 		// TODO: Add special senses
 		context.lists.senses = listFormatter.format(senses);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Action Handlers                          */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _updateObject(event, formData) {
+		// TODO: Move this logic into custom NumberField type
+		let cr = formData["system.details.cr"];
+		cr = {
+			"1/8": 0.125, "⅛": 0.125,
+			"1/4": 0.25, "¼": 0.25,
+			"1/2": 0.5, "½": 0.5
+		}[cr] ?? parseFloat(cr);
+		if ( Number.isNumeric(cr) ) formData["system.details.cr"] = cr;
+
+		return super._updateObject(event, formData);
 	}
 }

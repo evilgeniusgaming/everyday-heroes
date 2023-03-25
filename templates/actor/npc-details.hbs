@@ -116,6 +116,10 @@
 			<span>{{lists.equipment}}</span>
 		</fieldset>
 	{{/if}}
+	<fieldset>
+		<label>{{localize "EH.Proficiency.Label[one]"}}</label>
+		<span>{{numberFormat system.attributes.prof sign=true}}</span>
+	</fieldset>
 </section>
 
 {{#each actionSections as |section|}}

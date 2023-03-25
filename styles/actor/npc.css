@@ -35,7 +35,9 @@
 	flex-grow: 1;
 }
 .everyday-heroes.npc.sheet form > header fieldset.cr input {
-	width: 2em;
+	width: 2.5em;
+	padding-inline: 0;
+	text-align: center;
 }
 
 .everyday-heroes.npc.sheet form > header nav {
@@ -63,6 +65,10 @@
 }
 .everyday-heroes.npc.sheet form > header nav a:not(:last-of-type) {
 	border-inline-end: 1px solid var(--eh-border-color-weak);
+}
+.everyday-heroes.npc.sheet form > header nav a[data-action="toggle-editing-mode"] {
+	flex: 0 0 3em;
+	padding-inline-start: 0.75em;
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -124,6 +130,9 @@
 .everyday-heroes.npc.sheet [data-tab="details"] > section > fieldset.abilities > div input {
 	text-align: center;
 	padding: 0;
+}
+.everyday-heroes.npc.sheet [data-tab="details"] > section > fieldset.abilities > div [data-action="cycle-proficiency"] {
+	flex-basis: 100%;
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

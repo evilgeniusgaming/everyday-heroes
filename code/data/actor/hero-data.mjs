@@ -125,7 +125,7 @@ export default class HeroData extends SystemDataModel.mixin(
 				wealth: new foundry.data.fields.SchemaField({
 					bonus: new FormulaField({deterministic: true, label: "EH.Details.Wealth.Bonus.Label"})
 				}, {label: "EH.Details.Wealth.Label"})
-			}),
+			}, {label: "EH.Details.Label"}),
 			inspiration: new foundry.data.fields.BooleanField({label: "EH.Resource.Inspiration"}),
 			items: new MappingField(new foundry.data.fields.SchemaField({
 				ammunition: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, {idOnly: true, label: ""}),
