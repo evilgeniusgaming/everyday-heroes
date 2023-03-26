@@ -1,7 +1,7 @@
 {
   "name": "Sleuth",
   "type": "class",
-  "img": "icons/tools/scribal/magnifying-glass.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/sleuth.webp",
   "system": {
     "description": {
       "value": "<p><em><q>The truth is strong medicine. It can make you whole, but it leaves a very bitter taste in your mouth.</q> <strong>—Kat Whitlock</strong></em></p><p>Evil never sleeps, so neither do you. Your keen perception pierces the veil of the devious. Your inner darkness gives you insight into the worst villains humanity has to offer. It's a dirty job, but someone's gotta do it.</p><p>The sleuth has the skills necessary to solve mysteries and avoid dangers. They are the most defensive of the Wise Heroes with abilities to help them stay alive. At higher levels they gain offense to make them dangerous to unwary enemies.</p><h4><em><strong>Proficiencies</strong></em></h4><p><strong>Saving Throws:</strong> Intelligence and Wisdom</p><p><strong>\u0017Skills:</strong> Choose three from Arts and Crafts, Computers, Deception, Insight, Investigation, Perception, Security, Stealth, Streetwise, and Vehicles</p><p><strong>Equipment:</strong> Basic Equipment</p><p><strong>Investigative Expertise:</strong> Choose one from Insight, Investigation, or Perception. You gain expertise in that skill. You must be proficient in a skill to take expertise in that skill.</p><p><em><strong>Equipment Recommendations</strong></em></p><p><strong>Equipment Pack:</strong> Detective Pack or Police Pack</p><p><strong>Weapons:</strong> Heavy revolver pistol or hunting rifle</p>",
@@ -9,6 +9,86 @@
       "source": "Core Rulebook"
     },
     "advancement": [
+      {
+        "_id": "zgLvVTdKXiv1qJ99",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "save",
+          "expertise": false,
+          "fixed": [
+            "int",
+            "wis"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "G3qryUg9rFwJf34N",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": false,
+          "fixed": [],
+          "points": 3,
+          "choices": [
+            "arts",
+            "comp",
+            "dece",
+            "inst",
+            "inve",
+            "perc",
+            "secu",
+            "slth",
+            "strt",
+            "vehi"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "LN1lRJn6jmIKDMN0",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "equipment",
+          "expertise": false,
+          "fixed": [
+            "basic"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "vZJLcpEYm8lrsRJV",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": true,
+          "fixed": [],
+          "points": 1,
+          "choices": [
+            "inst",
+            "inve",
+            "perc"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": "Investigative Expertise"
+      },
       {
         "_id": "ySgikwGNPH2nWsOm",
         "_type": "ItemGrant",
@@ -92,7 +172,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679454543935,
-    "modifiedTime": 1679518389412,
+    "modifiedTime": 1679873173187,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

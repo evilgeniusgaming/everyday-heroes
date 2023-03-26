@@ -1,7 +1,7 @@
 {
   "name": "Mastermind",
   "type": "class",
-  "img": "icons/tools/scribal/spectacles-glasses.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/mastermind.webp",
   "system": {
     "description": {
       "value": "<p><em><q>Never bet against stupid. They never know when to quit and they have a clear numbers advantage.</q> <strong>—Wesley Scott</strong></em></p><p>You are always at least one step ahead of your enemies, plotting, scheming, and planning your next masterstroke. Your allies benefit from your genius as well. If only you could find someone to truly challenge you.</p><p>Mastermind plans involve strategies that were retroactively enacted in the past, to be revealed only in the present moment. This makes the mastermind very powerful outside combat, with the ability to shortcut difficult challenges. In combat, however, they are rather weak and vulnerable.</p><h4><em><strong>Proficiencies</strong></em></h4><p><strong>Saving Throws:</strong> Intelligence and Wisdom</p><p><strong>\u0017Skills:</strong> Choose four from Computers, Deception, Insight, Investigation, Medicine, Natural Sciences, Perception, Persuasion, Security, Social Sciences, and Streetwise</p><p><strong>Equipment:</strong> Basic Equipment</p><p><strong>Mental Expertise:</strong> Choose two from Computers, Deception, Insight, Investigation, Perception, Persuasion, Security, Social Sciences, and Streetwise. You must be proficient in a skill to take expertise in that skill.</p><p><em><strong>Equipment Recommendations</strong></em></p><p><strong>Equipment Pack:</strong> Executive Pack</p><p><strong>Weapons:</strong> Pocket .38 pistol or hunting rifle</p>",
@@ -9,6 +9,93 @@
       "source": "Core Rulebook"
     },
     "advancement": [
+      {
+        "_id": "RuYT0ZU4cjPfBCZY",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "save",
+          "expertise": false,
+          "fixed": [
+            "int",
+            "wis"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "hXTYtXQysQVVXBdZ",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": false,
+          "fixed": [],
+          "points": 4,
+          "choices": [
+            "comp",
+            "dece",
+            "inst",
+            "inve",
+            "medi",
+            "nats",
+            "perc",
+            "pers",
+            "secu",
+            "socs",
+            "strt"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "iCE1Uy5dPxWneMqr",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "equipment",
+          "expertise": false,
+          "fixed": [
+            "basic"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "QtcUDku35UeCdNZM",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": true,
+          "fixed": [],
+          "points": 2,
+          "choices": [
+            "comp",
+            "dece",
+            "inst",
+            "inve",
+            "perc",
+            "pers",
+            "secu",
+            "socs",
+            "strt"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": "Mental Expertise"
+      },
       {
         "_id": "UQDxJaiwIEGFgIzi",
         "_type": "ItemGrant",
@@ -39,7 +126,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679454538649,
-    "modifiedTime": 1679516748550,
+    "modifiedTime": 1679873159323,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

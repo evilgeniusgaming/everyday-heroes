@@ -1,7 +1,7 @@
 {
   "name": "Scoundrel",
   "type": "class",
-  "img": "icons/sundries/misc/pet-collar-spiked-brown.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/scoundrel.webp",
   "system": {
     "description": {
       "value": "<p><em><q>Oh, did I hurt your pride? Consider that an appetizer.</q> <strong>—daxx</strong></em></p><p>Honorable combat is a sucker bet. There isn't a low blow, dirty trick, or cheap shot you don't know. You have mastered skills that can be put to disreputable uses. These skills don't make you a bad person, but you do have the necessary credentials to play the part.</p><p>The scoundrel is a capable fighter who boasts a range of useful skill proficiencies. Getting advantage on attacks is key to their success in a fight. For this reason, shotguns are a great weapon choice for scoundrels in ranged combat, since the shot property always offers advantage within 30 feet.</p><h4><em><strong>Proficiencies</strong></em></h4><h4><strong>Saving Throws:</strong> Dexterity and Charisma</h4><h4><strong>Skills:</strong> Choose three from Acrobatics, Deception, Intimidation, Security, Sleight of Hand, Stealth, Streetwise, and Vehicles</h4><h4><strong>Equipment:</strong> Basic Equipment and Advanced Equipment</h4><h4><strong>Criminal Expertise:</strong> You gain expertise in one of the following skills: Deception, Security, Sleight of Hand, Stealth, or Streetwise. You must be proficient in a skill to take expertise in that skill.</h4><p><em><strong>Equipment Recommendations</strong></em></p><p><strong>Equipment Pack:</strong> Street Criminal Pack or Spy Pack</p><p><strong>Weapons:</strong> Pump shotgun, brass knuckles, or stun gun</p>",
@@ -9,6 +9,87 @@
       "source": "Core Rulebook"
     },
     "advancement": [
+      {
+        "_id": "yqayB8KgLJOzQn4E",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "save",
+          "expertise": false,
+          "fixed": [
+            "dex",
+            "cha"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "hCMviA1njYZ4KRc7",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": false,
+          "fixed": [],
+          "points": 3,
+          "choices": [
+            "acro",
+            "dece",
+            "inti",
+            "secu",
+            "slgt",
+            "slth",
+            "strt",
+            "vehi"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "4qfuIkpxjWcLeEkT",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "equipment",
+          "expertise": false,
+          "fixed": [
+            "basic",
+            "advanced"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "v8GHcneDMbs7oGB8",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": true,
+          "fixed": [],
+          "points": 1,
+          "choices": [
+            "dece",
+            "secu",
+            "slgt",
+            "slth",
+            "strt"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": "Criminal Expertise"
+      },
       {
         "_id": "SK4euijZUFGzjOrf",
         "_type": "ItemGrant",
@@ -124,7 +205,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679454527302,
-    "modifiedTime": 1679459125956,
+    "modifiedTime": 1679873165158,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

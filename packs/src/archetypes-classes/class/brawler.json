@@ -1,7 +1,7 @@
 {
   "name": "Brawler",
   "type": "class",
-  "img": "icons/magic/fire/flame-burning-fist-strike.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/brawler.webp",
   "system": {
     "description": {
       "value": "<p><em><q>If brute force ain't workin', yer just not usin' enough!</q> <strong>—Mack Williams</strong></em></p><p>You break stuff and hit people. Sometimes you mix it up by hitting stuff and breaking people.</p><p>You imprinted on comics as a kid, and it shows in your approach to a fight. With fists like hammers and the ability to turn nearly anything into a deadly weapon, you are dangerous and everyone knows it.</p><p>The brawler charges into melee combat, hitting hard and destroying everything in their path. They enjoy using improvised weapons but are also great unarmed combatants. The brawler doesn't need to carry weapons to fight at full strength.</p><h4><em><strong>Proficiencies</strong></em></h4><p><strong>Saving Throws:</strong> Strength and Constitution</p><p><strong>\u0017Skills:</strong> Choose two from Acrobatics, Athletics, Endurance, Intimidation, Mechanics, and Streetwise</p><p><strong>Equipment:</strong> Basic Equipment and Improvised Equipment</p><p><em><strong>Equipment Recommendations</strong></em></p><p><strong>Equipment Pack:</strong> Badass Pack</p><p><strong>Weapons:</strong> Unarmed strikes and anything you find lying around</p>",
@@ -9,6 +9,64 @@
       "source": "Core Rulebook"
     },
     "advancement": [
+      {
+        "_id": "OzUOaByAWu33mXH4",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "save",
+          "expertise": false,
+          "fixed": [
+            "str",
+            "con"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "WiBi42MnWS2jTsPq",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": false,
+          "fixed": [],
+          "points": 2,
+          "choices": [
+            "acro",
+            "athl",
+            "endu",
+            "inti",
+            "mech",
+            "strt"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "rgREAgPwKb3ShacR",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "equipment",
+          "expertise": false,
+          "fixed": [
+            "basic",
+            "improvised"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
       {
         "_id": "JPNPXujRNHQlS4BH",
         "_type": "ItemGrant",
@@ -121,7 +179,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679454521122,
-    "modifiedTime": 1679455964046,
+    "modifiedTime": 1679871943075,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
