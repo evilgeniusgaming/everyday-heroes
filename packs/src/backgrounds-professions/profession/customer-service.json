@@ -18,13 +18,25 @@
           "fixed": [
             "cha"
           ],
-          "choices": [
-            "str",
-            "dex",
-            "con",
-            "int",
-            "wis"
-          ]
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "9I8JOThflbicQotT",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": false,
+          "fixed": [
+            "dece",
+            "pers"
+          ],
+          "points": 0,
+          "choices": []
         },
         "level": 1,
         "flags": {},
@@ -59,7 +71,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679450966322,
-    "modifiedTime": 1679719062396,
+    "modifiedTime": 1679856398649,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

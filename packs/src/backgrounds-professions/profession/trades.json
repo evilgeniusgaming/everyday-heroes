@@ -18,13 +18,25 @@
           "fixed": [
             "dex"
           ],
-          "choices": [
-            "str",
-            "con",
-            "int",
-            "wis",
-            "cha"
-          ]
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "WzRm7dXvvjJvK50Z",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": false,
+          "fixed": [
+            "arts",
+            "mech"
+          ],
+          "points": 0,
+          "choices": []
         },
         "level": 1,
         "flags": {},
@@ -58,7 +70,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679450998300,
-    "modifiedTime": 1679718992113,
+    "modifiedTime": 1679856501431,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

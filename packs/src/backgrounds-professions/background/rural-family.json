@@ -24,6 +24,24 @@
         "level": 1,
         "flags": {},
         "title": ""
+      },
+      {
+        "_id": "B5a6ptswA0MpM3I2",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": false,
+          "fixed": [
+            "mech",
+            "surv"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
       }
     ],
     "identifier": {
@@ -40,7 +58,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679369896454,
-    "modifiedTime": 1679718471173,
+    "modifiedTime": 1679791812258,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

@@ -26,6 +26,23 @@
         "title": ""
       },
       {
+        "_id": "8ChQ6WoAu7rsYQIW",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": false,
+          "fixed": [
+            "perc"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
         "_id": "o1cTTvXcV8ra1VRr",
         "_type": "ItemGrant",
         "identifier": "",
@@ -53,7 +70,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679369883411,
-    "modifiedTime": 1679718392992,
+    "modifiedTime": 1679791592914,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

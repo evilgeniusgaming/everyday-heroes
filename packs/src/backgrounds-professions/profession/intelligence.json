@@ -18,13 +18,25 @@
           "fixed": [
             "int"
           ],
-          "choices": [
-            "str",
-            "dex",
-            "con",
-            "wis",
-            "cha"
-          ]
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "EWMftaiRaT4dgQUX",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": false,
+          "fixed": [
+            "comp",
+            "inve"
+          ],
+          "points": 0,
+          "choices": []
         },
         "level": 1,
         "flags": {},
@@ -59,7 +71,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679450977591,
-    "modifiedTime": 1679719034380,
+    "modifiedTime": 1679856466529,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

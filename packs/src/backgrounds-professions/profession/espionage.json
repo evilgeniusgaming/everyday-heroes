@@ -26,6 +26,46 @@
         "title": ""
       },
       {
+        "_id": "DcFv405crSwONl8H",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": false,
+          "fixed": [
+            "dece",
+            "secu",
+            "slth"
+          ],
+          "points": 1,
+          "choices": [
+            "acro",
+            "athl"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "Vhn8bCG3HvtNLx2k",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "equipment",
+          "expertise": false,
+          "fixed": [
+            "basic",
+            "advanced"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
         "_id": "KWtpNfwsGrWyT4Wl",
         "_type": "ItemGrant",
         "identifier": "",
@@ -54,7 +94,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679450971858,
-    "modifiedTime": 1679719048134,
+    "modifiedTime": 1679853782320,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
