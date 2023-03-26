@@ -48,14 +48,11 @@ export default class TraitAdvancement extends Advancement {
 				label: "EH.Equipment.Proficiency.Label[other]",
 				icon: "systems/everyday-heroes/artwork/svg/advancement/trait-equipment.svg",
 				hintType: "EH.Equipment.Category.Label[other]"
-			},
-			language: {
-				label: "EH.Language.Label[other]",
-				icon: "systems/everyday-heroes/artwork/svg/advancement/trait-language.svg",
-				hintType: "EH.Language.Label[other]"
 			}
 		};
 	}
+
+	// TODO: Adjust sorting to ensure expertise is always after proficiency
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Instance Properties                      */
@@ -117,7 +114,6 @@ export default class TraitAdvancement extends Advancement {
 				if ( this.configuration.expertise ) return skill === 1;
 				else return skill < 1;
 			case "equipment": return !system.traits.equipment.has(key);
-			case "language": return !system.traits.languages.includes(key);
 		}
 	}
 
@@ -147,9 +143,6 @@ export default class TraitAdvancement extends Advancement {
 				case "equipment":
 					// TODO: No need to coerce into an array in V11
 					updates["system.traits.equipment"] = Array.from(system.traits.equipment.add(key));
-					break;
-				case "language":
-					updates["system.traits.languages"] = [...system.traits.languages, key];
 					break;
 				default:
 					data.assignments.delete(key);
@@ -182,7 +175,6 @@ export default class TraitAdvancement extends Advancement {
 			case "save": return system.abilities[key]?.saveProficiency.multiplier >= 1;
 			case "skill": return system.skills[key]?.proficiency.multiplier >= (this.configuration.expertise ? 1 : 0);
 			case "equipment": return system.traits.equipment.has(key);
-			case "language": return system.traits.languages.includes(key);
 		}
 	}
 
@@ -209,9 +201,6 @@ export default class TraitAdvancement extends Advancement {
 				case "equipment":
 					// TODO: No need to coerce into an array in V11
 					updates["system.traits.equipment"] = Array.from(system.traits.equipment.delete(key));
-					break;
-				case "language":
-					updates["system.traits.languages"] = system.traits.languages.filter(l => l !== key);
 					break;
 			}
 		}

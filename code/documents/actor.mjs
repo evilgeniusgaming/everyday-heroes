@@ -1146,4 +1146,18 @@ export default class ActorEH extends Actor {
 			}
 		}
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _onCreate(data, options, userId) {
+		super._onCreate(data, options, userId);
+		if ( userId !== game.user.id ) return;
+
+		// Ensure abilities & skills have their default values populated
+		// TODO: This would be better handled by MappingField, but I'm not sure the best way to go about that
+		const updates = {};
+		if ( foundry.utils.isEmpty(this.system._source.abilities) ) updates["system.abilities"] = this.system.abilities;
+		if ( foundry.utils.isEmpty(this.system._source.abilities) ) updates["system.skills"] = this.system.skills;
+		if ( !foundry.utils.isEmpty(updates) ) this.update(updates);
+	}
 }

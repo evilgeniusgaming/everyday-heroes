@@ -66,56 +66,12 @@ export default class TraitFlow extends AdvancementFlow {
 	/*  Action Handlers                          */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	activateListeners(jQuery) {
-		super.activateListeners(jQuery);
-		const html = jQuery[0];
-
-		for ( const element of html.querySelectorAll(".tag-input input") ) {
-			element.addEventListener("change", this._onTagInputAction.bind(this, "add"));
-		}
-		for ( const element of html.querySelectorAll('.tag-input [data-action="delete"]') ) {
-			element.addEventListener("click", this._onTagInputAction.bind(this, "delete"));
-		}
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
 	_onChangeInput(event) {
 		super._onChangeInput(event);
 		const input = event.currentTarget;
 		const key = input.name.replace("assignments.", "");
 		if ( input.checked ) this.assignments.add(key);
 		else this.assignments.delete(key);
-		this.render();
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Handle actions associated with tag inputs.
-	 * @param {string} type - Action type being handled.
-	 * @param {ClickEvent} event - Triggering click event.
-	 * @returns {Promise}
-	 */
-	async _onTagInputAction(type, event) {
-		event.preventDefault();
-		const tagInput = event.target.closest(".tag-input");
-		if ( !tagInput ) return;
-		const shouldValidate = tagInput.dataset.validate;
-
-		switch (type) {
-			case "add":
-				const validOptions = Array.from(event.target.list?.options ?? []).map(o => o.value);
-				if ( shouldValidate && !validOptions.includes(event.target.value) ) return;
-				this.assignments.add(event.target.value);
-				break;
-			case "delete":
-				const key = event.target.closest("[data-key]")?.dataset.key;
-				this.assignments.delete(key);
-				break;
-			default:
-				return console.warn(`Invalid tag action type ${type}`);
-		}
 		this.render();
 	}
 

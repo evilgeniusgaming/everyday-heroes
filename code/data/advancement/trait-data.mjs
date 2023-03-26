@@ -1,7 +1,7 @@
 /**
  * Configuration data for the Trait advancement type.
  *
- * @property {string} type - Type of trait to modify (e.g. "asi", "save", "skill", "equipment", "language").
+ * @property {string} type - Type of trait to modify (e.g. "asi", "save", "skill", "equipment").
  * @property {boolean} expertise - For skill proficiency, is this instead granting expertise?
  * @property {Set<string>} fixed - Keys that get an automatic improvement.
  * @property {number} points - Number of choices that can be selected.
@@ -10,7 +10,7 @@
 export class TraitConfigurationData extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
-			type: new foundry.data.fields.StringField({blank: false, initial: "save", label: ""}),
+			type: new foundry.data.fields.StringField({blank: false, initial: "skill", label: ""}),
 			expertise: new foundry.data.fields.BooleanField({label: ""}),
 			fixed: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
 				label: "EH.Advancement.Trait.Fixed.Label", hint: "EH.Advancement.Trait.Fixed.Hint"
