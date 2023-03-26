@@ -30,24 +30,24 @@ export default class TraitFlow extends AdvancementFlow {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async getData() {
+		const conf = this.advancement.configuration;
 		const points = {
 			assigned: this.assignments.size,
-			available: this.advancement.configuration.points - this.assignments.size,
-			total: this.advancement.configuration.points
+			available: conf.points - this.assignments.size,
+			total: conf.points
 		};
 
 		const traits = {};
 		for ( const [key, config] of Object.entries(this.advancement.options ?? {}) ) {
-			if ( !this.advancement.configuration.fixed.has(key)
-				&& !this.advancement.configuration.choices.has(key) ) continue;
+			if ( conf.choices.size && !conf.choices.has(key) && !conf.fixed.has(key) ) continue;
 			const canApply = this.advancement.canApply(key, this.advancement.actor.system);
 			const ability = this.advancement.actor.system.abilities[key];
-			const checked = this.assignments.has(key) || (this.advancement.configuration.fixed.has(key) && canApply);
+			const checked = this.assignments.has(key) || (conf.fixed.has(key) && canApply);
 			traits[key] = {
-				label: this.advancement.configuration.type !== "asi" ? config.label
+				label: conf.type !== "asi" ? config.label
 					: `${config.label}: ${numberFormat(ability.value + (checked ? 1 : 0))}`,
 				checked,
-				disabled: !canApply || this.advancement.configuration.fixed.has(key) || (!checked && !points.available)
+				disabled: !canApply || conf.fixed.has(key) || (!checked && !points.available)
 			};
 		}
 
@@ -55,7 +55,7 @@ export default class TraitFlow extends AdvancementFlow {
 		return foundry.utils.mergeObject(super.getData(), {
 			assignments: this.assignments,
 			traits: this.advancement.options ? traits : null,
-			traitConfig: this.advancement.constructor.traits[this.advancement.configuration.type],
+			traitConfig: this.advancement.constructor.traits[conf.type],
 			pointsRemaining: game.i18n.format(
 				`EH.Advancement.Trait.Points.Remaining[${pluralRule}]`, {points: points.available}
 			)

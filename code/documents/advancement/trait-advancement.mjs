@@ -1,6 +1,7 @@
 import TraitConfig from "../../applications/advancement/trait-config.mjs";
 import TraitFlow from "../../applications/advancement/trait-flow.mjs";
 import { TraitConfigurationData, TraitValueData } from "../../data/advancement/trait-data.mjs";
+import { numberFormat } from "../../utils.mjs";
 import Advancement from "./advancement.mjs";
 
 /**
@@ -35,17 +36,20 @@ export default class TraitAdvancement extends Advancement {
 	static get traits() {
 		return {
 			save: {
-				label: "EH.Ability.Proficiency.Label[other]",
+				title: "EH.Ability.Proficiency.Label[other]",
+				localization: "EH.Ability.Proficiency.Label",
 				icon: "systems/everyday-heroes/artwork/svg/advancement/trait-save.svg",
 				hintType: "EH.Ability.Label[other]"
 			},
 			skill: {
-				label: "EH.Skill.Proficiency.Label[other]",
+				title: "EH.Ability.Proficiency.Label[other]",
+				localization: "EH.Skill.Proficiency.Label",
 				icon: "systems/everyday-heroes/artwork/svg/advancement/trait-skill.svg",
 				hintType: "EH.Skill.Label[other]"
 			},
 			equipment: {
-				label: "EH.Equipment.Proficiency.Label[other]",
+				title: "EH.Ability.Proficiency.Label[other]",
+				localization: "EH.Equipment.Proficiency.Label",
 				icon: "systems/everyday-heroes/artwork/svg/advancement/trait-equipment.svg",
 				hintType: "EH.Equipment.Category.Label[other]"
 			}
@@ -60,7 +64,7 @@ export default class TraitAdvancement extends Advancement {
 
 	/**
 	 * Options presented based on provided type.
-	 * @type {Object<string, LabeledConfiguration>|null}
+	 * @type {Object<string, LabeledConfiguration>}
 	 */
 	get options() {
 		switch (this.configuration.type) {
@@ -68,7 +72,7 @@ export default class TraitAdvancement extends Advancement {
 			case "save": return CONFIG.EverydayHeroes.abilities;
 			case "skill": return CONFIG.EverydayHeroes.skills;
 			case "equipment": return CONFIG.EverydayHeroes.equipmentCategories;
-			default: return null;
+			default: throw new Error("Everyday Heroes | Invalid trait type");
 		}
 	}
 
@@ -81,7 +85,7 @@ export default class TraitAdvancement extends Advancement {
 	 */
 	prepareData() {
 		const traitConfig = this.constructor.traits[this.configuration.type];
-		this.title = this.title || game.i18n.localize(traitConfig?.label) || this.constructor.metadata.title;
+		this.title = this.title || game.i18n.localize(traitConfig?.title) || this.constructor.metadata.title;
 		this.icon = this.icon || traitConfig?.icon ||this.constructor.metadata.icon;
 		super.prepareData();
 	}
@@ -91,8 +95,26 @@ export default class TraitAdvancement extends Advancement {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	summaryForLevel(level, { configMode=false }={}) {
-		// TODO: Display proper summary
-		return "";
+		const conf = this.configuration;
+		const tags = Array.from(conf.fixed).map(k => this.options[k].label);
+		const choices = Array.from(conf.choices).map(k => this.options[k].label);
+
+		const listFormatter = new Intl.ListFormat(game.i18n.lang, {
+			type: conf.points === 1 ? "disjunction" : "conjunction", style: "short"
+		});
+		const pluralRules = new Intl.PluralRules(game.i18n.lang);
+		if ( conf.points ) {
+			let localizationType;
+			if ( !conf.choices.size ) localizationType = "Any";
+			else if ( conf.points > 1 ) localizationType = "Limited";
+			else if ( conf.points === 1 ) tags.push(listFormatter.format(choices));
+			if ( localizationType ) tags.push(game.i18n.format(`EH.Advancement.Trait.Choices.Summary.${localizationType}`, {
+				number: numberFormat(conf.points), list: listFormatter.format(choices),
+				type: game.i18n.localize(`${this.constructor.traits[conf.type].localization}[${pluralRules.select(conf.points)}]`)
+			}));
+		}
+
+		return `<ul class="item-tags">${tags.map(t => `<li class="type">${t}</li>`).join("")}</ul>`;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

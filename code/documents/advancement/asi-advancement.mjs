@@ -24,26 +24,11 @@ export default class ASIAdvancement extends TraitAdvancement {
 	static get traits() {
 		return {
 			asi: {
-				label: "EH.Advancement.ASI.Title",
+				title: "EH.Advancement.ASI.Title",
+				localization: "EH.Ability.Label",
 				hintType: "EH.Ability.Label[other]",
 				hintImprovement: "+1"
 			}
 		};
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Display Methods                          */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	summaryForLevel(level, { configMode=false }={}) {
-		// TODO: Display summary of fixed & choice while in config mode
-		if ( !this.value.assignments ) return "";
-		return Object.entries(this.value.assignments).reduce((html, [key, value]) => {
-			const name = CONFIG.EverydayHeroes.abilities[key]?.label ?? key;
-			html += `<span class="tag">${name} <strong>`;
-			html += EverydayHeroes.utils.numberFormat(value, { sign: true });
-			html += "</strong></span>\n";
-			return html;
-		}, "");
 	}
 }

@@ -18,29 +18,35 @@ export default class TraitConfig extends AdvancementConfig {
 
 	getData() {
 		const context = super.getData();
+		context.types = Object.entries(this.advancement.constructor.traits).reduce((types, [key, config]) => {
+			types[key] = { ...config, label: `${config.localization}[other]` };
+			return types;
+		}, {});
 		context.showType = this.advancement._type === "Trait";
-		context.types = this.advancement.constructor.traits;
+		const traitConfig = context.types[this.advancement.configuration.type];
+		if ( traitConfig.localization ) context.default.title = game.i18n.localize(`${traitConfig.localization}[other]`);
+		if ( traitConfig.icon ) context.default.icon = traitConfig.icon;
+
 		if ( !this.advancement.options ) return context;
 
 		context.fixed = {};
 		context.choices = {};
-		for ( const [key, ability] of Object.entries(this.advancement.options) ) {
+		for ( const [key, option] of Object.entries(this.advancement.options) ) {
 			context.fixed[key] = {
-				label: ability.label,
+				label: option.label,
 				checked: this.advancement.configuration.fixed.has(key),
 				disabled: this.advancement.configuration.choices.has(key)
 			};
 			context.choices[key] = {
-				label: ability.label,
+				label: option.label,
 				checked: this.advancement.configuration.choices.has(key),
 				disabled: this.advancement.configuration.fixed.has(key)
 			};
 		}
 
-		const typeConfig = context.types[this.advancement.configuration.type];
-		const type = game.i18n.localize(typeConfig.hintType).toLowerCase();
+		const type = game.i18n.localize(traitConfig.hintType).toLowerCase();
 		let improvement;
-		if ( typeConfig.hintImprovement ) improvement = game.i18n.localize(typeConfig.hintImprovement);
+		if ( traitConfig.hintImprovement ) improvement = game.i18n.localize(traitConfig.hintImprovement);
 		else if ( (this.advancement.configuration.type === "skill") && this.advancement.configuration.expertise ) {
 			improvement = game.i18n.localize("EH.Proficiency.Level.Expertise").toLowerCase();
 	  } else improvement = game.i18n.localize("EH.Proficiency.Label[one]").toLowerCase();

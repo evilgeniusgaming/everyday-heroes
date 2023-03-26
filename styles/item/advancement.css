@@ -6,7 +6,7 @@
 	list-style: none;
 }
 .everyday-heroes ol.advancement.level-list {
-	grid-template-columns: auto max-content;
+	grid-template-columns: auto minmax(0, max-content);
 	border: 1px solid var(--eh-border-color-weak);
 	border-radius: 10px;
 	background-color: var(--eh-background-color-light);
@@ -45,11 +45,11 @@
 	gap: 0.2em;
 	margin: 0.5em;
 }
-.everyday-heroes ol.advancement-list li {
+.everyday-heroes ol.advancement-list > li {
 	margin-inline: -0.5em;
 	padding: 0.25em 0.5em;
 }
-.everyday-heroes ol.advancement-list li:hover {
+.everyday-heroes ol.advancement-list > li:hover {
 	background-color: var(--eh-background-color-mid);
 }
 .everyday-heroes ol.advancement > li > fieldset {
@@ -97,6 +97,6 @@
 	.everyday-heroes ol.advancement,
 	.everyday-heroes ol.advancement > li,
 	.everyday-heroes ol.advancement > li.section > .header {
-		grid-template-columns: auto max-content;
+		grid-template-columns: auto minmax(0, max-content);
 	}
 }
