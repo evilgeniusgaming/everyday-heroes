@@ -87,6 +87,14 @@ export function registerSettings() {
 		type: Boolean,
 		onChange: applyReduceTransparency
 	});
+
+	// Last created item type
+	game.settings.register("everyday-heroes", "_lastCreateTypeItem", {
+		scope: "client",
+		config: false,
+		default: null,
+		type: String
+	});
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

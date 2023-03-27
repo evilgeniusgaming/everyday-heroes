@@ -4,7 +4,7 @@
 			<fieldset>
 				<label>{{localize "EH.Advancement.Trait.Type.Label"}}</label>
 				<select name="configuration.type">
-					{{selectOptions types selected=configuration.type labelAttr="label" localize=true}}
+					{{selectOptions types selected=configuration.type labelAttr="title" localize=true}}
 				</select>
 			</fieldset>
 			{{#if (eq configuration.type "skill")}}

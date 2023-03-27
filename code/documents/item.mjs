@@ -813,12 +813,16 @@ export default class ItemEH extends Item {
 		const label = game.i18n.localize(this.metadata.label);
 		const title = game.i18n.format("DOCUMENT.Create", {type: label});
 
+		const selectedType = data.type ?? game.settings.get("everyday-heroes", "_lastCreateTypeItem")
+			?? CONFIG[documentName]?.defaultType ?? types[0];
+
 		const categories = {};
 		for ( const [key, value] of Object.entries(CONFIG.EverydayHeroes.itemCategories) ) {
 			categories[key] = { label: value.label, children: {} };
 			for ( const type of value.types ) {
 				categories[key].children[type] = {
-					label: game.i18n.localize(CONFIG[documentName]?.typeLabels?.[type] ?? type)
+					label: game.i18n.localize(CONFIG[documentName]?.typeLabels?.[type] ?? type),
+					chosen: type === selectedType
 				};
 			}
 		}
@@ -829,7 +833,7 @@ export default class ItemEH extends Item {
 			name: data.name || game.i18n.format("DOCUMENT.New", {type: label}),
 			folder: data.folder,
 			hasFolders: folders.length >= 1,
-			type: data.type || CONFIG[documentName]?.defaultType || types[0],
+			type: selectedType,
 			categories
 		});
 
@@ -845,6 +849,7 @@ export default class ItemEH extends Item {
 				if ( !data.folder ) delete data.folder;
 				if ( types.length === 1 ) data.type = types[0];
 				if ( !data.name?.trim() ) data.name = this.defaultName();
+				game.settings.set("everyday-heroes", "_lastCreateTypeItem", data.type);
 				return this.create(data, {parent, pack, renderSheet: true});
 			},
 			rejectClose: false,

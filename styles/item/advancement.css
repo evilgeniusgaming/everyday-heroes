@@ -6,7 +6,7 @@
 	list-style: none;
 }
 .everyday-heroes ol.advancement.level-list {
-	grid-template-columns: auto minmax(0, max-content);
+	grid-template-columns: minmax(0, auto) minmax(0, max-content);
 	border: 1px solid var(--eh-border-color-weak);
 	border-radius: 10px;
 	background-color: var(--eh-background-color-light);
@@ -97,6 +97,6 @@
 	.everyday-heroes ol.advancement,
 	.everyday-heroes ol.advancement > li,
 	.everyday-heroes ol.advancement > li.section > .header {
-		grid-template-columns: auto minmax(0, max-content);
+		grid-template-columns: minmax(0, auto) minmax(0, max-content);
 	}
 }

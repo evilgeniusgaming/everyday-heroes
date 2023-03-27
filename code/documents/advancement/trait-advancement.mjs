@@ -42,13 +42,13 @@ export default class TraitAdvancement extends Advancement {
 				hintType: "EH.Ability.Label[other]"
 			},
 			skill: {
-				title: "EH.Ability.Proficiency.Label[other]",
+				title: "EH.Skill.Proficiency.Label[other]",
 				localization: "EH.Skill.Proficiency.Label",
 				icon: "systems/everyday-heroes/artwork/svg/advancement/trait-skill.svg",
 				hintType: "EH.Skill.Label[other]"
 			},
 			equipment: {
-				title: "EH.Ability.Proficiency.Label[other]",
+				title: "EH.Equipment.Proficiency.Label[other]",
 				localization: "EH.Equipment.Proficiency.Label",
 				icon: "systems/everyday-heroes/artwork/svg/advancement/trait-equipment.svg",
 				hintType: "EH.Equipment.Category.Label[other]"

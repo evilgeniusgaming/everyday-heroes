@@ -18,10 +18,7 @@ export default class TraitConfig extends AdvancementConfig {
 
 	getData() {
 		const context = super.getData();
-		context.types = Object.entries(this.advancement.constructor.traits).reduce((types, [key, config]) => {
-			types[key] = { ...config, label: `${config.localization}[other]` };
-			return types;
-		}, {});
+		context.types = this.advancement.constructor.traits;
 		context.showType = this.advancement._type === "Trait";
 		const traitConfig = context.types[this.advancement.configuration.type];
 		if ( traitConfig.localization ) context.default.title = game.i18n.localize(`${traitConfig.localization}[other]`);
