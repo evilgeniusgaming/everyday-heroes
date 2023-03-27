@@ -21,21 +21,21 @@
 	</fieldset>
 
 	<fieldset>
-		<label>Consumption</label>{{!-- TODO: Localize --}}
+		<label>{{localize "EH.Consumption.Label"}}</label>
 		<div class="fields">
 			<label>{{!-- TODO: Should span full width if no type selected --}}
-				<span>Type</span>{{!-- TODO: Localize --}}
+				<span>{{localize "EH.Consumption.Type.Label"}}</span>
 				<select name="system.resource.type">
 					{{selectOptions CONFIG.consumptionTypes selected=system.resource.type labelAttr="label" blank=""}}
 				</select>
 			</label>
 			{{#if system.resource.type}}
 				<label>
-					<span>Amount</span>{{!-- TODO: Localize --}}
+					<span>{{localize "EH.Consumption.Amount.Label"}}</span>
 					<input type="number" name="system.resource.amount" value="{{system.resource.amount}}">
 				</label>
 				<label>
-					<span>Target</span>{{!-- TODO: Localize --}}
+					<span>{{localize "EH.Consumption.Target.Label"}}</span>
 					{{#if item.isEmbedded}}
 						<select name="system.resource.target">
 							{{selectOptions resources selected=system.resource.target blank=""}}
@@ -61,10 +61,12 @@
 					{{selectOptions CONFIG.recoveryPeriods selected=system.uses.period labelAttr="label" blank=""}}
 				</select>
 			</label>
+			{{!-- TODO: Implement uses recovery formulas
 			<label>
 				<span>{{localize "EH.Uses.Recovery.Formula.Label"}}</span>
 				<input type="text" name="system.uses.recovery" value="{{system.uses.recovery}}" placeholder="All">
 			</label>
+			--}}
 	</fieldset>
 
 	{{#if system.hasRecharge}}

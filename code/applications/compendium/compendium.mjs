@@ -35,7 +35,7 @@ export default class CompendiumEH extends Compendium {
 
 	async getData(options={}) {
 		const context = await super.getData(options);
-		await this.collection.getIndex({ fields: ["system.type.value"] });
+		context.index = await this.collection.getIndex({ fields: ["system.type.value"] });
 		// TODO: Auto-index these fields in V11
 		context.sections = this._createSections(context);
 		return context;

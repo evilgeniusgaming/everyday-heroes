@@ -10,11 +10,11 @@ export default class DamageConfigurationDialog extends BaseConfigurationDialog {
 	static _dialogButtons(roll, options, resolve, reject) {
 		return {
 			critical: {
-				label: "Critical Hit", // TODO: Localize
+				label: game.i18n.localize("EH.Dice.Action.Critical"),
 				callback: html => resolve(this._onDialogSubmit(roll, html, { critical: true }))
 			},
 			normal: {
-				label: "Normal", // TODO: Localize
+				label: game.i18n.localize("EH.Dice.Action.Normal"),
 				callback: html => resolve(this._onDialogSubmit(roll, html, { critical: false }))
 			}
 		};

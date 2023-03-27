@@ -64,7 +64,7 @@ export default class BaseConfigurationDialog extends Dialog {
 	static _dialogButtons(roll, options, resolve, reject) {
 		return {
 			roll: {
-				label: "Roll", // TODO: Localize
+				label: game.i18n.localize("EH.Dice.Action.Roll"),
 				callback: html => resolve(this._onDialogSubmit(roll, html))
 			}
 		};

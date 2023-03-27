@@ -10,19 +10,19 @@ export default class ChallengeConfigurationDialog extends BaseConfigurationDialo
 	static _dialogButtons(roll, options, resolve, reject) {
 		return {
 			advantage: {
-				label: "Advantage", // TODO: Localize
+				label: game.i18n.localize("EH.Dice.Action.Advantage"),
 				callback: html => resolve(this._onDialogSubmit(roll, html, {
 					mode: CONFIG.Dice.ChallengeDie.MODES.ADVANTAGE
 				}))
 			},
 			normal: {
-				label: "Normal", // TODO: Localize
+				label: game.i18n.localize("EH.Dice.Action.Normal"),
 				callback: html => resolve(this._onDialogSubmit(roll, html, {
 					mode: CONFIG.Dice.ChallengeDie.MODES.NORMAL
 				}))
 			},
 			disadvantage: {
-				label: "Disadvantage", // TODO: Localize
+				label: game.i18n.localize("EH.Dice.Action.Disadvantage"),
 				callback: html => resolve(this._onDialogSubmit(roll, html, {
 					mode: CONFIG.Dice.ChallengeDie.MODES.DISADVANTAGE
 				}))

@@ -1,4 +1,4 @@
-import { numberFormat } from "../../utils.mjs";
+import { numberFormat, simplifyBonus } from "../../utils.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import AttackTemplate from "./templates/attack-template.mjs";
@@ -40,7 +40,8 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @property {number} bonuses.critical.dice - Extra critical damage dice.
  * @property {object} overrides
  * @property {string} overrides.ability - Ability used when making attacks with this weapon.
- * @property {number} overrides.criticalThreshold - Number needed to roll to score a critical hit with this weapon.
+ * @property {object} overrides.critical
+ * @property {number} overrides.critical.threshold - Number needed to roll to score a critical hit with this weapon.
  */
 export default class WeaponData extends SystemDataModel.mixin(
 	AttackTemplate, DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate
@@ -59,7 +60,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.StringField({initial: "melee", label: "EH.Weapon.Type.Label"}),
+				value: new foundry.data.fields.StringField({label: "EH.Weapon.Type.Label"}),
 				category: new foundry.data.fields.StringField({label: "EH.Equipment.Category.Label[one]"})
 			}, {label: "EH.Item.Type.Label"}),
 			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
@@ -107,7 +108,9 @@ export default class WeaponData extends SystemDataModel.mixin(
 			}),
 			overrides: new foundry.data.fields.SchemaField({
 				ability: new foundry.data.fields.StringField({label: "EH.Weapon.Overrides.Ability"}),
-				criticalThreshold: new foundry.data.fields.NumberField({label: "EH.Weapon.Overrides.CriticalThreshold.Label"})
+				critical: new foundry.data.fields.SchemaField({
+					threshold: new foundry.data.fields.NumberField({label: "EH.Weapon.Overrides.CriticalThreshold.Label"})
+				})
 			})
 		});
 	}
@@ -139,6 +142,16 @@ export default class WeaponData extends SystemDataModel.mixin(
 		if ( !config ) return "systems/everyday-heroes/artwork/svg/action/attack-melee-one-handed.svg";
 		if ( !config.icons ) return config.icon;
 		return config.icons[this.type.value];
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get attackMod() {
+		const rollData = this.parent?.getRollData() ?? {};
+		return super.attackMod
+			+ simplifyBonus(this.bonuses.attack, rollData)
+			+ simplifyBonus(this.ammunition?.system.bonuses.attack, rollData)
+			+ simplifyBonus(this.parent?.actor?.system.bonuses?.attack[this.type.value], rollData);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -180,9 +193,10 @@ export default class WeaponData extends SystemDataModel.mixin(
 	get criticalThreshold() {
 		// TODO: Replace actor threshold with a more customizable system
 		const threshold = Math.min(
-			this.parent?.actor?.system.overrides?.criticalThreshold?.all ?? Infinity,
-			this.ammunition?.system.overrides.criticalThreshold ?? Infinity,
-			this.overrides.criticalThreshold ?? Infinity
+			this.parent?.actor?.system.overrides?.critical.threshold?.all ?? Infinity,
+			this.parent?.actor?.system.overrides?.critical.threshold?.[this.type.value] ?? Infinity,
+			this.ammunition?.system.overrides.critical.threshold ?? Infinity,
+			this.overrides.critical.threshold ?? Infinity
 		);
 		return threshold < Infinity ? threshold : 20;
 	}

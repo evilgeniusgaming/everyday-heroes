@@ -132,7 +132,10 @@
           "melee": [],
           "ranged": []
         },
-        "criticalThreshold": {}
+        "critical": {
+          "multiplier": null,
+          "threshold": {}
+        }
       },
       "traits": {
         "damage": {
@@ -259,7 +262,17 @@
         "die": 0
       },
       "bonuses": {
-        "damage": ""
+        "attack": "",
+        "damage": "",
+        "critical": {
+          "damage": "",
+          "dice": 0
+        }
+      },
+      "overrides": {
+        "critical": {
+          "threshold": null
+        }
       }
     },
     "archetype": {
@@ -409,7 +422,9 @@
       },
       "overrides": {
         "ability": "",
-        "criticalThreshold": null
+        "critical": {
+          "threshold": null
+        }
       }
     }
   }

@@ -84,7 +84,7 @@ export default class RestDialog extends Dialog {
 		context.config = this.data.config;
 		context.result = this.result;
 		context.hd = this.actor.system.attributes.hd;
-		context.showHitDice = this.data.config.type === "short";
+		context.showHitDice = (this.data.config.type === "short") && context.hd.denomination;
 		context.showMedical = this.data.config.type === "short";
 		return context;
 	}
@@ -133,8 +133,7 @@ export default class RestDialog extends Dialog {
 		event.preventDefault();
 		// TODO: Ensure this can be rolled with advantage is assistance is provided
 		const roll = await this.actor.rollSkill("medi", {
-			ability: "int", options: { target: 10 },
-			advantage: this.data.config.medicalAttention === "receive"
+			ability: "int", options: { target: 10 }
 		}, { data: { "flags.everyday-heroes.medicalAttention": true } });
 		this.result.medicalRoll = roll;
 		this.render();

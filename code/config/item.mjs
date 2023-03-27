@@ -31,10 +31,8 @@ export const advancementTypes = {
 export const consumptionTypes = {
 	resource: {
 		label: "EH.Resource.Label[one]"
-	},
-	hitDice: {
-		label: "EH.HitDice.Label[other]"
 	}
+	// TODO: Add support for more consumption types like hit dice
 };
 preLocalize("consumptionTypes", { key: "label" });
 

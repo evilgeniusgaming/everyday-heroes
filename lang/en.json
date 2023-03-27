@@ -221,6 +221,14 @@
 
 "Configuration.Title": "{type} Configuration",
 
+"Consumption.Label": "Consumption",
+"Consumption.Amount.Label": "Amount",
+"Consumption.Target.Label": "Target",
+"Consumption.Type.Label": "Type",
+"Consumption.Warning.Insufficient": "Only {available} uses of {resource} available, {required} needed.",
+"Consumption.Warning.InvalidType": "Unrecognized resource {type} found for consumption",
+"Consumption.Warning.NotFound": "Resource {target} not found to consume.",
+
 "Creature.Type.Label": "Creature Type",
 "Creature.Type.Tags.Label": "Type Tags",
 "Creature.Type.Alien.Label": "Alien",
@@ -291,6 +299,11 @@
 "Details.Wealth.Bonus.Label": "Wealth Bonus",
 
 "Dice.Denomination": "Denomination",
+"Dice.Action.Advantage": "Advantage",
+"Dice.Action.Critical": "Critical",
+"Dice.Action.Disadvantage": "Disadvantage",
+"Dice.Action.Normal": "Normal",
+"Dice.Action.Roll": "Roll",
 
 "Effect.New": "New Effect",
 "Effect.Action.Create": "Create Effect",
@@ -614,6 +627,7 @@
 "Uses.Spent.Label": "Spent Uses",
 "Uses.Recovery.Formula.Label": "Amount Recovered",
 "Uses.Recovery.Period.Label": "Recovery Period",
+"Uses.Warning.Insufficient": "No uses of this item remaining.",
 
 "Weapon.ToHit": "{mod} To Hit",
 "Weapon.Jammed.Label": "Jammed",

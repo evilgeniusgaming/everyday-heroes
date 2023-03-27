@@ -1,3 +1,5 @@
+import { simplifyBonus } from "../../../utils.mjs";
+
 /**
  * Data model template for items that make attacks. Does not introduce any fields of its own, but provides
  * some data preparation methods and helpers.
@@ -35,9 +37,10 @@ export default class AttackTemplate {
 	 * @type {number}
 	 */
 	get attackMod() {
-		const ability = this.parent?.actor?.system.abilities?.[this.attackAbility];
-		// TODO: Take flat bonuses into account
-		return (ability?.mod ?? 0) + (Number.isNumeric(this.proficiency?.term) ? this.proficiency.flat : 0);
+		const rollData = this.parent?.getRollData() ?? {};
+		return (rollData.abilities?.[this.attackAbility]?.mod ?? 0)
+			+ simplifyBonus(this.proficiency?.term, rollData)
+			+ simplifyBonus(this.parent?.actor?.system.bonuses?.attack.all, rollData);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

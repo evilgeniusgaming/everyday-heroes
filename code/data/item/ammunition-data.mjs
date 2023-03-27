@@ -20,6 +20,12 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @property {object} bonuses
  * @property {string} bonuses.attack - Bonus to the weapon's attack rolls.
  * @property {string} bonuses.damage - Bonus to the weapon's damage rolls.
+ * @property {object} bonuses.critical
+ * @property {string} bonuses.critical.damage - Extra critical damage.
+ * @property {number} bonuses.critical.dice - Extra critical damage dice.
+ * @property {object} overrides
+ * @property {object} overrides.critical
+ * @property {number} overrides.critical.threshold - Number needed to roll to score a critical hit with this ammo.
  */
 export default class AmmunitionData extends SystemDataModel.mixin(
 	DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate
@@ -53,7 +59,20 @@ export default class AmmunitionData extends SystemDataModel.mixin(
 			}),
 			bonuses: new foundry.data.fields.SchemaField({
 				attack: new FormulaField({label: "EH.Weapon.Bonus.Attack.Label"}),
-				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label"})
+				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label"}),
+				critical: new foundry.data.fields.SchemaField({
+					damage: new FormulaField({
+						label: "EH.Weapon.Bonus.Critical.Damage.Label", hint: "EH.Weapon.Bonus.Critical.Damage.Hint"
+					}),
+					dice: new foundry.data.fields.NumberField({
+						label: "EH.Weapon.Bonus.Critical.Dice.Label", hint: "EH.Weapon.Bonus.Critical.Dice.Hint"
+					})
+				})
+			}),
+			overrides: new foundry.data.fields.SchemaField({
+				critical: new foundry.data.fields.SchemaField({
+					threshold: new foundry.data.fields.NumberField({label: "EH.Weapon.Overrides.CriticalThreshold.Label"})
+				})
 			})
 		});
 	}

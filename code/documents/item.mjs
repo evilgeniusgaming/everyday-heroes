@@ -1,4 +1,4 @@
-import { buildRoll } from "../dice/utils.mjs";
+import { buildMinimum, buildRoll } from "../dice/utils.mjs";
 import { slugify } from "../utils.mjs";
 
 /**
@@ -332,25 +332,20 @@ export default class ItemEH extends Item {
 			const res = this.system.resource;
 			// TODO: Support other resource types
 			if ( res.type !== "resource" ) {
-				// TODO: Localize
-				throw new Error("Only resource types are supported at the moment");
+				throw new Error(game.i18n.format("EH.Consumption.Warning.InvalidType", { type: res.type }));
 			}
 			const resource = this.actor?.system.resources?.[res.target];
-			if ( !resource ) {
-				// TODO: Localize
-				throw new Error(`Resource "${res.target}" not found to consume.`);
-			}
-			if ( resource.available < res.amount ) {
-				// TODO: Localize
-				throw new Error(`Only ${resource.available} uses of ${resource.label} available, ${res.amount} needed.`);
-			}
+			if ( !resource ) throw new Error(game.i18n.format("EH.Consumption.Warning.NotFound", { target: res.target }));
+			if ( resource.available < res.amount ) throw new Error(game.i18n.format("EH.Consumption.Warning.Insufficient", {
+				available: resource.available, resource: resource.label, required: res.amount
+			}));
 			updates.actor[`system.resources.${res.target}.spent`] = resource.spent + res.amount;
 		}
 
 		if ( config.consume.use ) {
 			const uses = this.system.uses;
 			// TODO: Localize
-			if ( uses.available < 1 ) throw new Error("No limited uses remaining.");
+			if ( uses.available < 1 ) throw new Error(game.i18n.localize("EH.Uses.Warning.Insufficient"));
 			updates.item["system.uses.spent"] = uses.spent + 1;
 		}
 
@@ -415,7 +410,7 @@ export default class ItemEH extends Item {
 			...(this.actor?.getRollData({ deterministic }) ?? {}),
 			item: this.toObject(false).system
 		};
-		// TODO: Add ability mod & proficiency
+		rollData.prof ??= this.system.proficiency;
 		return rollData;
 	}
 
@@ -545,7 +540,12 @@ export default class ItemEH extends Item {
 			globalBonus: this.actor?.system.bonuses?.ability?.save
 		}, this.getRollData());
 
-		const rollConfig = foundry.utils.mergeObject({ data }, config);
+		const rollConfig = foundry.utils.mergeObject({
+			data,
+			options: {
+				minimum: buildMinimum([this.actor?.system.overrides?.ability?.minimums.save], data)
+			}
+		}, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
 		const flavor = game.i18n.format("EH.Action.Roll", { type: game.i18n.localize("EH.Armor.Action.Save.Label") });
@@ -608,7 +608,7 @@ export default class ItemEH extends Item {
 	async rollAttack(config={}, message={}, dialog={}) {
 		if ( !this.hasAttack ) return console.warn(`${this.name} does not support attack rolls.`);
 		const ability = this.actor?.system.abilities[this.system.damageAbility];
-		const ammunition = undefined;
+		const ammunition = this.system.ammunition;
 
 		// Verify that the weapon has enough rounds left to make the attack
 		if ( this.system.usesRounds && (this.system.roundsToSpend > this.system.rounds?.available) ) {
@@ -624,8 +624,9 @@ export default class ItemEH extends Item {
 			prof: this.system.proficiency.hasProficiency ? this.system.proficiency.term : null,
 			weaponBonus: this.system.bonuses.attack,
 			ammoBonus: ammunition?.system.bonuses.attack,
-			globalBonus: this.actor.system.bonuses?.attack?.all
-			// TODO: Handle weapon- & category-type global bonuses
+			globalBonus: this.actor.system.bonuses?.attack?.all,
+			globalMeleeBonus: this.actor.system.bonuses?.attack?.melee,
+			globalRangedBonus: this.actor.system.bonuses?.attack?.ranged
 		}, this.getRollData());
 
 		const rollConfig = foundry.utils.mergeObject({
@@ -703,22 +704,26 @@ export default class ItemEH extends Item {
 	async rollDamage(config={}, message={}, dialog={}) {
 		if ( !this.hasDamage ) return console.warn(`${this.name} does not support damage rolls.`);
 		const ability = this.actor?.system.abilities[this.system.damageAbility];
-		const ammunition = undefined;
+		const ammunition = this.system.ammunition;
 
 		const { parts, data } = buildRoll({
 			mod: ability?.mod,
 			weaponBonus: this.system.bonuses.damage,
 			ammoBonus: ammunition?.system.bonuses.damage,
-			globalBonus: this.actor?.system.bonuses?.damage?.all
-			// Global attack-type specific damage bonus?
-			// Global damage-type specific damage bonus?
+			globalBonus: this.actor?.system.bonuses?.damage?.all,
+			globalMeleeBonus: this.actor?.system.bonuses?.damage?.melee,
+			globalRangedBonus: this.actor?.system.bonuses?.damage?.ranged
 		}, this.getRollData());
-
-		// TODO: Add support for "Making a Mess" extra critical damage
 
 		const rollConfig = foundry.utils.mergeObject({
 			data,
 			options: {
+				multiplier: this.actor?.system.overrides.critical.multiplier,
+				bonusDamage: [this.system.bonuses.critical.damage, ammunition?.system.bonuses.critical.damage]
+					.filter(d => d)
+					.map(d => Roll.replaceFormulaData(d, data))
+					.join(" + "),
+				bonusDice: (this.system.bonuses.critical.dice ?? 0) + (ammunition?.system.bonuses.critical.dice ?? 0),
 				type: this.system.damage.type
 			}
 		}, config);
