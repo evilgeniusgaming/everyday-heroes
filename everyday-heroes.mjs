@@ -6,6 +6,7 @@
  */
 
 import * as applications from "./code/applications/_module.mjs";
+import * as canvas from "./code/canvas/_module.mjs";
 import config from "./code/config/_module.mjs";
 import * as data from "./code/data/_module.mjs";
 import * as dice from "./code/dice/_module.mjs";
@@ -16,6 +17,7 @@ import * as utils from "./code/utils.mjs";
 
 globalThis.EverydayHeroes = {
 	applications,
+	canvas,
 	config,
 	data,
 	dice,
@@ -33,6 +35,7 @@ Hooks.once("init", function() {
 	game.everydayHeroes = globalThis.EverydayHeroes;
 	CONFIG.EverydayHeroes = config;
 	applications.registerSheets();
+	canvas.registerCanvas();
 	data.utils.registerDataModels("Actor", data.actor.config);
 	data.utils.registerDataModels("Item", data.item.config);
 	dice.registerDice();
@@ -62,6 +65,7 @@ Hooks.on("getChatLogEntryContext", documents.ChatMessageEH.getContextOptions);
 
 export {
 	applications,
+	canvas,
 	config,
 	data,
 	dice,

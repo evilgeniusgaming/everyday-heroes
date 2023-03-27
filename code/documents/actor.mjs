@@ -1052,6 +1052,17 @@ export default class ActorEH extends Actor {
 	/*  Actor Modification                       */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	async modifyTokenAttribute(attribute, value, isDelta, isBar) {
+		if ( attribute === "attributes.hp" ) {
+			const hp = this.system.attributes.hp;
+			const delta = isDelta ? (-1 * value) : (hp.value + hp.temp) - value;
+			return this.applyDamage([{ value: delta }], { ignoreImmunity: true, ignoreReduction: true });
+		}
+		return super.modifyTokenAttribute(attribute, value, isDelta, isBar);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	/**
 	 * Description of a source of damage.
 	 *
@@ -1079,7 +1090,9 @@ export default class ActorEH extends Actor {
 		amount = Math.floor(amount * (options.multiplier ?? 1));
 
 		// Apply damage reduction
-		amount -= simplifyBonus(this.system.traits?.damage?.reduction?.all, this.getRollData({deterministic: true}));
+		if ( !options.ignoreReduction ) {
+			amount -= simplifyBonus(this.system.traits?.damage?.reduction?.all, this.getRollData({deterministic: true}));
+		}
 
 		// Subtract from temp HP first & then from normal HP
 		const deltaTemp = amount > 0 ? Math.min(hp.temp, amount) : 0;
