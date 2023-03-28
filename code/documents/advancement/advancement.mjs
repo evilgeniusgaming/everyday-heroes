@@ -89,7 +89,7 @@ export default class Advancement extends BaseAdvancement {
 				hint: ""
 			},
 			multiLevel: false,
-			validItemTypes: new Set(["archetype", "class", "background", "profession"]),
+			validItemTypes: new Set(["archetype", "class", "background", "profession", "feat"]),
 			apps: {
 				config: AdvancementConfig,
 				flow: AdvancementFlow

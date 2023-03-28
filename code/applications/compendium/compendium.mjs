@@ -14,7 +14,8 @@ export default class CompendiumEH extends Compendium {
 			"archetype", "class", "background", "profession",
 			"archetype-talent", "class-talent", "talent",
 			"background-specialFeature", "profession-specialFeature", "specialFeature",
-			"plan", "trick", "feat"
+			"plan", "trick",
+			"basic-feat", "advanced-minor-feat", "advanced-major-feat", "multiclass-feat", "feat"
 		];
 		return concept
 			.concat(Object.keys(CONFIG.EverydayHeroes.gearTypes));
@@ -36,7 +37,7 @@ export default class CompendiumEH extends Compendium {
 	async getData(options={}) {
 		const context = await super.getData(options);
 		// TODO: Auto-index these fields in V11
-		await this.collection.getIndex({ fields: ["system.type.value"] });
+		await this.collection.getIndex({ fields: ["system.type.value", "system.type.category"] });
 		if ( !context.index ) {
 			// TODO: Temp solution for bug with V11
 			context.index = this.collection.index.contents;
@@ -63,6 +64,7 @@ export default class CompendiumEH extends Compendium {
 		for ( const item of context.index ) {
 			let section;
 			const typeValue = foundry.utils.getProperty(item, "system.type.value");
+			const typeCategory = foundry.utils.getProperty(item, "system.type.category");
 			if ( CONFIG.Item.systemDataModels[typeValue] ) {
 				section = sections[`${typeValue}-${item.type}`] ??= {
 					label: `${
@@ -71,6 +73,31 @@ export default class CompendiumEH extends Compendium {
 					index: [],
 					sort: sortValues[`${typeValue}-${item.type}`] ?? Infinity
 				};
+			} else if ( item.type === "feat" ) {
+				if ( typeCategory === "advanced" ) {
+					section = sections[`${typeCategory}-${typeValue}-feat`] ??= {
+						label: `${
+							CONFIG.EverydayHeroes.featCategories[typeCategory].label} ${
+							game.i18n.localize("EH.Item.Type.Feat[other]")} - ${
+							CONFIG.EverydayHeroes.featTypes[typeValue].label}`,
+						index: [],
+						sort: sortValues[`${typeCategory}-${typeValue}-feat`] ?? Infinity
+					};
+				} else if ( typeCategory ) {
+					section = sections[`${typeCategory}-feat`] ??= {
+						label: `${
+							CONFIG.EverydayHeroes.featCategories[typeCategory].label} ${
+							game.i18n.localize("EH.Item.Type.Feat[other]")}`,
+						index: [],
+						sort: sortValues[`${typeCategory}-feat`] ?? Infinity
+					};
+				} else {
+					section = sections.feat ??= {
+						label: game.i18n.localize("EH.Item.Type.Feat[other]"),
+						index: [],
+						sort: sortValues.feat ?? Infinity
+					};
+				}
 			} else if ( item.type === "gear" ) {
 				// TODO: Use plural forms
 				section = sections[typeValue] ??= {

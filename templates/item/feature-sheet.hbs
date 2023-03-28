@@ -21,10 +21,13 @@
 			{{/if}}
 		</div>
 		<nav data-group="primary">
-			<a data-tab="description">{{localize "EH.Item.Section.Description"}}</a>
-			<a data-tab="details">{{localize "EH.Item.Section.Details"}}</a>
+			<a data-tab="description">{{localize "EH.Sheet.Section.Description"}}</a>
+			<a data-tab="details">{{localize "EH.Sheet.Section.Details"}}</a>
+			{{#if (everydayHeroes-has item "system.advancement")}}
+				<a data-tab="advancement">{{localize "EH.Sheet.Section.Advancement"}}</a>
+			{{/if}}
 			{{#if item.system.hasEffects}}
-				<a data-tab="effects">{{localize "EH.Item.Section.Effects"}}</a>
+				<a data-tab="effects">{{localize "EH.Sheet.Section.Effects"}}</a>
 			{{/if}}
 		</nav>
 	</header>
@@ -36,6 +39,11 @@
 		<div class="tab" data-group="primary" data-tab="details">
 			{{> "everydayHeroes.feature-details"}}
 		</div>
+		{{#if (everydayHeroes-has item "system.advancement")}}
+			<div class="tab" data-group="primary" data-tab="advancement">
+				{{> "everydayHeroes.item-advancement"}}
+			</div>
+		{{/if}}
 		{{#if item.system.hasEffects}}
 			<div class="tab inventory" data-group="primary" data-tab="effects">
 				{{> "everydayHeroes.active-effects"}}

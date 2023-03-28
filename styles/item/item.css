@@ -26,6 +26,8 @@
 	grid-column: 1;
 	z-index: 4;
 	display: flex;
+	align-items: center;
+	justify-content: center;
 	max-width: 128px;
 	border: 1px solid var(--eh-border-color-strong);
 	border-radius: 20px 0 0 20px;
@@ -34,7 +36,8 @@
 }
 .item.sheet form > header > div.image img {
 	border: none;
-	aspect-ratio: 1;
+	max-width: 128px;
+	max-height: 128px;
 }
 
 .item.sheet form > header > div.fields {
@@ -82,7 +85,7 @@
 	display: block;
 	flex: 1 0 100%;
 	border: 1px solid var(--eh-border-color-weak);
-	padding-block: 0.5rem;
+	padding-block: 0.35rem;
 	padding-inline: 20px 10px;
 	background-color: var(--eh-background-color-mid);
 	text-align: center;
@@ -113,10 +116,17 @@
 	background-color: var(--eh-background-color-white);
 	overflow: clip;
 }
+
 .item.sheet main > [data-tab="description"] > section .editor {
 	min-height: 12em;
 	margin-inline: 0.5em;
 }
+.item.sheet main > [data-tab="description"] > section .editor.prosemirror {
+	margin: -0.5em;
+	max-width: unset;
+	max-height: unset;
+}
+
 .item.sheet main > [data-tab="description"] > section footer {
 	margin: -0.5em;
 	margin-block-start: 0.5em;

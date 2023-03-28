@@ -18,6 +18,14 @@
             "minimums": {
               "check": "",
               "save": ""
+            },
+            "checkProficiency": {
+              "multiplier": null,
+              "rounding": null
+            },
+            "saveProficiency": {
+              "multiplier": null,
+              "rounding": null
             }
           }
         }
@@ -43,7 +51,11 @@
         },
         "overrides": {
           "skill": {
-            "minimum": ""
+            "minimum": "",
+            "proficiency": {
+              "multiplier": null,
+              "rounding": null
+            }
           }
         },
         "skills": {}
@@ -72,7 +84,8 @@
           "bonus": ""
         },
         "hd": {
-          "spent": 0
+          "spent": 0,
+          "minimum": ""
         },
         "hp": {
           "value": 0,

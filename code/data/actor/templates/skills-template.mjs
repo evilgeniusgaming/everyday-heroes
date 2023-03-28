@@ -26,6 +26,8 @@ import Proficiency from "../../../documents/proficiency.mjs";
  * @property {object} overrides
  * @property {object} overrides.skill
  * @property {string} overrides.skill.minimum - Global minimum Challenge Die value for skills.
+ * @property {string} overrides.skill.proficiency.multiplier - Minimum proficiency multiplier for skills.
+ * @property {string} overrides.skill.proficiency.rounding - Default proficiency rounding for skills.
  * @property {Object<string, SkillData>} skills - Actor's skills.
  */
 export default class SkillsTemplate extends foundry.abstract.DataModel {
@@ -39,7 +41,15 @@ export default class SkillsTemplate extends foundry.abstract.DataModel {
 			}, {label: "EH.Bonuses.Label"}),
 			overrides: new foundry.data.fields.SchemaField({
 				skill: new foundry.data.fields.SchemaField({
-					minimum: new FormulaField({determinstic: true, label: "EH.Skill.Orverride.Min"})
+					minimum: new FormulaField({determinstic: true, label: "EH.Skill.Orverride.Min"}),
+					proficiency: new foundry.data.fields.SchemaField({
+						multiplier: new foundry.data.fields.NumberField({
+							nullable: true, initial: null, min: 0.5, max: 2, step: 0.5, label: "EH.Proficiency.Multiplier"
+						}),
+						rounding: new foundry.data.fields.StringField({
+							nullable: true, initial: null, choices: ["down", "up"], label: "EH.Proficiency.Rounding"
+						})
+					})
 				})
 			}, {label: "EH.Override.Label"}),
 			skills: new MappingField(new foundry.data.fields.SchemaField({

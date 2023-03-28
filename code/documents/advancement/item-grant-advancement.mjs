@@ -19,6 +19,7 @@ export default class ItemGrantAdvancement extends Advancement {
 			icon: "systems/everyday-heroes/artwork/svg/advancement/item-grant.svg",
 			title: game.i18n.localize("EH.Advancement.ItemGrant.Title"),
 			hint: game.i18n.localize("EH.Advancement.ItemGrant.Hint"),
+			validItemTypes: new Set(["archetype", "class", "background", "profession"]),
 			apps: {
 				config: ItemGrantConfig,
 				flow: ItemGrantFlow
@@ -32,7 +33,9 @@ export default class ItemGrantAdvancement extends Advancement {
 	 * The item types that are supported in Item Grant.
 	 * @type {Set<string>}
 	 */
-	static VALID_TYPES = new Set(["feat", "specialFeature", "talent", "armor", "weapon", "gear"]);
+	static VALID_TYPES = new Set([
+		"specialFeature", "talent", "plan", "trick", "armor", "weapon", "ammunition", "explosive", "gear"
+	]);
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Display Methods                          */

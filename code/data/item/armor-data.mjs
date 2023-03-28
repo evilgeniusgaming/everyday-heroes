@@ -116,6 +116,6 @@ export default class ArmorData extends SystemDataModel.mixin(DescribedTemplate, 
 			category: CONFIG.EverydayHeroes.equipmentCategories[this.type.category]?.label ?? "",
 			type: "",
 			subtype: CONFIG.EverydayHeroes.armorTypes[this.type.value]?.label ?? ""
-		}).trim();
+		}).trim().replace("  ", " ");
 	}
 }

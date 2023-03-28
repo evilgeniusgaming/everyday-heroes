@@ -200,7 +200,17 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 		this.constructor._getMethods(this.constructor.prototype, "prepareBase").forEach(k => this[k]());
 	}
 
-	/* -------------------------------------------- */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Prepare data that needs to be prepared after embedded documents have been prepared,
+	 * but before active effects are applied.
+	 */
+	prepareEmbeddedData() {
+		this.constructor._getMethods(this.constructor.prototype, "prepareEmbedded").forEach(k => this[k]());
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
 	 * Apply transformations or derivations to the values of the source data object.
@@ -210,7 +220,7 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 		if ( !this.parent.isEmbedded ) this.prepareFinalData();
 	}
 
-	/* -------------------------------------------- */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
 	 * Final data preparation steps performed on Items after parent actor has been fully prepared.

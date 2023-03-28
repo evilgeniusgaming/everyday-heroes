@@ -1,5 +1,14 @@
 <section>
 
+	{{#if itemCategories}}
+		<fieldset>
+			<label>Category</label>
+			<select name="system.type.category">
+				{{selectOptions itemCategories selected=system.type.category blank="" labelAttr="label"}}
+			</select>
+		</fieldset>
+	{{/if}}
+
 	{{#if itemSubTypes}}
 		<fieldset>
 			<label>{{localize "EH.Item.Type.Label"}}</label>

@@ -1,8 +1,8 @@
+import Proficiency from "../../documents/proficiency.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import { simplifyBonus } from "../../utils.mjs";
-import Proficiency from "../../documents/proficiency.mjs";
 import AbilitiesTemplate from "./templates/abilities-template.mjs";
 import InitiativeTemplate from "./templates/initiative-template.mjs";
 import MovementTemplate from "./templates/movement-template.mjs";
@@ -62,7 +62,8 @@ export default class HeroData extends SystemDataModel.mixin(
 					bonus: new FormulaField({deterministic: true, label: "EH.Defense.Bonus.Label"})
 				}, {label: "EH.Defense.Label"}),
 				hd: new foundry.data.fields.SchemaField({
-					spent: new foundry.data.fields.NumberField({initial: 0, min: 0, integer: true, label: "EH.HitDice.Spent"})
+					spent: new foundry.data.fields.NumberField({initial: 0, min: 0, integer: true, label: "EH.HitDice.Spent"}),
+					minimum: new FormulaField({deterministic: true, label: ""})
 				}, {label: "EH.HitDice.Label[other]"}),
 				hp: new foundry.data.fields.SchemaField({
 					value: new foundry.data.fields.NumberField({

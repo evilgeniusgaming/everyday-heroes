@@ -1,9 +1,12 @@
+import { simplifyBonus } from "../../../utils.mjs";
 import { TYPES as ScaleValueType } from "../../advancement/scale-value-data.mjs";
+import FormulaField from "../../fields/formula-field.mjs";
 import MappingField from "../../fields/mapping-field.mjs";
 
 /**
  * @typedef {ResourceConfiguration} ResourceData
  * @property {number} spent - How many uses of this resource have been spent?
+ * @property {string} bonus - Bonus to the maximum resource value.
  */
 
 /**
@@ -16,7 +19,8 @@ export default class ResourcesTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
 			resources: new MappingField(new foundry.data.fields.SchemaField({
-				spent: new foundry.data.fields.NumberField({initial: 0, min: 0, label: ""})
+				spent: new foundry.data.fields.NumberField({initial: 0, min: 0, label: ""}),
+				bonus: new FormulaField({deterministic: true, label: ""})
 			}), {label: "EH.Resource.Label[other]", initialKeys: CONFIG.EverydayHeroes.resources, prepareKeys: true})
 		};
 	}
@@ -53,6 +57,9 @@ export default class ResourcesTemplate extends foundry.abstract.DataModel {
 				resource.disabled = true;
 				resource.max = 0;
 			}
+
+			resource.bonus = simplifyBonus(resource.bonus, this.parent.getRollData());
+			if ( resource.bonus ) resource.max += resource.bonus;
 
 			resource.available = Math.clamped(0, resource.max - resource.spent, resource.max);
 		}

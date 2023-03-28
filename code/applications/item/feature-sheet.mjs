@@ -1,10 +1,10 @@
 import ActiveEffectEH from "../../documents/active-effect.mjs";
-import BaseItemSheet from "./base-item-sheet.mjs";
+import AdvancementItemSheet from "./advancement-item-sheet.mjs";
 
 /**
  * Sheet that represents Talent, Special Feature, Plan, Trick, and Feat items.
  */
-export default class FeatureSheet extends BaseItemSheet {
+export default class FeatureSheet extends AdvancementItemSheet {
 
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
@@ -22,7 +22,9 @@ export default class FeatureSheet extends BaseItemSheet {
 
 		context.effects = ActiveEffectEH.prepareActiveEffectSections(context.item.effects);
 
-		context.itemSubTypes = foundry.utils.getProperty(CONFIG.EverydayHeroes, `${context.item.type}Types`);
+		context.itemCategories = foundry.utils.getProperty(CONFIG.EverydayHeroes, `${context.item.type}Categories`);
+		context.itemSubTypes = (context.item.type !== "feat" || context.system.type.category === "advanced")
+			? foundry.utils.getProperty(CONFIG.EverydayHeroes, `${context.item.type}Types`) : null;
 
 		context.resources = Object.entries(context.item.actor?.system.resources ?? {}).reduce((obj, [key, resource]) => {
 			if ( !resource.disabled ) obj[key] = resource.label;

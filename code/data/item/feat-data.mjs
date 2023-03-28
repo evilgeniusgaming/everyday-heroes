@@ -1,18 +1,22 @@
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import IdentifierField from "../fields/identifier-field.mjs";
 import ActivatableTemplate from "./templates/activatable-template.mjs";
+import AdvancementTemplate from "./templates/advancement-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
 
 /**
  * Data definition for Feat items.
  * @mixes {@link ActivatableTemplate}
+ * @mixes {@link AdvancementTemplate}
  * @mixes {@link DescribedTemplate}
  *
  * @property {object} type
  * @property {string} type.value - Type of the feat (major or minor).
  * @property {string} type.category - Specific category of feat (basic, advanced, multiclass).
  */
-export default class FeatData extends SystemDataModel.mixin(DescribedTemplate, ActivatableTemplate) {
+export default class FeatData extends SystemDataModel.mixin(
+	DescribedTemplate, ActivatableTemplate, AdvancementTemplate
+) {
 
 	static metadata = {
 		type: "feat",
@@ -46,7 +50,7 @@ export default class FeatData extends SystemDataModel.mixin(DescribedTemplate, A
 			category: CONFIG.EverydayHeroes.featCategories[this.type.category]?.label ?? "",
 			type: game.i18n.localize("EH.Item.Type.Feat[one]"),
 			subtype
-		}).trim();
+		}).trim().replace("  ", " ");
 		// TODO: Multiclass feats should display like "Strong Hero Multiclass Feat"
 	}
 }

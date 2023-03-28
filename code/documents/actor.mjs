@@ -27,6 +27,13 @@ export default class ActorEH extends Actor {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	applyActiveEffects() {
+		this.system.prepareEmbeddedData?.();
+		return super.applyActiveEffects();
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	prepareDerivedData() {
 		this.system.prepareDerivedData?.();
 	}

@@ -32,6 +32,10 @@ import Proficiency from "../../../documents/proficiency.mjs";
  * @property {string} overrides.ability.minimums
  * @property {string} overrides.ability.minimums.check - Global minimum Challenge Die value for ability checks.
  * @property {string} overrides.ability.minimums.save - Global minimum Challenge Die value for ability saves.
+ * @property {string} overrides.ability.checkProficiency.multiplier - Minimum prof multiplier for ability checks.
+ * @property {string} overrides.ability.checkProficiency.rounding - Default prof rounding for ability checks.
+ * @property {string} overrides.ability.saveProficiency.multiplier - Minimum prof multiplier for ability saves.
+ * @property {string} overrides.ability.saveProficiency.rounding - Default prof rounding for ability saves.
  */
 export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {
@@ -45,7 +49,7 @@ export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 				}),
 				saveProficiency: new foundry.data.fields.SchemaField({
 					multiplier: new foundry.data.fields.NumberField({
-						nullable: false, initial: 0, min: 0, max: 1, integer: true, label: "EH.Proficiency.Multiplier"
+						nullable: false, initial: 0, min: 0, max: 2, step: 0.5, label: "EH.Proficiency.Multiplier"
 					})
 				}, {label: "EH.Proficiency.Label[one]"}),
 				bonuses: new foundry.data.fields.SchemaField({
@@ -72,6 +76,22 @@ export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 					minimums: new foundry.data.fields.SchemaField({
 						check: new FormulaField({determinstic: true, label: "EH.Ability.Orverride.MinimumCheck"}),
 						save: new FormulaField({determinstic: true, label: "EH.Ability.Orverride.MinimumSave"})
+					}),
+					checkProficiency: new foundry.data.fields.SchemaField({
+						multiplier: new foundry.data.fields.NumberField({
+							nullable: true, initial: null, min: 0.5, max: 2, step: 0.5, label: "EH.Proficiency.Multiplier"
+						}),
+						rounding: new foundry.data.fields.StringField({
+							nullable: true, initial: null, choices: ["down", "up"], label: "EH.Proficiency.Rounding"
+						})
+					}),
+					saveProficiency: new foundry.data.fields.SchemaField({
+						multiplier: new foundry.data.fields.NumberField({
+							nullable: true, initial: null, min: 0.5, max: 1, integer: true, label: "EH.Proficiency.Multiplier"
+						}),
+						rounding: new foundry.data.fields.StringField({
+							nullable: true, initial: null, choices: ["down", "up"], label: "EH.Proficiency.Rounding"
+						})
 					})
 				})
 			}, {label: "EH.Override.Label"})

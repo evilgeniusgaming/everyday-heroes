@@ -45,6 +45,7 @@ export default class TraitAdvancement extends Advancement {
 				title: "EH.Skill.Proficiency.Label[other]",
 				localization: "EH.Skill.Proficiency.Label",
 				icon: "systems/everyday-heroes/artwork/svg/advancement/trait-skill.svg",
+				iconExpertise: "systems/everyday-heroes/artwork/svg/advancement/trait-expertise.svg",
 				hintType: "EH.Skill.Label[other]"
 			},
 			equipment: {
@@ -86,7 +87,9 @@ export default class TraitAdvancement extends Advancement {
 	prepareData() {
 		const traitConfig = this.constructor.traits[this.configuration.type];
 		this.title = this.title || game.i18n.localize(traitConfig?.title) || this.constructor.metadata.title;
-		this.icon = this.icon || traitConfig?.icon ||this.constructor.metadata.icon;
+		this.icon = this.icon
+			|| traitConfig?.[(this.configuration.type === "skill") && this.configuration.expertise ? "iconExpertise" : "icon"]
+			|| this.constructor.metadata.icon;
 		super.prepareData();
 	}
 
