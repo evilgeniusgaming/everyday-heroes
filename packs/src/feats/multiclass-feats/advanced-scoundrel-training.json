@@ -1,0 +1,76 @@
+{
+  "name": "Advanced Scoundrel Training",
+  "type": "feat",
+  "img": "systems/everyday-heroes/artwork/icons/classes/scoundrel.webp",
+  "system": {
+    "description": {
+      "value": "<p><strong>Prerequisite:</strong> Not a scoundrel (class), Scoundrel Training feat, Level 8+</p><p>You have learned all the best ways to hurt a person when they don't see it coming.</p><ul><li><p>Choose one from Acrobatics, Deception, Intimidation, Security, Sleight of Hand, Stealth, and Streetwise. You gain expertise in the chosen skill.</p></li><li><p>Once during your turn, when you hit a target with an attack, if you had advantage on that attack or an ally is within 5 feet of that target, you can choose to deal an additional 2d6 damage. You cannot deal this additional damage if the attack had disadvantage.</p></li></ul>",
+      "chat": "<p>When you hit a target with an attack, if you had advantage on that attack or an ally is within 5 feet of that target, you can choose to deal an additional [[2d6]] damage. You cannot deal this additional damage if the attack had disadvantage.</p>",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": "Once during your turn, when you hit a target with an attack, if you had advantage on that attack or an ally is within 5 feet of that target."
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "advancement": [
+      {
+        "_id": "BeOhM63b55zYo2KC",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": false,
+          "fixed": [],
+          "points": 1,
+          "choices": [
+            "acro",
+            "dece",
+            "inti",
+            "secu",
+            "slgt",
+            "slth",
+            "strt"
+          ]
+        },
+        "level": 8,
+        "flags": {},
+        "title": ""
+      }
+    ],
+    "identifier": {
+      "value": "advanced-scoundrel-training"
+    },
+    "type": {
+      "value": "",
+      "category": "multiclass"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1680041496177,
+    "modifiedTime": 1680044344688,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "2nQ7tTYp9gM1IyLw"
+}

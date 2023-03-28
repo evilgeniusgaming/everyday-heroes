@@ -1,0 +1,106 @@
+{
+  "name": "Advanced Sleuth Training",
+  "type": "feat",
+  "img": "systems/everyday-heroes/artwork/icons/classes/sleuth.webp",
+  "system": {
+    "description": {
+      "value": "<p><strong>Prerequisite:</strong> Not a sleuth (class), Sleuth Training feat, Level 8+</p><p>Your intuition has given you the ability to get the drop on your enemies and hit them where it hurts.</p><ul><li><p>Choose one from Insight, Investigation, Perception, Security, and Streetwise. You gain expertise in the chosen skill.</p></li><li><p>You gain 1 additional Focus point.</p></li><li><p>As a bonus action, you can spend 1 Focus point to gain advantage on your next attack roll. If the attack hits, you deal an additional 2d6 damage to the target.</p></li><li><p>When you make a Dexterity saving throw to take half damage from an effect, you take no damage on a successful save, and half damage on a failed one.</p></li></ul>",
+      "chat": "<p>You gain advantage on your next attack roll. If the attack hits, you deal an additional [[2d6]] damage to the target.</p>",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "bonus",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 1,
+      "target": "focus",
+      "type": "resource"
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "advancement": [
+      {
+        "_id": "pFWrs5re3RKsGIuO",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": false,
+          "fixed": [],
+          "points": 1,
+          "choices": [
+            "inst",
+            "inve",
+            "perc",
+            "secu",
+            "strt"
+          ]
+        },
+        "level": 8,
+        "flags": {},
+        "title": ""
+      }
+    ],
+    "identifier": {
+      "value": "advanced-sleuth-training"
+    },
+    "type": {
+      "value": "",
+      "category": "multiclass"
+    }
+  },
+  "effects": [
+    {
+      "label": "Advanced Sleuth Training",
+      "icon": "systems/everyday-heroes/artwork/icons/classes/sleuth.webp",
+      "origin": "Compendium.everyday-heroes.feats.Z6x3fSiclW7P5lg4",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "_id": "BpLdnTQZBSW6R1sS",
+      "changes": [
+        {
+          "key": "system.scale.focus.number",
+          "mode": 2,
+          "value": "+1"
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.everyday-heroes.feats.89n6BZEK8HJFr9Jf.ActiveEffect.IW9751pkJcSfp9KU"
+        }
+      },
+      "sort": 0
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1680041503913,
+    "modifiedTime": 1680044891265,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "Z6x3fSiclW7P5lg4"
+}

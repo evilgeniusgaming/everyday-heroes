@@ -1,0 +1,99 @@
+{
+  "name": "Advanced Commando Training",
+  "type": "feat",
+  "img": "systems/everyday-heroes/artwork/icons/classes/commando.webp",
+  "system": {
+    "description": {
+      "value": "<p><strong>Prerequisite:</strong> Not a commando (class), Commando Training feat, Level 8+</p><p>You're an especially dangerous person, capable of feats in combat few others can match.</p><ul><li><p>You gain Military Equipment proficiency.</p></li><li><p>By pushing yourself to the limit, you can take an additional action during your turn. You can do this only once before you finish a long rest.</p></li><li><p>You gain a +2 bonus to your Defense.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "1",
+      "period": "lr",
+      "recovery": "",
+      "formula": ""
+    },
+    "advancement": [
+      {
+        "_id": "7B327Kqp4cRACNSP",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "equipment",
+          "expertise": false,
+          "fixed": [
+            "military"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 8,
+        "flags": {},
+        "title": ""
+      }
+    ],
+    "identifier": {
+      "value": "advanced-commando-training"
+    },
+    "type": {
+      "value": "",
+      "category": "multiclass"
+    }
+  },
+  "effects": [
+    {
+      "label": "Situational Awareness",
+      "icon": "icons/magic/defensive/shield-barrier-deflect-gold.webp",
+      "origin": "Compendium.everyday-heroes.feats.IFkW7rzah5RrMCeH",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "_id": "6CzYd0iy3KfYi0YJ",
+      "changes": [
+        {
+          "key": "system.attributes.defense.bonus",
+          "mode": 2,
+          "value": "+2",
+          "priority": null
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "sort": 0
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1680041468183,
+    "modifiedTime": 1680044356277,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "IFkW7rzah5RrMCeH"
+}

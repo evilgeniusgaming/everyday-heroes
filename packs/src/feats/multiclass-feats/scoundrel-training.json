@@ -1,0 +1,93 @@
+{
+  "name": "Scoundrel Training",
+  "type": "feat",
+  "img": "systems/everyday-heroes/artwork/icons/classes/scoundrel.webp",
+  "system": {
+    "description": {
+      "value": "<p><strong>Prerequisite:</strong> Agile Hero archetype OR Agile Hero Training feat, not a scoundrel (class), Level 4+</p><p>You have gotten pretty good at getting the upper hand through under-handed tactics.</p><ul><li><p>You gain Advanced Equipment proficiency.</p></li><li><p>Choose one from Acrobatics, Deception, Intimidation, Security, Sleight of Hand, Stealth, and Streetwise. You gain proficiency in the chosen skill.</p></li><li><p>You can Hide, Object Interaction, or make a Security or Sleight of Hand check as a bonus action.</p></li><li><p>You have advantage on attack rolls against any opponent that has not acted this combat.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "bonus",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "advancement": [
+      {
+        "_id": "FJSOfbCgwvVMVGKW",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": false,
+          "fixed": [],
+          "points": 1,
+          "choices": [
+            "acro",
+            "dece",
+            "inti",
+            "secu",
+            "slgt",
+            "slth",
+            "strt"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "IPGNTOqgIDijnBch",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "equipment",
+          "expertise": false,
+          "fixed": [
+            "advanced"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      }
+    ],
+    "identifier": {
+      "value": "scoundrel-training"
+    },
+    "type": {
+      "value": "",
+      "category": "multiclass"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1680041488489,
+    "modifiedTime": 1680041786073,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "vgdztK8DBmylYdZU"
+}

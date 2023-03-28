@@ -1,0 +1,68 @@
+{
+  "name": "Skill Training",
+  "type": "feat",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>You love to acquire new skills and abilities through constant study and practice. Each time you take this feat, you gain proficiency in two skills of your choice.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "advancement": [
+      {
+        "_id": "258NtZaOjaZv9uHb",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": false,
+          "fixed": [],
+          "points": 2,
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      }
+    ],
+    "identifier": {
+      "value": "skill-training"
+    },
+    "type": {
+      "value": "",
+      "category": "basic"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679977462645,
+    "modifiedTime": 1680022590337,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "iWEq8NGRR6geVgjJ"
+}

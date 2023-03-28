@@ -1,0 +1,70 @@
+{
+  "name": "Brawler Training",
+  "type": "feat",
+  "img": "systems/everyday-heroes/artwork/icons/classes/brawler.webp",
+  "system": {
+    "description": {
+      "value": "<p><strong>Prerequisite:</strong> Strong Hero archetype OR Strong Hero Training feat, not a brawler (class), Level 4+</p><p>You have trained yourself to be an engine of destruction, letting nothing stand between you and your target.</p><ul><li><p>You gain Improvised Equipment proficiency.</p></li><li><p>You have advantage on any Strength check you make to break an object. In addition, your melee attacks have +1 Penetration Value.</p></li><li><p>As a bonus action, you can move up to your speed, but you must move toward an opponent. If there are no enemies present, you may move toward an obviously dangerous situation instead.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "bonus",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "advancement": [
+      {
+        "_id": "bxlwTaw6lBcBmpZe",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "equipment",
+          "expertise": false,
+          "fixed": [
+            "improvised"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 4,
+        "flags": {},
+        "title": ""
+      }
+    ],
+    "identifier": {
+      "value": "brawler-training"
+    },
+    "type": {
+      "value": "",
+      "category": "multiclass"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1680023860522,
+    "modifiedTime": 1680024878161,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "pMicAbptZal4lEgw"
+}

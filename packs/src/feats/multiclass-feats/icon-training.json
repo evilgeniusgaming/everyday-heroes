@@ -1,0 +1,103 @@
+{
+  "name": "Icon Training",
+  "type": "feat",
+  "img": "systems/everyday-heroes/artwork/icons/classes/icon.webp",
+  "system": {
+    "description": {
+      "value": "<p><strong>Prerequisite:</strong> Charming Hero archetype OR Charming Hero Training feat, not an icon (class), Level 4+</p><p>You are the bee's knees, the cat's pajamas, and perhaps the GOAT!</p><ul><li><p>You gain Basic Equipment and Advanced Equipment proficiencies.</p></li><li><p>You gain 1 additional influence die.</p></li><li><p>You learn two tricks, chosen from the list of icon tricks.</p></li><li><p>As a bonus action, you can give your allies an opening by drawing the attention of an opponent you are aware of who can hear you within 60 feet. The next attack one of your allies makes against that target before the start of your next turn has advantage.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "bonus",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "advancement": [
+      {
+        "_id": "pZ4NJSKOg6gZQJau",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "equipment",
+          "expertise": false,
+          "fixed": [
+            "basic",
+            "advanced"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 4,
+        "flags": {},
+        "title": ""
+      }
+    ],
+    "identifier": {
+      "value": "icon-training"
+    },
+    "type": {
+      "value": "",
+      "category": "multiclass"
+    }
+  },
+  "effects": [
+    {
+      "label": "Icon Training",
+      "icon": "systems/everyday-heroes/artwork/icons/classes/icon.webp",
+      "origin": "Compendium.everyday-heroes.feats.4tuY3b789b1HjzGa",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "_id": "AxUQsDsQHO9sdaJH",
+      "changes": [
+        {
+          "key": "system.scale.influence.number",
+          "mode": 2,
+          "value": "+1"
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.everyday-heroes.feats.89n6BZEK8HJFr9Jf.ActiveEffect.IW9751pkJcSfp9KU"
+        }
+      },
+      "sort": 0
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1680041471718,
+    "modifiedTime": 1680044502438,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "4tuY3b789b1HjzGa"
+}

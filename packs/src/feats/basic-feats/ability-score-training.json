@@ -1,0 +1,66 @@
+{
+  "name": "Ability Score Training",
+  "type": "feat",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>You have trained your mind and/or body to increase your overall human potential. Each time you take this feat, you can increase any ability score by 1 to a maximum of 20.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "advancement": [
+      {
+        "_id": "ws2b0leVvA1mrZOl",
+        "_type": "ASI",
+        "identifier": "",
+        "configuration": {
+          "fixed": [],
+          "points": 1,
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      }
+    ],
+    "identifier": {
+      "value": "ability-score-training"
+    },
+    "type": {
+      "value": "",
+      "category": "basic"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679977008431,
+    "modifiedTime": 1680022408927,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "YK5IUeHYjv8ZNqKh"
+}

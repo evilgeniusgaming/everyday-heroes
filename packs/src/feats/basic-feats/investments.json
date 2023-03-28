@@ -1,0 +1,80 @@
+{
+  "name": "Investments",
+  "type": "feat",
+  "img": "icons/commodities/currency/coins-plain-stack-gold-yellow.webp",
+  "system": {
+    "description": {
+      "value": "<p>You have either made wise investments or come into an inheritance of some kind. Each time you take this feat, you gain +1 Wealth Level (maximum 5).</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "advancement": [],
+    "identifier": {
+      "value": "investments"
+    },
+    "type": {
+      "value": "",
+      "category": "basic"
+    }
+  },
+  "effects": [
+    {
+      "label": "Investments",
+      "icon": "icons/commodities/currency/coins-plain-stack-gold-yellow.webp",
+      "origin": "Compendium.eh-core-rulebook.feats.LveRtTGxW1fgfBgb",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "_id": "nKWzF5gd1t0veG2k",
+      "changes": [
+        {
+          "key": "system.details.wealth.bonus",
+          "mode": 2,
+          "value": "+1"
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "sort": 0
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679977454351,
+    "modifiedTime": 1680022546799,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "LveRtTGxW1fgfBgb"
+}

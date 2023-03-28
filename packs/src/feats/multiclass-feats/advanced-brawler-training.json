@@ -1,0 +1,52 @@
+{
+  "name": "Advanced Brawler Training",
+  "type": "feat",
+  "img": "systems/everyday-heroes/artwork/icons/classes/brawler.webp",
+  "system": {
+    "description": {
+      "value": "<p><strong>Prerequisite:</strong> Not a brawler (class), Brawler Training feat, Level 8+</p><p>Few opponents or weapons can survive the powerful blows you deliver.</p><ul><li><p>Once during your turn, when you hit an opponent with an attack with a melee weapon, you can choose to deal an additional 2d6 damage. If you do, and you did not attack with an unarmed strike, the weapon is destroyed. You can't use this talent with explosives attacks.</p></li><li><p>You have advantage on ability checks and saving throws to avoid or escape being Grappled, Restrained, Stunned, or Paralyzed.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "advancement": [],
+    "identifier": {
+      "value": "advanced-brawler-training"
+    },
+    "type": {
+      "value": "",
+      "category": "multiclass"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1680023864948,
+    "modifiedTime": 1680024868191,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "TY0sWOr7kgk9r099"
+}

@@ -1,0 +1,70 @@
+{
+  "name": "Commando Training",
+  "type": "feat",
+  "img": "systems/everyday-heroes/artwork/icons/classes/commando.webp",
+  "system": {
+    "description": {
+      "value": "<p><strong>Prerequisite:</strong> Tough Hero archetype OR Tough Hero feat, not a commando (class), Level 4+</p><p>You give your all in combat, making you a very difficult target to take down.</p><ul><li><p>You gain Advanced Equipment proficiency.</p></li><li><p>You can take the Second Wind action as a bonus action.</p></li><li><p>You can draw, arm, and throw a grenade as a bonus action. You must have a free hand or already be holding the grenade to do this.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "bonus",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "advancement": [
+      {
+        "_id": "7I5VjS4ba8fxX0um",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "equipment",
+          "expertise": false,
+          "fixed": [
+            "advanced"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      }
+    ],
+    "identifier": {
+      "value": "commando-training"
+    },
+    "type": {
+      "value": "",
+      "category": "multiclass"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1680041463376,
+    "modifiedTime": 1680042071021,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "4nkIrLYVzHFL2L1O"
+}

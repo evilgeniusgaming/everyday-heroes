@@ -1,0 +1,123 @@
+{
+  "name": "Sleuth Training",
+  "type": "feat",
+  "img": "systems/everyday-heroes/artwork/icons/classes/sleuth.webp",
+  "system": {
+    "description": {
+      "value": "<p><strong>Prerequisite:</strong> Wise Hero archetype OR Wise Hero Training feat, not a sleuth (class), Level 4+</p><p>You have honed your awareness of your environment and are adept at spotting an opponent's weaknesses.</p><ul><li><p>You gain Advanced Equipment proficiency.</p></li><li><p>Choose one from Insight, Investigation, Perception, Security, and Streetwise. You gain proficiency in the chosen skill.</p></li><li><p>You cannot be surprised.</p></li><li><p>You can take the Search action as a bonus action.</p></li><li><p>You gain 1 additional Focus point.</p></li><li><p>You can spend 1 Focus point to reroll a failed Intelligence ability check. This may only be done once per ability check.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "advancement": [
+      {
+        "_id": "pFWrs5re3RKsGIuO",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": false,
+          "fixed": [],
+          "points": 1,
+          "choices": [
+            "inst",
+            "inve",
+            "perc",
+            "secu",
+            "strt"
+          ]
+        },
+        "level": 4,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "OSXbK6X1kNiiERaI",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "equipment",
+          "expertise": false,
+          "fixed": [
+            "advanced"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 4,
+        "flags": {},
+        "title": ""
+      }
+    ],
+    "identifier": {
+      "value": "sleuth-training"
+    },
+    "type": {
+      "value": "",
+      "category": "multiclass"
+    }
+  },
+  "effects": [
+    {
+      "label": "Sleuth Training",
+      "icon": "systems/everyday-heroes/artwork/icons/classes/sleuth.webp",
+      "origin": "Compendium.everyday-heroes.feats.gkzRMTwhfRyiILhF",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "_id": "XBwmXbcO1zEMO5YK",
+      "changes": [
+        {
+          "key": "system.scale.focus.number",
+          "mode": 2,
+          "value": "+1"
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.everyday-heroes.feats.89n6BZEK8HJFr9Jf.ActiveEffect.IW9751pkJcSfp9KU"
+        }
+      },
+      "sort": 0
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1680041499426,
+    "modifiedTime": 1680044898406,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "gkzRMTwhfRyiILhF"
+}

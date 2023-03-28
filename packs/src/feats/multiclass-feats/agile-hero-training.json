@@ -1,0 +1,90 @@
+{
+  "name": "Agile Hero Training",
+  "type": "feat",
+  "img": "systems/everyday-heroes/artwork/icons/archetypes/agile.webp",
+  "system": {
+    "description": {
+      "value": "<p><strong>Prerequisite:</strong> Not an Agile Hero archetype, Dexterity 13+, Level 2+</p><p>You have trained your reflexes to a razor's edge. Your movements are both swift and elegant.</p><ul><li><p>You gain Basic Equipment proficiency.</p></li><li><p>Choose one from Acrobatics, Sleight of Hand, Stealth, and Vehicles. You gain proficiency in the chosen skill.</p></li><li><p>You can take the Dash or Disengage action as a bonus action.</p></li><li><p>During a foot chase, you have advantage on Strength (Athletics) checks made as part of a Gain Ground action.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "advancement": [
+      {
+        "_id": "KqkiNi0VR0mj2Exz",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": false,
+          "fixed": [],
+          "points": 1,
+          "choices": [
+            "acro",
+            "slgt",
+            "slth",
+            "vehi"
+          ]
+        },
+        "level": 2,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "w59CsXkTjrpLbuMo",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "equipment",
+          "expertise": false,
+          "fixed": [
+            "basic"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 2,
+        "flags": {},
+        "title": ""
+      }
+    ],
+    "identifier": {
+      "value": "agile-hero-training"
+    },
+    "type": {
+      "value": "",
+      "category": "multiclass"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1680041337864,
+    "modifiedTime": 1680043952284,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "1925uIYj4BBRuTkc"
+}

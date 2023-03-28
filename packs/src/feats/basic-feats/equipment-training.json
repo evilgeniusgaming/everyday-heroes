@@ -1,0 +1,68 @@
+{
+  "name": "Equipment Training",
+  "type": "feat",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>You have trained to use various kinds of combat equipment.</p><ul><li><p>You gain Basic Equipment proficiency if you don't already have it.</p></li><li><p>Choose one additional equipment proficiency from Advanced Equipment, Historical Equipment, and Improvised Equipment.</p></li><li><p>If you already have Advanced Equipment, you may select Military Equipment.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "advancement": [
+      {
+        "_id": "OygWRbqIkoyUqi1O",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "equipment",
+          "expertise": false,
+          "fixed": [],
+          "points": 1,
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      }
+    ],
+    "identifier": {
+      "value": "equipment-training"
+    },
+    "type": {
+      "value": "",
+      "category": "basic"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679977444704,
+    "modifiedTime": 1680022456903,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "kblXnCPomkImEQOR"
+}

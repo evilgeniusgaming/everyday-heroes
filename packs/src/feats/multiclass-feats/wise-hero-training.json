@@ -1,0 +1,110 @@
+{
+  "name": "Wise Hero Training",
+  "type": "feat",
+  "img": "systems/everyday-heroes/artwork/icons/archetypes/wise.webp",
+  "system": {
+    "description": {
+      "value": "<p><strong>Prerequisite:</strong> Not a Wise Hero archetype, Wisdom 13+, Level 2+</p><p>You have learned to act with efficiency rather than speed, carefully choosing the correct course of action.</p><ul><li><p>You gain Basic Equipment proficiency.</p></li><li><p>Choose one from Insight, Perception, Streetwise, and Survival. You gain proficiency in the chosen skill.</p></li><li><p>You gain 2 focus points. Your Focus recharges whenever you finish a short or long rest.</p></li><li><p>You can spend one focus point to reroll a failed Wisdom ability check. This may only be done once per ability check.</p></li><li><p>You can choose not to fall Prone when you Dive for Cover.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "advancement": [
+      {
+        "_id": "KkPKnkcoL3ZXXCIi",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": false,
+          "fixed": [],
+          "points": 1,
+          "choices": [
+            "inst",
+            "perc",
+            "strt",
+            "surv"
+          ]
+        },
+        "level": 2,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "MpW3T2kgw0lAmtxj",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "equipment",
+          "expertise": false,
+          "fixed": [
+            "basic"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 2,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "SAxFN0NnZDJuenFd",
+        "_type": "Resource",
+        "identifier": "focus",
+        "configuration": {
+          "recovery": {
+            "period": "sr",
+            "formula": ""
+          },
+          "type": "number",
+          "scale": {
+            "2": {
+              "value": 2
+            }
+          }
+        },
+        "value": {},
+        "flags": {},
+        "title": "Focus"
+      }
+    ],
+    "identifier": {
+      "value": "wise-hero-training"
+    },
+    "type": {
+      "value": "",
+      "category": "multiclass"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1680041357535,
+    "modifiedTime": 1680043924766,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "MjCeqBoRgveSX8cH"
+}

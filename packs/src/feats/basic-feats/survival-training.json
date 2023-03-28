@@ -1,0 +1,68 @@
+{
+  "name": "Survival Training",
+  "type": "feat",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": {
+      "value": "<p>You have hardened yourself against various hazards. Each time you take this feat, you gain proficiency with one type of saving throw of your choice.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "advancement": [
+      {
+        "_id": "D2p21PbkTBAo2V9k",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "save",
+          "expertise": false,
+          "fixed": [],
+          "points": 1,
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      }
+    ],
+    "identifier": {
+      "value": "survival-training"
+    },
+    "type": {
+      "value": "",
+      "category": "basic"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679977470217,
+    "modifiedTime": 1680022605589,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "TESjjll5JdcWy9HM"
+}

@@ -61,6 +61,17 @@
       }
     },
     {
+      "name": "feats",
+      "label": "Feats",
+      "system": "everyday-heroes",
+      "path": "./packs/feats.db",
+      "type": "Item",
+      "private": false,
+      "flags": {
+        "type": "concept"
+      }
+    },
+    {
       "name": "tables",
       "label": "Tables",
       "path": "./packs/tables.db",

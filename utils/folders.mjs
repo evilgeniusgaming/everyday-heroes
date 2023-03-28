@@ -51,6 +51,11 @@ export default async function getSubfolderName(data, pack) {
  */
 function sortConcept(data, config) {
 	switch (data.type) {
+		case "feat":
+			if ( !data.system.type.category ) break;
+			if ( data.system.type.category === "advanced" ) {
+				return `advanced-${data.system.type.value}-feats`;
+			} else return `${data.system.type.category}-feats`;
 		case "talent":
 			if ( !data.system.type.value ) break;
 			return `${data.system.type.value}-talents`;

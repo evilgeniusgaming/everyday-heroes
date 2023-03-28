@@ -1,0 +1,73 @@
+{
+  "name": "Smart Hero Training",
+  "type": "feat",
+  "img": "systems/everyday-heroes/artwork/icons/archetypes/smart.webp",
+  "system": {
+    "description": {
+      "value": "<p><strong>Prerequisite:</strong> Not a Smart Hero archetype, Intelligence 13+, Level 2+</p><p>You have sharpened your wits to a razor's edge and turned your mind into the greatest weapon of all.</p><ul><li><p>You gain 2 Genius points. You can enact any plan you know by spending 1 Genius point. Genius points recharge when you finish a long rest. Your Plan DC formula is 8 + your Intelligence modifier + your proficiency bonus.</p></li><li><p>You learn two plans from the Shared Plans list for Smart Heroes.</p></li><li><p>You can only use shared plan enhancements up to Level 1.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "advancement": [
+      {
+        "_id": "P4WI6x89E3TusDcO",
+        "_type": "Resource",
+        "identifier": "genius",
+        "configuration": {
+          "recovery": {
+            "period": "lr",
+            "formula": ""
+          },
+          "type": "number",
+          "scale": {
+            "2": {
+              "value": 2
+            }
+          }
+        },
+        "value": {},
+        "flags": {},
+        "title": "Genius"
+      }
+    ],
+    "identifier": {
+      "value": "smart-hero-training"
+    },
+    "type": {
+      "value": "",
+      "category": "multiclass"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1680041347524,
+    "modifiedTime": 1680042211959,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "OfSRLXjSZ6K8uiY5"
+}

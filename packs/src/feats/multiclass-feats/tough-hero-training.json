@@ -1,0 +1,99 @@
+{
+  "name": "Tough Hero Training",
+  "type": "feat",
+  "img": "systems/everyday-heroes/artwork/icons/archetypes/tough.webp",
+  "system": {
+    "description": {
+      "value": "<p><strong>Prerequisite:</strong> Not a Tough Hero archetype, Constitution 13+, Level 2+</p><p>You have toughened yourself up to where you find a little pain and exertion rather exhilarating.</p><ul><li><p>You gain Basic Equipment proficiency.</p></li><li><p>You gain damage reduction (against all damage types) equal to your proficiency bonus.</p></li><li><p>Once during your turn, when you attack an opponent that has damaged you since the end of your last turn, you gain a +2 bonus on the attack roll.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "advancement": [
+      {
+        "_id": "7l6ZSLuXor7UvpR0",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "equipment",
+          "expertise": false,
+          "fixed": [
+            "basic"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 2,
+        "flags": {},
+        "title": ""
+      }
+    ],
+    "identifier": {
+      "value": "tough-hero-training"
+    },
+    "type": {
+      "value": "",
+      "category": "multiclass"
+    }
+  },
+  "effects": [
+    {
+      "label": "Tough as Nails",
+      "icon": "icons/skills/wounds/injury-pain-body-orange.webp",
+      "origin": "Compendium.everyday-heroes.feats.QrAaAJZXDDpg2deV",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "_id": "SOh0oy3XqA6ItNxv",
+      "changes": [
+        {
+          "key": "system.traits.damage.reduction.all",
+          "mode": 2,
+          "value": "+@prof",
+          "priority": null
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "sort": 0
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1680041354119,
+    "modifiedTime": 1680043939048,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "QrAaAJZXDDpg2deV"
+}
