@@ -94,6 +94,15 @@ export default class TraitAdvancement extends Advancement {
 	/*  Display Methods                          */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	sortingValueForLevel(level) {
+		let traitOrder = Object.keys(this.constructor.traits).findIndex(k => k === this.configuration.type);
+		if ( this.configuration.expertise ) traitOrder += Object.keys(this.constructor.traits).length;
+		return `${this.constructor.metadata.order.paddedString(4)} ${
+			traitOrder.paddedString(2)} ${this.titleForLevel(level)}`;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	summaryForLevel(level, { configMode=false }={}) {
 		const conf = this.configuration;
 		const tags = Array.from(conf.fixed).map(k => this.options[k].label);

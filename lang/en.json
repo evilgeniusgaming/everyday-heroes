@@ -304,6 +304,10 @@
 "Dice.Action.Disadvantage": "Disadvantage",
 "Dice.Action.Normal": "Normal",
 "Dice.Action.Roll": "Roll",
+"Dice.Modification.Count[one]": "{number} Die",
+"Dice.Modification.Count[other]": "{number} Dice",
+"Dice.Modification.Denomination[one]": "{number} Step",
+"Dice.Modification.Denomination[other]": "{number} Steps",
 
 "Effect.New": "New Effect",
 "Effect.Action.Create": "Create Effect",
@@ -663,6 +667,7 @@
 "Weapon.Property.Label": "Weapon Properties",
 "Weapon.Property.Aquatic.Label": "Aquatic",
 "Weapon.Property.Belt.Label": "Belt",
+"Weapon.Property.Belt.Tag": "Belt Fed",
 "Weapon.Property.Blinding.Label": "Blinding",
 "Weapon.Property.Burst.Label": "Burst",
 "Weapon.Property.Burst.Hint": "",

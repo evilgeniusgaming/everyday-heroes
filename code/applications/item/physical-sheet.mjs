@@ -38,6 +38,20 @@ export default class PhysicalSheet extends BaseItemSheet {
 
 		context.diceSteps = Object.fromEntries(CONFIG.EverydayHeroes.diceSteps.map(n => [n, `d${n}`]));
 
+		context.diceMod = { count: [], denomination: [] };
+		const numberFormatter = new Intl.NumberFormat(game.i18n.lang, { signDisplay: "exceptZero" });
+		const pluralRule = new Intl.PluralRules(game.i18n.lang);
+		for ( let i = -4; i <= 4; i++ ) {
+			const number = numberFormatter.format(i);
+			const pr = pluralRule.select(i);
+			context.diceMod.count.push({
+				name: i, label: game.i18n.format(`EH.Dice.Modification.Count[${pr}]`, { number })
+			});
+			context.diceMod.denomination.push({
+				name: i, label: game.i18n.format(`EH.Dice.Modification.Denomination[${pr}]`, { number })
+			});
+		}
+
 		return context;
 	}
 

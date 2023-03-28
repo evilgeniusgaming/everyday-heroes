@@ -57,25 +57,25 @@
 			<p class="hint">{{localize "EH.Equipment.Trait.PenetrationValue.Hint"}}</p>
 		</fieldset>
 	{{/if}}
-
+{{log this}}
 	{{#if (eq item.system.damageMode "regular")}}
 		<fieldset class="triple">
 			<label>{{localize "EH.Equipment.Trait.Damage.Label"}}</label>
 			<div class="fields">
 				{{#if item.system.hasDamage}}
 					<label>
-						<span>Number</span>{{!-- TODO: Localize --}}
+						<span>{{localize "EH.Equipment.Trait.Damage.Count.Label"}}</span>
 						<input type="number" name="system.damage.number" value="{{source.damage.number}}">
 					</label>
 					<label>
-						<span>Denomination</span>{{!-- TODO: Localize --}}
+						<span>{{localize "EH.Equipment.Trait.Damage.Denomination.Label"}}</span>
 						<select name="system.damage.denomination">
 							{{selectOptions diceSteps selected=source.damage.denomination blank=""}}
 						</select>
 					</label>
 				{{/if}}
 				<label>
-					<span>Type</span>
+					<span>{{localize "EH.Equipment.Trait.Damage.Type.Label"}}</span>
 					<select name="system.damage.type">
 						{{selectOptions CONFIG.damageTypes selected=source.damage.type
 							blank=(localize "EH.Damage.None") labelAttr="label"}}
@@ -89,39 +89,19 @@
 			<label>{{localize "EH.Equipment.Trait.DamageModification.Label"}}</label>
 			<div class="fields">
 				<label>
-					<span>Number</span>
-					<select name="system.damage.number">{{!-- TODO: Localize & auto generate these steps --}}
-						{{#select source.damage.number}}
-							<option value="-4">-4 dice</option>
-							<option value="-3">-3 dice</option>
-							<option value="-2">-2 dice</option>
-							<option value="-1">-1 die</option>
-							<option value="0">0</option>
-							<option value="1">+1 die</option>
-							<option value="2">+2 dice</option>
-							<option value="3">+3 dice</option>
-							<option value="4">+4 dice</option>
-						{{/select}}
+					<span>{{localize "EH.Equipment.Trait.Damage.Count.Label"}}</span>
+					<select name="system.damage.number">
+						{{selectOptions diceMod.count selected=source.damage.number nameAttr="name" labelAttr="label"}}
 					</select>
 				</label>
 				<label>
-					<span>Denomination</span>
-					<select name="system.damage.denomination">{{!-- TODO: Localize & auto generate these steps --}}
-						{{#select source.damage.denomination}}
-							<option value="-4">-4 steps</option>
-							<option value="-3">-3 steps</option>
-							<option value="-2">-2 steps</option>
-							<option value="-1">-1 step</option>
-							<option value="0">0</option>
-							<option value="1">+1 step</option>
-							<option value="2">+2 steps</option>
-							<option value="3">+3 steps</option>
-							<option value="4">+4 steps</option>
-						{{/select}}
+					<span>{{localize "EH.Equipment.Trait.Damage.Denomination.Label"}}</span>
+					<select name="system.damage.denomination">
+						{{selectOptions diceMod.denomination selected=source.damage.denomination nameAttr="name" labelAttr="label"}}
 					</select>
 				</label>
 				<label>
-					<span>Type</span>
+					<span>{{localize "EH.Equipment.Trait.Damage.Type.Label"}}</span>
 					<select name="system.damage.type">
 						{{selectOptions CONFIG.damageTypes selected=source.damage.type labelAttr="label"
 				  		blank=(localize "EH.Equipment.Trait.DamageModification.NoChange")}}
@@ -150,7 +130,7 @@
 		</fieldset>
 	{{/if}}
 
-	{{#if item.system.usesRange}}
+	{{#if system.usesRange}}
 		<fieldset class="triple">
 			<label>{{localize "EH.Equipment.Trait.Range.Label"}}</label>
 			<input type="number" name="system.range.short" value="{{system.range.short}}">
@@ -168,7 +148,7 @@
 		</fieldset>
 	{{/if}}
 
-	{{#if item.system.usesRounds}}
+	{{#if system.usesRounds}}
 		<fieldset>
 			<label>{{localize "EH.Ammunition.Type.Label"}}</label>
 			<select name="system.rounds.type">
@@ -186,11 +166,15 @@
 
 		<fieldset>
 			<label>{{localize "EH.Equipment.Trait.Rounds.Label"}}</label>
-			<input type="number" name="system.rounds.capacity" value="{{system.rounds.capacity}}">
+			{{#if system.beltFed}}
+				<input type="text" placeholder="{{localize 'EH.Weapon.Property.Belt.Tag'}}" disabled>
+			{{else}}
+				<input type="number" name="system.rounds.capacity" value="{{system.rounds.capacity}}">
+			{{/if}}
 			<p class="hint">{{localize "EH.Equipment.Trait.Rounds.Hint"}}</p>
 		</fieldset>
 
-		{{#if system.rounds.capacity}}
+		{{#if (or system.rounds.capacity system.beltFed)}}
 			<fieldset>
 				<label>{{localize "EH.Equipment.Trait.Reload.Label"}}</label>
 				<select name="system.reload">

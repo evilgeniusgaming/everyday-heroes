@@ -166,6 +166,16 @@ export default class WeaponData extends SystemDataModel.mixin(
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/**
+	 * Is this a belt-fed weapon?
+	 * @type {boolean}
+	 */
+	get beltFed() {
+		return this.properties.has("belt");
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	get canAttack() {
 		return this.roundsToSpend <= this.rounds.available;
 	}

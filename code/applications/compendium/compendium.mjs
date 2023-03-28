@@ -35,8 +35,13 @@ export default class CompendiumEH extends Compendium {
 
 	async getData(options={}) {
 		const context = await super.getData(options);
-		context.index = await this.collection.getIndex({ fields: ["system.type.value"] });
 		// TODO: Auto-index these fields in V11
+		await this.collection.getIndex({ fields: ["system.type.value"] });
+		if ( !context.index ) {
+			// TODO: Temp solution for bug with V11
+			context.index = this.collection.index.contents;
+			context.index.sort((a, b) => (a.sort || 0) - (b.sort || 0) || a.name.localeCompare(b.name));
+		}
 		context.sections = this._createSections(context);
 		return context;
 	}
