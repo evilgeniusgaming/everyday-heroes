@@ -2,38 +2,6 @@
 /*  Header                                   */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.everyday-heroes.npc.sheet form > header {
-	display: flex;
-	overflow: clip;
-	flex-wrap: wrap;
-	gap: 0.5em;
-	border: 1px solid var(--eh-border-color-strong);
-	border-radius: 10px;
-	padding: 0.5em;
-	background-color: var(--eh-background-color-light);
-}
-.everyday-heroes.npc.sheet form > header figure {
-	overflow: clip;
-	flex-shrink: 0;
-	width: 2em;
-	height: 2em;
-	margin: 0;
-	border-radius: 5px;
-	background-color: var(--eh-background-color-dark);
-	background-size: contain;
-	background-repeat: no-repeat;
-}
-.everyday-heroes.npc.sheet form > header figure img {
-	border: none;
-}
-.everyday-heroes.npc.sheet form > header fieldset {
-	display: flex;
-	gap: 0.25em;
-	align-items: center;
-}
-.everyday-heroes.npc.sheet form > header fieldset.name {
-	flex-grow: 1;
-}
 .everyday-heroes.npc.sheet form > header fieldset.cr input {
 	width: 2.5em;
 	padding-inline: 0;

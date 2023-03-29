@@ -1,0 +1,19 @@
+<form class="{{cssClass}}" autocomplete="off">
+	<header>
+		<figure>
+			<img src="{{actor.img}}" data-edit="img">
+		</figure>
+		<fieldset class="name">
+			<input type="text" name="name" value="{{actor.name}}">
+		</fieldset>
+	</header>
+
+	<main>
+		<div data-tab="biography">
+			<section>
+				{{editor enriched.public target="system.biography.public" button=true editable=editable
+					engine="prosemirror" collaborate=false}}
+			</section>
+		</div>
+	</main>
+</form>

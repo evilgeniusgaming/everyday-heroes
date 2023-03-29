@@ -7,8 +7,6 @@ export default class NPCSheet extends BaseActorSheet {
 
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ["everyday-heroes", "sheet", "actor", "npc"],
-			template: "systems/everyday-heroes/templates/actor/npc-sheet.hbs",
 			tabs: [{navSelector: 'nav[data-group="primary"]', contentSelector: "main", initial: "details"}],
 			width: 460,
 			height: "auto",

@@ -10,6 +10,20 @@ import SkillConfig from "./dialogs/skill-config.mjs";
  * Base sheet that provides common features for Hero and NPC sheets.
  */
 export default class BaseActorSheet extends ActorSheet {
+	constructor(actor, options={}) {
+		const limited = !game.user.isGM && actor.limited;
+		if ( limited ) {
+			options.width = 460;
+			options.height = "auto";
+		}
+		options.classes = Array.from(new Set([
+			"everyday-heroes", "sheet", "actor", limited ? "limited" : actor.type, ...(options.classes ?? [])
+		]));
+
+		super(actor, options);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
 	 * Fields that will be enriched during data preparation.
@@ -45,6 +59,23 @@ export default class BaseActorSheet extends ActorSheet {
 	 * @type {Set<string>}
 	 */
 	itemsExpanded = new Set();
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Is this a limited sheet?
+	 * @type {boolean}
+	 */
+	get limited() {
+		return !game.user.isGM && this.actor.limited;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get template() {
+		const type = this.limited ? "limited" : this.actor.type;
+		return `systems/everyday-heroes/templates/actor/${type}-sheet.hbs`;
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Context Preparation                      */
