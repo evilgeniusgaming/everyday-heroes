@@ -264,6 +264,9 @@
         }
       },
       "physical": {
+        "quantity": {
+          "value": 1
+        },
         "bulk": 0,
         "price": 0
       }

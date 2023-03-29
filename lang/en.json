@@ -350,6 +350,7 @@
 "Equipment.Trait.PenetrationValue.Hint": "This measures a weapon’s ability to punch through armor and shields.",
 "Equipment.Trait.PriceLevel.Label": "Price Level",
 "Equipment.Trait.PriceLevel.Hint": "Price level is a general measure of how expensive something is. If the price level is equal or lower than your Wealth Level, then you can buy the item freely.",
+"Equipment.Trait.Quantity.Label": "Quantity",
 "Equipment.Trait.Radius.Label": "Radius",
 "Equipment.Trait.Radius.Hint": "This value lists the blast radius for explosives. Each combatant in that radius is subject to the effects of the explosion.",
 "Equipment.Trait.Range.Label": "Range",
@@ -574,6 +575,7 @@
 "Sheet.Section.Description": "Description",
 "Sheet.Section.Details": "Details",
 "Sheet.Section.Effects": "Effects",
+"Sheet.Section.Features": "Features",
 "Sheet.Section.Inventory": "Inventory",
 "Sheet.Section.Persona": "Persona",
 

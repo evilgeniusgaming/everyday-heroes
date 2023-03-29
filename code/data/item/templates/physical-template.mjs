@@ -3,6 +3,8 @@ import { numberFormat } from "../../../utils.mjs";
 /**
  * Data model template for physical items.
  *
+ * @property {object} quantity
+ * @property {number} quantity.value - How many of this item are there?
  * @property {number} bulk - How heavy/unwieldy is this item?
  * @property {number} price - How much wealth is required to purchase this item?
  * @mixin
@@ -10,6 +12,11 @@ import { numberFormat } from "../../../utils.mjs";
 export default class PhysicalTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
+			quantity: new foundry.data.fields.SchemaField({
+				value: new foundry.data.fields.NumberField({
+					required: true, nullable: false, initial: 1, min: 0, integer: true, label: "EH.Equipment.Trait.Quantity.Label"
+				})
+			}),
 			bulk: new foundry.data.fields.NumberField({
 				required: true, nullable: false, initial: 0, min: 0, integer: true,
 				label: "EH.Equipment.Trait.Bulk.Label", hint: "EH.Equipment.Trait.Bulk.Hint"
