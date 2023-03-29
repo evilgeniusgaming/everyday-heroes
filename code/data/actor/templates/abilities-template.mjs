@@ -108,12 +108,20 @@ export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 		const globalDCBonus = simplifyBonus(this.bonuses.ability.dc, rollData);
 		const globalCheckBonus = simplifyBonus(this.bonuses.ability.check, rollData);
 		const globalSaveBonus = simplifyBonus(this.bonuses.ability.save, rollData);
-		for ( const ability of Object.values(this.abilities) ) {
+		for ( const [key, ability] of Object.entries(this.abilities) ) {
+			ability._source = this._source.abilities?.[key] ?? {};
 			ability.mod = Math.floor((ability.value - 10) / 2);
 
-			// TODO: Add jack of all trades
-			ability.checkProficiency = new Proficiency(prof);
-			ability.saveProficiency = new Proficiency(prof, ability.saveProficiency.multiplier);
+			ability.checkProficiency = new Proficiency(
+				prof,
+				this.overrides.ability.checkProficiency.multiplier ?? 0,
+				this.overrides.ability.checkProficiency.rounding
+			);
+			ability.saveProficiency = new Proficiency(
+				prof,
+				Math.max(this.overrides.ability.saveProficiency.multiplier ?? 0, ability.saveProficiency.multiplier),
+				this.overrides.ability.saveProficiency.rounding
+			);
 
 			ability.checkBonus = globalCheckBonus + simplifyBonus(ability.bonuses.check, rollData);
 			ability.check = ability.mod + ability.checkProficiency.flat + ability.checkBonus;

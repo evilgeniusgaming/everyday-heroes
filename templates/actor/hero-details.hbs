@@ -78,7 +78,8 @@
 							value="{{ability.value}}" step="1" min="1" {{disabled (not @root.editingMode)}}>
 						<div class="save">
 							{{> "everydayHeroes.actor-proficiency-selector" type="single"
-							  name=(concat "system.abilities." key ".saveProficiency") value=ability.saveProficiency}}
+							  name=(concat "system.abilities." key ".saveProficiency")
+								value=ability.saveProficiency source=ability._source.saveProficiency}}
 							<a data-action="roll" data-type="ability-save" data-key="{{key}}">{{ability.save}}</a>
 						</div>
 					</div>
@@ -102,7 +103,8 @@
 						<input type="hidden" name="system.skills.{{key}}.ability" value="{{skill.ability}}">
 					</span>
 					{{> "everydayHeroes.actor-proficiency-selector" type="double"
-						name=(concat "system.skills." key ".proficiency") value=skill.proficiency}}
+						name=(concat "system.skills." key ".proficiency")
+						value=skill.proficiency source=skill._source.proficiency}}
 					<span class="modifier">{{skill.mod}}</span>
 				</div>
 			{{/each}}

@@ -86,10 +86,14 @@ export default class EquipmentTemplate {
 			// TODO: Add tooltips with property descriptions
 			tags.push({ label, class: "property" });
 		}
-		if ( this.parent.isEmbedded ) tags.push({
-			label: game.i18n.localize(`EH.Proficiency.Level.${this.proficiency.hasProficiency ? "Proficient" : "None"}`),
-			class: `${this.proficiency.hasProficiency ? "positive" : "negative"} status`
-		});
+		if ( this.parent.isEmbedded ) {
+			const level = this.proficiency.hasProficiency
+				? (this.proficiency.multiplier === 1 ? "Proficient" : "Half") : "None";
+			tags.push({
+				label: game.i18n.localize(`EH.Proficiency.Level.${level}`),
+				class: `${this.proficiency.hasProficiency ? "positive" : "negative"} status`
+			});
+		}
 		return tags;
 	}
 

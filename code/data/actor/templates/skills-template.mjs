@@ -57,9 +57,6 @@ export default class SkillsTemplate extends foundry.abstract.DataModel {
 				proficiency: new foundry.data.fields.SchemaField({
 					multiplier: new foundry.data.fields.NumberField({
 						nullable: false, initial: 0, min: 0, max: 2, step: 0.5, label: "EH.Proficiency.Multiplier"
-					}),
-					rounding: new foundry.data.fields.StringField({
-						initial: "down", choices: ["down", "up"], label: "EH.Proficiency.Rounding"
 					})
 				}, {label: "EH.Proficiency.Label[one]"}),
 				bonuses: new foundry.data.fields.SchemaField({
@@ -95,12 +92,21 @@ export default class SkillsTemplate extends foundry.abstract.DataModel {
 	prepareDerivedSkills() {
 		const rollData = this.parent.getRollData();
 		const prof = this.attributes?.prof ?? 0;
-		const globalCheckBonus = simplifyBonus(this.bonuses?.ability.check, rollData)
-			+ simplifyBonus(this.bonuses?.skill.check, rollData);
-		const globalPassiveBonus = simplifyBonus(this.bonuses?.skill.passive, rollData);
-		for ( const skill of Object.values(this.skills) ) {
-			skill.proficiency = new Proficiency(prof, skill.proficiency.multiplier, skill.proficiency.rounding);
-			// TODO: Add jack of all trades
+		const globalCheckBonus = simplifyBonus(this.bonuses.ability?.check, rollData)
+			+ simplifyBonus(this.bonuses.skill.check, rollData);
+		const globalPassiveBonus = simplifyBonus(this.bonuses.skill.passive, rollData);
+		for ( const [key, skill] of Object.entries(this.skills) ) {
+			skill._source = this._source.skills?.[key] ?? {};
+
+			skill.proficiency = new Proficiency(
+				prof,
+				Math.max(
+					this.overrides.ability?.checkProficiency?.multiplier ?? 0,
+					this.overrides.skill.proficiency.multiplier ?? 0,
+					skill.proficiency.multiplier
+				),
+				this.overrides.skill.proficiency.rounding ?? this.overrides.ability.checkProficiency.rounding
+			);
 
 			const ability = this.abilities?.[skill.ability];
 			skill.bonus = globalCheckBonus + simplifyBonus(ability?.bonuses.check, rollData)

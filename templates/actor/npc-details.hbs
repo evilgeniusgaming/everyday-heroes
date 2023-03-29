@@ -90,7 +90,8 @@
 				<span>({{ability.mod}})</span>
 				{{#if @root.editingMode}}
 					{{> "everydayHeroes.actor-proficiency-selector" type="single"
-						name=(concat "system.abilities." key ".saveProficiency") value=ability.saveProficiency}}
+						name=(concat "system.abilities." key ".saveProficiency")
+						value=ability.saveProficiency source=ability._source.saveProficiency}}
 				{{/if}}
 			</div>
 		{{/each}}
@@ -112,7 +113,7 @@
 					</a>
 				{{/if}}
 			</label>
-			<span>{{{lists.skills}}}</span>{{!-- TODO: Allow selecting skill proficiency --}}
+			<span>{{{lists.skills}}}</span>
 		</fieldset>
 	{{/if}}
 	<fieldset>

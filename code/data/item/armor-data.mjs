@@ -1,3 +1,4 @@
+import Proficiency from "../../documents/proficiency.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
@@ -117,5 +118,18 @@ export default class ArmorData extends SystemDataModel.mixin(DescribedTemplate, 
 			type: "",
 			subtype: CONFIG.EverydayHeroes.armorTypes[this.type.value]?.label ?? ""
 		}).trim().replace("  ", " ");
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareFinalArmorProficiency() {
+		if ( this.proficiency.hasProficiency ) return;
+		if ( this.parent.actor?.system.overrides?.ability?.saveProficiency?.multiplier ) {
+			this.proficiency = new Proficiency(
+				this.parent.actor.system.attributes?.prof ?? 0,
+				this.parent.actor.system.overrides.ability.saveProficiency.multiplier,
+				this.parent.actor.system.overrides.ability.saveProficiency.rounding
+			);
+		}
 	}
 }
