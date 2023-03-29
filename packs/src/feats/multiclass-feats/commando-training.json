@@ -4,7 +4,7 @@
   "img": "systems/everyday-heroes/artwork/icons/classes/commando.webp",
   "system": {
     "description": {
-      "value": "<p><strong>Prerequisite:</strong> Tough Hero archetype OR Tough Hero feat, not a commando (class), Level 4+</p><p>You give your all in combat, making you a very difficult target to take down.</p><ul><li><p>You gain Advanced Equipment proficiency.</p></li><li><p>You can take the Second Wind action as a bonus action.</p></li><li><p>You can draw, arm, and throw a grenade as a bonus action. You must have a free hand or already be holding the grenade to do this.</p></li></ul>",
+      "value": "<p><strong>Prerequisite:</strong> @UUID[Compendium.everyday-heroes.archetypes-classes.zoMzfdLk69CX8Bi1]{Tough Hero} archetype OR @UUID[Compendium.everyday-heroes.feats.QrAaAJZXDDpg2deV]{Tough Hero Training} feat, not a commando (class), Level 4+</p><p>You give your all in combat, making you a very difficult target to take down.</p><ul><li><p>You gain Advanced Equipment proficiency.</p></li><li><p>You can take the Second Wind action as a bonus action.</p></li><li><p>You can draw, arm, and throw a grenade as a bonus action. You must have a free hand or already be holding the grenade to do this.</p></li></ul>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -38,7 +38,7 @@
           "points": 0,
           "choices": []
         },
-        "level": 1,
+        "level": 4,
         "flags": {},
         "title": ""
       }
@@ -61,7 +61,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1680041463376,
-    "modifiedTime": 1680042071021,
+    "modifiedTime": 1680050770556,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

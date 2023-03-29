@@ -4,7 +4,7 @@
   "img": "systems/everyday-heroes/artwork/icons/classes/mastermind.webp",
   "system": {
     "description": {
-      "value": "<p><strong>Prerequisite:</strong> Not a mastermind (class), Mastermind Training feat, Level 8+</p><p>You have devised plans within plans within plans. How about two more plans?</p><ul><li><p>Choose either Investigation or Social Sciences. You gain expertise in the chosen skill.</p></li><li><p>You gain an additional 1 Genius point.</p></li><li><p>You learn 2 additional plans from the mastermind or shared plan list.</p></li><li><p>You can only use mastermind plan enhancements up to Level 5.</p></li><li><p>If you are not a Smart Hero (archetype), you can only use shared plan enhancements up to Level 5.</p></li></ul>",
+      "value": "<p><strong>Prerequisite:</strong> Not a mastermind (class), @UUID[Compendium.everyday-heroes.feats.89n6BZEK8HJFr9Jf]{Mastermind Training} feat, Level 8+</p><p>You have devised plans within plans within plans. How about two more plans?</p><ul><li><p>Choose either Investigation or Social Sciences. You gain expertise in the chosen skill.</p></li><li><p>You gain an additional 1 Genius point.</p></li><li><p>You learn 2 additional plans from the mastermind or shared plan list.</p></li><li><p>You can only use mastermind plan enhancements up to Level 5.</p></li><li><p>If you are not a Smart Hero (archetype), you can only use shared plan enhancements up to Level 5.</p></li></ul>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -72,7 +72,8 @@
         {
           "key": "system.scale.genius.number",
           "mode": 2,
-          "value": "+1"
+          "value": "+1",
+          "priority": null
         }
       ],
       "tint": null,
@@ -94,7 +95,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1680041483160,
-    "modifiedTime": 1680044868163,
+    "modifiedTime": 1680050719506,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

@@ -4,7 +4,7 @@
   "img": "systems/everyday-heroes/artwork/icons/classes/scoundrel.webp",
   "system": {
     "description": {
-      "value": "<p><strong>Prerequisite:</strong> Agile Hero archetype OR Agile Hero Training feat, not a scoundrel (class), Level 4+</p><p>You have gotten pretty good at getting the upper hand through under-handed tactics.</p><ul><li><p>You gain Advanced Equipment proficiency.</p></li><li><p>Choose one from Acrobatics, Deception, Intimidation, Security, Sleight of Hand, Stealth, and Streetwise. You gain proficiency in the chosen skill.</p></li><li><p>You can Hide, Object Interaction, or make a Security or Sleight of Hand check as a bonus action.</p></li><li><p>You have advantage on attack rolls against any opponent that has not acted this combat.</p></li></ul>",
+      "value": "<p><strong>Prerequisite:</strong> @UUID[Compendium.everyday-heroes.archetypes-classes.nsBzmGJlG97raFBl]{Agile Hero} archetype OR @UUID[Compendium.everyday-heroes.feats.1925uIYj4BBRuTkc]{Agile Hero Training} feat, not a scoundrel (class), Level 4+</p><p>You have gotten pretty good at getting the upper hand through under-handed tactics.</p><ul><li><p>You gain Advanced Equipment proficiency.</p></li><li><p>Choose one from Acrobatics, Deception, Intimidation, Security, Sleight of Hand, Stealth, and Streetwise. You gain proficiency in the chosen skill.</p></li><li><p>You can Hide, Object Interaction, or make a Security or Sleight of Hand check as a bonus action.</p></li><li><p>You have advantage on attack rolls against any opponent that has not acted this combat.</p></li></ul>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -44,7 +44,7 @@
             "strt"
           ]
         },
-        "level": 1,
+        "level": 4,
         "flags": {},
         "title": ""
       },
@@ -61,7 +61,7 @@
           "points": 0,
           "choices": []
         },
-        "level": 1,
+        "level": 4,
         "flags": {},
         "title": ""
       }
@@ -84,7 +84,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1680041488489,
-    "modifiedTime": 1680041786073,
+    "modifiedTime": 1680050822072,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

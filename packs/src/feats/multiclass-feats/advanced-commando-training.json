@@ -4,7 +4,7 @@
   "img": "systems/everyday-heroes/artwork/icons/classes/commando.webp",
   "system": {
     "description": {
-      "value": "<p><strong>Prerequisite:</strong> Not a commando (class), Commando Training feat, Level 8+</p><p>You're an especially dangerous person, capable of feats in combat few others can match.</p><ul><li><p>You gain Military Equipment proficiency.</p></li><li><p>By pushing yourself to the limit, you can take an additional action during your turn. You can do this only once before you finish a long rest.</p></li><li><p>You gain a +2 bonus to your Defense.</p></li></ul>",
+      "value": "<p><strong>Prerequisite:</strong> Not a commando (class), @UUID[Compendium.everyday-heroes.feats.4nkIrLYVzHFL2L1O]{Commando Training} feat, Level 8+</p><p>You're an especially dangerous person, capable of feats in combat few others can match.</p><ul><li><p>You gain Military Equipment proficiency.</p></li><li><p>By pushing yourself to the limit, you can take an additional action during your turn. You can do this only once before you finish a long rest.</p></li><li><p>You gain a +2 bonus to your Defense.</p></li></ul>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -90,7 +90,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1680041468183,
-    "modifiedTime": 1680044356277,
+    "modifiedTime": 1680050702627,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

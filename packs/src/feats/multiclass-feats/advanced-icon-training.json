@@ -4,7 +4,7 @@
   "img": "systems/everyday-heroes/artwork/icons/classes/icon.webp",
   "system": {
     "description": {
-      "value": "<p><strong>Prerequisite:</strong> Not an icon (class), Icon Training feat, Level 8+</p><p>You are definitely the GOAT, don't let anyone tell you differently!</p><ul><li><p>You gain 1 additional influence die.</p></li><li><p>Your influence dice are now d8 instead of d6. (Ignore this if your archetype is Charming Hero.)</p></li><li><p>You learn one additional trick chosen from the list of Icon tricks.</p></li><li><p>Whenever you roll a 1 on an influence die or a damage die, you can reroll that die once, taking the new result.</p></li><li><p>As a reaction, when an opponent within 5 feet that can see you targets you with an attack, you can cause that attack to have disadvantage. They cannot change targets in reaction to you doing this.</p></li></ul>",
+      "value": "<p><strong>Prerequisite:</strong> Not an icon (class), @UUID[Compendium.everyday-heroes.feats.4tuY3b789b1HjzGa]{Icon Training} feat, Level 8+</p><p>You are definitely the GOAT, don't let anyone tell you differently!</p><ul><li><p>You gain 1 additional influence die.</p></li><li><p>Your influence dice are now d8 instead of d6. (Ignore this if your archetype is Charming Hero.)</p></li><li><p>You learn one additional trick chosen from the list of Icon tricks.</p></li><li><p>Whenever you roll a 1 on an influence die or a damage die, you can reroll that die once, taking the new result.</p></li><li><p>As a reaction, when an opponent within 5 feet that can see you targets you with an attack, you can cause that attack to have disadvantage. They cannot change targets in reaction to you doing this.</p></li></ul>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -82,7 +82,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1680041475065,
-    "modifiedTime": 1680044579123,
+    "modifiedTime": 1680050711765,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

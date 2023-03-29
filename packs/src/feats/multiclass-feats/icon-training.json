@@ -4,7 +4,7 @@
   "img": "systems/everyday-heroes/artwork/icons/classes/icon.webp",
   "system": {
     "description": {
-      "value": "<p><strong>Prerequisite:</strong> Charming Hero archetype OR Charming Hero Training feat, not an icon (class), Level 4+</p><p>You are the bee's knees, the cat's pajamas, and perhaps the GOAT!</p><ul><li><p>You gain Basic Equipment and Advanced Equipment proficiencies.</p></li><li><p>You gain 1 additional influence die.</p></li><li><p>You learn two tricks, chosen from the list of icon tricks.</p></li><li><p>As a bonus action, you can give your allies an opening by drawing the attention of an opponent you are aware of who can hear you within 60 feet. The next attack one of your allies makes against that target before the start of your next turn has advantage.</p></li></ul>",
+      "value": "<p><strong>Prerequisite:</strong> @UUID[Compendium.everyday-heroes.archetypes-classes.ZGy9FnmUpeF2DkeI]{Charming Hero} archetype OR @UUID[Compendium.everyday-heroes.feats.tMoG8d8LXgrUgqck]{Charming Hero Training} feat, not an icon (class), Level 4+</p><p>You are the bee's knees, the cat's pajamas, and perhaps the GOAT!</p><ul><li><p>You gain Basic Equipment and Advanced Equipment proficiencies.</p></li><li><p>You gain 1 additional influence die.</p></li><li><p>You learn two tricks, chosen from the list of icon tricks.</p></li><li><p>As a bonus action, you can give your allies an opening by drawing the attention of an opponent you are aware of who can hear you within 60 feet. The next attack one of your allies makes against that target before the start of your next turn has advantage.</p></li></ul>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -72,7 +72,8 @@
         {
           "key": "system.scale.influence.number",
           "mode": 2,
-          "value": "+1"
+          "value": "+1",
+          "priority": null
         }
       ],
       "tint": null,
@@ -94,7 +95,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1680041471718,
-    "modifiedTime": 1680044502438,
+    "modifiedTime": 1680050791094,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

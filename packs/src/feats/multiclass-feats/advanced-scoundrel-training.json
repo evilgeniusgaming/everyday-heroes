@@ -4,7 +4,7 @@
   "img": "systems/everyday-heroes/artwork/icons/classes/scoundrel.webp",
   "system": {
     "description": {
-      "value": "<p><strong>Prerequisite:</strong> Not a scoundrel (class), Scoundrel Training feat, Level 8+</p><p>You have learned all the best ways to hurt a person when they don't see it coming.</p><ul><li><p>Choose one from Acrobatics, Deception, Intimidation, Security, Sleight of Hand, Stealth, and Streetwise. You gain expertise in the chosen skill.</p></li><li><p>Once during your turn, when you hit a target with an attack, if you had advantage on that attack or an ally is within 5 feet of that target, you can choose to deal an additional 2d6 damage. You cannot deal this additional damage if the attack had disadvantage.</p></li></ul>",
+      "value": "<p><strong>Prerequisite:</strong> Not a scoundrel (class), @UUID[Compendium.everyday-heroes.feats.vgdztK8DBmylYdZU]{Scoundrel Training} feat, Level 8+</p><p>You have learned all the best ways to hurt a person when they don't see it coming.</p><ul><li><p>Choose one from Acrobatics, Deception, Intimidation, Security, Sleight of Hand, Stealth, and Streetwise. You gain expertise in the chosen skill.</p></li><li><p>Once during your turn, when you hit a target with an attack, if you had advantage on that attack or an ally is within 5 feet of that target, you can choose to deal an additional 2d6 damage. You cannot deal this additional damage if the attack had disadvantage.</p></li></ul>",
       "chat": "<p>When you hit a target with an attack, if you had advantage on that attack or an ally is within 5 feet of that target, you can choose to deal an additional [[2d6]] damage. You cannot deal this additional damage if the attack had disadvantage.</p>",
       "source": "Core Rulebook"
     },
@@ -67,7 +67,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1680041496177,
-    "modifiedTime": 1680044344688,
+    "modifiedTime": 1680050731099,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

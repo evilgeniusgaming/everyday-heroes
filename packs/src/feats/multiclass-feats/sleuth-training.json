@@ -4,7 +4,7 @@
   "img": "systems/everyday-heroes/artwork/icons/classes/sleuth.webp",
   "system": {
     "description": {
-      "value": "<p><strong>Prerequisite:</strong> Wise Hero archetype OR Wise Hero Training feat, not a sleuth (class), Level 4+</p><p>You have honed your awareness of your environment and are adept at spotting an opponent's weaknesses.</p><ul><li><p>You gain Advanced Equipment proficiency.</p></li><li><p>Choose one from Insight, Investigation, Perception, Security, and Streetwise. You gain proficiency in the chosen skill.</p></li><li><p>You cannot be surprised.</p></li><li><p>You can take the Search action as a bonus action.</p></li><li><p>You gain 1 additional Focus point.</p></li><li><p>You can spend 1 Focus point to reroll a failed Intelligence ability check. This may only be done once per ability check.</p></li></ul>",
+      "value": "<p><strong>Prerequisite:</strong> @UUID[Compendium.everyday-heroes.archetypes-classes.hdXk8RrABBGHEeTR]{Wise Hero} archetype OR @UUID[Compendium.everyday-heroes.feats.MjCeqBoRgveSX8cH]{Wise Hero Training} feat, not a sleuth (class), Level 4+</p><p>You have honed your awareness of your environment and are adept at spotting an opponent's weaknesses.</p><ul><li><p>You gain Advanced Equipment proficiency.</p></li><li><p>Choose one from Insight, Investigation, Perception, Security, and Streetwise. You gain proficiency in the chosen skill.</p></li><li><p>You cannot be surprised.</p></li><li><p>You can take the Search action as a bonus action.</p></li><li><p>You gain 1 additional Focus point.</p></li><li><p>You can spend 1 Focus point to reroll a failed Intelligence ability check. This may only be done once per ability check.</p></li></ul>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -92,7 +92,8 @@
         {
           "key": "system.scale.focus.number",
           "mode": 2,
-          "value": "+1"
+          "value": "+1",
+          "priority": null
         }
       ],
       "tint": null,
@@ -114,7 +115,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1680041499426,
-    "modifiedTime": 1680044898406,
+    "modifiedTime": 1680050839560,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

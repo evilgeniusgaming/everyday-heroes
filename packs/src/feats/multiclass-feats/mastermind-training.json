@@ -4,7 +4,7 @@
   "img": "systems/everyday-heroes/artwork/icons/classes/mastermind.webp",
   "system": {
     "description": {
-      "value": "<p><strong>Prerequisite:</strong> Smart Hero archetype OR Smart Hero Training feat, not a mastermind (class), Level 4+</p><p>You have spent an awful lot of time trying to outsmart everyone, and it's working.</p><ul><li><p>Choose either Investigation or Social Sciences. You gain proficiency in the chosen skill.</p></li><li><p>You gain an additional 1 Genius point.</p></li><li><p>You learn 1 additional plan from the mastermind plan list.</p></li><li><p>You can only use mastermind plan enhancements up to Level 3.</p></li><li><p>If you are not a Smart Hero (archetype), you can only use shared plan enhancements up to Level 3.</p></li></ul>",
+      "value": "<p><strong>Prerequisite:</strong> @UUID[Compendium.everyday-heroes.archetypes-classes.FBLv7Az4ke2UqomX]{Smart Hero} archetype OR @UUID[Compendium.everyday-heroes.feats.OfSRLXjSZ6K8uiY5]{Smart Hero Training} feat, not a mastermind (class), Level 4+</p><p>You have spent an awful lot of time trying to outsmart everyone, and it's working.</p><ul><li><p>Choose either Investigation or Social Sciences. You gain proficiency in the chosen skill.</p></li><li><p>You gain an additional 1 Genius point.</p></li><li><p>You learn 1 additional plan from the mastermind plan list.</p></li><li><p>You can only use mastermind plan enhancements up to Level 3.</p></li><li><p>If you are not a Smart Hero (archetype), you can only use shared plan enhancements up to Level 3.</p></li></ul>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -72,7 +72,8 @@
         {
           "key": "system.scale.genius.number",
           "mode": 2,
-          "value": "+1"
+          "value": "+1",
+          "priority": null
         }
       ],
       "tint": null,
@@ -90,7 +91,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1680041478430,
-    "modifiedTime": 1680044874949,
+    "modifiedTime": 1680050804715,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
