@@ -10,6 +10,9 @@
 .everyday-heroes a[data-action="config"]:hover {
 	text-shadow: 0 0 8px var(--eh-config-color);
 }
+.everyday-heroes :is(label, legend) a[data-action="config"] {
+	margin-inline-start: 0.25em;
+}
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Enrichers                                */
@@ -49,6 +52,9 @@ a.roll-link i {
 }
 .everyday-heroes ul.item-tags li.type {
 	background-color: var(--eh-tag-color-type);
+}
+.everyday-heroes ul.item-tags li.detail {
+	background-color: var(--eh-tag-color-detail);
 }
 .everyday-heroes ul.item-tags li.property {
 	background-color: var(--eh-tag-color-property);

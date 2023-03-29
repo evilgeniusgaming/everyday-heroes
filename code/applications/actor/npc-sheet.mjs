@@ -187,7 +187,14 @@ export default class NPCSheet extends BaseActorSheet {
 	prepareLists(context) {
 		const listFormatter = new Intl.ListFormat(game.i18n.lang, {type: "unit", style: "short"});
 		context.lists ??= {};
-		// TODO: Equipment list
+
+		context.lists.equipment = listFormatter.format(context.actor.items.reduce((arr, item) => {
+			if ( !["armor"].includes(item.type) && (item.system.constructor.metadata.category === "physical") ) {
+				arr.push(`<a data-action="item" data-type="edit" data-item-id="${item.id}">${item.name}</a>`);
+			}
+			return arr;
+		}, []));
+
 		context.lists.roles = listFormatter.format(context.system.biography.roles.reduce((arr, role) => {
 			const label = CONFIG.EverydayHeroes.roles[role];
 			arr.push(label ?? role);

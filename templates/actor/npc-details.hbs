@@ -15,7 +15,7 @@
 	{{#if editingMode}}
 		<fieldset>
 			<label>{{localize "EH.Creature.Type.Tags.Label"}}</label>
-			{{!--{{everydayHeroes-tagInput system.traits.type.tags choices=availableTags name="system.traits.type.tags"}}--}}
+			{{everydayHeroes-tagInput system.traits.type.tags choices=availableTags name="system.traits.type.tags"}}
 		</fieldset>
 	{{/if}}
 	<fieldset>
@@ -68,6 +68,15 @@
 		{{/if}}
 	</fieldset>
 	<fieldset class="abilities">
+		{{#if editingMode}}
+			<legend>
+				{{localize "EH.Ability.Label[other]"}}
+				<a data-action="config" data-type="ability"
+					data-tooltip="{{localize 'EH.Action.Configure' type=(localize 'EH.Ability.Label[other]')}}">
+					<i class="fa-solid fa-cog"></i>
+				</a>
+			</legend>
+		{{/if}}
 		{{#each abilities as |ability key|}}
 			<div>
 				<label>
@@ -92,9 +101,17 @@
 			<span>{{{lists.saves}}}</span>
 		</fieldset>
 	{{/if}}
-	{{#if lists.skills}}
+	{{#if (or lists.skills editingMode)}}
 		<fieldset>
-			<label>{{localize "EH.Skill.Label[other]"}}</label>
+			<label>
+				{{localize "EH.Skill.Label[other]"}}
+				{{#if editingMode}}
+					<a data-action="config" data-type="skill"
+						data-tooltip="{{localize 'EH.Action.Configure' type=(localize 'EH.Skill.Label[other]')}}">
+						<i class="fa-solid fa-cog"></i>
+					</a>
+				{{/if}}
+			</label>
 			<span>{{{lists.skills}}}</span>{{!-- TODO: Allow selecting skill proficiency --}}
 		</fieldset>
 	{{/if}}
@@ -113,7 +130,7 @@
 	{{#if lists.equipment}}
 		<fieldset>
 			<label>{{localize "EH.Equipment.Label[other]"}}</label>
-			<span>{{lists.equipment}}</span>
+			<span>{{{lists.equipment}}}</span>
 		</fieldset>
 	{{/if}}
 	<fieldset>

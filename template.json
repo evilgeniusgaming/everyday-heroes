@@ -138,7 +138,6 @@
       "inspiration": true,
       "items": {},
       "resources": {},
-      "skills": {},
       "overrides": {
         "ability": {
           "hitPoints": [],
@@ -190,9 +189,19 @@
       "details": {
         "cr": 0
       },
+      "overrides": {
+        "critical": {
+          "multiplier": null,
+          "threshold": {}
+        }
+      },
       "items": {},
       "resources": {},
       "traits": {
+        "damage": {
+          "immunity": [],
+          "reduction": {}
+        },
         "size": "",
         "type": {
           "value": "",

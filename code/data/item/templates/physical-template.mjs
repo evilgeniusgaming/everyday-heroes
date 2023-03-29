@@ -53,11 +53,11 @@ export default class PhysicalTemplate extends foundry.abstract.DataModel {
 		const tags = [];
 		if ( this.price ) tags.push({
 			label: `${game.i18n.localize("EH.Equipment.Trait.PriceLevel.Label")} ${numberFormat(this.price)}`,
-			class: "property"
+			class: "type"
 		});
 		if ( this.bulk ) tags.push({
 			label: `${game.i18n.localize("EH.Equipment.Trait.Bulk.Label")} ${numberFormat(this.bulk)}`,
-			class: "property"
+			class: "type"
 		});
 		return tags;
 	}

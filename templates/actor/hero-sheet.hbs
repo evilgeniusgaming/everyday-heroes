@@ -1,12 +1,12 @@
 <form class="{{cssClass}}" autocomplete="off">
 
 	<nav data-group="primary">
-		<a data-tab="details">Details</a>{{!-- TODO: Localize --}}
-		<a data-tab="features">Features</a>{{!-- TODO: Localize --}}
-		<a data-tab="inventory">Inventory</a>{{!-- TODO: Localize --}}
-		<a data-tab="persona">Persona</a>{{!-- TODO: Localize --}}
-		<a data-tab="biography">Biography</a>{{!-- TODO: Localize --}}
-		<a data-tab="effects">Effects</a>{{!-- TODO: Localize --}}
+		<a data-tab="details">{{localize "EH.Sheet.Section.Details"}}</a>
+		<a data-tab="features">{{localize "EH.Sheet.Section.Features"}}</a>
+		<a data-tab="inventory">{{localize "EH.Sheet.Section.Inventory"}}</a>
+		<a data-tab="persona">{{localize "EH.Sheet.Section.Persona"}}</a>
+		<a data-tab="biography">{{localize "EH.Sheet.Section.Biography"}}</a>
+		<a data-tab="effects">{{localize "EH.Sheet.Section.Effects"}}</a>
 		{{#if editingMode}}
 			<a data-action="toggle-editing-mode"
 				data-tooltip="Disable Editing Mode">

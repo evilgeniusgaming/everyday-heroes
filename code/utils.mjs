@@ -260,7 +260,7 @@ export function tagInput(selected, options={}) {
 		obj[key] = {
 			label: foundry.utils.getType(choice) !== "Object" ? choice : choice[labelAttr],
 			disabled: choice[disabledAttr]
-				?? foundry.utils.getType(selected) === "Array" ? selected.includes(key) : selected.has(key)
+				?? (foundry.utils.getType(selected) === "Array" ? selected.includes(key) : selected.has(key))
 		};
 		return obj;
 	}, {});
@@ -282,8 +282,8 @@ export function tagInput(selected, options={}) {
 	}
 	const listId = `list-${name}-${options.data.root.document?.id}`;
 	const input = dataOptions.length
-		? `<input list="${listId}"><datalist id="${listId}">${dataOptions}</datalist>`
-		: "<input>";
+		? `<input type="text" list="${listId}"><datalist id="${listId}">${dataOptions}</datalist>`
+		: '<input type="text">';
 
 	// Put it all together
 	const validation = validate ? 'data-validate="true"' : "";

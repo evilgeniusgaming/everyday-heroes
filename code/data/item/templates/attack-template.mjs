@@ -40,7 +40,7 @@ export default class AttackTemplate {
 		const rollData = this.parent?.getRollData() ?? {};
 		return (rollData.abilities?.[this.attackAbility]?.mod ?? 0)
 			+ simplifyBonus(this.proficiency?.term, rollData)
-			+ simplifyBonus(this.parent?.actor?.system.bonuses?.attack.all, rollData);
+			+ simplifyBonus(this.parent?.actor?.system.bonuses?.attack?.all, rollData);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

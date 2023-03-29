@@ -99,6 +99,9 @@
 	flex: 0 0 10em;
 	width: unset;
 }
+.everyday-heroes.npc.sheet [data-tab="details"] > section > fieldset:not(.abilities) > input[name="system.attributes.hp.value"] {
+	text-align: end;
+}
 
 .everyday-heroes.npc.sheet [data-tab="details"] > section > fieldset > ul {
 	display: flex;
@@ -179,8 +182,16 @@
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 .everyday-heroes.npc.sheet [data-tab="biography"] > section {
-	margin-block-start: 1em;
+	margin-block-start: 0.5em;
 }
 .everyday-heroes.npc.sheet [data-tab="biography"] > section .editor {
 	min-height: 20em;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Effects                                */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.everyday-heroes.npc.sheet [data-tab="effects"] > section:first-child {
+	margin-block-start: 0.5em;
 }

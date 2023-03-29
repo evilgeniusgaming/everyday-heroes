@@ -718,7 +718,7 @@ export default class ItemEH extends Item {
 		const rollConfig = foundry.utils.mergeObject({
 			data,
 			options: {
-				multiplier: this.actor?.system.overrides.critical.multiplier,
+				multiplier: this.actor?.system.overrides?.critical?.multiplier,
 				bonusDamage: [this.system.bonuses.critical.damage, ammunition?.system.bonuses.critical.damage]
 					.filter(d => d)
 					.map(d => Roll.replaceFormulaData(d, data))

@@ -146,9 +146,11 @@ export default class HeroData extends SystemDataModel.mixin(
 					})
 				}, {label: "EH.Override.Ability.Label", hint: "EH.Override.Ability.Hint"}),
 				critical: new foundry.data.fields.SchemaField({
-					multiplier: new foundry.data.fields.NumberField({min: 1, integer: true, label: ""}),
+					multiplier: new foundry.data.fields.NumberField({
+						min: 1, integer: true, label: "EH.Action.Override.Critical.Multiplier.Label"
+					}),
 					threshold: new MappingField(new foundry.data.fields.NumberField({initial: 20, min: 1, integer: true}), {
-						label: ""
+						label: "EH.Weapon.Overrides.Critical.Threshold.Label"
 					})
 				})
 			}, {label: "EH.Override.Label"}),

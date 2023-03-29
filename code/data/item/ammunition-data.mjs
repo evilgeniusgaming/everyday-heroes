@@ -71,7 +71,7 @@ export default class AmmunitionData extends SystemDataModel.mixin(
 			}),
 			overrides: new foundry.data.fields.SchemaField({
 				critical: new foundry.data.fields.SchemaField({
-					threshold: new foundry.data.fields.NumberField({label: "EH.Weapon.Overrides.CriticalThreshold.Label"})
+					threshold: new foundry.data.fields.NumberField({label: "EH.Weapon.Overrides.Critical.Threshold.Label"})
 				})
 			})
 		});

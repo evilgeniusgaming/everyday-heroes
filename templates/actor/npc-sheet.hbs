@@ -12,9 +12,10 @@
 			<input type="text" name="system.details.cr" value="{{cr}}">
 		</fieldset>
 		<nav data-group="primary">
-			<a data-tab="details">Details</a>{{!-- TODO: Localize --}}
-			<a data-tab="inventory">Items</a>{{!-- TODO: Localize --}}
-			<a data-tab="biography">Biography</a>{{!-- TODO: Localize --}}
+			<a data-tab="details">{{localize "EH.Sheet.Section.Details"}}</a>
+			<a data-tab="inventory">{{localize "EH.Sheet.Section.Inventory"}}</a>
+			<a data-tab="biography">{{localize "EH.Sheet.Section.Biography"}}</a>
+			<a data-tab="effects">{{localize "EH.Sheet.Section.Effects"}}</a>
 			{{#if editingMode}}
 				<a data-action="toggle-editing-mode"
 					data-tooltip="Disable Editing Mode">
@@ -58,6 +59,9 @@
 						engine="prosemirror" collaborate=false}}
 				{{/if}}
 			</section>
+		</div>
+		<div class="tab inventory" data-group="primary" data-tab="effects">
+			{{> "everydayHeroes.active-effects"}}
 		</div>
 	</main>
 </form>

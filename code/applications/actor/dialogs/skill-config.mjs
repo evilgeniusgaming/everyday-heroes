@@ -9,7 +9,7 @@ import BaseConfig from "./base-config.mjs";
 export default class SkillConfig extends BaseConfig {
 	constructor(skillId, actor, options) {
 		super(actor, options);
-		this.skillId = skillId;
+		this.skillId = skillId ?? Object.keys(CONFIG.EverydayHeroes.skills)[0];
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -109,7 +109,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 			overrides: new foundry.data.fields.SchemaField({
 				ability: new foundry.data.fields.StringField({label: "EH.Weapon.Overrides.Ability"}),
 				critical: new foundry.data.fields.SchemaField({
-					threshold: new foundry.data.fields.NumberField({label: "EH.Weapon.Overrides.CriticalThreshold.Label"})
+					threshold: new foundry.data.fields.NumberField({label: "EH.Weapon.Overrides.Critical.Threshold.Label"})
 				})
 			})
 		});
@@ -151,7 +151,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 		return super.attackMod
 			+ simplifyBonus(this.bonuses.attack, rollData)
 			+ simplifyBonus(this.ammunition?.system.bonuses.attack, rollData)
-			+ simplifyBonus(this.parent?.actor?.system.bonuses?.attack[this.type.value], rollData);
+			+ simplifyBonus(this.parent?.actor?.system.bonuses?.attack?.[this.type.value], rollData);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -183,19 +183,32 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get chatTags() {
-		return [
+		const pluralRule = new Intl.PluralRules(game.i18n.lang);
+		const tags = [
 			{ label: this.type.label, class: "type" },
-			// TODO: Range
-			// TODO: Rounds
-			// TODO: Reload
 			{
 				label: `${game.i18n.localize(
 					"EH.Equipment.Trait.PenetrationValue.Abbreviation")} ${numberFormat(this.penetrationValue)}`,
-				class: "property"
+				class: "detail"
 			},
 			...this.propertiesTags,
 			...this.physicalTags
 		];
+		if ( this.range.short ) {
+			let label = this.range.short;
+			if ( this.range.long > this.range.short ) label += `/${numberFormat(this.range.long)}`;
+			// TODO: Localize this range format
+			label += ` ${CONFIG.EverydayHeroes.lengthUnits[this.range.units].abbreviation}`;
+			tags.splice(1, 0, { label, class: "detail" });
+		}
+		if ( this.rounds.capacity ) {
+			const label = game.i18n.localize(`EH.Ammunition.Rounds.Label[${pluralRule.select(this.rounds.capacity)}]`);
+			tags.splice(2, 0, { label: `${numberFormat(this.rounds.capacity)} ${label}`, class: "detail" });
+		}
+		if ( this.reload ) {
+			tags.splice(3, 0, { label: CONFIG.EverydayHeroes.actionTypesReload[this.reload], class: "detail" });
+		}
+		return tags;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -203,8 +216,8 @@ export default class WeaponData extends SystemDataModel.mixin(
 	get criticalThreshold() {
 		// TODO: Replace actor threshold with a more customizable system
 		const threshold = Math.min(
-			this.parent?.actor?.system.overrides?.critical.threshold?.all ?? Infinity,
-			this.parent?.actor?.system.overrides?.critical.threshold?.[this.type.value] ?? Infinity,
+			this.parent?.actor?.system.overrides?.critical?.threshold.all ?? Infinity,
+			this.parent?.actor?.system.overrides?.critical?.threshold[this.type.value] ?? Infinity,
 			this.ammunition?.system.overrides.critical.threshold ?? Infinity,
 			this.overrides.critical.threshold ?? Infinity
 		);
@@ -401,11 +414,11 @@ export default class WeaponData extends SystemDataModel.mixin(
 			const type = game.i18n.format("EH.Damage.Specific", {
 				type: CONFIG.EverydayHeroes.damageTypes[clone.system.damage.type]?.label
 			});
-			let string = '<a data-action="roll-item" data-type="damage" data-mode="mode">';
+			let string = `<a data-action="roll-item" data-type="damage" data-mode="${mode}">`;
 			string += clone.system.damage.average;
 			if ( clone.system.damage.denomination ) string += ` (${clone.system.damageFormula})`;
 			string += ` ${type.toLowerCase()}</a>`;
-			if ( config.npcHint ) string += ` ${config.npcHint}`;
+			if ( config.npcHint && (Object.values(modes).length > 1) ) string += ` ${config.npcHint}`;
 			damages.push(string);
 		}
 		const listFormatter = new Intl.ListFormat(game.i18n.lang, {type: "disjunction", style: "short"});

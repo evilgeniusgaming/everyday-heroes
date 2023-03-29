@@ -9,7 +9,7 @@ import BaseConfig from "./base-config.mjs";
 export default class AbilityConfig extends BaseConfig {
 	constructor(abilityId, actor, options) {
 		super(actor, options);
-		this.abilityId = abilityId;
+		this.abilityId = abilityId ?? Object.keys(CONFIG.EverydayHeroes.abilities)[0];
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

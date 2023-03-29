@@ -1,5 +1,6 @@
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
+import MappingField from "../fields/mapping-field.mjs";
 import Proficiency from "../../documents/proficiency.mjs";
 import AbilitiesTemplate from "./templates/abilities-template.mjs";
 import InitiativeTemplate from "./templates/initiative-template.mjs";
@@ -55,12 +56,30 @@ export default class NPCData extends SystemDataModel.mixin(
 			details: new foundry.data.fields.SchemaField({
 				cr: new foundry.data.fields.NumberField({initial: 0, min: 0, label: "EH.ChallengeRating.Label"})
 			}, {label: "EH.Details.Label"}),
+			overrides: new foundry.data.fields.SchemaField({
+				critical: new foundry.data.fields.SchemaField({
+					multiplier: new foundry.data.fields.NumberField({
+						min: 1, integer: true, label: "EH.Action.Override.Critical.Multiplier.Label"
+					}),
+					threshold: new MappingField(new foundry.data.fields.NumberField({initial: 20, min: 1, integer: true}), {
+						label: "Weapon.Overrides.Critical.Threshold.Label"
+					})
+				})
+			}, {label: "EH.Override.Label"}),
 			traits: new foundry.data.fields.SchemaField({
+				damage: new foundry.data.fields.SchemaField({
+					immunity: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+						label: "EH.Damage.Immunity.Label"
+					}),
+					reduction: new MappingField(new FormulaField({deterministic: true}), {label: "EH.Damage.Reduction.Label"})
+				}),
 				size: new foundry.data.fields.StringField({initial: "medium", label: "EH.Size.Label"}),
 				type: new foundry.data.fields.SchemaField({
-					value: new foundry.data.fields.StringField({label: ""}),
-					tags: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField(), {label: ""})
-				}, {label: ""})
+					value: new foundry.data.fields.StringField({label: "EH.Creature.Type.Label"}),
+					tags: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField(), {
+						label: "EH.Creature.Type.Tags.Label"
+					})
+				}, {label: "EH.Creature.Type.Label"})
 			}, {label: "EH.Traits.Label"})
 		});
 	}
@@ -77,7 +96,11 @@ export default class NPCData extends SystemDataModel.mixin(
 
 	prepareDerivedTypeLabel() {
 		const listFormatter = new Intl.ListFormat(game.i18n.lang, {type: "unit", style: "short"});
-		this.traits.type.tagList = listFormatter.format(this.traits.type.tags);
+		const allTags = Object.values(CONFIG.EverydayHeroes.creatureTypes).reduce((obj, data) => {
+			if ( data.subtypes ) obj = { ...obj, ...data.subtypes };
+			return obj;
+		}, {});
+		this.traits.type.tagList = listFormatter.format(this.traits.type.tags.map(t => (allTags[t] ?? t).toLowerCase()));
 		this.traits.type.label = `${
 			CONFIG.EverydayHeroes.sizes[this.traits.size]?.label ?? ""} ${
 			CONFIG.EverydayHeroes.creatureTypes[this.traits.type.value]?.label ?? ""}`;
