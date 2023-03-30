@@ -129,6 +129,8 @@ preLocalize("equipmentCategories", { key: "label" });
  *
  * @typedef {LabeledConfiguration} EquipmentCategoryConfiguration
  * @property {string} [hint] - Localized hint.
+ * @property {string} [condition] - Condition that is imposed on people affected by this equipment if they
+ *                                  fail a constitution saving throw against the attackers dexterity DC.
  */
 
 /**
@@ -154,7 +156,8 @@ export const equipmentProperties = {
 	},
 	blinding: {
 		label: "EH.Weapon.Property.Blinding.Label",
-		hint: ""
+		hint: "",
+		condition: "blinded"
 	},
 	burst: {
 		label: "EH.Weapon.Property.Burst.Label",
@@ -166,7 +169,8 @@ export const equipmentProperties = {
 	},
 	deafening: {
 		label: "EH.Weapon.Property.Deafening.Label",
-		hint: ""
+		hint: "",
+		condition: "deafened"
 	},
 	disguised: {
 		label: "EH.Weapon.Property.Disguised.Label",
@@ -175,7 +179,7 @@ export const equipmentProperties = {
 	finesse: {
 		label: "EH.Weapon.Property.Finesse.Label",
 		hint: "",
-		condition: {"system.type.value": "melee"}
+		restriction: {"system.type.value": "melee"}
 	},
 	fullAuto: {
 		label: "EH.Weapon.Property.FullAuto.Label",
@@ -212,7 +216,7 @@ export const equipmentProperties = {
 	reach: {
 		label: "EH.Weapon.Property.Reach.Label",
 		hint: "",
-		condition: {"system.type.value": "melee"}
+		restriction: {"system.type.value": "melee"}
 	},
 	restricted: {
 		label: "EH.Weapon.Property.Restricted.Label",
@@ -252,7 +256,8 @@ export const equipmentProperties = {
 	},
 	stunning: {
 		label: "EH.Weapon.Property.Stunning.Label",
-		hint: ""
+		hint: "",
+		condition: "stunned"
 	},
 	thrown: {
 		label: "EH.Weapon.Property.Thrown.Label",

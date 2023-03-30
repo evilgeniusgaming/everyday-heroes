@@ -62,6 +62,8 @@ Hooks.once("ready", function() {
 });
 
 Hooks.on("getChatLogEntryContext", documents.ChatMessageEH.getContextOptions);
+Hooks.on("renderChatLog", documents.ChatMessageEH.attachChatListeners);
+Hooks.on("renderChatPopout", documents.ChatMessageEH.attachChatListeners);
 
 export {
 	applications,

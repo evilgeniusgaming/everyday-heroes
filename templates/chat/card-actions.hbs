@@ -1,0 +1,17 @@
+<div class="everyday-heroes chat-actions">
+	{{#each actions as |action|}}
+		<nav class="skewed">
+			<ul>
+				<li>
+					<button data-action="{{#if action.action}}{{action.action}}{{else}}roll{{/if}}" data-type="{{action.type}}"
+						data-data="{{everydayHeroes-jsonStringify action.dataset}}">
+						{{action.label}}
+					</button>
+				</li>
+			</ul>
+		</nav>
+		{{#each action.results as |result key|}}
+			<p class="{{key}}"><strong>{{result.label}}</strong>: {{{result.summary}}}</p>
+		{{/each}}
+	{{/each}}
+</div>

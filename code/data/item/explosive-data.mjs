@@ -1,3 +1,4 @@
+import { numberFormat } from "../../utils.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import AttackTemplate from "./templates/attack-template.mjs";
@@ -81,6 +82,71 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	get canCritical() {
+		return false;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get chatTags() {
+		const tags = [
+			{ label: this.type.label, class: "type" },
+			...this.propertiesTags,
+			...(this._source.dc ? [{
+				label: game.i18n.format("EH.DifficultyClass.Tag", {dc: this.dc}),
+				class: "property"
+			}] : []),
+			...this.proficiencyTags,
+			...this.physicalTags
+		];
+		if ( this.radius.value ) tags.splice(1, 0, {
+			label: game.i18n.format("EH.Measurement.Radius.Tag", {
+				size: this.radius.value, units: CONFIG.EverydayHeroes.lengthUnits[this.radius.units].abbreviation
+			}),
+			class: "detail"
+		});
+		if ( this.hasDamage ) tags.splice(1, 0, {
+			label: `${game.i18n.localize(
+				"EH.Equipment.Trait.PenetrationValue.Abbreviation")} ${numberFormat(this.penetrationValue)}`,
+			class: "detail"
+		});
+		return tags;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get damageChatActions() {
+		const actions = super.damageChatActions;
+
+		// Dexterity save to take half damage
+		if ( this.hasDamage ) {
+			// TODO: Allow customizing default ability used to evade explosives
+			actions.unshift({
+				label: game.i18n.format("EH.ChallengeRating.Action", {
+					dc: this.dc, action: game.i18n.format("EH.Ability.Action.SaveSpecificShort", {
+						ability: CONFIG.EverydayHeroes.abilities.dex?.label ?? ""
+					})
+				}),
+				results: {
+					success: {
+						label: game.i18n.localize("EH.Roll.Result.Success"),
+						summary: game.i18n.localize("EH.Damage.Effect.Half")
+					},
+					failure: {
+						label: game.i18n.localize("EH.Roll.Result.Failure"),
+						summary: game.i18n.localize("EH.Damage.Effect.Full")
+					}
+				},
+				type: "ability-save",
+				dataset: { ability: "dex", options: { target: this.dc } }
+			});
+		}
+
+		return actions;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	get damageIcon() {
 		return "systems/everyday-heroes/artwork/svg/action/damage-explosive.svg";
 	}
@@ -96,5 +162,11 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 				?? game.i18n.localize("EH.Item.Type.Explosive[one]"),
 			subtype: ""
 		}).trim();
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareFinalDC() {
+		this.dc = this._source.dc || 8 + this.attackMod;
 	}
 }

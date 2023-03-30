@@ -31,11 +31,61 @@ export default class Damage extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Can critical damage be rolled with this item?
+	 * @type {boolean}
+	 */
+	get canCritical() {
+		return true;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Key for the ability that adds to damage rolls for this item, taking mode into account if it has one.
 	 * @type {string|null}
 	 */
 	get damageAbility() {
 		return null;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Actions that should be displayed in the damage chat card.
+	 * @type {object[]}
+	 */
+	get damageChatActions() {
+		// Constitution save to avoid effects
+		const properties = this.properties.filter(p =>
+			CONFIG.EverydayHeroes.conditions[CONFIG.EverydayHeroes.equipmentProperties[p].condition]
+		);
+		if ( !properties.size ) return [];
+
+		const listFormatter = new Intl.ListFormat(game.i18n.lang, { style: "short", type: "conjunction" });
+		const conditions = listFormatter.format(properties.map(p =>
+			CONFIG.EverydayHeroes.conditions[CONFIG.EverydayHeroes.equipmentProperties[p].condition].label
+		));
+
+		// TODO: Allow customizing default ability used to avoid conditions
+		return [{
+			label: game.i18n.format("EH.ChallengeRating.Action", {
+				dc: this.dc, action: game.i18n.format("EH.Ability.Action.SaveSpecificShort", {
+					ability: CONFIG.EverydayHeroes.abilities.con?.label ?? ""
+				})
+			}),
+			results: {
+				success: {
+					label: game.i18n.localize("EH.Roll.Result.Success"),
+					summary: game.i18n.localize("EH.Condition.Effect.None")
+				},
+				failure: {
+					label: game.i18n.localize("EH.Roll.Result.Failure"),
+					summary: game.i18n.format(`EH.Condition.Effect.${properties.size > 1 ? "Multiple" : "One"}`, { conditions })
+				}
+			},
+			type: "ability-save",
+			dataset: { ability: "con", options: { target: this.dc } }
+		}];
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

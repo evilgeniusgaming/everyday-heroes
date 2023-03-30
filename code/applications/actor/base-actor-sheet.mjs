@@ -376,27 +376,9 @@ export default class BaseActorSheet extends ActorSheet {
 	 */
 	_onRollAction(event) {
 		event.preventDefault();
-		const { type, key } = event.currentTarget.dataset;
-		switch (type) {
-			case "ability-check":
-				return this.actor.rollAbilityCheck({ ability: key, event });
-			case "ability-save":
-				return this.actor.rollAbilitySave({ ability: key, event });
-			case "death-save":
-				return this.actor.rollDeathSave({ event });
-			case "hit-die":
-				return this.actor.rollHitDie({ event });
-			case "initiative":
-				return this.actor.rollInitiative({ event });
-			case "luck":
-				return this.actor.rollLuckSave({ event });
-			case "resource":
-				return this.actor.rollResource({ resource: key, event });
-			case "skill":
-				return this.actor.rollSkill({ skill: key, event });
-			default:
-				return console.warn(`Everyday Heroes | Invalid roll type clicked ${type}.`);
-		}
+		const { type, ...config } = event.currentTarget.dataset;
+		config.event = event;
+		return this.actor.roll(type, config);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

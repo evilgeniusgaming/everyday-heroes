@@ -325,6 +325,39 @@ export default class ActorEH extends Actor {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Handle a roll event and pass it on to the indicated rolling method.
+	 * @param {string} type - Type of roll to perform.
+	 * @param {object} [config] - Additional configuration options.
+	 * @param {object} [message] - Configuration data that guides roll message creation.
+	 * @param {object} [dialog] - Presentation data for the roll configuration dialog.
+	 * @returns {Promise}
+	 */
+	async roll(type, config={}, message={}, dialog={}) {
+		switch (type) {
+			case "ability-check":
+				return this.rollAbilityCheck(config, message, dialog);
+			case "ability-save":
+				return this.rollAbilitySave(config, message, dialog);
+			case "death-save":
+				return this.rollDeathSave(config, message, dialog);
+			case "hit-die":
+				return this.rollHitDie(config, message, dialog);
+			case "initiative":
+				return this.rollInitiative(config, message, dialog);
+			case "luck":
+				return this.rollLuckSave(config, message, dialog);
+			case "resource":
+				return this.rollResource(config, message, dialog);
+			case "skill":
+				return this.rollSkill(config, message, dialog);
+			default:
+				return console.warn(`Everyday Heroes | Invalid roll type clicked ${type}.`);
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Configuration information for an ability roll.
 	 *
 	 * @typedef {ChallengeRollConfiguration} AbilityRollConfiguration
@@ -434,7 +467,7 @@ export default class ActorEH extends Actor {
 		}, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
-		const type = game.i18n.format("EH.Ability.Action.SaveSpecific", {
+		const type = game.i18n.format("EH.Ability.Action.SaveSpecificLong", {
 			ability: CONFIG.EverydayHeroes.abilities[config.ability].label
 		});
 		const flavor = game.i18n.format("EH.Action.Roll", { type });

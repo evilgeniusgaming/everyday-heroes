@@ -85,7 +85,6 @@
 }
 .everyday-heroes nav.skewed li {
 	flex-grow: 1;
-	padding: 0.25em;
 	text-align: center;
 }
 .everyday-heroes nav.skewed li:hover {
@@ -99,6 +98,7 @@
 	transform: skew(16deg);
 	margin: 0;
 	border: none;
+	padding: 0.25em;
 	background: none;
 }
 .everyday-heroes nav.skewed li > :is(a, button):hover {

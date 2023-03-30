@@ -136,6 +136,9 @@
 }
 .hero.sheet [data-tab="details"] .abilities .ability label {
 	grid-column: 1 / 4;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	transform: skew(-16deg);
 	z-index: 2;
 	margin-inline: 1em -1em;
@@ -147,7 +150,7 @@
 	background-color: var(--eh-border-color-strong);
 	color: var(--color-text-light-0);
 }
-.hero.sheet [data-tab="details"] .abilities .ability label a {
+.hero.sheet [data-tab="details"] .abilities .ability label > * {
 	display: block;
 	transform: skew(16deg);
 }

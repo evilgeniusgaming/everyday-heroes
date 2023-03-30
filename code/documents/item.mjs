@@ -411,7 +411,7 @@ export default class ItemEH extends Item {
 			rollMode: game.settings.get("core", "rollMode"),
 			data: {
 				title: `${this.name}: ${this.actor.name}`,
-				content: await renderTemplate("systems/everyday-heroes/templates/item/item-card.hbs", context),
+				content: await renderTemplate("systems/everyday-heroes/templates/chat/item-card.hbs", context),
 				speaker: ChatMessage.getSpeaker({actor: this.actor})
 			}
 		}, message);
@@ -797,12 +797,13 @@ export default class ItemEH extends Item {
 		const rollConfig = foundry.utils.mergeObject({
 			data,
 			options: {
+				allowCritical: ammunition ? ammunition.system.canCritical : this.system.canCritical,
 				multiplier: this.actor?.system.overrides?.critical?.multiplier,
-				bonusDamage: [this.system.bonuses.critical.damage, ammunition?.system.bonuses.critical.damage]
+				bonusDamage: [this.system.bonuses.critical?.damage, ammunition?.system.bonuses.critical?.damage]
 					.filter(d => d)
 					.map(d => Roll.replaceFormulaData(d, data))
 					.join(" + "),
-				bonusDice: (this.system.bonuses.critical.dice ?? 0) + (ammunition?.system.bonuses.critical.dice ?? 0),
+				bonusDice: (this.system.bonuses.critical?.dice ?? 0) + (ammunition?.system.bonuses.critical?.dice ?? 0),
 				type: this.system.damage.type
 			}
 		}, config);
@@ -816,6 +817,7 @@ export default class ItemEH extends Item {
 				title: `${flavor}: ${this.actor?.name ?? ""}`,
 				flavor,
 				speaker: ChatMessage.getSpeaker({actor: this.actor}),
+				"flags.everyday-heroes.actions": this.system.damageChatActions,
 				"flags.everyday-heroes.roll": {
 					type: "damage",
 					mode: this.system.mode,

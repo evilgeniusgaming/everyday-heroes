@@ -204,6 +204,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 				class: "detail"
 			},
 			...this.propertiesTags,
+			...this.proficiencyTags,
 			...this.physicalTags
 		];
 		if ( this.range.short ) {

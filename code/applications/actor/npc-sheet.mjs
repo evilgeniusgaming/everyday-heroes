@@ -200,12 +200,12 @@ export default class NPCSheet extends BaseActorSheet {
 		}, []));
 		context.lists.saves = listFormatter.format(Object.entries(context.abilities).reduce((arr, [key, ability]) => {
 			if ( !ability.saveProficiency.hasProficiency ) return arr;
-			arr.push(`<a data-action="roll" data-type="ability-save" data-key="${key}">${ability.label} ${ability.save}</a>`);
+			arr.push(`<a data-action="roll" data-type="ability-save" data-ability="${key}">${ability.label} ${ability.save}</a>`);
 			return arr;
 		}, []));
 		context.lists.skills = listFormatter.format(Object.entries(context.skills).reduce((arr, [key, skill]) => {
 			if ( !skill.proficiency.hasProficiency ) return arr;
-			arr.push(`<a data-action="roll" data-type="skill" data-key="${key}">${skill.label} ${skill.mod}</a>`);
+			arr.push(`<a data-action="roll" data-type="skill" data-skill="${key}">${skill.label} ${skill.mod}</a>`);
 			return arr;
 		}, []));
 

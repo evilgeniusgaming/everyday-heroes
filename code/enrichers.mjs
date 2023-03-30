@@ -85,7 +85,7 @@ export async function enrichCheck(config, label) {
 		if ( dc ) label = game.i18n.format("EH.Inline.DC", { dc, check: label });
 	}
 
-	const type = skillConfig ? "skill" : "check";
+	const type = skillConfig ? "skill" : "ability-check";
 	return createRollLink(label, { type, ability, skill, dc });
 }
 
@@ -107,7 +107,7 @@ export async function enrichCheck(config, label) {
  * ```@Save{dex}```
  * becomes
  * ```html
- * <a class="roll-action" data-type="save" data-key="dex">
+ * <a class="roll-action" data-type="save" data-ability="dex">
  *   <i class="fa-solid fa-dice-d20"></i> Dexterity Save
  * </a>
  * ```
@@ -116,7 +116,7 @@ export async function enrichCheck(config, label) {
  * ```@Save{dex|dc:20}```
  * becomes
  * ```html
- * <a class="roll-action" data-type="save" data-key="dex" data-dc="20">
+ * <a class="roll-action" data-type="save" data-ability="dex" data-dc="20">
  *   <i class="fa-solid fa-dice-d20"></i> DC 20 Dexterity Save
  * </a>
  * ```
@@ -125,14 +125,14 @@ export async function enrichSave(config, label) {
 	const { _: ability, dc } = config;
 
 	const abilityConfig = CONFIG.EverydayHeroes.abilities[ability];
-	if ( !abilityConfig ) return console.log(`Everyday Heros | Ability ${ability} not found`);
+	if ( !abilityConfig ) return console.log(`Everyday Heroes | Ability ${ability} not found`);
 
 	if ( !label ) {
 		label = game.i18n.format("EH.Inline.Save", { ability: abilityConfig.label });
 		if ( dc ) label = game.i18n.format("EH.Inline.DC", { dc, check: label });
 	}
 
-	return createRollLink(label, { type: "save", ability, dc });
+	return createRollLink(label, { type: "ability-save", ability, dc });
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -216,14 +216,5 @@ export function rollAction(event) {
 	actor ??= game.actors.get(speaker.actor);
 	if ( !actor ) return ui.notifications.warn(game.i18n.localize("EH.Inline.NoActorWarning"));
 
-	switch (type) {
-		case "check":
-			return actor.rollAbilityCheck(config);
-		case "save":
-			return actor.rollAbilitySave(config);
-		case "skill":
-			return actor.rollSkill(config);
-		default:
-			return console.warn(`Everyday Heroes | Unknown roll type ${type} provided.`);
-	}
+	return actor.roll(type, config);
 }

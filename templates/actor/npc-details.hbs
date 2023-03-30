@@ -80,7 +80,7 @@
 		{{#each abilities as |ability key|}}
 			<div>
 				<label>
-					<a data-action="roll" data-type="ability-check" data-key="{{key}}">{{ability.abbreviation}}</a>
+					<a data-action="roll" data-type="ability-check" data-ability="{{key}}">{{ability.abbreviation}}</a>
 				</label>
 				{{#if @root.editingMode}}
 					<input type="number" name="system.abilities.{{key}}.value" value="{{ability.value}}">

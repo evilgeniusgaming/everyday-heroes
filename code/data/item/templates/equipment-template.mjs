@@ -45,6 +45,7 @@ export default class EquipmentTemplate {
 		return [
 			{ label: this.type.label, class: "type" },
 			...this.propertiesTags,
+			...this.proficiencyTags,
 			...this.physicalTags ?? []
 		];
 	}
@@ -86,15 +87,23 @@ export default class EquipmentTemplate {
 			// TODO: Add tooltips with property descriptions
 			tags.push({ label, class: "property" });
 		}
-		if ( this.parent.isEmbedded ) {
-			const level = this.proficiency.hasProficiency
-				? (this.proficiency.multiplier === 1 ? "Proficient" : "Half") : "None";
-			tags.push({
-				label: game.i18n.localize(`EH.Proficiency.Level.${level}`),
-				class: `${this.proficiency.hasProficiency ? "positive" : "negative"} status`
-			});
-		}
 		return tags;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Prepare tags related to equipment proficiency.
+	 * @type {ChatTag[]}
+	 */
+	get proficiencyTags() {
+		if ( !this.parent.isEmbedded ) return [];
+		const level = this.proficiency.hasProficiency
+			? (this.proficiency.multiplier === 1 ? "Proficient" : "Half") : "None";
+		return [{
+			label: game.i18n.localize(`EH.Proficiency.Level.${level}`),
+			class: `${this.proficiency.hasProficiency ? "positive" : "negative"} status`
+		}];
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

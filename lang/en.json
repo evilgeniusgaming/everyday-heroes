@@ -21,7 +21,8 @@
 "Ability.Action.CheckGeneric": "Ability Check",
 "Ability.Action.CheckSpecific": "{ability} Check",
 "Ability.Action.SaveGeneric": "Saving Throw",
-"Ability.Action.SaveSpecific": "{ability} Saving Throw",
+"Ability.Action.SaveSpecificLong": "{ability} Saving Throw",
+"Ability.Action.SaveSpecificShort": "{ability} Save",
 "Ability.Bonus.Check": "Ability Check Bonus",
 "Ability.Bonus.DC": "DC Bonus",
 "Ability.Bonus.Save": "Saving Throw Bonus",
@@ -200,9 +201,13 @@
 
 "ChallengeRating.Label": "Challenge Rating",
 "ChallengeRating.Abbreviation": "CR",
+"ChallengeRating.Action": "DC {dc} {action}",
 
 "Condition.Label[one]": "Condition",
 "Condition.Label[other]": "Conditions",
+"Condition.Effect.Multiple": "Gain the {conditions} conditions",
+"Condition.Effect.None": "No effect",
+"Condition.Effect.One": "Gain the {conditions} condition",
 "Condition.Blinded.Label": "Blinded",
 "Condition.Burning.Label": "Burning",
 "Condition.Deafened.Label": "Deafened",
@@ -257,6 +262,9 @@
 "Damage.Action.ApplyHalf": "Apply Half Damage",
 "Damage.Action.ApplyNegative": "Apply as Healing",
 "Damage.Action.ApplyNormal": "Apply Damage",
+"Damage.Effect.Full": "Take full damage",
+"Damage.Effect.Half": "Take half damage",
+"Damage.Effect.None": "Take no damage",
 "Damage.Type.Label[one]": "Damage Type",
 "Damage.Type.Label[other]": "Damage Types",
 "Damage.Type.Acid": "Acid",
@@ -310,6 +318,10 @@
 "Dice.Modification.Count[other]": "{number} Dice",
 "Dice.Modification.Denomination[one]": "{number} Step",
 "Dice.Modification.Denomination[other]": "{number} Steps",
+
+"DifficultyClass.Label": "Difficulty Class",
+"DifficultyClass.Abbreviation": "DC",
+"DifficultyClass.Tag": "DC {dc}",
 
 "Effect.New": "New Effect",
 "Effect.Action.Create": "Create Effect",
@@ -487,6 +499,7 @@
 "Luck.Label": "Luck Saving Throw",
 
 "Measurement.Radius.Label": "Radius",
+"Measurement.Radius.Tag": "{size} {units} Radius",
 "Measurement.Length.Feet.Label[one]": "Foot",
 "Measurement.Length.Feet.Label[other]": "Feet",
 "Measurement.Length.Feet.Abbreviation": "ft",
@@ -556,6 +569,10 @@
 
 "Roll.Configuration.LabelGeneric": "Roll Configuration",
 "Roll.Configuration.LabelSpecific": "{type} Configuration",
+"Roll.Result.CriticalFailure": "Critical Failure",
+"Roll.Result.CriticalSuccess": "Critical Success",
+"Roll.Result.Failure": "Failure",
+"Roll.Result.Success": "Success",
 
 "Sense.Label[one]": "Sense",
 "Sense.Label[other]": "Senses",
