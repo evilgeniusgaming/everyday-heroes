@@ -226,7 +226,8 @@
 "Consumption.Amount.Label": "Amount",
 "Consumption.Target.Label": "Target",
 "Consumption.Type.Label": "Type",
-"Consumption.Warning.Insufficient": "Only {available} uses of {resource} available, {required} needed.",
+"Consumption.Warning.InsufficientNone": "No uses of {resource} available, {required} needed.",
+"Consumption.Warning.InsufficientSome": "Only {available} uses of {resource} available, {required} needed.",
 "Consumption.Warning.InvalidType": "Unrecognized resource {type} found for consumption",
 "Consumption.Warning.NotFound": "Resource {target} not found to consume.",
 

@@ -205,6 +205,8 @@ export function rollAction(event) {
 
 	const { type, ability, skill, dc } = target.dataset;
 	const config = {};
+	if ( ability ) config.ability = ability;
+	if ( skill ) config.skill = skill;
 	if ( dc ) config.options = { target: Number(dc) };
 
 	// Fetch the actor that should perform the roll
@@ -216,12 +218,11 @@ export function rollAction(event) {
 
 	switch (type) {
 		case "check":
-			return actor.rollAbilityCheck(ability, config);
+			return actor.rollAbilityCheck(config);
 		case "save":
-			return actor.rollAbilitySave(ability, config);
+			return actor.rollAbilitySave(config);
 		case "skill":
-			if ( ability ) config.ability = ability;
-			return actor.rollSkill(skill, config);
+			return actor.rollSkill(config);
 		default:
 			return console.warn(`Everyday Heroes | Unknown roll type ${type} provided.`);
 	}

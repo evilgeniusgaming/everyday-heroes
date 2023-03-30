@@ -208,7 +208,8 @@ export default class ItemEH extends Item {
 	 * @property {object} consume
 	 * @property {boolean} consume.resource - Should the item's linked resource be consumed?
 	 * @property {boolean} consume.use - Should one of the item's uses be consumed?
-	 * @property {boolean} rollResource - Should a dice resource be automatically rolled if it is consumed?
+	 * @property {object} roll
+	 * @property {boolean} roll.resource - Should a dice resource be automatically rolled if it is consumed?
 	 */
 
 	/**
@@ -233,6 +234,9 @@ export default class ItemEH extends Item {
 			consume: {
 				resource: item.system.consumesResource ?? false,
 				use: item.system.consumesUses ?? false
+			},
+			roll: {
+				resource: true
 			}
 		}, config);
 		if ( activationConfig.configure === undefined ) {
@@ -290,13 +294,23 @@ export default class ItemEH extends Item {
 		if ( Hooks.call("everydayHeroes.itemActivationConsumption", item,
 			activationConfig, message, updates) === false ) return;
 
+		// If a dice resource is consumed, roll that resource and add to chat message
+		if ( activationConfig.roll.resource && activationConfig.consume.resource ) {
+			const roll = await this.actor.rollResource({
+				resource: item.system.resource.target, consumed: 0
+			}, { create: false });
+			if ( roll ) {
+				message.data ??= {};
+				message.data.rolls = [roll].concat(message.data.rolls ?? []);
+			}
+		}
+
 		// Apply usage & resource updates
 		if ( !foundry.utils.isEmpty(updates.actor) ) await this.actor.update(updates.actor);
 		if ( !foundry.utils.isEmpty(updates.item) ) await this.update(updates.item);
 		if ( !foundry.utils.isEmpty(updates.resource) ) await this.actor.updateEmbeddedDocuments("Item", updates.resource);
 
 		// Create the chat card
-		// TODO: If a dice resource is consumed, roll that resource and add to chat message
 		const messageData = await this.displayInChat(message, { chatDescription: true });
 
 		/**
@@ -330,15 +344,18 @@ export default class ItemEH extends Item {
 
 		if ( config.consume.resource ) {
 			const res = this.system.resource;
-			// TODO: Support other resource types
+			// TODO: Support other consumption types
 			if ( res.type !== "resource" ) {
 				throw new Error(game.i18n.format("EH.Consumption.Warning.InvalidType", { type: res.type }));
 			}
 			const resource = this.actor?.system.resources?.[res.target];
 			if ( !resource ) throw new Error(game.i18n.format("EH.Consumption.Warning.NotFound", { target: res.target }));
-			if ( resource.available < res.amount ) throw new Error(game.i18n.format("EH.Consumption.Warning.Insufficient", {
-				available: resource.available, resource: resource.label, required: res.amount
-			}));
+			if ( resource.available < res.amount ) {
+				const type = resource.available ? "Some" : "None";
+				throw new Error(game.i18n.format(`EH.Consumption.Warning.Insufficient${type}`, {
+					available: resource.available, resource: resource.label, required: res.amount
+				}));
+			}
 			updates.actor[`system.resources.${res.target}.spent`] = resource.spent + res.amount;
 		}
 
@@ -388,6 +405,8 @@ export default class ItemEH extends Item {
 	 */
 	async displayInChat(message={}, context={}) {
 		context = foundry.utils.mergeObject(await this.chatContext(), context);
+		context.rollHTML = "";
+		for ( const roll of message.data?.rolls ?? [] ) context.rollHTML += await roll.render();
 		const messageConfig = foundry.utils.mergeObject({
 			rollMode: game.settings.get("core", "rollMode"),
 			data: {

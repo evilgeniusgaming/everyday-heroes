@@ -379,9 +379,9 @@ export default class BaseActorSheet extends ActorSheet {
 		const { type, key } = event.currentTarget.dataset;
 		switch (type) {
 			case "ability-check":
-				return this.actor.rollAbilityCheck(key, { event });
+				return this.actor.rollAbilityCheck({ ability: key, event });
 			case "ability-save":
-				return this.actor.rollAbilitySave(key, { event });
+				return this.actor.rollAbilitySave({ ability: key, event });
 			case "death-save":
 				return this.actor.rollDeathSave({ event });
 			case "hit-die":
@@ -391,9 +391,9 @@ export default class BaseActorSheet extends ActorSheet {
 			case "luck":
 				return this.actor.rollLuckSave({ event });
 			case "resource":
-				return this.actor.rollResource(key, { event });
+				return this.actor.rollResource({ resource: key, event });
 			case "skill":
-				return this.actor.rollSkill(key, { event });
+				return this.actor.rollSkill({ skill: key, event });
 			default:
 				return console.warn(`Everyday Heroes | Invalid roll type clicked ${type}.`);
 		}
