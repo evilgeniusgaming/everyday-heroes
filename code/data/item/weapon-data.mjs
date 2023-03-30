@@ -119,6 +119,18 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/*  Properties                               */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	get actions() {
+		if ( !this.jammed ) return super.actions;
+		return [{
+			label: game.i18n.localize("EH.Weapon.Action.Unjam.Label"),
+			icon: "systems/everyday-heroes/artwork/svg/action/unjam.svg",
+			action: "item",
+			data: { type: "unjam" }
+		}];
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	get attackAbility() {
 		if ( this.overrides.ability ) return this.overrides.ability;
 		const melee = this.meleeAbility;

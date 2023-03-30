@@ -26,7 +26,6 @@
 	overflow: hidden;
 	grid-template-areas: "image details";
 
-	margin-block-end: 0.5em;
 	border: 1px solid var(--eh-border-color-strong);
 	border-radius: 20px;
 	background-color: var(--eh-background-color-light);
@@ -34,12 +33,14 @@
 
 .hero.sheet [data-tab="details"] .hero-id > div.image {
 	grid-area: image;
-	max-height: 150px;
-	aspect-ratio: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 150px;
+	min-height: 150px;
 }
 .hero.sheet [data-tab="details"] .hero-id > div.image img {
-	height: 100%;
-	aspect-ratio: 1;
+	aspect-ratio: 1 / 1;
 }
 .hero.sheet [data-tab="details"] .hero-id > div:not(.image) {
 	grid-area: details;
@@ -240,9 +241,8 @@
 }
 
 @supports not (grid-template-columns: subgrid) {
-	.hero.sheet [data-tab="details"] .abilities .ability > div.contents {
-		margin-inline-start: -2em;
-		padding-inline-start: 1em;
+	.hero.sheet [data-tab="details"] .abilities .ability {
+		grid-template-columns: 1.5em max-content auto max-content;
 	}
 	.hero.sheet [data-tab="details"] .skills .skill {
 		grid-template-columns: auto 1.75em 1.5em 1.5em;

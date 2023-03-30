@@ -74,7 +74,8 @@
 						</div>
 						<nav class="item-actions">
 							{{#each item.system.actions as |action|}}
-								<div class="action{{#if action.disabled}} disabled{{/if}}" data-action="roll-item"
+								<div class="action{{#if action.disabled}} disabled{{/if}}"
+									data-action="{{#if action.action}}{{action.action}}{{else}}roll-item{{/if}}"
 									data-tooltip="{{action.tooltip}}" {{everydayHeroes-dataset action.data}}>
 									{{#if action.icon}}
 										<figure style="background-image: url('{{action.icon}}');"></figure>

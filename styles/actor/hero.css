@@ -4,6 +4,7 @@
 
 .hero.sheet {
 	container-type: size;
+	min-width: 430px;
 }
 .hero.sheet .window-content {
 	padding: 0;

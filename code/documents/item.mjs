@@ -449,12 +449,13 @@ export default class ItemEH extends Item {
 	/**
 	 * Reload a weapon.
 	 * @param {ReloadConfiguration} [config] - Configuration information for the reload process.
-	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides message creation.
 	 * @returns {Promise}
 	 */
 	async reload(config={}, message={}) {
 		if ( !this.system.usesRounds ) return console.warn(`${this.name} cannot be reloaded.`);
 		if ( !this.system.rounds.spent ) return;
+		if ( this.system.jammed ) return ui.notifications.warn(game.i18n.localize("EH.Weapon.Action.Reload.Warning.Jammed"));
 
 		const ammunition = this.system.ammunition;
 		const roundsToReload = this.system.rounds.spent;
@@ -464,15 +465,13 @@ export default class ItemEH extends Item {
 
 		const reloadConfig = foundry.utils.mergeObject({ ammunition, roundsToReload }, config);
 
-		const flavor = game.i18n.localize("EH.Weapon.Action.Reload.Label");
 		const content = game.i18n.format(
 			`EH.Weapon.Action.Reload.Message${ammunition ? "Specific" : "Generic"}`,
 			{ actor: this.actor.name, number: roundsToReload, ammo: ammunition?.name, weapon: this.name }
 		);
 		const messageConfig = foundry.utils.mergeObject({
 			data: {
-				title: `${flavor}: ${this.actor.name}`,
-				flavor,
+				title: `${game.i18n.localize("EH.Weapon.Action.Reload.Label")}: ${this.actor.name}`,
 				content,
 				speaker: ChatMessage.getSpeaker({actor: this.actor}),
 				"flags.everyday-heroes.reload": {
@@ -518,6 +517,61 @@ export default class ItemEH extends Item {
 		Hooks.callAll("everydayHeroes.reload", this, reloadConfig);
 
 		// TODO: Should this return anything?
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Unjam a weapon.
+	 * @param {object} [config] - Configuration information for the unjamming process.
+	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides message creation.
+	 * @returns {Promise}
+	 */
+	async unjam(config={}, message={}) {
+		if ( !this.system.jammed ) return;
+
+		const unjamConfig = foundry.utils.mergeObject({}, config);
+
+		const content = game.i18n.format("EH.Weapon.Action.Unjam.Message", { actor: this.actor.name, weapon: this.name });
+		const messageConfig = foundry.utils.mergeObject({
+			data: {
+				title: `${game.i18n.localize("EH.Weapon.Action.Unjam.Label")}: ${this.actor.name}`,
+				content,
+				speaker: ChatMessage.getSpeaker({actor: this.actor}),
+				"flags.everyday-heroes.unjam": {
+					origin: this.uuid
+				}
+			}
+		}, message);
+
+		/**
+		 * A hook event that fires before a weapon is unjammed.
+		 * @function everydayHeroes.preUnjam
+		 * @memberof hookEvents
+		 * @param {ItemEH} item - Item that is being unjammed.
+		 * @param {object} config - Configuration information for the unjamming process.
+		 * @param {BaseMessageConfiguration} message - Configuration data for the reload's message.
+		 * @returns {boolean} - Explicitly return `false` to prevent the reload from occurring.
+		 */
+		if ( Hooks.call("everydayHeroes.preUnjam", this, unjamConfig, messageConfig) === false ) return;
+
+		// Update the item & ammunition if necessary
+		await this.update({"system.jammed": false});
+
+		// Display chat message
+		if ( messageConfig.create !== false ) {
+			ChatMessage.applyRollMode(messageConfig.data, game.settings.get("core", "rollMode"));
+			await ChatMessage.create(messageConfig.data);
+		}
+
+		/**
+		 * A hook event that fires after a weapon is unjammed.
+		 * @function everydayHeroes.unjam
+		 * @memberof hookEvents
+		 * @param {ItemEH} item - Item that has been unjammed.
+		 * @param {object} config - Configuration data for the unjam action.
+		 */
+		Hooks.callAll("everydayHeroes.unjam", this, unjamConfig);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -610,10 +664,12 @@ export default class ItemEH extends Item {
 		const ability = this.actor?.system.abilities[this.system.damageAbility];
 		const ammunition = this.system.ammunition;
 
-		// Verify that the weapon has enough rounds left to make the attack
+		// Verify that the weapon isn't jammed & has enough rounds left to make the attack
+		if ( this.system.jammed ) {
+			return ui.notifications.warn(game.i18n.localize("EH.Weapon.Action.Attack.Warning.Jammed"));
+		}
 		if ( this.system.usesRounds && (this.system.roundsToSpend > this.system.rounds?.available) ) {
-			return console.warn("Not enough rounds in weapon.");
-			// TODO: Display this as a UI messages
+			return ui.notifications.warn(game.i18n.localize("EH.Weapon.Action.Attack.Warning.Empty"));
 		}
 
 		// TODO: Thrown weapons with limited quantities should consume a quantity
@@ -684,10 +740,14 @@ export default class ItemEH extends Item {
 		 */
 		if ( roll ) Hooks.callAll("everydayHeroes.rollAttack", this, roll);
 
-		// Consume rounds
-		if ( this.system.roundsToSpend ) await this.update({
-			"system.rounds.spent": this.system.rounds.spent += this.system.roundsToSpend
-		});
+		const updates = {};
+		if ( this.system.roundsToSpend ) {
+			updates["system.rounds.spent"] = this.system.rounds.spent += this.system.roundsToSpend;
+		}
+		if ( this.system.properties.has("unreliable") && roll.isCriticalFailure ) {
+			updates["system.jammed"] = true;
+		}
+		if ( !foundry.utils.isEmpty(updates) ) await this.update(updates);
 
 		return roll;
 	}

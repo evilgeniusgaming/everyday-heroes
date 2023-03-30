@@ -10,7 +10,7 @@ export default class HeroSheet extends BaseActorSheet {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			tabs: [{navSelector: 'nav[data-group="primary"]', contentSelector: "main", initial: "details"}],
 			width: 820,
-			height: 720,
+			height: 740,
 			dragDrop: [{dragSelector: ":is(.item-list .item, .primary.item)", dropSelector: null}]
 		});
 	}

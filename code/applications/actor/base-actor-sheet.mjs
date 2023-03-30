@@ -323,6 +323,8 @@ export default class BaseActorSheet extends ActorSheet {
 				return this.actor.update({[`system.items.${id}.mode`]: key});
 			case "reload":
 				return item?.reload();
+			case "unjam":
+				return item?.unjam();
 			default:
 				return console.warn(`Everyday Heroes | Invalid item action type clicked ${type}.`);
 		}

@@ -26,3 +26,9 @@
 .everyday-heroes.config form > section > fieldset > p {
 	grid-column: 1 / -1;
 }
+
+@supports not (grid-template-columns: subgrid) {
+	.everyday-heroes.config form > section > fieldset {
+		grid-template-columns: 1fr 1fr;
+	}
+}
