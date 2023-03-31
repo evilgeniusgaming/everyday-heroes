@@ -12,16 +12,18 @@
 			</p>
 		</fieldset>
 		<fieldset>
-			<label>Period</label>{{!-- TODO: Localize --}}
+			<label>{{localize "EH.Uses.Recovery.Period.Label"}}</label>
 			<select name="configuration.recovery.period">
 				{{selectOptions CONFIG.recoveryPeriods selected=configuration.recovery.period blank="" labelAttr="label"}}
 			</select>
 		</fieldset>
+		{{!-- TODO: Implement recovery formulas
 		<fieldset>
-			<label>Formula</label>{{!-- TODO: Localize --}}
+			<label>EH.Uses.Recovery.Formula.Label</label>
 			<input type="text" name="configuration.recovery.formula" value="{{configuration.recovery.formula}}">
 			<p class="hint"></p>
 		</fieldset>
+		--}}
 	</section>
 
 	<section class="right column level-list scale-values">

@@ -196,14 +196,9 @@
 	}
 	.everyday-heroes.sheet .tab.inventory .item-modes {
 		display: flex;
-		flex-basis: 25%;
 	}
 	.everyday-heroes.sheet .tab.inventory .item-actions {
-		flex-basis: 50%;
 		justify-content: space-evenly;
-	}
-	.everyday-heroes.sheet .tab.inventory .consumption {
-		flex-basis: 25%;
 	}
 }
 

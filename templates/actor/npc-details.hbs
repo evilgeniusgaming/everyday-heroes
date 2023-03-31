@@ -120,6 +120,20 @@
 		<label>{{localize "EH.Sense.Label[other]"}}</label>
 		<span>{{lists.senses}}</span>
 	</fieldset>
+	{{#if (or lists.resources editingMode)}}
+		<fieldset>
+			<label>
+				{{localize "EH.Resource.Label[other]"}}
+				{{#if editingMode}}
+					<a data-action="config" data-type="resource"
+						data-tooltip="{{localize 'EH.Action.Configure' type=(localize 'EH.Resource.Label[other]')}}">
+						<i class="fa-solid fa-cog"></i>
+					</a>
+				{{/if}}
+			</label>
+			<span>{{{lists.resources}}}</span>
+		</fieldset>
+	{{/if}}
 	<fieldset>
 		<label>{{localize "EH.Role.Label[other]"}}</label>
 		{{#if editingMode}}

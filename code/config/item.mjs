@@ -44,13 +44,15 @@ preLocalize("consumptionTypes", { key: "label" });
  */
 export const recoveryPeriods = {
 	sr: {
-		label: "EH.Rest.Type.Short.Label"
+		label: "EH.Rest.Type.Short.Label",
+		abbreviation: "EH.Rest.Type.Short.Abbreviation"
 	},
 	lr: {
-		label: "EH.Rest.Type.Long.Label"
+		label: "EH.Rest.Type.Long.Label",
+		abbreviation: "EH.Rest.Type.Long.Abbreviation"
 	}
 };
-preLocalize("recoveryPeriods", { key: "label" });
+preLocalize("recoveryPeriods", { keys: ["label", "abbreviation"] });
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Items                                    */

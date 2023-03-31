@@ -1,3 +1,4 @@
+import { numberFormat } from "../../utils.mjs";
 import BaseActorSheet from "./base-actor-sheet.mjs";
 
 /**
@@ -118,6 +119,26 @@ export default class NPCSheet extends BaseActorSheet {
 					}
 				]
 			},
+			trick: {
+				label: "EH.Item.Type.Trick[other]",
+				items: [],
+				create: [
+					{
+						label: "EH.Item.Type.Trick[one]",
+						dataset: {type: "trick"}
+					}
+				]
+			},
+			plan: {
+				label: "EH.Item.Type.Plan[other]",
+				items: [],
+				create: [
+					{
+						label: "EH.Item.Type.Plan[one]",
+						dataset: {type: "plan"}
+					}
+				]
+			},
 			features: {
 				label: "EH.Item.Type.NPCFeature[other]",
 				items: [],
@@ -142,6 +163,7 @@ export default class NPCSheet extends BaseActorSheet {
 					context.inventory.armor.items.push(item);
 					break;
 				case "weapon":
+				case "npcWeapon":
 					context.inventory.weapons.items.push(item);
 					context.actionSections.action.items.push(item);
 					break;
@@ -153,6 +175,12 @@ export default class NPCSheet extends BaseActorSheet {
 					break;
 				case "gear":
 					context.inventory.gear.items.push(item);
+					break;
+				case "plan":
+					context.inventory.plan.items.push(item);
+					break;
+				case "trick":
+					context.inventory.trick.items.push(item);
 					break;
 				default:
 					context.inventory.features.items.push(item);
@@ -178,6 +206,9 @@ export default class NPCSheet extends BaseActorSheet {
 			ctx.selected = item.system.ammunition?.id;
 			ctx.types = ammunitionTypes[item.system.rounds.type] ?? [];
 		}
+
+		if ( !context.inventory.trick.items.length ) delete context.inventory.trick;
+		if ( !context.inventory.plan.items.length ) delete context.inventory.plan;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -193,6 +224,14 @@ export default class NPCSheet extends BaseActorSheet {
 			return arr;
 		}, []));
 
+		context.lists.resources = listFormatter.format(
+			Object.entries(context.system.resources).reduce((arr, [key, resource]) => {
+				let label = `<a data-action="roll" data-type="resource" data-resource="${key}">${resource.label}</a> `;
+				label += `(${numberFormat(resource.available)}/${numberFormat(resource.max)})`;
+				arr.push(label);
+				return arr;
+			}, [])
+		);
 		context.lists.roles = listFormatter.format(context.system.biography.roles.reduce((arr, role) => {
 			const label = CONFIG.EverydayHeroes.roles[role];
 			arr.push(label ?? role);

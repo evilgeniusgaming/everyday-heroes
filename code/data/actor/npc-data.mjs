@@ -70,6 +70,16 @@ export default class NPCData extends SystemDataModel.mixin(
 					})
 				})
 			}, {label: "EH.Override.Label"}),
+			resources: new MappingField(new foundry.data.fields.SchemaField({
+				label: new foundry.data.fields.StringField({label: "EH.Resource.Label.Label"}),
+				spent: new foundry.data.fields.NumberField({initial: 0, min: 0, label: "EH.Resource.Spent.Label"}),
+				max: new foundry.data.fields.NumberField({initial: 0, min: 0, label: "EH.Resource.Max.Label"}),
+				denomination: new foundry.data.fields.NumberField({initial: null, integer: true, label: "EH.Dice.Denomination"}),
+				recovery: new foundry.data.fields.SchemaField({
+					period: new foundry.data.fields.StringField({label: "EH.Uses.Recovery.Period.Label"}),
+					formula: new FormulaField({label: "EH.Uses.Recovery.Formula.Label"})
+				})
+			}), {label: "EH.Resource.Label[other]"}),
 			traits: new foundry.data.fields.SchemaField({
 				damage: new foundry.data.fields.SchemaField({
 					immunity: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
@@ -94,6 +104,14 @@ export default class NPCData extends SystemDataModel.mixin(
 
 	prepareBaseData() {
 		this.attributes.prof = Proficiency.calculateMod(Math.max(this.details.cr, 1));
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedResources() {
+		for ( const resource of Object.values(this.resources) ) {
+			resource.available = Math.clamped(0, resource.max - resource.spent, resource.max);
+		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -1,0 +1,91 @@
+<form autocomplete="off">
+	<section>
+		<h2 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">
+				<select name="resourceId">
+					{{selectOptions system.resources selected=resourceId labelAttr="label"
+						blank=(localize "EH.Resource.Config.Manage")}}
+				</select>
+			</span>
+			<span class="right stripes"></span>
+		</h2>
+		{{#if resource}}
+			<fieldset>
+				<label>{{localize "EH.Resource.Config.Label.Label"}}</label>
+				<input type="text" name="system.resources.{{resourceId}}.label" value="{{resource.label}}">
+			</fieldset>
+			<fieldset>
+				<label>{{localize "EH.Dice.Denomination"}}</label>
+				<select name="system.resources.{{resourceId}}.denomination">
+					{{selectOptions faces selected=resource.denomination blank=(localize "EH.Resource.Config.NoDice")}}
+				</select>
+			</fieldset>
+			<fieldset>
+				<label>{{localize "EH.Resource.Config.Uses.Label"}}</label>
+				<div class="fields">
+					<label>
+						<span>{{localize "EH.Uses.Spent.Label"}}</span>
+						<input type="number" name="system.resources.{{resourceId}}.spent" value="{{resource.spent}}">
+					</label>
+					<label>
+						<span>{{localize "EH.Uses.Max.Label"}}</span>
+						<input type="number" name="system.resources.{{resourceId}}.max" value="{{resource.max}}">
+					</label>
+				</div>
+			</fieldset>
+			<fieldset>
+				<label>{{localize "EH.Uses.Recovery.Period.Label"}}</label>
+				<select name="system.resources.{{resourceId}}.recovery.period">
+					{{selectOptions CONFIG.recoveryPeriods selected=resource.recovery.period blank="" labelAttr="label"}}
+				</select>
+			</fieldset>
+		{{else}}
+			{{#each system.resources as |resource key|}}
+				<fieldset>
+					<label>{{resource.label}}</label>
+					<button data-action="delete" data-key="{{key}}">
+						{{localize "EH.Action.RemoveSpecific" type=resource.label}}
+					</button>
+				</fieldset>
+			{{/each}}
+			{{#each CONFIG.resources as |resource key|}}
+				{{#unless (lookup ../system.resources key)}}
+					<fieldset>
+						<label>{{resource.label}}</label>
+						<button data-action="add" data-key="{{key}}">
+							{{localize "EH.Action.AddSpecific" type=resource.label}}
+						</button>
+					</fieldset>
+				{{/unless}}
+			{{/each}}
+			<h3 class="striped">
+				<span class="left stripes"></span>
+				<span class="center">{{localize "EH.Resource.Config.Custom.Label"}}</span>
+				<span class="right stripes"></span>
+			</h3>
+			<fieldset>
+				<label>{{localize "EH.Resource.Config.Label.Label"}}</label>
+				<input type="text" name="custom.label">
+			</fieldset>
+			<fieldset>
+				<label>{{localize "EH.Dice.Denomination"}}</label>
+				<select name="custom.denomination">{{selectOptions faces blank=""}}</select>
+			</fieldset>
+			<fieldset>
+				<label>{{localize "EH.Resource.Config.Uses.Label"}}</label>
+				<input type="number" name="custom.max">
+			</fieldset>
+			<fieldset>
+				<label>{{localize "EH.Uses.Recovery.Period.Label"}}</label>
+				<select name="custom.recovery.period">
+					{{selectOptions CONFIG.recoveryPeriods blank="" labelAttr="label"}}
+				</select>
+			</fieldset>
+			<fieldset>
+				<label></label>
+				<button data-action="add">{{localize "EH.Resource.Config.Custom.Create"}}</button>
+			</fieldset>
+		{{/if}}
+	</section>
+</form>
