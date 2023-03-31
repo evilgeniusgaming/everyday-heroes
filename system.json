@@ -78,6 +78,14 @@
       "type": "RollTable",
       "private": false,
       "flags": {}
+    },
+    {
+      "name": "rules",
+      "label": "Rules",
+      "path": "./packs/rules.db",
+      "type": "JournalEntry",
+      "private": false,
+      "flags": {}
     }
   ],
   "languages": [

@@ -1,3 +1,49 @@
 .everyday-heroes-compendium h3 {
 	margin-block-start: 0.5em;
 }
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Journals                                 */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+
+.journal-sheet :is(h1, h2, h3, h4) {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.journal-sheet :is(h1, h2) {
+	border: none;
+	color: var(--eh-text-color-red);
+}
+.journal-sheet h1 {
+	font-size: var(--font-size-48);
+	text-align: center;
+}
+.journal-sheet h2 {
+	font-size: var(--font-size-32);
+}
+.journal-sheet h3 {
+	border-block-end: 4px solid var(--eh-border-color-strong);
+	font-size: var(--font-size-24);
+}
+.journal-sheet h4 {
+	font-size: var(--font-size-18);
+}
+
+.journal-sheet .callout {
+	margin-block: 2em;
+	border: 3px solid var(--eh-border-color-strong);
+	border-radius: 20px;
+	padding: 2em;
+}
+.journal-sheet .callout h5 {
+	margin-block: 0.25em;
+	font-size: var(--font-size-16);
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.journal-sheet ul.multi-column-list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+}
