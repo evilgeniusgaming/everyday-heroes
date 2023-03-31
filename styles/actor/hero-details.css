@@ -218,6 +218,8 @@
 }
 .hero.sheet [data-tab="details"] .skills .skill label {
 	grid-column: 1;
+	display: flex;
+	justify-content: space-between;
 	height: 100%;
 	border-inline-end: 1px solid var(--eh-border-color-weak);
 	padding-inline-end: 0.25em;

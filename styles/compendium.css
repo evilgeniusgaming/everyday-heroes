@@ -29,6 +29,9 @@
 .journal-sheet h4 {
 	font-size: var(--font-size-18);
 }
+.journal-sheet ul {
+	list-style-type: "▸ ";
+}
 
 .journal-sheet .callout {
 	margin-block: 2em;

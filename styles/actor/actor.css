@@ -59,10 +59,10 @@
 /*  Proficiency Selector                     */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.everyday-heroes.sheet [data-action="cycle-proficiency"] {
+.everyday-heroes.sheet [data-action="cycle-proficiency"]:not(.disabled) {
 	cursor: pointer;
 }
-.everyday-heroes.sheet [data-action="cycle-proficiency"]:hover .selector-icon {
+.everyday-heroes.sheet [data-action="cycle-proficiency"]:not(.disabled):hover .selector-icon {
 	filter: drop-shadow(0 0 3px var(--color-shadow-primary));
 }
 .everyday-heroes.sheet [data-action="cycle-proficiency"] .selector-icon {

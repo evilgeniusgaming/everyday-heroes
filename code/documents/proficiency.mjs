@@ -89,6 +89,21 @@ export default class Proficiency {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Label based on the current proficiency mode.
+	 * @type {string}
+	 */
+	get label() {
+		return game.i18n.localize({
+			0: "EH.Proficiency.Level.None",
+			0.5: "EH.Proficiency.Level.Half",
+			1: "EH.Proficiency.Level.Proficient",
+			2: "EH.Proficiency.Level.Expertise"
+		}[this.multiplier]);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Override the default `toString` method to return flat proficiency for backwards compatibility in formula.
 	 * @returns {string} - Flat proficiency value.
 	 */

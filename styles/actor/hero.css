@@ -70,7 +70,8 @@
 .everyday-heroes.hero [data-tab="inventory"] > section.proficiencies {
 	display: block;
 	padding: 0.5em 1em;
-	--eh-line-color: rgb(196, 0, 0);
+	--eh-line-hover-color: rgb(196, 0, 0);
+	--eh-line-selected-color: rgb(103, 174, 59);
 }
 .everyday-heroes.hero [data-tab="inventory"] > section.proficiencies > h3 {
 	display: block;
@@ -93,9 +94,11 @@
 	align-items: center;
 	font-variant: small-caps;
 	z-index: 4;
+}
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:not(.disabled) label {
 	cursor: pointer;
 }
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies label:hover {
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:not(.disabled) label:hover {
 	text-shadow: 0 0 8px var(--color-shadow-primary);
 }
 .everyday-heroes.hero [data-tab="inventory"] > section.proficiencies label.basic {
@@ -137,18 +140,30 @@
 }
 
 .everyday-heroes.hero [data-tab="inventory"] > section.proficiencies .background .line {
-	stroke: var(--eh-border-color-strong);
+	stroke: var(--eh-border-color-weak);
 	stroke-width: 2px;
 }
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has([data-category="advanced"]:checked) .line:is(.basic-center, .center-advanced) {
+	stroke: var(--eh-line-selected-color);
+}
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has([data-category="military"]:checked) .line:is(.basic-center, .center-advanced, .advanced-military) {
+	stroke: var(--eh-line-selected-color);
+}
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has([data-category="historical"]:checked) .line:is(.basic-center, .center-historical) {
+	stroke: var(--eh-line-selected-color);
+}
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has([data-category="improvised"]:checked) .line:is(.basic-center, .center-improvised) {
+	stroke: var(--eh-line-selected-color);
+}
 .everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has(:is(label.advanced):hover) .line:is(.basic-center, .center-advanced) {
-	stroke: var(--eh-line-color);
+	stroke: var(--eh-line-hover-color);
 }
 .everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has(:is(label.military):hover) .line:is(.basic-center, .center-advanced, .advanced-military) {
-	stroke: var(--eh-line-color);
+	stroke: var(--eh-line-hover-color);
 }
 .everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has(:is(label.historical):hover) .line:is(.basic-center, .center-historical) {
-	stroke: var(--eh-line-color);
+	stroke: var(--eh-line-hover-color);
 }
 .everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has(:is(label.improvised):hover) .line:is(.basic-center, .center-improvised) {
-	stroke: var(--eh-line-color);
+	stroke: var(--eh-line-hover-color);
 }

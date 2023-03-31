@@ -18,6 +18,10 @@
 			<span class="right stripes"></span>
 		</h3>
 		<fieldset>
+			<label>{{localize "EH.HitPoints.Current"}}</label>
+			<input type="text" name="system.attributes.hp.value" value="{{source.attributes.hp.value}}">
+		</fieldset>
+		<fieldset>
 			<label>{{localize "EH.HitPoints.Bonus.Level"}}</label>
 			<input type="text" name="system.attributes.hp.bonuses.level"
 				value="{{source.attributes.hp.bonuses.level}}" data-formula-editor>

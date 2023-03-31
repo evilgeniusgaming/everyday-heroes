@@ -28,27 +28,32 @@
 			{{> "everydayHeroes.actor-inventory" sections=features}}
 		</div>
 		<div class="tab inventory" data-group="primary" data-tab="inventory">
-			<section class="proficiencies">
+			<section class="proficiencies{{#unless editingMode}} disabled{{/unless}}">
 				<h3>{{localize "EH.Equipment.Proficiency.Label[other]"}}</h3>
 				<div>
 					<label class="basic">
-						<input type="checkbox" name="proficiency" data-category="basic" {{checked proficiencies.basic}}>
+						<input type="checkbox" name="proficiency" data-category="basic"
+							{{checked proficiencies.basic}} {{disabled (not editingMode)}}>
 						<span>{{localize "EH.Equipment.Category.Basic.Label"}}</span>
 					</label>
 					<label class="advanced">
-						<input type="checkbox" name="proficiency" data-category="advanced" {{checked proficiencies.advanced}}>
+						<input type="checkbox" name="proficiency" data-category="advanced"
+							{{checked proficiencies.advanced}} {{disabled (not editingMode)}}>
 						<span>{{localize "EH.Equipment.Category.Advanced.Label"}}</span>
 					</label>
 					<label class="military">
-						<input type="checkbox" name="proficiency" data-category="military" {{checked proficiencies.military}}>
+						<input type="checkbox" name="proficiency" data-category="military"
+							{{checked proficiencies.military}} {{disabled (not editingMode)}}>
 						<span>{{localize "EH.Equipment.Category.Military.Label"}}</span>
 					</label>
 					<label class="historical">
-						<input type="checkbox" name="proficiency" data-category="historical" {{checked proficiencies.historical}}>
+						<input type="checkbox" name="proficiency" data-category="historical"
+							{{checked proficiencies.historical}} {{disabled (not editingMode)}}>
 						<span>{{localize "EH.Equipment.Category.Historical.Label"}}</span>
 					</label>
 					<label class="improvised">
-						<input type="checkbox" name="proficiency" data-category="improvised" {{checked proficiencies.improvised}}>
+						<input type="checkbox" name="proficiency" data-category="improvised"
+							{{checked proficiencies.improvised}} {{disabled (not editingMode)}}>
 						<span>{{localize "EH.Equipment.Category.Improvised.Label"}}</span>
 					</label>
 					<svg class="background" xmlns="http://www.w3.org/2000/svg" width="100%" height="8em">
