@@ -24,6 +24,6 @@ export default class TypedTemplate extends foundry.abstract.DataModel {
 	 * @type {Object<string, LabeledConfiguration>|null}
 	 */
 	get types() {
-		return foundry.utils.getProperty(CONFIG.EverydayHeroes, `${context.item.type}Types`);
+		return foundry.utils.getProperty(CONFIG.EverydayHeroes, `${this.parent?.type}Types`);
 	}
 }

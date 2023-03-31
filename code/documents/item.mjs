@@ -458,6 +458,61 @@ export default class ItemEH extends Item {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Clear a jammed weapon.
+	 * @param {object} [config] - Configuration information for the process.
+	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides message creation.
+	 * @returns {Promise}
+	 */
+	async clearJam(config={}, message={}) {
+		if ( !this.system.jammed ) return;
+
+		const clearJamConfig = foundry.utils.mergeObject({}, config);
+
+		const content = game.i18n.format("EH.Weapon.Action.ClearJam.Message", { actor: this.actor.name, weapon: this.name });
+		const messageConfig = foundry.utils.mergeObject({
+			data: {
+				title: `${game.i18n.localize("EH.Weapon.Action.ClearJam.Label")}: ${this.actor.name}`,
+				content,
+				speaker: ChatMessage.getSpeaker({actor: this.actor}),
+				"flags.everyday-heroes.clearJam": {
+					origin: this.uuid
+				}
+			}
+		}, message);
+
+		/**
+		 * A hook event that fires before a weapon's jam is cleared..
+		 * @function everydayHeroes.preClearJam
+		 * @memberof hookEvents
+		 * @param {ItemEH} item - Weapon that's jam is being cleared.
+		 * @param {object} config - Configuration data for the action.
+		 * @param {BaseMessageConfiguration} message - Configuration data for the clear jam message.
+		 * @returns {boolean} - Explicitly return `false` to prevent the jam clearing from occurring.
+		 */
+		if ( Hooks.call("everydayHeroes.preClearJam", this, clearJamConfig, messageConfig) === false ) return;
+
+		// Update the item & ammunition if necessary
+		await this.update({"system.jammed": false});
+
+		// Display chat message
+		if ( messageConfig.create !== false ) {
+			ChatMessage.applyRollMode(messageConfig.data, game.settings.get("core", "rollMode"));
+			await ChatMessage.create(messageConfig.data);
+		}
+
+		/**
+		 * A hook event that fires after a weapon jam is cleared.
+		 * @function everydayHeroes.clearJam
+		 * @memberof hookEvents
+		 * @param {ItemEH} item -  Weapon that's jam has been cleared.
+		 * @param {object} config - Configuration data for the action.
+		 */
+		Hooks.callAll("everydayHeroes.clearJam", this, clearJamConfig);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Configuration information for a reload action.
 	 *
 	 * @typedef {object} ReloadConfiguration
@@ -536,61 +591,6 @@ export default class ItemEH extends Item {
 		Hooks.callAll("everydayHeroes.reload", this, reloadConfig);
 
 		// TODO: Should this return anything?
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Unjam a weapon.
-	 * @param {object} [config] - Configuration information for the unjamming process.
-	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides message creation.
-	 * @returns {Promise}
-	 */
-	async unjam(config={}, message={}) {
-		if ( !this.system.jammed ) return;
-
-		const unjamConfig = foundry.utils.mergeObject({}, config);
-
-		const content = game.i18n.format("EH.Weapon.Action.Unjam.Message", { actor: this.actor.name, weapon: this.name });
-		const messageConfig = foundry.utils.mergeObject({
-			data: {
-				title: `${game.i18n.localize("EH.Weapon.Action.Unjam.Label")}: ${this.actor.name}`,
-				content,
-				speaker: ChatMessage.getSpeaker({actor: this.actor}),
-				"flags.everyday-heroes.unjam": {
-					origin: this.uuid
-				}
-			}
-		}, message);
-
-		/**
-		 * A hook event that fires before a weapon is unjammed.
-		 * @function everydayHeroes.preUnjam
-		 * @memberof hookEvents
-		 * @param {ItemEH} item - Item that is being unjammed.
-		 * @param {object} config - Configuration information for the unjamming process.
-		 * @param {BaseMessageConfiguration} message - Configuration data for the reload's message.
-		 * @returns {boolean} - Explicitly return `false` to prevent the reload from occurring.
-		 */
-		if ( Hooks.call("everydayHeroes.preUnjam", this, unjamConfig, messageConfig) === false ) return;
-
-		// Update the item & ammunition if necessary
-		await this.update({"system.jammed": false});
-
-		// Display chat message
-		if ( messageConfig.create !== false ) {
-			ChatMessage.applyRollMode(messageConfig.data, game.settings.get("core", "rollMode"));
-			await ChatMessage.create(messageConfig.data);
-		}
-
-		/**
-		 * A hook event that fires after a weapon is unjammed.
-		 * @function everydayHeroes.unjam
-		 * @memberof hookEvents
-		 * @param {ItemEH} item - Item that has been unjammed.
-		 * @param {object} config - Configuration data for the unjam action.
-		 */
-		Hooks.callAll("everydayHeroes.unjam", this, unjamConfig);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -289,6 +289,8 @@ export default class BaseActorSheet extends ActorSheet {
 				} catch(err) { return; }
 			case "chat":
 				return item?.displayInChat();
+			case "clear-jam":
+				return item?.clearJam();
 			case "delete":
 				const manager = AdvancementManager.forDeletedItem(this.actor, id);
 				if ( manager.steps.length ) {
@@ -323,8 +325,6 @@ export default class BaseActorSheet extends ActorSheet {
 				return this.actor.update({[`system.items.${id}.mode`]: key});
 			case "reload":
 				return item?.reload();
-			case "unjam":
-				return item?.unjam();
 			default:
 				return console.warn(`Everyday Heroes | Invalid item action type clicked ${type}.`);
 		}

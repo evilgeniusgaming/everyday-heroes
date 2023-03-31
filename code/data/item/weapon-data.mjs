@@ -124,10 +124,10 @@ export default class WeaponData extends SystemDataModel.mixin(
 	get actions() {
 		if ( !this.jammed ) return super.actions;
 		return [{
-			label: game.i18n.localize("EH.Weapon.Action.Unjam.Label"),
-			icon: "systems/everyday-heroes/artwork/svg/action/unjam.svg",
+			label: game.i18n.localize("EH.Weapon.Action.ClearJam.Label"),
+			icon: "systems/everyday-heroes/artwork/svg/action/clear-jam.svg",
 			action: "item",
-			data: { type: "unjam" }
+			data: { type: "clear-jam" }
 		}];
 	}
 

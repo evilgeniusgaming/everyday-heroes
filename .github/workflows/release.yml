@@ -82,7 +82,7 @@ jobs:
         mv --force everyday-heroes-compiled.mjs everyday-heroes.mjs
 
     # Create a zip file with all files required by the module to add to the release
-    - run: zip ${{steps.get_vars.outputs.ZIP_NAME}} -r artwork lang packs/*.db styles templates everyday-heroes.css everyday-heroes.mjs everyday-heroes-compiled.mjs.map LICENSE.txt README.md system.json template.json
+    - run: zip ${{steps.get_vars.outputs.ZIP_NAME}} -r artwork lang packs/*.db styles templates everyday-heroes.css everyday-heroes.mjs everyday-heroes-compiled.mjs.map LICENSE OGL.md README.md system.json template.json
 
 
     # Create a release for this specific version
