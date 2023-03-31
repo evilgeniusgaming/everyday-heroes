@@ -21,7 +21,7 @@ export default class ResourcesTemplate extends foundry.abstract.DataModel {
 			resources: new MappingField(new foundry.data.fields.SchemaField({
 				spent: new foundry.data.fields.NumberField({initial: 0, min: 0, label: ""}),
 				bonus: new FormulaField({deterministic: true, label: ""})
-			}), {label: "EH.Resource.Label[other]", initialKeys: CONFIG.EverydayHeroes.resources, prepareKeys: true})
+			}), {label: "EH.Resource.Label[other]", initialKeys: CONFIG.EverydayHeroes.resources})
 		};
 	}
 

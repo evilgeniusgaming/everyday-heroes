@@ -1016,7 +1016,7 @@ export default class ActorEH extends Actor {
 		 */
 		if ( Hooks.call("everydayHeroes.rollResource", this, roll, rollConfig.resource, updates) === false ) return roll;
 
-		if ( !foundry.utils.isEmpty(updates) ) this.update(updates);
+		if ( !foundry.utils.isEmpty(updates) ) await this.update(updates);
 
 		return roll;
 	}
