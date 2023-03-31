@@ -61,6 +61,7 @@ export default class ResourcesTemplate extends foundry.abstract.DataModel {
 			resource.bonus = simplifyBonus(resource.bonus, this.parent.getRollData());
 			if ( resource.bonus ) resource.max += resource.bonus;
 
+			resource.spent ??= 0;
 			resource.available = Math.clamped(0, resource.max - resource.spent, resource.max);
 		}
 	}
