@@ -38,7 +38,7 @@ export default class SkillsTemplate extends foundry.abstract.DataModel {
 					check: new FormulaField({label: "EH.Skill.Bonus.Check"}),
 					passive: new FormulaField({deterministic: true, label: "EH.Skill.Bonus.Passive"})
 				})
-			}, {label: "EH.Bonuses.Label"}),
+			}, {label: "EH.Bonus.Global.Label[other]"}),
 			overrides: new foundry.data.fields.SchemaField({
 				skill: new foundry.data.fields.SchemaField({
 					minimum: new FormulaField({determinstic: true, label: "EH.Skill.Orverride.Min"}),

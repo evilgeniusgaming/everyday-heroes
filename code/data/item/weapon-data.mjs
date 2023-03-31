@@ -233,7 +233,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 		const threshold = Math.min(
 			this.parent?.actor?.system.overrides?.critical?.threshold.all ?? Infinity,
 			this.parent?.actor?.system.overrides?.critical?.threshold[this.type.value] ?? Infinity,
-			this.ammunition?.system.overrides.critical.threshold ?? Infinity,
+			this.ammunition?.system.overrides?.critical?.threshold ?? Infinity,
 			this.overrides.critical.threshold ?? Infinity
 		);
 		return threshold < Infinity ? threshold : 20;
@@ -248,9 +248,21 @@ export default class WeaponData extends SystemDataModel.mixin(
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	get damageChatActions() {
+		return this.ammunition?.damageChatActions ?? super.damageChatActions;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	get damageIcon() {
 		const type = (this.mode === "thrown") || (this.type.value === "ranged") ? "ranged" : "melee";
 		return `systems/everyday-heroes/artwork/svg/action/damage-${type}.svg`;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get hasDamageSave() {
+		return this.ammunition?.system.hasDamageSave ?? false;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -339,7 +351,10 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedDamage() {
-		if ( this.ammunition ) this.damage.modify(this.ammunition.system.damage);
+		if ( this.ammunition ) {
+			if ( this.ammunition.system.damageMode === "regular" ) this.damage = this.ammunition.system.damage;
+			else this.damage.modify(this.ammunition.system.damage);
+		}
 		if ( this.mode === "burst" ) this.damage.modify({ number: 1 });
 		if ( this.properties.has("versatile") && (this.mode === "twoHanded") ) this.damage.modify({ denomination: 1 });
 	}
@@ -356,6 +371,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 		this.properties = new Set(CONFIG.EverydayHeroes.applicableProperties.weapon.filter(p => {
 			if ( this.ammunition?.system.properties[p] === 1 ) return true;
 			else if ( this.ammunition?.system.properties[p] === -1 ) return false;
+			else if ( this.ammunition?.system.properties.has?.(p) ) return true;
 			else return this._source.properties.includes(p);
 		}));
 	}
@@ -377,5 +393,11 @@ export default class WeaponData extends SystemDataModel.mixin(
 			type: game.i18n.localize("EH.Item.Type.Weapon[one]"),
 			subtype: CONFIG.EverydayHeroes.weaponTypes[this.type.value]?.label ?? ""
 		}).trim();
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareFinalDC() {
+		this.dc = this.ammunition?.system.dc || 8 + this.attackMod;
 	}
 }

@@ -55,11 +55,38 @@ export default class Damage extends foundry.abstract.DataModel {
 	 * @type {object[]}
 	 */
 	get damageChatActions() {
+		const actions = [];
+		const dc = this.dc ?? 8 + (this.attackMod ?? 0);
+
+		// Dexterity save to take half damage
+		if ( this.hasDamage && this.hasDamageSave ) {
+			// TODO: Allow customizing default ability used to evade explosives
+			actions.push({
+				label: game.i18n.format("EH.ChallengeRating.Action", {
+					dc, action: game.i18n.format("EH.Ability.Action.SaveSpecificShort", {
+						ability: CONFIG.EverydayHeroes.abilities.dex?.label ?? ""
+					})
+				}),
+				results: {
+					success: {
+						label: game.i18n.localize("EH.Roll.Result.Success"),
+						summary: game.i18n.localize("EH.Damage.Effect.Half")
+					},
+					failure: {
+						label: game.i18n.localize("EH.Roll.Result.Failure"),
+						summary: game.i18n.localize("EH.Damage.Effect.Full")
+					}
+				},
+				type: "ability-save",
+				dataset: { ability: "dex", options: { target: dc } }
+			});
+		}
+
 		// Constitution save to avoid effects
 		const properties = this.properties.filter(p =>
 			CONFIG.EverydayHeroes.conditions[CONFIG.EverydayHeroes.equipmentProperties[p].condition]
 		);
-		if ( !properties.size ) return [];
+		if ( !properties.size ) return actions;
 
 		const listFormatter = new Intl.ListFormat(game.i18n.lang, { style: "short", type: "conjunction" });
 		const conditions = listFormatter.format(properties.map(p =>
@@ -67,9 +94,9 @@ export default class Damage extends foundry.abstract.DataModel {
 		));
 
 		// TODO: Allow customizing default ability used to avoid conditions
-		return [{
+		actions.push({
 			label: game.i18n.format("EH.ChallengeRating.Action", {
-				dc: this.dc, action: game.i18n.format("EH.Ability.Action.SaveSpecificShort", {
+				dc, action: game.i18n.format("EH.Ability.Action.SaveSpecificShort", {
 					ability: CONFIG.EverydayHeroes.abilities.con?.label ?? ""
 				})
 			}),
@@ -84,8 +111,10 @@ export default class Damage extends foundry.abstract.DataModel {
 				}
 			},
 			type: "ability-save",
-			dataset: { ability: "con", options: { target: this.dc } }
-		}];
+			dataset: { ability: "con", options: { target: dc } }
+		});
+
+		return actions;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -139,6 +168,16 @@ export default class Damage extends foundry.abstract.DataModel {
 	 */
 	get hasDamage() {
 		return this.damage.type !== "";
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Can the damage from item be reduced with a save?
+	 * @type {boolean}
+	 */
+	get hasDamageSave() {
+		return false;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

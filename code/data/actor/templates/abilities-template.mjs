@@ -70,7 +70,7 @@ export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 					dc: new FormulaField({label: "EH.Ability.Bonus.DC"}),
 					save: new FormulaField({label: "EH.Ability.Bonus.Save"})
 				})
-			}, {label: "EH.Bonuses.Label"}),
+			}, {label: "EH.Bonus.Global.Label[other]"}),
 			overrides: new foundry.data.fields.SchemaField({
 				ability: new foundry.data.fields.SchemaField({
 					minimums: new foundry.data.fields.SchemaField({

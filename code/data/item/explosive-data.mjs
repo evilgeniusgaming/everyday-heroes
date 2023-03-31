@@ -118,40 +118,14 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	get damageChatActions() {
-		const actions = super.damageChatActions;
-
-		// Dexterity save to take half damage
-		if ( this.hasDamage ) {
-			// TODO: Allow customizing default ability used to evade explosives
-			actions.unshift({
-				label: game.i18n.format("EH.ChallengeRating.Action", {
-					dc: this.dc, action: game.i18n.format("EH.Ability.Action.SaveSpecificShort", {
-						ability: CONFIG.EverydayHeroes.abilities.dex?.label ?? ""
-					})
-				}),
-				results: {
-					success: {
-						label: game.i18n.localize("EH.Roll.Result.Success"),
-						summary: game.i18n.localize("EH.Damage.Effect.Half")
-					},
-					failure: {
-						label: game.i18n.localize("EH.Roll.Result.Failure"),
-						summary: game.i18n.localize("EH.Damage.Effect.Full")
-					}
-				},
-				type: "ability-save",
-				dataset: { ability: "dex", options: { target: this.dc } }
-			});
-		}
-
-		return actions;
+	get damageIcon() {
+		return "systems/everyday-heroes/artwork/svg/action/damage-explosive.svg";
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	get damageIcon() {
-		return "systems/everyday-heroes/artwork/svg/action/damage-explosive.svg";
+	get hasDamageSave() {
+		return true;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

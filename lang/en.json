@@ -46,6 +46,7 @@
 "Action.Reload.Action": "Action Reload",
 "Action.Reload.Bonus": "Bonus Reload",
 "Action.Reload.Free": "Free Reload",
+"Action.Reload.None": "Can't Reload",
 "Action.Type.Action": "Action",
 "Action.Type.Attack": "Attack Action",
 "Action.Type.Bonus": "Bonus Action",
@@ -200,7 +201,10 @@
 "Biography.Virtue[other]": "Virtues",
 "Biography.Weight": "Weight",
 
-"Bonuses.Label": "Global Bonuses",
+"Bonus.Label[one]": "Bonus",
+"Bonus.Label[other]": "Bonuses",
+"Bonus.Global.Label[one]": "Global Bonus",
+"Bonus.Global.Label[other]": "Global Bonuses",
 
 "ChallengeRating.Label": "Challenge Rating",
 "ChallengeRating.Abbreviation": "CR",

@@ -178,7 +178,7 @@
 			<fieldset>
 				<label>{{localize "EH.Equipment.Trait.Reload.Label"}}</label>
 				<select name="system.reload">
-					{{selectOptions CONFIG.actionTypesReload selected=system.reload}}
+					{{selectOptions CONFIG.actionTypesReload selected=system.reload blank=(localize "EH.Action.Reload.None")}}
 				</select>
 			</fieldset>
 		{{/if}}
@@ -195,7 +195,7 @@
 	{{#if (everydayHeroes-has item "system.bonuses")}}
 		<h3 class="striped">
 			<span class="left stripes"></span>
-			<span class="center">Bonuses</span>{{!-- TODO: Localize --}}
+			<span class="center">{{localize "EH.Bonus.Label[other]"}}</span>
 			<span class="right stripes"></span>
 		</h3>
 

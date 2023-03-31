@@ -115,7 +115,7 @@ export default class HeroData extends SystemDataModel.mixin(
 			bonuses: new foundry.data.fields.SchemaField({
 				attack: new MappingField(new FormulaField()),
 				damage: new MappingField(new FormulaField())
-			}, {label: "EH.Bonuses.Label"}),
+			}, {label: "EH.Bonus.Global.Label[other]"}),
 			conditions: new MappingField(new foundry.data.fields.NumberField({
 				min: 0, integer: true
 			}), {label: "EH.Condition.Label[other]"}),
