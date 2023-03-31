@@ -1,0 +1,79 @@
+{
+  "name": "Jack of All Trades",
+  "type": "feat",
+  "img": "icons/skills/trades/academics-investigation-puzzles.webp",
+  "system": {
+    "description": {
+      "value": "<p>You're well read and good at anything you set your mind to. You can add half your proficiency bonus (rounded down) to any ability check calling for a skill you are not proficient in. You may not use this bonus if no skill is applicable.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "recovery": "",
+      "formula": ""
+    },
+    "advancement": [],
+    "identifier": {
+      "value": "jack-of-all-trades"
+    },
+    "type": {
+      "value": "minor",
+      "category": "advanced"
+    }
+  },
+  "effects": [
+    {
+      "label": "Jack of All Trades",
+      "icon": "icons/skills/trades/academics-investigation-puzzles.webp",
+      "origin": "Compendium.eh-core-rulebook.feats.d0wKJfUcSBC9ry5g",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "_id": "WnbUuiHlU4HXvvvd",
+      "changes": [
+        {
+          "key": "system.overrides.skill.proficiency.multiplier",
+          "mode": 4,
+          "value": "0.5"
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {}
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1679978329040,
+    "modifiedTime": 1680023620491,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "d0wKJfUcSBC9ry5g"
+}
