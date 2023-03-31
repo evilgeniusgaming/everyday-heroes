@@ -34,7 +34,6 @@ export default class PhysicalSheet extends BaseItemSheet {
 					return obj;
 				}, {});
 		}
-		context.itemSubTypes = foundry.utils.getProperty(CONFIG.EverydayHeroes, `${context.item.type}Types`);
 
 		context.diceSteps = Object.fromEntries(CONFIG.EverydayHeroes.diceSteps.map(n => [n, `d${n}`]));
 

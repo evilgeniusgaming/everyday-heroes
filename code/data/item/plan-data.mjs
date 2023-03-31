@@ -13,12 +13,14 @@ import DescribedTemplate from "./templates/described-template.mjs";
  */
 export default class PlanData extends SystemDataModel.mixin(DescribedTemplate, ActivatableTemplate) {
 
-	static metadata = {
-		type: "plan",
-		category: "feature",
-		localization: "EH.Item.Type.Plan",
-		icon: "fa-solid fa-ruler"
-	};
+	static get metadata() {
+		return {
+			type: "plan",
+			category: "feature",
+			localization: "EH.Item.Type.Plan",
+			icon: "fa-solid fa-ruler"
+		};
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

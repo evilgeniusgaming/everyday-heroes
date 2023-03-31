@@ -167,15 +167,20 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
-	 * Helper method to get all enumerable methods, inherited or own, for the provided object.
-	 * @param {object} object - Source of the methods to fetch.
-	 * @param {string} [startingWith] - Optional filtering string.
+	 * Helper method to get all enumerable methods, inherited or own, for this class.
+	 * @param {object} options
+	 * @param {string} [options.startingWith] - Optional filtering string.
+	 * @param {boolean} [options.prototype=true] - Whether the prototype should be checked or the class.
 	 * @returns {string[]} - Array of method keys.
 	 */
-	static _getMethods(object, startingWith) {
+	static _getMethods({ startingWith, prototype=true }) {
 		let keys = [];
-		for ( const key in object ) { keys.push(key); }
-		keys.push(...Object.getOwnPropertyNames(object));
+		for ( const key in (prototype ? this.prototype : this) ) { keys.push(key); }
+		for ( let cls of [this, ...foundry.utils.getParentClasses(this)].reverse() ) {
+			if ( ["Base", "SystemDataModel", "DataModel"].includes(cls.name) ) continue;
+			if ( prototype ) cls = cls.prototype;
+			keys.push(...Object.getOwnPropertyNames(cls));
+		}
 		if ( startingWith ) keys = keys.filter(key => key.startsWith(startingWith));
 		return keys;
 	}
@@ -185,7 +190,7 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	static migrateData(source) {
-		this._getMethods(this, "migrate").forEach(k => this[k](source));
+		this._getMethods({ startingWith: "migrate", prototype: false }).forEach(k => this[k](source));
 		return super.migrateData(source);
 	}
 
@@ -197,7 +202,7 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 * Prepare data related to this DataModel itself, before any embedded Documents or derived data is computed.
 	 */
 	prepareBaseData() {
-		this.constructor._getMethods(this.constructor.prototype, "prepareBase").forEach(k => this[k]());
+		this.constructor._getMethods({ startingWith: "prepareBase" }).forEach(k => this[k]());
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -207,7 +212,8 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 * but before active effects are applied.
 	 */
 	prepareEmbeddedData() {
-		this.constructor._getMethods(this.constructor.prototype, "prepareEmbedded").forEach(k => this[k]());
+		this.constructor._getMethods({ startingWith: "prepareEmbedded" })
+			.forEach(k => this[k]());
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -216,7 +222,7 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 * Apply transformations or derivations to the values of the source data object.
 	 */
 	prepareDerivedData() {
-		this.constructor._getMethods(this.constructor.prototype, "prepareDerived").forEach(k => this[k]());
+		this.constructor._getMethods({ startingWith: "prepareDerived" }).forEach(k => this[k]());
 		if ( !this.parent.isEmbedded ) this.prepareFinalData();
 	}
 
@@ -226,6 +232,7 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 * Final data preparation steps performed on Items after parent actor has been fully prepared.
 	 */
 	prepareFinalData() {
-		this.constructor._getMethods(this.constructor.prototype, "prepareFinal").forEach(k => this[k]());
+		this.constructor._getMethods({ startingWith: "prepareFinal" })
+			.forEach(k => this[k]());
 	}
 }

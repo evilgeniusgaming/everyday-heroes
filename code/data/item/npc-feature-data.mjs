@@ -13,12 +13,14 @@ import DescribedTemplate from "./templates/described-template.mjs";
  */
 export default class NPCFeatureData extends SystemDataModel.mixin(DescribedTemplate, ActivatableTemplate) {
 
-	static metadata = {
-		type: "npcFeature",
-		category: "feature",
-		localization: "EH.Item.Type.NPCFeature",
-		icon: "fa-solid fa-otter"
-	};
+	static get metadata() {
+		return {
+			type: "npcFeature",
+			category: "feature",
+			localization: "EH.Item.Type.NPCFeature",
+			icon: "fa-solid fa-otter"
+		};
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

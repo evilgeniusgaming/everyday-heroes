@@ -3,27 +3,30 @@ import IdentifierField from "../fields/identifier-field.mjs";
 import ActivatableTemplate from "./templates/activatable-template.mjs";
 import AdvancementTemplate from "./templates/advancement-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
+import TypedTemplate from "./templates/typed-template.mjs";
 
 /**
  * Data definition for Feat items.
  * @mixes {@link ActivatableTemplate}
  * @mixes {@link AdvancementTemplate}
  * @mixes {@link DescribedTemplate}
+ * @mixes {@link TypedTemplate}
  *
  * @property {object} type
- * @property {string} type.value - Type of the feat (major or minor).
  * @property {string} type.category - Specific category of feat (basic, advanced, multiclass).
  */
 export default class FeatData extends SystemDataModel.mixin(
-	DescribedTemplate, ActivatableTemplate, AdvancementTemplate
+	DescribedTemplate, ActivatableTemplate, AdvancementTemplate, TypedTemplate
 ) {
 
-	static metadata = {
-		type: "feat",
-		category: "feature",
-		localization: "EH.Item.Type.Feat",
-		icon: "fa-solid fa-house-user"
-	};
+	static get metadata() {
+		return {
+			type: "feat",
+			category: "feature",
+			localization: "EH.Item.Type.Feat",
+			icon: "fa-solid fa-house-user"
+		};
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -33,7 +36,6 @@ export default class FeatData extends SystemDataModel.mixin(
 				value: new IdentifierField({label: "Identifier.Label"})
 			}),
 			type: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.StringField({label: ""}),
 				category: new foundry.data.fields.StringField({label: ""})
 			})
 		});

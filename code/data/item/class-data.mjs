@@ -10,12 +10,14 @@ import DescribedTemplate from "./templates/described-template.mjs";
  */
 export default class ClassData extends SystemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {
 
-	static metadata = {
-		type: "class",
-		category: "concept",
-		localization: "EH.Item.Type.Class",
-		icon: "fa-solid fa-landmark-flag"
-	};
+	static get metadata() {
+		return {
+			type: "class",
+			category: "concept",
+			localization: "EH.Item.Type.Class",
+			icon: "fa-solid fa-landmark-flag"
+		};
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

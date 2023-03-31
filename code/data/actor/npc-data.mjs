@@ -56,6 +56,10 @@ export default class NPCData extends SystemDataModel.mixin(
 			details: new foundry.data.fields.SchemaField({
 				cr: new foundry.data.fields.NumberField({initial: 0, min: 0, label: "EH.ChallengeRating.Label"})
 			}, {label: "EH.Details.Label"}),
+			items: new MappingField(new foundry.data.fields.SchemaField({
+				ammunition: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, {idOnly: true, label: ""}),
+				mode: new foundry.data.fields.StringField({label: ""})
+			})),
 			overrides: new foundry.data.fields.SchemaField({
 				critical: new foundry.data.fields.SchemaField({
 					multiplier: new foundry.data.fields.NumberField({

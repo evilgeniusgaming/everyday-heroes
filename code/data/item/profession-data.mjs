@@ -12,12 +12,14 @@ import DescribedTemplate from "./templates/described-template.mjs";
  */
 export default class ProfessionData extends SystemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {
 
-	static metadata = {
-		type: "profession",
-		category: "concept",
-		localization: "EH.Item.Type.Profession",
-		icon: "fa-solid fa-user-tie"
-	};
+	static get metadata() {
+		return {
+			type: "profession",
+			category: "concept",
+			localization: "EH.Item.Type.Profession",
+			icon: "fa-solid fa-user-tie"
+		};
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

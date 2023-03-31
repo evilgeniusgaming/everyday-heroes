@@ -10,12 +10,14 @@ import DescribedTemplate from "./templates/described-template.mjs";
  */
 export default class BackgroundData extends SystemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {
 
-	static metadata = {
-		type: "background",
-		category: "concept",
-		localization: "EH.Item.Type.Background",
-		icon: "fa-solid fa-address-card"
-	};
+	static get metadata() {
+		return {
+			type: "background",
+			category: "concept",
+			localization: "EH.Item.Type.Background",
+			icon: "fa-solid fa-address-card"
+		};
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

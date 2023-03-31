@@ -7,6 +7,7 @@ import ExplosiveData from "./explosive-data.mjs";
 import FeatData from "./feat-data.mjs";
 import GearData from "./gear-data.mjs";
 import NPCFeatureData from "./npc-feature-data.mjs";
+import NPCWeaponData from "./npc-weapon-data.mjs";
 import PlanData from "./plan-data.mjs";
 import ProfessionData from "./profession-data.mjs";
 import SpecialFeatureData from "./special-feature-data.mjs";
@@ -24,6 +25,7 @@ export {
 	FeatData,
 	GearData,
 	NPCFeatureData,
+	NPCWeaponData,
 	PlanData,
 	ProfessionData,
 	SpecialFeatureData,
@@ -49,6 +51,7 @@ export const config = {
 	feat: FeatData,
 	gear: GearData,
 	npcFeature: NPCFeatureData,
+	npcWeapon: NPCWeaponData,
 	plan: PlanData,
 	profession: ProfessionData,
 	specialFeature: SpecialFeatureData,

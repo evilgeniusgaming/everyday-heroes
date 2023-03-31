@@ -10,12 +10,14 @@ import DescribedTemplate from "./templates/described-template.mjs";
  */
 export default class TrickData extends SystemDataModel.mixin(DescribedTemplate, ActivatableTemplate) {
 
-	static metadata = {
-		type: "trick",
-		category: "feature",
-		localization: "EH.Item.Type.Trick",
-		icon: "fa-solid fa-ruler"
-	};
+	static get metadata() {
+		return {
+			type: "trick",
+			category: "feature",
+			localization: "EH.Item.Type.Trick",
+			icon: "fa-solid fa-ruler"
+		};
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

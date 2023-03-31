@@ -10,12 +10,14 @@ import DescribedTemplate from "./templates/described-template.mjs";
  */
 export default class ArchetypeData extends SystemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {
 
-	static metadata = {
-		type: "archetype",
-		category: "concept",
-		localization: "EH.Item.Type.Archetype",
-		icon: "fa-solid fa-landmark"
-	};
+	static get metadata() {
+		return {
+			type: "archetype",
+			category: "concept",
+			localization: "EH.Item.Type.Archetype",
+			icon: "fa-solid fa-landmark"
+		};
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

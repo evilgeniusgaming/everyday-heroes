@@ -4,12 +4,14 @@ import FormulaField from "../fields/formula-field.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
 import EquipmentTemplate from "./templates/equipment-template.mjs";
 import PhysicalTemplate from "./templates/physical-template.mjs";
+import TypedTemplate from "./templates/typed-template.mjs";
 
 /**
  * Data definition for Armor items.
  * @mixes {@link DescribedTemplate}
  * @mixes {@link EquipmentTemplate}
  * @mixes {@link PhysicalTemplate}
+ * @mixes {@link TypedTemplate}
  *
  * @property {object} type
  * @property {string} type.value - Whether this item is armor or a shield.
@@ -20,15 +22,19 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @property {object} bonuses
  * @property {string} bonuses.save - Bonus applied to this armor's saving throws.
  */
-export default class ArmorData extends SystemDataModel.mixin(DescribedTemplate, EquipmentTemplate, PhysicalTemplate) {
+export default class ArmorData extends SystemDataModel.mixin(
+	DescribedTemplate, EquipmentTemplate, PhysicalTemplate, TypedTemplate
+) {
 
-	static metadata = {
-		type: "armor",
-		category: "physical",
-		localization: "EH.Item.Type.Armor",
-		icon: "fa-solid fa-shield-halved",
-		image: "systems/everyday-heroes/artwork/svg/items/armor.svg"
-	};
+	static get metadata() {
+		return {
+			type: "armor",
+			category: "physical",
+			localization: "EH.Item.Type.Armor",
+			icon: "fa-solid fa-shield-halved",
+			image: "systems/everyday-heroes/artwork/svg/items/armor.svg"
+		};
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

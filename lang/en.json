@@ -469,6 +469,8 @@
 "Item.Type.Gear[other]": "Gear",
 "Item.Type.NPCFeature[one]": "NPC Feature",
 "Item.Type.NPCFeature[other]": "NPC Features",
+"Item.Type.NPCWeapon[one]": "NPC Weapon",
+"Item.Type.NPCWeapon[other]": "NPC Weapons",
 "Item.Type.Plan[one]": "Plan",
 "Item.Type.Plan[other]": "Plans",
 "Item.Type.Profession[one]": "Profession",

@@ -6,6 +6,7 @@ import DamageTemplate from "./templates/damage-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
 import EquipmentTemplate from "./templates/equipment-template.mjs";
 import PhysicalTemplate from "./templates/physical-template.mjs";
+import TypedTemplate from "./templates/typed-template.mjs";
 
 /**
  * Data definition for Weapon items.
@@ -14,9 +15,9 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @mixes {@link DescribedTemplate}
  * @mixes {@link EquipmentTemplate}
  * @mixes {@link PhysicalTemplate}
+ * @mixes {@link TypedTemplate}
  *
  * @property {object} type
- * @property {string} type.value - Whether this is a melee or ranged weapon.
  * @property {string} type.category - Equipment category of this item.
  * @property {Set<string>} properties - Weapon's properties.
  * @property {number} penetrationValue - How armor piercing is this weapon?
@@ -44,23 +45,24 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @property {number} overrides.critical.threshold - Number needed to roll to score a critical hit with this weapon.
  */
 export default class WeaponData extends SystemDataModel.mixin(
-	AttackTemplate, DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate
+	AttackTemplate, DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate, TypedTemplate
 ) {
 
-	static metadata = {
-		type: "weapon",
-		category: "physical",
-		localization: "EH.Item.Type.Weapon",
-		icon: "fa-solid fa-gun",
-		image: "systems/everyday-heroes/artwork/svg/items/weapon.svg"
-	};
+	static get metadata() {
+		return {
+			type: "weapon",
+			category: "physical",
+			localization: "EH.Item.Type.Weapon",
+			icon: "fa-solid fa-gun",
+			image: "systems/everyday-heroes/artwork/svg/items/weapon.svg"
+		};
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.StringField({label: "EH.Weapon.Type.Label"}),
 				category: new foundry.data.fields.StringField({label: "EH.Equipment.Category.Label[one]"})
 			}, {label: "EH.Item.Type.Label"}),
 			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
@@ -375,91 +377,5 @@ export default class WeaponData extends SystemDataModel.mixin(
 			type: game.i18n.localize("EH.Item.Type.Weapon[one]"),
 			subtype: CONFIG.EverydayHeroes.weaponTypes[this.type.value]?.label ?? ""
 		}).trim();
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Helpers                                  */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	async npcDescription() {
-		let description = "<p><em>";
-
-		// Type
-		const type = CONFIG.EverydayHeroes.weaponTypes[this.type.value];
-		if ( type ) description += game.i18n.format("EH.Weapon.Action.AttackSpecific", {type: type.label});
-		else description += game.i18n.localize("EH.Weapon.Action.AttackGeneric");
-		description += ":</em> ";
-
-		// To Hit
-		description += `<a data-action="roll-item" data-type="attack">${
-			game.i18n.format("EH.Weapon.ToHit", {mod: numberFormat(this.attackMod, {sign: true})}).toLowerCase()}</a>, `;
-
-		// Penetration Value
-		description += `${game.i18n.localize("EH.Equipment.Trait.PenetrationValue.Abbreviation")} ${
-			numberFormat(this.penetrationValue)}, `;
-
-		// Range
-		if ( ((this.type.value === "ranged") || this.properties.has("thrown")) && this.range.short ) {
-			description += `${game.i18n.localize("EH.Equipment.Trait.Range.Label").toLowerCase()} ${
-				numberFormat(this.range.short)}`;
-			if ( this.range.long > this.range.short ) description += `/${numberFormat(this.range.long)}`;
-			description += ` ${CONFIG.EverydayHeroes.lengthUnits[this.range.units]?.abbreviation}., `;
-			// TODO: Use numberFormat with proper unit formatting
-		}
-
-		// Reach
-		if ( this.type.value === "melee" ) {
-			description += `${game.i18n.localize("EH.Equipment.Trait.Range.Reach").toLowerCase()} ${
-				numberFormat(this.range.reach ?? 5)} `;
-			description += `${CONFIG.EverydayHeroes.lengthUnits[this.range.units]?.abbreviation}., `;
-			// TODO: Use numberFormat with proper unit formatting
-		}
-
-		// Targets
-
-		// Damage types
-		const modes = this.modes;
-		delete modes.offhand;
-		const damages = [];
-		for ( const [mode, config] of Object.entries(modes) ) {
-			const clone = this.parent.clone({"system.mode": mode});
-			// TODO: Modify this so it doesn't have to clone the whole item
-			const type = game.i18n.format("EH.Damage.Specific", {
-				type: CONFIG.EverydayHeroes.damageTypes[clone.system.damage.type]?.label
-			});
-			let string = `<a data-action="roll-item" data-type="damage" data-mode="${mode}">`;
-			string += clone.system.damage.average;
-			if ( clone.system.damage.denomination ) string += ` (${clone.system.damageFormula})`;
-			string += ` ${type.toLowerCase()}</a>`;
-			if ( config.npcHint && (Object.values(modes).length > 1) ) string += ` ${config.npcHint}`;
-			damages.push(string);
-		}
-		const listFormatter = new Intl.ListFormat(game.i18n.lang, {type: "disjunction", style: "short"});
-		description += `<em>Hit:</em> ${listFormatter.format(damages)}.</p> `;
-
-		if ( this.description.chat ) {
-			description += await TextEditor.enrichHTML(this.description.chat ?? "", {
-				secrets: this.parent.isOwner, rollData: this.parent.getRollData(), async: true, relativeTo: this.parent
-			});
-			// description = listFormatter.format([description, chatDescription]);
-		} else {
-			// description += ".";
-		}
-
-		return description;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	async npcLabel() {
-		let label = `<a data-action="roll-item" data-type="activate">${this.parent.name}</a>`;
-		if ( this.rounds.capacity ) {
-			label += ' <span>(<a data-action="item" data-type="reload">';
-			label += `${numberFormat(this.rounds.available)}/${numberFormat(this.rounds.capacity)} ${
-				game.i18n.format("EH.Ammunition.Rounds.Label[other]")}`;
-			if ( this.reload ) label += `; ${CONFIG.EverydayHeroes.actionTypesReload[this.reload].toLowerCase()}`;
-			label += "</a>)</span>";
-		}
-		return label;
 	}
 }

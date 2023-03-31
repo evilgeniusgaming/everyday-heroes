@@ -5,6 +5,7 @@ import DamageTemplate from "./templates/damage-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
 import EquipmentTemplate from "./templates/equipment-template.mjs";
 import PhysicalTemplate from "./templates/physical-template.mjs";
+import TypedTemplate from "./templates/typed-template.mjs";
 
 /**
  * Data definition for Ammunition items.
@@ -12,9 +13,8 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @mixes {@link DescribedTemplate}
  * @mixes {@link EquipmentTemplate}
  * @mixes {@link PhysicalTemplate}
+ * @mixes {@link TypedTemplate}
  *
- * @property {object} type
- * @property {string} type.value - Ammunition type.
  * @property {Object<string, number>} properties - Properties to add or remove from the weapon.
  * @property {number} penetrationValue - How does this ammo modify the weapon's penetration value?
  * @property {object} bonuses
@@ -28,16 +28,18 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @property {number} overrides.critical.threshold - Number needed to roll to score a critical hit with this ammo.
  */
 export default class AmmunitionData extends SystemDataModel.mixin(
-	DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate
+	DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate, TypedTemplate
 ) {
 
-	static metadata = {
-		type: "ammunition",
-		category: "physical",
-		localization: "EH.Item.Type.Ammunition",
-		icon: "fa-solid fa-cubes-stacked",
-		image: "systems/everyday-heroes/artwork/svg/items/ammunition.svg"
-	};
+	static get metadata() {
+		return {
+			type: "ammunition",
+			category: "physical",
+			localization: "EH.Item.Type.Ammunition",
+			icon: "fa-solid fa-cubes-stacked",
+			image: "systems/everyday-heroes/artwork/svg/items/ammunition.svg"
+		};
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -47,9 +49,6 @@ export default class AmmunitionData extends SystemDataModel.mixin(
 
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
-			type: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.StringField({intial: "basic", label: "EH.Ammunition.Type.Label"})
-			}, {label: "EH.Item.Type.Label"}),
 			properties: new MappingField(new foundry.data.fields.NumberField({min: -1, max: 1, integer: true}), {
 				label: "EH.Weapon.Property.Label"
 			}),

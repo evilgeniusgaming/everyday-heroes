@@ -9,11 +9,11 @@
 		</fieldset>
 	{{/if}}
 
-	{{#if itemSubTypes}}
+	{{#if system.types}}
 		<fieldset>
 			<label>{{localize "EH.Item.Type.Label"}}</label>
 			<select name="system.type.value">
-				{{selectOptions itemSubTypes selected=system.type.value blank="" labelAttr="label"}}
+				{{selectOptions system.types selected=system.type.value blank="" labelAttr="label"}}
 			</select>
 		</fieldset>
 	{{/if}}

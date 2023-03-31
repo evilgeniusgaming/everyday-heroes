@@ -2,23 +2,26 @@ import SystemDataModel from "../abstract/system-data-model.mjs";
 import IdentifierField from "../fields/identifier-field.mjs";
 import ActivatableTemplate from "./templates/activatable-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
+import TypedTemplate from "./templates/typed-template.mjs";
 
 /**
  * Data definition for Special Feature items.
  * @mixes {@link ActivatableTemplate}
  * @mixes {@link DescribedTemplate}
- *
- * @property {object} type
- * @property {string} type.value - Specific talent type (background or profession).
+ * @mixes {@link TypedTemplate}
  */
-export default class SpecialFeatureData extends SystemDataModel.mixin(DescribedTemplate, ActivatableTemplate) {
+export default class SpecialFeatureData extends SystemDataModel.mixin(
+	DescribedTemplate, ActivatableTemplate, TypedTemplate
+) {
 
-	static metadata = {
-		type: "specialFeature",
-		category: "feature",
-		localization: "EH.Item.Type.SpecialFeature",
-		icon: "fa-solid fa-users-rectangle"
-	};
+	static get metadata() {
+		return {
+			type: "specialFeature",
+			category: "feature",
+			localization: "EH.Item.Type.SpecialFeature",
+			icon: "fa-solid fa-users-rectangle"
+		};
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -26,9 +29,6 @@ export default class SpecialFeatureData extends SystemDataModel.mixin(DescribedT
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({
 				value: new IdentifierField({label: "Identifier.Label"})
-			}),
-			type: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.StringField({label: ""})
 			})
 		});
 	}

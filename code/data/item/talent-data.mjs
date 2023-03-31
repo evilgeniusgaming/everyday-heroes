@@ -2,24 +2,27 @@ import SystemDataModel from "../abstract/system-data-model.mjs";
 import IdentifierField from "../fields/identifier-field.mjs";
 import ActivatableTemplate from "./templates/activatable-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
+import TypedTemplate from "./templates/typed-template.mjs";
 
 /**
  * Data definition for Talent items.
  * @mixes {@link ActivatableTemplate}
  * @mixes {@link DescribedTemplate}
+ * @mixes {@link TypedTemplate}
  *
  * @property {object} type
- * @property {string} type.value - Specific talent type (archetype or class).
  * @property {number} type.level - Level at which this talent is granted.
  */
-export default class TalentData extends SystemDataModel.mixin(DescribedTemplate, ActivatableTemplate) {
+export default class TalentData extends SystemDataModel.mixin(DescribedTemplate, ActivatableTemplate, TypedTemplate) {
 
-	static metadata = {
-		type: "talent",
-		category: "feature",
-		localization: "EH.Item.Type.Talent",
-		icon: "fa-solid fa-users-rectangle"
-	};
+	static get metadata() {
+		return {
+			type: "talent",
+			category: "feature",
+			localization: "EH.Item.Type.Talent",
+			icon: "fa-solid fa-users-rectangle"
+		};
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -29,7 +32,6 @@ export default class TalentData extends SystemDataModel.mixin(DescribedTemplate,
 				value: new IdentifierField({label: "Identifier.Label"})
 			}),
 			type: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.StringField({label: ""}),
 				level: new foundry.data.fields.NumberField({label: "EH.Level.Label[one]"})
 			})
 		});

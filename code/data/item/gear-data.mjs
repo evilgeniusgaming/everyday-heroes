@@ -1,33 +1,24 @@
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
 import PhysicalTemplate from "./templates/physical-template.mjs";
+import TypedTemplate from "./templates/typed-template.mjs";
 
 /**
  * Data definition for Gear items.
  * @mixes {@link DescribedTemplate}
  * @mixes {@link PhysicalTemplate}
- *
- * @property {object} type
- * @property {string} type.value - What type of gear is this?
+ * @mixes {@link TypedTemplate}
  */
-export default class GearData extends SystemDataModel.mixin(DescribedTemplate, PhysicalTemplate) {
+export default class GearData extends SystemDataModel.mixin(DescribedTemplate, PhysicalTemplate, TypedTemplate) {
 
-	static metadata = {
-		type: "gear",
-		category: "physical",
-		localization: "EH.Item.Type.Gear",
-		icon: "fa-solid fa-bag-shopping",
-		image: "systems/everyday-heroes/artwork/svg/items/gear.svg"
-	};
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	static defineSchema() {
-		return this.mergeSchema(super.defineSchema(), {
-			type: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.StringField({label: "EH.Weapon.Type.Label"})
-			}, {label: "EH.Item.Type.Label"})
-		});
+	static get metadata() {
+		return {
+			type: "gear",
+			category: "physical",
+			localization: "EH.Item.Type.Gear",
+			icon: "fa-solid fa-bag-shopping",
+			image: "systems/everyday-heroes/artwork/svg/items/gear.svg"
+		};
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

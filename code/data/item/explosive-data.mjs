@@ -6,6 +6,7 @@ import DamageTemplate from "./templates/damage-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
 import EquipmentTemplate from "./templates/equipment-template.mjs";
 import PhysicalTemplate from "./templates/physical-template.mjs";
+import TypedTemplate from "./templates/typed-template.mjs";
 
 /**
  * Data definition for Explosive items.
@@ -14,6 +15,7 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @mixes {@link DescribedTemplate}
  * @mixes {@link EquipmentTemplate}
  * @mixes {@link PhysicalTemplate}
+ * @mixes {@link TypedTemplate}
  *
  * @property {object} type
  * @property {string} type.category - Equipment category of this item.
@@ -27,23 +29,24 @@ import PhysicalTemplate from "./templates/physical-template.mjs";
  * @property {string} bonuses.dc - Bonus to the explosive's DC.
  */
 export default class ExplosiveData extends SystemDataModel.mixin(
-	AttackTemplate, DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate
+	AttackTemplate, DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate, TypedTemplate
 ) {
 
-	static metadata = {
-		type: "explosive",
-		category: "physical",
-		localization: "EH.Item.Type.Explosive",
-		icon: "fa-solid fa-burst",
-		image: "systems/everyday-heroes/artwork/svg/items/explosive.svg"
-	};
+	static get metadata() {
+		return {
+			type: "explosive",
+			category: "physical",
+			localization: "EH.Item.Type.Explosive",
+			icon: "fa-solid fa-burst",
+			image: "systems/everyday-heroes/artwork/svg/items/explosive.svg"
+		};
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.StringField({initial: "grenade", label: "EH.Explosive.Type.Label"}),
 				category: new foundry.data.fields.StringField({intial: "basic", label: "EH.Equipment.Category.Label[one]"})
 			}, {label: "EH.Item.Type.Label"}),
 			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {

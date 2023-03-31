@@ -78,7 +78,7 @@ export const itemCategories = {
 	},
 	physical: {
 		label: "EH.Item.Category.Physical.Label",
-		types: ["armor", "weapon", "ammunition", "explosive", "gear"]
+		types: ["armor", "weapon", "ammunition", "explosive", "gear", "npcWeapon"]
 	}
 };
 preLocalize("itemCategories", { key: "label" });
@@ -299,6 +299,7 @@ export const applicableProperties = {
 	]
 };
 applicableProperties.ammunition = applicableProperties.weapon;
+applicableProperties.npcWeapon = applicableProperties.weapon;
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Ammunition                               */
