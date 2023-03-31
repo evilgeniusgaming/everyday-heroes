@@ -226,6 +226,8 @@ function jsonStringify(context, options) {
  * @param {number} [options.decimals] - Number of decimal digits to display.
  * @param {number} [options.digits] - Number of digits before the decimal point to display.
  * @param {boolean} [options.sign] - Should the sign always be displayed?
+ * @param {string} [options.unit] - What unit should be displayed?
+ * @param {string} [options.unitDisplay] - Unit display style.
  * @returns {string}
  */
 export function numberFormat(value, options={}) {
@@ -238,6 +240,11 @@ export function numberFormat(value, options={}) {
 	if ( options.digits !== undefined ) {
 		formatterOptions.minimumIntegerDigits = options.digits;
 		formatterOptions.maximumIntegerDigits = options.digits;
+	}
+	if ( options.unit ) {
+		formatterOptions.style = "unit";
+		formatterOptions.unit = options.unit;
+		formatterOptions.unitDisplay = options.unitDisplay;
 	}
 	const formatter = new Intl.NumberFormat(game.i18n.lang, formatterOptions);
 	return formatter.format(value);

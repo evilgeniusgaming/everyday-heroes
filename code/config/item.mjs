@@ -543,9 +543,42 @@ export const weaponModes = {
 		label: "EH.Weapon.Mode.Burst.Label",
 		icon: "systems/everyday-heroes/artwork/svg/action/attack-burst.svg",
 		available: item => (item.system.type.value === "ranged") && item.system.properties.has("burst")
+	},
+	suppressiveFire: {
+		label: "EH.Weapon.Mode.SuppressiveFire.Label",
+		icon: "systems/everyday-heroes/artwork/svg/action/attack-suppressive-fire.svg",
+		available: item => {
+			if ( item.system.type.value !== "ranged" ) return false;
+			return item.system.properties.has("fullAuto") || item.system.properties.has("semiAuto");
+		}
 	}
 };
 preLocalize("weaponModes", { keys: ["label", "npcHint"] });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Configuration data for suppressive fire action.
+ *
+ * @typedef {object} SuppressiveFireConfiguration
+ * @property {number} rounds - How many rounds are expended with this weapon type?
+ * @property {number} size - How wide is the field of fire with this weapon type?
+ */
+
+/**
+ * Details on the suppressive fire mode.
+ * @enum {SuppressiveFireConfiguration}
+ */
+export const weaponSuppressiveFire = {
+	semiAuto: {
+		rounds: 8,
+		size: 10
+	},
+	fullAuto: {
+		rounds: 8,
+		size: 30
+	}
+};
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

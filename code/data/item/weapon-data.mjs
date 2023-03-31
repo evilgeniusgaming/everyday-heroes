@@ -122,13 +122,28 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get actions() {
-		if ( !this.jammed ) return super.actions;
-		return [{
-			label: game.i18n.localize("EH.Weapon.Action.ClearJam.Label"),
-			icon: "systems/everyday-heroes/artwork/svg/action/clear-jam.svg",
-			action: "item",
-			data: { type: "clear-jam" }
-		}];
+		if ( this.jammed ) {
+			return [{
+				label: game.i18n.localize("EH.Weapon.Action.ClearJam.Label"),
+				icon: "systems/everyday-heroes/artwork/svg/action/clear-jam.svg",
+				action: "item",
+				data: { type: "clear-jam" }
+			}];
+		}
+		const actions = super.actions;
+		if ( this.mode === "suppressiveFire" ) {
+			const fireConfig = CONFIG.EverydayHeroes.weaponSuppressiveFire[
+				this.properties.has("fullAuto") ? "fullAuto" : "semiAuto"
+			];
+			actions.unshift({
+				label: numberFormat(fireConfig.size, { unit: "foot" }),
+				icon: "systems/everyday-heroes/artwork/svg/action/attack-suppressive-fire.svg",
+				tooltip: game.i18n.localize("EH.Weapon.Action.SuppressiveFire.Label"),
+				action: "item",
+				data: { type: "suppressive-fire" }
+			});
+		}
+		return actions;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -196,6 +211,12 @@ export default class WeaponData extends SystemDataModel.mixin(
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	get canCritical() {
+		return this.mode !== "suppressiveFire";
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	get chatTags() {
 		const pluralRule = new Intl.PluralRules(game.i18n.lang);
 		const tags = [
@@ -257,6 +278,12 @@ export default class WeaponData extends SystemDataModel.mixin(
 	get damageIcon() {
 		const type = (this.mode === "thrown") || (this.type.value === "ranged") ? "ranged" : "melee";
 		return `systems/everyday-heroes/artwork/svg/action/damage-${type}.svg`;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get hasAttack() {
+		return this.mode !== "suppressiveFire";
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

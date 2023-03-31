@@ -594,6 +594,83 @@ export default class ItemEH extends Item {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Use the suppressive fire action with this weapon.
+	 * @param {SuppressiveFireConfiguration} [config] - Configuration information for the action.
+	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides message creation.
+	 * @returns {Promise}
+	 */
+	async suppressiveFire(config={}, message={}) {
+		const fireConfig = CONFIG.EverydayHeroes.weaponSuppressiveFire[
+			this.system.properties.has("fullAuto") ? "fullAuto"
+				: this.system.properties.has("semiAuto") ? "semiAuto" : null
+		];
+		if ( !fireConfig ) return console.log("Only semi-auto or full-auto weapons can perform suppressive fire.");
+
+		const suppressiveFireConfig = foundry.utils.mergeObject({
+			rounds: fireConfig.rounds,
+			size: fireConfig.size
+		}, config);
+
+		// Verify that the weapon isn't jammed & has enough rounds left to make the attack
+		if ( this.system.jammed ) {
+			return ui.notifications.warn(game.i18n.localize("EH.Weapon.Action.Attack.Warning.Jammed"));
+		}
+		if ( suppressiveFireConfig.rounds > this.system.rounds?.available ) {
+			return ui.notifications.warn(game.i18n.localize("EH.Weapon.Action.Attack.Warning.Empty"));
+		}
+
+		const content = game.i18n.format(
+			"EH.Weapon.Action.SuppressiveFire.Message", { actor: this.actor.name, weapon: this.name }
+		);
+		const messageConfig = foundry.utils.mergeObject({
+			data: {
+				title: `${game.i18n.localize("EH.Weapon.Mode.SuppressiveFire.Label")}: ${this.actor.name}`,
+				content,
+				speaker: ChatMessage.getSpeaker({actor: this.actor}),
+				"flags.everyday-heroes.suppressiveFire": {
+					origin: this.uuid,
+					ammunition: this.ammunition?.uuid
+				}
+			}
+		}, message);
+
+		/**
+		 * A hook event that fires before suppressive fire is used for an Item.
+		 * @function everydayHeroes.preSuppressiveFire
+		 * @memberof hookEvents
+		 * @param {ItemEH} item - Weapon that will perform the suppressive fire.
+		 * @param {SuppressiveFireConfiguration} suppressiveFireConfig - Configuration data for the fire.
+		 * @param {BaseMessageConfiguration} message - Configuration data for the message.
+		 * @returns {boolean} - Explicitly return `false` to prevent suppressive fire from being used.
+		 */
+		if ( Hooks.call("everydayHeroes.preSuppressiveFire", this, suppressiveFireConfig, messageConfig) === false ) return;
+
+		const updates = {
+			"system.rounds.spent": this.system.rounds.spent += suppressiveFireConfig.rounds
+		};
+		// TODO: Place measured template
+
+		// Display chat message
+		if ( messageConfig.create !== false ) {
+			ChatMessage.applyRollMode(messageConfig.data, game.settings.get("core", "rollMode"));
+			await ChatMessage.create(messageConfig.data);
+		}
+
+		/**
+		 * A hook event that fires after suppressive fire has been activated for an Item.
+		 * @function everydayHeroes.suppressiveFire
+		 * @memberof hookEvents
+		 * @param {ItemEH} item - Weapon that performed the suppressive fire.
+		 * @param {object} updates - Changes to the weapon after the firing.
+		 */
+		Hooks.callAll("everydayHeroes.suppressiveFire", this, updates);
+
+		if ( !foundry.utils.isEmpty(updates) ) await this.update(updates);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Rolls                                    */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -656,6 +733,7 @@ export default class ItemEH extends Item {
 			dialogConfig) === false ) return;
 
 		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
+		if ( !roll ) return;
 
 		/**
 		 * A hook event that fires after an armor save has been rolled for an Item.
@@ -664,7 +742,7 @@ export default class ItemEH extends Item {
 		 * @param {ItemEH} item - Item for which the armor save has been rolled.
 		 * @param {D20Roll} roll - The resulting roll.
 		 */
-		if ( roll ) Hooks.callAll("everydayHeroes.rollAbilityCheck", this, roll);
+		Hooks.callAll("everydayHeroes.rollAbilityCheck", this, roll);
 
 		return roll;
 	}
@@ -740,7 +818,7 @@ export default class ItemEH extends Item {
 		 * A hook event that fires before an attack is rolled for an Item.
 		 * @function everydayHeroes.preRollAttack
 		 * @memberof hookEvents
-		 * @param {ItemEH} item - Item for which the ability check is being rolled.
+		 * @param {ItemEH} item - Item that will attack.
 		 * @param {ChallengeRollConfiguration} config - Configuration data for the pending roll.
 		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
 		 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
@@ -749,15 +827,7 @@ export default class ItemEH extends Item {
 		if ( Hooks.call("everydayHeroes.preRollAttack", this, rollConfig, messageConfig, dialogConfig) === false ) return;
 
 		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
-
-		/**
-		 * A hook event that fires after an attack has been rolled for an Item.
-		 * @function everydayHeroes.rollAttack
-		 * @memberof hookEvents
-		 * @param {ItemEH} item - Actor for which the ability check has been rolled.
-		 * @param {D20Roll} roll - The resulting roll.
-		 */
-		if ( roll ) Hooks.callAll("everydayHeroes.rollAttack", this, roll);
+		if ( !roll ) return;
 
 		const updates = {};
 		if ( this.system.roundsToSpend ) {
@@ -766,6 +836,17 @@ export default class ItemEH extends Item {
 		if ( this.system.properties.has("unreliable") && roll.isCriticalFailure ) {
 			updates["system.jammed"] = true;
 		}
+
+		/**
+		 * A hook event that fires after an attack has been rolled for an Item.
+		 * @function everydayHeroes.rollAttack
+		 * @memberof hookEvents
+		 * @param {ItemEH} item - Item that attacked.
+		 * @param {D20Roll} roll - The resulting roll.
+		 * @param {object} updates - Updates that will be applied to the weapon.
+		 */
+		Hooks.callAll("everydayHeroes.rollAttack", this, roll, updates);
+
 		if ( !foundry.utils.isEmpty(updates) ) await this.update(updates);
 
 		return roll;
@@ -848,6 +929,7 @@ export default class ItemEH extends Item {
 		if ( Hooks.call("everydayHeroes.preRollDamage", this, rollConfig, messageConfig, dialogConfig) === false ) return;
 
 		const roll = await CONFIG.Dice.DamageRoll.build(rollConfig, messageConfig, dialogConfig);
+		if ( !roll ) return;
 
 		/**
 		 * A hook event that fires after a damage has been rolled for an Item.
@@ -856,7 +938,7 @@ export default class ItemEH extends Item {
 		 * @param {ItemEH} item - Item for which the roll was performed.
 		 * @param {DamageRoll} roll - The resulting roll.
 		 */
-		if ( roll ) Hooks.callAll("everydayHeroes.rollDamage", this, roll);
+		Hooks.callAll("everydayHeroes.rollDamage", this, roll);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
