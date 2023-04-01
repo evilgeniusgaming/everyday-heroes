@@ -863,12 +863,15 @@ export default class ItemEH extends Item {
 	 */
 	async rollDamage(config={}, message={}, dialog={}) {
 		if ( !this.hasDamage ) return console.warn(`${this.name} does not support damage rolls.`);
-		const ability = this.actor?.system.abilities[this.system.damageAbility];
-		const ammunition = this.system.ammunition;
+
+		const item = config.options?.mode ? this.clone({"system._modeOverride": config.options.mode}) : this;
+
+		const ability = this.actor?.system.abilities[item.system.damageAbility];
+		const ammunition = item.system.ammunition;
 
 		const { parts, data } = buildRoll({
 			mod: ability?.mod,
-			weaponBonus: this.system.bonuses.damage,
+			weaponBonus: item.system.bonuses.damage,
 			ammoBonus: ammunition?.system.bonuses.damage,
 			globalBonus: this.actor?.system.bonuses?.damage?.all,
 			globalMeleeBonus: this.actor?.system.bonuses?.damage?.melee,
@@ -878,17 +881,18 @@ export default class ItemEH extends Item {
 		const rollConfig = foundry.utils.mergeObject({
 			data,
 			options: {
-				allowCritical: ammunition ? ammunition.system.canCritical : this.system.canCritical,
+				mode: item.system.mode,
+				allowCritical: ammunition ? ammunition.system.canCritical : item.system.canCritical,
 				multiplier: this.actor?.system.overrides?.critical?.multiplier,
-				bonusDamage: [this.system.bonuses.critical?.damage, ammunition?.system.bonuses.critical?.damage]
+				bonusDamage: [item.system.bonuses.critical?.damage, ammunition?.system.bonuses.critical?.damage]
 					.filter(d => d)
 					.map(d => Roll.replaceFormulaData(d, data))
 					.join(" + "),
-				bonusDice: (this.system.bonuses.critical?.dice ?? 0) + (ammunition?.system.bonuses.critical?.dice ?? 0),
-				type: this.system.damage.type
+				bonusDice: (item.system.bonuses.critical?.dice ?? 0) + (ammunition?.system.bonuses.critical?.dice ?? 0),
+				type: item.system.damage.type
 			}
 		}, config);
-		rollConfig.parts = [this.system.damage.dice].concat(parts).concat(config.parts ?? []);
+		rollConfig.parts = [item.system.damage.dice].concat(parts).concat(config.parts ?? []);
 
 		const flavor = game.i18n.format("EH.Action.Roll", {
 			type: game.i18n.format("EH.Weapon.Action.DamageSourced.Label", {source: this.name})
@@ -898,10 +902,9 @@ export default class ItemEH extends Item {
 				title: `${flavor}: ${this.actor?.name ?? ""}`,
 				flavor,
 				speaker: ChatMessage.getSpeaker({actor: this.actor}),
-				"flags.everyday-heroes.actions": this.system.damageChatActions,
+				"flags.everyday-heroes.actions": item.system.damageChatActions,
 				"flags.everyday-heroes.roll": {
 					type: "damage",
-					mode: this.system.mode,
 					origin: this.uuid,
 					ammunition: ammunition?.uuid
 				}

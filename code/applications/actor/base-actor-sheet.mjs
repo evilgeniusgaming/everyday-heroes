@@ -325,6 +325,7 @@ export default class BaseActorSheet extends ActorSheet {
 				return;
 			case "mode":
 				if ( !item || !key ) return;
+				if ( item.system._modeOverride ) await item.update({"system.-=_modeOverride": null});
 				return this.actor.update({[`system.items.${id}.mode`]: key});
 			case "reload":
 				return item?.reload();

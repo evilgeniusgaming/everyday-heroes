@@ -13,6 +13,7 @@ import { areKeysPressed } from "./utils.mjs";
  * Options that describe a challenge roll.
  *
  * @typedef {BaseRollOptions} DamageRollOptions
+ * @property {string} [mode] - Weapon mode with which this damage was rolled.
  * @property {boolean} [allowCritical=true] - Should critical damage be allowed?
  * @property {boolean} [critical] - Does this roll do critical damage?
  * @property {number} [multiplier=2] - Amount by which to multiply critical damage.

@@ -77,16 +77,20 @@ export default class NPCWeaponData extends WeaponData {
 		// Damage types
 		const modes = this.modes;
 		delete modes.offhand;
+		delete modes.suppressiveFire;
 		const damages = [];
 		for ( const [mode, config] of Object.entries(modes) ) {
-			const clone = this.parent.clone({"system.mode": mode});
-			// TODO: Modify this so it doesn't have to clone the whole item
+			const clone = new this.constructor(this.toObject());
+			clone._modeOverride = mode;
+			clone.prepareBaseData();
+			clone.prepareDerivedData();
+
 			const type = game.i18n.format("EH.Damage.Specific", {
-				type: CONFIG.EverydayHeroes.damageTypes[clone.system.damage.type]?.label
+				type: CONFIG.EverydayHeroes.damageTypes[clone.damage.type]?.label
 			});
 			let string = `<a data-action="roll-item" data-type="damage" data-mode="${mode}">`;
-			string += clone.system.damage.average;
-			if ( clone.system.damage.denomination ) string += ` (${clone.system.damageFormula})`;
+			string += clone.damage.average;
+			if ( clone.damage.denomination ) string += ` (${clone.damageFormula})`;
 			string += ` ${type.toLowerCase()}</a>`;
 			if ( config.npcHint && (Object.values(modes).length > 1) ) string += ` ${config.npcHint}`;
 			damages.push(string);
@@ -98,9 +102,6 @@ export default class NPCWeaponData extends WeaponData {
 			description += await TextEditor.enrichHTML(this.description.chat ?? "", {
 				secrets: this.parent.isOwner, rollData: this.parent.getRollData(), async: true, relativeTo: this.parent
 			});
-			// description = listFormatter.format([description, chatDescription]);
-		} else {
-			// description += ".";
 		}
 
 		return description;

@@ -62,6 +62,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
+			_modeOverride: new foundry.data.fields.StringField({required: false, initial: undefined}),
 			type: new foundry.data.fields.SchemaField({
 				category: new foundry.data.fields.StringField({label: "EH.Equipment.Category.Label[one]"})
 			}, {label: "EH.Item.Type.Label"}),
@@ -307,7 +308,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 	get modes() {
 		const modes = {};
 		for ( const [mode, config] of Object.entries(CONFIG.EverydayHeroes.weaponModes) ) {
-			if ( !config.available(this.parent) ) continue;
+			if ( !config.available(this) ) continue;
 			modes[mode] = foundry.utils.deepClone(config);
 			const icon = modes[mode].icons?.[this.type.value];
 			if ( icon ) modes[mode].icon = icon;
@@ -371,7 +372,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareBaseMode() {
-		const mode = this.parent?.actor?.system.items?.[this.parent.id]?.mode ?? this._source.mode;
+		const mode = this._modeOverride ?? this.parent?.actor?.system.items?.[this.parent?.id]?.mode;
 		this.mode = this.modes[mode] ? mode : Object.keys(this.modes)[0];
 	}
 

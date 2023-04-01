@@ -512,9 +512,9 @@ export const weaponModes = {
 			melee: "systems/everyday-heroes/artwork/svg/action/attack-melee-one-handed.svg",
 			ranged: "systems/everyday-heroes/artwork/svg/action/attack-ranged-one-handed.svg"
 		},
-		available: item => {
-			if ( item.system.properties.has("versatile") ) return true;
-			return !item.system.properties.has("twoHanded");
+		available: system => {
+			if ( system.properties.has("versatile") ) return true;
+			return !system.properties.has("twoHanded");
 		}
 	},
 	twoHanded: {
@@ -524,32 +524,32 @@ export const weaponModes = {
 			melee: "systems/everyday-heroes/artwork/svg/action/attack-melee-two-handed.svg",
 			ranged: "systems/everyday-heroes/artwork/svg/action/attack-ranged-two-handed.svg"
 		},
-		available: item => {
-			if ( item.system.properties.has("versatile") ) return true;
-			return item.system.properties.has("twoHanded");
+		available: system => {
+			if ( system.properties.has("versatile") ) return true;
+			return system.properties.has("twoHanded");
 		}
 	},
 	offhand: {
 		label: "EH.Weapon.Mode.Offhand.Label",
 		icon: "systems/everyday-heroes/artwork/svg/action/attack-offhand.svg",
-		available: item => item.system.properties.has("light")
+		available: system => system.properties.has("light")
 	},
 	thrown: {
 		label: "EH.Weapon.Mode.Thrown.Label",
 		icon: "systems/everyday-heroes/artwork/svg/action/attack-thrown.svg",
-		available: item => (item.system.type.value === "melee") && item.system.properties.has("thrown")
+		available: system => (system.type.value === "melee") && system.properties.has("thrown")
 	},
 	burst: {
 		label: "EH.Weapon.Mode.Burst.Label",
 		icon: "systems/everyday-heroes/artwork/svg/action/attack-burst.svg",
-		available: item => (item.system.type.value === "ranged") && item.system.properties.has("burst")
+		available: system => (system.type.value === "ranged") && system.properties.has("burst")
 	},
 	suppressiveFire: {
 		label: "EH.Weapon.Mode.SuppressiveFire.Label",
 		icon: "systems/everyday-heroes/artwork/svg/action/attack-suppressive-fire.svg",
-		available: item => {
-			if ( item.system.type.value !== "ranged" ) return false;
-			return item.system.properties.has("fullAuto") || item.system.properties.has("semiAuto");
+		available: system => {
+			if ( system.type.value !== "ranged" ) return false;
+			return system.properties.has("fullAuto") || system.properties.has("semiAuto");
 		}
 	}
 };
