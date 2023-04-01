@@ -34,9 +34,9 @@
 }
 
 .journal-sheet .callout {
-	margin-block: 2em;
+	margin: 1em 2em;
 	border: 3px solid var(--eh-border-color-strong);
-	border-radius: 20px;
+	border-radius: 40px;
 	padding: 2em;
 }
 .journal-sheet .callout h5 {
@@ -49,4 +49,124 @@
 .journal-sheet ul.multi-column-list {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Table                                    */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.journal-sheet table thead {
+	background: none;
+}
+.journal-sheet table th {
+	color: var(--eh-text-color-black);
+	font-weight: bold;
+	text-align: center;
+	text-shadow: none;
+	text-transform: uppercase;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Archetypes & Classes Table               */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.journal-sheet table.archetypes-classes {
+	border: none;
+	background: none;
+}
+.journal-sheet table.archetypes-classes :is(td, th) {
+	padding: 0.5em;
+}
+.journal-sheet table.archetypes-classes tr:not(:last-of-type) {
+	border-block-end: 1px solid var(--eh-border-color-strong);
+}
+.journal-sheet table.archetypes-classes tr:is(.strong, .tough, .wise) {
+	background-color: rgba(214, 228, 229, 0.5);
+}
+.journal-sheet table.archetypes-classes tr:is(.agile, .smart, .charming) {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Callout Tables                           */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.journal-sheet table:is(.yellow, .blue) {
+	width: calc(100% - 6em);
+	overflow: clip;
+	margin: 3em;
+	border: none;
+	border-collapse: separate;
+	border-radius: 40px;
+	border-spacing: 0;
+	background: none;
+}
+.journal-sheet table:is(.yellow, .blue).narrow {
+	width: calc(100% - 16em);
+	margin-inline: 8em;
+}
+.journal-sheet table:is(.yellow, .blue).wide {
+	width: calc(100% - 2em);
+	margin-inline: 1em;
+}
+
+.journal-sheet table:is(.yellow, .blue) caption {
+	margin-block-end: 0.5em;
+	color: var(--eh-text-color-red);
+	font-size: var(--font-size-20);
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.journal-sheet table:is(.yellow, .blue) thead {
+	background: none;
+}
+.journal-sheet table:is(.yellow, .blue) :is(td, th) {
+	border: none;
+}
+.journal-sheet table:is(.yellow, .blue) thead tr:first-child th {
+	border-block-start: 4px solid var(--eh-border-color-strong);
+	padding-block-start: 1em;
+}
+.journal-sheet table:is(.yellow, .blue) thead tr th:first-child {
+	border-inline-start: 4px solid var(--eh-border-color-strong);
+	padding-inline-start: 2em;
+}
+.journal-sheet table:is(.yellow, .blue) thead tr th:last-child {
+	border-inline-end: 4px solid var(--eh-border-color-strong);
+	padding-inline-end: 2em;
+}
+.journal-sheet table:is(.yellow, .blue) thead tr:first-child :is(td, th):first-child {
+	border-top-left-radius: 40px;
+}
+.journal-sheet table:is(.yellow, .blue) thead tr:first-child :is(td, th):last-child {
+	border-top-right-radius: 40px;
+}
+.journal-sheet table:is(.yellow, .blue) tbody tr:last-child td {
+	border-block-end: 4px solid var(--eh-border-color-strong);
+	padding-block-end: 1em;
+}
+.journal-sheet table:is(.yellow, .blue) tbody tr td:first-child {
+	border-inline-start: 4px solid var(--eh-border-color-strong);
+	padding-inline-start: 2em;
+}
+.journal-sheet table:is(.yellow, .blue) tbody tr td:last-child {
+	border-inline-end: 4px solid var(--eh-border-color-strong);
+	padding-inline-end: 2em;
+}
+.journal-sheet table:is(.yellow, .blue) tbody tr:last-child :is(td, th):first-child {
+	border-bottom-left-radius: 40px;
+}
+.journal-sheet table:is(.yellow, .blue) tbody tr:last-child :is(td, th):last-child {
+	border-bottom-right-radius: 40px;
+}
+
+.journal-sheet table:is(.yellow, .blue) :is(th, td) {
+	padding-inline: 0.5em;
+}
+.journal-sheet table:is(.yellow, .blue) :is(th, td):not(:last-child) {
+	border-inline-end: 4px double var(--eh-border-color-weak);
+}
+.journal-sheet table:is(.yellow, .blue).narrow td {
+	text-align: center;
 }
