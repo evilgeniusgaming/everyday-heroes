@@ -14,7 +14,7 @@ export default class MovementTemplate extends foundry.abstract.DataModel {
 						...speedConfig, label: "EH.Speed.Label"
 					}),
 					special: new MappingField(new foundry.data.fields.NumberField({ ...speedConfig }), {label: ""}),
-					units: new foundry.data.fields.StringField({initial: "ft", label: "EH.Measurement.Units"})
+					units: new foundry.data.fields.StringField({initial: "foot", label: "EH.Measurement.Units"})
 					// TODO: Set default based on default units setting
 				})
 			})

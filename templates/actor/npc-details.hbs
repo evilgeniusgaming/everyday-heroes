@@ -28,16 +28,14 @@
 	</fieldset>
 	<fieldset>
 		<label>{{localize "EH.HitPoints.Label[other]"}}</label>
-		{{#if @root.editable}}
-			<input type="number" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}">
-		{{else}}
-			<span>{{system.attributes.hp.value}}</span>
-		{{/if}} /
+		<input type="number" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}">
+		/
+		<input type="number" name="system.attributes.hp.max" value="{{system.attributes.hp.max}}"
+			placeholder="{{localize 'EH.HitPoints.Max'}}" {{disabled (not editingMode)}}>
 		{{#if editingMode}}
-			<input type="number" name="system.attributes.hp.max" value="{{system.attributes.hp.max}}">
-			(<input type="text" name="system.attributes.hp.formula" value="{{system.attributes.hp.formula}}">)
-		{{else}}
-			<span>{{system.attributes.hp.max}} ({{system.attributes.hp.formula}})</span>
+			(<input type="text" name="system.attributes.hp.formula" value="{{system.attributes.hp.formula}}" placeholder="{{localize 'EH.HitPoints.Formula'}}">)
+		{{else if system.attributes.hp.fomrula}}
+			<span>({{system.attributes.hp.formula}})</span>
 		{{/if}}
 	</fieldset>
 	<fieldset>
@@ -45,7 +43,7 @@
 		{{#if armor}}
 			<span data-item-id="{{armor.id}}">
 				<a data-action="item" data-type="edit">{{armor.name}}</a> (
-				{{~localize "EH.Equipment.Trait.ArmorValue.Abbreviation"}} {{numberFormat armor.system.armorValue}},
+				{{~localize "EH.Equipment.Trait.ArmorValue.Abbreviation"}} {{everydayHeroes-number armor.system.armorValue}},
 				<a data-action="roll-item" data-type="armor-save"
 					data-tooltip="{{localize 'EH.Action.Roll' type=(localize 'EH.Armor.Action.Save.Label')}}">
 					{{~localize "EH.Armor.Action.Save.Short" number=(numberFormat armor.system.armorSaveMod sign=true)}}</a>
@@ -63,8 +61,8 @@
 			</select>
 			{{!-- TODO: Allow editing of special units --}}
 		{{else}}
-			<span>{{numberFormat system.attributes.movement.value}} {{system.attributes.movement.units}}.</span>
-			{{!-- TODO: Format properly using units --}}
+			{{log system.attributes.movement.value system.attributes.movement.units}}
+			<span>{{everydayHeroes-number system.attributes.movement.value unit=system.attributes.movement.units}}</span>
 		{{/if}}
 	</fieldset>
 	<fieldset class="abilities">
@@ -85,7 +83,7 @@
 				{{#if @root.editingMode}}
 					<input type="number" name="system.abilities.{{key}}.value" value="{{ability.value}}">
 				{{else}}
-					<span>{{numberFormat ability.value}}</span>
+					<span>{{everydayHeroes-number ability.value}}</span>
 				{{/if}}
 				<span>({{ability.mod}})</span>
 				{{#if @root.editingMode}}
@@ -134,14 +132,16 @@
 			<span>{{{lists.resources}}}</span>
 		</fieldset>
 	{{/if}}
-	<fieldset>
-		<label>{{localize "EH.Role.Label[other]"}}</label>
-		{{#if editingMode}}
-			{{everydayHeroes-tagInput system.biography.roles choices=CONFIG.roles name="system.biography.roles"}}
-		{{else}}
-			<span>{{lists.roles}}</span>
-		{{/if}}
-	</fieldset>
+	{{#if (or lists.roles editingMode)}}
+		<fieldset>
+			<label>{{localize "EH.Role.Label[other]"}}</label>
+			{{#if editingMode}}
+				{{everydayHeroes-tagInput system.biography.roles choices=CONFIG.roles name="system.biography.roles"}}
+			{{else}}
+				<span>{{lists.roles}}</span>
+			{{/if}}
+		</fieldset>
+	{{/if}}
 	{{#if lists.equipment}}
 		<fieldset>
 			<label>{{localize "EH.Equipment.Label[other]"}}</label>
@@ -150,7 +150,7 @@
 	{{/if}}
 	<fieldset>
 		<label>{{localize "EH.Proficiency.Label[one]"}}</label>
-		<span>{{numberFormat system.attributes.prof sign=true}}</span>
+		<span>{{everydayHeroes-number system.attributes.prof sign=true}}</span>
 	</fieldset>
 </section>
 

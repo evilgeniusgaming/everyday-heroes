@@ -344,7 +344,7 @@
       "dc": null,
       "radius": {
         "value": null,
-        "units": "ft"
+        "units": "foot"
       },
       "bonuses": {
         "damage": "",
@@ -394,7 +394,7 @@
         "short": null,
         "long": null,
         "reach": null,
-        "units": "ft"
+        "units": "foot"
       },
       "reload": "",
       "rounds": {
@@ -474,7 +474,7 @@
         "short": null,
         "long": null,
         "reach": null,
-        "units": "ft"
+        "units": "foot"
       },
       "reload": "",
       "rounds": {

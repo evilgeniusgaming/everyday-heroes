@@ -57,19 +57,17 @@ export default class NPCWeaponData extends WeaponData {
 
 		// Range
 		if ( ((this.type.value === "ranged") || this.properties.has("thrown")) && this.range.short ) {
-			description += `${game.i18n.localize("EH.Equipment.Trait.Range.Label").toLowerCase()} ${
-				numberFormat(this.range.short)}`;
-			if ( this.range.long > this.range.short ) description += `/${numberFormat(this.range.long)}`;
-			description += ` ${CONFIG.EverydayHeroes.lengthUnits[this.range.units]?.abbreviation}., `;
-			// TODO: Use numberFormat with proper unit formatting
+			description += `${game.i18n.localize("EH.Equipment.Trait.Range.Label").toLowerCase()} `;
+			if ( this.range.long > this.range.short ) description += `${
+				numberFormat(this.range.short)}/${
+				numberFormat(this.range.long, {unit: this.range.units})}`;
+			else description += numberFormat(this.range.short, {unit: this.range.units});
 		}
 
 		// Reach
 		if ( this.type.value === "melee" ) {
-			description += `${game.i18n.localize("EH.Equipment.Trait.Range.Reach").toLowerCase()} ${
-				numberFormat(this.range.reach ?? 5)} `;
-			description += `${CONFIG.EverydayHeroes.lengthUnits[this.range.units]?.abbreviation}., `;
-			// TODO: Use numberFormat with proper unit formatting
+			description += `${game.i18n.localize("EH.Equipment.Trait.Range.Reach").toLowerCase()}`;
+			description += numberFormat(this.range.reach ?? 5, {unit: this.range.units});
 		}
 
 		// Targets

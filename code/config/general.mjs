@@ -96,13 +96,9 @@ export const diceSteps = [4, 6, 8, 10, 12];
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
- * Configuration data for length units.
+ * Configuration data for length units. The keys should be a unit as is usable in `Intl.NumberFormat`.
  *
  * @typedef {LabeledConfiguration} UnitConfiguration
- * @property {string} abbreviation - Localized abbreviation.
- * @property {string} pluralPrefix - Prefix for the localization keys that represent plural forms of this unit. Will be
- *                                   appended with "[one]", "[few]", "[other]", etc. to match the plural forms of the
- *                                   current language.
  * @property {number} conversion - Number by which this unit should be multiplied to arrive at a standard value.
  */
 
@@ -111,16 +107,12 @@ export const diceSteps = [4, 6, 8, 10, 12];
  * @enum {UnitConfiguration}
  */
 export const lengthUnits = {
-	ft: {
-		label: "EH.Measurement.Length.Feet.Label[other]",
-		abbreviation: "EH.Measurement.Length.Feet.Abbreviation",
-		pluralPrefix: "EH.Measurement.Length.Feet.Label",
-		conversion: 0
+	foot: {
+		label: "EH.Measurement.Length.Feet.Label",
+		conversion: 1
 	},
-	m: {
-		label: "EH.Measurement.Length.Meters.Label[other]",
-		abbreviation: "EH.Measurement.Length.Meters.Abbreviation",
-		pluralPrefix: "EH.Measurement.Length.Meters.Label",
+	meter: {
+		label: "EH.Measurement.Length.Meters.Label",
 		conversion: 0
 	}
 };

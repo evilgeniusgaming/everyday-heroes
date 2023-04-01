@@ -104,7 +104,7 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 		];
 		if ( this.radius.value ) tags.splice(1, 0, {
 			label: game.i18n.format("EH.Measurement.Radius.Tag", {
-				size: this.radius.value, units: CONFIG.EverydayHeroes.lengthUnits[this.radius.units].abbreviation
+				size: numberFormat(this.radius.size, {unit: this.radius.units})
 			}),
 			class: "detail"
 		});

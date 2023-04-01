@@ -232,10 +232,11 @@ export default class WeaponData extends SystemDataModel.mixin(
 			...this.physicalTags
 		];
 		if ( this.range.short ) {
-			let label = this.range.short;
-			if ( this.range.long > this.range.short ) label += `/${numberFormat(this.range.long)}`;
-			// TODO: Localize this range format
-			label += ` ${CONFIG.EverydayHeroes.lengthUnits[this.range.units].abbreviation}`;
+			let label;
+			if ( this.range.long > this.range.short ) label = `${
+				numberFormat(this.range.short)}/${
+				numberFormat(this.range.long, {unit: this.range.units})}`;
+			else label = numberFormat(this.range.short, {unit: this.range.units});
 			tags.splice(1, 0, { label, class: "detail" });
 		}
 		if ( this.rounds.capacity ) {

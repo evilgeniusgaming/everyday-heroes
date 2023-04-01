@@ -97,6 +97,6 @@
     }
   ],
   "gridDistance": 5,
-  "gridUnits": "ft",
+  "gridUnits": "foot",
   "flags": {}
 }
