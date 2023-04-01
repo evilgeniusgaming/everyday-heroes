@@ -946,7 +946,12 @@ export default class ItemEH extends Item {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async _preCreate(data, options, user) {
+		// Convert between standard & npc weapons
+		if ( data.type === "npcWeapon" && this.parent?.type !== "npc" ) this.updateSource({type: "weapon"});
+		else if ( data.type === "weapon" && this.parent?.type === "npc" ) this.updateSource({type: "npcWeapon"});
+
 		await super._preCreate(data, options, user);
+
 		if ( !data.img || data.img === this.constructor.DEFAULT_ICON ) {
 			const img = this.system.constructor.metadata.image;
 			if ( img ) this.updateSource({img});
@@ -968,9 +973,9 @@ export default class ItemEH extends Item {
 		}
 	}
 
-	/* -------------------------------------------- */
-	/*  Importing and Exporting                     */
-	/* -------------------------------------------- */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Importing and Exporting                  */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	static async createDialog(data={}, {parent=null, pack=null, ...options}={}) {
 

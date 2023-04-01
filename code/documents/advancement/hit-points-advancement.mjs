@@ -11,7 +11,6 @@ import Advancement from "./advancement.mjs";
  */
 export default class HitPointsAdvancement extends Advancement {
 
-	/** @inheritdoc */
 	static get metadata() {
 		return foundry.utils.mergeObject(super.metadata, {
 			dataModels: {

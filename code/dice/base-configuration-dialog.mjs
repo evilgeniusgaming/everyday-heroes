@@ -89,8 +89,8 @@ export default class BaseConfigurationDialog extends Dialog {
 
 	activateListeners(jQuery) {
 		super.activateListeners(jQuery);
-		const html = jQuery[0];
 		// TODO: Adjust formula as bonus is modified
+		// const html = jQuery[0];
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

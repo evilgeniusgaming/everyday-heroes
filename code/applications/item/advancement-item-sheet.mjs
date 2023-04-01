@@ -170,4 +170,71 @@ export default class AdvancementItemSheet extends BaseItemSheet {
 				return console.warn(`Everyday Heroes | Invalid advancement action type clicked ${action}.`);
 		}
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Drag & Drop                              */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_prepareDraggedData(event) {
+		if ( !event.currentTarget.dataset.advancementId ) return super._prepareDraggedData(event);
+		return this.item.system.advancement.get(event.currentTarget.dataset.advancementId)?.toDragData();
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_handleDroppedData(event, data) {
+		switch (data.type) {
+			case "Advancement":
+			case "Item":
+				return this._onDropAdvancement(event, data);
+			default:
+				return super._handleDroppedData(event, data);
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Handle the dropping of an advancement or item with advancements onto the advancements tab.
+	 * @param {DragEvent} event - The concluding DragEvent which contains drop data.
+	 * @param {object} data - The data transfer extracted from the event.
+	 */
+	async _onDropAdvancement(event, data) {
+		let advancements;
+		let showDialog = false;
+		if ( data.type === "Advancement" ) {
+			advancements = [await fromUuid(data.uuid)];
+		} else if ( data.type === "Item" ) {
+			const item = await Item.implementation.fromDropData(data);
+			if ( !item ) return false;
+			advancements = Array.from(item.system.advancement);
+			showDialog = true;
+		} else {
+			return false;
+		}
+		advancements = advancements.filter(a => {
+			return !this.item.system.advancement.get(a.id)
+				&& a.constructor.metadata.validItemTypes.has(this.item.type)
+				&& a.constructor.availableForItem(this.item);
+		});
+
+		if ( showDialog ) {
+			try {
+				advancements = await AdvancementMigrationDialog.createDialog(this.item, advancements);
+			} catch(error) {
+				return false;
+			}
+		}
+
+		if ( !advancements.length ) return false;
+		if ( this.item.isEmbedded ) {
+			const manager = AdvancementManager.forNewAdvancement(this.item.actor, this.item.id, advancements);
+			if ( manager.steps.length ) return manager.render(true);
+		}
+
+		// If no advancements need to be applied, just add them to the item
+		const advancementCollection = this.item.system.advancement.toObject();
+		advancementCollection.push(...advancements.map(a => a.toObject()));
+		this.item.update({"system.advancement": advancementCollection});
+	}
 }

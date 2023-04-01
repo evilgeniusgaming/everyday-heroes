@@ -35,9 +35,9 @@ const PACK_SRC = "packs/src";
 const DB_CACHE = {};
 
 
-/* ----------------------------------------- */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Clean Packs                              */
-/* ----------------------------------------- */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
  * Removes unwanted flags, permissions, and other data from entries before extracting or compiling.
@@ -143,9 +143,9 @@ function cleanPacks() {
 export const clean = cleanPacks;
 
 
-/* ----------------------------------------- */
-/*  Compile Packs
-/* ----------------------------------------- */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Compile Packs                            */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
  * Compile the source JSON files into compendium packs.
@@ -184,9 +184,9 @@ function compilePacks() {
 export const compile = compilePacks;
 
 
-/* ----------------------------------------- */
-/*  Extract Packs
-/* ----------------------------------------- */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Extract Packs                            */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
  * Extract the contents of compendium packs to JSON files.
