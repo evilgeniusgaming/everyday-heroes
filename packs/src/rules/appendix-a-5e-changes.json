@@ -1,0 +1,50 @@
+{
+  "name": "Appendix A: 5e Changes",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "5e Changes",
+      "type": "text",
+      "_id": "Y4YCTjPBALxXRM6r",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<h4>10 Levels</h4><p>Everyday Heroes classes and archetypes stop at 10 levels instead of 20.</p><h4>Archetypes and Classes</h4><p>Classes are broken up into two components: Archetype and Class. For each Archetype, there are multiple classes to choose from. Archetypes are a broad approach to conflict, often establishing a baseline mechanic, while classes offer specialization.</p><h4>Armor</h4><p>Personal armor, like ballistic vests, does not modify Defense. Instead it gives heroes a chance to avoid potentially fatal blows with an armor save when they would otherwise be reduced to 0 hit points.</p><h4>Armor Value and Penetration Value</h4><p>Armor and objects have an Armor Value (AV) that stands as a rough approximation of physical durability. Weapons have a Penetration Value (PV) that stands as a rough approximation of their ability to penetrate or destroy armor and objects. These values are used in numerous game mechanics including personal armor, vehicle combat, and destroying objects.</p><h4>Backgrounds</h4><p>Backgrounds offer ability score increases in addition to other benefits. They do not include a set of personality traits.</p><h4>Breaking Objects</h4><p>Inanimate objects do not have hit points in Everyday Heroes. The Armor vs Penetration system is instead used to determine what attacks can effectively destroy a given type of object and how quickly it can do so.</p><h4>Bulk</h4><p>Bulks is a new optional encumbrance mechanic that roughly approximates the size and weight of personal equipment.</p><h4>Burst Fire</h4><p>Burst fire is a new mechanic to simulate the use of burst fire from automatic weapons.</p><h4>Chase Mechanics</h4><p>Everyday Heroes includes a system for running action scenes involving chases and races not found in 5e.</p><h4>Companion Rules</h4><p>Everyday Heroes has a standard set of rules for controlling “companions” in combat. Companions are combat capable NPCs controlled by a hero.</p><h4>Conditions</h4><p>The standard list of conditions in Everyday Heroes has some new conditions and removes some that were not applicable to a modern setting. New conditions include Burning, Distracted, and Intoxication.</p><h4>Cover</h4><p>Cover provides a static Defense value rather than modifying a hero’s Defense. It is also possible to attack through cover in some circumstances.</p><h4>Critical Miss</h4><p>Rolling a 1 on an attack roll is considered a “critical miss” though there is no defined consequence for this in most situations.</p><h4>Damage Types</h4><p>The list of damage types is slightly different, including explosive damage and excluding some types of purely magical damage.</p><h4>Defense Score</h4><p>Defense replaces Armor Class in Everyday Heroes. Defense is based on a hero’s primary ability score and an Archetype based defenses bonus. It is not influenced by armor.</p><h4>Dice Steps</h4><p>Dice steps are a mechanic to formalize the increase or decrease of the size of dice that is rolled.</p><h4>Difficult Movement</h4><p>This is a new formal definition for any mode of movement that incurs double the normal movement cost such as climbing, swimming, crawling, and so forth.</p><h4>Disarming</h4><p>Disarming is now a standard special attack option.</p><h4>Dive For Cover</h4><p>Dive for Cover is a new reaction available to all players and NPCs that allow them to avoid explosions or other damaging area effects.</p><h4>Expertise</h4><p>Expertise is a formal mechanic that is granted to a wide range of classes and can be gained through feats and other means.</p><h4>Explosives</h4><p>Explosives have special rules for both targeting and dealing damage.</p><h4>Falling</h4><p>Falling damage is higher in Everyday Heroes: 1d8 per 10 feet.</p><h4>Feats, Basic and Advanced</h4><p>Basic feats are a selection of feats that raise ability scores, grant proficiencies, and provide other basic bonuses. They can be taken multiple times. Advanced feats provide new talents for heroes and can only be taken once.</p><h4>Feats Are Standard</h4><p>Feats are now a standard rule rather than an optional rule. Archetypes award feat selections, usually at even levels.</p><h4>Feats Have Two Sizes</h4><p>Major feats are more powerful feats, while minor feats are less powerful. When selecting a feat, you can typically choose one major feat, or two minor feats.</p><h4>Firearm and Explosive Properties</h4><p>There are a number of new weapon and armor properties due to the unique properties of firearms and other modern armaments.</p><h4>First Aid</h4><p>The effects of the First Aid action have been expanded to include a range of effects.</p><h4>Friendly Fire</h4><p>It is possible to hit allies engaged with your target when critically missing with a ranged attack.</p><h4>Heroes</h4><p>Characters in Everyday Heroes are called Heroes rather than characters.</p><h4>Milestone Use</h4><p>The use of milestones is considered the standard method for heroes gaining levels. Everyday Heroes does not use experience points</p><h4>Multiclassing</h4><p>Multiclassing in Everyday Heroes is done by taking special Multiclass feats. All Archetypes and all classes have a set number of Multiclass feats that provide access to talents from the archetype or class.</p><h4>Professions</h4><p>Professions are a new character-building mechanic that represents a hero’s normal job.</p><h4>Proficiencies, Equipment</h4><p>Heroes can learn Equipment Proficiencies which include broad categories of weapons and armor under the same proficiency.</p><h4>Proficiencies, No Tool</h4><p>There are no tool proficiencies in Everyday Heroes.</p><h4>Race</h4><p>There is no race mechanic in Everyday Heroes core rules. All players are presumed to be human.</p><h4>Reload Action</h4><p>There is now a standard definition for an action made to reload a weapon that uses ammunition. The type of action required is determined by the weapon for applicable weapons.</p><h4>Resting</h4><p>There are now rules for receiving medical care by skilled allies during a rest.</p><h4>Second Wind</h4><p>All heroes have access to the Second Wind action which allows a hero to spend up to half their Hit Dice to recover hit points during a combat or chase.</p><h4>Skills</h4><p>There are 22 in the base Everyday Heroes list, some of which are different. They reflect the modern setting.</p><h4>Special Attacks</h4><p>Special attacks are formally defined as aggressive actions that don’t include an attack roll, and instead use a different mechanic to determine the effects of the action, but are made whenever a normal attack could be made.</p><h4>Suppressive Fire</h4><p>Suppressive fire is a new mechanic to simulate a large volley of gunfire.</p><h4>Suffocation</h4><p>The suffocation rules have been modified slightly for simplicity.</p><h4>Talents</h4><p>The special abilities offered by backgrounds, professions, archetypes, classes, and feats are called talents.</p><h4>Traps</h4><p>Player set traps have more formalized rules that allow the player to use an ability score contest against potential victims to determine the success of the trap.</p><h4>Unarmed Damage</h4><p>Unarmed attacks are considered a basic weapon and deal 1d4 damage by default.</p><h4>Vehicle Mechanics</h4><p>Everyday Heroes includes a system for driving vehicles and rules governing their use in combat and chase scenes.</p><h4>Wealth Level and Price Level</h4><p>All heroes have a Wealth Level that is a rough approximation of their standard of living. Items have a price level that is a rough approximation of their affordability. Heroes can freely have or acquire items with a price level at or below their Wealth Level. Currency is not kept track of except for role play.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "core": {
+      "viewMode": 2
+    }
+  },
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1680310676162,
+    "modifiedTime": 1680320446249,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "ITUYACbst9cb21wQ"
+}

@@ -1,0 +1,76 @@
+{
+  "name": "Credits",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "Credits",
+      "type": "text",
+      "_id": "baJwNa2uoV0aH7N6",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><strong>Publisher:</strong> D. Todd Scott</p><p><strong>Editor-In-Chief:</strong> Owen K.C. Stephens</p><p><strong>Producer:</strong> Stan!</p><p><strong>Game Designers:</strong> Sigfried Trent, Chris “Goober” Ramsley</p><p><strong>Additional Game Design:</strong> D. Todd Scott</p><p><strong>Design Consultant:</strong> Jeff Grubb</p><p><strong>Lead Editor:</strong> Michele Carter</p><p><strong>Editors:</strong> Michele Carter, Matt Click, Scott Fitzgerald Gray</p><p><strong>Proofreader:</strong> Russell Schneider</p><p><strong>Art Director:</strong> D. Todd Scott, Bora Haxhirai</p><p><strong>Layout:</strong> Bora Haxhirai, Charlotte Irrgang</p><p><strong>Cover Art:</strong> Ned Chaushev, Wilson Andres Carreño Guevara</p><p><strong>Project Manager:</strong> Jennifer Barnette Community Manager: The Noir Enigma</p><p><strong>Interior Artists:</strong> Ines Muñoz Diaz, Lorenzo de Sanctis, Abdelmounim Bouazzaoui, Jozsef Vajko</p><p><strong>Elite Evil Playtesters:</strong> Brady Ghan, John Peck, Prince Elcock, Kyle Reistad, Remi Fayomi, Ron McNiel, Samuel Horne, Sean Powell, Jamal Wilkins, Christopher Fontenot, Jeff Burns, Marx Pyle, Tammy Anderson, Victoria Scott, Steven Arrant</p><p><strong>Evil Playtesters:</strong> John Sugden, David Gabriel, Jacob Nelkin, Sam Santos, Tom Van Zuiden, Christopher Clarke, Jim Davis, Jon Strode, Erik Bailey, Bill Kershisnik, Dan Bates, Carl Baratta, Dean Eaton II, Dean M Lewis, Stacy Forsythe, Jason Haas, Mig Rivera, Ryan Smith, Paul Coffey, Thomad Johnston, Richard Seefeld, Brian Koon, Will Glenn, Michael Harris, Chris Naj, David Claudio, David Holler, Brendan Mayhugh, Daniel Evans, J. Swanso, Marx Pyle, Kyle Brown, Patrick O’Sullivan, Sarah Ellwood, Robert Prag, Jeffrey Webb, Jeffery Ballard, Breon Stewart Guarino, Aled Parry, Aaron Corbett, Alex Kostrzewa, Brandon Justus, Dallas Bolyard, David Morris, Shawn Weeks, William J. Hummel, Adam Collins, Michael Smith, Todd McIntyre, Scott Giefer, Philip Grau, Larry Hayes, Andrew Bergstrom, Joel Allan, Jason Evans, Javier Silva, Jelani “06” Roper, John Norker, Jason Jennings, Eugene Ham, Justin Hamel, Justin Tankersley, Kat Rosemond, Kynewulf MacGowan, Logan Cope-Powell, Lee Sweeney, Jason Buchanan, David Sherman, Matthew Parker, Sean Lincoln, Nicholas Yaeger, Joshua Franklin, Nathaniel Davis, Joseph DeMarco, Terry Zimmerman, Patrick Hanberry, Danial Marino, Roosevelt Cooper, Salvador Barragan, Selena Trujillo, Shawn W. Stewart, Em Keay, Micah McNairn, Tanika Williams, Teddie E. Burks, Tessa Esquibel, Thomas Cummings, TJ Young, William Quinones, Dwayne Butcher</p><p><strong>Special Thanks:</strong> Anne Trent, Alex &amp; Rachel Lloyd, Russell Rice, John Sugden</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 200000,
+      "name": "Copyright",
+      "type": "text",
+      "_id": "76wKFI2N9BwrWnfj",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><strong>Trademark References.</strong> The following items are hereby identified as trademarks of Evil Genius Productions LLC: Everyday HeroesTM, Everyday Heroes Rules SystemTM, Everyday Heroes Core RulesTM, EDHTM</p><p><strong>Product Identity.</strong> The following items are hereby identified as Product Identity, as defined in the Open Gaming License version 1.0a, Section 1(e), and are not Open Game Content. All trademarks, proper nouns (characters, equipment, locations, etc., as well as all adjectives, names, titles, and descriptive terms derived from proper nouns), artworks, characters, dialogue, places, plots, storylines, trade dress, and the following specific characters and organizations: Mack Williams, Romeo Sinclair, Nicholas “The Ukrainian Bear” Novikov, Saoirse O’Connor, Antonio Sanchez, Lakeisha Brown, Daxx, Mel Stackhouse, Sue Fairfield, Luis Garza, The ]=0XX (The Foxx), Katie Paige &amp; Bingo, Wesley Scott, Dr. Margaret Wellington, TJ “Doc” Jefferson, Glenn “Bloodhound” McPherson &amp; Big Boo, Arjun Mehta, Kat Whitlock, Johnny Blaze, Dexter LaFontaine, Lt. Commander Leticia Wright, Miho Kato, Walt DeWalt, and Redemption.</p><p><strong>Open Game Content:</strong> Except for the material designated as Product Identity (see above), the game mechanics of this Evil Genius game product are Open Game Content, as defined in the Open Game License version 1.0a Sections 1(d). No portion of this work other than the material designated as Open Game Content may be reproduced in any form without written permission.</p><p>Everyday Heroes Core Rulebook © 2022, Evil Genius Productions, LLC. All Rights Reserved. Everyday HeroesTM, Everyday Heroes Rules SystemTM, Everyday Heroes Core RulesTM, EDHTM are registered trademarks of Evil Genius Productions, LLC.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "core": {
+      "viewMode": 2
+    }
+  },
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1680130282703,
+    "modifiedTime": 1680320452172,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "IUHckCrcvGECxpD4"
+}

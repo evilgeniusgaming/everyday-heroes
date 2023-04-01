@@ -4,7 +4,7 @@
   "img": "systems/everyday-heroes/artwork/icons/archetypes/tough.webp",
   "system": {
     "description": {
-      "value": "<p>You don't know what it means to give up. No matter what knocks you down, you get up again. Where there is a fight to be found, you'll be in the thick of it, often risking your life to protect others.</p><p>Tough heroes are durable characters, sometimes at the expense of offensive options or out of combat abilities. Many excel at protecting their teammates.</p><p><strong>Hit Dice:</strong> 1d12 per hero level</p><p><strong>Starting Hit Points:</strong> 12 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d12 (or 7) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Thick Skinned):</strong> 10 + (Constitution or Dexterity) modifier + Tough Hero Defense bonus</p>",
+      "value": "<p><em><q>Your sticks and stones might break my bones, but you ain't ever gonna kill me!</q> <strong>—Hondo</strong></em></p><p>You don't know what it means to give up. No matter what knocks you down, you get up again. Where there is a fight to be found, you'll be in the thick of it, often risking your life to protect others.</p><p>Tough heroes are durable characters, sometimes at the expense of offensive options or out of combat abilities. Many excel at protecting their teammates.</p><p><strong>Hit Dice:</strong> 1d12 per hero level</p><p><strong>Starting Hit Points:</strong> 12 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d12 (or 7) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Thick Skinned):</strong> 10 + (Constitution or Dexterity) modifier + Tough Hero Defense bonus</p>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -85,7 +85,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679161139137,
-    "modifiedTime": 1679438795332,
+    "modifiedTime": 1680325281007,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

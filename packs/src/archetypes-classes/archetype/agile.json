@@ -4,7 +4,7 @@
   "img": "systems/everyday-heroes/artwork/icons/archetypes/agile.webp",
   "system": {
     "description": {
-      "value": "<p>You are a master of speed and precision. You have honed your reflexes to the point you can act faster than you can think. Your pinpoint accuracy makes you a deadly foe in any firefight.</p><p>Agile heroes focus on ranged attacks and light weapons. Their high mobility and rapid attacks make them deadly heroes in combat.</p><p><strong>Hit Dice:</strong> 1d8 per hero level</p><p><strong>Starting Hit Points:</strong> 8 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d8 (or 5) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Agile Movement):</strong> 10 + Dexterity modifier + Agile Hero Defense Bonus</p>",
+      "value": "<p><em><q>There are two kinds of people: the fast ones, and the dead ones.</q> <strong>—Sarah Barnes</strong></em></p><p>You are a master of speed and precision. You have honed your reflexes to the point you can act faster than you can think. Your pinpoint accuracy makes you a deadly foe in any firefight.</p><p>Agile heroes focus on ranged attacks and light weapons. Their high mobility and rapid attacks make them deadly heroes in combat.</p><p><strong>Hit Dice:</strong> 1d8 per hero level</p><p><strong>Starting Hit Points:</strong> 8 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d8 (or 5) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Agile Movement):</strong> 10 + Dexterity modifier + Agile Hero Defense Bonus</p>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -84,7 +84,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679160989331,
-    "modifiedTime": 1679161400959,
+    "modifiedTime": 1680325254798,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

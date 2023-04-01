@@ -4,7 +4,7 @@
   "img": "systems/everyday-heroes/artwork/icons/archetypes/wise.webp",
   "system": {
     "description": {
-      "value": "<p>You are known as a person who thinks before you act. You observe the world around you and move with its rhythms instead of struggling against the tide. By first knowing yourself, you can reach out and make the world a better place.</p><p>Wise Heroes are thematically diverse, but they all have a Focus mechanic that can be spent to activate special actions and abilities.</p><p><strong>Hit Dice:</strong> 1d10 per hero level</p><p><strong>Starting Hit Points:</strong> 10 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d10 (or 6) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Know Your Enemy):</strong> 10 + (Wisdom or Dexterity) modifier + Wise Hero Defense bonus</p>",
+      "value": "<p><em><q>Yes, violence can put an end to violence, but peace can only be created through love.</q> <strong>—Zhang Wei</strong></em></p><p>You are known as a person who thinks before you act. You observe the world around you and move with its rhythms instead of struggling against the tide. By first knowing yourself, you can reach out and make the world a better place.</p><p>Wise Heroes are thematically diverse, but they all have a Focus mechanic that can be spent to activate special actions and abilities.</p><p><strong>Hit Dice:</strong> 1d10 per hero level</p><p><strong>Starting Hit Points:</strong> 10 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d10 (or 6) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Know Your Enemy):</strong> 10 + (Wisdom or Dexterity) modifier + Wise Hero Defense bonus</p>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -130,7 +130,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679162391938,
-    "modifiedTime": 1679162586192,
+    "modifiedTime": 1680325342100,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

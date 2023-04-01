@@ -1,0 +1,1713 @@
+{
+  "name": "Part 1: Heroes",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "Heroes",
+      "type": "image",
+      "_id": "sTP9QqqVpHTjMMFM",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "image": {
+        "caption": ""
+      },
+      "text": {
+        "format": 1
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": "systems/everyday-heroes/artwork/journals/heroes.webp",
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 200000,
+      "name": "Introduction",
+      "type": "text",
+      "_id": "R5hHYtbLySJLQ5Ha",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The Everyday Heroes core rules imagine a world much like our own, seen through the lens of a Hollywood action film. Its heroes are mortal humans without magical powers or supernatural abilities, who are nonetheless destined for a life of adventure, excitement, and drama. Some of our classes are based on action movie archetypes that are not particularly realistic but are nevertheless portrayed as ordinary humans in action cinema.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 300000,
+      "name": "Chapter 1: Creating Heroes",
+      "type": "text",
+      "_id": "9FpTtrBs3k1xwdSj",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Character creation is one of the joys of any roleplaying game. We’ve done our best to make the rules flexible enough to play a wide variety of modern action heroes. You can re-create your favorite action heroes from the movies, imagine yourself as an action hero, or invent a new hero from your raw imagination. You may have a grand vision, just a core idea, or maybe just a name in mind. Whatever the case, we can help you bring your idea to life within the rules for Everyday Heroes.</p><p>You can make a hero by starting with a concept and finding the right options to make it work, or you can let the options inspire you to build a persona and story around the mechanics you choose.</p><p>If you’re familiar with 5e, you have a good idea how character creation works. If you’re not familiar with 5e, just follow our step-by-step process. This may seem daunting the first time you do it but don’t worry, we explain each step in all the detail you need.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 400000,
+      "name": "Your Kind of Hero",
+      "type": "text",
+      "_id": "O7U8UgYjzK8Gt1Bb",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Your hero is the protagonist of an Everyday Heroes story or adventure. You can play a hero who never breaks the law and always strives to do good, or you can be a reluctant hero who mostly looks out for themselves but winds up getting involved and saving the day despite their convictions, or anything in between!</p><p>Throughout this book, the term “hero” refers to the character you’re playing—regardless of whether the rest of the world considers that character’s actions as heroic. Their decisions drive the story being told by your group.</p><p>Make a copy of the Everyday Heroes character sheet at the end of this book or grab a pad of paper and something to write with. Then follow these steps to create a hero. This section presents the basics of character creation. If you want more information or details, refer to the appropriate section later in this rulebook.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 500000,
+      "name": "Three Approaches",
+      "type": "text",
+      "_id": "d8odCShViyYNYqZ2",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>There are two sides to every RPG character: the way they are represented in the rules, and the way they are represented in your imagination. Ideally, the two aspects blend together and complement one another. But which comes first? Honestly, that’s up to you. Let’s quickly look at three different approaches to creating a hero.</p><h4>Concept-First Approach</h4><p>This approach is useful when you already have an idea for what kind of hero you want to make. Building a version of a famous movie character in Everyday Heroes would use this approach. Skim through the various choices and skip things that aren’t a good fit. Once you decide which options might work, look at them in greater detail to see which fits best.</p><h4>Rules-First Approach</h4><p>This approach assumes you know the game rules, and you have a notion as to what you want a hero to do in combat. You might want a hero who does impressive damage with unarmed strikes, or a character adept at specific skills. You might spend more time creating a hero this way as you look at synergies between classes, equipment, and feats you could take in the future.</p><p>For most starting players, a “rules-first” approach takes much more reading and searching through the rules to know what all your options are before you pick one. If that’s fun for you, go ahead! If not, there’s nothing wrong with just picking options that sound fun or flavorful without reading through everything.</p><h4>“Just Wing It” Approach</h4><p>This is as good a way to make a hero as any other. If you don’t know what you want to make, let the process guide you along. Each class, background, and profession has a bit of descriptive text to start it out. If you see something that sounds fun, go for it!</p><p>It’s hard to make a truly “bad” character in Everyday Heroes so don’t worry about making “bad choices” or letting the GM or other players down. Whatever you do, it should be fun to play and work well with the game.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 600000,
+      "name": "A Hero in Six Steps",
+      "type": "text",
+      "_id": "F1QU3qfJSjZaQl9K",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>This section of Everyday Heroes is presented in the order that we recommend you use when first creating a character. As you become more familiar with the process, you may choose another order you prefer.</p><p>You can reference the Everyday Heroes character sheet while making a hero. It’s a handy way to write down everything you need to record, and it works like a checklist so you know you have covered everything you need to do. The character sheet will help you find information quickly while you’re playing.</p><p><strong>Each step includes an example of a player creating a character using the concept-first approach.</strong></p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 700000,
+      "name": "Step 1: Concepting Your Character",
+      "type": "text",
+      "_id": "V7LU10rj5l8F0Axs",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>In a game where you can play anything available in the modern world, either from fiction or real life, where do you start?</p><p>First, think about what kind of hero you want to play. Do you want to play a sneaky thief who uses skill and cunning while letting others do the fighting for them? Or maybe a former soldier who lets their fists and guns do the talking? Or a detective intent on solving cold cases everyone else has given up on? You could pick a character from your favorite action movie and then modify their background and personality to create a unique hero. Once you have an idea in mind, use the rules to create your hero.</p><p><strong>Think about the following questions as you contemplate the hero you want to play:</strong></p><ul><li><p>WHO are you?</p></li><li><p>WHAT influences shaped you? What do you do now?</p></li><li><p>WHEN and WHERE did you step out of the ordinary and become a hero?</p></li><li><p>WHY and HOW did it happen?</p></li></ul><h4>Archetype and Class</h4><p>Everyday Heroes uses six archetypes as the basis for every hero in the game: Strong Hero, Agile Hero, Tough Hero, Smart Hero, Wise Hero, and Charming Hero.</p><p>Each of the archetypes corresponds to an ability score, which defines every hero’s mental and physical characteristics: Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. In general, you want your highest ability score to match the archetype that best describes your hero.</p><p>Archetypes are further subdivided into classes. Each class represents a specific way that characters of that archetype use their talents. The classes also rely on their secondary ability scores to do what they do best.</p><p><strong>Strong Heroes</strong> such as the brawler, heavy gunner, and MMA fighter use Strength to perform heroic feats and defeat enemies.</p><p><strong>Agile Heroes</strong> such as the martial artist, scoundrel, and sharpshooter use Dexterity to make quick moves and outmaneuver opponents in combat.</p><p><strong>Tough Heroes</strong> such as the bodyguard, commando, and scrapper use Constitution to outlast the competition and survive a fight.</p><p><strong>Smart Heroes</strong> such as the engineer, hacker, mastermind, and scientist use Intelligence to further their agendas, plan brilliant strategies, and utilize amazing technology.</p><p><strong>Wise Heroes</strong> such as the hunter, sleuth, and master use Wisdom to discover clues and find weaknesses in opponents.</p><p><strong>Charming Heroes</strong> such as the duelist, icon, leader, and manipulator use Charisma to inspire allies and manipulate enemies.</p><p>For inspiration when creating a hero, take a look at the Class Overview table below for a quick rundown of the archetypes and their related classes.</p><blockquote><h5>Example of Step 1</h5><p>Cindy thinks about her hero for a new game. She’s been reading about Annie Oakley, the sharpshooter from the American Wild West, and wants to create a similar character for a modern-day game. She decides to name her character Elizabeth “Lizzy” Mosey after Oakley’s given name. Cindy grabs a character sheet and starts bringing Lizzy to life.</p><p>The sharpshooter class on the Class Overview table sounds perfect for her concept. Lizzy will be an Agile Hero, which means Dexterity should be her highest ability score.</p></blockquote>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 800000,
+      "name": "Step 2: Background",
+      "type": "text",
+      "_id": "BAent0sGclGNEvsH",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Think about a background for your hero. This choice gives your hero an ability score increase, proficiencies with skills and weapons, equipment, and a special feature. You can choose a background for its roleplaying aspect or because you want to round out your hero’s abilities. If you don’t find something you like in the presented backgrounds, chapter 2 includes rules for developing new backgrounds with your GM’s approval.</p><p>A hero’s background represents a significant element of their past that makes them who they are today. Most often it represents the circumstances of their childhood, but it can also be a reflection of a significant event that shaped them.</p><h4>Ability Score Increase</h4><p>This lets you improve one of your ability scores. Make note of it until you generate your scores (step 4).</p><h4>Languages and Nationality</h4><p>You can choose two languages to start with: a native language you grew up with and another you learned later in life. You can learn additional languages through backgrounds, professions, and feats. At the GM’s discretion, you might learn languages during play.</p><p>The world’s ten most commonly spoken languages are English, Mandarin, Hindi, Spanish, French, Arabic, Bengali, Russian, Portuguese, and Indonesian.</p><p>With your GM’s permission, you can take a “placeholder” language. This allows you to decide during play what second language you know—usually when the heroes encounter someone who speaks a language unknown to them. Once you make the choice, it’s permanent. Use this option when you don’t know the details of your upcoming campaign.</p><p>Similarly, choose your nation of citizenship. This choice has no mechanical benefit, but it’s useful in character building.</p><h4>Proficiencies</h4><p>Proficiencies describe the skills and subjects your hero is trained in. Proficiency in a skill, equipment type (including weapons), or saving throw grants a bonus according to the hero’s level.</p><p>Skill proficiencies indicate that a hero has trained in those subjects, such as Computers (anything involving computer use), Investigation (activities such as searching for or analyzing clues), or Performance (singing, dancing, or any other performing artistic discipline). See chapter 8 for a list of skills.</p><p>Equipment proficiencies indicate that a hero has trained in the use of particular items, such as Basic Equipment (common devices), Military Equipment (gear meant for war), or Historical Equipment (archaic tools). See chapter 6 for a list of equipment.</p><p>Saving throw proficiencies give a bonus to saving throws (or saves), which are die rolls heroes make to avoid danger. See chapter 8 for more about saving throws.</p><p>You might pick a combination of background, profession, and class that grants you a specific proficiency more than once. You can’t gain proficiency more than once for the same thing.</p><p>If a skill proficiency is granted more than once, you may choose any other skill proficiency in place of the repeated skill.</p><p>Duplicated equipment and saving throw proficiencies don’t grant any benefit.</p><blockquote><p>\u0001<em><strong>Example:</strong></em> Sig is creating a new hero. He’s chosen the mastermind class and selected Natural Sciences as one of his hero’s skill proficiencies. Sig decides his hero has the cosmopolitan background. This background also gives the Natural Sciences skill proficiency. Sig can choose a different skill proficiency and takes Vehicles instead.</p></blockquote><h4>Iconic Equipment</h4><p>The iconic equipment suggests small items reflective of your background. Use it as written or modify to your liking.</p><h4>Special Feature</h4><p>Some backgrounds include a special feature, a unique ability based on an aspect of your formative years.</p><blockquote><h5>Example of Step 2</h5><p>Cindy wants to mirror Annie Oakley’s biography and decides that Lizzy grew up on an American farm. Cindy chooses the United States as a nationality and picks English and Spanish as languages; her family speaks both at home, and it’d be fun to use them in roleplaying.</p><p>Glancing over the backgrounds, rural family looks like the ideal pick. For the moment, Cindy makes note of the ability score increase numbers until she has a better idea of their importance. On her character sheet, she marks the skill and equipment proficiencies she gets: the Mechanics and Survival skills, and proficiency with Basic Equipment. Finally, she notes that she has an old pickup truck.</p></blockquote>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 900000,
+      "name": "Archetypes and Classes Table",
+      "type": "text",
+      "_id": "ERerxSPWmzNoOv2i",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<table class=\"archetypes-classes\"><thead><tr><th scope=\"col\">Archetype</th><th scope=\"col\">Class and Description</th><th scope=\"col\">Key Ability Scores</th><th scope=\"col\">Secondary Scores</th><th scope=\"col\">Simplicity</th></tr></thead><tbody><tr class=\"strong\"><td>Strong</td><td>The @UUID[Compendium.everyday-heroes.archetypes-classes.3OoSrJuURRzG5rEB]{brawler} is an in-your-face warrior who can fight with anything.</td><td>Strength, Constitution</td><td>Dexterity</td><td><strong>Medium</strong></td></tr><tr class=\"agile\"><td>Agile</td><td>The @UUID[Compendium.everyday-heroes.archetypes-classes.c1jDkSBxMvBzsy32]{scoundrel} has a variety of useful skills and is a quick, dangerous fighter.</td><td>Dexterity</td><td>Intelligence, Wisdom, Charisma</td><td><strong>Medium</strong></td></tr><tr class=\"tough\"><td>Tough</td><td>The @UUID[Compendium.everyday-heroes.archetypes-classes.F2u3BinMJz1qGF0D]{commando} is a well-rounded warrior with military training.</td><td>Constitution</td><td>Strength, Dexterity</td><td><strong>Simple</strong></td></tr><tr class=\"smart\"><td>Smart</td><td>The @UUID[Compendium.everyday-heroes.archetypes-classes.I6Mj7UBrNCnN3L9q]{mastermind} concocts intricate plans to outwit everyone.</td><td>Intelligence</td><td>Wisdom, Charisma</td><td><strong>Complex</strong></td></tr><tr class=\"wise\"><td>Wise</td><td>The @UUID[Compendium.everyday-heroes.archetypes-classes.Ba2Tzh4RGQMVzuTr]{sleuth} uses intuition and experience to uncover the truth.</td><td>Intelligence, Wisdom</td><td>Constitution, Charisma</td><td><strong>Medium</strong></td></tr><tr class=\"charming\"><td>Charming</td><td>The @UUID[Compendium.everyday-heroes.archetypes-classes.e0Ktsf1DtLfb6BGm]{icon} conquers challenges by virtue of fame and personality.</td><td>Dexterity, Charisma</td><td>Constitution</td><td><strong>Medium</strong></td></tr></tbody></table>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 1000000,
+      "name": "Step 3: Profession",
+      "type": "text",
+      "_id": "fpFGjK06Ojl7k2Jo",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Even heroes need jobs. Professions offer additional benefits to customize your character, and the choice of class and profession can create interesting roleplaying and mechanical combinations. Professions grant a mix of ability score increases, skill and equipment proficiencies, and a Wealth Level that represents your hero’s income. Many of them include a unique feature. Chapter 3 provides rules for making custom professions, with your GM’s approval.</p><h4>Wealth Level</h4><p>In Everyday Heroes, your overall wealth is represented by a number from 0 to 5. It determines what equipment you can buy, what you might already own, and gives you an idea of your hero’s relative financial status. The beginning of chapter 6 has more information on wealth.</p><blockquote><h5>Example of Step 3</h5><p>For Lizzy’s profession, Cindy wants to choose something along the lines of Annie’s career as a sharpshooter in a Wild West show. Cindy decides the daredevil profession is a perfect fit. She notes Lizzy’s specific job as trick-shot performer in a Las Vegas rodeo show.</p><p>Cindy writes down the mechanical details: +1 to Dexterity and +1 to one other ability score (her choice); Athletics, Acrobatics, and Vehicles proficiency, plus Basic Equipment and Improvised Equipment. She already has Basic Equipment from her background, so she doesn’t gain any benefit from it.</p><p>The iconic equipment doesn’t quite fit, so with the approval of the GM she adds clothing and professional tools she thinks make more sense. Cindy writes down Lizzy’s Wealth Level: 3. She takes note of the daredevil’s special Take a Dive feature, which sounds like it’ll be fun in play.</p></blockquote>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 1100000,
+      "name": "Step 4: Ability Scores",
+      "type": "text",
+      "_id": "Mrf5BbKL71P1sGc8",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Ability scores are like a hero’s DNA, representing a hero’s natural physical and mental capabilities. They form a foundation for a hero’s strengths and weaknesses. Each ability score ranges from 3 to 20, with 3 representing a human minimum, 20 a human maximum, and 10–11 as the human average. New heroes typically have ability scores between 8 and 17. Ability scores modify nearly every die roll you make in the game, so how you assign them deserves special consideration.</p><h4>The Best Ability Score</h4><p>How you distribute your scores depends on what type of hero you want to play. Your highest ability score should usually match your hero’s archetype. Every archetype derives their Defense score from their matching ability score, and many use their matching ability score for attacks.</p><p>Your second-best score depends on what else you want your character to do well. All ability scores are useful, so there aren’t any bad choices. It’s also okay to have one or two ability scores that provide no bonus.</p><p>The physical abilities—Strength, Dexterity, and Constitution—mainly apply to combat: Strength is used for melee weapons, Dexterity for ranged weapons, and Constitution for hit points (toughness).</p><p><strong>Strength represents physical power and might and is used for:</strong></p><ul><li><p>Attack rolls in melee combat</p></li><li><p>Damage rolls with melee weapons</p></li><li><p>Saving throws against being pushed or knocked down</p></li><li><p>Athletic themed ability checks</p></li><li><p>Strong Hero defenses and talents</p></li></ul><p><strong>Dexterity determines your agility and reflexes and is used for:</strong></p><ul><li><p>Attack rolls with ranged and finesse weapons</p></li><li><p>Damage rolls with ranged and finesse weapons</p></li><li><p>Saving throws against falling or other avoidable hazards</p></li><li><p>Agility themed ability checks</p></li><li><p>Agile Hero defenses and talents</p></li></ul><p><strong>Constitution represents your physical health and endurance and is used for:</strong></p><ul><li><p>Determining your hit point maximum</p></li><li><p>Saving throws against poison, disease, and other health risks</p></li><li><p>Endurance-themed ability checks</p></li><li><p>Tough Hero defenses and talents</p></li></ul><p>The mental abilities—Intelligence, Wisdom, and Charisma—contribute to skill and ability checks that usually occur outside combat situations.</p><p><strong>Intelligence determines your reasoning ability and wits and is used for:</strong></p><ul><li><p>Saving throws against confusion and trickery</p></li><li><p>A wide range of skills and depth of knowledge</p></li><li><p>Smart Hero defenses and talents</p></li></ul><p><strong>Wisdom represents your intuitive understanding, sense of self, and strength of character. It is used for:</strong></p><ul><li><p>Saving throws against temptation, fear, or corruption</p></li><li><p>A wide range of skills</p></li><li><p>Wise Hero defenses and talents</p></li></ul><p><strong>Charisma determines your personal magnetism and ego and is used for:</strong></p><ul><li><p>Saving throws against social embarrassment or demoralizing influences</p></li><li><p>Social or entertainment themed ability checks</p></li><li><p>Charming Hero defenses and talents</p></li></ul><h4>Determining Ability Scores</h4><p>Everyday Heroes offers three different options for determining your ability scores: the standard set, point buy, and dice roll. Ask your GM which method they want to use for their campaign. The standard set is recommended as the fastest and most balanced method for creating a character.</p><p><strong>Standard Set:</strong> Assign scores to your abilities as you choose, from the following set: 15, 14, 13, 12, 10, 8.</p><p><strong>Point Buy:</strong> All your ability scores start at 8. You have 27 points to spend to buy higher scores. This method offers more customization but takes longer. Use the following table to determine the point cost to increase each score.</p><table class=\"yellow narrow\"><caption>Ability Point Costs</caption><thead><tr><th scope=\"col\">Score</th><th scope=\"col\">Modifier</th><th scope=\"col\">Point Cost</th></tr></thead><tbody><tr><td>8</td><td>–1</td><td>0</td></tr><tr><td>9</td><td>–1</td><td>1</td></tr><tr><td>10</td><td>0</td><td>2</td></tr><tr><td>11</td><td>0</td><td>3</td></tr><tr><td>12</td><td>+1</td><td>4</td></tr><tr><td>13</td><td>+1</td><td>5</td></tr><tr><td>14</td><td>+2</td><td>7</td></tr><tr><td>15</td><td>+2</td><td>9</td></tr></tbody></table><p><strong>Rolling Ability Scores:</strong> The GM decides whether to use this method, since it can result in particularly weak or extremely strong heroes depending on how the dice fall. Roll 4d6 and add the three highest dice together. Do this six times. Assign the six results to your ability scores as you see fit. This option allows you to generate initial ability scores higher than 15 or lower than 8.</p><h4>Raising Ability Scores</h4><p>Whichever option you use, add the increases to ability scores from your backgrounds and professions.</p><p>You have two opportunities to raise your ability scores during character creation: when you select a background and a profession. Some backgrounds and professions tell you which ability score(s) to raise, others give you a choice.</p><p>Your hero begins play at 1st level. When you reach a milestone and level up, you can increase your ability scores using the Ability Score Training feat. The maximum for any ability score is 20. The game balance assumes that most heroes will eventually raise their primary ability score to 18, 19, or 20, though you don't have to. A 16 is a reasonable score, especially for a 1st-level hero, and is certainly workable for higher level characters if you'd rather take other feats.</p><h4>Ability Modifiers</h4><p>Your ability scores determine the modifiers to add to your d20 rolls when you attack, make ability checks, and roll saving throws.</p><table class=\"blue narrow\"><caption>Ability Modifiers</caption><thead><tr><th scope=\"col\">Ability Score</th><th scope=\"col\">Modifier</th></tr></thead><tbody><tr><td>3</td><td>–4</td></tr><tr><td>4–5</td><td>–3</td></tr><tr><td>6–7</td><td>–2</td></tr><tr><td>8–9</td><td>–1</td></tr><tr><td>10–11</td><td>0</td></tr><tr><td>12–13</td><td>+1</td></tr><tr><td>14–15</td><td>+2</td></tr><tr><td>16–17</td><td>+3</td></tr><tr><td>18–19</td><td>+4</td></tr><tr><td>20</td><td>+5</td></tr></tbody></table><blockquote><h5>Example of Step 4</h5><p>The GM uses the standard set method to determine ability scores, so Cindy has a 15, 14, 13, 12, 10, and 8 to assign as she sees fit. She gets +1 to Constitution or Strength from her rural family background, and +1 to Dexterity and +1 to another score from her daredevil profession.</p><p>Dexterity is important for ranged attacks, so Cindy assigns the 15 there. Since Lizzy is a famous performer, Charisma seems like a good pick for the 14. A performer should be hardy, so she puts the 13 in Constitution. Cindy admires Annie’s Wisdom and Intelligence, so she assigns Lizzy a 12 Wisdom and 10 Intelligence, leaving the 8 for Strength.</p><p>From her background she chooses a +1 to Constitution, raising that score to 14. Even numbers grant increased modifiers, so her Constitution modifier is now +2 instead of +1. This gives Lizzy more hit points, which makes her harder to kill.</p><p>Cindy increases Lizzy’s Dexterity by 1 to 16 and then thinks about where to put the other point from her profession. She decides to put the last point into Wisdom, taking it to 13. Maybe she’ll raise it at a higher level. Lizzy’s ability scores look like this:</p></blockquote><div class=\"callout\"><h5>Lizzy's Abilities</h5><p><strong>Strength: 8</strong> (–1 modifier)</p><p><strong>Dexterity: 16</strong> (+3 modifier)</p><p><strong>Constitution: 14</strong> (+2 modifier)</p><p><strong>Intelligence: 10</strong> (+0 modifier)</p><p><strong>Wisdom: 13</strong> (+1 modifier)</p><p><strong>Charisma: 14</strong> (+2 modifier)</p></div>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 1200000,
+      "name": "Step 5: Archetype and Class",
+      "type": "text",
+      "_id": "7qqbknPJ3JTONl4H",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>A hero’s archetype and class determine how a hero approaches conflict, especially in combat situations.</p><p>Archetypes represent broad categories of heroes. Strong Heroes use their physical might to beat up the bad guys, while Smart Heroes use their wits and technology to overcome obstacles.</p><p>The six archetypes each feature three or more classes to choose from. Each class has unique talents and benefits that combine with the archetype talents to create a fully realized hero. When you create a character, you start with the 1st-level talents of both your archetype and class. See the Class Overview table for a quick listing of the archetypes and their related classes, and use the simplicity rating as a gauge to understand how complex the character class will be to play.</p><h4>Hit Dice and Hit Points</h4><p>The more hit points you have, the longer you can stay in the fight. Hit Dice are used to determine your hit points. The bigger the Hit Dice, the more hit points you have, and the faster you get them back when you rest.</p><h4>Defense</h4><p>Your Defense number determines how difficult it is to hit you during combat. The higher your Defense, the better.</p><blockquote><h5>Example Step 5</h5><p>Cindy already knows exactly what she wants: Lizzy is an Agile Hero (archetype) and a sharpshooter (class).</p><p>Cindy starts with the Agile Hero archetype. She writes down the d8 Hit Dice, then looks at starting hit points: 8 + Constitution modifier. Lizzy’s Constitution is 14, so she has a +2 modifier. Lizzy starts play with 10 hit points.</p><p>Her Defense is 10 + Dexterity modifier + Defense bonus. On the Agile Hero table, a 1st- level hero has a Defense bonus of +1. Lizzy’s Dexterity modifier is +3, so her total defense is 10 + 3 + 1 = 14.</p><p>Cindy notes the 1st-level proficiency bonus of +2, which is added to any skill, equipment, or saving throw she has proficiency with.</p><p>Finally, she writes down the 1st-level Agile Hero talent Fast Reflexes, which gives Lizzy advantage on initiative rolls (see chapter 4.).</p><p>A hero’s class provides their saving throw proficiencies, additional skill and equipment proficiencies, equipment recommendations, and additional talents.</p><p>Cindy moves on to Lizzy’s class, sharpshooter. First, she records her class proficiencies. She gets Dexterity and Intelligence saving throw proficiencies, Basic Equipment (which Lizzy already has), Advanced Equipment, and a choice of two skill proficiencies from a short list. Cindy chooses Sleight of Hand, something Lizzy picked up from carnies in the rodeo, and Perception to better spot distant targets.</p><p>From the equipment recommendations, Cindy chooses the Sniper Pack, which sounds right for Lizzy. Cindy writes down a sniper rifle as a recommended weapon.</p><p>A 1st-level sharpshooter has two talents: Gunslinging and Sharpshooting. The benefits involve the weapon rules, so Cindy looks them over and makes notes on the character sheet.</p></blockquote>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 1300000,
+      "name": "Step 6: Finishing Touches",
+      "type": "text",
+      "_id": "ldmbLVN8Pl2W5z13",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>All the important choices have been made, but the remaining spaces on your character sheet need to be filled out. Chapter 5 takes you step by step through the final details on your character sheet, as well as offering inspiration for roleplaying your hero.</p><h4>Persona</h4><p>Everyday Heroes isn’t just about numbers for making dice rolls. Deciding your hero’s personality, style, look, and other details is a huge part of the storytelling in a roleplaying game. The character sheet includes places to record details, and chapter 5 has an extensive section dedicated to ideas and inspiration for bringing heroes to life with aspects of their persona. You can go into as much or as little detail as you like.</p><blockquote><h5>Example of Step 6</h5><p>On the character sheet, Cindy records Lizzy’s ability score modifiers. She notes her maximum hit points, which are the same as her starting hit points. She writes down her speed of 30. Cindy runs down the list of her skills to figure out the total bonuses for each so she can quickly look them up during play. She notes her initiative bonus, +3 based on her Dexterity modifier. She also notes there she has advantage on initiative rolls so she doesn’t forget. Lizzy’s passive Perception is 10 + her Perception bonus. That includes Wisdom +1 and her proficiency bonus since she has proficiency in Perception +2, for a total of 13.</p><p>Cindy already has a list of equipment, so she looks at chapter 6 for the details. The recommended Sniper Pack looks good, though since she’s a performer, she doesn’t write down the inconspicuous clothing. She skips the car from daredevil since she has her old truck. The other stuff goes on her equipment list. Lizzy can have anything on the equipment list that doesn’t have the restricted property and has a price level of 3 or lower. Cindy wants a throwing knife because it’s cool, so she writes that down.</p><p>Cindy needs the weapon stats for her knife and her sniper rifle. She finds the knife in the Basic Melee Weapons table and the sniper rifle on the Advanced Ranged Weapons table. The rifle is a ranged weapon and the knife has the finesse property, so she can use her Dexterity modifier to hit and damage with both. She is proficient in both Basic Equipment and Advanced Equipment, so she can add her proficiency bonus to hit for both as well. As a sharpshooter, she gets +2 to hit with the rifle if she doesn’t move on her turn.</p><p>Finally, Cindy spends some time filling out personality details about Lizzy. She notes that Lizzy is brave, fights for women’s causes, believes everyone should know how to defend themselves, and that she fights tirelessly for what she thinks is right. Lizzy is ready for adventure!</p></blockquote>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 1400000,
+      "name": "Bonus Step: Equipment Shopping",
+      "type": "text",
+      "_id": "ReJIl8rw51NP9qP7",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Iconic equipment entries from backgrounds, professions, and classes provide a quick way to outfit a hero with items they might find useful or fun. Chapter 6 contains the weapons and other equipment heroes might need or want. It also explains how that equipment works, how much you can carry, and how much you can afford.</p><p>If you decided not to take the recommended equipment provided by your background, profession, and class, or you want to round out the equipment your hero carries, now’s a good time to select equipment from the equipment list using your Wealth Level. Your hero can buy any equipment that is equal or lower to your hero’s wealth before you start playing. See chapter 6 for details.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 1500000,
+      "name": "Gaining Levels",
+      "type": "text",
+      "_id": "CSew0JV6v4JwW3C3",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Heroes gain levels when they reach a milestone. Milestones reflect moments in a story when the heroes have overcome trials and become stronger as a result of their efforts and experience. The GM controls when milestones occur, but they are most often awarded at the end of an adventure or when the heroes have achieved a major objective in the midst of a longer campaign.</p><p>If your game includes heroes of varying levels, heroes within or below the level range of the adventure gain one level when hitting a milestone. Heroes above the level range of the adventure do not gain a level unless the GM decides to grant it.</p><p><strong>When you gain a level, you might get:</strong></p><ul><li><p>Talents from your archetype table</p></li><li><p>Feat picks from your archetype table</p></li><li><p>Proficiency bonus advancement from your archetype table</p></li><li><p>Defense bonus advancement from your archetype table</p></li><li><p>Additional Hit Die based on your archetype</p></li><li><p>Additional hit points based on your Hit Dice</p></li><li><p>Talents from your class table</p></li></ul><h4>Talents</h4><p>You gain new talents from both your archetype and class when you gain a level. Look at the leveling charts for both and write down the new talents. Also, check your existing talents to see if they change based on your level.</p><h4>Defense Bonus Advancement</h4><p>Each archetype has a Defense bonus advancement column in the archetype level table. Check your archetype table to see what your existing Defense bonus is. If it increased, update your Defense.</p><h4>Proficiency Bonus Advancement</h4><p>A hero’s proficiency bonus is based on their level. It increases to +3 at level 5 and to +4 at level 9.</p><table class=\"yellow narrow\"><caption>Proficiency Bonus by Level</caption><thead><tr><th scope=\"col\">Hero Level</th><th scope=\"col\">Proficiency Bonus</th></tr></thead><tbody><tr><td>1–4</td><td>+2</td></tr><tr><td>5–8</td><td>+3</td></tr><tr><td>9–10</td><td>+4</td></tr></tbody></table><h4>Hit Dice</h4><p>When you gain a new level, you gain a Hit Die. The size of the Hit Die is based on your archetype. Your number of Hit Dice is always the same as your level.</p><h4>Hit Points</h4><p>When you gain a new level, your hit point maximum increases. The default method is to gain a fixed number of hit points. Your GM may allow you to</p><p>roll to determine your hit points, which could give you a larger or smaller increase. Here are the two methods:</p><p><strong>Default:</strong> Half your Hit Dice type + 1 + Constitution modifier</p><p><strong>Optional:</strong> Roll one Hit Die + Constitution modifier</p><p>If your Constitution modifier increases while leveling up, this also permanently increases your hit point maximum. When this happens, add 1 hit point per hero level.</p><h4>Multiclassing</h4><p>Multiclassing allows your character to acquire talents from archetypes and classes other than the one you start with. Your character can take special multiclassing feats as you gain levels. Chapter 7 has the details and a list of these feats. To take a multiclass feat, your character needs at least a 13 in the ability score corresponding to the desired archetype.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 1600000,
+      "name": "Chapter 2: Backgrounds",
+      "type": "text",
+      "_id": "EdPpT7XzgtQvH25k",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Your character’s background represents an important factor in their life that influences who they are today. It could be an element of their childhood, a lifelong hobby, a social identity, or anything else that shaped your character as a person and as a hero. Your profession, described in the next chapter, represents your life now.</p><p>From a game mechanics perspective, a background rounds out your character with an ability score increase and useful proficiencies. From a roleplaying perspective, it can spark your imagination and offer a characteristic you can use to build your hero’s backstory.</p><p>Choose one background when creating a hero.</p><p>Each background can include the following entries. Not all backgrounds contain the same entries.</p><p><strong>Ability Score Increase:</strong> You gain an increase to ability scores as noted. You may not increase any score more than once from background increases.</p><p><strong>Language:</strong> You gain the noted language.</p><p><strong>Skill Proficiencies:</strong> You gain the listed skills, as described in chapter 8. If you would gain the same skill proficiency from more than one source, choose a different skill proficiency for the duplication.</p><p><strong>Equipment Proficiencies:</strong> You gain the listed proficiency (see chapter 8). You do not automatically have items associated with that proficiency.</p><p><strong>Iconic Equipment:</strong> These items define your background, and you have them in your possession. If they don’t fit your specific background, check with your GM for equivalent substitutions.</p><p><strong>Special Feature:</strong> [Name]. You gain a unique ability from your background.</p><ul class=\"multi-column-list\"><li><p>@UUID[Compendium.everyday-heroes.backgrounds-professions.8FFr2GRq7RoPQVR3]{Bookworm}</p></li><li><p>@UUID[Compendium.everyday-heroes.backgrounds-professions.16apZo3irMZgJ6xV]{Cosmopolitan}</p></li><li><p>@UUID[Compendium.everyday-heroes.backgrounds-professions.zhGHp7WMUwWOZNpX]{On the Run}</p></li><li><p>@UUID[Compendium.everyday-heroes.backgrounds-professions.cceu9PQnZ2xHTphi]{Person of Mystery}</p></li><li><p>@UUID[Compendium.everyday-heroes.backgrounds-professions.JXqQwKtKcDaRezj9]{Rural Family}</p></li><li><p>@UUID[Compendium.everyday-heroes.backgrounds-professions.M49So97RyS2yLfLc]{Survivor}</p></li></ul>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 1700000,
+      "name": "Creating New Backgrounds",
+      "type": "text",
+      "_id": "bpEBdGSIHizBbVch",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>To create new backgrounds, follow these guidelines to keep them balanced.</p><ol><li><p>+1 to a single ability score</p></li><li><p>One skill or equipment proficiency</p></li><li><p>Iconic equipment that inspires you to roleplay this background but is not exceptionally valuable</p></li><li><p>A feature that is helpful in a limited situation or is limited in how often you can use it, or a second proficiency or language</p></li></ol>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 1800000,
+      "name": "Chapter 3: Professions",
+      "type": "text",
+      "_id": "eJiVUhGuxoDmGCwP",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Being a hero isn’t always financially rewarding work. That’s why your character has a day job. The choice of profession sets their starting Wealth Level and offers a range of ability bonuses, proficiencies, and special features.</p><p>Professions grant extra skill proficiencies and round out your character’s ability scores. Some offer weapon proficiencies, useful for heroes with less combat-oriented classes. Or you can choose one that fits the roleplaying concept you have in mind.</p><p>Everyday Heroes gives you no special advantage for matching the theme of your profession with your class or archetype. A hacker (class) might have a personal history as a technophile (background) and work in information technology (profession), or might have grown up in a poor family and work in customer service, planning out digital exploits in their downtime. Unorthodox combinations can define character motivations and provide rewarding roleplay.</p><p>Specific adventures might recommend professions for heroes participating in the adventure. For example, an adventure based on a police procedural drama involves the heroes as police officers or department staff. Consult with the GM to find out if they want you to focus on certain professions.</p><p>Professions represent broad career categories rather than specific jobs. After choosing one, you can specify the specifics of title, duties, and the organization where your character works. This helps build your hero’s identity and creates roleplaying opportunities for you and the GM.</p><p><strong>Choose one profession when creating a hero.</strong></p><p>Each profession includes the following entries. Not all professions contain the same entries.</p><p><strong>Sample Careers:</strong> A non-exhaustive listing of possible roles within the profession.</p><p><strong>Ability Score Increase:</strong> You gain an increase to ability scores as noted. You may not increase any score more than once from profession increases.</p><p><strong>Language:</strong> You gain the noted language.</p><p><strong>Skill Proficiencies:</strong> You gain the listed skills. If you would gain the same skill proficiency from more than one source, choose a different skill proficiency for the duplication.</p><p><strong>Equipment Proficiencies:</strong> You gain the listed proficiency (see chapter 8). You do not automatically have the items associated with that proficiency.</p><p><strong>Iconic Equipment:</strong> These items define your profession, and you have them in your possession. If they don’t fit your specific job, check with your GM for equivalent substitutions.</p><p><strong>Wealth Level:</strong> Your Wealth Level at character creation (see chapter 6).</p><p><strong>Special Feature:</strong> [Name]. You gain a unique ability from your profession.</p><ul class=\"multi-column-list\"><li><p>@UUID[Compendium.everyday-heroes.backgrounds-professions.hioqOmEVOvFbWTrZ]{Customer Service}</p></li><li><p>@UUID[Compendium.everyday-heroes.backgrounds-professions.DQWGN0EHbOpY1zoC]{Espionage}</p></li><li><p>@UUID[Compendium.everyday-heroes.backgrounds-professions.owZkDZcdW2C9qwt3]{Intelligence}</p></li><li><p>@UUID[Compendium.everyday-heroes.backgrounds-professions.iQHTrNMd6E8EcmZq]{Journalism}</p></li><li><p>@UUID[Compendium.everyday-heroes.backgrounds-professions.tvpl3bQy7TrY0Puw]{Military}</p></li><li><p>@UUID[Compendium.everyday-heroes.backgrounds-professions.551JjpebSfKt22pj]{Trades}</p></li></ul>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 1900000,
+      "name": "Creating New Professions",
+      "type": "text",
+      "_id": "DKL6Mcxdv2Yzl3EY",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The professions in Everyday Heroes were designed using a points system to keep them relatively balanced. To create further professions, consider these guidelines.</p><p>You can also use this system to make adjustments to the professions listed above. You could swap out an ability score increase for a few more proficiencies or vice versa to create a specific job within that profession.</p><p>Mandatory ability score adjustments and proficiencies should be appropriate to the nature of the profession. Wealth Levels are based on broad U.S. average salaries for the type of work. Professions with lower pay and lower skill requirements enjoy more free choice ability score adjustments for balance. In a category with a wide range of specialties (such as crime), players have a greater choice of skill proficiencies.</p><p><strong>Use the following table to cost out new professions. A profession should have the following qualities:</strong></p><ul><li><p>Worth a total of 6 points</p></li><li><p>Have a special feature or skill expertise \u0017 Have a Wealth Level</p></li><li><p>Have at least one ability adjustment</p></li><li><p>Offer at least one proficiency</p></li><li><p>Have some flavorful iconic equipment</p></li></ul><table class=\"yellow\"><caption>Profession Points</caption><thead><tr><th scope=\"col\">Points</th><th scope=\"col\">Feature</th></tr></thead><tbody><tr><td>0</td><td>Basic Equipment proficiency</td></tr><tr><td>0</td><td>Iconic Equipment (affordable for the Wealth Level)</td></tr><tr><td>.5</td><td>Feature (a circumstantial advantage on an ability check)</td></tr><tr><td>.5</td><td>Advanced, Historical, or Improvised equipment proficiency</td></tr><tr><td>.5</td><td>Skill proficiency</td></tr><tr><td>.5</td><td>Wealth Level 1</td></tr><tr><td>1</td><td>+1 to an ability score</td></tr><tr><td>1</td><td>Military Equipment proficiency</td></tr><tr><td>1</td><td>Wealth Level 2</td></tr><tr><td>1.5</td><td>Wealth Level 3</td></tr><tr><td>2.5</td><td>Wealth Level 4</td></tr><tr><td>3.5</td><td>Wealth Level 5</td></tr></tbody></table>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 2000000,
+      "name": "Chapter 4: Archetypes & Classes",
+      "type": "text",
+      "_id": "EOhPfoawmULUYWK6",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Choosing a hero’s archetype and class are important decision points in making a new hero. They define a hero’s unique combat abilities and can shape a hero’s personality and approach to resolving challenges they face.</p><p>Archetypes are broad categories, each focusing on one of the six core ability scores in the game: Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. They form a foundation for the classes. In Everyday Heroes, most of your abilities come from your class, especially as you gain levels. Classes represent action movie classics as well as unique tactical approaches to combat.</p><p>Each archetype and class includes a flavorful description and a short summary of the ideas behind their design. These can give you an idea if the class is right for your hero, but the description isn’t a requirement. You can play a scoundrel and not be a literal scoundrel—that’s just the inspiration for the class. The classes can be re-imagined in style, while still using the same game mechanics.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 2100000,
+      "name": "Hero Level",
+      "type": "text",
+      "_id": "SsrnREtbdmwbTELi",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Hero level represents how experienced and powerful a hero is. All heroes are first created at 1st level. The maximum hero level is 10. Levels are gained through the process of adventure and play. This process is in the hands of the GM and is detailed in Part III of this book.</p><p>You can play Everyday Heroes and make characters of a higher starting level. Some adventures call for higher-level heroes, and some famous action movie heroes represent a more experienced hero than 1st- level characters can emulate. To make a higher-level hero, have your GM tell you what level the campaign or adventure calls for, then create your character as normal for 1st level, then add abilities at each level until you reach the appropriate starting level.</p><p>At 1st level, you choose both an archetype and a class belonging to that archetype. You gain the benefits and talents of your archetype and class at every level where one is listed.</p><p>Choose one archetype and one class when creating a hero.</p><h4>Archetype</h4><p>Each archetype includes the following entries. Not all archetypes contain the same entries.</p><p><strong>Hit Dice:</strong> The die you use for hit points.</p><p><strong>Starting Hit Points:</strong> The number of hit points you begin with at 1st level.</p><p><strong>Hit Points at Higher Levels:</strong> The number of hit points you gain at each subsequent level. Ask the GM whether you should take the average or roll your Hit Die.</p><p><strong>Defense:</strong> The formula used to determine your Defense.</p><blockquote><p><strong>Example:</strong> The Tough Hero has 1d12 (or 7) + Constitution modifier per hero level after 1st. At 2nd level, they either gain 7 + Constitution modifier hit points, or 1d12 + Constitution modifier hit points.</p><p>The Tough Hero’s Defense formula is 10 + (Constitution or Dexterity) modifier + Tough Hero Defense bonus. At 1st level, a Tough Hero with a Constitution of 16 and a Dexterity of 12 would use their higher Constitution modifier for the calculation, for a Defense of 15 (10 + 3 Constitution mod + 2 Defense bonus).</p></blockquote><p><strong>Your archetype table contains the following entries:</strong></p><p><strong>Talents:</strong> The special abilities of your archetype. Feats: Opportunities to take feats (see chapter 7).</p><p><strong>Proficiency Bonus:</strong> The bonus you add to rolls you are proficient in.</p><p><strong>Defense Bonus:</strong> The bonus used to calculate your Defense.</p><p><strong>Other Columns:</strong> Specific level-based abilities of your archetype.</p><h4>Class</h4><p>Each class includes the following entries. Not all classes contain the same entries.</p><p><strong>Saving Throw Proficiencies:</strong> You gain proficiency with the listed saves.</p><p><strong>Skill Proficiencies:</strong> You gain the listed skills, as described in chapter 8. If you would gain the same skill proficiency from more than one source, choose a different skill proficiency for the duplication.</p><p><strong>Equipment Proficiencies:</strong> You gain the listed proficiency (see chapter 8). You do not automatically have the items associated with that proficiency.</p><p><strong>Expertise:</strong> Additional bonuses to certain skills (see chapter 8).</p><p><strong>Equipment Recommendations:</strong> Suggestions for sets of equipment you have in your possession. If they don’t feel right for your character, check with your GM for equivalent substitutions.</p><p><strong>Your class table contains the following entries:</strong></p><p><strong>Talents:</strong> The special abilities of your class.</p><p><strong>Other Columns:</strong> Specific level-based abilities of your class.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 2200000,
+      "name": "Chapter 5: Finishing Touches",
+      "type": "text",
+      "_id": "7YvgCoyj9Xkdnw89",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>You have made all the important game choices for your hero. Next up, we have a few calculations to do, some finishing mechanical touches that make your hero complete, and look at ways to fill out your hero’s personality and history.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 2300000,
+      "name": "Critical Calculation",
+      "type": "text",
+      "_id": "3EnIRLUA0srSxXGv",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>These calculations will help you fill out your character sheet.</p><h4>Speed</h4><p>Your speed is 30. This is how many feet of movement you have each round of combat under normal conditions.</p><h4>Proficiency Bonus</h4><p>Your proficiency bonus at 1st level is +2. This bonus is added to ability checks, attack rolls, and saving throws when you have a relevant proficiency. This number rises as you gain levels.</p><h4>Skill bonuses</h4><p>Skill bonuses are the combination of an ability modifier and proficiency bonus for each skill. To get the proficiency bonus, you must have that skill proficiency. If you have expertise, you can add your proficiency bonus twice. Sometimes you might use a skill proficiency with a different ability score, but these will be your default bonuses.</p><h4>Passive Perception</h4><p>Your GM uses your passive Wisdom (Perception) check—commonly called passive Perception—to secretly determine if you notice hidden dangers or opportunities without you having to say you’re specifically doing so.</p><p><strong>Passive Perception = 10 + Wisdom modifier + proficiency bonus (if proficient in Perception)</strong></p><p>Double your proficiency bonus if you have expertise in Perception.</p><h4>Equipment</h4><p>The fastest way to equip your hero is to use one of the equipment packs suggested for your class. They can be found in Chapter 6, where you will also find details on weapons, armor, and other items. You can also use the iconic equipment provided by your background and profession.</p><p>If you want to dive into all the options, Chapter 6 has detailed lists of weapons, armor, and other gear to choose from. Heroes can purchase any item with a price level equal or lower than their own Wealth Level that is legal in their country of residence.</p><p>Equipment with the restricted property requires the GM’s permission to purchase and use.</p><h4>Weapons</h4><p>As you look at equipment, think about what weapon your character will most often use in a fight. Character sheets normally have a few spots to write down details about your most used weapons. Unarmed strikes are considered basic weapons and are sometimes all you will have on hand. (See the combat rules in chapter 9 for details.)</p><h4>Weapon Attack Bonus</h4><p>The spaces listed for a weapon has a place to record an attack bonus. This is the total bonus you add when making an attack roll.</p><p><strong>Attack roll = d20 roll + ability modifier* + proficiency bonus</strong></p><p>* The ability modifier depends on the weapon being used.</p><ul><li><p>Strength for melee weapons</p></li><li><p>Dexterity for ranged weapons</p></li><li><p>Strength or Dexterity for finesse weapons</p></li></ul><p>If you are proficient in the weapon’s equipment category, add your proficiency bonus.</p><h4>Weapon Damage</h4><p>Weapon damage is determined by the weapon, but you can often add an ability modifier depending on the weapon type. (See the combat rules in chapter 9 for details.)</p><p><strong>Damage roll = weapon damage + ability modifier*</strong></p><p>* The ability modifier depends on the weapon being used.</p><ul><li><p>Strength for melee weapons</p></li><li><p>Dexterity for ranged weapons</p></li><li><p>Strength or Dexterity for finesse weapons \u0017 None for explosives</p></li><li><p>None for off-hand attacks</p></li></ul>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 2400000,
+      "name": "Persona",
+      "type": "text",
+      "_id": "RFCveOtsOmHUBGmN",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The most important aspects of heroes are not covered by the rules. These are the traits, both internal and external, that comprise a hero’s personality and character. While the rules tell you how you can do things, what you do and why you do it is the domain of your imagination and no rule can define that for you. The following suggestions can provide inspiration for fleshing out your hero’s persona.</p><p>Consider these nine aspects of persona. You may choose any or none of them, but we encourage you to consider at least the first three.</p><ul><li><p><strong>Motivation.</strong> What drives you to do the things you do?</p></li><li><p><strong>Attachments.</strong> What people, places, or things do you care about?</p></li><li><p><strong>Biography.</strong> What is your life’s journey thus far?</p></li><li><p><strong>Beliefs.</strong> How do you see and understand the world?</p></li><li><p><strong>Role.</strong> What role do you see yourself playing in society?</p></li><li><p><strong>Appearance.</strong> What do you look like?</p></li><li><p><strong>Virtues.</strong> What makes you a good person?</p></li><li><p><strong>Flaws.</strong> What makes you a fallible person?</p></li><li><p><strong>Quirks.</strong> What makes you a little bit strange or different?</p></li></ul><p>Don’t feel like you must fill in all this information right away. It’s perfectly reasonable to leave some areas blank, and then, as you play your hero, you may get a better feel for who they are, where they have been, and where they are going in their life.</p><p>GMs might also find inspiration for creating memorable NPCs and villains. Heroes aren’t the only imaginary characters with dreams and feelings!</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 2500000,
+      "name": "Motivations",
+      "type": "text",
+      "_id": "5yBD9WlutYQqFo0d",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>A hero’s motivations define elements of their character. Nearly every action a hero takes can be traced back to a core motivation of some kind. Most people share a range of motivations, but a few stick out as defining characteristics.</p><h4>General Motivations</h4><p><strong>Approval.</strong> You need the approval of others to feel good about yourself.</p><p><strong>Charity.</strong> You’re committed to helping others who are less fortunate than yourself.</p><p><strong>Creation.</strong> You’re driven to create art, inventions, or organizations.</p><p><strong>Drugs.</strong> You constantly crave an altered state of mind.</p><p><strong>Duty.</strong> You have a sacred duty you agreed to, and you will never fail to uphold it.</p><p><strong>Faith.</strong> You’re a committed member of your faith and seek to uphold its values at all times.</p><p><strong>Family.</strong> You’re always thinking of your family, providing and caring for them.</p><p><strong>Food.</strong> You love to eat and drink for the sheer pleasure of it.</p><p><strong>Friendship.</strong> You will do anything for your friends and live for their companionship.</p><p><strong>Heroism.</strong> You want to be a hero and play a heroic role in the lives of others.</p><p><strong>Justice.</strong> You’re determined to see that justice is done whenever possible.</p><p><strong>Leisure.</strong> You always want to relax and not have any worries or obligations.</p><p><strong>Love.</strong> You desire to love and be loved by others above all else.</p><p><strong>Pleasure.</strong> You pursue visceral pleasures at all opportunities and often at great cost.</p><p><strong>Power.</strong> You want to be powerful, more powerful than anyone else.</p><p><strong>Redemption.</strong> You feel guilty about something you did and seek to make it right.</p><p><strong>Revenge.</strong> You have been wronged and you will make it right by punishing your oppressor.</p><p><strong>Sex.</strong> You’re driven by the desire for sex and are always looking for opportunities.</p><p><strong>Society.</strong> You desire an important role within society and to fulfill it well.</p><p><strong>Survival.</strong> You will do anything to stay alive as long as possible.</p><p><strong>Thrill.</strong> You seek new and intensely exciting experiences.</p><p><strong>Truth.</strong> The truth of any major issue matters to you, whether that works in your favor or not.</p><p><strong>Validation.</strong> You believe in a specific theory or worldview, and you want to see it validated by the circumstances of the world.</p><p><strong>Vanity.</strong> You want to be admired and observed by others whenever possible.</p><p><strong>Violence.</strong> You have an inner need to fight and do violence to others.</p><p><strong>Virtue.</strong> You’re forever trying to improve yourself in various ways to be a better person.</p><p><strong>Wealth.</strong> You seek to amass wealth and income for yourself and your enterprises.</p><p><strong>Work.</strong> Your job means everything to you and is the center of your life.</p><h4>Specific Motivations</h4><p>To take your motivations to the next level, consider adding specifics to the general categories, such as in the following examples.</p><p><strong>Approval.</strong> The police chief is one of your childhood heroes and you’re going to make him proud by taking down the Green Dragon cartel.</p><p><strong>Family.</strong> It was your mother’s dream to find the lost city of Atlantis. Now you will finish her work to honor her memory.</p><p><strong>Love and Work.</strong> The love of your life was taken from you too early and now you throw yourself into your work so you don’t have time to think about them.</p><p><strong>Revenge.</strong> You believe the CIA is behind your father’s death and will stop at nothing to uncover the truth and expose their corruption.</p><h4>Adventure Motivations</h4><p>At the start of a campaign or an adventure, the GM may ask you to provide a specific motivation. Ideally these meld well with your character concept, but sometimes it’s best to tweak your character a little so they fit into the story at hand. For example, the GM is going to run an adventure about finding a rumored secret diary of George Washington. The GM wants everyone to come up with a motivation for why their hero wants to do this.</p><blockquote><ul><li><p><em><strong>Kat Whitlock</strong></em>, a reporter, wants to find the lost diary because it might reveal startling truths about the founding of America, and she believes in sharing the truth with the public.</p></li><li><p><em><strong>The ]=0XX</strong></em>, who enjoys accumulating wealth, figures the diary is worth a small fortune and wants to find it to sell it off to the highest bidder.</p></li><li><p><em><strong>Doc Jefferson</strong></em> believes he is a direct descendant of George Washington and believes the diary could finally offer validation that his genealogical claim is legitimate.</p></li></ul></blockquote>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 2600000,
+      "name": "Attachments",
+      "type": "text",
+      "_id": "4faUJRjBTRxxtgga",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Attachments are the people, places, and things we make part of our own identity and have an emotional investment in. These attachments become part of ourselves and we invest in them emotionally, financially, and even spiritually. Be warned, the friends and family of heroes have an unnaturally high risk of being kidnapped by criminal cartels.</p><h4>Types of Attachments</h4><p><strong>Celebrity.</strong> Celebrity attachments range from harmless admiration to unhealthy obsession. They are usually one-way relationships.</p><p><strong>Cultural.</strong> Many people have a strong sense of identity as a member of a given culture or subculture. Sometimes without even being a member of it.</p><p><strong>Family.</strong> Nearly everyone has family attachments, but some are stronger than others. They can even transcend death.</p><p><strong>Friend.</strong> Friendship can be among the strongest attachments possible and arise in nearly any walk of life.</p><p><strong>Hometown.</strong> People become attached to the place where they grew up and identify strongly with it.</p><p><strong>Media.</strong> Many people become devoted to music, films, books, or other kinds of media that have special meaning or influence over their life.</p><p><strong>Organization.</strong> Joining an organization comes with an emotional attachment, especially with long-term membership.</p><p><strong>Pet.</strong> Many people have a strong bond with their pets or other animals they care for, sometimes as much or more than their human attachments.</p><p><strong>Politics.</strong> People who are politically aware and active form an attachment to a party, ideal, or cause they are passionate about and committed to.</p><p><strong>Romantic.</strong> Romantic attachments can include those you have, those you want to have, and those you have lost.</p><p><strong>Sports Team.</strong> Becoming a fan of a sports team is a very common and enjoyable type of attachment.</p><p><strong>Vehicle.</strong> People spend a lot of time and money on cars, boats, and planes, becoming very sentimental about them.</p><h4>Attachment Details</h4><p>Some attachments are positive and give us joy, but others can be sources of negative emotions such as pain and fear. When describing an attachment in detail, you can note both who or what the attachment is, and how it makes you feel. Here are a few examples.</p><p><strong>Celebrity.</strong> You think the actor Dwayne Johnson is the greatest action movie star of all time and he inspires you to give everything you do 110% effort.</p><p><strong>Family.</strong> Your father was a cop, and his father was a cop, and now you’re a cop. While this fills you with pride, you also feel a little trapped by the pressure of this legacy.</p><p><strong>Politics.</strong> Your family home was poisoned by toxic waste from a government run bioweapons lab. You harbor a deep distrust and hatred for government agencies and politicians and seek to warn others of the danger.</p><p><strong>Vehicle.</strong> You have a ‘66 midnight blue GTO you hand restored from an old wreck. You will never part with it and are paranoid about it being damaged.</p><h4>Adventure Attachments</h4><p>Attachments allow players to hook into an adventure by way of an NPC that is part of the story. When starting up a campaign or adventure, the GM may ask everyone to come up with a connection between their hero and an NPC important to</p><p>the plot. In some cases, this might be a positive attachment, in others it might be better as a negative one. The focus of these attachments then serve as a connecting thread between the different heroes in the team, naturally pulling them together for the adventure.</p><p>An adventure attachment might also be a place, event, or an important object. For an adventure about recovering a priceless artifact, each player could be asked to create an attachment to this artifact that makes sense for their hero and motivates them to want to recover it from the thieves.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 2700000,
+      "name": "Biography",
+      "type": "text",
+      "_id": "HuSxABBEhbLq3ciJ",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>For many people, their history plays a large part in how they see themselves. Some heroes’ stories naturally lead up to the moment their lives turned to heroic pursuits, others stand in stark contrast to it. While you can build out your hero’s biography as far as you like, a short paragraph or two is usually enough to tell a compelling tale. To inspire you, here are a few examples.</p><blockquote><ul><li><p><strong>Jaycene Meyer</strong> grew up in a firefighter’s household. She fondly remembers her father’s get-togethers in the backyard, the smell of his uniform, and the heroic values that her father demonstrated on the job every day. So she was devastated when her father left to put out a 5-alarm fire and never came back. On her 18th birthday, she knew she was going sign up for the firefighter’s test and beat it in one try. This same focus and tenacity are how she was promoted to lieutenant and became the first woman fire chief in the district.</p></li><li><p><strong>Chris Hansen</strong> grew up in foster care. It was not the healthiest environment. At a very early age, Chris had to learn to defend himself. He first learned karate, then jujitsu, and even a little boxing. When he got older, competing in mixed martial arts seemed like the next logical choice. After 17 titles, Chris didn’t know what was next until he met a CIA recruiter.</p></li><li><p><strong>Damon Johnson</strong> was always gifted at science. He spent his childhood in the school’s lab. This made transitioning to MIT an easy thing. When he got there, he came into his own, excelling in microbiology. Now Damon works for Advanced Genetics, Inc, has his own lab, and is working on groundbreaking research. What more can a guy want?</p></li></ul></blockquote>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 2800000,
+      "name": "Beliefs",
+      "type": "text",
+      "_id": "nUzgGOfhcbpJmZ9O",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>A hero’s beliefs inform how they make their way in the world. When two people come into conflict, both thinking they are doing right, their underpinning beliefs about what is truth drive the conflict. This is the realm of philosophy, religion, and lived experience.</p><h4>Religious Beliefs</h4><p>Not only are there many religions in the world, each with many branches, but adherents of those religions take different meanings and inspiration from their religion. Nonetheless, religion is a good starting place for beliefs. Before choosing to portray the beliefs of a major religion that is not your own, be respectful and delve into its beliefs, history, and traditions.</p><h4>Philosophical Beliefs</h4><p>Philosophy is an intellectual discipline of seeking truth and knowledge of ourselves and the world around us. Some philosophical positions are holistic, but many seek to answer specific questions about life and the nature of reality. Religion and philosophy are not mutually exclusive, but philosophy is usually devoid of ritual or worship.</p><p>Philosophy is roughly divided into four categories: metaphysics, epistemology, axiology, and logic.</p><ul><li><p><strong>Metaphysics.</strong> What is the fundamental nature of reality?</p></li><li><p><strong>Epistemology.</strong> How can we come to know the truth?</p></li><li><p><strong>Axiology.</strong> What is good and what is bad?</p></li><li><p><strong>Logic.</strong> Not so much a statement of belief as a methodology.</p></li></ul><h4>Proverbs</h4><p>Proverbs are pithy statements about the nature of reality that reflect common wisdom or belief. They are one of the most common forms of belief expression in any given culture. They can become a touchstone for a hero.</p><ul><li><p>A fool and his money are soon parted.</p></li><li><p>A penny saved is a penny earned.</p></li><li><p>A stitch in time saves nine.</p></li><li><p>Actions speak louder than words.</p></li><li><p>An ounce of prevention is worth a pound of cure.</p></li><li><p>Blood is thicker than water.</p></li><li><p>Fool me once, shame on you; fool me twice, shame on me.</p></li><li><p>Freedom always comes at a cost.</p></li><li><p>Good is not a thing you are. It’s a thing you do.</p></li><li><p>Live fast, die young, leave a beautiful corpse.</p></li><li><p>Love conquers all.</p></li><li><p>Never look a gift horse in the mouth.</p></li><li><p>Never tell me the odds.</p></li><li><p>Power corrupts, absolute power corrupts absolutely.</p></li><li><p>Sometimes you just have to roll the dice.</p></li><li><p>Speak softly but carry a big stick.</p></li><li><p>Sticks and stones may break my bones, but words will never hurt me.</p></li><li><p>The early bird gets the worm.</p></li><li><p>What goes around, comes around.</p></li><li><p>When the going gets tough, the tough get going.</p></li><li><p>With great power comes great responsibility.</p></li></ul>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 2900000,
+      "name": "Role",
+      "type": "text",
+      "_id": "NNpl8qxqgavbUG8i",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>You can define your character through the roles they play in society. Not everyone finds role to be important, but those who do are focused on this idea. For some, their role in society is simply their job, but for others it can be a family role, a broader social responsibility, or some combination of the above.</p><h4>Social Roles</h4><ul class=\"multi-column-list\"><li><p>Artist</p></li><li><p>Caretaker</p></li><li><p>Creator</p></li><li><p>Explorer</p></li><li><p>Guardian</p></li><li><p>Hero</p></li><li><p>Intellectual</p></li><li><p>Leader</p></li><li><p>Lover</p></li><li><p>Parent</p></li><li><p>Partier</p></li><li><p>Provider</p></li><li><p>Survivor</p></li><li><p>Teacher</p></li><li><p>Warrior</p></li><li><p>Worker</p></li></ul><h4>Detailed Roles</h4><p>Once you have identified a role to focus on, think about how your hero exemplifies it day to day. Why are they attracted to this role and in what situations do they act it out? Here are examples of how these roles can be expressed.</p><p><strong>Artist.</strong> You wake up every morning before dawn to head out with your camera to capture sunrise in the city. You want others to understand what a beautiful place it can be.</p><p><strong>Guardian.</strong> You work at the Sunnybrook home for the elderly. You love the residents there like your family and would do anything to protect them.</p><p><strong>Survivor.</strong> As the last member of your family lineage, you feel a responsibility to survive as long as possible to carry on the family name.</p><p><strong>Warrior.</strong> You are attracted to violence, but you channel that into keeping innocents safe from others like yourself.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 3000000,
+      "name": "Appearance",
+      "type": "text",
+      "_id": "cFDvbwaosrtcQPuZ",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>While our outward appearance may be a superficial aspect of who we are, it is the first thing others perceive about you. For better or worse, first impressions are based on this limited information.</p><h4>Aspects of Appearance</h4><ul><li><p>Body shape and proportion</p></li><li><p>Clothing style and coloration</p></li><li><p>Eye color and decoration</p></li><li><p>Facial hair style</p></li><li><p>Facial shape and features</p></li><li><p>Hair style and coloration</p></li><li><p>Height</p></li><li><p>Posture and movements</p></li><li><p>Skin complexion and coloration</p></li><li><p>Gender presentation</p></li></ul><h4>A Picture is Worth 1,000 Words</h4><p>When it comes to describing a hero, this adage is spot on. It’s faster to show people at the gaming table how you imagine your hero than to read a long physical description. A web search can find inspirational character images that reflect your vision. If you’re an artist, try illustrating your character!</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 3100000,
+      "name": "Virtues",
+      "type": "text",
+      "_id": "ox2NJSdjPnsuu3p3",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Your virtues are the aspects of your personality that you or others think make you a good and worthy person. Typically, you take pride in these virtues, though if humility is among them, you try not to take too much pride. Listed here are virtues that do not obviously stem from ability scores and proficiencies heroes have: Strong, Wise, Intelligent, Insightful, and so on.</p><ul class=\"multi-column-list\"><li><p>Amiable</p></li><li><p>Brave</p></li><li><p>Chill</p></li><li><p>Civil</p></li><li><p>Compassionate</p></li><li><p>Creative</p></li><li><p>Earnest</p></li><li><p>Educated</p></li><li><p>Experienced</p></li><li><p>Friendly</p></li><li><p>Funny</p></li><li><p>Generous</p></li><li><p>Grateful</p></li><li><p>Hardworking</p></li><li><p>Honest</p></li><li><p>Humble</p></li><li><p>Judicious</p></li><li><p>Loving</p></li><li><p>Patient</p></li><li><p>Resourceful</p></li><li><p>Respectful</p></li><li><p>Stylish</p></li><li><p>Tolerant</p></li><li><p>Thoughtful</p></li></ul><h4>Virtues in Detail</h4><p>A good way to detail your virtues is to add an example of how your hero demonstrates the virtue in their actions.</p><p><strong>Brave.</strong> You never back down from a challenge, even when the odds are against you.</p><p><strong>Chill.</strong> No matter how aggravating perps can get, you keep your cool on the streets.</p><p><strong>Friendly.</strong> You make new friends wherever you go and avoid fighting whenever possible.</p><p><strong>Judicious.</strong> You settle disputes at work in a way that leaves everyone feeling satisfied.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 3200000,
+      "name": "Flaws",
+      "type": "text",
+      "_id": "emDdfIsqL0XcvNlG",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Your flaws are the aspects of your personality, appearance, or character that you or others find wanting and perhaps wish you could change. Sometimes we are ashamed of our flaws, sometimes we accept them, and on rare occasions we even celebrate them.</p><ul class=\"multi-column-list\"><li><p>Annoying</p></li><li><p>Brash</p></li><li><p>Dishonest</p></li><li><p>Dour</p></li><li><p>Inconsiderate</p></li><li><p>Irresponsible</p></li><li><p>Fearful</p></li><li><p>Feckless</p></li><li><p>Forgetful</p></li><li><p>Greedy</p></li><li><p>Gullible</p></li><li><p>Heartless</p></li><li><p>Lazy</p></li><li><p>Lecherous</p></li><li><p>Manipulative</p></li><li><p>Narcissistic</p></li><li><p>Nosy</p></li><li><p>Provocative</p></li><li><p>Shy</p></li><li><p>Smelly</p></li><li><p>Spiteful</p></li></ul><h4>Flaws in Detail</h4><p>If you want to describe your flaw in an evocative way, describe a typical situation where this flaw is evident to everyone.</p><p><strong>Feckless.</strong> You use cheat codes in video games because you don’t feel like practicing, but you still want to win.</p><p><strong>Inconsiderate.</strong> You always eat all the maple bars when someone brings donuts to the office.</p><p><strong>Nosy.</strong> You name-search all your colleagues at work, keeping tabs on their social media.</p><p><strong>Spiteful.</strong> You never leave a tip when you have to wait longer than 20 minutes at a restaurant.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 3300000,
+      "name": "Quirks",
+      "type": "text",
+      "_id": "V6RDfS9K8Y5EMRR6",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Quirks are little things that make you unique. A quirk might be a catch phrase, an unusual talent, or a repeated behavior people remark on. The possibilities are endless, but here are a few examples to get your imagination going.</p><h4>Quirky Mannerisms</h4><ul><li><p>You have a slight limp due to a bull fighting accident.</p></li><li><p>You like to stroke your beard when you’re thinking.</p></li><li><p>You pretend to conduct an orchestra after a victory.</p></li><li><p>You always shake hands with your left hand first.</p></li></ul><h4>Quirky Speech</h4><ul><li><p>You refer to everyone as “My little friends.”</p></li><li><p>You begin every explanation with the word “Basically,”</p></li><li><p>You constantly make baseball metaphors.</p></li><li><p>You meow like a cat to the people you care about.</p></li></ul><h4>Quirky Limitations</h4><ul><li><p>You refuse to kill anyone on the weekends.</p></li><li><p>You won’t go outside without your lucky hat.</p></li><li><p>You never drink alcohol during a full moon.</p></li><li><p>You can’t stand the sound of squeaky toys.</p></li></ul><h4>Quirky Talents</h4><ul><li><p>You can burp the Star-Spangled Banner.</p></li><li><p>You do a perfect Elvis impression.</p></li><li><p>You can move your eyes independently of one another.</p></li><li><p>You can detect cancer by sense of smell.</p></li></ul>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 3400000,
+      "name": "Chapter 6: Equipment",
+      "type": "text",
+      "_id": "eP4ub3J4jA1AlOcr",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>In the modern world, most people own a vast array of personal property: homes, vehicles, clothing, electronics, tools, furniture, books, and so on. Given costs and availability, characters can acquire a wide variety of goods. Detailing everything someone owns would be an impossible task, so Everyday Heroes focuses on the items that heroes have on hand and equipment that figures into the action of cinematic adventure.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 3500000,
+      "name": "Wealth",
+      "type": "text",
+      "_id": "srd9m2ZIq8WXkvys",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Money doesn’t make a hero. However, money can open many doors and comes in handy no matter what a hero is trying to accomplish. It’s also a great motivator and can be the goal of adventurers, rogues, and villains alike.</p><p>Rather than tracking exactly how much money and income heroes, villains, and NPCs have, Everyday Heroes uses a simple score that ranks overall wealth. This score represents a character’s income, lines of credit they can access, and the capital assets they own.</p><p>Your profession sets your starting Wealth Level, which can be further adjusted by class features, feats, and events in game.</p><p>Everyday Heroes doesn’t allow heroes to attain Wealth Level 6 through the standard rules. Those kinds of riches are reserved for archvillains and other NPCs, but they might be attained at the GM’s discretion.</p><table class=\"yellow wide\"><caption>Wealth Level Descriptions</caption><thead><tr><th scope=\"col\">Wealth Level</th><th scope=\"col\">Description</th></tr></thead><tbody><tr><td>0</td><td>You are nearly penniless, owning nothing more than what you carry with you.</td></tr><tr><td>1</td><td>You are considered poor, having only minimal income, meager shelter, and modest possessions. Your transportation is unreliable, and you are likely in debt.</td></tr><tr><td>2</td><td>You are in the lower-middle-income range, probably renting an apartment with modest furnishings and driving a reliable car. You likely have some debt but are managing it.</td></tr><tr><td>3</td><td>You are in the upper-middle-income range. You likely own a home and one or more cars. Money might be tight at times, but your finances are secure and any debt you have is less than the assets you own.</td></tr><tr><td>4</td><td>You are modestly wealthy. As long as you don’t spend extravagantly, you don’t need to worry about money. You have a large home, one or more nice vehicles, conveniences that anyone might wish for, and significant savings.</td></tr><tr><td>5</td><td>You are a multimillionaire, probably owning more than one home, multiple vehicles, a yacht, and whatever other luxuries you desire. You have extensive assets and savings, which might include owning one or more businesses.</td></tr><tr><td>6</td><td>You are filthy rich, enjoying all the benefits of being a billionaire owning and profiting from some huge corporation or massive financial enterprise.</td></tr></tbody></table>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 3600000,
+      "name": "Making Purchases",
+      "type": "text",
+      "_id": "sH2wos0PAEdID77t",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>In the modern world, nearly anything that isn’t illegal is readily available provided one has the money to buy it. As a result, even people on limited incomes might own vast arrays of stuff. Keeping track of everything a hero owns is well beyond the scope of these rules. Instead, it is assumed that heroes can buy—or that they already have—anything they need as long as it comports with their income level.</p><p>That doesn’t mean that a hero always has everything they need on their person when they need it. Rather, players should note the things their characters carry and consider useful on a day-to-day basis. This includes any weapons their heroes own that they are likely to take with them into a dangerous situation.</p><p>When making purchases, players and characters should keep in mind two factors: price level and access.</p><h4>Price Level</h4><p>A character can freely buy, or can assume they already own, any item that has a price level equal to or lower than the character’s Wealth Level. Wealth doesn’t change when a character acquires equipment, as it’s assumed their discretionary budget can handle such purchases.</p><p>If a hero wants to buy something that has a price level above their Wealth Level, the GM determines how much money they need to raise. Alternatively, it’s fine for one hero to give or loan equipment to another hero, or to make purchases for their team.</p><p>The price level noted for expensive items such as vehicles and homes assumes that a character is taking out a loan and making monthly payments toward the purchase, a process not readily available for most other consumer goods. If an item’s price level is below a character’s Wealth Level, it is likely that the character owns it outright. It is also assumed that a character has only one of each expensive item with a price level equal to their Wealth Level (for example, a vehicle). If the price level is lower than the character’s Wealth Level, it is reasonable for a character to have more than one.</p><h4>Access</h4><p>In the modern age, most anything a character can legally buy can be ordered online and delivered to all but the most remote locations. That said, certain illicit or restricted goods can be obtained only if a character has a special license to buy them or knows illegal vendors willing to sell them. Access to military gear, illicit weapons, and any items with the restricted property is always at the GM’s discretion.</p><p>The GM or the scenario being played might further limit what goods are available in a campaign, or what goods can be carried openly without attracting legal attention. Likewise, specific scenarios might dictate that characters don’t have the time to buy something or don’t have the ability to go shopping.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 3700000,
+      "name": "Gaining and Losing Wealth",
+      "type": "text",
+      "_id": "pavqh8x8Bv5BPCav",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Every day, people make and spend money within their normal level of wealth. But any big change to that overall wealth is a potentially life-altering event. Getting a paycheck or finding some small amount of money in the course of play is more of a roleplaying event than a concern of the game rules, except in a few special scenarios.</p><h4>Changing Professions</h4><p>If a hero changes their profession through roleplay and with the GM’s blessing, they normally change their Wealth Level to match their new profession.</p><p>Everyday Heroes doesn’t have any rules that would force a character to lose their job, with that scenario left up to the GM and the hero’s player. Generally speaking, it should be possible for a hero who leaves a job to find the same type of employment with a different employer under most circumstances. But if they fail to do so, they’ll start to see their wealth decline. For each full year a hero remains unemployed, their Wealth Level drops by 1 until they reach level 0.</p><h4>Windfalls</h4><p>Whether characters are pulling off a brilliant heist, siphoning funds from an evil genius, or recovering a lost treasure, an adventure might result in a significant financial windfall. Such a windfall has a Wealth Level noted for it, and heroes sharing the windfall can temporarily raise their own wealth to that level. Each year that subsequently passes, a character’s Wealth Level drops by 1 until it returns to the level they held before the windfall.</p><p>Heroes with extreme spending habits, from those who donate their newfound wealth to those who spend it all on lavish parties, can burn through a windfall more quickly. In that case, a character’s Wealth Level drops by 1 each month until it returns to its pre-windfall level.</p><h4>Financial Disasters</h4><p>Unfortunate circumstances or villains draining a hero’s bank accounts can create a financial disaster. In such instances, the GM assigns a decrease to the hero’s Wealth Level. The hero might be able to restore their wealth through windfalls or by reversing their circumstances relatively quickly. If that isn’t possible, the character must build their wealth back up using the income from their day job, reversing the decrease by 1 each year until it reaches the level the character held before the disaster.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 3800000,
+      "name": "Starting Equipment",
+      "type": "text",
+      "_id": "2E2xYGq1fvmpJlrR",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>As a 1st-level character, you have equipment from your background, your profession, and your class.</p><p>The iconic equipment noted for your background and profession is a starting point, which you can modify as befits your Wealth Level. Similarly, you can change the pack recommended for your class to suit your character.</p><p>You might also have one or more proficiencies with categories of equipment: Basic, Advanced, Improvised, Historical, and Military. Your possessions can include items from those categories, if they are lower than or equal to your Wealth Level and don’t have the restricted property.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 3900000,
+      "name": "Everyday Stuff",
+      "type": "text",
+      "_id": "OfWX9DgqgnxHLLy0",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>These collections of “stuff” include items that are either common or especially useful. The bulk values listed include the items in the collection (see “Bulk and Encumbrance” later in this chapter). You can simply note that you have one or more of these collections or detail all the contents individually; the entries below offer suggestions you can tailor to your liking. Contents may include any unrestricted items appropriate for your Wealth Level.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 4000000,
+      "name": "Equipment Packs",
+      "type": "text",
+      "_id": "xQ6EVK4gc070fjlu",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Equipment packs are sets of gear intended to quickly equip your hero. They include things you might need both in and out of combat. Many packs also include kits (described below), sets of equipment used for a specific skill or task or packages of common items. You can customize a pack or mix and match to your liking.</p><p>Not every item in a pack or kit can be detailed in this book. Otherwise, if you can find it on sale in the real world, you can buy that item for your character.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 4100000,
+      "name": "Specialized Kits",
+      "type": "text",
+      "_id": "RlZIqvVbLIuUtSOf",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>These kits represent collections of items required for certain types of jobs. They are a quick way to equip a character with the tools they need to use their skills or to do their professional work. Kits don’t include weapons or armor. Some listings have game statistics or offer an advantage with ability checks in the game, called out in the entry.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 4200000,
+      "name": "Equipment Rules",
+      "type": "text",
+      "_id": "pkz9j70d0uaHu4xp",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The following rules apply to the equipment tables throughout the chapter.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 4300000,
+      "name": "Reading the Tables",
+      "type": "text",
+      "_id": "SukidgfxXY9tTXoy",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The tables throughout this chapter describe items using the following values. Some categories of items (such as vehicles) have additional specific values.</p><p><strong>Armor Value (AV).</strong> Armor Value measures how well armor or a shield protects you against weapons. See “Armor and Shields” below for more information.</p><p><strong>Bulk.</strong> Bulk provides an indicator for how heavy and/or unwieldy the item is. See “Bulk and Encumbrance,” below.</p><p><strong>Damage.</strong> This is how much damage the weapon does before bonuses are applied, as well as what type of damage it deals.</p><p><strong>Penetration Value (PV).</strong> This measures a weapon’s ability to punch through armor and shields. See “Weapons” below for more information.</p><p><strong>Price Level.</strong> Price level is a general measure of how expensive something is. If the price level is equal or lower than your Wealth Level, then you can buy the item freely.</p><p><strong>Properties.</strong> The properties of the weapon, as described in the next section.</p><p><strong>Radius.</strong> This value lists the blast radius for explosives, measured in feet. Each combatant in that radius is subject to the effects of the explosion.</p><p><strong>Range.</strong> This is the distance at which you can target a ranged weapon. If two numbers are listed, the second number is its long range. Attacks made at a distance farther than its range but within its long range have disadvantage on the attack roll.</p><p><strong>Reload.</strong> Reload tells you what type of action you need to reload a weapon: an action, bonus action, or free action.</p><p><strong>Rounds.</strong> This value shows how many rounds of ammunition you can fire before you must reload. Each time you fire the weapon, you use a number of rounds. Normally each attack uses a single round, but certain special attacks use more.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 4400000,
+      "name": "Bulk and Encumbrance",
+      "type": "text",
+      "_id": "mNHr29tv1638MJkA",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Everyday Heroes includes an optional bulk system that represents a combination of the size and weight of equipment with a single bulk rating. Consult with your GM if they want you to track bulk and encumbrance.</p><p>Most items you can realistically carry have a bulk rating between 0 and 4. Heroes have a bulk limit (5 + Strength modifier, whether positive or negative) that determines how much bulk they can carry. This limit presumes you have sufficient packs, belts, and pockets to stow these items when not using them.</p><p><strong>Bulk limit = 5 + Strength modifier</strong></p><h4>Exceeding Your Bulk Limit</h4><p>If you exceed your bulk limit, you are Encumbered and must carry the excess stuff in your hands. If you exceed double your bulk limit, you gain the Restrained condition. You can use a carrying case when exceeding your bulk limit to help free up your hands. If you use a carrying case, you should note which items are inside, since they are more difficult to retrieve. Removing an item from a carrying case is an action, rather than a free action.</p><p>You can also put items in your car or keep them at home. They don’t count against your bulk limit unless you are actively carrying them. When using the bulk limit guidelines, you should note where you normally keep the items listed on your character sheet.</p><h4>Bulk Examples</h4><p>The following entries explain what each bulk value represents.</p><p><strong>0 Bulk.</strong> Anything about the size of a cell phone or smaller isn’t tracked individually. You can easily carry these things in your pockets or a bag. This also includes worn clothing. Examples include lipstick, bubblegum, car keys, facial tissue, earbuds, headphones, and sunglasses.</p><p><strong>1 Bulk.</strong> You can comfortably hold and use these items with one hand. They are big for a pants pocket but easy to conceal if wearing a coat. Examples include pistol, ammunition clips, combat knife, flashlight, baton, handcuffs, bear spray, and book.</p><p><strong>2 Bulk.</strong> These items are long or wide and usually take two hands to use. They are difficult to conceal unless they are disassembled. Examples include rifle, shotgun, baseball bat, fire axe, doctor’s bag, laptop computer, and first aid kit.</p><p><strong>3 Bulk.</strong> These items take two hands to handle and are especially unwieldy or especially heavy, but not both. Examples include 8 lb. sledgehammer, chainsaw, desktop computer, and strung longbow.</p><p><strong>4 Bulk.</strong> These items are both heavy and large. They are impossible to conceal and challenging to carry without a case of some kind. Examples include anti-materiel rifle, rocket launcher, light or medium machine gun, 20 lb. sledgehammer, and big screen TV.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 4500000,
+      "name": "Armor and Shields",
+      "type": "text",
+      "_id": "c6z09NuR6UzXL9sP",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The following properties apply to armor and shields.</p><p><strong>Awkward.</strong> Awkward armor and shields slow your movement by 10 feet when worn and impose disadvantage on Dexterity saving throws and Dexterity (Acrobatics) checks. If a character is wearing both, apply the penalties only once.</p><p><strong>Ballistic.</strong> Ballistic armor defends only against ranged attacks.</p><p><strong>Concealable.</strong> Concealable armor gives advantage on ability checks to conceal it.</p><p><strong>Small.</strong> A small shield provides less protection against ranged attacks, only offering ½ cover instead of the normal ¾ cover.</p><p><strong>Stab Proof.</strong> This armor defends only against piercing and slashing damage.</p><h4>Armor</h4><p>Mainly used by police and soldiers, modern armor doesn’t make you harder to hit or reduce damage from every attack made against you. Instead, it has a chance to block potentially fatal attacks. Personal armor rules come into play only when your hero would be reduced to 0 hit points by a weapon attack. This includes attacks from unarmed strikes and similar natural attacks such as claws, teeth, horns, and so on. But if you fall off a cliff, your armor won’t save you; GM discretion applies.</p><p><strong>Armor Value (AV).</strong> This measures how well your armor protects you against weapons. It is compared against the Penetration Value of weapons, with higher AV offering better protection.</p><p>To determine if your armor protects against a weapon attack, use the following steps.</p><p><strong>Step 1.</strong> Compare the Armor Value (AV) of the personal armor to the Penetration Value (PV) of the attack.</p><ul><li><p>If the AV is equal to or higher than the PV, you can make an armor saving throw (go to step 2).</p></li><li><p>If the PV is higher than the AV, the armor does not help.</p></li></ul><p><strong>Step 2.</strong> Make an armor saving throw. The DC is 10 or half the damage from the attack (rounded down), whichever is higher. If you are proficient with the armor, you can add your proficiency bonus to the armor saving throw. If the armor is damaged, you have disadvantage on the armor saving throw.</p><ul><li><p>If you succeed, you take no damage but your armor is now damaged.</p></li><li><p>If you fail, you take full damage.</p></li></ul><h4>Shields</h4><p>Shields do not offer a bonus to your Defense. Instead, a shield is a portable form of cover. They are rarely used because most environments can provide cover without carrying these bulky objects around with you.</p><ul><li><p>A shield is treated as half cover against melee attacks when you are wielding it.</p></li><li><p>A shield is treated as three-quarters cover against ranged attacks when you are wielding it and moving.</p></li><li><p>A shield can provide full cover if you do not move during your turn, and you crouch down behind the shield.</p></li></ul><p>These rules assume the shield is at least 3 feet tall and 2 feet wide, like a typical riot shield or antique kite shield. Smaller shields only provide half cover against ranged attacks and cannot provide full cover unless used with another source of half cover. They still provide the same half cover in melee combat.</p><p>The Armor Value of a shield works exactly like the Armor Value of cover. If the Penetration Value of a weapon is higher than the Armor Value of the shield, it provides no benefit against that attack, since the weapon can easily punch through the shield.</p><blockquote><p><strong>Example:</strong> If a shield has an AR of 2, it could be used as cover against a weapon with a PV of 2 or less. If the weapon has a PV of 3 or more, it can go right through the shield, and it won’t provide any defense.</p></blockquote><h4>Weapons</h4><p>Anything capable of causing damage in the hands of a skilled combatant can be considered a weapon. The list of weapons includes those commonly seen in action cinema. It is by no means exhaustive, and many of the listed weapons represent categories of weapons with similar properties. If you don’t see exactly what you’re looking for, find something close and work with the GM to tweak it to your liking.</p><p><strong>Melee.</strong> Melee weapons are used to attack adjacent opponents. Melee weapons use your Strength modifier for attack and damage rolls unless otherwise specified.</p><p><strong>Ranged.</strong> Ranged weapons can attack targets at a distance. Ranged weapons use your Dexterity modifier for attack and damage rolls unless otherwise specified.</p><h4>Weapon Properties</h4><p>The following properties apply to weapons.</p><p><strong>Aquatic.</strong> Aquatic ranged weapons can be used underwater without penalty.</p><p><strong>Belt.</strong> Belt-fed weapons have a chain of ammunition on a belt. The size of the belt can vary, but 100-round belts are a common length. You should note the size of the belt you are using. Weapons with this property will also list Belt in the Rounds column to indicate the number is variable.</p><p><strong>Blinding.</strong> Blinding weapons use chemical agents or intense light to temporarily blind opponents. In addition to the listed damage, the target must make a Constitution saving throw (DC = 8 + attacker’s proficiency bonus + attacker’s Dexterity modifier) or be Blinded for 1 minute. A target can repeat the saving throw at the end of each of its turns, ending the effect on a successful save. Chemical blinding agents are ineffective against anyone wearing a full face covering or eye protection. Blinding weapons do not add an ability score bonus to their damage rolls.</p><p><strong>Burst.</strong> Weapons with the burst fire property can expend additional ammunition to deal increased damage. The number indicates the number of ammo rounds required. Using burst fire imposes disadvantage on the attack roll but adds one damage die if the attack succeeds. Combatants must declare they are using burst fire before they roll their attack. Burst fire cannot be used at long range.</p><p><strong>Deafening.</strong> Deafening weapons use intense noise to temporarily deafen opponents. In addition to any damage, the target must make a Constitution saving throw (DC 8 + proficiency + attacker’s Dexterity modifier) or gain the Deafened condition and suffer disadvantage on Dexterity ability checks due to temporary inner ear damage, both for 1 minute. A target can repeat the saving throw at the end of each of its turns, ending the effect on a successful save.</p><p><strong>Disguised.</strong> This weapon is designed to look like a mundane item until it is readied for use. It can be identified only by a hands-on inspection.</p><p><strong>Finesse.</strong> When you use this weapon to make a melee attack, you can choose to use your Dexterity modifier for the attack and damage rolls instead of Strength.</p><p><strong>Full-Auto.</strong> A full-auto mechanism cocks the gun and loads a new round from the magazine each time a round is fired. The gun fires continuously as long as the trigger is held down. This allows you to use the Suppressive Fire action (see chapter 8).</p><p><strong>Grenade.</strong> Grenades are explosives designed to be charged and then quickly thrown or launched. They require one hand to throw, and a free hand to arm them. They have special attack rules detailed in Chapter 9: Combat.</p><p><strong>Heavy.</strong> Heavy weapons are especially large and difficult to wield. Anyone with less than 15 Strength has disadvantage on attack rolls while wielding a heavy weapon. Heavy firearms can be fired without this penalty if they are fired from a stationary position, braced on the ground or a sturdy platform.</p><p><strong>Illuminating.</strong> This explosive creates a field of bright light within its radius. It is not blinding. It provides illumination for up to 30 minutes.</p><p><strong>Improvised.</strong> These objects are not well suited to be used as weapons. Wielders suffer disadvantage on attack rolls with these weapons unless they have the Improvised Equipment proficiency.</p><p><strong>Indirect.</strong> Indirect weapons are almost always some kind of thrown explosive. See the special rules for targeting and attacking with thrown explosives detailed in chapter 9.</p><p><strong>Light.</strong> Light weapons are small enough to effectively wield one in each hand. For details, see “Bonus Action: Off-Hand Attack” in chapter 9.</p><p><strong>Loud.</strong> Loud weapons can be heard up to 2 miles away and are easily detected through building walls.</p><p><strong>Reach.</strong> This is the distance at which you can strike an opponent with a melee weapon. Unless otherwise noted, melee weapons have a reach of 5 feet.</p><p><strong>Restricted.</strong> This equipment is limited to police and military in most or all of the US, and in many other jurisdictions worldwide. Even where it isn’t properly illegal, when in the hands of anyone but known authority figures, it raises eyebrows and draws attention.</p><div class=\"callout\"><h5>Restricted Items</h5><p>People don’t generally walk around armed to the teeth, carrying military grade weapons and wearing battlefield armor. Even military personnel only don weapons and armor when deployed for a fight. Your GM has the final say on what you’re allowed to buy and carry with you during the course of an adventure. The GM can outright prohibit some items, or they might discourage such behavior through law enforcement or the public’s reaction in the course of play.</p><p>Before buying any item marked as restricted, talk to your GM about the circumstances in which you can carry it around without drawing undue attention or breaking the law. Apply common sense to the setting you’re playing in—and have fun!</p></div><p><strong>Returning.</strong> A returning weapon is designed to return to the person throwing it if the attack misses its target. If the thrower rolls a critical miss, the weapon does not return.</p><p><strong>Semi-Auto.</strong> A semi-auto mechanism cocks the gun and loads a new round from the magazine each time a round is fired. Each pull of the trigger fires one bullet.</p><p><strong>Shot.</strong> Shotguns typically fire buckshot rounds that make it easier to hit targets at close range. This weapon has advantage on attack rolls at ranges up to 30 feet.</p><p><strong>Slow-Firing.</strong> A slow-firing weapon takes significant time to prepare each shot. As a result, you cannot attack more than once during your turn with a slow-firing weapon, even if you have the Advanced Combat Training talent.</p><p><strong>Special.</strong> This weapon has additional detailed rules listed in its description.</p><p><strong>Stationary.</strong> Guns with this property are too large to effectively fire while held. They are fired on the ground, from a platform, or mounted to a vehicle.</p><p><strong>Stunning.</strong> Stunning weapons use electrical pulses to temporarily incapacitate opponents. In addition to any electrical damage, a Medium size or smaller target must make a Constitution saving throw (DC 8 + proficiency + Dexterity modifier) or gain the Stunned condition until the end of their next turn. Stunning weapons do not add an ability score bonus to their damage rolls.</p><p><strong>Thrown.</strong> Melee weapons that have the thrown property can be used either for a melee attack or thrown at an opponent as a ranged attack. If thrown, they use the same ability modifier for attack and damage as for a melee attack. For example, a hatchet uses your Strength modifier whether melee or thrown. If you throw a dagger, the attack can use either your Strength or your Dexterity modifier, since the dagger has the finesse property.</p><p>Weapons with the thrown property have their range in feet noted in parentheses (normal/long range). You must be holding a weapon to attack with it. Once thrown, it must be recovered before it can be thrown again.</p><p><strong>Two-Handed.</strong> These weapons require two hands to attack with, but they can be carried in one hand.</p><p><strong>Unreliable.</strong> Firearms with the unreliable property jam on a critical miss. A jammed gun cannot fire until an action is used to clear the jam.</p><p><strong>Versatile.</strong> These melee weapons can be used in one hand or two. When used with two hands, they deal the additional damage listed in parentheses.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 4600000,
+      "name": "Explosives",
+      "type": "text",
+      "_id": "Olr6E7LpNrOM0T2h",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Most explosives are not listed directly as weapons. Instead, they are listed separately as ammunition. Attacks with grenades are covered by thrown explosives or grenade launchers, rockets are covered by rocket launchers, and mines are used as traps and don’t use an attack roll.</p><p>Explosives create an area of effect when they detonate. Some deal damage, others have nonlethal effects. When an explosive detonates, anyone within the radius may use the Dive for Cover reaction if they choose and their reaction is available. If successful, they escape the explosion entirely. Dive for Cover is detailed in chapter 9, under “Reactions.”</p><p><strong>Damage.</strong> This is how much damage the explosive does, as well as what type of damage it deals. Unlike weapons, explosives do not apply ability modifiers to their damage.</p><h4>Saving Throws Against Explosive Damage</h4><p>Damaging explosions allow anyone caught in the blast to make a Dexterity saving throw to take half damage. If the explosive is from an attack, the DC is 8 + attacker’s total attack bonus for ranged attacks. Otherwise, the DC is listed by the device.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 4700000,
+      "name": "Basic Equipment",
+      "type": "text",
+      "_id": "xBQmbBuvGcvLMmER",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Basic weapons and armor are commonplace and fairly easy to use. While not everyone is proficient at fighting, most heroes know how to use basic weapons through their class. Despite their simple nature, basic weapons are still potentially deadly.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 4800000,
+      "name": "Advanced Equipment",
+      "type": "text",
+      "_id": "YshP7aDN05XBosPm",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Advanced weapons include the majority of modern civilian firearms along with melee weapons that take training and practice to use effectively. The advanced equipment tables include some armor and weapons commonly used by the military, but which are basically identical to their civilian counterparts.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 4900000,
+      "name": "Historical Equipment",
+      "type": "text",
+      "_id": "riRZr6nkDefFqWku",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Historical weapons were once a mainstay of warfare and violent conflict but have become rarities in the modern world. Most are used by hobbyists who practice older forms of martial arts or do historical reenactments. They are still deadly weapons, but they tend to be less effective than modern firearms.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 5000000,
+      "name": "Improvised Equipment",
+      "type": "text",
+      "_id": "XCN2mqzFxFeTTusB",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Improvised weapons include objects not normally intended as weapons and weapons manipulated in a way they are not designed to be used. The statistics for these weapons are based on the size of the object and the type of damage it inflicts (see “Thing” below).</p><p>Improvised weapons also include introducing your opponent’s face or body into nearby objects by slamming the opponent into them (see “Object” below).</p><p>An object sufficiently similar to a standard weapon can be treated as a standard weapon at the GM’s discretion. A steel pipe is essentially a metal club and can be treated as a basic weapon instead of an improvised one. Wielding an Oscar statue as a bludgeon would not qualify, since it’s too awkward to wield accurately.</p><p>All weapons with the improvised property impose disadvantage on attack rolls unless the attacker has the Improvised Equipment proficiency.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 5100000,
+      "name": "Military Equipment",
+      "type": "text",
+      "_id": "zINdPdBqhCWifKt2",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The list of military weapons includes the most powerful firearms and explosives a hero could realistically employ. Most of these weapons are restricted to military personnel. SWAT forces and other special police units are trained to employ these weapons as well. A few are civilian legal, but these are rare due to their price and lack of practical use in civilian life.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 5200000,
+      "name": "Everything Else",
+      "type": "text",
+      "_id": "bGQc291m4uY4IHTt",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Combat equipment may get lead billing, but modern adventures are about a lot more than gun battles and fist fights. Professional tools help heroes flex their intellectual and creative skills to overcome their foes. Whether your team is breaking into the lair of a villainous mastermind, hacking the computers of a rival government, or rescuing civilians from a massive earthquake, it’s best to come prepared!</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 5300000,
+      "name": "Ammunition",
+      "type": "text",
+      "_id": "X8Ojb4abWJgCqjEC",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The default rules for Everyday Heroes ask players to track the ammunition in their guns, but not the ammunition they otherwise carry. Tracking the ammunition in the weapon adds a tactical element to the game, since certain actions use up more or less ammunition, and more damaging guns have lower ammunition capacities and longer loading times. These rules make choosing a gun more interesting and using it feel more realistic.</p><p>By default, you don’t need to track how much backup ammunition you are carrying. There are situations where the GM may decide it’s important to track ammunition, for example if you’re fighting behind enemy lines, or you have been stripped of all your gear.</p><p>If you’re tracking all your ammunition, assume that ammunition price levels are the same as the gun itself, and that about 30 rounds of ammunition equals 1 bulk for encumbrance purposes.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 5400000,
+      "name": "Ammunition Types",
+      "type": "text",
+      "_id": "aYpVKUAu2lZUB5TL",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>In the real world, ammunition is a complicated subject since there are thousands of different types of cartridges available for different uses. Everyday Heroes tries to simplify this by creating statistics for the guns assuming the most popular type of ammunition used for such weapons. The following are optional rules for those who want to simulate ammunition choices with more detail.</p><h4>Pistol and SMG Ammunition</h4><p>Pistols by default use anti-personnel rounds, better known as hollow-point bullets. They are designed to stop targets in their tracks and not fire through to hit bystanders, because they expand when they hit the target.</p><p><strong>Switch to Armor-Piercing Rounds.</strong> Decrease the damage die by one step and increase the PV by 1.</p><h4>Rifle and Ammunition</h4><p>Rifles, including assault rifles, use armor-piercing rounds by default. These are sometimes known as “full metal jacket” rounds. They are accurate at long ranges and remain intact when encountering armor, hopefully punching through to their victim. It’s rare to find rifle cartridges with hollow-point bullets.</p><h4>Shotgun Ammunition</h4><p>Shotguns use buckshot by default. This is a common load for hunting, though there is a huge range of shotgun ammunition and each is favored for a different situation. It’s largely a myth that shotgun blasts cover a wide area. Even buckshot rounds spread out only a couple of feet over lethal distances. They are easier to hit with, but they are still designed to be used against a single target.</p><p><strong>Switch to Slugs.</strong> Shotgun slugs are huge single bullets. They are enormously powerful short-range munitions. Increase the PV by 2 and lose the Shot property.</p><h4>Machine Gun Ammunition</h4><p>Machine gun ammunition is rarely anything but armor-piercing rounds with a tracer round every fifth round or so. The tracer rounds are necessary for aiming since using the sights on a big machine gun rattling away can be challenging, especially when fired from moving vehicles.</p><p>Most machine guns are belt-fed. Ammunition belts vary in size from smaller 50-round belts to massive 500-round belts. Belts are carried in an ammunition box that can be attached to the weapon or to a weapon mount. For every 50 rounds a belt has, it has 1 bulk.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 5500000,
+      "name": "Firearm Accessories",
+      "type": "text",
+      "_id": "1pPavCYFwYa894cl",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 5600000,
+      "name": "Carrying Cases",
+      "type": "text",
+      "_id": "oPz9oAw5XoTCXMbP",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Carrying cases make it easier to haul around objects past your bulk limit, either by freeing up a hand or helping you avoid being Encumbered. Your normal bulk limit assumes you already have places to put your usual allotment of bulky stuff: holsters, pockets, belts, shoulder bags, or small backpacks.</p><p>These cases allow you to exceed your bulk limit. Pulling one item from a carrying case is an action in combat rather than a free action.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 5700000,
+      "name": "Electronics",
+      "type": "text",
+      "_id": "2lql5nJlQV2iKrxs",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The modern world is full of electronic gadgets and tools. Everyday Heroes focuses on hacking and security related equipment as well as universal consumer electronics.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 5800000,
+      "name": "Hardware",
+      "type": "text",
+      "_id": "2rd0QtRELPD7Z5Vo",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>This category of equipment includes the tools and items that tradespeople use for their work. They can come in handy for heroics as well.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 5900000,
+      "name": "Specialty Goods",
+      "type": "text",
+      "_id": "BHCbzrISgMMzMCmr",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Though this game imagines the characters as heroes, the tools of the criminal trades can come in handy. In the U.S., most of these tools are legal, provided you aren’t using them for illegal purposes.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 6000000,
+      "name": "Sporting Goods",
+      "type": "text",
+      "_id": "FUhrdJGQk4POtoMN",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Sporting goods stores are a wonderland for heroes. Along with weapons, they offer a huge range of useful tools, clothing, and equipment for all kinds of adventures.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 6100000,
+      "name": "Vehicles",
+      "type": "text",
+      "_id": "4WFU1eMEHnnVzGhz",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Vehicles play an important role in action films, sometimes as the main focus of the story. Most of the time, vehicles come into play during chase scenes, but they can work as transportation, storage, and an element of a hero’s personal style.</p><p>Any machine that you can sit inside of or on top of and go places is considered a vehicle in Everyday Heroes. Vehicles are mainly used in the context of chases in the game, but they can become involved in other combat encounters as well. Rules for vehicles are covered in chapter 11, while their properties and statistics are detailed in this chapter.</p><p><strong>Armor Value (AV).</strong> Like any object, a vehicle’s Armor Value determines what weapons can damage it. A vehicle’s windows and tires have their own AV of 1 by default.</p><p><strong>Constitution (Con).</strong> A vehicle’s Constitution modifier is used when it must make a saving throw to avoid damage.</p><p><strong>Dexterity (Dex).</strong> A vehicle’s Dexterity represents how well it handles. A vehicle’s Dexterity modifier applies when making an ability check to make tight turns, stay on the road, or perform other fancy tricks.</p><p><strong>Pax.</strong> An abbreviation for “passengers,” this is the number of people who can comfortably fit in the vehicle, including the driver.</p><p><strong>Strength (Str).</strong> A vehicle’s Strength modifier represents its acceleration and top speed. A vehicle’s Strength modifier applies when the rules call for making an ability check based on going fast.</p><p><strong>Top Speed.</strong> A vehicle’s top speed is included for comparison purposes but is not used in the game mechanics for chases or combat.</p><h4>Vehicle Properties</h4><p>Accident Prone. Checks made to avoid crashing with this vehicle have disadvantage. It crashes automatically if it has no driver.</p><p><strong>Airspeed.</strong> This vehicle travels at high speeds, easily outpacing any land vehicle.</p><p><strong>All-Terrain.</strong> This vehicle does not suffer disadvantage when driving off-road or in other harsh conditions.</p><p><strong>Bulletproof.</strong> The vehicle’s tires and windows are bulletproof and have an AV of 2.</p><p><strong>Enclosed.</strong> The vehicle is encased in armor. Passengers always have total cover if they are inside the vehicle.</p><p><strong>Exposed.</strong> This vehicle leaves its driver and passengers exposed to the elements.</p><p><strong>Extra Wheels.</strong> This vehicle has more wheels than usual. It does not suffer the Blown Tires condition until three or more tires have been destroyed.</p><p><strong>Gargantuan.</strong> This vehicle is Gargantuan size, making it the size of a small building or even larger.</p><p><strong>Gliding.</strong> This vehicle cannot fly under its own power and cannot gain altitude without the help of the wind.</p><p><strong>Huge.</strong> Huge is the typical size for a passenger car or light truck.</p><p><strong>Large.</strong> Compact cars, big motorcycles, and other one- or two-passenger vehicles are considered Large.</p><p><strong>Medium.</strong> This size category includes motorcycles, bicycles, and other one-person vehicles.</p><p><strong>Muscle-Powered.</strong> This vehicle is powered by pedals or a similar mechanism. Add the driver’s Strength modifier to the vehicle’s. The driver uses Strength (Athletics) in place of Dexterity (Vehicles) when making checks to operate this vehicle.</p><p><strong>Railed.</strong> Railed vehicles such as trains travel using steel wheels on steel rails. They cannot suffer the Blown Tires condition.</p><p><strong>Stable.</strong> Attacks made while this vehicle is in motion do not suffer disadvantage due to that movement.</p><p><strong>Tracked.</strong> Tracked vehicles drive on large metal belts sitting on metal wheels. They cannot suffer the Blown Tires condition.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 6200000,
+      "name": "Useful Places",
+      "type": "text",
+      "_id": "AIUM1jsL7RrhVPRy",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Modern people and organizations own more than what they carry around with them. They often have rooms or buildings dedicated to storing useful equipment or for functions other than basic shelter. Such buildings are considered a major purchase.</p><p>In some adventures, having access to such locations can be helpful in overcoming certain challenges. These locations have a place level between 1 and 5, with 1 being the minimum accommodations and 5 being the upper end. The price level corresponds to the place level as shown on the Site table, with benefits of that level noted in the descriptions.</p><p>As noted under “Wealth” in chapter 6, a price level of 6 is the province of supervillains and elite corporations.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 6300000,
+      "name": "Chapter 7: Feats",
+      "type": "text",
+      "_id": "8L7HHAmAr0K7vzQ8",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Feats optimize or add variety to your hero. By using them to customize what a hero can do, they help make each hero unique. Feats are divided into three broad categories: Basic Feats, Advanced Feats, and Multiclass Feats.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 6400000,
+      "name": "Acquiring Feats",
+      "type": "text",
+      "_id": "oAgAvg1uJ31levqn",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>At levels 2, 4, 6, 8, and 10, heroes may choose feats. You can choose two minor feats or one major feat. The major feats are more powerful, so you can only get one when you choose feats. All multiclass feats are major, but most others are minor.</p><p>Some feats have prerequisites you must meet to take the feat. This can be a minimum level, ability score, proficiency, or another feat. If at any time a hero no longer meets the prerequisites for a feat they have taken, they cannot use the benefits of the feat until they once again meet the prerequisites. This does not apply to prerequisites that require you not to have a given archetype or class.</p><h4>Feat Types</h4><p><strong>Basic Feats.</strong> These generic feats let you choose what benefits you get or offer basic character talents. You can take basic feats multiple times. All basic feats are minor feats. Basic feats are great if you want to make your hero strong, while keeping things simple!</p><p><strong>Advanced Feats.</strong> These feats give you specific and detailed benefits that are unique or mimic talents from classes. You can take an advanced feat only once. Most advanced feats are minor feats, but a few are major feats.</p><p><strong>Multiclass Feats.</strong> These feats give you talents from other archetypes and classes. You can take them only once, and you cannot take the feats for your own archetype or class. These powerful feats add complexity to your hero. All multiclass feats are major feats.</p><h4>Feats Table</h4><p>The feats table can help you find a feat you want to take. Look over the table to see what feats you might like, and then look up the details of what they do in the game.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 6500000,
+      "name": "Multiclass Feats",
+      "type": "text",
+      "_id": "DLdYsnDIAOSFZLGR",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Multiclass feats offer heroes the opportunity to gain themes and talents from archetypes and classes other than their own. To qualify for class feats that are not in your hero’s archetype, you must first take the archetype training feat for those classes. Because all Multiclass feats are advanced feats, you can only take any given multiclass feat once. There is no limit for how many multiclass feats you can have other than the number of feat picks your hero has been granted.</p><p>Multiclass feats are listed in the same order as the archetypes and classes in the Class section rather than in alphabetical order.</p><blockquote><ul><li><p><strong>Nicholas “The Ukrainian Bear” Novikov</strong> is a Strong Hero with the MMA fighter class. He just reached level 4 and wants to multiclass with brawler. Since his archetype is Strong Hero, he meets the prerequisite for the Brawler Training feat.</p></li><li><p><strong>Sue Fairfield</strong>, a Tough Hero with the commando class, is interested in multiclassing with the heavy gunner class. She needs to take the Strong Hero Training feat before she can take the Heavy Gunner Training feat.</p></li></ul></blockquote>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "core": {
+      "viewMode": 2
+    }
+  },
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1680152492057,
+    "modifiedTime": 1680324607088,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "c99xr13P6d0yMJet"
+}

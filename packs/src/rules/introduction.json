@@ -1,0 +1,362 @@
+{
+  "name": "Introduction",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "Foreword",
+      "type": "text",
+      "_id": "aEVtmkbmkFwrXqEl",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Twenty years ago, a group of designers took the world’s most popular roleplaying game in a new direction.</p><p>That group (Bill Slavicsek, Rich Redman, Charles Ryan, and myself) approached the question of how to use d20-style game systems in the modern world. Parts of the world outside our windows have slipped into our fantasy campaigns over the years, but there was a paucity of d20 adventures set in the here-and-now. Subgenres like spy games and Roaring ‘20s adventure with unique and interesting rule systems had come and gone, but there was no solid set of rules based on the world’s greatest roleplaying game designed with the modern era in mind.</p><p>What we came up with was d20 Modern, which was first and foremost a set of rules for the modern era born from the inspiration of the third edition of the world’s greatest roleplaying game. And what we did, arranging initial classes by ability instead of occupation, grouping the multiplicity of modern gunpowder weapons, and setting a Wealth bonus for purchases as opposed to tracking every dollar and gold piece, proved to be a versatile and expandable game system. Within the original books we had campaign settings for urban fantasy and modern-day SF and psionic mutants, and over time additional expansions took the system into the near past and alternate futures.</p><p>Now it is 20 years later. The world has changed. How we play games has changed. Our communications are now instantaneous, our access to information more sophisticated than it has ever been before. Players sitting at their computers can gain usable knowledge of new subjects. Films that previously meant a trip to the local video store (or waiting for a DVD to show up in the mail) are now streamed instantaneously to consumers. And game sessions not only occur over video chat, but they can be recorded and shared with other players around the globe.</p><p>Just as the world has continued to change, the mechanics of our most popular game system have evolved as well. The time has come for a new generation of designers and creatives to build on the foundation of the past to create a new game suitable for the modern era. In this new environment Sig Trent and Chris “Goober” Ramsley faced the same design challenges as our original four designers—creating a new game based on the familiarity of the past, but making it feel like it naturally belongs in the here and now.</p><p>Everyday Heroes started with the concept of bringing d20 Modern into the modern era, but it is inspiration, not duplication. This new game aspires to bring the latest version of a well-known, well- beloved game system into the 20th and 21st Century and the potential to go a little beyond. Because every era needs heroes, and this is your time to be heroes.</p><p>Enjoy.</p><p><strong>—Jeff Grubb, November 2022</strong></p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 200000,
+      "name": "Welcome to Everyday Heroes",
+      "type": "text",
+      "_id": "phru3keehQ6mQzBb",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Picture the world outside your window. Then imagine taking part in your favorite movie or novel or streaming series set in the modern era, complete with fantastic action, danger, car chases, and explosions. And even better—you’re the hero of the story, setting out to stop the villains and save the day. You can do all that and more with the Everyday HeroesTM roleplaying game!</p><p>Everyday Heroes is a game inspired by action movies and the tales of adventure found in novels, comic books, and on television. It’s a cooperative game of the imagination where anything can happen and adventure abounds.</p><p>Food trucks, smartphones, tablet computers, electric cars, social media, same-day delivery…you know all about the modern world because you live there. But seen through a cinematic lens, the mundane and commonplace become exciting. The world takes on all the drama and adventure of a modern fantasy, just like a technothriller, spy novel, or an action movie where you’re the hero of the story. That’s what roleplaying is all about!</p><p>When you play Everyday Heroes, you create a fictional character to interact with the story that you experience through the action of the game. That character may be an elite government agent, a private investigator, an ex-cop, or former soldier; the fantasy tropes of the action-adventure genre provide a terrific milieu for amazing adventures. One person, the Game Master (GM), runs the villains and other characters in the story, while the rest of the group plays characters of their own devising. You and your friends play the heroes of the story, trying to overcome challenges your GM sets before you—just like the heroes in an action movie.</p><p>Think about playing characters inspired by your favorite heroes from books, comics, movies, and TV shows set in the modern age. Whether those are hard-bitten soldiers, brilliant detectives, dedicated nurses and doctors, daring reporters, cunning tacticians, genius masterminds, dashing con men, or just people willing to put themselves in harm’s way for the sake of others, those heroes are who this book is designed to allow you to create and the GM to challenge with action and adventure.</p><p>So fasten your fictional seatbelt, check your imaginary magazine, and get ready for unforgettable moments with Everyday Heroes!</p><div class=\"callout\"><h5>On the Shoulders of Giants</h5><p>Like any creative effort, Everyday Heroes owes a great deal to the amazing projects that came before it. The fantastic Modern System Reference Document released in 2002 inspired our theme and demonstrated how to model the real world in a game. We like to think of Everyday Heroes as its spiritual successor. For rules, we used the strong foundation of the most recent, fifth edition of the System Reference Document, whose roots extend to the dawn of roleplaying games. The team at Evil Genius Games melded these influences with our own inspiration and experiences to create the Everyday Heroes RPG.</p></div>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 300000,
+      "name": "What You Need to Play",
+      "type": "text",
+      "_id": "8z5pBmrrd64IAIlN",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>You don’t need much to play Everyday Heroes:</p><ul><li><p>\u0017Some friends or friendly strangers to play with, whether in person or online</p></li><li><p>A copy of the Everyday Heroes Core Rulebook</p></li><li><p>A set of polyhedral dice (real or virtual), including a d4, d6, d8, d10, d12, and d20</p></li><li><p>Pencils, pens, and paper (real or virtual)</p></li></ul><p>Beyond that, a wide variety of toys and tools exist to enhance your roleplay experience. You can use miniatures to represent your heroes. Virtual tabletops provide a way to play online. For in- person play, elaborate battle mats and 3-D terrain can provide a level of realism to focus on. You can also add music, lighting, and all kinds of props. We recommend using whatever enhances the game experience for you and your friends.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 400000,
+      "name": "How to Use This Rulebook",
+      "type": "text",
+      "_id": "cSN6vSXa8BysbSl9",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>This set of core rules is designed to be a toolbox, or perhaps a toybox, filled with inspiration and guidance for creating a grand adventure.</p><p>The rules of the game give you a framework to build on. Everyday Heroes presents enough rules to make combat a tactical challenge, and enough flexibility to allow for strong storytelling during firefights, car chases, and any other action scene you can imagine. Everyday Heroes seeks to inspire you and make the act of bringing stories to life simple and fun for everyone at the gaming table.</p><p>The setting for Everyday Heroes is the world we all live in, with plenty of space for you to imagine whatever differences you desire and whatever changes create exciting opportunities for adventure. Whether you want to experience a gritty story of heroism torn from today’s headlines, re-create a favorite movie franchise, or throw modern heroes into adventures in distant times and places, Everyday Heroes can take you there!</p><p><strong>This rulebook is divided into three sections:</strong></p><p><strong>Part I:</strong> Heroes describes everything you need to know to create characters for Everyday Heroes.</p><p><strong>Part II:</strong> Game Rules includes the fine details on combat, chases, and how to play the game.</p><p><strong>Part III:</strong> Mastering the Game provides a toolbox of advice on how to run the game, special rules, and ideas for adventures.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 500000,
+      "name": "Introduction to Roleplaying",
+      "type": "text",
+      "_id": "2oCGQXVXMgHkXIvs",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>People have been playing roleplaying games for almost 50 years, sharing imagination, group stories, and all sorts of fantastic adventures. In a roleplaying game, you imagine yourself in another life, another world, or another reality. Playing alongside friends, family, and even strangers, you share the experience of a fantastic adventure, overcoming challenges and laughing at the amazing things that happen along the way.</p><h4>What is an RPG?</h4><p>A roleplaying game, or RPG, is a game of collaborative exploration and storytelling in which everyone has an important part to play in making a memorable adventure as unique as the people experiencing it. It’s a great way to make new friends and expand the horizons of your experience and imagination.</p><p>The game rules represent a random element of fate in the story. They help adjudicate fights and determine success or failure when heroes attempt risky or dangerous actions. This provides an element of the unknown for both players and GMs. Chance creates surprise and drama. If something bad does befall a hero, it’s not the GM being mean, it’s just the luck of the dice at play.</p><p>These days, it’s easy to see what a roleplaying game session is like. Search for “Actual Play Tabletop Roleplaying Videos” on the Internet. You’ll find lots of great examples of people playing games and having fun. While every roleplaying game is a little different, they all follow the same basic formula to tell an interactive group story.</p><h4>New to Roleplaying Games?</h4><p>On behalf of the entire Everyday Heroes team, welcome! As a player, you create a character to play in an adventure. As the GM describes the scene, you choose what your hero will do and how they will do it. You can create any kind of hero you want to be. You can play yourself, a famous character from a movie, or someone totally unique, born from your imagination.</p><p>After you finish this Introduction turn to Chapter 1: Creating Heroes. Your character, or “hero,” is the way you interface with the game. Creating a character is a great way to learn the basic rules and key concepts behind Everyday Heroes.</p><p>Don’t worry about making mistakes. The rules make it difficult to create a poorly built hero. Your goal is to have fun and experience an adventure, and there are no winners or losers in this game as long as everyone enjoys the story.</p><p>Once you create a hero, read through the game rules. You don’t need to remember everything or master the rules all at once. Just look at your character sheet and make note of what you need to run your hero.</p><p>We designed these rules to teach you the game, but the best way to learn is to jump in and play with someone who already knows how. If you don’t know anyone, find a group at your local game store or look online for videos of games being played, whether Everyday Heroes or a similar roleplaying game.</p><p>If you’re a player interested in creating and playing a hero, all you need to know are the basic rules and any specific rules that apply to your character. If you decide to take the plunge and become a GM, then you’ll need to learn all of the rules, or at least become familiar enough with this book so you know where to find a rule when you need it.</p><h4>New to Fifth Edition (5e) Rules?</h4><p>Creating a character is still the best way to get started. This introduction provides a quick tour of the main concepts you need to understand to create your character, and Part II of this book goes into detail about all the rules.</p><h4>Experienced with 5e Rules?</h4><p>If you know the 5e rules, then it’s more a matter of noting how the rules differ in Everyday Heroes. The core mechanic of rolling a d20 and adding an ability and proficiency modifier are the same, as are the essentials of combat. Firearms and modern equipment introduce new rules, tactics, and actions to the game. Creating characters has some twists unique to Everyday Heroes. The rules for chases and vehicles, while based on core 5e mechanics, also employ new systems.</p><div class=\"callout\"><h5>Variations on the Theme</h5><p>Important differences between 5e SRD rules and Everyday Heroes include the following:</p><ul><li><p>Classes are broken up into two components: archetype and class. Each archetype offers several classes to choose from.</p></li><li><p>Defense replaces Armor Class. Defense is based on a hero’s primary ability score and an archetype defense bonus.</p></li><li><p>Feats are a core part of the game, rather than an optional rule.</p></li><li><p>Multiclassing is accomplished through feats.</p></li><li><p>Archetypes and classes go up to 10th level.</p></li><li><p>Skills, equipment, conditions, and other game elements have been adjusted for play in the modern world.</p></li><li><p>For a more extensive listing, see @UUID[Compendium.everyday-heroes.rules.ITUYACbst9cb21wQ]{appendix A}.</p></li></ul></div><h4>Want to Be a Game Master?</h4><p>Every game requires a Game Master. The GM sets the stage for adventure, directs the story, adjudicates the rules, and makes sure everyone has a great time. Being a GM is both challenging and rewarding. You describe the world and events that players encounter. GMs need a strong understanding of the rules to answer players’ questions and keep the game moving. Finally, they need to be able to give players a feeling of being challenged while also rewarding them for their exploits and giving them the space in the story to express their own imaginations.</p><p>Ideally, a GM knows the rules inside and out, or at least knows how to find a specific rule when they need it. Still, we designed sections of the book specifically for the player willing to take on this important role. It’s essential you grasp the game rules presented in Part II to guide your players and keep the game moving. Part III is exclusively for GMs, containing support, guidance, and essential resources you may need.</p><p>Being a GM is incredibly rewarding. You set the stage for exciting stories and direct how each story unfolds through the actions and additions of your players. You get to make your players smile, laugh, and enjoy themselves as your group story plays out. Game Masters also sometimes get free pizza from grateful players!</p><h4>Example of Roleplaying</h4><p>Five friends are gathered around a dining room table. They have a few game books, some dice, snacks, drinks, and other gaming staples. Emma is the GM, and her four friends each play a hero of their own creation. The adventure story concerns a team of private investigators looking into insurance fraud and possibly murder. (See the end of this section for a brief explanation of the game elements.)</p><blockquote><p><strong>Game Master Emma:</strong> You arrive outside the shipping warehouse around 1 AM. Lights around the perimeter of the building illuminate the area, and a few cars are parked in the lot adjacent to the building. You don’t see any other signs of activity. What do you want to do?</p><p><strong>Danny:</strong> We should spend some time watching the place, see if we spot any guards.</p><p><strong>Susan:</strong> Okay, but the longer we wait, the more likely someone will wander by.</p><p><strong>Jen:</strong> I’ve got night-vision goggles, so I put those on and look around carefully. It’s got a zoom lens, too. Does that help?</p><p><strong>GM Emma:</strong> Sure, I’ll give you advantage on perception in this situation. Give me a Wisdom (Perception) check.</p><p><strong>Jen:</strong> Okay. (Because she has advantage, Jen rolls two d20 dice instead of the usual one and takes the better roll. She rolled a 6 and an 18, so she takes the 18 and adds her +2 Wisdom modifier and her +2 proficiency bonus.) I got a 22.</p><p><strong>GM Emma:</strong> Nice! Okay, as you scan the building, you don’t see any people, but there is a dog lying near the doors to the warehouse, leashed to the railing there. It looks like it might be asleep, but it’s hard to tell.</p><p><strong>Brian:</strong> What kind of dog?</p><p><strong>GM Emma:</strong> It’s got short black fur and it’s pretty big. Beyond that, it’s hard to tell.</p><p><strong>Brian:</strong> We need to avoid alerting that dog. If it starts barking, that’ll bring trouble.</p><p><strong>\u0001Susan:</strong> Do we see another door somewhere? Or a window, maybe?</p><p><strong>GM Emma:</strong> Not from this angle.</p><p><strong>Jen:</strong> I’ve got a plan…</p></blockquote><p>A typical roleplaying game works like a conversation. The GM sets the scene, the players describe their actions, and the GM determines what happens. When an element of chance, skill, or luck comes into play, dice are rolled to determine the outcome. And the story unfolds from there!</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 600000,
+      "name": "Regarding Diversity",
+      "type": "text",
+      "_id": "gZPLSedwOPwiLBK4",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Evil Genius Games is committed to the idea that games should be enjoyed by everyone. For us, that means both representing a wide range of heroes in our games and encouraging players to express these concepts without any limitations imposed by the rules. For these reasons, we don’t use the rules to model race, gender, sexuality, disability, or similar topics of social identity.</p><p>Roleplaying games are fantasy. They’re about having adventures and portraying characters you want to play. Some of us love to play a hero who is basically ourselves with small differences. Others love to play heroes that are wildly different from themselves. We actively encourage both approaches. Diversity isn’t just about accepting who we are, but also who we want to imagine ourselves to be. Play the hero of your imagination and be both respectful and considerate of everyone around the table.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 700000,
+      "name": "GM's Discretion",
+      "type": "text",
+      "_id": "5WchEfA1kfctUoEH",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The term “GM’s discretion” appears from time to time in the Everyday Heroes rules. It means that you need to talk to your GM and get their permission before you can do something. The GM has the final say about what you can or can’t do in this sort of situation. Only the GM knows what is right for the adventure or campaign they are running.</p><p>GMs are encouraged to set reasonable boundaries for the sake of the story, but to allow players the freedom to express their heroes’ abilities and character as they see fit. Players are encouraged to portray their characters as they envision them and avoid intentionally sabotaging the GM’s efforts to offer an exciting adventure.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 800000,
+      "name": "Style of Play",
+      "type": "text",
+      "_id": "2UphB8xiwR2c54DX",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>There is no right way to play a roleplaying game. Everyday Heroes is designed to be flexible so you can mold it to fit your needs. You can use these rules to run a gritty and realistic military campaign, a zany action comedy, or an international spy operation. You will find adaptable elements in the characters, foes, and rules of the game.</p><p>That said, when you sit down to play with others, it’s important for everyone to understand the tone and style of the game you’re about to play. Generally, the GM has the most control over this as they lay out the plot and setting, but that doesn’t mean they should ignore the players’ wishes. Ideally, everyone agrees on a central theme and tone to shoot for. That can shift as you play, as long as everyone is having fun.</p><p>Everyday Heroes uses traditional game mechanics. Combat can be played tactically if you want, or loose and breezy if you prefer. The level of complexity and the length of combat tends to grow as heroes gain levels. If you want simple gameplay, it’s best to stick to lower-level heroes.</p><p>While the rules of the game focus heavily on combat and chases, Everyday Heroes isn’t a “combat game.” It’s first and foremost about telling a story, and many great adventure stories don’t involve combat. But combat is more exciting with a tactical element, and for that, rules are pretty handy.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 900000,
+      "name": "Playing the Game",
+      "type": "text",
+      "_id": "aMdNRIuHl57V1nuf",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Everyday Heroes uses the fifth edition (5e) rules. Gameplay follows a basic pattern of steps:</p><ol><li><p>The GM describes the environment and situation.</p></li><li><p>Given that information, the players tell the GM what they want their heroes to do.</p></li><li><p>The GM resolves the heroes’ actions and narrates the results.</p></li></ol><p>To resolve actions, the game uses dice (like the six- sided dice commonly used in other games) with a variety of sides and values.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 1000000,
+      "name": "Polyhedral Dice",
+      "type": "text",
+      "_id": "SRbx0A3TJteE3030",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Polyhedral dice have been used in roleplaying games since the beginning of the hobby. A set of six polyhedral dice are used in Everyday Heroes: d4, d6, d8, d10, d12, and d20. Wherever you see this kind of notation, the “d” means dice, and the number is how many sides the die has.</p><p>The d20 is used a lot in Everyday Heroes. Whether you’re fighting, using skills, avoiding dangers, or just seeing how lucky you are, you roll a d20. The other dice determine how much damage a hero is about to deliver to the bad guys, among other uses.</p><p>While a 2-sided die (“d2”) is not used in these core rules, they might appear in a future product. If so, you can roll that on any die and assume odd numbers are 1, and even numbers are 2.</p><p>A number before the “d” tells you to roll that size die that many times and add the numbers together. So if the rules say “roll 2d6,” that means roll a six-sided die two times and add the results together. (Or, if you have them, just roll two six-sided dice at the same time.)</p><p>Sometimes a modifier will appear at the end of a notation, indicated by a + or – sign. For example: Roll 1d6 + 3 means roll a six-sided die once and add 3 to the result.</p><p>Percentile Dice: A d100 is rolled by rolling two ten-sided dice. One is the tens place and the other is the ones place. So a roll of 1 and 5 is 15. A roll of 10 on the tens place is treated as 0 unless a 10 is rolled on the second die, in which case the result is 100.</p><p>Special ten-sided dice with 00–90 are commonly used as the tens die, in which case 00 and 0 is 100.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 1100000,
+      "name": "Rolls, Results, and Modifiers",
+      "type": "text",
+      "_id": "NreJPcvWhLxieIFg",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>When you roll a die, the number that shows on the die is the roll. So if the rules say “when you roll a 20…“ it means the actual number appearing on the die.</p><p><strong>Modifiers</strong> are any values added to or subtracted from a roll.</p><p>A <strong>bonus</strong> is a positive modifier, and a <strong>penalty</strong> is a negative modifier.</p><p>A <strong>result</strong> is the total after applying modifiers to the roll.</p><blockquote><p><strong>Example:</strong> You roll d20 + 4, with the twenty-sided die coming up a 16. That’s your roll. You then add a +4 modifier and get a result of 20.</p></blockquote>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 1200000,
+      "name": "The Core Mechanics",
+      "type": "text",
+      "_id": "Nh0Bcrq88FwOKDNk",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Most actions in the game are resolved with a simple procedure:</p><ol><li><p><strong>Roll a d20.</strong></p></li><li><p><strong>Add any relevant modifiers.</strong></p></li><li><p><strong>Compare the result to a target number.</strong></p></li></ol><p>If the result equals or exceeds the target number, your character succeeds. If the result is lower than the target number, you fail.</p><p><strong>Three general rules also apply to all elements of the game:</strong></p><ol><li><p><strong>Round down.</strong> Unless otherwise noted, whenever you divide a number in the game and end up with a fraction, round down.</p></li><li><p><strong>Specific beats general.</strong> All the rules of the game apply except when a talent or feature or feat says otherwise. For example, most firearms use Dexterity to attack, but the heavy gunner class can use Strength to fire the big guns they love.</p></li><li><p><strong>Have fun!</strong> The entire point of a roleplaying game is to have a good time. It works best if everyone participating agrees they are all trying to make the game fun for everyone, rather than just themselves.</p></li></ol>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 1300000,
+      "name": "Roleplaying Game Terminology",
+      "type": "text",
+      "_id": "yQGhixp8YM3bMSOz",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>If this is your first roleplaying game, or you’re still relatively new to the hobby, you might find this list of terms helpful.</p><p><strong>5e.</strong> This stands for fifth edition and refers to the rules system used by the world’s most well-known fantasy roleplaying game. Everyday Heroes is based on this set of rules, as published under the fifth edition system reference document (SRD).</p><p><strong>Adventure.</strong> Any type of story where the heroes face challenges or adversity while pursuing a specific goal. Everyday Heroes adventures based on movies are called Cinematic AdventuresTM.</p><p><strong>Campaign.</strong> A long adventure or series of interconnected adventures where heroes face different challenges over a long period of time.</p><p><strong>Game Master (GM).</strong> The storyteller and judge of the rules who guides you through an adventure. The GM creates the world you will explore and everything in it except for the heroes you play.</p><p><strong>Hero.</strong> The heroes are the protagonists of the story that the GM will present for everyone’s enjoyment. Players create the heroes and decide what they do to overcome the challenges that come up during their adventures. The term “hero” isn’t meant to imply any sort of moral compass. Your character can be good, bad, or somewhere in between, as long as the rest of your group is okay with how that translates into play.</p><p><strong>Players.</strong> Players are the people who create the imaginary heroes and decide what they do in the story the GM presents. You can try to do nearly anything you like in a story, but whether or not it works out how you hope depends on the rules of the game and how the GM adjudicates those rules.</p><p><strong>Team.</strong> This term refers collectively to the heroes of the story.</p><div class=\"callout\"><h5>What's in a Name</h5><p>The following terms are not rules, but they have specific meanings when used in the context of rules. These are generally used for clarity, but ultimately how they are interpreted is up to the GM. If an attack specifies it affects one target, it can generally also be used against discrete inanimate objects, such as a window, door, baseball, or anything else that could logically be damaged by it.</p><p><strong>Ally:</strong> This refers to heroes other than the acting hero, as well as companions, friendly NPCs, or anyone else the acting hero wants to treat as an ally. It specifically excludes the hero themself.</p><p><strong>Character:</strong> Any hero or nonplayer character.</p><p><strong>Combatant:</strong> Any entity engaged in combat or caught up in a combat situation, including yourself, allies, and opponents.</p><p><strong>Creature:</strong> This refers to any living entity or mechanical entity represented in the game rules.</p><p><strong>Hero:</strong> A character controlled by a player. NPC: A nonplayer character, an entity controlled by the GM.</p><p><strong>Opponent:</strong> Any combatant opposing the heroes or trying to do them harm is an opponent.</p><p><strong>Robot:</strong> Robots are mechanical entities that can act on their own and are often treated as NPCs rather than as equipment.</p><p><strong>Target:</strong> A target is the combatant chosen as the subject of an attack or other combat effect.</p><p><strong>Victim:</strong> The subject of a successful attack or other combat effect.</p></div><h4>Rules Jargon</h4><p>This section provides very brief definitions of the benefits from classes, backgrounds, and professions, to help you make decisions during the hero building process. For detailed information, see chapter 8.</p><p><strong>Ability Check:</strong> A core mechanic of the game, a d20 roll based on one of your ability scores.</p><p><strong>Ability Scores:</strong> The essential measures of a hero: Strength (Str), Dexterity (Dex), Constitution (Con), Intelligence (Int), Wisdom (Wis), and Charisma (Cha).</p><p><strong>Action:</strong> Something you can do once on your turn, whether attacking an opponent, helping an ally, or searching a room.</p><p><strong>Advantage:</strong> When you have advantage, you roll two d20s and use the better result.</p><p><strong>Archetype:</strong> The essential type of hero you are: Strong, Agile, Tough, Smart, Wise, or Charming.</p><p><strong>Attack:</strong> The basic way you deal with opponents. Attack Roll: The roll to determine if you hit your opponents.</p><p><strong>Bonus Action:</strong> Something extra you can do once on your turn, usually granted by your class.</p><p><strong>Background:</strong> The elements that make you who you are.</p><p><strong>Class:</strong> The specific way you express your archetype.</p><p><strong>Conditions:</strong> Adverse states that can affect your character during the game, such as Blinded, Distracted, or Stunned.</p><p><strong>Damage:</strong> The amount of hurt you deal to opponents. Damage Roll: The roll to determine how much hurt your successful attack inflicts on your opponent.</p><p><strong>DC (Difficulty Class):</strong> The target number you need to succeed when rolling the dice for checks outside combat.</p><p><strong>Defense:</strong> How hard it is to hit you in combat. Defense Bonus: A value added to a hero’s defense, as determined by their class and level.</p><p><strong>Disadvantage:</strong> When you have disadvantage, you roll two d20s and use the worse result.</p><p><strong>Equipment:</strong> Stuff you use. Proficiency with a type of equipment gives you a proficiency bonus with that equipment.</p><p><strong>Expertise:</strong> Doubles your proficiency bonus for a skill you’re proficient in.</p><p><strong>Feat:</strong> A special way to customize your hero.</p><p><strong>Initiative:</strong> A roll that determines the order of combat.</p><p><strong>Hit Dice:</strong> Based on your archetype, this determines the die you roll for hit points.</p><p><strong>Hit Points:</strong> A measure of how tough you are. The more hit points you have, the longer you can stay in the fight.</p><p><strong>Level:</strong> A measure of how powerful you are, from 1 to 10. New characters start at 1st level.</p><p><strong>Profession:</strong> What you do for a living.</p><p><strong>Proficiencies</strong>: Things your hero is particularly good at. The three types are equipment, saving throws, and skills. If you’re proficient with something, you have a proficiency bonus when doing it.</p><p><strong>Proficiency Bonus:</strong> A level-based bonus to things you’re proficient with.</p><p><strong>PV / AV:</strong> Penetration Value rates an attack’s ability to penetrate armor, while Armor Value rates armor’s resistance to penetration.</p><p><strong>Reaction:</strong> An activity triggered by another effect, like diving for cover from an explosion.</p><p><strong>Round</strong>: A timeframe of combat; every combatant gets a turn during a round.</p><p><strong>Saving Throws (Saves):</strong> A roll to avoid danger. Proficiency with a save gives you a proficiency bonus on that save.</p><p><strong>Skills:</strong> Areas of knowledge used for everyday challenges. Proficiency in a skill gives you a proficiency bonus with ability checks that use that skill.</p><p><strong>Turn:</strong> Your time to act during a round.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "core": {
+      "viewMode": 2
+    }
+  },
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.1.0",
+    "coreVersion": "10.291",
+    "createdTime": 1680130416281,
+    "modifiedTime": 1680320508832,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "CjLKGGgvaX2zFkDZ"
+}
