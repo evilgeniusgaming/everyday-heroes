@@ -59,8 +59,9 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 			dc: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.Explosive.DC.Label"}),
 			radius: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: ""}),
-				units: new foundry.data.fields.StringField({label: "EH.Measurement.Units"})
-				// TODO: Set default based on default units setting
+				units: new foundry.data.fields.StringField({
+					initial: () => CONFIG.EverydayHeroes.defaultUnits.length, label: "EH.Measurement.Units"
+				})
 			}),
 			bonuses: new foundry.data.fields.SchemaField({
 				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label"}),

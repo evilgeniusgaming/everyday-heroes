@@ -96,6 +96,16 @@ export const diceSteps = [4, 6, 8, 10, 12];
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Default units to use.
+ * @enum {string}
+ */
+export const defaultUnits = {
+	length: "foot"
+};
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Configuration data for length units. The keys should be a unit as is usable in `Intl.NumberFormat`.
  *
  * @typedef {LabeledConfiguration} UnitConfiguration

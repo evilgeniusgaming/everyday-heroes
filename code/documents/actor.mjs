@@ -1194,6 +1194,14 @@ export default class ActorEH extends Actor {
 	/*  Socket Event Handlers                    */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	async _preCreate(data, options, user) {
+		if ( this.type === "hero" ) {
+			this.updateSource({prototypeToken: {actorLink: true, disposition: 1}});
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	async _preUpdate(changed, options, user) {
 		if ( this.type !== "hero" ) return;
 

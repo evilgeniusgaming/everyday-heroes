@@ -98,5 +98,6 @@
   ],
   "gridDistance": 5,
   "gridUnits": "foot",
+  "primaryTokenAttribute": "attributes.hp",
   "flags": {}
 }
