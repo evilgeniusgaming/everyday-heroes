@@ -17,7 +17,8 @@ export default class ProfessionData extends SystemDataModel.mixin(DescribedTempl
 			type: "profession",
 			category: "concept",
 			localization: "EH.Item.Type.Profession",
-			icon: "fa-solid fa-user-tie"
+			icon: "fa-solid fa-user-tie",
+			image: "systems/everyday-heroes/artwork/svg/items/profession.svg"
 		};
 	}
 

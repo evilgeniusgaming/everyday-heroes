@@ -19,7 +19,8 @@ export default class SpecialFeatureData extends SystemDataModel.mixin(
 			type: "specialFeature",
 			category: "feature",
 			localization: "EH.Item.Type.SpecialFeature",
-			icon: "fa-solid fa-users-rectangle"
+			icon: "fa-solid fa-users-rectangle",
+			image: "systems/everyday-heroes/artwork/svg/items/feature.svg"
 		};
 	}
 

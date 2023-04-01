@@ -15,7 +15,8 @@ export default class ArchetypeData extends SystemDataModel.mixin(DescribedTempla
 			type: "archetype",
 			category: "concept",
 			localization: "EH.Item.Type.Archetype",
-			icon: "fa-solid fa-landmark"
+			icon: "fa-solid fa-landmark",
+			image: "systems/everyday-heroes/artwork/svg/items/archetype.svg"
 		};
 	}
 

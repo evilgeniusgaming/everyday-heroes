@@ -15,7 +15,8 @@ export default class BackgroundData extends SystemDataModel.mixin(DescribedTempl
 			type: "background",
 			category: "concept",
 			localization: "EH.Item.Type.Background",
-			icon: "fa-solid fa-address-card"
+			icon: "fa-solid fa-address-card",
+			image: "systems/everyday-heroes/artwork/svg/items/background.svg"
 		};
 	}
 

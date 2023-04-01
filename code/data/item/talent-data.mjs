@@ -20,7 +20,8 @@ export default class TalentData extends SystemDataModel.mixin(DescribedTemplate,
 			type: "talent",
 			category: "feature",
 			localization: "EH.Item.Type.Talent",
-			icon: "fa-solid fa-users-rectangle"
+			icon: "fa-solid fa-users-rectangle",
+			image: "systems/everyday-heroes/artwork/svg/items/feature.svg"
 		};
 	}
 

@@ -24,7 +24,8 @@ export default class FeatData extends SystemDataModel.mixin(
 			type: "feat",
 			category: "feature",
 			localization: "EH.Item.Type.Feat",
-			icon: "fa-solid fa-house-user"
+			icon: "fa-solid fa-house-user",
+			image: "systems/everyday-heroes/artwork/svg/items/feature.svg"
 		};
 	}
 
