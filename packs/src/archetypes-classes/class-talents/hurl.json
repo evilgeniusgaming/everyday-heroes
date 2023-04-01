@@ -1,7 +1,7 @@
 {
   "name": "Hurl",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/ranged/bullets-triple-ball-orange.webp",
   "system": {
     "description": {
       "value": "<p>You can double the throwing range when you attack with any weapon that has the thrown property.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679455526843,
-    "modifiedTime": 1679455770539,
+    "modifiedTime": 1680382909927,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

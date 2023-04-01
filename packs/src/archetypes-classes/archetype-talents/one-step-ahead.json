@@ -1,7 +1,7 @@
 {
   "name": "One Step Ahead",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/movement/figure-running-gray.webp",
   "system": {
     "description": {
       "value": "<p>You can choose not to fall Prone when you take the Dive for Cover reaction.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679162464108,
-    "modifiedTime": 1679162478738,
+    "modifiedTime": 1680381635089,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

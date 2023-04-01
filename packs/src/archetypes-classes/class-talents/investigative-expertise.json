@@ -1,7 +1,7 @@
 {
   "name": "Investigative Expertise",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/trades/academics-study-reading-book.webp",
   "system": {
     "description": {
       "value": "<p>Choose one from Insight, Investigation, or Perception. You must be proficient in a skill to take expertise in that skill.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679516827337,
-    "modifiedTime": 1679518397511,
+    "modifiedTime": 1680382929324,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

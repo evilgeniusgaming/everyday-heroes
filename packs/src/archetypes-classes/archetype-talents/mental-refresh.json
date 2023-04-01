@@ -1,7 +1,7 @@
 {
   "name": "Mental Refresh",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/movement/arrows-up-trio-red.webp",
   "system": {
     "description": {
       "value": "<p>When you take a short rest, you can refresh your mind with a nice snack, a power nap, and/or some light reading. You regain 1 Genius point when you finish that short rest. You can do this only once before you finish a long rest.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679161585408,
-    "modifiedTime": 1679200770343,
+    "modifiedTime": 1680381609351,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

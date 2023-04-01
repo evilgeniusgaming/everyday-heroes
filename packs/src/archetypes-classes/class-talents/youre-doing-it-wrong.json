@@ -1,7 +1,7 @@
 {
   "name": "You're Doing It Wrong",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/targeting/crosshair-triple-strike-orange.webp",
   "system": {
     "description": {
       "value": "<p>When an ally that can see and hear you misses with an attack, you can use your reaction to instruct them on the proper technique, allowing them to reroll the attack.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679516713618,
-    "modifiedTime": 1679518430476,
+    "modifiedTime": 1680383782811,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

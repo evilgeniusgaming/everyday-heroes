@@ -1,7 +1,7 @@
 {
   "name": "Elementary",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/trades/academics-investigation-puzzles.webp",
   "system": {
     "description": {
       "value": "<p>You always treat a roll of 9 or lower as a 10 on any ability check you make that uses Perception, Insight, or Investigation, even if you are not proficient in those skills.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679516844773,
-    "modifiedTime": 1679518405860,
+    "modifiedTime": 1680382523742,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

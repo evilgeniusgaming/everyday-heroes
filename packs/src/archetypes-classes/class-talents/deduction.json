@@ -1,7 +1,7 @@
 {
   "name": "Deduction",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/trades/academics-investigation-study-blue.webp",
   "system": {
     "description": {
       "value": "<p>When you fail an Intelligence ability check, you can reroll that check. This can be done only once per ability check.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679516800231,
-    "modifiedTime": 1679518381864,
+    "modifiedTime": 1680382491185,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

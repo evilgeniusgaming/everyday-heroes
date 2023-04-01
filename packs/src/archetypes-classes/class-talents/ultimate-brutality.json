@@ -1,7 +1,7 @@
 {
   "name": "Ultimate Brutality",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/melee/swords-parry-block-yellow.webp",
   "system": {
     "description": {
       "value": "<p>You add one damage die to your melee weapon damage rolls. (See \"Dice Rules\" in chapter 8 for details on extra dice.)</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679455749377,
-    "modifiedTime": 1679455789460,
+    "modifiedTime": 1680383413582,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

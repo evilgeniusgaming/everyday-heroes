@@ -1,7 +1,7 @@
 {
   "name": "Alert",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/perception/eye-tendrils-web-purple.webp",
   "system": {
     "description": {
       "value": "<p>You cannot be surprised.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679516817641,
-    "modifiedTime": 1679518395335,
+    "modifiedTime": 1680382090162,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

@@ -1,7 +1,7 @@
 {
   "name": "Concentration",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/control/hypnosis-mesmerism-eye-tan.webp",
   "system": {
     "description": {
       "value": "<p>When you fail a Wisdom ability check, you can spend 1 Focus to reroll that check. This can be used only once per ability check.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679162425932,
-    "modifiedTime": 1679162477028,
+    "modifiedTime": 1680381389085,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

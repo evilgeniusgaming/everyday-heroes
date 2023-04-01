@@ -1,7 +1,7 @@
 {
   "name": "Focus",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/trades/academics-investigation-study-blue.webp",
   "system": {
     "description": {
       "value": "<p>You have Focus points equal to the number shown on the Wise Hero table, which can be spent to use your Concentration talent as well as talents granted by your class. All your Focus recharges whenever you finish a short or long rest.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679162410991,
-    "modifiedTime": 1679162475428,
+    "modifiedTime": 1680381487982,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

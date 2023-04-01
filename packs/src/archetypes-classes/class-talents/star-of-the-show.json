@@ -1,7 +1,7 @@
 {
   "name": "Star of the Show",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/light/explosion-star-glow-yellow.webp",
   "system": {
     "description": {
       "value": "<p>When you make an attack, you can choose to automatically hit, and that hit is a critical hit. You cannot do this again until you finish a short or long rest.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679517725514,
-    "modifiedTime": 1679518211461,
+    "modifiedTime": 1680383300909,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

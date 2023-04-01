@@ -1,7 +1,7 @@
 {
   "name": "Know-It-All",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/trades/academics-book-study-runes.webp",
   "system": {
     "description": {
       "value": "<p>You have advantage on all ability checks to recall information.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679516697039,
-    "modifiedTime": 1679518428069,
+    "modifiedTime": 1680382957765,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

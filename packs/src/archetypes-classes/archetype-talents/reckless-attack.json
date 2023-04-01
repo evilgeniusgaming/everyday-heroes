@@ -1,7 +1,7 @@
 {
   "name": "Reckless Attack",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/melee/maneuver-greatsword-yellow.webp",
   "system": {
     "description": {
       "value": "<p>At the start of your turn, you can declare you are being reckless. You gain advantage on attack rolls with melee weapons until the end of your turn. Your opponents gain advantage on attack rolls against you until the start of your next turn.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679160884287,
-    "modifiedTime": 1679160899488,
+    "modifiedTime": 1680381852494,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

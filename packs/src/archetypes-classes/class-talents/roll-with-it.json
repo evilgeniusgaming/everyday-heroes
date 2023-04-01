@@ -1,7 +1,7 @@
 {
   "name": "Roll With It",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/movement/pinwheel-turning-blue.webp",
   "system": {
     "description": {
       "value": "<p>When you take damage from an attack, you can use your reaction to reduce that attack's damage by half.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679458790408,
-    "modifiedTime": 1679459086513,
+    "modifiedTime": 1680387492921,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

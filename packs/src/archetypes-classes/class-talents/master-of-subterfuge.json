@@ -1,7 +1,7 @@
 {
   "name": "Master of Subterfuge",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/unholy/silhouette-robe-evil-glow.webp",
   "system": {
     "description": {
       "value": "<p>You always treat a roll of 9 or lower as a 10 on Deception, Security, Sleight of Hand, Stealth, or Streetwise checks (even if you are not proficient in those skills).</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679458835470,
-    "modifiedTime": 1679459089776,
+    "modifiedTime": 1680383020181,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

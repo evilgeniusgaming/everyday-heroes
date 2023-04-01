@@ -1,7 +1,7 @@
 {
   "name": "Crush",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/melee/sword-damaged-broken-purple.webp",
   "system": {
     "description": {
       "value": "<p>You have advantage on any Strength check you make to break an object.</p><p>In addition, your melee attacks have +1 Penetration Value.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679455504696,
-    "modifiedTime": 1679455767206,
+    "modifiedTime": 1680382465368,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

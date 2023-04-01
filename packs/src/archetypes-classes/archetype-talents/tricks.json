@@ -1,7 +1,7 @@
 {
   "name": "Tricks",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/sundries/gaming/playing-cards.webp",
   "system": {
     "description": {
       "value": "<p>You learn two tricks, chosen from your class's list of tricks. You learn additional tricks as you gain levels, as shown on the Charming Hero table. Whenever you gain a level in Charming Hero, you can replace one trick you know with another from your class list.</p><p>You can use only one trick during a single attack, saving throw, or ability check.</p><p>The effect of each trick, as well as the action you must take to enact it, is included in the trick's individual description. If a trick calls for a saving throw, the save DC is 8 + your Charisma modifier + your proficiency bonus. This is your trick DC.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679162613096,
-    "modifiedTime": 1679162668954,
+    "modifiedTime": 1680381919710,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

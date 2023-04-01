@@ -1,7 +1,7 @@
 {
   "name": "Master of Arms",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/melee/maneuver-daggers-paired-orange.webp",
   "system": {
     "description": {
       "value": "<p>You add one die to the damage of all weapons you wield. (See \"Dice Rules\" in chapter 8 for details on extra dice.)</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679515614308,
-    "modifiedTime": 1679518459836,
+    "modifiedTime": 1680382981328,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

@@ -1,7 +1,7 @@
 {
   "name": "Bits and Pieces",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/melee/sword-damaged-broken-red.webp",
   "system": {
     "description": {
       "value": "<p>Immediately after you use your Smash talent with a melee attack that is not an unarmed strike and break the weapon, you can use a bonus action to make an additional attack using the destroyed pieces of the weapon. The pieces are an improvised weapon that deal 1d4 damage and are destroyed after the attack.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679455628096,
-    "modifiedTime": 1679455779860,
+    "modifiedTime": 1680382205530,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

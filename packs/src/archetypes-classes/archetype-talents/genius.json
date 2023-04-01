@@ -1,7 +1,7 @@
 {
   "name": "Genius",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/trades/academics-study-reading-book.webp",
   "system": {
     "description": {
       "value": "<p>Your incredible Genius allows you to devise and enact cunning plans that can accomplish what seems impossible until you explain how they came to fruition.</p><p>You can enact any plan you know by spending 1 Genius. The Smart Hero table shows how much Genius you have based on your level. Genius recharges when you finish a long rest. Provided you have Genius, you can use any of your plans without restriction.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679161558877,
-    "modifiedTime": 1679161576468,
+    "modifiedTime": 1680381473181,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

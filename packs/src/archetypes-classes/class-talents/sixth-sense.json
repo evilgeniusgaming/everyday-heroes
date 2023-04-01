@@ -1,7 +1,7 @@
 {
   "name": "Sixth Sense",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/perception/third-eye-blue-red.webp",
   "system": {
     "description": {
       "value": "<p>You gain the following benefits:</p><ul><li><p>You can use Wisdom instead of Dexterity for any attack or damage roll you make with weapons that don't have the heavy property.</p></li><li><p>You can use Wisdom instead of Dexterity when you roll for initiative.</p></li><li><p>You can take the Search action as a bonus action.</p></li></ul>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679516807537,
-    "modifiedTime": 1679518392494,
+    "modifiedTime": 1680383187627,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

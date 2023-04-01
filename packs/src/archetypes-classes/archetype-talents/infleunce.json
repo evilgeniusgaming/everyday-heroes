@@ -1,7 +1,7 @@
 {
   "name": "Infleunce",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/social/diplomacy-handshake.webp",
   "system": {
     "description": {
       "value": "<p>You have two influence dice, which are d6s. An influence die is expended when it is rolled. You regain all your expended influence dice when you finish a short or long rest.</p><p>You gain additional influence dice as you gain levels, as shown in the Charming Hero table.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679162607598,
-    "modifiedTime": 1679162681997,
+    "modifiedTime": 1680381507131,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

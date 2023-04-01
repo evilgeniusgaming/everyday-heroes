@@ -1,7 +1,7 @@
 {
   "name": "Surprise Attack",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/movement/trail-streak-impact-blue.webp",
   "system": {
     "description": {
       "value": "<p>You have advantage on attack rolls against any opponent that has not yet taken a turn during this combat.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679458778104,
-    "modifiedTime": 1679459083958,
+    "modifiedTime": 1680383348275,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

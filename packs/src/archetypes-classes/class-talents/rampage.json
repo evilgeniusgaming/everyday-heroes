@@ -1,7 +1,7 @@
 {
   "name": "Rampage",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/melee/strike-hammer-destructive-blue.webp",
   "system": {
     "description": {
       "value": "<p>As a bonus action, you can move up to your speed if you move toward an opponent. If there are no opponents present, you may move toward an obviously dangerous situation instead.</p><p>In addition, during a foot chase, if you are a predator (you're doing the chasing), you have advantage on Strength (Athletics) and Constitution (Endurance) checks made as part of a Gain Ground action.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679455598184,
-    "modifiedTime": 1679455777697,
+    "modifiedTime": 1680383101098,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

@@ -1,7 +1,7 @@
 {
   "name": "Center of Attention",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/trades/music-singing-voice-blue.webp",
   "system": {
     "description": {
       "value": "<p>Whenever you desire, you can make yourself the center of attention. As long as you continue to speak, perform, or otherwise attract attention, enemies and bystanders that can see or hear you have disadvantage on Wisdom (Perception) checks made against anyone and anything other than you.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679517649455,
-    "modifiedTime": 1679518193681,
+    "modifiedTime": 1680382845963,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

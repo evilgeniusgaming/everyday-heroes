@@ -1,7 +1,7 @@
 {
   "name": "Charm",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/life/heart-pink.webp",
   "system": {
     "description": {
       "value": "<p>When you make a Charisma check, after rolling but before determining the result, you can roll an influence die and add it to your result.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679162619640,
-    "modifiedTime": 1679162645597,
+    "modifiedTime": 1680381184653,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

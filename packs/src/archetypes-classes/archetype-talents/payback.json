@@ -1,7 +1,7 @@
 {
   "name": "Payback",
   "type": "talent",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/melee/unarmed-punch-fist-white.webp",
   "system": {
     "description": {
       "value": "<p>You gain a +2 bonus on one attack roll against an opponent who has damaged you since the end of your last turn. You can use this talent once during your turn. You can decide to use Payback after making your attack roll, but before determining the result.</p>",
@@ -42,7 +42,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679161251265,
-    "modifiedTime": 1679161273820,
+    "modifiedTime": 1680381690379,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
