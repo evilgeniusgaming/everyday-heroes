@@ -1,7 +1,7 @@
 {
   "name": "Equipment Training",
   "type": "feat",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/everyday-heroes/artwork/icons/feats/equipment-training.svg",
   "system": {
     "description": {
       "value": "<p>You have trained to use various kinds of combat equipment.</p><ul><li><p>You gain Basic Equipment proficiency if you don't already have it.</p></li><li><p>Choose one additional equipment proficiency from Advanced Equipment, Historical Equipment, and Improvised Equipment.</p></li><li><p>If you already have Advanced Equipment, you may select Military Equipment.</p></li></ul>",
@@ -59,7 +59,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679977444704,
-    "modifiedTime": 1680022456903,
+    "modifiedTime": 1680458880523,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

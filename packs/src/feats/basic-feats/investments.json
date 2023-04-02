@@ -1,7 +1,7 @@
 {
   "name": "Investments",
   "type": "feat",
-  "img": "icons/commodities/currency/coins-plain-stack-gold-yellow.webp",
+  "img": "systems/everyday-heroes/artwork/icons/feats/investments.svg",
   "system": {
     "description": {
       "value": "<p>You have either made wise investments or come into an inheritance of some kind. Each time you take this feat, you gain +1 Wealth Level (maximum 5).</p>",
@@ -53,7 +53,8 @@
         {
           "key": "system.details.wealth.bonus",
           "mode": 2,
-          "value": "+1"
+          "value": "+1",
+          "priority": null
         }
       ],
       "tint": null,
@@ -71,7 +72,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679977454351,
-    "modifiedTime": 1680022546799,
+    "modifiedTime": 1680459268696,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

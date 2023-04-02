@@ -1,7 +1,7 @@
 {
   "name": "Advanced Skill Training",
   "type": "feat",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/everyday-heroes/artwork/icons/feats/advanced-skill-training.svg",
   "system": {
     "description": {
       "value": "<p>You love to acquire new skills and abilities through constant study and practice. Each time you take this feat, you gain expertise in a skill of your choice that you are already proficient in.</p>",
@@ -59,7 +59,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679977020992,
-    "modifiedTime": 1680022438441,
+    "modifiedTime": 1680459263218,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

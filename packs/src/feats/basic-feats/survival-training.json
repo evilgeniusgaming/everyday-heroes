@@ -1,7 +1,7 @@
 {
   "name": "Survival Training",
   "type": "feat",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/everyday-heroes/artwork/icons/feats/survival-training.svg",
   "system": {
     "description": {
       "value": "<p>You have hardened yourself against various hazards. Each time you take this feat, you gain proficiency with one type of saving throw of your choice.</p>",
@@ -59,7 +59,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679977470217,
-    "modifiedTime": 1680022605589,
+    "modifiedTime": 1680459280128,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

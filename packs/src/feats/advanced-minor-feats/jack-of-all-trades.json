@@ -1,7 +1,7 @@
 {
   "name": "Jack of All Trades",
   "type": "feat",
-  "img": "icons/skills/trades/academics-investigation-puzzles.webp",
+  "img": "systems/everyday-heroes/artwork/icons/feats/jack-of-all-trades.svg",
   "system": {
     "description": {
       "value": "<p>You're well read and good at anything you set your mind to. You can add half your proficiency bonus (rounded down) to any ability check calling for a skill you are not proficient in. You may not use this bonus if no skill is applicable.</p>",
@@ -53,7 +53,8 @@
         {
           "key": "system.overrides.skill.proficiency.multiplier",
           "mode": 4,
-          "value": "0.5"
+          "value": "0.5",
+          "priority": null
         }
       ],
       "tint": null,
@@ -71,7 +72,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679978329040,
-    "modifiedTime": 1680023620491,
+    "modifiedTime": 1680459663816,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

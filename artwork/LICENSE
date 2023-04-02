@@ -4,6 +4,16 @@ SVG Icons from Game-Icons.net
 
 The Everyday heroes system for Foundry Virtual Tabletop includes icon artwork licensed from Game-icons.net under the Creative Commons license. These icons are packaged with and provided for use in the Everyday Heroes system under their respective licenses, as noted below.
 
+icons/feats/ability-score-training.svg - "Weight lifting up" by Delapouite under CC BY 3.0
+icons/feats/advanced-skill-training.svg - "Tightrope" by Delapouite under CC BY 3.0
+icons/feats/battlefield-medic.svg - "First aid kit" by Delapouite under CC BY 3.0
+icons/feats/equipment-training.svg - "Swiss army knife" by Delapouite under CC BY 3.0
+icons/feats/gunfighter.svg - "Cowboy holster" by Delapouite under CC BY 3.0
+icons/feats/investments.svg - "Piggy bank" by Delapouite under CC BY 3.0
+icons/feats/jack-of-all-trades.svg - "Skills" by Delapouite under CC BY 3.0
+icons/feats/skill-training.svg - "Juggler" by Lorc under CC BY 3.0
+icons/feats/signature-weapon.svg - "Sparkling sabre" by Delapouite under CC BY 3.0
+icons/feats/survival-training.svg - "Dodging" by Lorc under CC BY 3.0
 svg/action/armor-save.svg - "Shield reflect" by Lorc under CC BY 3.0
 svg/action/attack-burst.svg - "Bullet impacts" by Delapouite under CC BY 3.0 (modified)
 svg/action/attack-explosive.svg - "Throwing ball" by Delapouite under CC BY 3.0
@@ -20,7 +30,7 @@ svg/action/damage-explosive.svg - "Mine explosion" by Lorc under CC BY 3.0
 svg/action/damage-melee.svg - "Armor punch" by Delapouite under CC BY 3.0
 svg/action/damage-ranged.svg - "Meteor impact" by Lorc under CC BY 3.0
 svg/action/reload.svg - "Reload gun barrel" by Delapouite under CC BY 3.0
-svg/advancement/asi.svg - "Weight lifting" by Delapouite under CC BY 3.0
+svg/advancement/asi.svg - "Weight lifting up" by Delapouite under CC BY 3.0
 svg/advancement/defense.svg - "Bordered shield" by Lorc under CC BY 3.0
 svg/advancement/hit-points.svg - "Heart plus" by Zeromancer under CC0 PDD
 svg/advancement/item-grant.svg - "White book" by Willdabeast under CC BY 3.0

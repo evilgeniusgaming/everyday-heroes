@@ -1,7 +1,7 @@
 {
   "name": "Ability Score Training",
   "type": "feat",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/everyday-heroes/artwork/icons/feats/ability-score-training.svg",
   "system": {
     "description": {
       "value": "<p>You have trained your mind and/or body to increase your overall human potential. Each time you take this feat, you can increase any ability score by 1 to a maximum of 20.</p>",
@@ -57,7 +57,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679977008431,
-    "modifiedTime": 1680022408927,
+    "modifiedTime": 1680459255557,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

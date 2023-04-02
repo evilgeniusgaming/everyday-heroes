@@ -1,7 +1,7 @@
 {
   "name": "Signature Weapon",
   "type": "feat",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/everyday-heroes/artwork/icons/feats/signature-weapon.svg",
   "system": {
     "description": {
       "value": "<p>You're dedicated to the use of a specific weapon and feel more confident when wielding it.</p><p>Choose a specific weapon as your signature weapon, describe it, and give it a name. All further benefits of this feat require you to be wielding this weapon.</p><ul><li><p>You can ignore one source of disadvantage when making an attack roll.</p></li><li><p>You have advantage on ability checks to avoid being disarmed.</p></li><li><p>You have advantage on Charisma (Intimidation) checks.</p></li><li><p>Your signature weapon will not break as a result of your own actions, abilities, or class talents.</p></li></ul><p>If some horrible foe or other calamity destroys your precious signature weapon, you can designate and name a new one after an appropriate mourning period of 1 week.</p>",
@@ -43,7 +43,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679980987767,
-    "modifiedTime": 1679981293517,
+    "modifiedTime": 1680459779949,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

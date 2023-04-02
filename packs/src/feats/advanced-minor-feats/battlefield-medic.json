@@ -1,7 +1,7 @@
 {
   "name": "Battlefield Medic",
   "type": "feat",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/everyday-heroes/artwork/icons/feats/battlefield-medic.svg",
   "system": {
     "description": {
       "value": "<p>You've trained in first aid and emergency medicine.</p><ul><li><p>When using a first aid kit to stabilize someone, that person also recovers 1 hit point.</p></li><li><p>As an action, you can use a first aid kit to treat a conscious person adjacent to you. Make a DC 10 Intelligence (Medicine) check. If successful, the target may spend one Hit Die to regain hit points. This action cannot be used again on the same person until after they have taken a short or long rest.</p></li><li><p>If you don't have a first aid kit at hand, you can try to improvise. Make a DC 15 Wisdom (Survival) check. If successful, you don't need a first aid kit. If the check fails, you cannot find the materials needed.</p></li></ul>",
@@ -43,7 +43,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679978163393,
-    "modifiedTime": 1679980823879,
+    "modifiedTime": 1680459442158,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

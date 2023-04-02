@@ -1,7 +1,7 @@
 {
   "name": "Skill Training",
   "type": "feat",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/everyday-heroes/artwork/icons/feats/skill-training.svg",
   "system": {
     "description": {
       "value": "<p>You love to acquire new skills and abilities through constant study and practice. Each time you take this feat, you gain proficiency in two skills of your choice.</p>",
@@ -59,7 +59,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679977462645,
-    "modifiedTime": 1680022590337,
+    "modifiedTime": 1680459274455,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

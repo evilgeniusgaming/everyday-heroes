@@ -1,7 +1,7 @@
 {
   "name": "Gunfighter",
   "type": "feat",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/everyday-heroes/artwork/icons/feats/gunfighter.svg",
   "system": {
     "description": {
       "value": "<p>You have a quick trigger finger and can shoot accurately in close quarters.</p><ul><li><p>You don't suffer disadvantage for attacking with a firearm against an adjacent opponent.</p></li><li><p>You can take a bonus action to treat any firearm you wield that does not have the slow-firing property as if it had the Burst 3 property until the end of your turn.</p></li></ul>",
@@ -43,7 +43,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679978282647,
-    "modifiedTime": 1679980327419,
+    "modifiedTime": 1680459658047,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
