@@ -1,4 +1,5 @@
 import Proficiency from "../../documents/proficiency.mjs";
+import { simplifyBonus } from "../../utils.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
@@ -78,8 +79,8 @@ export default class ArmorData extends SystemDataModel.mixin(
 	 * @type {number}
 	 */
 	get armorSaveMod() {
-		// TODO: Take flat bonuses into account
-		return Number.isNumeric(this.proficiency?.term) ? this.proficiency.flat : 0;
+		return (Number.isNumeric(this.proficiency?.term) ? this.proficiency.flat : 0)
+			+ simplifyBonus(this.bonuses.save, this.parent?.getRollData() ?? {});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

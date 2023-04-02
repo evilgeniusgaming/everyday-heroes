@@ -120,16 +120,6 @@ export default class Damage extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
-	 * Icon display on the damage button.
-	 * @type {string}
-	 */
-	get damageIcon() {
-		return "systems/everyday-heroes/artwork/svg/action/damage-melee.svg";
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
 	 * The simplified damage formula for this item, taking mode into account if it has one.
 	 * @type {number}
 	 */
@@ -138,6 +128,16 @@ export default class Damage extends foundry.abstract.DataModel {
 		let mod = ability?.mod ?? 0;
 		if ( !mod ) return this.damage.dice;
 		return `${this.damage.dice} + ${mod}`;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Icon display on the damage button.
+	 * @type {string}
+	 */
+	get damageIcon() {
+		return "systems/everyday-heroes/artwork/svg/action/damage-melee.svg";
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

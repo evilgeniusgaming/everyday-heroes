@@ -30,6 +30,18 @@ export default class NPCWeaponData extends WeaponData {
 	/*  Properties                               */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/**
+	 * Modes that should be listed on the details description.
+	 * @type {string[]}
+	 */
+	get npcModes() {
+		const modes = this.modes;
+		["offhand", "suppressiveFire", "thrown"].forEach(m => delete modes[m]);
+		return modes;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	get types() {
 		return CONFIG.EverydayHeroes.weaponTypes;
 	}
@@ -62,33 +74,30 @@ export default class NPCWeaponData extends WeaponData {
 				numberFormat(this.range.short)}/${
 				numberFormat(this.range.long, {unit: this.range.units})}`;
 			else description += numberFormat(this.range.short, {unit: this.range.units});
+			description += ", ";
 		}
 
 		// Reach
 		if ( this.type.value === "melee" ) {
-			description += `${game.i18n.localize("EH.Equipment.Trait.Range.Reach").toLowerCase()}`;
+			description += `${game.i18n.localize("EH.Equipment.Trait.Range.Reach").toLowerCase()} `;
 			description += numberFormat(this.range.reach ?? 5, {unit: this.range.units});
+			description += ", ";
 		}
 
 		// Targets
 
 		// Damage types
-		const modes = this.modes;
-		delete modes.offhand;
-		delete modes.suppressiveFire;
+		const modes = this.npcModes;
 		const damages = [];
 		for ( const [mode, config] of Object.entries(modes) ) {
-			const clone = new this.constructor(this.toObject());
-			clone._modeOverride = mode;
-			clone.prepareBaseData();
-			clone.prepareDerivedData();
+			const clone = this.parent.clone({"system._modeOverride": mode});
 
 			const type = game.i18n.format("EH.Damage.Specific", {
-				type: CONFIG.EverydayHeroes.damageTypes[clone.damage.type]?.label
+				type: CONFIG.EverydayHeroes.damageTypes[clone.system.damage.type]?.label
 			});
 			let string = `<a data-action="roll-item" data-type="damage" data-mode="${mode}">`;
-			string += clone.damage.average;
-			if ( clone.damage.denomination ) string += ` (${clone.damageFormula})`;
+			string += clone.system.damage.average;
+			if ( clone.system.damage.denomination ) string += ` (${clone.system.damageFormula})`;
 			string += ` ${type.toLowerCase()}</a>`;
 			if ( config.npcHint && (Object.values(modes).length > 1) ) string += ` ${config.npcHint}`;
 			damages.push(string);

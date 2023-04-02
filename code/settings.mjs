@@ -88,8 +88,14 @@ export function registerSettings() {
 		onChange: applyReduceTransparency
 	});
 
-	// Last created item type
+	// Last created types
 	game.settings.register("everyday-heroes", "_lastCreateTypeItem", {
+		scope: "client",
+		config: false,
+		default: null,
+		type: String
+	});
+	game.settings.register("everyday-heroes", "_lastCreateTypeActor", {
 		scope: "client",
 		config: false,
 		default: null,
