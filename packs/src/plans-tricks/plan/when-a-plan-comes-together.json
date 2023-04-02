@@ -1,7 +1,7 @@
 {
   "name": "When a Plan Comes Together",
   "type": "plan",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/sundries/documents/blueprint-shield.webp",
   "system": {
     "description": {
       "value": "<p>After you enact any other plan, you may use this plan as a free action to inspire your team. You and up to six of your allies that can see or hear you gain temporary hit points equal to your [[/r @abilities.int.mod]]{Intelligence modifier}.</p><hr /><p><strong>Level 3:</strong> You and your allies gain temporary hit points equal to [[/r 1d4+@abilities.int.mod]]{1d4 + your Intelligence modifier} instead.</p><p><strong>Level 5:</strong> You and your allies gain temporary hit points equal to [[/r 1d4+@abilities.int.mod]]{2d4 + your Intelligence modifier} instead.</p><p><strong>Level 7:</strong> You and your allies gain temporary hit points equal to [[/r 1d4+@abilities.int.mod]]{3d4 + your Intelligence modifier} instead.</p><p><strong>Level 9:</strong> You and your allies gain temporary hit points equal to [[/r 1d4+@abilities.int.mod]]{4d4 + your Intelligence modifier} instead.</p>",
@@ -39,7 +39,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679162238988,
-    "modifiedTime": 1679162369118,
+    "modifiedTime": 1680460906900,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

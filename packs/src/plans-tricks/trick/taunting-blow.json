@@ -1,7 +1,7 @@
 {
   "name": "Taunting Blow",
   "type": "trick",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/lightning/fist-unarmed-strike-blue-green.webp",
   "system": {
     "description": {
       "value": "<p>When you hit an opponent with an attack, you can goad that opponent into attacking you. Roll one influence die and add the result to the damage dealt. The target of the attack must make a Wisdom saving throw against your trick DC. On a failed save, the target has disadvantage on all attack rolls against targets other than you until the end of your next turn.</p>",
@@ -39,7 +39,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679520214114,
-    "modifiedTime": 1679520289549,
+    "modifiedTime": 1680460530495,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

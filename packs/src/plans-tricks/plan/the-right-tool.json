@@ -1,7 +1,7 @@
 {
   "name": "The Right Tool",
   "type": "plan",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/trades/smithing-anvil-silver-red.webp",
   "system": {
     "description": {
       "value": "<p>When you enact this plan as a free action, you produce the perfect tool for the task at hand. You brought it with you, had it brought to you, or knew just where to find it. The tool can be any piece of equipment that you can carry and afford. If it is a weapon, it is fully loaded.</p><hr /><p><strong>Level 3:</strong> You can produce up to two pieces of equipment.</p><p><strong>Level 5:</strong> You can produce up to three pieces of equipment. The equipment can have a price level of up to one level higher than your Wealth Level.</p><p><strong>Level 7:</strong> You can produce up to four pieces of equipment.</p><p><strong>Level 9:</strong> You can produce up to five pieces of equipment. The equipment can have a price level of up to two levels higher than your Wealth Level.</p>",
@@ -39,7 +39,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679162129544,
-    "modifiedTime": 1679162366285,
+    "modifiedTime": 1680460810385,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

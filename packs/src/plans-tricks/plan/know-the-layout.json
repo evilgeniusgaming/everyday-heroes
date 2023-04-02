@@ -1,7 +1,7 @@
 {
   "name": "Know the Layout",
   "type": "plan",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/sundries/documents/document-letter-blue.webp",
   "system": {
     "description": {
       "value": "<p>You knew you were going to end up here, so naturally you carefully studied the blueprints.</p><p>Or perhaps you've researched so many similar locations that you can perfectly predict the layout. When you enact this plan, which does not require any action, the GM reveals one of the following facts of your choice:</p><ul><li><p>\u0017All entrances and exits from the building</p></li><li><p>The number of guards normally stationed</p></li><li><p>The type of security systems installed in the building</p></li><li><p>Which floor of the building a given person or object is located on</p></li><li><p>The location of all stairs and elevators in the building</p></li><li><p>The location of one secret room or door within the building</p></li><li><p>The fastest path from one location in the building to another</p></li></ul><hr /><p><strong>Level 3:</strong> The GM reveals two facts of your choice.</p><p><strong>Level 5:</strong> The GM reveals three facts of your choice.</p><p><strong>Level 7:</strong> The GM reveals four facts of your choice.</p><p><strong>Level 9:</strong> The GM reveals five facts of your choice.</p>",
@@ -39,7 +39,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679162037489,
-    "modifiedTime": 1679162364973,
+    "modifiedTime": 1680460924989,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

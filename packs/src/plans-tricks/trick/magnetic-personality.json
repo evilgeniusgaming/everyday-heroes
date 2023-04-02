@@ -1,7 +1,7 @@
 {
   "name": "Magnetic Personality",
   "type": "trick",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/light/explosion-star-glow-silhouette.webp",
   "system": {
     "description": {
       "value": "<p>As a bonus action, you can roll an influence die to trick an opponent within 60 feet that can hear you into coming closer. The target must make a Wisdom saving throw against your trick DC. On a failure, it must move up to its speed toward you, taking the safest path. If there is no safe path, it does not move. Whether the target succeeds or fails, add the influence die result to the next attack roll you make against the target this turn.</p>",
@@ -39,7 +39,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679520114820,
-    "modifiedTime": 1679520288411,
+    "modifiedTime": 1680460470938,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

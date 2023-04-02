@@ -1,7 +1,7 @@
 {
   "name": "Do You Know Who I Am?",
   "type": "trick",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/symbols/question-stone-yellow.webp",
   "system": {
     "description": {
       "value": "<p>When you ask someone to do a favor for you, as long as they aren't overtly hostile, you can roll an influence die to convince them to agree. The target must make a Charisma saving throw against your trick DC. On a failed save, the target does the favor for you, no questions asked. The favor can be time-consuming, as long as it won't take more than an hour.</p><p>You can choose a number of the following properties for the favor equal to half of the result of the influence die, rounded up.</p><ul><li><p>The favor can be expensive, as long as it is within the target's Wealth Level.</p></li><li><p>The favor can be embarrassing, as long as the embarrassment won't cost the target anything but pride.</p></li><li><p>The favor can be dangerous, as long as it doesn't involve combat and there is a reasonable chance to avoid harm.</p></li><li><p>The favor can be illegal or could get the target in trouble, as long as there is a chance of not getting caught.</p></li></ul>",
@@ -39,7 +39,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679519846434,
-    "modifiedTime": 1679520284416,
+    "modifiedTime": 1680460632538,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

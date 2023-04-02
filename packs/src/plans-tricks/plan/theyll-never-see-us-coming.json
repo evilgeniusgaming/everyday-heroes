@@ -1,7 +1,7 @@
 {
   "name": "They'll Never See Us Coming",
   "type": "plan",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/nature/stealth-hide-beast-eyes-green.webp",
   "system": {
     "description": {
       "value": "<p>When you enact this plan as an action, you and any allies you choose that can see or hear you gain a +5 bonus to Dexterity (Stealth) checks. This effect lasts for 10 minutes, or until you enact this plan again.</p><p><strong>Level 3:</strong> The bonus lasts for 1 hour.</p><p><strong>Level 5:</strong> The bonus becomes +10.</p><p><strong>Level 7:</strong> The bonus lasts for 4 hours.</p><p><strong>Level 9:</strong> The bonus becomes +15.</p>",
@@ -39,7 +39,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679521959361,
-    "modifiedTime": 1679522008298,
+    "modifiedTime": 1680460591221,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

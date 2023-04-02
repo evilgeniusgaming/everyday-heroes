@@ -1,7 +1,7 @@
 {
   "name": "Insult to Injury",
   "type": "trick",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/wounds/injury-face-impact-orange.webp",
   "system": {
     "description": {
       "value": "<p>When you hit a target that can hear you with an attack, you can roll an influence die and add it to the damage of that attack. In addition, the target has disadvantage on attack rolls until the end of your next turn.</p>",
@@ -39,7 +39,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679520080061,
-    "modifiedTime": 1679520287055,
+    "modifiedTime": 1680460822709,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

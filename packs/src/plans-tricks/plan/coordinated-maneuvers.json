@@ -1,7 +1,7 @@
 {
   "name": "Coordinated Maneuvers",
   "type": "plan",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/control/energy-stream-link-blue.webp",
   "system": {
     "description": {
       "value": "<p>You already told your team exactly where to go in this very situation. When you enact this plan as a bonus action, you and each ally that can see or hear you can immediately move up to their movement speed. Opportunity attacks made in reaction to this movement have disadvantage. During a foot chase, each affected hero gains advantage on Strength (Athletics) checks until the start of your next turn.</p><hr /><p><strong>Level 5:</strong> Each affected hero can perform Dash as a bonus action for the next 10 rounds. Opportunity attacks made in reaction to this movement have disadvantage. During a foot chase, each affected hero gains advantage on Strength (Athletics) checks for the next minute.</p><p><strong>Level 9:</strong> For the next minute, each affected hero's movement speed is increased by 10 feet. During a foot chase, each affected hero gains advantage on Strength (Athletics), Dexterity (Acrobatics), and Constitution (Endurance) checks for the next minute.</p>",
@@ -39,7 +39,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679161909043,
-    "modifiedTime": 1679162360919,
+    "modifiedTime": 1680460375929,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

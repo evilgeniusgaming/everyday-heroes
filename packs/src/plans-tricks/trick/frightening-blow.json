@@ -1,7 +1,7 @@
 {
   "name": "Frightening Blow",
   "type": "trick",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/lightning/bolt-strike-creature-pink.webp",
   "system": {
     "description": {
       "value": "<p>When you hit an opponent with an attack, you can attempt to scare the target. Roll one influence die and add the result to the damage dealt, and the target must make a Wisdom saving throw against your trick DC. On a failed save, the target is Frightened of you until the end of your next turn.</p>",
@@ -39,7 +39,7 @@
     "systemVersion": "0.1.0",
     "coreVersion": "10.291",
     "createdTime": 1679520012004,
-    "modifiedTime": 1679520285628,
+    "modifiedTime": 1680460536820,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
