@@ -42,6 +42,15 @@
           }
         }
       },
+      "movement": {
+        "attributes": {
+          "movement": {
+            "value": 30,
+            "special": {},
+            "units": "foot"
+          }
+        }
+      },
       "skills": {
         "bonuses": {
           "skill": {
@@ -67,7 +76,7 @@
       "biography.notes"
     ],
     "hero": {
-      "templates": ["abilities", "initiative", "skills"],
+      "templates": ["abilities", "initiative", "movement", "skills"],
       "attributes": {
         "death": {
           "status": "alive",
@@ -94,11 +103,6 @@
             "level": "",
             "overall": ""
           }
-        },
-        "movement": {
-          "value": 30,
-          "special": {},
-          "units": ""
         }
       },
       "biography": {
@@ -159,7 +163,7 @@
       }
     },
     "npc": {
-      "templates": ["abilities", "initiative", "skills"],
+      "templates": ["abilities", "initiative", "movement", "skills"],
       "attributes": {
         "defense": 10,
         "hd": {
@@ -172,11 +176,6 @@
           "max": null,
           "temp": 0,
           "formula": ""
-        },
-        "movement": {
-          "value": 30,
-          "special": {},
-          "units": ""
         }
       },
       "biography": {

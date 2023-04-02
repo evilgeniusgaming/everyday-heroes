@@ -246,8 +246,17 @@ export function numberFormat(value, options={}) {
 		formatterOptions.unit = options.unit;
 		formatterOptions.unitDisplay = options.unitDisplay;
 	}
-	const formatter = new Intl.NumberFormat(game.i18n.lang, formatterOptions);
-	return formatter.format(value);
+
+	try {
+		const formatter = new Intl.NumberFormat(game.i18n.lang, formatterOptions);
+		return formatter.format(value);
+	} catch(error) {
+		console.warn(error);
+		delete formatterOptions.style;
+		delete formatterOptions.unit;
+		const formatter = new Intl.NumberFormat(game.i18n.lang, formatterOptions);
+		return formatter.format(value);
+	}
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
