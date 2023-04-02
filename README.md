@@ -1,4 +1,6 @@
-# Foundry Virtual Tabletop - Everyday Heroes Game System
+![](https://github.com/foundryvtt/dnd5e/blob/main/artwork/hero.jpg?raw=true)
+
+# Everyday Heroes Game System
 
 GET INTO THE ACTION! From the excitement of blockbuster action films to the combat options and tactical gear of first-person shooters, adventures in contemporary settings offer a wide range of opportunities and challenges. The Everyday Heroes Roleplaying Game provides everything you need to run a modern-day campaign, be that car chases, computer hacking, radiation hazards, or just lots of guns. Along with flexible rules to create characters from hard-bitten soldiers to genius inventors and masterminds, these rules open the doors to playing through nearly any present-day plotline. This complete core rulebook for both Gamemasters and Players brings the ease of the 5th edition of the world’s most popular roleplaying game into the Modern era.
 

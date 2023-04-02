@@ -2,6 +2,32 @@
   "name": "Introduction",
   "pages": [
     {
+      "sort": 0,
+      "name": "Cover",
+      "type": "image",
+      "_id": "iZy0fsxBAMq5FefM",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "image": {
+        "caption": ""
+      },
+      "text": {
+        "format": 1
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": "systems/everyday-heroes/artwork/journals/cover.webp",
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
       "sort": 100000,
       "name": "Foreword",
       "type": "text",
