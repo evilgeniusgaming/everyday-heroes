@@ -541,6 +541,7 @@ export const weaponModes = {
 	},
 	burst: {
 		label: "EH.Weapon.Mode.Burst.Label",
+		npcHint: "EH.Weapon.Mode.Burst.NPCHint",
 		icon: "systems/everyday-heroes/artwork/svg/action/attack-burst.svg",
 		available: system => (system.type.value === "ranged") && system.properties.has("burst")
 	},

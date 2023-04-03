@@ -702,6 +702,7 @@
 "Weapon.Bonus.Damage.Label": "Damage Bonus",
 "Weapon.Bonus.DC.Label": "DC Bonus",
 "Weapon.Mode.Burst.Label": "Burst",
+"Weapon.Mode.Burst.NPCHint": "when using burst fire",
 "Weapon.Mode.Offhand.Label": "Off-hand",
 "Weapon.Mode.OneHanded.Label": "One-handed",
 "Weapon.Mode.SuppressiveFire.Label": "Suppressive Fire",

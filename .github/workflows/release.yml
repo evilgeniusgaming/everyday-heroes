@@ -97,4 +97,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: './system.json, ./${{steps.get_vars.outputs.ZIP_NAME}}'
         tag: ${{steps.get_vars.outputs.TAG_NAME}}
-        body: '${{github.event.release.body}}\n\n**Installation:** To manually install this release, please use the following manifest URL: ${{steps.get_vars.outputs.RELEASE_INSTALL_URL}}'
+        body: |-
+          ${{github.event.release.body}}
+
+          **Installation:** To manually install this release, please use the following manifest URL: ${{steps.get_vars.outputs.RELEASE_INSTALL_URL}}

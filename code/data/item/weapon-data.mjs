@@ -181,6 +181,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 		return super.attackMod
 			+ simplifyBonus(this.bonuses.attack, rollData)
 			+ simplifyBonus(this.ammunition?.system.bonuses.attack, rollData)
+			+ simplifyBonus(this.parent?.actor?.system.bonuses?.attack?.all, rollData)
 			+ simplifyBonus(this.parent?.actor?.system.bonuses?.attack?.[this.type.value], rollData);
 	}
 

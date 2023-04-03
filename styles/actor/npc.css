@@ -157,7 +157,12 @@
 	margin-block-start: 0.5em;
 }
 .everyday-heroes.npc.sheet [data-tab="biography"] > section .editor {
-	min-height: 20em;
+	min-height: 30em;
+}
+.everyday-heroes.npc.sheet [data-tab="biography"] > section .editor.prosemirror {
+	margin: -0.5em;
+	max-width: unset;
+	max-height: unset;
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

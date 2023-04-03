@@ -1,3 +1,4 @@
+import { simplifyBonus } from "../../../utils.mjs";
 import DamageData from "../../shared/damage-data.mjs";
 import DamageModificationData from "../../shared/damage-modification-data.mjs";
 
@@ -124,8 +125,7 @@ export default class Damage extends foundry.abstract.DataModel {
 	 * @type {number}
 	 */
 	get damageFormula() {
-		const ability = this.parent?.actor?.system.abilities[this.damageAbility];
-		let mod = ability?.mod ?? 0;
+		const mod = this.damageMod;
 		if ( !mod ) return this.damage.dice;
 		return `${this.damage.dice} + ${mod}`;
 	}
@@ -138,6 +138,18 @@ export default class Damage extends foundry.abstract.DataModel {
 	 */
 	get damageIcon() {
 		return "systems/everyday-heroes/artwork/svg/action/damage-melee.svg";
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get damageMod() {
+		const ability = this.parent?.actor?.system.abilities[this.damageAbility];
+		const rollData = this.parent?.getRollData() ?? {};
+		return (ability?.mod ?? 0)
+			+ simplifyBonus(this.bonuses.damage, rollData)
+			+ simplifyBonus(this.ammunition?.system.bonuses.damage, rollData)
+			+ simplifyBonus(this.parent?.actor?.system.bonuses?.damage?.all, rollData)
+			+ simplifyBonus(this.parent?.actor?.system.bonuses?.damage?.[this.type.value], rollData);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -4,6 +4,10 @@
 @import "./hero.css";
 @import "./npc.css";
 
+.everyday-heroes.sheet [data-tab="biography"] img {
+	border: none;
+}
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Editing Mode                             */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
