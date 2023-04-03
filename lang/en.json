@@ -591,6 +591,7 @@
 "Sense.Label[one]": "Sense",
 "Sense.Label[other]": "Senses",
 "Sense.PassivePerception": "passive Perception {number}",
+"Sense.Nightvision.Label": "Nightvision",
 
 "Settings.InitiativeTiebreaker.Label": "Initiative Tiebreaker",
 "Settings.InitiativeTiebreaker.Hint": "Add initiative ability score as decimal to help break ties in initiatives.",

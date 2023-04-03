@@ -281,6 +281,17 @@ preLocalize("roles", { sort: true });
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Possible special senses offered.
+ * @enum {string}
+ */
+export const senses = {
+	nightvision: "EH.Sense.Nightvision.Label"
+};
+preLocalize("senses", { sort: true });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Configuration data for actor sizes.
  *
  * @typedef {LabeledConfiguration} SizeConfiguration

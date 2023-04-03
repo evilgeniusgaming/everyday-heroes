@@ -115,7 +115,12 @@
 	{{/if}}
 	<fieldset>
 		<label>{{localize "EH.Sense.Label[other]"}}</label>
-		<span>{{lists.senses}}</span>
+		{{#if editingMode}}
+			<span>{{localize "EH.Sense.PassivePerception" number=system.skills.perc.passive}}</span>
+			{{everydayHeroes-tagInput system.attributes.senses choices=CONFIG.senses name="system.attributes.senses"}}
+		{{else}}
+			<span>{{lists.senses}}</span>
+		{{/if}}
 	</fieldset>
 	{{#if (or lists.resources editingMode)}}
 		<fieldset>

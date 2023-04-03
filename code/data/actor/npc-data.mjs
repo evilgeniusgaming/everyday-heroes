@@ -46,7 +46,10 @@ export default class NPCData extends SystemDataModel.mixin(
 					}),
 					formula: new FormulaField({label: "EH.HitPoints.Formula"})
 					// TODO: Determine if this would be better handed directly from the hit dice
-				}, {label: "EH.HitPoints.Label[other]"})
+				}, {label: "EH.HitPoints.Label[other]"}),
+				senses: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField(), {
+					label: "EH.Sense.Label[other]"
+				})
 			}, {label: "EH.Attributes.Label"}),
 			biography: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.HTMLField({label: "EH.Biography.Label"}),

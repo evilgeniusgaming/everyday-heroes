@@ -176,7 +176,8 @@
           "max": null,
           "temp": 0,
           "formula": ""
-        }
+        },
+        "senses": []
       },
       "biography": {
         "value": "",

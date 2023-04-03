@@ -254,11 +254,13 @@ export default class NPCSheet extends BaseActorSheet {
 			).filter(p => p));
 		}
 
-		const senses = [];
-		if ( context.skills.perc ) senses.push(
+		const senses = context.system.attributes.senses.reduce((arr, sense) => {
+			arr.push(CONFIG.EverydayHeroes.senses[sense] ?? sense);
+			return arr;
+		}, []);
+		if ( context.skills.perc ) senses.unshift(
 			game.i18n.format("EH.Sense.PassivePerception", {number: context.skills.perc.passive})
 		);
-		// TODO: Add special senses
 		context.lists.senses = listFormatter.format(senses);
 	}
 
