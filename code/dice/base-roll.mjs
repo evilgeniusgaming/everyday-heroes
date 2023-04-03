@@ -7,7 +7,14 @@ import BaseConfigurationDialog from "./base-configuration-dialog.mjs";
  * @property {string[]} [parts=[]] - Parts used to construct the roll formula.
  * @property {object} [data={}] - The roll data used to resolve the formula.
  * @property {Event} [event] - Event that triggered the roll.
- * @property {object} [options] - Options passed through to the roll.
+ * @property {BaseRollOptions} [options] - Options passed through to the roll.
+ */
+
+/**
+ * Options that describe a base roll.
+ *
+ * @typedef {object} BaseRollOptions
+ * @property {number} [target] - The total roll result that must be met for the roll to be considered a success.
  */
 
 /**
@@ -93,5 +100,31 @@ export default class BaseRoll extends Roll {
 	 */
 	static applyKeybindings(config, options) {
 		options.configure ??= true;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Properties                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Is the result of this roll a failure? Returns `undefined` if roll isn't evaluated.
+	 * @type {boolean|void}
+	 */
+	get isFailure() {
+		if ( !this._evaluated ) return undefined;
+		if ( !Number.isNumeric(this.options.target) ) return false;
+		return this.total < this.options.target;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Is the result of this roll a success? Returns `undefined` if roll isn't evaluated.
+	 * @type {boolean|void}
+	 */
+	get isSuccess() {
+		if ( !this._evaluated ) return undefined;
+		if ( !Number.isNumeric(this.options.target) ) return false;
+		return this.total >= this.options.target;
 	}
 }

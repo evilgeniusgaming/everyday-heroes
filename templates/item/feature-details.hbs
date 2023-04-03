@@ -78,14 +78,16 @@
 			--}}
 	</fieldset>
 
-	{{#if system.hasRecharge}}
+	{{#if (everydayHeroes-has item "system.recharge")}}
 		<fieldset class="triple">
 			<label>{{localize "EH.Recharge.Label"}}</label>
 			<div class="fields">
 				<label>
-					<span>Target</span>{{!-- TODO: Localize --}}
+					<span>{{localize "EH.Recharge.Target.Label"}}</span>
 					<input type="number" name="system.recharge.target" value="{{system.recharge.target}}">
 				</label>
+			</div>
+			<p class="hint">{{localize "EH.Recharge.Target.Hint"}}</p>
 		</fieldset>
 	{{/if}}
 

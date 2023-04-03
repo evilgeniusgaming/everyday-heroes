@@ -532,6 +532,11 @@
 "Proficiency.Rounding": "Proficiency Rounding",
 
 "Recharge.Label": "Recharge",
+"Recharge.State.Charged": "Charged",
+"Recharge.State.Uncharged": "Recharge {target}",
+"Recharge.Target.Label": "Target",
+"Recharge.Target.Hint": "After this feature has been used, a NPC must roll the provided number or higher on a d6 in order to regain use if it.",
+"Recharge.Warning.NotCharged": "Feature cannot be activated because it is not charged.",
 
 "Rest.Action.Rest.Label": "Rest",
 "Rest.Action.Medical.Provide": "Provide Medical Care",

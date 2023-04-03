@@ -359,18 +359,7 @@ export default class BaseActorSheet extends ActorSheet {
 			else if ( Number.isNumeric(v) ) options[k] = Number(v);
 		});
 
-		switch (type) {
-			case "activate":
-				return item.activate({ event, options });
-			case "armor-save":
-				return item.rollArmorSave({ event, options });
-			case "attack":
-				return item.rollAttack({ event, options });
-			case "damage":
-				return item.rollDamage({ event, options });
-			default:
-				return console.warn(`Everyday Heroes | Invalid item roll type clicked ${type}.`);
-		}
+		return item.roll(type, { event, options });
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

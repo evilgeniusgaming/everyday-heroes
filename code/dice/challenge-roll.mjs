@@ -19,7 +19,6 @@ import { areKeysPressed } from "./utils.mjs";
  * @property {number} [criticalSuccess] - The value of the challenge die to be considered a critical success.
  * @property {number} [criticalFailure] - The value of the challenge die to be considered a critical failure.
  * @property {number} [minimum] - Minimum number the challenge die can roll.
- * @property {number} [target] - The total roll result that must be met for the roll to be considered a success.
  */
 
 /**
@@ -149,30 +148,6 @@ export default class ChallengeRoll extends BaseRoll {
 	get isCriticalFailure() {
 		this.#createChallengeDie();
 		return this.challengeDie.isCriticalFailure;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Is the result of this roll a failure? Returns `undefined` if roll isn't evaluated.
-	 * @type {boolean|void}
-	 */
-	get isFailure() {
-		if ( !this.isValidRoll || !this._evaluated ) return undefined;
-		if ( !Number.isNumeric(this.options.target) ) return false;
-		return this.total < this.options.target;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Is the result of this roll a success? Returns `undefined` if roll isn't evaluated.
-	 * @type {boolean|void}
-	 */
-	get isSuccess() {
-		if ( !this.isValidRoll || !this._evaluated ) return undefined;
-		if ( !Number.isNumeric(this.options.target) ) return false;
-		return this.total >= this.options.target;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

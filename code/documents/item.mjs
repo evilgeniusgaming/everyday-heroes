@@ -206,6 +206,7 @@ export default class ItemEH extends Item {
 	 * @typedef {object} ActivationConfiguration
 	 * @property {boolean} configure - Should the configuration dialog be displayed?
 	 * @property {object} consume
+	 * @property {boolean} consume.recharge - Should the item's charge be spent?
 	 * @property {boolean} consume.resource - Should the item's linked resource be consumed?
 	 * @property {boolean} consume.use - Should one of the item's uses be consumed?
 	 * @property {object} roll
@@ -232,6 +233,7 @@ export default class ItemEH extends Item {
 
 		const activationConfig = foundry.utils.mergeObject({
 			consume: {
+				recharge: item.system.consumesRecharge ?? false,
 				resource: item.system.consumesResource ?? false,
 				use: item.system.consumesUses ?? false
 			},
@@ -342,6 +344,12 @@ export default class ItemEH extends Item {
 			resource: {}
 		};
 
+		if ( config.consume.recharge ) {
+			const recharge = this.system.recharge;
+			if ( !recharge.charged ) throw new Error(game.i18n.localize("EH.Recharge.Warning.NotCharged"));
+			updates.item["system.recharge.charged"] = false;
+		}
+
 		if ( config.consume.resource ) {
 			const res = this.system.resource;
 			// TODO: Support other consumption types
@@ -361,7 +369,6 @@ export default class ItemEH extends Item {
 
 		if ( config.consume.use ) {
 			const uses = this.system.uses;
-			// TODO: Localize
 			if ( uses.available < 1 ) throw new Error(game.i18n.localize("EH.Uses.Warning.Insufficient"));
 			updates.item["system.uses.spent"] = uses.spent + 1;
 		}
@@ -675,6 +682,33 @@ export default class ItemEH extends Item {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Handle a roll event and pass it on to the indicated rolling method.
+	 * @param {string} type - Type of roll to perform.
+	 * @param {object} [config] - Additional configuration options.
+	 * @param {object} [message] - Configuration data that guides roll message creation.
+	 * @param {object} [dialog] - Presentation data for the roll configuration dialog.
+	 * @returns {Promise}
+	 */
+	async roll(type, config={}, message={}, dialog={}) {
+		switch (type) {
+			case "activate":
+				return this.activate(config, message, dialog);
+			case "armor-save":
+				return this.rollArmorSave(config, message, dialog);
+			case "attack":
+				return this.rollAttack(config, message, dialog);
+			case "damage":
+				return this.rollDamage(config, message, dialog);
+			case "recharge":
+				return this.rollRecharge(config, message, dialog);
+			default:
+				return console.warn(`Everyday Heroes | Invalid item roll type clicked ${type}.`);
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Roll an armor saving throw.
 	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
@@ -942,6 +976,80 @@ export default class ItemEH extends Item {
 		 * @param {DamageRoll} roll - The resulting roll.
 		 */
 		Hooks.callAll("everydayHeroes.rollDamage", this, roll);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Roll to recharge a feature.
+	 * @param {BaseRollConfiguration} [config] - Configuration information for the roll.
+	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
+	 * @returns {Promise<BaseRoll|void>}
+	 */
+	async rollRecharge(config={}, message={}, dialog={}) {
+		if ( !this.system.recharge || this.system.recharge.charged || !this.system.recharge.target ) {
+			return console.warn("Recharge cannot be rolled for this item.");
+		}
+
+		const rollConfig = foundry.utils.mergeObject({
+			data: this.getRollData(),
+			options: {
+				target: this.system.recharge.target
+			}
+		}, config);
+		rollConfig.parts = ["1d6"].concat(config.parts ?? []);
+
+		const type = game.i18n.localize("EH.Recharge.Label");
+		const flavor = game.i18n.format("EH.Action.Roll", { type });
+		const messageConfig = foundry.utils.mergeObject({
+			data: {
+				title: `${flavor}: ${this.name}`,
+				flavor,
+				speaker: ChatMessage.getSpeaker({actor: this}),
+				"flags.everyday-heroes.roll": {
+					type: "recharge"
+				}
+			}
+		}, message);
+
+		const dialogConfig = foundry.utils.mergeObject({
+			configure: false,
+			options: {
+				title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", { type })
+			}
+		}, dialog);
+
+		/**
+		 * A hook event that fires before a recharge is rolled for an Item.
+		 * @function everydayHeroes.preRollRecharge
+		 * @memberof hookEvents
+		 * @param {ActorEH} actor - Item for which the recharge is being rolled.
+		 * @param {ResourceRollConfiguration} config - Configuration data for the pending roll.
+		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
+		 * @returns {boolean} - Explicitly return `false` to prevent recharge from being rolled.
+		 */
+		if ( Hooks.call("everydayHeroes.preRollRecharge", this, rollConfig, messageConfig, dialogConfig) === false ) return;
+
+		const roll = await CONFIG.Dice.BaseRoll.build(rollConfig, messageConfig, dialogConfig);
+		const updates = {};
+		if ( roll.isSuccess ) updates["system.recharge.charged"] = true;
+
+		/**
+		 * A hook event that fires after a recharge has been rolled for an Item, but before the item has been updated.
+		 * @function everydayHeroes.rollRecharge
+		 * @memberof hookEvents
+		 * @param {ActorEH} actor - Item for which the recharge has been rolled.
+		 * @param {D20Roll} roll - The resulting roll.
+		 * @param {object} updates - Updates that will be applied to the item.
+		 * @returns {boolean} - Explicitly return `false` to prevent any changes from being applied to the actor.
+		 */
+		if ( Hooks.call("everydayHeroes.rollRecharge", this, roll, updates) === false ) return roll;
+
+		if ( !foundry.utils.isEmpty(updates) ) await this.update(updates);
+
+		return roll;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
