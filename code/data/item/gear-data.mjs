@@ -30,6 +30,12 @@ export default class GearData extends SystemDataModel.mixin(DescribedTemplate, P
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get isEquippable() {
+		return this.parent?.actor?.type === "npc";
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -37,7 +43,3 @@ export default class GearData extends SystemDataModel.mixin(DescribedTemplate, P
 		this.type.label = CONFIG.EverydayHeroes.gearTypes[this.type.value]?.label ?? "";
 	}
 }
-
-// Data: required, nullable, initial, validate, label, hint, validationError
-// String: blank, trim, choices
-// Number: min, max, step, integer, positive, choices

@@ -61,6 +61,7 @@ export default class NPCData extends SystemDataModel.mixin(
 			}, {label: "EH.Details.Label"}),
 			items: new MappingField(new foundry.data.fields.SchemaField({
 				ammunition: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, {idOnly: true, label: ""}),
+				equipped: new foundry.data.fields.BooleanField({initial: true, label: ""}),
 				mode: new foundry.data.fields.StringField({label: ""})
 			})),
 			overrides: new foundry.data.fields.SchemaField({

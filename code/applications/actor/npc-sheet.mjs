@@ -218,7 +218,8 @@ export default class NPCSheet extends BaseActorSheet {
 		context.lists ??= {};
 
 		context.lists.equipment = listFormatter.format(context.actor.items.reduce((arr, item) => {
-			if ( !["armor"].includes(item.type) && (item.system.constructor.metadata.category === "physical") ) {
+			if ( !["armor"].includes(item.type) && item.isEquipped
+				&& (item.system.constructor.metadata.category === "physical") ) {
 				arr.push(`<a data-action="item" data-type="edit" data-item-id="${item.id}">${item.name}</a>`);
 			}
 			return arr;

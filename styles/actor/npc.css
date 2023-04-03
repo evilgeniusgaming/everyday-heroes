@@ -132,9 +132,6 @@
 .everyday-heroes.npc.sheet [data-tab="inventory"] > section:first-child {
 	margin-block-start: 0.5em;
 }
-.everyday-heroes.npc.sheet [data-tab="inventory"] [data-type="equip"] {
-	display: none;
-}
 .everyday-heroes.npc.sheet [data-tab="inventory"] .item > * {
 	font-size: var(--font-size-12);
 }
