@@ -77,7 +77,7 @@ export default class NPCSheet extends BaseActorSheet {
 					}
 				]
 			},
-			weapons: {
+			weapon: {
 				label: "EH.Item.Type.Weapon[other]",
 				items: [],
 				options: { equippable: true },
@@ -89,7 +89,7 @@ export default class NPCSheet extends BaseActorSheet {
 					}
 				]
 			},
-			ammunitionExplosives: {
+			ammunitionExplosive: {
 				label: formatter.format([
 					game.i18n.localize("EH.Item.Type.Ammunition[other]"),
 					game.i18n.localize("EH.Item.Type.Explosive[other]")
@@ -139,7 +139,7 @@ export default class NPCSheet extends BaseActorSheet {
 					}
 				]
 			},
-			features: {
+			feature: {
 				label: "EH.Item.Type.NPCFeature[other]",
 				items: [],
 				create: [
@@ -164,14 +164,15 @@ export default class NPCSheet extends BaseActorSheet {
 					break;
 				case "weapon":
 				case "npcWeapon":
-					context.inventory.weapons.items.push(item);
+					context.inventory.weapon.items.push(item);
 					context.actionSections.action.items.push(item);
 					break;
 				case "ammunition":
+				case "explosive":
+				case "npcExplosive":
 					ammunitionTypes[item.system.type.value] ??= {};
 					ammunitionTypes[item.system.type.value][item.id] = item;
-				case "explosive":
-					context.inventory.ammunitionExplosives.items.push(item);
+					context.inventory.ammunitionExplosive.items.push(item);
 					break;
 				case "gear":
 					context.inventory.gear.items.push(item);
@@ -183,7 +184,7 @@ export default class NPCSheet extends BaseActorSheet {
 					context.inventory.trick.items.push(item);
 					break;
 				default:
-					context.inventory.features.items.push(item);
+					context.inventory.feature.items.push(item);
 					if ( !item.system.activation?.type ) context.actionSections.passive.items.push(item);
 					else context.actionSections[item.system.activation.type]?.items.push(item);
 					break;
@@ -198,13 +199,16 @@ export default class NPCSheet extends BaseActorSheet {
 		context.armor = context.inventory.armor.items[0];
 
 		// Prepare ammunition lists
-		for ( const item of context.inventory.weapons.items ) {
+		for ( const item of context.inventory.weapon.items ) {
 			const ctx = context.itemContext[item.id].ammunition ??= {};
-			ctx.defaultLabel = game.i18n.format("EH.Ammunition.Standard.Label", {
-				type: CONFIG.EverydayHeroes.ammunitionTypes[item.system.rounds.type]?.label
-			});
+			const ammunitionTypeConfig = CONFIG.EverydayHeroes.ammunitionTypes[item.system.rounds.type];
+			ctx.defaultLabel = ammunitionTypeConfig ? game.i18n.format("EH.Ammunition.Standard.Label", {
+				type: ammunitionTypeConfig.label
+			}) : game.i18n.localize("EH.Ammunition.Empty.Label");
 			ctx.selected = item.system.ammunition?.id;
 			ctx.types = ammunitionTypes[item.system.rounds.type] ?? [];
+			ctx.displayAmmunitionSelector = (!foundry.utils.isEmpty(ctx.types) || ctx.defaultLabel)
+				&& !!item.system.rounds.type;
 		}
 
 		if ( !context.inventory.trick.items.length ) delete context.inventory.trick;

@@ -112,7 +112,7 @@
 		</fieldset>
 	{{/if}}
 
-	{{#if (and (everydayHeroes-has item "system.dc") item.system.hasDamage)}}
+	{{#if (and (everydayHeroes-has item "system._source.dc") item.system.hasDamage)}}
 		<fieldset>
 			<label>{{localize "EH.Explosive.DC.Label"}}</label>
 			<input type="number" name="system.dc" value="{{source.dc}}">
