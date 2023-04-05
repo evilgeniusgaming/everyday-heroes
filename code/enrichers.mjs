@@ -1,3 +1,5 @@
+import { simplifyBonus } from "./utils.mjs";
+
 /**
  * Set up the custom text enricher.
  */
@@ -23,9 +25,9 @@ export async function enrichString(match, options) {
 	let { type, config, label } = match.groups;
 	config = prepareConfig(config);
 	switch (type) {
-		case "Check": return enrichCheck(config, label);
-		case "Save": return enrichSave(config, label);
-		case "Skill": return enrichSkill(config, label);
+		case "Check": return enrichCheck(config, label, options);
+		case "Save": return enrichSave(config, label, options);
+		case "Skill": return enrichSkill(config, label, options);
 	}
 	return null;
 }
@@ -65,12 +67,14 @@ function prepareConfig(raw) {
  * Enrich a ability check link to perform a specific ability or skill check.
  * @param {EnrichCheckConfig} config - Configuration data.
  * @param {string} label - Optional label to replace default text.
+ * @param {EnrichmentOptions} options - Options provided to customize text enrichment.
  * @returns {HTMLElement|null} - A HTML link if the check could be built, otherwise null.
  *
  * TODO: Add some examples
  */
-export async function enrichCheck(config, label) {
-	const { _: ability, skill, dc } = config;
+export async function enrichCheck(config, label, options) {
+	let { _: ability, skill, dc } = config;
+	dc = simplifyBonus(dc, options.rollData ?? {});
 
 	const abilityConfig = CONFIG.EverydayHeroes.abilities[ability];
 	if ( !abilityConfig ) return console.warn(`Everyday Heroes | Ability ${ability} not found`);
@@ -101,6 +105,7 @@ export async function enrichCheck(config, label) {
  * Enrich a ability save link.
  * @param {EnrichSaveConfig} config - Configuration data.
  * @param {string} label - Optional label to replace default text.
+ * @param {EnrichmentOptions} options - Options provided to customize text enrichment.
  * @returns {HTMLElement|null} - A HTML link if the save could be built, otherwise null.
  *
  * @example Create a dexterity saving throw:
@@ -121,8 +126,10 @@ export async function enrichCheck(config, label) {
  * </a>
  * ```
  */
-export async function enrichSave(config, label) {
-	const { _: ability, dc } = config;
+export async function enrichSave(config, label, options) {
+	let { _: ability, dc } = config;
+	console.log(dc, options.rollData);
+	dc = simplifyBonus(dc, options.rollData ?? {});
 
 	const abilityConfig = CONFIG.EverydayHeroes.abilities[ability];
 	if ( !abilityConfig ) return console.log(`Everyday Heroes | Ability ${ability} not found`);
@@ -148,12 +155,14 @@ export async function enrichSave(config, label) {
  * or allow for selecting any associated ability to perform the skill check.
  * @param {EnrichSkillConfig} config - Configuration data.
  * @param {string} label - Optional label to replace default text.
+ * @param {EnrichmentOptions} options - Options provided to customize text enrichment.
  * @returns {HTMLElement|null} - A HTML link if the save could be built, otherwise null.
  *
  * TODO: Add some examples
  */
-export async function enrichSkill(config, label) {
-	const { _: skill, dc } = config;
+export async function enrichSkill(config, label, options) {
+	let { _: skill, dc } = config;
+	dc = simplifyBonus(dc, options.rollData ?? {});
 
 	const skillConfig = CONFIG.EverydayHeroes.skills[skill];
 	if ( !skillConfig ) return console.log(`Everyday Heros | Skill ${skill} not found`);

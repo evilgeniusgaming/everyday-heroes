@@ -167,9 +167,10 @@ export default class NPCSheet extends BaseActorSheet {
 					context.inventory.weapon.items.push(item);
 					context.actionSections.action.items.push(item);
 					break;
+				case "npcExplosive":
+					context.actionSections.action.items.push(item);
 				case "ammunition":
 				case "explosive":
-				case "npcExplosive":
 					ammunitionTypes[item.system.type.value] ??= {};
 					ammunitionTypes[item.system.type.value][item.id] = item;
 					context.inventory.ammunitionExplosive.items.push(item);

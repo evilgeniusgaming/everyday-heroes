@@ -94,7 +94,7 @@ export default class PhysicalSheet extends BaseItemSheet {
 		const formData = foundry.utils.expandObject(super._getSubmitData(updateData));
 
 		// Handle Properties
-		if ( this.item.system.hasOwnProperty("properties") ) {
+		if ( this.item.system.hasOwnProperty("properties") && formData.system.properties ) {
 			if ( foundry.utils.getType(this.item.system.properties) === "Set" ) {
 				formData.system.properties = Object.entries(formData.system.properties).reduce((arr, [key, value]) => {
 					if ( value === "add" ) arr.push(key);

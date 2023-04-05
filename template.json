@@ -220,6 +220,7 @@
       "explosive",
       "feat",
       "gear",
+      "npcExplosive",
       "npcFeature",
       "npcWeapon",
       "plan",
@@ -365,6 +366,32 @@
       "templates": ["description", "physical"],
       "type": {
         "value": "loot"
+      }
+    },
+    "npcExplosive": {
+      "templates": ["damage", "description", "physical"],
+      "type": {
+        "category": "basic"
+      },
+      "quantity": {
+        "max": 1,
+        "period": "lr"
+      },
+      "properties": [],
+      "penetrationValue": 0,
+      "dc": null,
+      "radius": {
+        "value": null,
+        "units": "foot"
+      },
+      "range": {
+        "short": 80,
+        "long": null,
+        "units": "foot"
+      },
+      "bonuses": {
+        "damage": "",
+        "dc": ""
       }
     },
     "npcFeature": {

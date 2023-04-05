@@ -62,7 +62,7 @@ export default class NPCWeaponData extends WeaponData {
 
 		// Penetration Value
 		elements.push(`${game.i18n.localize("EH.Equipment.Trait.PenetrationValue.Abbreviation")} ${
-			numberFormat(this.penetrationValue)}`);
+			this.hasDamage ? numberFormat(this.penetrationValue) : game.i18n.localize("EH.NotApplicable.Abbreviation")}`);
 
 		// Range & Reach
 		elements.push(this._npcRangeAndReach());

@@ -1060,6 +1060,8 @@ export default class ItemEH extends Item {
 		// Convert between standard & npc weapons
 		if ( data.type === "npcWeapon" && this.parent?.type !== "npc" ) this.updateSource({type: "weapon"});
 		else if ( data.type === "weapon" && this.parent?.type === "npc" ) this.updateSource({type: "npcWeapon"});
+		else if ( data.type === "npcExplosive" && this.parent?.type !== "npc" ) this.updateSource({type: "explosive"});
+		else if ( data.type === "explosive" && this.parent?.type === "npc" ) this.updateSource({type: "npcExplosive"});
 
 		await super._preCreate(data, options, user);
 
