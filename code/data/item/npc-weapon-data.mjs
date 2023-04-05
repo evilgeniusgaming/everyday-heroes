@@ -51,44 +51,92 @@ export default class NPCWeaponData extends WeaponData {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async npcDescription() {
-		let description = "<p><em>";
+		let description = `<p><em>${this._npcAttackType()}:</em> `;
 
-		// Type
-		const type = CONFIG.EverydayHeroes.weaponTypes[this.type.value];
-		if ( type ) description += game.i18n.format("EH.Weapon.Action.AttackSpecific", {type: type.label});
-		else description += game.i18n.localize("EH.Weapon.Action.AttackGeneric");
-		description += ":</em> ";
+		const elements = [];
+		const listFormatter = new Intl.ListFormat(game.i18n.lang, { type: "unit" });
 
 		// To Hit
-		description += `<a data-action="roll-item" data-type="attack">${
-			game.i18n.format("EH.Weapon.ToHit", {mod: numberFormat(this.attackMod, {sign: true})}).toLowerCase()}</a>, `;
+		elements.push(`<a data-action="roll-item" data-type="attack">${
+			game.i18n.format("EH.Weapon.ToHit", {mod: numberFormat(this.attackMod, {sign: true})}).toLowerCase()}</a>`);
 
 		// Penetration Value
-		description += `${game.i18n.localize("EH.Equipment.Trait.PenetrationValue.Abbreviation")} ${
-			numberFormat(this.penetrationValue)}, `;
+		elements.push(`${game.i18n.localize("EH.Equipment.Trait.PenetrationValue.Abbreviation")} ${
+			numberFormat(this.penetrationValue)}`);
+
+		// Range & Reach
+		elements.push(this._npcRangeAndReach());
+
+		// Targets
+		// TODO: Add support for weapon targets
+
+		// Damage types
+		if ( this.hasDamage ) elements.push(this._npcDamages());
+
+		description += `${listFormatter.format(elements.filter(e => e))}</p>`;
+
+		if ( this.description.chat ) {
+			description += await TextEditor.enrichHTML(this.description.chat ?? "", {
+				secrets: this.parent.isOwner, rollData: this.parent.getRollData(), async: true, relativeTo: this.parent
+			});
+		}
+
+		return description;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Prepare the attack type description for this weapon's NPC description.
+	 * @returns {string}
+	 */
+	_npcAttackType() {
+		if ( !this.type.value ) return game.i18n.localize("EH.Weapon.Action.AttackGeneric");
+		let types = [this.type.value];
+		const listFormatter = new Intl.ListFormat(game.i18n.lang, { type: "disjunction" });
+		if ( this.type.value === "melee" && this.properties.has("thrown") ) types.push("ranged");
+		types = types.map(t => CONFIG.EverydayHeroes.weaponTypes[t].label);
+		return game.i18n.format("EH.Weapon.Action.AttackSpecific", {type: listFormatter.format(types)});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Prepare the range and reach info for this weapon's NPC description.
+	 * @returns {string}
+	 */
+	_npcRangeAndReach() {
+		const elements = [];
+		const listFormatter = new Intl.ListFormat(game.i18n.lang, { type: "disjunction" });
+
+		// Reach
+		if ( this.type.value === "melee" ) elements.push(`${
+			game.i18n.localize("EH.Equipment.Trait.Range.Reach").toLowerCase()} ${
+			numberFormat(this.range.reach ?? 5, {unit: this.range.units})}`
+		);
 
 		// Range
 		if ( ((this.type.value === "ranged") || this.properties.has("thrown")) && this.range.short ) {
-			description += `${game.i18n.localize("EH.Equipment.Trait.Range.Label").toLowerCase()} `;
-			if ( this.range.long > this.range.short ) description += `${
-				numberFormat(this.range.short)}/${
-				numberFormat(this.range.long, {unit: this.range.units})}`;
-			else description += numberFormat(this.range.short, {unit: this.range.units});
-			description += ", ";
+			const distance = this.range.long > this.range.short
+				? `${numberFormat(this.range.short)}/${numberFormat(this.range.long, {unit: this.range.units})}`
+				: numberFormat(this.range.short, {unit: this.range.units});
+			elements.push(`${game.i18n.localize("EH.Equipment.Trait.Range.Label").toLowerCase()} ${distance}`);
 		}
 
-		// Reach
-		if ( this.type.value === "melee" ) {
-			description += `${game.i18n.localize("EH.Equipment.Trait.Range.Reach").toLowerCase()} `;
-			description += numberFormat(this.range.reach ?? 5, {unit: this.range.units});
-			description += ", ";
-		}
+		return listFormatter.format(elements);
+	}
 
-		// Targets
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-		// Damage types
+	/**
+	 * Prepare the hit section of this weapon's NPC description.
+	 * @returns {string}
+	 */
+	_npcDamages() {
 		const modes = this.npcModes;
 		const damages = [];
+		const listFormatter = new Intl.ListFormat(game.i18n.lang, {type: "disjunction", style: "short"});
+
 		for ( const [mode, config] of Object.entries(modes) ) {
 			const clone = this.parent.clone({"system._modeOverride": mode});
 
@@ -102,16 +150,8 @@ export default class NPCWeaponData extends WeaponData {
 			if ( config.npcHint && (Object.values(modes).length > 1) ) string += ` ${config.npcHint}`;
 			damages.push(string);
 		}
-		const listFormatter = new Intl.ListFormat(game.i18n.lang, {type: "disjunction", style: "short"});
-		description += `<em>Hit:</em> ${listFormatter.format(damages)}.</p> `;
 
-		if ( this.description.chat ) {
-			description += await TextEditor.enrichHTML(this.description.chat ?? "", {
-				secrets: this.parent.isOwner, rollData: this.parent.getRollData(), async: true, relativeTo: this.parent
-			});
-		}
-
-		return description;
+		return `<em>Hit:</em> ${listFormatter.format(damages)}.`;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -119,11 +159,11 @@ export default class NPCWeaponData extends WeaponData {
 	async npcLabel() {
 		let label = `<a data-action="roll-item" data-type="activate">${this.parent.name}</a>`;
 		if ( this.rounds.capacity ) {
-			label += ' <span>(<a data-action="item" data-type="reload">';
+			label += ` <span>(${this.reload ? '<a data-action="item" data-type="reload">' : ""}`;
 			label += `${numberFormat(this.rounds.available)}/${numberFormat(this.rounds.capacity)} ${
 				game.i18n.format("EH.Ammunition.Rounds.Label[other]")}`;
 			if ( this.reload ) label += `; ${CONFIG.EverydayHeroes.actionTypesReload[this.reload].toLowerCase()}`;
-			label += "</a>)</span>";
+			label += `${this.reload ? "</a>" : ""})</span>`;
 		}
 		return label;
 	}

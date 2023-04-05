@@ -21,7 +21,7 @@
 	<fieldset>
 		<label>{{localize "EH.Defense.Label"}}</label>
 		{{#if editingMode}}
-			<input type="number" value="{{system.attributes.defense}}">
+			<input type="number" name="system.attributes.defense" value="{{system.attributes.defense}}">
 		{{else}}
 			<span>{{system.attributes.defense}}</span>
 		{{/if}}

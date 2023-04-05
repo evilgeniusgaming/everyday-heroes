@@ -108,6 +108,16 @@
 									{{/if}}
 								</div>
 							{{/if}}
+							{{#if item.system.consumesRecharge}}
+								{{#if this.system.recharge.charged}}
+									<div>{{item.system.recharge.label}}</div>
+								{{else}}
+									<div class="action" data-action="roll-item" data-type="recharge"
+										data-tooltip="{{localize 'EH.Action.Roll' type=(localize 'EH.Recharge.Label')}}">
+										{{item.system.recharge.label}}
+									</div>
+								{{/if}}
+							{{/if}}
 							{{#if item.system.consumesResource}}
 								<div>{{item.system.resource.label}}</div>
 							{{/if}}

@@ -50,17 +50,44 @@ export default class NPCFeatureData extends SystemDataModel.mixin(DescribedTempl
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get hasActivation() {
+		return super.hasActivation || this.recharge.target;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Data Preparation                         */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareFinalRechargeLabel() {
+		if ( !this.recharge.target ) this.recharge.label = "";
+		else if ( this.recharge.charged ) this.recharge.label = game.i18n.localize("EH.Recharge.State.Charged");
+		else this.recharge.label = game.i18n.format("EH.Recharge.State.Uncharged", {
+			target: numberFormat(this.recharge.target)
+		});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Helpers                                  */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async npcLabel() {
 		let label = await super.npcLabel();
-		if ( this.recharge.target ) {
-			if ( this.recharge.charged ) label += ` (${game.i18n.localize("EH.Recharge.State.Charged")})`;
-			else label += ` (<a data-action="roll-item" data-type="recharge">${
-				game.i18n.format("EH.Recharge.State.Uncharged", { target: numberFormat(this.recharge.target) })
-			}</a>)`;
+		const actions = [];
+		const listFormatter = new Intl.ListFormat(game.i18n.lang, { type: "unit" });
+
+		if ( this.uses.max ) {
+			if ( this.uses.period ) actions.push(`${numberFormat(this.uses.available)}/${
+				CONFIG.EverydayHeroes.recoveryPeriods[this.uses.period]?.label}`);
+			else actions.push(`${numberFormat(this.uses.available)}/${numberFormat(this.uses.max)}`);
 		}
+
+		if ( this.recharge.target ) actions.push(`${
+			!this.recharge.charged ? '<a data-action="roll-item" data-type="recharge">' : ""}${
+			this.recharge.label}${!this.recharge.charged ? "</a>" : ""
+		}`);
+
+		if ( actions.length ) label += ` (${listFormatter.format(actions)})`;
 		return label;
 	}
 }

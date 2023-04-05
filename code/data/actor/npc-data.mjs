@@ -93,7 +93,7 @@ export default class NPCData extends SystemDataModel.mixin(
 				}),
 				size: new foundry.data.fields.StringField({initial: "medium", label: "EH.Size.Label"}),
 				type: new foundry.data.fields.SchemaField({
-					value: new foundry.data.fields.StringField({label: "EH.Creature.Type.Label"}),
+					value: new foundry.data.fields.StringField({initial: "person", label: "EH.Creature.Type.Label"}),
 					tags: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField(), {
 						label: "EH.Creature.Type.Tags.Label"
 					})
