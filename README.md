@@ -1,4 +1,4 @@
-![](https://github.com/foundryvtt/dnd5e/blob/main/artwork/hero.jpg?raw=true)
+![](https://github.com/evilgeniusgaming/everyday-heroes/blob/main/artwork/hero.jpg?raw=true)
 
 # Everyday Heroes Game System
 
