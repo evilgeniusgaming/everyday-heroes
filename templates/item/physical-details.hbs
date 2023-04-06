@@ -249,15 +249,32 @@
 	{{#if (everydayHeroes-has item "system.overrides")}}
 		<h3 class="striped">
 			<span class="left stripes"></span>
-			<span class="center">Overrides</span>{{!-- TODO: Localize --}}
+			<span class="center">{{localize "EH.Override.Label"}}</span>
 			<span class="right stripes"></span>
 		</h3>
 
-		{{#if (everydayHeroes-has item "system.overrides.ability")}}
+		{{#if (everydayHeroes-has item "system.overrides.ability.attack")}}
 			<fieldset>
-				<label>{{localize "EH.Weapon.Overrides.Ability.Label"}}</label>
-				<select name="system.overrides.ability">
-					{{selectOptions CONFIG.abilities selected=system.overrides.ability blank="" labelAttr="label"}}
+				<label>{{localize "EH.Weapon.Overrides.Ability.Attack.Label"}}</label>
+				<select name="system.overrides.ability.attack">
+					{{#select source.overrides.ability.attack}}
+						<option value="">{{localize "EH.Weapon.Overrides.Ability.Default"}}</option>
+						<option value="None">{{localize "EH.Weapon.Overrides.Ability.None"}}</option>
+						{{selectOptions CONFIG.abilities selected=system.overrides.ability.attack labelAttr="label"}}
+					{{/select}}
+				</select>
+			</fieldset>
+		{{/if}}
+
+		{{#if (everydayHeroes-has item "system.overrides.ability.damage")}}
+			<fieldset>
+				<label>{{localize "EH.Weapon.Overrides.Ability.Damage.Label"}}</label>
+				<select name="system.overrides.ability.damage">
+					{{#select source.overrides.ability.damage}}
+						<option value="">{{localize "EH.Weapon.Overrides.Ability.Default"}}</option>
+						<option value="None">{{localize "EH.Weapon.Overrides.Ability.None"}}</option>
+						{{selectOptions CONFIG.abilities selected=system.overrides.ability.damage labelAttr="label"}}
+					{{/select}}
 				</select>
 			</fieldset>
 		{{/if}}

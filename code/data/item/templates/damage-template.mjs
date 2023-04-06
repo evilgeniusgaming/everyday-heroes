@@ -6,6 +6,9 @@ import DamageModificationData from "../../shared/damage-modification-data.mjs";
  * Data model template for items that cause damage.
  *
  * @property {DamageData} damage - Damage represented by this item.
+ * @property {object} overrides
+ * @property {object} overrides.ability
+ * @property {string} overrides.ability.damage - Ability used when calculating damage.
  * @mixin
  */
 export default class Damage extends foundry.abstract.DataModel {
@@ -23,7 +26,12 @@ export default class Damage extends foundry.abstract.DataModel {
 			damage: new foundry.data.fields.EmbeddedDataField(
 				this.damageMode === "regular" ? DamageData : DamageModificationData,
 				{ label: "EH.Equipment.Trait.Damage.Label", hint: "EH.Equipment.Trait.Damage.Hint" }
-			)
+			),
+			overrides: new foundry.data.fields.SchemaField({
+				ability: new foundry.data.fields.SchemaField({
+					damage: new foundry.data.fields.StringField({label: "EH.Weapon.Overrides.Ability.Damage.Label"})
+				})
+			}, {label: "EH.Override.Label"})
 		};
 	}
 
@@ -46,7 +54,8 @@ export default class Damage extends foundry.abstract.DataModel {
 	 * @type {string|null}
 	 */
 	get damageAbility() {
-		return null;
+		if ( (this.overrides.ability.damage === "none") || !this.damage.denomination ) return null;
+		return this.overrides.ability.damage || null;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

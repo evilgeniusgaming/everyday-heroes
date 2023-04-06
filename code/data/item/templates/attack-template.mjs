@@ -1,12 +1,24 @@
 import { simplifyBonus } from "../../../utils.mjs";
 
 /**
- * Data model template for items that make attacks. Does not introduce any fields of its own, but provides
- * some data preparation methods and helpers.
+ * Data model template for items that make attacks.
  *
+ * @property {object} overrides
+ * @property {object} overrides.ability
+ * @property {string} overrides.ability.attack - Ability used when making an attack.
  * @mixin
  */
-export default class AttackTemplate {
+export default class AttackTemplate extends foundry.abstract.DataModel {
+
+	static defineSchema() {
+		return {
+			overrides: new foundry.data.fields.SchemaField({
+				ability: new foundry.data.fields.SchemaField({
+					attack: new foundry.data.fields.StringField({label: "EH.Weapon.Overrides.Ability.Attack.Label"})
+				})
+			}, {label: "EH.Override.Label"})
+		};
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Properties                               */
@@ -17,7 +29,8 @@ export default class AttackTemplate {
 	 * @returns {string|null}
 	 */
 	get attackAbility() {
-		return null;
+		if ( this.overrides.ability.attack === "none" ) return null;
+		return this.overrides.ability.attack ?? null;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

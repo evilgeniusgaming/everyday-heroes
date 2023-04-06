@@ -251,11 +251,23 @@
       "advancement": {
         "advancement": []
       },
+      "attack": {
+        "overrides": {
+          "ability": {
+            "attack": null
+          }
+        }
+      },
       "damage": {
         "damage": {
           "number": null,
           "denomination": null,
           "type": ""
+        },
+        "overrides": {
+          "ability": {
+            "damage": null
+          }
         }
       },
       "description": {
@@ -336,7 +348,7 @@
       }
     },
     "explosive": {
-      "templates": ["damage", "description", "physical"],
+      "templates": ["attack", "damage", "description", "physical"],
       "type": {
         "category": "basic"
       },
@@ -372,7 +384,7 @@
       }
     },
     "npcExplosive": {
-      "templates": ["damage", "description", "physical"],
+      "templates": ["attack", "damage", "description", "physical"],
       "type": {
         "category": "basic"
       },
@@ -408,7 +420,7 @@
       }
     },
     "npcWeapon": {
-      "templates": ["damage", "description", "physical"],
+      "templates": ["attack", "damage", "description", "physical"],
       "description": {
         "npc": ""
       },
@@ -491,7 +503,7 @@
       }
     },
     "weapon": {
-      "templates": ["damage", "description", "physical"],
+      "templates": ["attack", "damage", "description", "physical"],
       "type": {
         "value": "melee",
         "category": "basic"

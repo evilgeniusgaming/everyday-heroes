@@ -40,7 +40,6 @@ import TypedTemplate from "./templates/typed-template.mjs";
  * @property {string} bonuses.critical.damage - Extra critical damage.
  * @property {number} bonuses.critical.dice - Extra critical damage dice.
  * @property {object} overrides
- * @property {string} overrides.ability - Ability used when making attacks with this weapon.
  * @property {object} overrides.critical
  * @property {number} overrides.critical.threshold - Number needed to roll to score a critical hit with this weapon.
  */
@@ -108,13 +107,12 @@ export default class WeaponData extends SystemDataModel.mixin(
 						label: "EH.Weapon.Bonus.Critical.Dice.Label", hint: "EH.Weapon.Bonus.Critical.Dice.Hint"
 					})
 				})
-			}),
+			}, {label: "EH.Bonus.Label"}),
 			overrides: new foundry.data.fields.SchemaField({
-				ability: new foundry.data.fields.StringField({label: "EH.Weapon.Overrides.Ability"}),
 				critical: new foundry.data.fields.SchemaField({
 					threshold: new foundry.data.fields.NumberField({label: "EH.Weapon.Overrides.Critical.Threshold.Label"})
 				})
-			})
+			}, {label: "EH.Override.Label"})
 		});
 	}
 
@@ -150,7 +148,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get attackAbility() {
-		if ( this.overrides.ability ) return this.overrides.ability;
+		if ( this.overrides.ability.attack ) return this.overrides.ability.attack;
 		const melee = this.meleeAbility;
 		const ranged = this.rangedAbility;
 
@@ -266,8 +264,9 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get damageAbility() {
-		if ( this.mode === "offhand" ) return null;
-		return this.attackAbility;
+		if ( (this.overrides.ability.damage === "none") || !this.damage.denomination
+			|| (this.mode === "offhand") ) return null;
+		return this.overrides.ability.damage || this.attackAbility || null;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -358,6 +357,16 @@ export default class WeaponData extends SystemDataModel.mixin(
 	 */
 	get usesRounds() {
 		return (this.type.value === "ranged");
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Data Migrations                          */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static migrateOverride(source) {
+		if ( foundry.utils.getType(source.overrides.ability) !== "Object" ) {
+			source.overrides.ability = { attack: source.overrides.ability };
+		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

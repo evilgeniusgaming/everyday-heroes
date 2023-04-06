@@ -28,7 +28,7 @@ import TypedTemplate from "./templates/typed-template.mjs";
  * @property {string} bonuses.damage - Bonus to the explosive's damage.
  * @property {string} bonuses.dc - Bonus to the explosive's DC.
  * @property {object} overrides
- * @property {string} overrides.ability - Ability used when determining the DC of this explosive.
+ * @property {string} overrides.ability.dc - Ability used when determining the DC of this explosive.
  */
 export default class ExplosiveData extends SystemDataModel.mixin(
 	AttackTemplate, DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate, TypedTemplate
@@ -71,10 +71,7 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 			bonuses: new foundry.data.fields.SchemaField({
 				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label"}),
 				dc: new FormulaField({label: "EH.Weapon.Bonus.DC.Label"})
-			}),
-			overrides: new foundry.data.fields.SchemaField({
-				ability: new foundry.data.fields.StringField({label: "EH.Weapon.Overrides.Ability"})
-			})
+			}, {label: "EH.Bonus.Label"})
 		});
 	}
 
@@ -83,7 +80,7 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get attackAbility() {
-		return this.overrides.ability || this.rangedAbility;
+		return super.attackAbility || this.rangedAbility;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
