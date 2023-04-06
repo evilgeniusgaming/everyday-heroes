@@ -219,6 +219,17 @@ export const maxLevel = 10;
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Pre-suggested movement types available on actors.
+ * @enum {string}
+ */
+export const movementTypes = {
+	fly: "EH.Movement.Type.Fly.Label"
+};
+preLocalize("movementTypes");
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Configuration data for actor resources.
  *
  * @typedef {LabeledConfiguration} ResourceConfiguration

@@ -515,6 +515,11 @@
 "Measurement.Length.Meters.Label": "Meters",
 "Measurement.Units": "Units",
 
+"Movement.Base.Label": "Base Movement",
+"Movement.Special.Label": "Special Movement",
+"Movement.Type.Fly.Label": "Fly",
+"Movement.Type.Walk.Label": "Walk",
+
 "NotApplicable.Abbreviation": "N/A",
 
 "Override.Label": "Overrides",

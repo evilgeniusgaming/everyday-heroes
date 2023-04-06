@@ -1,0 +1,34 @@
+<form autocomplete="off">
+	<section>
+		<h2 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Movement.Base.Label"}}</span>
+			<span class="right stripes"></span>
+		</h2>
+		<fieldset>
+			<label>{{localize "EH.Movement.Type.Walk.Label"}}</label>
+			<input type="number" name="system.attributes.movement.value" value="{{source.attributes.movement.value}}">
+		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Measurement.Units"}}</label>
+			<select name="system.attributes.movement.units">
+				{{selectOptions CONFIG.lengthUnits selected=source.attributes.movement.units labelAttr="label"}}
+			</select>
+		</fieldset>
+	</section>
+
+	<section>
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Movement.Special.Label"}}</span>
+			<span class="right stripes"></span>
+		</h3>
+		{{#each CONFIG.movementTypes as |label key|}}
+			<fieldset>
+				<label>{{label}}</label>
+				<input type="number" name="system.attributes.movement.special.{{key}}"
+					value="{{lookup @root.source.attributes.movement.special key}}">
+			</fieldset>
+		{{/each}}
+	</section>
+</form>

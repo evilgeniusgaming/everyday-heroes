@@ -53,13 +53,20 @@
 		{{/if}}
 	</fieldset>
 	<fieldset>
-		<label>{{localize "EH.Speed.Label"}}</label>
+		<label>
+			{{localize "EH.Speed.Label"}}
+			{{#if editingMode}}
+				<a data-action="config" data-type="speed"
+					data-tooltip="{{localize 'EH.Action.Configure' type=(localize 'EH.Speed.Label')}}">
+					<i class="fa-solid fa-cog"></i>
+				</a>
+			{{/if}}
+		</label>
 		{{#if editingMode}}
 			<input type="number" name="system.attributes.movement.value" value="{{source.attributes.movement.value}}">
 			<select name="system.attributes.movement.units">
 				{{selectOptions CONFIG.lengthUnits selected=system.attributes.movement.units labelAttr="label"}}
 			</select>
-			{{!-- TODO: Allow editing of special units --}}
 		{{else}}
 			<span>{{system.attributes.movement.label}}</span>
 		{{/if}}

@@ -9,3 +9,4 @@ export {default as HealthConfig} from "./dialogs/health-config.mjs";
 export {default as ResourceConfig} from "./dialogs/resource-config.mjs";
 export {default as RestDialog} from "./dialogs/rest-dialog.mjs";
 export {default as SkillConfig} from "./dialogs/skill-config.mjs";
+export {default as SpeedConfig} from "./dialogs/speed-config.mjs";

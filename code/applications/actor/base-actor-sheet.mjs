@@ -6,6 +6,7 @@ import AttributesConfig from "./dialogs/attributes-config.mjs";
 import HealthConfig from "./dialogs/health-config.mjs";
 import ResourceConfig from "./dialogs/resource-config.mjs";
 import SkillConfig from "./dialogs/skill-config.mjs";
+import SpeedConfig from "./dialogs/speed-config.mjs";
 
 /**
  * Base sheet that provides common features for Hero and NPC sheets.
@@ -244,6 +245,8 @@ export default class BaseActorSheet extends ActorSheet {
 				return new ResourceConfig(key, this.actor).render(true);
 			case "skill":
 				return new SkillConfig(key, this.actor).render(true);
+			case "speed":
+				return new SpeedConfig(this.actor).render(true);
 			default:
 				return console.warn(`Everyday Heroes | Invalid config action type clicked ${type}.`);
 		}

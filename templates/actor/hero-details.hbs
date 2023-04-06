@@ -42,7 +42,15 @@
 				<span>{{system.details.wealth.value}}</span>
 			</fieldset>
 			<fieldset class="speed">
-				<label>{{localize "EH.Speed.Label"}}</label>
+				<label>
+					{{localize "EH.Speed.Label"}}
+					{{#if editingMode}}
+						<a data-action="config" data-type="speed"
+							data-tooltip="{{localize 'EH.Action.Configure' type=(localize 'EH.Speed.Label')}}">
+							<i class="fa-solid fa-cog"></i>
+						</a>
+					{{/if}}
+				</label>
 				{{#if editingMode}}
 					<input type="number" name="system.attributes.movement.value"
 						value="{{source.attributes.movement.value}}" step="0.1" min="0" {{disabled (not editingMode)}}>
