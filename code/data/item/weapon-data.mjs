@@ -408,6 +408,12 @@ export default class WeaponData extends SystemDataModel.mixin(
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	prepareDerivedRange() {
+		if ( this.mode === "burst" ) this.range.long = null;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	prepareDerivedRounds() {
 		this.rounds.spent = Math.min(this.rounds.spent, this.rounds.capacity);
 		this.rounds.available = this.rounds.capacity - this.rounds.spent;

@@ -122,9 +122,9 @@
 	{{#if (everydayHeroes-has item "system.radius")}}
 		<fieldset class="triple">
 			<label>{{localize "EH.Equipment.Trait.Radius.Label"}}</label>
-			<input type="number" name="system.radius.value" value="{{system.radius.value}}">
+			<input type="number" name="system.radius.value" value="{{source.radius.value}}">
 			<select name="system.radius.units">
-				{{selectOptions CONFIG.lengthUnits selected=system.radius.value labelAttr="label"}}
+				{{selectOptions CONFIG.lengthUnits selected=source.radius.value labelAttr="label"}}
 			</select>
 			<p class="hint">{{localize "EH.Equipment.Trait.Radius.Hint"}}</p>
 		</fieldset>
@@ -133,10 +133,10 @@
 	{{#if system.usesRange}}
 		<fieldset class="triple">
 			<label>{{localize "EH.Equipment.Trait.Range.Label"}}</label>
-			<input type="number" name="system.range.short" value="{{system.range.short}}">
-			<input type="number" name="system.range.long" value="{{system.range.long}}">
+			<input type="number" name="system.range.short" value="{{source.range.short}}">
+			<input type="number" name="system.range.long" value="{{source.range.long}}">
 			<select name="system.range.units">
-				{{selectOptions CONFIG.lengthUnits selected=system.range.value labelAttr="label"}}
+				{{selectOptions CONFIG.lengthUnits selected=source.range.value labelAttr="label"}}
 			</select>
 		</fieldset>
 	{{/if}}
@@ -144,7 +144,7 @@
 	{{#if itemProperties.reach.value}}
 		<fieldset>
 			<label>{{localize "EH.Equipment.Trait.Range.Reach"}}</label>
-			<input type="number" name="system.range.reach" value="{{system.range.reach}}">
+			<input type="number" name="system.range.reach" value="{{source.range.reach}}">
 		</fieldset>
 	{{/if}}
 
@@ -152,7 +152,7 @@
 		<fieldset>
 			<label>{{localize "EH.Ammunition.Type.Label"}}</label>
 			<select name="system.rounds.type">
-				{{#select system.rounds.type}}
+				{{#select source.rounds.type}}
 					<option value="">{{localize "None"}}</option>
 					<optgroup label="{{localize 'EH.Item.Type.Ammunition[other]'}}">
 						{{selectOptions CONFIG.ammunitionTypes labelAttr="label"}}
@@ -169,7 +169,7 @@
 			{{#if system.beltFed}}
 				<input type="text" placeholder="{{localize 'EH.Weapon.Property.Belt.Tag'}}" disabled>
 			{{else}}
-				<input type="number" name="system.rounds.capacity" value="{{system.rounds.capacity}}">
+				<input type="number" name="system.rounds.capacity" value="{{source.rounds.capacity}}">
 			{{/if}}
 			<p class="hint">{{localize "EH.Equipment.Trait.Rounds.Hint"}}</p>
 		</fieldset>
@@ -178,7 +178,7 @@
 			<fieldset>
 				<label>{{localize "EH.Equipment.Trait.Reload.Label"}}</label>
 				<select name="system.reload">
-					{{selectOptions CONFIG.actionTypesReload selected=system.reload blank=(localize "EH.Action.Reload.None")}}
+					{{selectOptions CONFIG.actionTypesReload selected=source.reload blank=(localize "EH.Action.Reload.None")}}
 				</select>
 			</fieldset>
 		{{/if}}
@@ -186,7 +186,7 @@
 		{{#if itemProperties.burst.value}}
 			<fieldset>
 				<label>{{localize "EH.Equipment.Trait.Rounds.Burst.Label"}}</label>
-				<input type="number" name="system.rounds.burst" value="{{system.rounds.burst}}">
+				<input type="number" name="system.rounds.burst" value="{{source.rounds.burst}}">
 				<p class="hint">{{localize "EH.Equipment.Trait.Rounds.Burst.Hint"}}</p>
 			</fieldset>
 		{{/if}}
