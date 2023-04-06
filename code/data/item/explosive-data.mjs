@@ -27,6 +27,8 @@ import TypedTemplate from "./templates/typed-template.mjs";
  * @property {object} bonuses
  * @property {string} bonuses.damage - Bonus to the explosive's damage.
  * @property {string} bonuses.dc - Bonus to the explosive's DC.
+ * @property {object} overrides
+ * @property {string} overrides.ability - Ability used when determining the DC of this explosive.
  */
 export default class ExplosiveData extends SystemDataModel.mixin(
 	AttackTemplate, DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate, TypedTemplate
@@ -69,6 +71,9 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 			bonuses: new foundry.data.fields.SchemaField({
 				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label"}),
 				dc: new FormulaField({label: "EH.Weapon.Bonus.DC.Label"})
+			}),
+			overrides: new foundry.data.fields.SchemaField({
+				ability: new foundry.data.fields.StringField({label: "EH.Weapon.Overrides.Ability"})
 			})
 		});
 	}
@@ -78,7 +83,7 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get attackAbility() {
-		return this.rangedAbility;
+		return this.overrides.ability || this.rangedAbility;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -133,6 +138,14 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Data Migrations                          */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static migrateOverride(source) {
+		if ( !source.overrides ) source.overrides = {};
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -142,7 +155,7 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 			type: CONFIG.EverydayHeroes.explosiveTypes[this.type.value]?.label
 				?? game.i18n.localize("EH.Item.Type.Explosive[one]"),
 			subtype: ""
-		}).trim();
+		}).trim().replace("  ", " ");
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

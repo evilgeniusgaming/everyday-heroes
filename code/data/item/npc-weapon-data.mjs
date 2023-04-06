@@ -47,6 +47,17 @@ export default class NPCWeaponData extends WeaponData {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Data Preparation                         */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedDamage() {
+		super.prepareDerivedDamage();
+		if ( this.mode === "swarm" ) {
+			this.damage.modify({ number: -Math.min(this.damage.number - 1, Math.ceil(this.damage.number / 2)) });
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Helpers                                  */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

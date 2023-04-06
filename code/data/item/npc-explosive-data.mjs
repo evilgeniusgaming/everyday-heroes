@@ -45,6 +45,12 @@ export default class NPCExplosiveData extends ExplosiveData {
 	/*  Properties                               */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	get isEquippable() {
+		return true;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	get types() {
 		return CONFIG.EverydayHeroes.explosiveTypes;
 	}

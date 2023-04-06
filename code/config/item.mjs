@@ -237,6 +237,9 @@ export const equipmentProperties = {
 		label: "EH.Weapon.Property.Stunning.Label",
 		condition: "stunned"
 	},
+	swarm: {
+		label: "EH.Weapon.Property.Swarm.Label"
+	},
 	thrown: {
 		label: "EH.Weapon.Property.Thrown.Label"
 	},
@@ -273,7 +276,7 @@ export const applicableProperties = {
 	]
 };
 applicableProperties.ammunition = applicableProperties.weapon;
-applicableProperties.npcWeapon = [...applicableProperties.weapon, "grappling"];
+applicableProperties.npcWeapon = [...applicableProperties.weapon, "grappling", "swarm"];
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Ammunition                               */
@@ -524,6 +527,12 @@ export const weaponModes = {
 			if ( system.type.value !== "ranged" ) return false;
 			return system.properties.has("fullAuto") || system.properties.has("semiAuto");
 		}
+	},
+	swarm: {
+		label: "EH.Weapon.Mode.Swarm.Label",
+		npcHint: "EH.Weapon.Mode.Swarm.NPCHint",
+		icon: "systems/everyday-heroes/artwork/svg/action/attack-swarm.svg",
+		available: system => system.properties.has("swarm")
 	}
 };
 preLocalize("weaponModes", { keys: ["label", "npcHint"] });

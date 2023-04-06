@@ -223,6 +223,8 @@ export const maxLevel = 10;
  * @enum {string}
  */
 export const movementTypes = {
+	swim: "EH.Movement.Type.Swim.Label",
+	climb: "EH.Movement.Type.Climb.Label",
 	fly: "EH.Movement.Type.Fly.Label"
 };
 preLocalize("movementTypes");

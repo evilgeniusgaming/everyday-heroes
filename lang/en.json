@@ -517,7 +517,9 @@
 
 "Movement.Base.Label": "Base Movement",
 "Movement.Special.Label": "Special Movement",
+"Movement.Type.Climb.Label": "Climb",
 "Movement.Type.Fly.Label": "Fly",
+"Movement.Type.Swim.Label": "Swim",
 "Movement.Type.Walk.Label": "Walk",
 
 "NotApplicable.Abbreviation": "N/A",
@@ -726,6 +728,8 @@
 "Weapon.Mode.Thrown.Label": "Thrown",
 "Weapon.Mode.TwoHanded.Label": "Two-handed",
 "Weapon.Mode.TwoHanded.NPCHint": "if wielded in two hands",
+"Weapon.Mode.Swarm.Label": "Swarm",
+"Weapon.Mode.Swarm.NPCHint": "if the swarm is at half its hit points or fewer",
 "Weapon.Overrides.Ability.Label": "Ability",
 "Weapon.Overrides.Critical.Threshold.Label": "Critical Threshold",
 "Weapon.Property.Label": "Weapon Properties",
@@ -757,6 +761,7 @@
 "Weapon.Property.Special.Label": "Special",
 "Weapon.Property.Stationary.Label": "Stationary",
 "Weapon.Property.Stunning.Label": "Stunning",
+"Weapon.Property.Swarm.Label": "Swarm",
 "Weapon.Property.Thrown.Label": "Thrown",
 "Weapon.Property.TwoHanded.Label": "Two-Handed",
 "Weapon.Property.Unreliable.Label": "Unreliable",

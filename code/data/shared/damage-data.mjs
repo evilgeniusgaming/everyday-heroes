@@ -13,7 +13,7 @@ export default class Damage extends foundry.abstract.DataModel {
 				initial: null, min: 0, integer: true, label: "EH.Equipment.Trait.Damage.Count.Label"
 			}),
 			denomination: new foundry.data.fields.NumberField({
-				initial: null, min: 1, integer: true, label: "EH.Equipment.Trait.Damage.Denomination.Label"
+				initial: null, min: 0, integer: true, label: "EH.Equipment.Trait.Damage.Denomination.Label"
 			}),
 			type: new foundry.data.fields.StringField({label: "EH.Equipment.Trait.Damage.Type.Label"})
 		};
@@ -40,8 +40,8 @@ export default class Damage extends foundry.abstract.DataModel {
 	get average() {
 		// TODO: Move this into damageTemplate to take advantage of mode
 		const ability = this._actor?.system.abilities[this.parent?.damageAbility]?.mod ?? 0;
-		if ( !this.denomination ) return this.number + ability;
-		return (this.denomination / 2 * this.number) + ability;
+		if ( !this.denomination ) return this.number;
+		return Math.floor(this.denomination / 2 * this.number) + ability;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -50,8 +50,8 @@ export default class Damage extends foundry.abstract.DataModel {
 
 	prepareBaseData() {
 		// Have to manually reset these values here to fix issue with Foundry calling prepareDerivedData twice
-		this.number = this._source.number || 0;
-		this.denomination = this._source.denomination || CONFIG.EverydayHeroes.diceSteps[0];
+		this.number = this._source.number;
+		this.denomination = this._source.denomination;
 		if ( this.denomination ) this.dice = `${this.number ?? 1}d${this.denomination}`;
 		else this.dice = this.number ?? 0;
 	}
@@ -70,6 +70,7 @@ export default class Damage extends foundry.abstract.DataModel {
 			this.denomination, modification.denomination
 		);
 		if ( modification.type ) this.type = modification.type;
-		this.dice = `${this.number ?? 1}d${this.denomination}`;
+		if ( this.denomination ) this.dice = `${this.number ?? 1}d${this.denomination}`;
+		else this.dice = this.number ?? 0;
 	}
 }

@@ -254,7 +254,7 @@
       "damage": {
         "damage": {
           "number": null,
-          "die": null,
+          "denomination": null,
           "type": ""
         }
       },
@@ -350,6 +350,9 @@
       "bonuses": {
         "damage": "",
         "dc": ""
+      },
+      "overrides": {
+        "ability": ""
       }
     },
     "feat": {
@@ -392,6 +395,9 @@
       "bonuses": {
         "damage": "",
         "dc": ""
+      },
+      "overrides": {
+        "ability": ""
       }
     },
     "npcFeature": {

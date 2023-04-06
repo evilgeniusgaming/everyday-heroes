@@ -85,7 +85,7 @@ export default class NPCSheet extends BaseActorSheet {
 					{
 						label: "EH.Item.Type.Weapon[one]",
 						icon: "artwork/svg/equipment/weapon.svg",
-						dataset: {type: "npcWeapon"}
+						dataset: {type: "npcWeapon", system: {type: {value: "melee"}}}
 					}
 				]
 			},

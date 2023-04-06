@@ -398,7 +398,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedProperties() {
-		this.properties = new Set(CONFIG.EverydayHeroes.applicableProperties.weapon.filter(p => {
+		this.properties = new Set(CONFIG.EverydayHeroes.applicableProperties[this.parent?.type ?? "weapon"].filter(p => {
 			if ( this.ammunition?.system.properties[p] === 1 ) return true;
 			else if ( this.ammunition?.system.properties[p] === -1 ) return false;
 			else if ( this.ammunition?.system.properties.has?.(p) ) return true;
@@ -428,7 +428,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 			category: CONFIG.EverydayHeroes.equipmentCategories[this.type.category]?.label ?? "",
 			type: game.i18n.localize("EH.Item.Type.Weapon[one]"),
 			subtype: CONFIG.EverydayHeroes.weaponTypes[this.type.value]?.label ?? ""
-		}).trim();
+		}).trim().replace("  ", " ");
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
