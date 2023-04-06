@@ -697,14 +697,14 @@ export default class ActorEH extends Actor {
 		if ( !this.system.attributes.hd.available ) return console.warn("No hit dice to spend");
 		// TODO: Show UI warning message for both of these
 
+		const min = simplifyBonus(this.system.attributes.hd.minimum, this.getRollData()) || 0;
 		const num = config.advantage ? 2 : 1;
 		const mod = config.advantage ? "kh" : "";
 		const rollConfig = foundry.utils.mergeObject({
 			fastForward: true,
 			parts: [
-				`max(0, ${num}d${denomination}${mod} + @abilities.${CONFIG.EverydayHeroes.defaultAbilities.hitPoints}.mod)`
+				`max(${min}, ${num}d${denomination}${mod} + @abilities.${CONFIG.EverydayHeroes.defaultAbilities.hitPoints}.mod)`
 			],
-			// TODO: Format this so negative cons subtract, rather than add a negative
 			data: this.getRollData()
 		}, config);
 
