@@ -630,6 +630,7 @@
 "Size.Tiny.Label": "Tiny",
 
 "Speed.Label": "Speed",
+"Speed.WithoutReduction": "{speed} without armor",
 
 "Skill.Label[one]": "Skill",
 "Skill.Label[other]": "Skills",

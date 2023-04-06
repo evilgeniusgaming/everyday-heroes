@@ -1,3 +1,4 @@
+import { numberFormat } from "../../../utils.mjs";
 import MappingField from "../../fields/mapping-field.mjs";
 
 /**
@@ -19,5 +20,28 @@ export default class MovementTemplate extends foundry.abstract.DataModel {
 				})
 			})
 		};
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Data Preparation                         */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedMovement() {
+		this.attributes.movement.label = numberFormat(
+			this.attributes.movement.value, { unit: this.attributes.movement.units }
+		);
+
+		let hasAwkwardArmor = false;
+		let hasAwkwardShield = false;
+		for ( const item of this.parent?.items ?? [] ) {
+			if ( (item.type !== "armor") || !item.system.equipped || !item.system.properties.has("awkward") ) continue;
+			if ( item.system.type.value === "armor" ) hasAwkwardArmor = true;
+			else if ( item.system.type.value === "shield" ) hasAwkwardShield = true;
+		}
+		this.attributes.movement.reduction = 0 + (hasAwkwardArmor ? 10 : 0) + (hasAwkwardShield ? 10 : 0);
+		this.attributes.movement.value -= this.attributes.movement.reduction;
+		if ( this.attributes.movement.reduction ) this.attributes.movement.label = `${
+			numberFormat(this.attributes.movement.value, { unit: this.attributes.movement.units })
+		} (${game.i18n.format("EH.Speed.WithoutReduction", { speed: this.attributes.movement.label })})`;
 	}
 }

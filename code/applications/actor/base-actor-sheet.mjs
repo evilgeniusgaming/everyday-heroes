@@ -87,6 +87,7 @@ export default class BaseActorSheet extends ActorSheet {
 
 		context.CONFIG = CONFIG.EverydayHeroes;
 		context.system = context.actor.system;
+		context.source = context.system.toObject();
 
 		context.effects = ActiveEffectEH.prepareActiveEffectSections(context.actor.effects);
 

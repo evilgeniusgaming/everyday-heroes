@@ -128,7 +128,6 @@ export async function enrichCheck(config, label, options) {
  */
 export async function enrichSave(config, label, options) {
 	let { _: ability, dc } = config;
-	console.log(dc, options.rollData);
 	dc = simplifyBonus(dc, options.rollData ?? {});
 
 	const abilityConfig = CONFIG.EverydayHeroes.abilities[ability];

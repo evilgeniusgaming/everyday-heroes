@@ -57,11 +57,11 @@
 .hero.sheet [data-tab="details"] .hero-id fieldset:is(.name, .languages) {
 	flex: 1 0 100%;
 }
-.hero.sheet [data-tab="details"] .hero-id fieldset:is(.class, .archetype, .background, .profession) {
+.hero.sheet [data-tab="details"] .hero-id fieldset:is(.class, .archetype, .background, .profession, .speed) {
 	flex: 1 0 50%;
 }
-.hero.sheet [data-tab="details"] .hero-id fieldset:is(.level, .wealth, .speed) {
-	flex: 1 0 33%;
+.hero.sheet [data-tab="details"] .hero-id fieldset:is(.level, .wealth) {
+	flex: 1 0 25%;
 }
 .hero.sheet [data-tab="details"] .hero-id fieldset > label {
 	font-weight: bold;

@@ -45,9 +45,9 @@
 				<label>{{localize "EH.Speed.Label"}}</label>
 				{{#if editingMode}}
 					<input type="number" name="system.attributes.movement.value"
-						value="{{system.attributes.movement.value}}" step="0.1" min="0" {{disabled (not editingMode)}}>
+						value="{{source.attributes.movement.value}}" step="0.1" min="0" {{disabled (not editingMode)}}>
 				{{else}}
-					<span>{{everydayHeroes-number system.attributes.movement.value unit=system.attributes.movement.units}}</span>
+					<span>{{system.attributes.movement.label}}</span>
 				{{/if}}
 			</fieldset>
 			<fieldset class="languages">

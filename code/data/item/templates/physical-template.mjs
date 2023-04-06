@@ -68,4 +68,13 @@ export default class PhysicalTemplate extends foundry.abstract.DataModel {
 		});
 		return tags;
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Data Preparation                         */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedEquipped() {
+		this.equipped = this.parent?.actor?.system.items?.[this.parent?.id]?.equipped
+			?? ((this.parent?.actor?.type === "npc") && !this.isEquippable);
+	}
 }
