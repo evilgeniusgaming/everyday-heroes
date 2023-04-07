@@ -41,7 +41,7 @@ export default class Damage extends foundry.abstract.DataModel {
 		// TODO: Move this into damageTemplate to take advantage of mode
 		const ability = this._actor?.system.abilities[this.parent?.damageAbility]?.mod ?? 0;
 		if ( !this.denomination ) return this.number;
-		return Math.floor(this.denomination / 2 * this.number) + ability;
+		return Math.floor((this.denomination + 1) / 2 * this.number) + ability;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

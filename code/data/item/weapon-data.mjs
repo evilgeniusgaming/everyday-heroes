@@ -390,6 +390,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedDamage() {
+		this.damage.prepareBaseData();
 		if ( this.ammunition ) {
 			if ( this.ammunition.system.damageMode === "regular" ) this.damage = this.ammunition.system.damage;
 			else this.damage.modify(this.ammunition.system.damage);

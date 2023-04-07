@@ -254,7 +254,7 @@
       "attack": {
         "overrides": {
           "ability": {
-            "attack": null
+            "attack": ""
           }
         }
       },
@@ -266,7 +266,7 @@
         },
         "overrides": {
           "ability": {
-            "damage": null
+            "damage": ""
           }
         }
       },
@@ -362,9 +362,6 @@
       "bonuses": {
         "damage": "",
         "dc": ""
-      },
-      "overrides": {
-        "ability": ""
       }
     },
     "feat": {
@@ -407,9 +404,6 @@
       "bonuses": {
         "damage": "",
         "dc": ""
-      },
-      "overrides": {
-        "ability": ""
       }
     },
     "npcFeature": {
@@ -456,7 +450,6 @@
         }
       },
       "overrides": {
-        "ability": "",
         "critical": {
           "threshold": null
         }
@@ -536,7 +529,6 @@
         }
       },
       "overrides": {
-        "ability": "",
         "critical": {
           "threshold": null
         }

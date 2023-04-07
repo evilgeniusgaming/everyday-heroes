@@ -908,8 +908,7 @@ export default class ItemEH extends Item {
 			weaponBonus: item.system.bonuses.damage,
 			ammoBonus: ammunition?.system.bonuses.damage,
 			globalBonus: this.actor?.system.bonuses?.damage?.all,
-			globalMeleeBonus: this.actor?.system.bonuses?.damage?.melee,
-			globalRangedBonus: this.actor?.system.bonuses?.damage?.ranged
+			[`global${item.system.type.value.capitalize()}Bonus`]: this.actor?.system.bonuses?.damage?.[item.system.type.value]
 		}, this.getRollData());
 
 		const rollConfig = foundry.utils.mergeObject({

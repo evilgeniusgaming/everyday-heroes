@@ -53,7 +53,8 @@ export default class NPCWeaponData extends WeaponData {
 	prepareDerivedDamage() {
 		super.prepareDerivedDamage();
 		if ( this.mode === "swarm" ) {
-			this.damage.modify({ number: -Math.min(this.damage.number - 1, Math.ceil(this.damage.number / 2)) });
+			const reduction = Math.ceil(this.damage.number / 2);
+			this.damage.modify({ number: -Math.min(this.damage.number - 1, reduction) });
 		}
 	}
 
