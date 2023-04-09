@@ -3,6 +3,7 @@
 	--eh-background-color-dark: rgb(119, 125, 126);
 	--eh-background-color-mid: rgb(207, 210, 205);
 	--eh-background-color-light: rgb(244, 244, 240);
+	--eh-background-color-blue: rgb(15, 20, 62);
 	--eh-background-color-white: rgb(255, 255, 255);
 	--eh-background-color-failure: rgb(255, 217, 215); /* lch(90%, 10%, 25%) */
 	--eh-background-color-success: rgb(217, 231, 202); /* lch(90%, 10%, 125%) */

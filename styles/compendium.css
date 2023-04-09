@@ -6,7 +6,6 @@
 /*  Journals                                 */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-
 .journal-sheet :is(h1, h2, h3, h4) {
 	font-weight: bold;
 	text-transform: uppercase;
@@ -29,32 +28,95 @@
 .journal-sheet h4 {
 	font-size: var(--font-size-18);
 }
-.journal-sheet ul {
-	list-style-type: "▸ ";
+.journal-sheet h5 {
+	margin-block-end: 0;
+	text-transform: uppercase;
+}
+.journal-sheet :is(h1, h2, h3, h4) strong {
+	color: var(--eh-text-color-red);
+	font-weight: bolder;
+}
+.journal-sheet strong.ability {
+	color: var(--eh-text-color-red);
+	text-transform: uppercase;
 }
 
-.journal-sheet .callout {
+ul {
+	list-style-type: "▸ ";
+}
+.journal-sheet ul.multi-column-list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+}
+.everyday-heroes.sheet ul.multi-column-list {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.callout {
 	margin: 1em 2em;
 	border: 3px solid var(--eh-border-color-strong);
 	border-radius: 40px;
 	padding: 2em;
 }
-.journal-sheet .callout h5 {
+.callout h5 {
 	margin-block: 0.25em;
 	font-size: var(--font-size-16);
 	text-align: center;
 	text-transform: uppercase;
 }
 
-.journal-sheet ul.multi-column-list {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+.journal-sheet strong.archetype {
+	color: var(--eh-text-color-red);
+	text-transform: uppercase;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Special Headers                          */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.journal-sheet h3.arrowed {
+	border: none;
+}
+.journal-sheet h3.arrowed::before {
+	content: "◀︎";
+	display: inline-block;
+	position: relative;
+	top: -0.4em;
+	padding-inline-end: 0.65em;
+	font-size: 0.5em;
+}
+.journal-sheet h3.arrowed::after {
+	content: "▶︎";
+	display: inline-block;
+	position: relative;
+	top: -0.15em;
+	padding-inline-start: 0.5em;
+	font-size: 0.65em;
+}
+
+.journal-sheet h3.rounded {
+	margin-block-start: 0.5em;
+	border: none;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	color: var(--eh-text-color-white);
+	background-color: var(--eh-background-color-blue);
+	line-height: 1.5em;
+	text-align: center;
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Table                                    */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+.journal-sheet table caption {
+	margin-block-end: 0.5em;
+	color: var(--eh-text-color-red);
+	font-size: var(--font-size-20);
+	font-weight: bold;
+	text-transform: uppercase;
+}
 .journal-sheet table thead {
 	background: none;
 }
@@ -65,26 +127,35 @@
 	text-shadow: none;
 	text-transform: uppercase;
 }
-
-/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-/*  Archetypes & Classes Table               */
-/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-.journal-sheet table.archetypes-classes {
+.journal-sheet table.full {
 	border: none;
 	background: none;
 }
-.journal-sheet table.archetypes-classes :is(td, th) {
+.journal-sheet table.full :is(td, th) {
 	padding: 0.5em;
 }
-.journal-sheet table.archetypes-classes tr:not(:last-of-type) {
+.journal-sheet table.full tr:not(:last-of-type) {
 	border-block-end: 1px solid var(--eh-border-color-strong);
 }
-.journal-sheet table.archetypes-classes tr:is(.strong, .tough, .wise) {
+.journal-sheet table.full tbody :is(tr.dark, tr:not(.dark, .light):nth-of-type(odd)) {
 	background-color: rgba(214, 228, 229, 0.5);
 }
-.journal-sheet table.archetypes-classes tr:is(.agile, .smart, .charming) {
+.journal-sheet table.full tbody :is(tr.light, tr:not(.dark, .light):nth-of-type(even)) {
 	background-color: rgba(255, 255, 255, 0.5);
+}
+.journal-sheet table.full tbody th[colspan] {
+	padding-block: 1em;
+	background-color: rgba(247, 241, 193, 0.5);
+}
+
+.journal-sheet table.full.internal-borders thead {
+	border: none;
+}
+.journal-sheet table.full.internal-borders tr:not(:last-of-type) {
+	border-block: none;
+}
+.journal-sheet table.full.internal-borders :is(th, td):not(:last-child) {
+	border-inline-end: 4px double var(--eh-border-color-weak);
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -108,14 +179,6 @@
 .journal-sheet table:is(.yellow, .blue).wide {
 	width: calc(100% - 2em);
 	margin-inline: 1em;
-}
-
-.journal-sheet table:is(.yellow, .blue) caption {
-	margin-block-end: 0.5em;
-	color: var(--eh-text-color-red);
-	font-size: var(--font-size-20);
-	font-weight: bold;
-	text-transform: uppercase;
 }
 
 .journal-sheet table:is(.yellow, .blue) thead {
@@ -142,15 +205,15 @@
 .journal-sheet table:is(.yellow, .blue) thead tr:first-child :is(td, th):last-child {
 	border-top-right-radius: 40px;
 }
-.journal-sheet table:is(.yellow, .blue) tbody tr:last-child td {
+.journal-sheet table:is(.yellow, .blue) tbody tr:last-child :is(td, th) {
 	border-block-end: 4px solid var(--eh-border-color-strong);
 	padding-block-end: 1em;
 }
-.journal-sheet table:is(.yellow, .blue) tbody tr td:first-child {
+.journal-sheet table:is(.yellow, .blue) tbody tr :is(td, th):first-child {
 	border-inline-start: 4px solid var(--eh-border-color-strong);
 	padding-inline-start: 2em;
 }
-.journal-sheet table:is(.yellow, .blue) tbody tr td:last-child {
+.journal-sheet table:is(.yellow, .blue) tbody tr :is(td, th):last-child {
 	border-inline-end: 4px solid var(--eh-border-color-strong);
 	padding-inline-end: 2em;
 }
