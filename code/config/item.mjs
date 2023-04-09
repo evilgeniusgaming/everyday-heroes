@@ -177,10 +177,6 @@ export const equipmentProperties = {
 	fullAuto: {
 		label: "EH.Weapon.Property.FullAuto.Label"
 	},
-	grappling: {
-		label: "EH.Weapon.Property.Grappling.Label",
-		npcHint: "EH.Weapon.Property.Grappling.NPCHint"
-	},
 	grenade: {
 		label: "EH.Weapon.Property.Grenade.Label"
 	},
@@ -276,7 +272,7 @@ export const applicableProperties = {
 	]
 };
 applicableProperties.ammunition = applicableProperties.weapon;
-applicableProperties.npcWeapon = [...applicableProperties.weapon, "grappling", "swarm"];
+applicableProperties.npcWeapon = [...applicableProperties.weapon, "swarm"];
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Ammunition                               */

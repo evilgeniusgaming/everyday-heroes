@@ -34,7 +34,7 @@
 			placeholder="{{localize 'EH.HitPoints.Max'}}" {{disabled (not editingMode)}}>
 		{{#if editingMode}}
 			(<input type="text" name="system.attributes.hp.formula" value="{{system.attributes.hp.formula}}" placeholder="{{localize 'EH.HitPoints.Formula'}}">)
-		{{else if system.attributes.hp.fomrula}}
+		{{else if system.attributes.hp.formula}}
 			<span>({{system.attributes.hp.formula}})</span>
 		{{/if}}
 	</fieldset>

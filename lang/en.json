@@ -517,6 +517,7 @@
 
 "Movement.Base.Label": "Base Movement",
 "Movement.Special.Label": "Special Movement",
+"Movement.Type.Burrow.Label": "Burrow",
 "Movement.Type.Climb.Label": "Climb",
 "Movement.Type.Fly.Label": "Fly",
 "Movement.Type.Swim.Label": "Swim",
@@ -746,8 +747,6 @@
 "Weapon.Property.Disguised.Label": "Disguised",
 "Weapon.Property.Finesse.Label": "Finesse",
 "Weapon.Property.FullAuto.Label": "Full-Auto",
-"Weapon.Property.Grappling.Label": "Grappling",
-"Weapon.Property.Grappling.NPCHint": "The target is Grappled.",
 "Weapon.Property.Grenade.Label": "Grenade",
 "Weapon.Property.Heavy.Label": "Heavy",
 "Weapon.Property.Illuminating.Label": "Illuminating",
