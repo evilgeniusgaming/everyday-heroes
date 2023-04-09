@@ -5,7 +5,7 @@
   "system": {
     "description": {
       "value": "<p>When you hit an opponent with an attack, you can goad that opponent into attacking you. Roll one influence die and add the result to the damage dealt. The target of the attack must make a Wisdom saving throw against your trick DC. On a failed save, the target has disadvantage on all attack rolls against targets other than you until the end of your next turn.</p>",
-      "chat": "<p>Roll one influence die and add the result to the damage dealt. The target of the attack must make a @Save[wis] against your trick DC. On a failed save, the target has disadvantage on all attack rolls against targets other than you until the end of your next turn.</p>",
+      "chat": "<p>Roll one influence die and add the result to the damage dealt. The target of the attack must make a @Save[wis|dc:@abilities.cha.dc] against your trick DC. On a failed save, the target has disadvantage on all attack rolls against targets other than you until the end of your next turn.</p>",
       "source": "Core Rulebook"
     },
     "activation": {
@@ -39,7 +39,7 @@
     "systemVersion": "0.1.1",
     "coreVersion": "10.291",
     "createdTime": 1679520214114,
-    "modifiedTime": 1681013573021,
+    "modifiedTime": 1681063666421,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

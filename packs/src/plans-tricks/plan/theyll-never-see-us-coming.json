@@ -4,7 +4,7 @@
   "img": "systems/everyday-heroes/artwork/icons/plans/theyll-never-see-us-coming.svg",
   "system": {
     "description": {
-      "value": "<p>When you enact this plan as an action, you and any allies you choose that can see or hear you gain a +5 bonus to Dexterity (Stealth) checks. This effect lasts for 10 minutes, or until you enact this plan again.</p><p><strong>Level 3:</strong> The bonus lasts for 1 hour.</p><p><strong>Level 5:</strong> The bonus becomes +10.</p><p><strong>Level 7:</strong> The bonus lasts for 4 hours.</p><p><strong>Level 9:</strong> The bonus becomes +15.</p>",
+      "value": "<p>When you enact this plan as an action, you and any allies you choose that can see or hear you gain a +5 bonus to Dexterity (Stealth) checks. This effect lasts for 10 minutes, or until you enact this plan again.</p><hr /><p><strong>Level 3:</strong> The bonus lasts for 1 hour.</p><p><strong>Level 5:</strong> The bonus becomes +10.</p><p><strong>Level 7:</strong> The bonus lasts for 4 hours.</p><p><strong>Level 9:</strong> The bonus becomes +15.</p>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -29,7 +29,91 @@
       "class": "mastermind"
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "label": "They'll Never See Us Coming (level 1)",
+      "icon": "systems/everyday-heroes/artwork/icons/plans/theyll-never-see-us-coming.svg",
+      "origin": "Compendium.everyday-heroes.plans-tricks.tzKxD9h2EfacQL5R",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "_id": "W6FKTDH3Nbb6HNm4",
+      "changes": [
+        {
+          "key": "system.skills.slth.bonuses.check",
+          "mode": 2,
+          "value": "+5",
+          "priority": null
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "sort": 0
+    },
+    {
+      "label": "They'll Never See Us Coming (level 5)",
+      "icon": "systems/everyday-heroes/artwork/icons/plans/theyll-never-see-us-coming.svg",
+      "origin": "Compendium.everyday-heroes.plans-tricks.tzKxD9h2EfacQL5R",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "_id": "y6majYGMRBmQWnjB",
+      "changes": [
+        {
+          "key": "system.skills.slth.bonuses.check",
+          "mode": 2,
+          "value": "+10",
+          "priority": null
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "sort": 0
+    },
+    {
+      "label": "They'll Never See Us Coming (level 9)",
+      "icon": "systems/everyday-heroes/artwork/icons/plans/theyll-never-see-us-coming.svg",
+      "origin": "Compendium.everyday-heroes.plans-tricks.tzKxD9h2EfacQL5R",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "_id": "uihJkbaVKNzTeyPM",
+      "changes": [
+        {
+          "key": "system.skills.slth.bonuses.check",
+          "mode": 2,
+          "value": "+15"
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "sort": 0
+    }
+  ],
   "ownership": {
     "default": 0
   },
@@ -39,7 +123,7 @@
     "systemVersion": "0.1.1",
     "coreVersion": "10.291",
     "createdTime": 1679521959361,
-    "modifiedTime": 1681013413509,
+    "modifiedTime": 1681061848862,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

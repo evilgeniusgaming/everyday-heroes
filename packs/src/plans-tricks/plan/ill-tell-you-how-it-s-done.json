@@ -4,7 +4,7 @@
   "img": "systems/everyday-heroes/artwork/icons/plans/ill-tell-you-how-its-done.svg",
   "system": {
     "description": {
-      "value": "<p>When you enact this plan as an action, choose yourself or one ally within 5 feet that can hear you. The chosen hero gains your choice of one of the following effects for the next minute, or until you enact this plan again.</p><ul><li><p><strong>Stronger.</strong> The target has advantage on Strength checks.</p></li><li><p><strong>Tougher.</strong> The target has advantage on Constitution checks. They also gain [[/r 2d6]] temporary hit points, which are lost when the effect ends.</p></li><li><p><strong>Faster.</strong> The target has advantage on Dexterity checks. They also gain damage reduction 15 against falling if they aren't Incapacitated.</p></li><li><p><strong>Smarter.</strong> The target has advantage on Intelligence checks.</p></li><li><p><strong>Wiser.</strong> The target has advantage on Wisdom checks.</p></li><li><p><strong>Comelier.</strong> The target has advantage on Charisma checks.</p></li></ul><p><strong>Level 3:</strong> The effect lasts for 10 minutes.</p><p><strong>Level 5:</strong> You can affect up to two targets.</p><p><strong>Level 7:</strong> You can affect up to three targets.</p><p><strong>Level 9:</strong> You can affect up to four targets, and you can choose two effects instead of one.</p>",
+      "value": "<p>When you enact this plan as an action, choose yourself or one ally within 5 feet that can hear you. The chosen hero gains your choice of one of the following effects for the next minute, or until you enact this plan again.</p><ul><li><p><strong>Stronger.</strong> The target has advantage on Strength checks.</p></li><li><p><strong>Tougher.</strong> The target has advantage on Constitution checks. They also gain [[/r 2d6]] temporary hit points, which are lost when the effect ends.</p></li><li><p><strong>Faster.</strong> The target has advantage on Dexterity checks. They also gain damage reduction 15 against falling if they aren't Incapacitated.</p></li><li><p><strong>Smarter.</strong> The target has advantage on Intelligence checks.</p></li><li><p><strong>Wiser.</strong> The target has advantage on Wisdom checks.</p></li><li><p><strong>Comelier.</strong> The target has advantage on Charisma checks.</p></li></ul><hr /><p><strong>Level 3:</strong> The effect lasts for 10 minutes.</p><p><strong>Level 5:</strong> You can affect up to two targets.</p><p><strong>Level 7:</strong> You can affect up to three targets.</p><p><strong>Level 9:</strong> You can affect up to four targets, and you can choose two effects instead of one.</p>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -39,7 +39,7 @@
     "systemVersion": "0.1.1",
     "coreVersion": "10.291",
     "createdTime": 1679521873822,
-    "modifiedTime": 1681013397070,
+    "modifiedTime": 1681061685178,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

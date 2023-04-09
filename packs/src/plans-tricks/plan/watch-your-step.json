@@ -4,8 +4,8 @@
   "img": "systems/everyday-heroes/artwork/icons/plans/watch-your-step.svg",
   "system": {
     "description": {
-      "value": "<p>When you enact this plan as an action, you cause a 10-foot square surface within 60 feet to become slick with oil, ice, marbles, or some other slippery substance. The area becomes difficult terrain. Each combatant standing in the area must succeed on a @Save[dex] against your plan DC or fall Prone. A combatant that enters the area or ends their turn there must succeed on a Dexterity saving throw against your plan DC or fall Prone. This effect lasts for 1 minute.</p><p>When you enact this plan during a chase, instead choose up to two opponents on foot or one land vehicle's driver. Each target must succeed on a Dexterity saving throw against your plan DC. You earn 1 chase point for each target that fails, or 2 points if the target was a driver.</p><hr /><p><strong>Level 5:</strong> You can increase the area to a 20-foot square. Your allies are not affected by the surface thanks to what you did to their shoes. During a chase, you can choose up to four opponents on foot or two vehicles' drivers instead.</p><p><strong>Level 9:</strong> The area you affect can be any distance away, as long as you can see it. You can enact this plan as a bonus action.</p>",
-      "chat": "",
+      "value": "<p>When you enact this plan as an action, you cause a 10-foot square surface within 60 feet to become slick with oil, ice, marbles, or some other slippery substance. The area becomes difficult terrain. Each combatant standing in the area must succeed on a Dexterity saving throw against your plan DC or fall Prone. A combatant that enters the area or ends their turn there must succeed on a Dexterity saving throw against your plan DC or fall Prone. This effect lasts for 1 minute.</p><p>When you enact this plan during a chase, instead choose up to two opponents on foot or one land vehicle's driver. Each target must succeed on a Dexterity saving throw against your plan DC. You earn 1 chase point for each target that fails, or 2 points if the target was a driver.</p><hr /><p><strong>Level 5:</strong> You can increase the area to a 20-foot square. Your allies are not affected by the surface thanks to what you did to their shoes. During a chase, you can choose up to four opponents on foot or two vehicles' drivers instead.</p><p><strong>Level 9:</strong> The area you affect can be any distance away, as long as you can see it. You can enact this plan as a bonus action.</p>",
+      "chat": "<p>You cause a 10-foot square surface within 60 feet to become slick with oil, ice, marbles, or some other slippery substance. The area becomes difficult terrain. Each combatant standing in the area must succeed on a @Save[dex|dc:@abilities.int.dc] or fall Prone. A combatant that enters the area or ends their turn there must succeed on a @Save[dex|dc:@abilities.int.dc] or fall Prone. This effect lasts for 1 minute.</p><p>When you enact this plan during a chase, instead choose up to two opponents on foot or one land vehicle's driver. Each target must succeed on a @Save[dex|dc:@abilities.int.dc]. You earn 1 chase point for each target that fails, or 2 points if the target was a driver.</p>",
       "source": "Core Rulebook"
     },
     "activation": {
@@ -39,7 +39,7 @@
     "systemVersion": "0.1.1",
     "coreVersion": "10.291",
     "createdTime": 1679162167545,
-    "modifiedTime": 1681013418651,
+    "modifiedTime": 1681061943996,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

@@ -4,7 +4,7 @@
   "img": "systems/everyday-heroes/artwork/icons/plans/i-knew-youd-do-that.svg",
   "system": {
     "description": {
-      "value": "<p>When you are attacked or must make a Dexterity saving throw, you can enact this plan as a reaction. When you do, you gain a +5 bonus to your Defense and Dexterity saving throws until the start of your next turn. You can wait until you know the result of the roll to use this ability, potentially forcing an attack that would have hit to miss, or a save that would have failed to succeed.</p><p><strong>Level 3:</strong> You can grant the bonus to an ally instead of yourself, when they are attacked or make a Dexterity saving throw.</p><p><strong>Level 5:</strong> The bonus lasts until the start of your second turn after you use it.</p><p><strong>Level 7:</strong> The bonus lasts until the start of your third turn after you use it.</p><p><strong>Level 9:</strong> The bonus lasts for 1 minute.</p>",
+      "value": "<p>When you are attacked or must make a Dexterity saving throw, you can enact this plan as a reaction. When you do, you gain a +5 bonus to your Defense and Dexterity saving throws until the start of your next turn. You can wait until you know the result of the roll to use this ability, potentially forcing an attack that would have hit to miss, or a save that would have failed to succeed.</p><hr /><p><strong>Level 3:</strong> You can grant the bonus to an ally instead of yourself, when they are attacked or make a Dexterity saving throw.</p><p><strong>Level 5:</strong> The bonus lasts until the start of your second turn after you use it.</p><p><strong>Level 7:</strong> The bonus lasts until the start of your third turn after you use it.</p><p><strong>Level 9:</strong> The bonus lasts for 1 minute.</p>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -39,7 +39,7 @@
     "systemVersion": "0.1.1",
     "coreVersion": "10.291",
     "createdTime": 1679521629097,
-    "modifiedTime": 1681013383302,
+    "modifiedTime": 1681061677072,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
