@@ -1,7 +1,7 @@
 {
   "name": "Expect the Unexpected",
   "type": "plan",
-  "img": "icons/magic/perception/orb-crystal-ball-scrying.webp",
+  "img": "systems/everyday-heroes/artwork/icons/plans/expect-the-unexpected.svg",
   "system": {
     "description": {
       "value": "<p>When you enact this plan as an action, you prepare yourself for every form of attack. For the next hour, your Defense bonus is +3.</p><hr /><p><strong>Level 5:</strong> The bonus becomes +4. While this plan is active, you can use this bonus in place of your Strength or Dexterity modifier when making a saving throw.</p><p><strong>Level 9:</strong> The bonus becomes +5.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "expect-the-unexpected",
@@ -32,7 +32,7 @@
   "effects": [
     {
       "label": "Expect the Unexpected (level 1)",
-      "icon": "icons/magic/perception/orb-crystal-ball-scrying.webp",
+      "icon": "systems/everyday-heroes/artwork/icons/plans/expect-the-unexpected.svg",
       "origin": "Compendium.everyday-heroes.archetypes-classes.w8RjUntlLaQYUprb",
       "duration": {
         "rounds": null,
@@ -60,7 +60,7 @@
     },
     {
       "label": "Expect the Unexpected (level 5)",
-      "icon": "icons/magic/perception/orb-crystal-ball-scrying.webp",
+      "icon": "systems/everyday-heroes/artwork/icons/plans/expect-the-unexpected.svg",
       "origin": "Compendium.everyday-heroes.archetypes-classes.w8RjUntlLaQYUprb",
       "duration": {
         "rounds": null,
@@ -88,7 +88,7 @@
     },
     {
       "label": "Expect the Unexpected (level 9)",
-      "icon": "icons/magic/perception/orb-crystal-ball-scrying.webp",
+      "icon": "systems/everyday-heroes/artwork/icons/plans/expect-the-unexpected.svg",
       "origin": "Compendium.everyday-heroes.archetypes-classes.w8RjUntlLaQYUprb",
       "duration": {
         "rounds": null,
@@ -120,10 +120,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.1.1",
     "coreVersion": "10.291",
     "createdTime": 1679161995056,
-    "modifiedTime": 1679178977697,
+    "modifiedTime": 1681013185204,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

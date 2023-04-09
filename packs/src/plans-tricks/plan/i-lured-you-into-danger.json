@@ -1,7 +1,7 @@
 {
   "name": "I Lured You Into Danger",
   "type": "plan",
-  "img": "icons/environment/traps/trap-jaw-steel.webp",
+  "img": "systems/everyday-heroes/artwork/icons/plans/i-lured-you-into-danger.svg",
   "system": {
     "description": {
       "value": "<p>You can enact this plan as a reaction when an opponent within 30 feet of you and that you are aware of moves closer to you, causing the opponent to stumble into a cleaning cart, trip over a mop, get their foot stuck in a loose floorboard, and so on. That opponent must make a Dexterity saving throw against your plan DC, taking 2d6 bludgeoning damage (PV 1) on a failed save, or half as much on a successful one. In addition, on a failed save, the target falls Prone and their movement speed is reduced to 0 until the end of the current turn, ending their movement.</p><p><strong>Level 3:</strong> The damage becomes 3d6.</p><p><strong>Level 5:</strong> The damage becomes 5d6. You can affect an opponent up to 60 feet away.</p><p><strong>Level 7:</strong> The damage becomes 6d6.</p><p><strong>Level 9:</strong> The damage becomes 8d6. You can affect an opponent up to 120 feet away.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "i-lured-you-into-danger",
@@ -36,10 +36,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.1.1",
     "coreVersion": "10.291",
     "createdTime": 1679521688773,
-    "modifiedTime": 1680461046452,
+    "modifiedTime": 1681013389490,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

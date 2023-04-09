@@ -1,7 +1,7 @@
 {
   "name": "I Had It Poisoned",
   "type": "plan",
-  "img": "icons/skills/toxins/poison-bottle-corked-fire-green.webp",
+  "img": "systems/everyday-heroes/artwork/icons/plans/i-had-it-poisoned.svg",
   "system": {
     "description": {
       "value": "<p>Thanks to your brilliant foresight and schemes, this plan can be enacted as a reaction when one of the following occurs.</p><ul><li><p>When you or an ally you can see makes a successful attack with a weapon that does piercing or slashing damage to a target.</p></li><li><p>After someone in the same room as you eats something, drinks something, or receives medical treatment.</p></li></ul><p>When you enact this plan, choose one of the following poisons.</p><ul><li><p><strong>Common Hallucinogens.</strong> The target must succeed on a Constitution saving throw against your plan DC or be Sickened for 1 minute. The target can repeat the save at the end of each of its turns, ending the effect on a success.</p></li><li><p><strong>Common Snake Venom.</strong> The target must make a Constitution saving throw against your plan DC, suffering 3d6 poison damage (ignoring armor) on a failed save, and half as much on a successful one.</p></li></ul><p>If you have an ingestible or injury poison in your inventory, you can choose to use that poison in place of one of the above. If you do, the target of the plan suffers the effects of that poison instead, using its normal save DC. This uses up the poison.</p><p><strong>Level 3: You can choose one of the following poisons instead.</strong></p><ul><li><p><strong>Common Spider Venom.</strong> The target must succeed on a Constitution saving throw against your plan DC or be Sickened for 1 minute. While Sickened in this way, the target suffers 1d6 poison damage (ignoring armor) at the start of each of its turns. The target can repeat the saving throw at the end of each of its turns, ending the effect on a success.</p></li><li><p><strong>Rare Hallucinogens.</strong> The target must succeed on a Constitution saving throw against your plan DC or be Sickened for 1 minute. The target is Blinded while Sickened in this way. The target can repeat the save at the end of each of its turns, ending the effect on a success.</p></li></ul><p><strong>Level 5: You can choose one of the following poisons instead.</strong></p><ul><li><p><strong>Rare Snake Venom.</strong> The target must make a Constitution saving throw against your plan DC, suffering 6d6 poison damage (ignoring armor) on a failed save, and half as much on a successful one.</p></li><li><p><strong>Tranquilizer.</strong> The target must succeed on a Constitution saving throw against your plan DC or be Sickened for 1 minute. The target is Unconscious while Sickened in this way. The target wakes up if it suffers any damage.</p></li></ul><p><strong>Level 7: You can choose one of the following poisons instead.</strong></p><ul><li><p><strong>Mushrooms.</strong> The target must succeed on a Constitution saving throw against your plan DC or be affected by this poison for 1 minute. A target that cannot be Sickened is immune to this effect. The target can repeat the save at the end of each of its turns, ending the effect on a success. While affected by this poison, a target must roll on the @UUID[Compendium.everyday-heroes.tables.cKRtsGh2488X9WJX]{Mushrooms Effects table} at the start of each of its turns to determine what it does.</p></li><li><p><strong>Rare Spider Venom.</strong> The target must succeed on a Constitution saving throw against your plan DC or be Sickened for 1 minute. While Sickened in this way, the target suffers 3d6 poison damage (ignoring armor) at the start of each of their turns. The target can repeat the save at the end of each of its turns, ending the effect on a success.</p></li></ul><p><strong>Level 9: You can choose the following poison instead.</strong></p><ul><li><p><strong>Neurotoxin.</strong> The target must make a Constitution saving throw against your plan DC, suffering 6d6 poison damage (ignoring armor) on a failed save, and half as much on a successful one. On a failed save, the target is also Sickened for 1 minute. While poisoned in this way, the target takes 6d6 poison damage (ignoring armor) at the start of each of its turns. The target can repeat the save at the end of each of its turns, ending the effect on a success.</p></li></ul>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "i-had-it-poisoned",
@@ -36,10 +36,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.1.1",
     "coreVersion": "10.291",
     "createdTime": 1679520526382,
-    "modifiedTime": 1679521995978,
+    "modifiedTime": 1681013143152,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
