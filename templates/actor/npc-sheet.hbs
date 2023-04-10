@@ -16,16 +16,18 @@
 			<a data-tab="inventory">{{localize "EH.Sheet.Section.Inventory"}}</a>
 			<a data-tab="biography">{{localize "EH.Sheet.Section.Biography"}}</a>
 			<a data-tab="effects">{{localize "EH.Sheet.Section.Effects"}}</a>
-			{{#if editingMode}}
-				<a data-action="toggle-editing-mode"
-					data-tooltip="Disable Editing Mode">
-					<i class="fas fa-lock-open"></i>
-				</a>
-			{{else}}
-				<a data-action="toggle-editing-mode"
-					data-tooltip="Enable Editing Mode">
-					<i class="fas fa-lock"></i>
-				</a>
+			{{#if editable}}
+				{{#if editingMode}}
+					<a data-action="toggle-editing-mode"
+						data-tooltip="Disable Editing Mode">
+						<i class="fas fa-lock-open"></i>
+					</a>
+				{{else}}
+					<a data-action="toggle-editing-mode"
+						data-tooltip="Enable Editing Mode">
+						<i class="fas fa-lock"></i>
+					</a>
+				{{/if}}
 			{{/if}}
 		</nav>
 	</header>
