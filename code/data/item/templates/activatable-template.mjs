@@ -22,14 +22,14 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
 			activation: new foundry.data.fields.SchemaField({
-				type: new foundry.data.fields.StringField({label: ""}),
-				condition: new foundry.data.fields.StringField({label: ""})
-			}, {label: ""}),
+				type: new foundry.data.fields.StringField({label: "EH.Activation.Cost.Label"}),
+				condition: new foundry.data.fields.StringField({label: "EH.Activation.Condition.Label"})
+			}, {label: "EH.Activation.Label"}),
 			resource: new foundry.data.fields.SchemaField({
-				amount: new foundry.data.fields.NumberField({label: ""}),
-				target: new foundry.data.fields.StringField({label: ""}),
-				type: new foundry.data.fields.StringField({label: ""})
-			}, {label: ""}),
+				amount: new foundry.data.fields.NumberField({label: "EH.Consumption.Amount.Label"}),
+				target: new foundry.data.fields.StringField({label: "EH.Consumption.Target.Label"}),
+				type: new foundry.data.fields.StringField({label: "EH.Consumption.Type.Label"})
+			}, {label: "EH.Consumption.Label"}),
 			uses: new foundry.data.fields.SchemaField({
 				spent: new foundry.data.fields.NumberField({initial: 0, min: 0, integer: true, label: "EH.Uses.Spent.Label"}),
 				max: new FormulaField({deterministic: true, label: "EH.Uses.Max.Label"}),

@@ -460,6 +460,11 @@
       "identifier": {
         "value": "",
         "class": ""
+      },
+      "resource": {
+        "amount": 1,
+        "target": "genius",
+        "type": "resource"
       }
     },
     "profession": {
@@ -493,6 +498,12 @@
       "identifier": {
         "value": "",
         "class": ""
+      },
+      "resource": {
+        "amount": 1,
+        "target": "influence",
+        "type": "resource",
+        "dice": null
       }
     },
     "weapon": {

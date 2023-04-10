@@ -299,7 +299,10 @@ export default class ItemEH extends Item {
 		// If a dice resource is consumed, roll that resource and add to chat message
 		if ( activationConfig.roll.resource && activationConfig.consume.resource ) {
 			const roll = await this.actor.rollResource({
-				resource: item.system.resource.target, consumed: 0
+				resource: item.system.resource.target,
+				consumed: 0,
+				diceNumber: item.system.resource.dice,
+				parts: item.system.resource.bonus ? [item.system.resource.bonus] : undefined
 			}, { create: false });
 			if ( roll ) {
 				message.data ??= {};

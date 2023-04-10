@@ -54,6 +54,10 @@
 "Action.Type.None": "No Action",
 "Action.Type.Reaction": "Reaction",
 
+"Activation.Label": "Activation",
+"Activation.Condition.Label": "Activation Condition",
+"Activation.Cost.Label": "Activation Cost",
+
 "Actor.Type.Hero[one]": "Hero",
 "Actor.Type.Hero[other]": "Heroes",
 "Actor.Type.NPC[one]": "Non-Player Character",
@@ -236,6 +240,8 @@
 
 "Consumption.Label": "Consumption",
 "Consumption.Amount.Label": "Amount",
+"Consumption.Dice.Label": "Dice Count",
+"Consumption.ResourceRolls.Label": "Resource Rolls",
 "Consumption.Target.Label": "Target",
 "Consumption.Type.Label": "Type",
 "Consumption.Warning.InsufficientNone": "No uses of {resource} available, {required} needed.",

@@ -46,6 +46,12 @@
 	display: flex;
 	flex-direction: column;
 }
+.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label.double {
+	grid-column: span 2;
+}
+.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label.triple {
+	grid-column: span 3;
+}
 .everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label > :is(input, select) {
 	flex: 1 0 calc(var(--form-field-height) + 1px);
 }

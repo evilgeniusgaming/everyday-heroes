@@ -9,6 +9,7 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * @mixes {@link DescribedTemplate}
  *
  * @property {object} identifier
+ * @property {string} identifier.value - Identifier of this plan.
  * @property {string} identifier.class - Identifier for the class required to take this plan.
  */
 export default class PlanData extends SystemDataModel.mixin(DescribedTemplate, ActivatableTemplate) {
@@ -30,9 +31,12 @@ export default class PlanData extends SystemDataModel.mixin(DescribedTemplate, A
 			identifier: new foundry.data.fields.SchemaField({
 				value: new IdentifierField({label: "Identifier.Label"}),
 				class: new IdentifierField({label: "", hint: ""})
+			}),
+			resource: new foundry.data.fields.SchemaField({
+				amount: new foundry.data.fields.NumberField({initial: 1}),
+				target: new foundry.data.fields.StringField({initial: "genius"}),
+				type: new foundry.data.fields.StringField({initial: "resource"})
 			})
 		});
 	}
 }
-
-// TODO: Automatically fix consumption.target to consume a "genius"

@@ -19,20 +19,20 @@
 	{{/if}}
 
 	<fieldset>
-		<label>Activation Cost</label>{{!-- TODO: Localize --}}
+		<label>{{localize "EH.Activation.Cost.Label"}}</label>
 		<select name="system.activation.type">
 			{{selectOptions CONFIG.actionTypesStandard selected=system.activation.type blank=(localize "None")}}
 		</select>
 	</fieldset>
 	<fieldset>
-		<label>Activation Condition</label>{{!-- TODO: Localize --}}
+		<label>{{localize "EH.Activation.Condition.Label"}}</label>
 		<input type="text" name="system.activation.condition" value="{{system.activation.condition}}">
 	</fieldset>
 
 	<fieldset>
 		<label>{{localize "EH.Consumption.Label"}}</label>
 		<div class="fields">
-			<label>{{!-- TODO: Should span full width if no type selected --}}
+			<label>
 				<span>{{localize "EH.Consumption.Type.Label"}}</span>
 				<select name="system.resource.type">
 					{{selectOptions CONFIG.consumptionTypes selected=system.resource.type labelAttr="label" blank=""}}
@@ -56,6 +56,23 @@
 			{{/if}}
 		</div>
 	</fieldset>
+
+	{{#if (and (everydayHeroes-has item "system.resource.dice") (eq system.resource.type "resource"))}}
+		<fieldset>
+			<label>{{localize "EH.Consumption.ResourceRolls.Label"}}</label>
+			<div class="fields">
+				<label>
+					<span>{{localize "EH.Consumption.Dice.Label"}}</span>
+					<input type="number" name="system.resource.dice" value="{{source.resource.dice}}"
+						placeholder="{{system.resource.amount}}">
+				</label>
+				<label class="double">
+					<span>{{localize "EH.Bonus.Label[one]"}}</span>
+					<input type="text" name="system.resource.bonus" value="{{source.resource.bonus}}">
+				</label>
+			</div>
+		</fieldset>
+	{{/if}}
 
 	<fieldset class="triple">
 		<label>{{localize "EH.Uses.Label"}}</label>
