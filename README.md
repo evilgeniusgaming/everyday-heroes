@@ -10,7 +10,7 @@ From the excitement of blockbuster action films to the combat options and tactic
 
 Along with flexible rules to create contemporary characters from hard-bitten soldiers to genius inventors and evil masterminds, the Everyday Heroes core rules open the doors to playing through nearly any present-day plotline—creating nearly endless possibilities.
 
-This complete Everyday Heroes Core Rulebook for both Gamemasters and Players brings the ease of the 5th edition of the world’s most popular roleplaying game into the modern era. This single rulebook is required to understand and play the contents of all of our officially licensed movie franchise games.
+This core system contains everything required to play Everyday Heroes as well as a sample of Archetypes, Classes, Background, and Professions.
 
 ## Installation Instructions
 
