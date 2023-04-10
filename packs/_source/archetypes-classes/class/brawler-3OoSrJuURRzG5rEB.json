@@ -4,7 +4,7 @@
   "img": "systems/everyday-heroes/artwork/icons/classes/brawler.webp",
   "system": {
     "description": {
-      "value": "<p><em><q>If brute force ain't workin', yer just not usin' enough!</q> <strong>—Mack Williams</strong></em></p><p>You break stuff and hit people. Sometimes you mix it up by hitting stuff and breaking people.</p><p>You imprinted on comics as a kid, and it shows in your approach to a fight. With fists like hammers and the ability to turn nearly anything into a deadly weapon, you are dangerous and everyone knows it.</p><p>The brawler charges into melee combat, hitting hard and destroying everything in their path. They enjoy using improvised weapons but are also great unarmed combatants. The brawler doesn't need to carry weapons to fight at full strength.</p><div class=\"callout\"><h5>Proficiencies</h5><ul><li><p><strong>Saving Throws:</strong> Strength and Constitution</p></li><li><p><strong>\u0017Skills:</strong> Choose two from Acrobatics, Athletics, Endurance, Intimidation, Mechanics, and Streetwise</p></li><li><p><strong>Equipment:</strong> Basic Equipment and Improvised Equipment</p></li></ul><h5>Equipment Recommendations</h5><ul><li><p><strong>Equipment Pack:</strong> @UUID[Compendium.eh-core-rulebook.other-equipment.5mYbg0swfoAyQdTj]{Badass Pack}</p></li><li><p><strong>Weapons:</strong> @UUID[Compendium.eh-core-rulebook.weapon-armor.FrkzzZrHeCSqCp17]{Unarmed strikes} and anything you find lying around</p></li></ul></div>",
+      "value": "<p><em><q>If brute force ain't workin', yer just not usin' enough!</q> <strong>—Mack Williams</strong></em></p><p>You break stuff and hit people. Sometimes you mix it up by hitting stuff and breaking people.</p><p>You imprinted on comics as a kid, and it shows in your approach to a fight. With fists like hammers and the ability to turn nearly anything into a deadly weapon, you are dangerous and everyone knows it.</p><p>The brawler charges into melee combat, hitting hard and destroying everything in their path. They enjoy using improvised weapons but are also great unarmed combatants. The brawler doesn't need to carry weapons to fight at full strength.</p><div class=\"callout\"><h5>Proficiencies</h5><ul><li><p><strong>Saving Throws:</strong> Strength and Constitution</p></li><li><p><strong>\u0017Skills:</strong> Choose two from Acrobatics, Athletics, Endurance, Intimidation, Mechanics, and Streetwise</p></li><li><p><strong>Equipment:</strong> Basic Equipment and Improvised Equipment</p></li></ul><h5>Equipment Recommendations</h5><ul><li><p><strong>Equipment Pack:</strong> Badass Pack</p></li><li><p><strong>Weapons:</strong> Unarmed strikes and anything you find lying around</p></li></ul></div>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -176,10 +176,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.1",
+    "systemVersion": "0.1.3",
     "coreVersion": "10.291",
     "createdTime": 1679454521122,
-    "modifiedTime": 1680992349591,
+    "modifiedTime": 1681152915468,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

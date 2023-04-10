@@ -4,7 +4,7 @@
   "img": "systems/everyday-heroes/artwork/icons/classes/commando.webp",
   "system": {
     "description": {
-      "value": "<p><em><q>The wise recruit hopes for peace but prepares for war. For the veteran, peace is like a fallen comrade, something you never get back.</q> <strong>—Sue Fairfield</strong></em></p><p>You are the consummate warrior, dangerous with any weapon and trained to survive every circumstance. You are ready for whatever the enemy has to throw at you. The only thing you might be unprepared for is peace.</p><p>The commando is an all-around combat class that offers a great blend of defense and offense. Unlike the other tough heroes, they can't directly protect their allies, but they are versatile and can use nearly any weapon. You might consider investing in Dexterity if you want to lean into offensive strategies.</p><div class=\"callout\"><h5>Proficiencies</h5><ul><li><p><strong>Saving Throws:</strong> Strength and Constitution</p></li><li><p><strong>Skills:</strong> Choose two from Athletics, Endurance, Mechanics, Persuasion, Streetwise, Survival, and Vehicles</p></li><li><p><strong>Equipment:</strong> Basic Equipment, Advanced Equipment, and Military Equipment</p></li></ul><h5>Equipment Recommendations</h5><ul><li><p><strong>Equipment Pack:</strong> @UUID[Compendium.eh-core-rulebook.other-equipment.YiPOWDkqCaU0lw0o]{Soldier Pack}</p></li><li><p><strong>Weapons:</strong> @UUID[Compendium.eh-core-rulebook.weapon-armor.KZiqkE0V7j4XrUzp]{Assault carbine rifle}, @UUID[Compendium.eh-core-rulebook.weapon-armor.uua9V0JEpMVcBW7L]{9mm semi-auto pistol}, @UUID[Compendium.eh-core-rulebook.weapon-armor.LF7orfuIYGgswymZ]{combat knife}</p></li></ul></div>",
+      "value": "<p><em><q>The wise recruit hopes for peace but prepares for war. For the veteran, peace is like a fallen comrade, something you never get back.</q> <strong>—Sue Fairfield</strong></em></p><p>You are the consummate warrior, dangerous with any weapon and trained to survive every circumstance. You are ready for whatever the enemy has to throw at you. The only thing you might be unprepared for is peace.</p><p>The commando is an all-around combat class that offers a great blend of defense and offense. Unlike the other tough heroes, they can't directly protect their allies, but they are versatile and can use nearly any weapon. You might consider investing in Dexterity if you want to lean into offensive strategies.</p><div class=\"callout\"><h5>Proficiencies</h5><ul><li><p><strong>Saving Throws:</strong> Strength and Constitution</p></li><li><p><strong>Skills:</strong> Choose two from Athletics, Endurance, Mechanics, Persuasion, Streetwise, Survival, and Vehicles</p></li><li><p><strong>Equipment:</strong> Basic Equipment, Advanced Equipment, and Military Equipment</p></li></ul><h5>Equipment Recommendations</h5><ul><li><p><strong>Equipment Pack:</strong> Soldier Pack</p></li><li><p><strong>Weapons:</strong> Assault carbine rifle, 9mm semi-auto pistol, combat knife</p></li></ul></div>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -169,10 +169,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.1",
+    "systemVersion": "0.1.3",
     "coreVersion": "10.291",
     "createdTime": 1679454534354,
-    "modifiedTime": 1680992371878,
+    "modifiedTime": 1681152904094,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
