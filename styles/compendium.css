@@ -6,37 +6,37 @@
 /*  Journals                                 */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.journal-sheet :is(h1, h2, h3, h4) {
+:is(.journal-sheet, .everyday-heroes.sheet .editor) :is(h1, h2, h3, h4) {
 	font-weight: bold;
 	text-transform: uppercase;
 }
-.journal-sheet :is(h1, h2) {
+:is(.journal-sheet, .everyday-heroes.sheet .editor) :is(h1, h2) {
 	border: none;
 	color: var(--eh-text-color-red);
 }
-.journal-sheet h1 {
+:is(.journal-sheet, .everyday-heroes.sheet .editor) h1 {
 	font-size: var(--font-size-48);
 	text-align: center;
 }
-.journal-sheet h2 {
+:is(.journal-sheet, .everyday-heroes.sheet .editor) h2 {
 	font-size: var(--font-size-32);
 }
-.journal-sheet h3 {
+:is(.journal-sheet, .everyday-heroes.sheet .editor) h3 {
 	border-block-end: 4px solid var(--eh-border-color-strong);
 	font-size: var(--font-size-24);
 }
-.journal-sheet h4 {
+:is(.journal-sheet, .everyday-heroes.sheet .editor) h4 {
 	font-size: var(--font-size-18);
 }
-.journal-sheet h5 {
+:is(.journal-sheet, .everyday-heroes.sheet .editor) h5 {
 	margin-block-end: 0;
 	text-transform: uppercase;
 }
-.journal-sheet :is(h1, h2, h3, h4) strong {
+:is(.journal-sheet, .everyday-heroes.sheet .editor) :is(h1, h2, h3, h4) strong {
 	color: var(--eh-text-color-red);
 	font-weight: bolder;
 }
-.journal-sheet strong.ability {
+:is(.journal-sheet, .everyday-heroes.sheet .editor) strong.ability {
 	color: var(--eh-text-color-red);
 	text-transform: uppercase;
 }
@@ -75,10 +75,10 @@ ul {
 /*  Special Headers                          */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.journal-sheet h3.arrowed {
+h3.arrowed {
 	border: none;
 }
-.journal-sheet h3.arrowed::before {
+h3.arrowed::before {
 	content: "◀︎";
 	display: inline-block;
 	position: relative;
@@ -86,7 +86,7 @@ ul {
 	padding-inline-end: 0.65em;
 	font-size: 0.5em;
 }
-.journal-sheet h3.arrowed::after {
+h3.arrowed::after {
 	content: "▶︎";
 	display: inline-block;
 	position: relative;
@@ -95,11 +95,11 @@ ul {
 	font-size: 0.65em;
 }
 
-.journal-sheet h3.rounded {
+:is(h3, h4).rounded {
 	margin-block-start: 0.5em;
 	border: none;
-	border-top-left-radius: 20px;
-	border-top-right-radius: 20px;
+	border-top-left-radius: 1em;
+	border-top-right-radius: 1em;
 	color: var(--eh-text-color-white);
 	background-color: var(--eh-background-color-blue);
 	line-height: 1.5em;
