@@ -63,14 +63,23 @@ export default class BaseItemSheet extends ItemSheet {
 	/*  Action Handlers                          */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	_onChangeInput(event) {
-		super._onChangeInput(event);
+	activateListeners(jQuery) {
+		super.activateListeners(jQuery);
+		const html = jQuery[0];
 
-		// Change selected biography editor
-		if ( event.target.name === "editorSelected" ) {
-			this.editorSelected = event.target.value;
-			this.render();
+		for ( const field of html.querySelectorAll('[name="editorSelected"]') ) {
+			field.addEventListener("change", event => {
+				this.editorSelected = event.target.value;
+				this.render();
+			});
 		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_disableFields(form) {
+		super._disableFields(form);
+		form.querySelectorAll('[name="editorSelected"]').forEach(f => f.disabled = false);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -166,6 +166,14 @@ export default class BaseActorSheet extends ActorSheet {
 			this.render();
 		});
 
+		// Editor selector
+		for ( const field of html.querySelectorAll('[name="editorSelected"]') ) {
+			field.addEventListener("change", event => {
+				this.editorSelected = event.target.value;
+				this.render();
+			});
+		}
+
 		// Effect Listeners
 		for ( const element of html.querySelectorAll('[data-action="effect"]') ) {
 			element.addEventListener("click", ActiveEffectEH.onEffectAction.bind(this));
@@ -207,6 +215,13 @@ export default class BaseActorSheet extends ActorSheet {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	_disableFields(form) {
+		super._disableFields(form);
+		form.querySelectorAll('[name="editorSelected"]').forEach(f => f.disabled = false);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	_onChangeInput(event) {
 		super._onChangeInput(event);
 
@@ -215,12 +230,6 @@ export default class BaseActorSheet extends ActorSheet {
 			const ammoId = event.target.value;
 			const weaponId = event.target.closest("[data-item-id]")?.dataset.itemId;
 			this.actor.update({[`system.items.${weaponId}.ammunition`]: ammoId});
-		}
-
-		// Change selected biography editor
-		else if ( event.target.name === "editorSelected" ) {
-			this.editorSelected = event.target.value;
-			this.render();
 		}
 	}
 
