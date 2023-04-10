@@ -85,15 +85,14 @@ export default class NPCWeaponData extends WeaponData {
 		// Damage types
 		if ( this.hasDamage ) elements.push(this._npcDamages());
 
-		description += `${listFormatter.format(elements.filter(e => e))}</p>`;
+		description += `${listFormatter.format(elements.filter(e => e))} `;
 
-		if ( this.description.chat ) {
-			description += await TextEditor.enrichHTML(this.description.chat ?? "", {
-				secrets: this.parent.isOwner, rollData: this.parent.getRollData(), async: true, relativeTo: this.parent
-			});
-		}
+		if ( this.description.chat ) description += this.description.chat.replace(/^<p>/, "");
+		else description += "</p>";
 
-		return description;
+		return await TextEditor.enrichHTML(description, {
+			secrets: this.parent.isOwner, rollData: this.parent.getRollData(), async: true, relativeTo: this.parent
+		});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -159,7 +158,7 @@ export default class NPCWeaponData extends WeaponData {
 			string += clone.system.damage.average;
 			if ( clone.system.damage.denomination ) string += ` (${clone.system.damageFormula})`;
 			string += ` ${type.toLowerCase()}</a>`;
-			if ( config.npcHint && (Object.values(modes).length > 1) ) string += ` ${config.npcHint}`;
+			if ( config.npcHint && damages.length ) string += ` ${config.npcHint}`;
 			damages.push(string);
 		}
 

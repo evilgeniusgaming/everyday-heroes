@@ -75,7 +75,7 @@
 	text-align: end;
 }
 
-.everyday-heroes.npc.sheet [data-tab="details"] > section > fieldset > ul {
+.everyday-heroes.npc.sheet [data-tab="details"] > section.attributes > fieldset > ul {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.5em;
