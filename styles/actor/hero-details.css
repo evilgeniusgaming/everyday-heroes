@@ -280,7 +280,7 @@
 .hero.sheet [data-tab="details"] .attributes .health {
 	display: grid;
 	overflow: clip;
-	grid-template-areas: "hp death-saves";
+	grid-template-areas: "hp death-saves config";
 }
 .hero.sheet [data-tab="details"] .attributes .health .hp {
 	grid-area: hp;
