@@ -1,7 +1,8 @@
 # Build Artifacts
 everyday-heroes-compiled*
 everyday-heroes.lock
-packs/*.db
+packs/*
+!packs/_source/
 
 # IDE
 .idea/

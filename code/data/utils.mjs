@@ -7,7 +7,7 @@ export function registerDataModels(documentType, models) {
 	const config = CONFIG[documentType];
 	config.typeLabelsPlural ??= {};
 	for ( const [type, model] of Object.entries(models) ) {
-		config.systemDataModels[type] = model;
+		config[game.release.generation > 10 ? "dataModels" : "systemDataModels"][type] = model;
 		config.typeLabels[type] = `${model.metadata.localization}[one]`;
 		config.typeLabelsPlural[type] = `${model.metadata.localization}[other]`;
 		if ( model.metadata.icon ) config.typeIcons[type] = model.metadata.icon;
