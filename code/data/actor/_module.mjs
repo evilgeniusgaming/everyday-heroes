@@ -1,9 +1,11 @@
 import HeroData from "./hero-data.mjs";
 import NPCData from "./npc-data.mjs";
+import VehicleData from "./vehicle-data.mjs";
 
 export {
 	HeroData,
-	NPCData
+	NPCData,
+	VehicleData
 };
 export {default as AbilitiesTemplate} from "./templates/abilities-template.mjs";
 export {default as InitiativeTemplate} from "./templates/initiative-template.mjs";
@@ -14,5 +16,6 @@ export {default as SkillsTemplate} from "./templates/skills-template.mjs";
 
 export const config = {
 	hero: HeroData,
-	npc: NPCData
+	npc: NPCData,
+	vehicle: VehicleData
 };

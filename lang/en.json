@@ -4,6 +4,7 @@
 "Ability.Label[other]": "Abilities",
 "Ability.Score[one]": "Ability Score",
 "Ability.Score[other]": "Ability Scores",
+"Ability.Modifier": "Ability Modifier",
 "Ability.Charisma.Label": "Charisma",
 "Ability.Charisma.Abbreviation": "cha",
 "Ability.Constitution.Label": "Constitution",
@@ -68,6 +69,8 @@
 "Actor.Type.Hero[other]": "Heroes",
 "Actor.Type.NPC[one]": "Non-Player Character",
 "Actor.Type.NPC[other]": "Non-Player Characters",
+"Actor.Type.Vehicle[one]": "Vehicle",
+"Actor.Type.Vehicle[other]": "Vehicles",
 
 "Advancement.Title[one]": "Advancement",
 "Advancement.Title[other]": "Advancements",
@@ -776,6 +779,13 @@
 "Uses.Recovery.Period.Label": "Recovery Period",
 "Uses.Recovery.Period.Turn.Label": "Turn",
 "Uses.Warning.Insufficient": "No uses of this item remaining.",
+
+"Vehicle.Trait.ArmorValue.Hint": "Like any object, a vehicle’s Armor Value determines what weapons can damage it. A vehicle’s windows and tires have their own AV of 1 by default.",
+"Vehicle.Trait.Passengers.Label": "Passengers",
+"Vehicle.Trait.Passengers.Abbreviation": "PAX",
+"Vehicle.Trait.Passengers.Hint": "The number of people who can comfortably fit in the vehicle, including the driver.",
+"Vehicle.Trait.TopSpeed.Label": "Top Speed",
+"Vehicle.Trait.TopSpeed.Hint": "A vehicle’s top speed is included for comparison purposes but is not used in the game mechanics for chases or combat.",
 
 "Weapon.ToHit": "{mod} To Hit",
 "Weapon.Jammed.Label": "Jammed",

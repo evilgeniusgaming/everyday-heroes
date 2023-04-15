@@ -2,7 +2,8 @@
   "Actor": {
     "types": [
       "hero",
-      "npc"
+      "npc",
+      "vehicle"
     ],
     "templates": {
       "abilities": {
@@ -210,6 +211,26 @@
           "value": "person",
           "tags": []
         }
+      }
+    },
+    "vehicle": {
+      "abilities": {},
+      "armorValue": 0,
+      "biography": {
+        "value": "",
+        "public": ""
+      },
+      "conditions": {},
+      "passengers": {
+        "min": null,
+        "max": null
+      },
+      "price": 0,
+      "properties": [],
+      "speed": {
+        "min": null,
+        "max": null,
+        "units": "mile-per-hour"
       }
     }
   },

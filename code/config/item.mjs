@@ -172,7 +172,7 @@ preLocalize("equipmentCategories", { key: "label" });
 /**
  * Configuration data for equipment categories.
  *
- * @typedef {LabeledConfiguration} EquipmentCategoryConfiguration
+ * @typedef {LabeledConfiguration} EquipmentPropertyConfiguration
  * @property {string} [hint] - Localized hint.
  * @property {string} [npcHint] - Hint that is displayed on an NPC sheet.
  * @property {string} [condition] - Condition that is imposed on people affected by this equipment if they

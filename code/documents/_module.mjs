@@ -11,10 +11,6 @@ import TokenDocumentEH from "./token.mjs";
 export function registerDocumentClasses() {
 	CONFIG.ActiveEffect.documentClass = ActiveEffectEH;
 	CONFIG.Actor.documentClass = ActorEH;
-	CONFIG.Actor.typeLabels = {
-		hero: "EH.Actor.Type.Hero[one]",
-		npc: "EH.Actor.Type.NPC[one]"
-	};
 	CONFIG.ChatMessage.documentClass = ChatMessageEH;
 	CONFIG.Combatant.documentClass = CombatantEH;
 	CONFIG.Item.documentClass = ItemEH;

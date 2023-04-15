@@ -620,3 +620,61 @@ export const tokenAttributes = [
 	"attributes.defense.value",
 	"skills.*.passive"
 ];
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Configuration data for vehicle properties.
+ *
+ * @typedef {LabeledConfiguration} VehiclePropertyConfiguration
+ * @property {string} [hint] - Localized hint.
+ */
+
+/**
+ * Properties for vehicle actors.
+ * @enum {VehiclePropertyConfiguration}
+ */
+export const vehicleProperties = {
+	accidentProne: {
+		label: "EH.Vehicle.Property.AccidentProne.Label"
+	},
+	allTerrain: {
+		label: "EH.Vehicle.Property.AllTerrain.Label"
+	},
+	bulletproof: {
+		label: "EH.Vehicle.Property.Bulletproof.Label"
+	},
+	enclosed: {
+		label: "EH.Vehicle.Property.Enclosed.Label"
+	},
+	exposed: {
+		label: "EH.Vehicle.Property.Exposed.Label"
+	},
+	extraWheels: {
+		label: "EH.Vehicle.Property.ExtraWheels.Label"
+	},
+	gliding: {
+		label: "EH.Vehicle.Property.Gliding.Label"
+	},
+	musclePowered: {
+		label: "EH.Vehicle.Property.MusclePowered.Label"
+	},
+	railed: {
+		label: "EH.Vehicle.Property.Railed.Label"
+	},
+	stable: {
+		label: "EH.Vehicle.Property.Stable.Label"
+	},
+	tracked: {
+		label: "EH.Vehicle.Property.Tracked.Label"
+	}
+};
+preLocalize("vehicleProperties", { keys: ["label", "hint"], sort: true });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Valid actor sizes for vehicles.
+ * @type {string[]}
+ */
+export const vehicleSizes = ["medium", "large", "huge", "gargantuan"];

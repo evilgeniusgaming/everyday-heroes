@@ -10,7 +10,6 @@ export {
  * Replace the apps for any compendiums with a type defined in flags for V11 or later.
  */
 export function setupCompendiumApps() {
-	if ( game.release.generation >= 10 ) return;
 	for ( const pack of game.packs ) {
 		const sorting = pack.metadata.flags?.["everyday-heroes"]?.sorting;
 		if ( !sorting ) continue;

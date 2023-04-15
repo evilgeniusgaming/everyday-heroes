@@ -121,9 +121,38 @@ export const lengthUnits = {
 		label: "EH.Measurement.Length.Feet.Label",
 		conversion: 1
 	},
+	mile: {
+		label: "EH.Measurement.Length.Mile.Label",
+		conversion: 5280
+	},
 	meter: {
 		label: "EH.Measurement.Length.Meters.Label",
-		conversion: 0
+		conversion: 3.28084
+	},
+	kilometer: {
+		label: "EH.Measurement.Length.Kilometer.Label",
+		conversion: 3280.84
 	}
 };
 preLocalize("lengthUnits", { keys: ["label", "abbreviation"] });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Different types of units usable for movements.
+ * @enum {UnitConfiguration}
+ */
+export const speedUnits = {
+	"mile-per-hour": {
+		label: "EH.Measurement.Speed.MilePerHour.Label",
+		conversion: 1
+	},
+	"kilometer-per-hour": {
+		label: "EH.Measurement.Speed.KilometerPerHour.Label",
+		conversion: 1.60934
+	},
+	mach: {
+		label: "EH.Measurement.Speed.Mach.Label",
+		conversion: 767.269
+	}
+};
