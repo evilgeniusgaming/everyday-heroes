@@ -619,7 +619,7 @@ export default class ItemEH extends Item {
 		if ( !fireConfig ) return console.log("Only semi-auto or full-auto weapons can perform suppressive fire.");
 
 		const suppressiveFireConfig = foundry.utils.mergeObject({
-			rounds: fireConfig.rounds,
+			rounds: this.system.roundsToSpend,
 			size: fireConfig.size
 		}, config);
 

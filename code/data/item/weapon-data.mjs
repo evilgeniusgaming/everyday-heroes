@@ -336,6 +336,13 @@ export default class WeaponData extends SystemDataModel.mixin(
 	get roundsToSpend() {
 		if ( !this.usesRounds || !this.rounds.capacity ) return 0;
 		if ( this.mode === "burst" ) return this.rounds.burst || 1;
+		if ( this.mode === "suppressiveFire" ) {
+			const fireConfig = CONFIG.EverydayHeroes.weaponSuppressiveFire[
+				this.properties.has("fullAuto") ? "fullAuto"
+					: this.properties.has("semiAuto") ? "semiAuto" : null
+			];
+			if ( fireConfig ) return fireConfig.rounds;
+		}
 		return 1;
 	}
 
