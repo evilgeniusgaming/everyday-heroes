@@ -310,11 +310,10 @@ export function numberFormat(value, options={}) {
 		const formatter = new Intl.NumberFormat(game.i18n.lang, formatterOptions);
 		return formatter.format(value);
 	} catch(error) {
-		console.warn(error);
 		delete formatterOptions.style;
 		delete formatterOptions.unit;
 		const formatter = new Intl.NumberFormat(game.i18n.lang, formatterOptions);
-		return formatter.format(value);
+		return `${formatter.format(value)} ${options.unit}`;
 	}
 }
 
@@ -446,12 +445,14 @@ export function registerHandlebarsHelpers() {
  */
 export async function registerHandlebarsPartials() {
 	const partials = [
+		"actor/actor-biography.hbs",
 		"actor/actor-inventory.hbs",
 		"actor/actor-proficiency-selector.hbs",
-		"actor/hero-biography.hbs",
 		"actor/hero-details.hbs",
 		"actor/hero-persona.hbs",
 		"actor/npc-details.hbs",
+		"actor/vehicle-details.hbs",
+		"actor/vehicle-passengers.hbs",
 		"advancement/parts/advancement-ability-score-control.hbs",
 		"advancement/parts/advancement-controls.hbs",
 		"advancement/parts/advancement-scale-value.hbs",

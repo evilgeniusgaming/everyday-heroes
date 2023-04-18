@@ -51,6 +51,12 @@ export const defaultAbilities = {
 	ranged: "dex"
 };
 
+/**
+ * Abilities that are used by vehicles.
+ * @type {Set<string>}
+ */
+export const vehicleAbilities = new Set(["str", "dex", "con"]);
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
@@ -433,6 +439,26 @@ export const sheetSections = {
 			tab: "inventory",
 			types: [{type: "npcFeature"}]
 		}
+	],
+	vehicle: [
+		{
+			tab: "contents",
+			types: [{type: "weapon", "system.equipped": true}],
+			options: { equippable: true }
+		},
+		// {
+		// 	tab: "contents",
+		// 	types: [{type: "vehicleModification"}]
+		// },
+		{
+			tab: "contents",
+			types: [
+				{type: "weapon", "system.equipped": false},
+				{type: "ammunition"}, {type: "explosive"},
+				{type: "armor"}, {type: "gear"}
+			],
+			label: "EH.Vehicle.Cargo"
+		}
 	]
 };
 
@@ -624,6 +650,28 @@ export const tokenAttributes = [
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * General categories to which vehicles can belong.
+ * @enum {LabeledConfiguration}
+ */
+export const vehicleCategories = {
+	civilian: {
+		label: "EH.Vehicle.Category.Civilian.Label"
+	},
+	commercial: {
+		label: "EH.Vehicle.Category.Commercial.Label"
+	},
+	lawEnforcement: {
+		label: "EH.Vehicle.Category.LawEnforcement.Label"
+	},
+	military: {
+		label: "EH.Vehicle.Category.Military.Label"
+	}
+};
+preLocalize("vehicleCategories", { key: "label" });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Configuration data for vehicle properties.
  *
  * @typedef {LabeledConfiguration} VehiclePropertyConfiguration
@@ -636,40 +684,59 @@ export const tokenAttributes = [
  */
 export const vehicleProperties = {
 	accidentProne: {
-		label: "EH.Vehicle.Property.AccidentProne.Label"
+		label: "EH.Vehicle.Property.AccidentProne.Label",
+		hint: "EH.Vehicle.Property.AccidentProne.Hint"
+	},
+	airspeed: {
+		label: "EH.Vehicle.Property.Airspeed.Label",
+		hint: "EH.Vehicle.Property.Airspeed.Hint"
 	},
 	allTerrain: {
-		label: "EH.Vehicle.Property.AllTerrain.Label"
+		label: "EH.Vehicle.Property.AllTerrain.Label",
+		hint: "EH.Vehicle.Property.AllTerrain.Hint"
 	},
 	bulletproof: {
-		label: "EH.Vehicle.Property.Bulletproof.Label"
+		label: "EH.Vehicle.Property.Bulletproof.Label",
+		hint: "EH.Vehicle.Property.Bulletproof.Hint"
 	},
 	enclosed: {
-		label: "EH.Vehicle.Property.Enclosed.Label"
+		label: "EH.Vehicle.Property.Enclosed.Label",
+		hint: "EH.Vehicle.Property.Enclosed.Hint"
 	},
 	exposed: {
-		label: "EH.Vehicle.Property.Exposed.Label"
+		label: "EH.Vehicle.Property.Exposed.Label",
+		hint: "EH.Vehicle.Property.Exposed.Hint"
 	},
 	extraWheels: {
-		label: "EH.Vehicle.Property.ExtraWheels.Label"
+		label: "EH.Vehicle.Property.ExtraWheels.Label",
+		hint: "EH.Vehicle.Property.ExtraWheels.Hint"
 	},
 	gliding: {
-		label: "EH.Vehicle.Property.Gliding.Label"
+		label: "EH.Vehicle.Property.Gliding.Label",
+		hint: "EH.Vehicle.Property.Gliding.Hint"
 	},
 	musclePowered: {
-		label: "EH.Vehicle.Property.MusclePowered.Label"
+		label: "EH.Vehicle.Property.MusclePowered.Label",
+		hint: "EH.Vehicle.Property.MusclePowered.Hint"
 	},
 	railed: {
-		label: "EH.Vehicle.Property.Railed.Label"
+		label: "EH.Vehicle.Property.Railed.Label",
+		hint: "EH.Vehicle.Property.Railed.Hint"
+	},
+	restricted: {
+		label: "EH.Weapon.Property.Restricted.Label",
+		hint: "EH.Weapon.Property.Restricted.Hint"
 	},
 	stable: {
-		label: "EH.Vehicle.Property.Stable.Label"
+		label: "EH.Vehicle.Property.Stable.Label",
+		hint: "EH.Vehicle.Property.Stable.Hint"
 	},
 	tracked: {
-		label: "EH.Vehicle.Property.Tracked.Label"
+		label: "EH.Vehicle.Property.Tracked.Label",
+		hint: "EH.Vehicle.Property.Tracked.Hint"
 	}
 };
-preLocalize("vehicleProperties", { keys: ["label", "hint"], sort: true });
+preLocalize("vehicleProperties", { key: "label", sort: true });
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -678,3 +745,25 @@ preLocalize("vehicleProperties", { keys: ["label", "hint"], sort: true });
  * @type {string[]}
  */
 export const vehicleSizes = ["medium", "large", "huge", "gargantuan"];
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Types of vehicles available.
+ * @enum {LabeledConfiguration}
+ */
+export const vehicleTypes = {
+	land: {
+		label: "EH.Vehicle.Type.Land.Label"
+	},
+	water: {
+		label: "EH.Vehicle.Type.Water.Label"
+	},
+	air: {
+		label: "EH.Vehicle.Type.Air.Label"
+	},
+	space: {
+		label: "EH.Vehicle.Type.Space.Label"
+	}
+};
+preLocalize("vehicleTypes", { key: "label" });

@@ -59,11 +59,25 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/**
+	 * Ensure the initial keys are in a usable format.
+	 * @returns {string[]|void}
+	 */
+	_getInitialKeys() {
+		const keys = this.initialKeys;
+		switch ( foundry.utils.getType(keys) ) {
+			case "Array": return keys;
+			case "Object": return Object.keys(keys);
+			case "Set": return Array.from(keys);
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	getInitialValue(data) {
-		let keys = this.initialKeys;
+		const keys = this._getInitialKeys();
 		const initial = super.getInitialValue(data);
 		if ( !keys || !foundry.utils.isEmpty(initial) ) return initial;
-		if ( !(keys instanceof Array) ) keys = Object.keys(keys);
 		for ( const key of keys ) initial[key] = this._getInitialValueForKey(key);
 		return initial;
 	}
@@ -111,8 +125,7 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 	initialize(value, model, options={}) {
 		if ( !value ) return value;
 		const obj = {};
-		const initialKeys = (this.initialKeys instanceof Array)
-			? this.initialKeys : Object.keys(this.initialKeys ?? {});
+		const initialKeys = this._getInitialKeys() ?? [];
 		const keys = this.prepareKeys ? initialKeys : Object.keys(value);
 		for ( const key of keys ) {
 			const data = value[key] ?? this._getInitialValueForKey(key, value);

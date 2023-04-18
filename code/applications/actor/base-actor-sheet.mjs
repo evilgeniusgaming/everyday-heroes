@@ -95,13 +95,15 @@ export default class BaseActorSheet extends ActorSheet {
 
 		const modFormatter = new Intl.NumberFormat(game.i18n.lang, { signDisplay: "exceptZero" });
 
-		context.abilities = foundry.utils.deepClone(context.system.abilities);
-		for ( const [id, ability] of Object.entries(context.abilities) ) {
-			const abilityConfig = CONFIG.EverydayHeroes.abilities[id];
-			ability.label = abilityConfig.label;
-			ability.abbreviation = abilityConfig.abbreviation;
-			ability.mod = modFormatter.format(ability.mod);
-			ability.save = modFormatter.format(ability.save);
+		if ( context.system.abilities ) {
+			context.abilities = foundry.utils.deepClone(context.system.abilities);
+			for ( const [id, ability] of Object.entries(context.abilities) ) {
+				const abilityConfig = CONFIG.EverydayHeroes.abilities[id];
+				ability.label = abilityConfig.label;
+				ability.abbreviation = abilityConfig.abbreviation;
+				ability.mod = modFormatter.format(ability.mod);
+				ability.save = modFormatter.format(ability.save);
+			}
 		}
 
 		if ( context.system.skills ) {
@@ -190,7 +192,7 @@ export default class BaseActorSheet extends ActorSheet {
 		for ( const config of CONFIG.EverydayHeroes.sheetSections[this.actor.type] ?? {} ) {
 			const tab = sections[config.tab] ??= {};
 			const primaryType = typeModels[config.primaryType?.type];
-			const types = config.types.map(t => ({ dataset: t, model: typeModels[t.type] }));
+			const types = config.types.map(t => ({ dataset: t, model: typeModels[t.type] })).filter(t => t.model);
 			const id = primaryType ? primaryType.metadata.type : types.map(t => t.model.metadata.type).join("-");
 			const section = tab[id] = { config, items: [], options: config.options };
 
@@ -253,6 +255,27 @@ export default class BaseActorSheet extends ActorSheet {
 		};
 		section.items.push(item);
 		return section;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Prepare ammunition lists on weapons.
+	 * @param {object} context - Context object for rendering the sheet.
+	 * @param {ItemEH[]} items - Weapons to prepare.
+	 */
+	_prepareItemAmmunition(context, items) {
+		for ( const item of items ) {
+			const ctx = context.itemContext[item.id].ammunition ??= {};
+			const ammunitionTypeConfig = CONFIG.EverydayHeroes.ammunitionTypes[item.system.rounds.type];
+			ctx.defaultLabel = ammunitionTypeConfig ? game.i18n.format("EH.Ammunition.Standard.Label", {
+				type: ammunitionTypeConfig.label
+			}) : game.i18n.localize("EH.Ammunition.Empty.Label");
+			ctx.selected = item.system.ammunition?.id;
+			ctx.types = context.ammunitionTypes[item.system.rounds.type] ?? [];
+			ctx.displayAmmunitionSelector = (!foundry.utils.isEmpty(ctx.types) || ctx.defaultLabel)
+				&& !!item.system.rounds.type;
+		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

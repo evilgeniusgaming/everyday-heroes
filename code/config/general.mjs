@@ -134,7 +134,7 @@ export const lengthUnits = {
 		conversion: 3280.84
 	}
 };
-preLocalize("lengthUnits", { keys: ["label", "abbreviation"] });
+preLocalize("lengthUnits", { key: "label" });
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -156,3 +156,4 @@ export const speedUnits = {
 		conversion: 767.269
 	}
 };
+preLocalize("speedUnits", { key: "label" });

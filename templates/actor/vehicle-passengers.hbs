@@ -1,0 +1,44 @@
+{{#each sections as |section id|}}
+	<section data-section-id="{{id}}">
+		<header>
+			<h2>{{localize section.label}}</h2>
+		</header>
+		<ol class="item-list">
+			{{#each section.actors as |actor|}}
+			{{#everydayHeroes-itemContext actor as |ctx|}}
+				<li class="item" data-item-id="{{actor.id}}">
+					<h4>
+						<figure style="background-image: url('{{actor.img}}')"></figure>
+						{{actor.name}}
+					</h4>
+					<div>
+					<fieldset>
+						{{#if (and @root.editable item.system.isEquippable)}}
+							<a class="{{#if item.isEquipped}}equipped{{else}}unequipped{{/if}}" data-action="item" data-type="equip"
+								data-tooltip="{{#if item.isEquipped}}{{localize 'EH.Item.Action.Unequip' type=item.typeLabel}}
+								{{~else}}{{localize 'EH.Item.Action.Equip' type=item.typeLabel}}{{/if}}">
+								<i class="{{#if item.isEquipped}}fa-solid fa-hand{{else}}fa-regular fa-hand{{/if}}"></i>
+							</a>
+						{{/if}}
+						{{#if (and @root.editable @root.editingMode)}}
+							<a data-action="item" data-type="edit"
+								data-tooltip="{{localize 'EH.Item.Action.Edit' type=item.typeLabel}}">
+								<i class="fas fa-edit"></i>
+							</a>
+							<a data-action="item" data-type="delete"
+								data-tooltip="{{localize 'EH.Item.Action.Delete' type=item.typeLabel}}">
+								<i class="fas fa-trash"></i>
+							</a>
+						{{else}}
+							<a data-action="item" data-type="edit"
+								data-tooltip="{{localize 'EH.Item.Action.View' type=item.typeLabel}}">
+								<i class="fa-regular fa-eye"></i>
+							</a>
+						{{/if}}
+					</fieldset>
+				</li>
+			{{/everydayHeroes-itemContext}}
+			{{/each}}
+		</ol>
+	</section>
+{{/each}}

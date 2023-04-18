@@ -45,8 +45,6 @@ export default class NPCSheet extends BaseActorSheet {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async prepareItems(context) {
-		const ammunitionTypes = {};
-
 		context.actionSections = {
 			passive: {
 				label: "EH.Action.Passive",
@@ -65,14 +63,15 @@ export default class NPCSheet extends BaseActorSheet {
 				items: []
 			}
 		};
+		context.ammunitionTypes = {};
 
 		const callback = async (item, section, ctx) => {
 			ctx.label = await item.npcLabel();
 			ctx.description = await item.npcDescription();
 
 			if ( ["ammunition", "npcExplosive"].includes(item.type) ) {
-				ammunitionTypes[item.system.type.value] ??= {};
-				ammunitionTypes[item.system.type.value][item.id] = item;
+				context.ammunitionTypes[item.system.type.value] ??= {};
+				context.ammunitionTypes[item.system.type.value][item.id] = item;
 			}
 			if ( ["npcExplosive", "npcWeapon"].includes(item.type) ) {
 				context.actionSections.action.items.push(item);
@@ -85,21 +84,9 @@ export default class NPCSheet extends BaseActorSheet {
 		};
 
 		await this._prepareItemSections(context, callback);
+		this._prepareItemAmmunition(context, context.inventory.npcWeapon.items);
 
 		context.armor = context.inventory.armor.items[0];
-
-		// Prepare ammunition lists
-		for ( const item of context.inventory.npcWeapon.items ) {
-			const ctx = context.itemContext[item.id].ammunition ??= {};
-			const ammunitionTypeConfig = CONFIG.EverydayHeroes.ammunitionTypes[item.system.rounds.type];
-			ctx.defaultLabel = ammunitionTypeConfig ? game.i18n.format("EH.Ammunition.Standard.Label", {
-				type: ammunitionTypeConfig.label
-			}) : game.i18n.localize("EH.Ammunition.Empty.Label");
-			ctx.selected = item.system.ammunition?.id;
-			ctx.types = ammunitionTypes[item.system.rounds.type] ?? [];
-			ctx.displayAmmunitionSelector = (!foundry.utils.isEmpty(ctx.types) || ctx.defaultLabel)
-				&& !!item.system.rounds.type;
-		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -17,6 +17,11 @@ export function registerSheets() {
 		makeDefault: true,
 		label: "EH.Sheet.NPC"
 	});
+	DocumentSheetConfig.registerSheet(Actor, "everyday-heroes", actor.VehicleSheet, {
+		types: ["vehicle"],
+		makeDefault: true,
+		label: "EH.Sheet.Vehicle"
+	});
 	DocumentSheetConfig.unregisterSheet(Item, "core", ItemSheet);
 	DocumentSheetConfig.registerSheet(Item, "everyday-heroes", item.ConceptSheet, {
 		types: CONFIG.EverydayHeroes.itemCategories.concept.types,

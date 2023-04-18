@@ -1,6 +1,7 @@
 export {default as BaseActorSheet} from "./base-actor-sheet.mjs";
 export {default as HeroSheet} from "./hero-sheet.mjs";
 export {default as NPCSheet} from "./npc-sheet.mjs";
+export {default as VehicleSheet} from "./vehicle-sheet.mjs";
 
 export {default as AbilityConfig} from "./dialogs/ability-config.mjs";
 export {default as AttributesConfig} from "./dialogs/attributes-config.mjs";

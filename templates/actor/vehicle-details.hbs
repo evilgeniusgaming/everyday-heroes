@@ -1,0 +1,105 @@
+<section>
+	<header class="vehicle-id">
+		<div class="name-type">
+			<fieldset class="name">
+				<input type="text" name="name" value="{{actor.name}}"
+					placeholder="{{localize 'Name'}}" {{disabled (not editingMode)}}>
+			</fieldset>
+			<fieldset class="type">
+				{{#if editingMode}}
+					<select name="system.traits.size">
+						{{selectOptions CONFIG.sizes selected=source.traits.size labelAttr="label"}}
+					</select>
+					<select name="system.attributes.type.category">
+						{{selectOptions CONFIG.vehicleCategories selected=source.attributes.type.category labelAttr="label" blank=""}}
+					</select>
+					<select name="system.attributes.type.value">
+						{{selectOptions CONFIG.vehicleTypes selected=source.attributes.type.value labelAttr="label" blank=""}}
+					</select>
+				{{else}}
+					<span>{{system.attributes.type.label}}</span>
+				{{/if}}
+			</fieldset>
+		</div>
+		<div class="image" style="background-image: url('{{actor.img}}');">
+			<img src="{{actor.img}}" data-edit="img">
+		</div>
+		<div class="details">
+			<fieldset class="passengers">
+				<label>{{localize "EH.Vehicle.Trait.Passengers.Label"}}</label>
+				{{#if editingMode}}
+					<div class="range">
+						<input type="number" name="system.details.passengers.min" value="{{source.details.passengers.min}}"
+							placeholder="{{localize 'EH.Range.Min'}}">
+						<span class="seperator">&ndash;</span>
+						<input type="number" name="system.details.passengers.max" value="{{source.details.passengers.max}}"
+							placeholder="{{localize 'EH.Range.Max'}}">
+					</div>
+				{{else}}
+					<span>{{system.details.passengers.label}}</span>
+				{{/if}}
+			</fieldset>
+			<fieldset class="armorBody">
+				<label>{{localize "EH.Vehicle.Trait.ArmorValue.Body.Label"}}</label>
+				{{#if editingMode}}
+					<input type="number" name="system.attributes.armor.value" value="{{source.attributes.armor.value}}">
+				{{else}}
+					<span>{{system.attributes.armor.value}}</span>
+				{{/if}}
+			</fieldset>
+			<fieldset class="armorWindowsTires">
+				<label>{{localize "EH.Vehicle.Trait.ArmorValue.WindowsTires.Label"}}</label>
+				<input type="text" value="{{system.attributes.armor.windowsTires}}" disabled>
+			</fieldset>
+			<fieldset class="price">
+				<label>{{localize "EH.Equipment.Trait.PriceLevel.Label"}}</label>
+				{{#if editingMode}}
+					<input type="number" name="system.details.price" value="{{source.details.price}}">
+				{{else}}
+					<span>{{system.details.price}}</span>
+				{{/if}}
+			</fieldset>
+			<fieldset class="speed">
+				<label>{{localize "EH.Vehicle.Trait.TopSpeed.Label"}}</label>
+				{{#if editingMode}}
+					<div class="range">
+						<input type="number" name="system.attributes.speed.min" value="{{source.attributes.speed.min}}"
+							placeholder="{{localize 'EH.Range.Min'}}">
+						<span class="seperator">&ndash;</span>
+						<input type="number" name="system.attributes.speed.max" value="{{source.attributes.speed.max}}"
+							placeholder="{{localize 'EH.Range.Max'}}">
+					</div>
+					<select name="system.attributes.speed.units">
+						{{selectOptions CONFIG.speedUnits selected=source.attributes.speed.units labelAttr="label"}}
+					</select>
+				{{else}}
+					<span>{{system.attributes.speed.label}}</span>
+				{{/if}}
+			</fieldset>
+			<fieldset>
+				<label>{{localize "EH.Equipment.Property.Label[other]"}}</label>
+				{{#if editingMode}}
+					{{everydayHeroes-tagInput system.traits.properties choices=CONFIG.vehicleProperties
+						name="system.traits.properties" validate=true}}
+				{{else}}
+					<span>{{{system.traits.properties.label}}}</span>
+				{{/if}}
+			</fieldset>
+		</div>
+	</header>
+
+	<section class="abilities">
+		{{#each abilities as |ability key|}}
+			<fieldset>
+				<label>
+					<span>{{ability.label}}</span>
+					{{#if @root.editingMode}}
+						<input type="number" name="system.abilities.{{key}}.mod" value="{{ability._source.mod}}">
+					{{else}}
+						<input type="text" value="{{ability.mod}}" disabled>
+					{{/if}}
+				</label>
+			</fieldset>
+		{{/each}}
+	</section>
+</section>

@@ -2,67 +2,6 @@
 @import "./hero-details.css";
 @import "./hero-persona.css";
 
-.hero.sheet {
-	container-type: size;
-	min-width: 430px;
-}
-.hero.sheet .window-content {
-	padding: 0;
-}
-.hero.sheet > header {
-	z-index: 5;
-}
-
-/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-/*  Navigation                               */
-/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-.hero.sheet nav[data-group="primary"] {
-	position: absolute;
-	left: 0;
-	right: 0;
-	display: flex;
-	z-index: 4;
-
-	margin: 0 1rem;
-	padding: 0;
-	margin-block-start: -30px;
-	padding-block-start: 30px;
-	box-shadow: -10px 5px 20px 0px rgba(29, 43, 56, 0.75);
-	border-radius: 0 0 20px 20px;
-}
-.hero.sheet nav[data-group="primary"] a {
-	display: block;
-	flex-grow: 1;
-	padding-block: 0.5rem;
-	border: 1px solid var(--eh-border-color-weak);
-	border-block-start: none;
-	background-color: var(--eh-background-color-mid);
-	text-align: center;
-}
-.hero.sheet nav[data-group="primary"] a.active {
-	background-color: var(--eh-background-color-dark);
-	color: var(--eh-text-color-white);
-}
-.hero.sheet nav[data-group="primary"] a:first-of-type {
-	border-bottom-left-radius: 20px;
-}
-.hero.sheet nav[data-group="primary"] a:last-of-type {
-	border-bottom-right-radius: 20px;
-}
-.hero.sheet nav[data-group="primary"] a:not(:last-of-type) {
-	border-inline-end: none;
-}
-
-.hero.sheet main {
-	height: 100%;
-	padding: 0.5rem;
-	padding-block-start: 3rem;
-}
-.hero.sheet main > [data-tab] {
-	height: 100%;
-}
-
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Equipment Proficiencies                  */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

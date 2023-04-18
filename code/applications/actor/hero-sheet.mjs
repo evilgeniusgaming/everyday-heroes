@@ -60,7 +60,7 @@ export default class HeroSheet extends BaseActorSheet {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async prepareItems(context) {
-		const ammunitionTypes = {};
+		context.ammunitionTypes = {};
 
 		const callback = (item, section) => {
 			if ( ["ammunition", "explosive"].includes(item.type) ) {
@@ -70,30 +70,7 @@ export default class HeroSheet extends BaseActorSheet {
 		};
 
 		await this._prepareItemSections(context, callback);
-
-		context.equipped = {
-			armor: {
-				label: "EH.Item.Type.Armor[other]",
-				items: []
-			},
-			weapons: {
-				label: "EH.Item.Type.Weapon[other]",
-				items: []
-			}
-		};
-
-		// Prepare ammunition lists
-		for ( const item of context.inventory.weapon.items ) {
-			const ctx = context.itemContext[item.id].ammunition ??= {};
-			const ammunitionTypeConfig = CONFIG.EverydayHeroes.ammunitionTypes[item.system.rounds.type];
-			ctx.defaultLabel = ammunitionTypeConfig ? game.i18n.format("EH.Ammunition.Standard.Label", {
-				type: ammunitionTypeConfig.label
-			}) : game.i18n.localize("EH.Ammunition.Empty.Label");
-			ctx.selected = item.system.ammunition?.id;
-			ctx.types = ammunitionTypes[item.system.rounds.type] ?? [];
-			ctx.displayAmmunitionSelector = (!foundry.utils.isEmpty(ctx.types) || ctx.defaultLabel)
-				&& !!item.system.rounds.type;
-		}
+		this._prepareItemAmmunition(context, context.inventory.weapon.items);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

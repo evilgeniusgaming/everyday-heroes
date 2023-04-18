@@ -1250,6 +1250,7 @@ export default class ActorEH extends Actor {
 	 */
 	async applyDamage(damage, options={}) {
 		const hp = this.system.attributes.hp;
+		if ( !hp ) return;
 		const rollData = this.getRollData({deterministic: true});
 		let inverted = false;
 		let multiplier = options.multiplier ?? 1;

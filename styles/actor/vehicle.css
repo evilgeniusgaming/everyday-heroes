@@ -1,0 +1,131 @@
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Header                                   */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.everyday-heroes.vehicle.sheet .vehicle-id {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	overflow: clip;
+	margin-block-end: 0.5em;
+	border: 1px solid var(--eh-border-color-strong);
+	border-radius: 25px;
+	background-color: var(--eh-background-color-light);
+}
+.everyday-heroes.vehicle.sheet .vehicle-id :is(input, select) {
+	flex: 1 0 3em;
+	height: unset;
+	background: none;
+}
+.everyday-heroes.vehicle.sheet .vehicle-id :is(input, input:disabled) {
+	color: var(--eh-text-color-black);
+}
+
+.everyday-heroes.vehicle.sheet .vehicle-id > div.name-type {
+	flex: 1 0 100%;
+}
+.everyday-heroes.vehicle.sheet .vehicle-id > div.name-type input {
+	padding-inline: 1rem;
+}
+.everyday-heroes.vehicle.sheet .vehicle-id > div.name-type :is(span, select:first-child) {
+	margin-inline-start: 1rem;
+}
+.everyday-heroes.vehicle.sheet .vehicle-id > div.name-type > .name > input {
+	font-size: var(--font-size-28);
+	height: unset;
+	border-radius: 0;
+	padding-block-start: 0.25em;
+}
+.everyday-heroes.vehicle.sheet .vehicle-id > div.name-type > .type > :is(span, select) {
+	font-size: var(--font-size-16);
+	font-variant: small-caps;
+}
+
+.everyday-heroes.vehicle.sheet .vehicle-id > div.image {
+	width: 150px;
+	min-height: 150px;
+	margin-inline-start: 0.5rem;
+	margin-block-end: 0.5rem;
+	border-radius: 20px;
+	overflow: clip;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position-y: bottom;
+}
+.everyday-heroes.vehicle.sheet .vehicle-id > div.image img {
+	opacity: 0;
+	aspect-ratio: 1 / 1;
+}
+
+.everyday-heroes.vehicle.sheet .vehicle-id > div.details {
+	flex: 1 0 66%;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: start;
+	gap: 0.5em 0;
+	padding-block: 1em;
+}
+.everyday-heroes.vehicle.sheet .vehicle-id > div.details > fieldset {
+	flex: 1 0 100%;
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+	border-block-end: 1px dashed var(--eh-border-color-weak);
+	padding-inline-end: 0.5em;
+}
+.everyday-heroes.vehicle.sheet .vehicle-id > div.details > fieldset :is(input, select) {
+	margin-block-start: -2px;
+}
+.everyday-heroes.vehicle.sheet .vehicle-id > div.details .range {
+	flex: 0 1 8em;
+	display: flex;
+	align-items: center;
+}
+.everyday-heroes.vehicle.sheet .vehicle-id > div.details .range input:not(:disabled) {
+	flex: 0 1 3em;
+	text-align: end;
+}
+.everyday-heroes.vehicle.sheet .vehicle-id > div.details .range .seperator + input:not(:disabled) {
+	text-align: start;
+}
+.everyday-heroes.vehicle.sheet .vehicle-id > div.details > .armorBody {
+	flex: 1 0 40%;
+}
+.everyday-heroes.vehicle.sheet .vehicle-id > div.details > .armorWindowsTires {
+	flex: 1 0 60%;
+}
+.everyday-heroes.vehicle.sheet .vehicle-id > div.details .tag-input {
+	padding: 0;
+	background: none;
+}
+.everyday-heroes.vehicle.sheet .vehicle-id > div.details .property-hint {
+	text-decoration: none;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Abilities                                */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.everyday-heroes.vehicle.sheet .abilities {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	border: 4px solid var(--eh-border-color-strong);
+	border-radius: 20px;
+	padding: 1em;
+	background-color: var(--eh-background-color-white);
+}
+.everyday-heroes.vehicle.sheet .abilities fieldset > label {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+.everyday-heroes.vehicle.sheet .abilities fieldset > label > span:first-child {
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+}
+.everyday-heroes.vehicle.sheet .abilities fieldset > label > input {
+	padding: 0.5rem;
+	font-size: var(--font-size-18);
+	text-align: center;
+}

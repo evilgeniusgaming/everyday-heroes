@@ -9,13 +9,11 @@
 		<a data-tab="effects">{{localize "EH.Sheet.Section.Effects"}}</a>
 		{{#if editable}}
 			{{#if editingMode}}
-				<a data-action="toggle-editing-mode"
-					data-tooltip="Disable Editing Mode">
+				<a data-action="toggle-editing-mode" data-tooltip="EH.EditingMode.Action.Disable">
 					<i class="fas fa-lock-open"></i>
 				</a>
 			{{else}}
-				<a data-action="toggle-editing-mode"
-					data-tooltip="Enable Editing Mode">
+				<a data-action="toggle-editing-mode" data-tooltip="EH.EditingMode.Action.Enable">
 					<i class="fas fa-lock"></i>
 				</a>
 			{{/if}}
@@ -75,7 +73,7 @@
 			{{> "everydayHeroes.hero-persona"}}
 		</div>
 		<div class="tab" data-group="primary" data-tab="biography">
-			{{> "everydayHeroes.hero-biography"}}
+			{{> "everydayHeroes.actor-biography"}}
 		</div>
 		<div class="tab inventory" data-group="primary" data-tab="effects">
 			{{> "everydayHeroes.active-effects"}}

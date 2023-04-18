@@ -215,22 +215,36 @@
     },
     "vehicle": {
       "abilities": {},
-      "armorValue": 0,
+      "attributes": {
+        "armor": {
+          "value": 0
+        },
+        "speed": {
+          "min": null,
+          "max": null,
+          "units": "mile-per-hour"
+        },
+        "type": {
+          "value": "land",
+          "category": ""
+        }
+      },
       "biography": {
         "value": "",
-        "public": ""
+        "public": "",
+        "notes": ""
       },
       "conditions": {},
-      "passengers": {
-        "min": null,
-        "max": null
+      "details": {
+        "passengers": {
+          "min": null,
+          "max": null
+        },
+        "price": 0
       },
-      "price": 0,
-      "properties": [],
-      "speed": {
-        "min": null,
-        "max": null,
-        "units": "mile-per-hour"
+      "traits": {
+        "properties": [],
+        "size": "huge"
       }
     }
   },
