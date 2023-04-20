@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "sixth-sense"
@@ -32,17 +32,44 @@
       "level": 1
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "label": "Sixth Sense",
+      "icon": "icons/magic/perception/third-eye-blue-red.webp",
+      "origin": "Compendium.everyday-heroes.archetypes-classes.rwC1BJv1ooKzohXQ",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "_id": "oEzkemLgrydj8MwQ",
+      "changes": [
+        {
+          "key": "system.overrides.ability.initiative",
+          "mode": 2,
+          "value": "wis"
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {}
+    }
+  ],
   "ownership": {
     "default": 0
   },
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.1.3",
     "coreVersion": "10.291",
     "createdTime": 1679516807537,
-    "modifiedTime": 1680383187627,
+    "modifiedTime": 1682016930482,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
