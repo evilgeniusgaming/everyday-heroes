@@ -52,7 +52,8 @@
           ]
         },
         "level": 1,
-        "flags": {}
+        "flags": {},
+        "title": "Special Feature"
       }
     ],
     "identifier": {
@@ -67,10 +68,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.1.3",
     "coreVersion": "10.291",
     "createdTime": 1679450998300,
-    "modifiedTime": 1679856501431,
+    "modifiedTime": 1682098003096,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
