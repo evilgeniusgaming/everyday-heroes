@@ -67,7 +67,7 @@
 				<ul>
 					{{#each (lookup system.biography section)}}
 						<li data-index="{{@index}}">
-							<input type="text" name="system.biography.{{section}}.{{@index}}"
+							<input type="text" name="system.biography.{{../section}}.{{@index}}"
 								value="{{this}}" {{disabled (not @root.editingMode)}}>
 							{{#if @root.editingMode}}
 								<a data-action="persona" data-type="remove"><i class="fas fa-trash"></i></a>
