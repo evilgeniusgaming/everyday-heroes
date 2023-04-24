@@ -36,6 +36,8 @@
 }
 .item.sheet form > header > div.image img {
 	border: none;
+	min-width: 64px;
+	min-height: 64px;
 	max-width: 128px;
 	max-height: 128px;
 }

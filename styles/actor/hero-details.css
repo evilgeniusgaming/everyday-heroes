@@ -41,6 +41,7 @@
 }
 .hero.sheet [data-tab="details"] .hero-id > div.image img {
 	aspect-ratio: 1 / 1;
+	border: none;
 }
 .hero.sheet [data-tab="details"] .hero-id > div:not(.image) {
 	grid-area: details;
