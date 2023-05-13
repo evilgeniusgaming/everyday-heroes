@@ -16,7 +16,8 @@ export default class ClassData extends SystemDataModel.mixin(DescribedTemplate, 
 			category: "concept",
 			localization: "EH.Item.Type.Class",
 			icon: "fa-solid fa-landmark-flag",
-			image: "systems/everyday-heroes/artwork/svg/items/class.svg"
+			image: "systems/everyday-heroes/artwork/svg/items/class.svg",
+			register: true
 		};
 	}
 

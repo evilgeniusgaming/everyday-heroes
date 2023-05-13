@@ -57,6 +57,7 @@ Hooks.once("i18nInit", function() {
 
 Hooks.once("ready", function() {
 	applications.compendium.setupCompendiumApps();
+	config.registration.registerItemTypes();
 
 	// Perform global migrations here if necessary
 });

@@ -32,6 +32,7 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 *                                   `EH.Item.Type.Weapon[few]` and `EH.Item.Type.Weapon[other]`).
 	 * @property {string} [icon] - Font awesome icon string used for links to this type.
 	 * @property {string} [image] - Default image used when creating a Document of this type.
+	 * @property {boolean} [register] - Register all items of this type within the central list. Only used on Items.
 	 */
 
 	/**

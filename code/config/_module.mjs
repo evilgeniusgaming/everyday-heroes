@@ -1,6 +1,7 @@
 import * as actor from "./actor.mjs";
 import * as general from "./general.mjs";
 import * as item from "./item.mjs";
+import * as registration from "./registration.mjs";
 import * as utils from "./utils.mjs";
 
 const ASCII = ""
@@ -19,5 +20,6 @@ export default {
 	...actor,
 	...general,
 	...item,
+	registration,
 	utils
 };
