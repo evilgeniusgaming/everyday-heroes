@@ -7,6 +7,9 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * Data definition for Background items.
  * @mixes {@link AdvancementTemplate}
  * @mixes {@link DescribedTemplate}
+ *
+ * @property {object} identifier
+ * @property {string} identifier.value - Background's identifier.
  */
 export default class BackgroundData extends SystemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {
 
@@ -26,7 +29,7 @@ export default class BackgroundData extends SystemDataModel.mixin(DescribedTempl
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({
-				value: new IdentifierField({label: "Identifier.Label"})
+				value: new IdentifierField({label: "EH.Identifier.Label"})
 			})
 		});
 	}

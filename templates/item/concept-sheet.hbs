@@ -13,6 +13,15 @@
 				<label>{{localize "EH.Item.Type.Label"}}</label>
 				<input value="{{#if item.system.type.label}}{{item.system.type.label}}{{else}}{{item.typeLabel}}{{/if}}" disabled>
 			</fieldset>
+			{{#if (everydayHeroes-has item "system.identifier.archetype")}}
+				<fieldset>
+					<label>{{localize "EH.Item.Type.Archetype[one]"}}</label>
+					<select name="system.identifier.archetype">
+						{{selectOptions CONFIG.registration.all.archetype selected=system.identifier.archetype
+							blank="" labelAttr="name"}}
+					</select>
+				</fieldset>
+			{{/if}}
 			{{#if (everydayHeroes-has item "system.wealth")}}
 				<fieldset>
 					<label>{{localize "EH.Details.Wealth.Label"}}</label>

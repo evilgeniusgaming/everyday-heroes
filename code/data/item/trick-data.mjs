@@ -33,8 +33,8 @@ export default class TrickData extends SystemDataModel.mixin(DescribedTemplate, 
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({
-				value: new IdentifierField({label: "Identifier.Label"}),
-				class: new IdentifierField({label: ""})
+				value: new IdentifierField({label: "EH.Identifier.Label"}),
+				class: new IdentifierField({label: "EH.Item.Type.Class[one]"})
 			}),
 			resource: new foundry.data.fields.SchemaField({
 				amount: new foundry.data.fields.NumberField({initial: 1}),

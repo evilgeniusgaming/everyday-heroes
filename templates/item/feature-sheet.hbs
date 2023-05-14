@@ -19,6 +19,15 @@
 					<input type="number" name="system.type.level" value="{{system.type.level}}">
 				</fieldset>
 			{{/if}}
+			{{#if (everydayHeroes-has item "system.identifier.class")}}
+				<fieldset>
+					<label>{{localize "EH.Item.Type.Class[one]"}}</label>
+					<select name="system.identifier.class">
+						{{selectOptions CONFIG.registration.all.class selected=system.identifier.class
+							blank=(localize "EH.Any") labelAttr="name"}}
+					</select>
+				</fieldset>
+			{{/if}}
 		</div>
 		<nav data-group="primary">
 			<a data-tab="description">{{localize "EH.Sheet.Section.Description"}}</a>

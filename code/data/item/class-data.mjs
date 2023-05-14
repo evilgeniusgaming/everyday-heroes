@@ -7,6 +7,10 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * Data definition for Class items.
  * @mixes {@link AdvancementTemplate}
  * @mixes {@link DescribedTemplate}
+ *
+ * @property {object} identifier
+ * @property {string} identifier.value - Class's identifier.
+ * @property {string} identifier.archetype - Archetype with which this class is associated.
  */
 export default class ClassData extends SystemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {
 
@@ -26,7 +30,8 @@ export default class ClassData extends SystemDataModel.mixin(DescribedTemplate, 
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({
-				value: new IdentifierField({label: "Identifier.Label"})
+				value: new IdentifierField({label: "EH.Identifier.Label"}),
+				archetype: new IdentifierField({label: "EH.Item.Type.Archetype[one]"})
 			})
 		});
 	}

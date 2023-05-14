@@ -163,6 +163,8 @@
 "Ammunition.Type.Rifle.Label": "Rifle",
 "Ammunition.Type.Shotgun.Label": "Shotgun",
 
+"Any": "Any",
+
 "Armor.Damaged": "Damaged",
 "Armor.Action.Save.Label": "Armor Saving Throw",
 "Armor.Action.Save.Short": "save {number}",
