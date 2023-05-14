@@ -15,6 +15,14 @@ import { slugify } from "../utils.mjs";
 export const all = {};
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Has the initial registration been completed?
+ * @type {boolean}
+ */
+export let ready = false;
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Lookup                                   */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -24,8 +32,8 @@ export const all = {};
  * @param {string} identifier - Identifier to get.
  * @returns {ItemRegistration|undefined}
  */
-export async function get(type, identifier) {
-	return (await all[type])?.[identifier];
+export function get(type, identifier) {
+	return all[type]?.[identifier];
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -35,8 +43,8 @@ export async function get(type, identifier) {
  * @param {string} type - Item type to get.
  * @returns {Object<string, ItemRegistration>|undefined}
  */
-export async function list(type) {
-	return await all[type];
+export function list(type) {
+	return all[type];
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -50,12 +58,26 @@ export async function list(type) {
 export function registerItemTypes() {
 	const indexes = _indexCompendiums();
 	console.log("Everyday Heroes | Preparing central item registrations");
+	const registrations = [];
 	for ( const type of Item.TYPES ) {
 		const dataModel = CONFIG.Item[game.release.generation > 10 ? "dataModels" : "systemDataModels"][type];
 		if ( !dataModel?.metadata?.register ) continue;
-		all[type] = _registerItemType(type, indexes);
+		registrations.push(_registerItemType(type, indexes));
 	}
-	console.groupEnd();
+
+	// When all settled, populate registration, set to ready, and emit registration complete hook
+	Promise.all(registrations).then(registrations => {
+		registrations.forEach(r => all[r.type] = r.registrations);
+		ready = true;
+		console.log("Everyday Heroes | Central item registration setup complete");
+
+		/**
+		 * A hook event that fires when startup item registration is complete.
+		 * @function everydayHeroes.registrationComplete
+		 * @memberof hookEvents
+		 */
+		Hooks.callAll("everydayHeroes.registrationComplete");
+	});
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -64,6 +86,10 @@ export function registerItemTypes() {
  * Register all items of the specified type within compendiums or the world. Should only be called once per item type.
  * @param {string} type - Item type to register.
  * @param {Map[]} [indexes] - Previously prepared indexes of all Item compendiums.
+ * @returns {{
+ *   type: string,
+ *   registrations: Object<string, ItemRegistration>
+ * }}
  * @private
  */
 async function _registerItemType(type, indexes) {
@@ -92,7 +118,7 @@ async function _registerItemType(type, indexes) {
 	}
 	console.groupEnd();
 
-	return registrations;
+	return {type, registrations};
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -109,16 +135,21 @@ export function setupRegistrationHooks() {
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+const message = operation => `Everyday Heroes | Attempted to ${operation} item before registration was completed which may lead to invalid registration data. Wait until the "everydayHeroes.registrationComplete" hook has fired or "CONFIG.EverydayHeroes.registration.ready" is true before performing any automatic item management.`;
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 /**
  * Register a new item type when an item is created.
  * @param {ItemEH} item - Newly created item.
  * @param {object} options - Item creation options.
  * @param {string} userId - ID of the user that created the item.
  */
-async function _onCreateItem(item, options, userId) {
+function _onCreateItem(item, options, userId) {
 	if ( item.isEmbedded || !item.system.constructor.metadata.register ) return;
-	let source = await _source[item.type];
-	if ( !source ) source = _source[item.type] = {};
+	if ( !ready ) console.warn(message("create"));
+	let source = all[item.type] ??= {};
+	if ( !source ) source = all[item.type] = {};
 	_handleCreate(source, item.identifier, item);
 }
 
@@ -146,16 +177,17 @@ function _preUpdateItem(item, changes, options, userId) {
  * @param {object} options - Item update options.
  * @param {string} userId - ID of the user that update the item.
  */
-async function _onUpdateItem(item, changes, options, userId) {
+function _onUpdateItem(item, changes, options, userId) {
 	if ( item.isEmbedded || !item.system.constructor.metadata.register ) return;
-	const source = await _source[item.type];
+	if ( !ready ) console.warn(message("update"));
+	const source = all[item.type] ??= {};
 
 	// Identifier has changed, move this to the new location
 	if ( item.identifier !== options.everydayHeroes?.identifier ) {
 		if ( !source[item.identifier] ) _handleCreate(source, item.identifier, item);
 		else source[item.identifier].sources.push(item.uuid);
 		_handleDelete(source, options.everydayHeroes.identifier, item);
-	}
+	} else if ( !source[item.identifier] ) _handleCreate(source, item.identifier, item);
 
 	// Cached values should only be updated if this is the last item in the sources list
 	const idx = source[item.identifier].sources.findIndex(i => i === item.uuid);
@@ -172,9 +204,10 @@ async function _onUpdateItem(item, changes, options, userId) {
  * @param {object} options - Item deletion options.
  * @param {string} userId - ID of the user that deleted the item.
  */
-async function _onDeleteItem(item, options, userId) {
+function _onDeleteItem(item, options, userId) {
 	if ( item.isEmbedded || !item.system.constructor.metadata.register ) return;
-	const source = await _source[item.type];
+	if ( !ready ) console.warn(message("delete"));
+	const source = all[item.type] ??= {};
 	if ( !source?.[item.identifier] ) return;
 	_handleDelete(source, item.identifier, item);
 }
