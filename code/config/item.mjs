@@ -25,14 +25,24 @@ export const advancementTypes = {
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Configuration data for item consumption.
+ *
+ * @typedef {LabeledConfiguration} ConsumptionConfiguration
+ * @property {boolean} [target=true] - Does this consumption require an additional "Target" field?
+ */
+
+/**
  * Types of consumption targets that can be defined.
- * @enum {LabeledConfiguration}
+ * @enum {ConsumptionConfiguration}
  */
 export const consumptionTypes = {
 	resource: {
 		label: "EH.Resource.Label[one]"
+	},
+	hitDice: {
+		label: "EH.HitDice.Label[other]",
+		target: false
 	}
-	// TODO: Add support for more consumption types like hit dice
 };
 preLocalize("consumptionTypes", { key: "label" });
 

@@ -43,16 +43,18 @@
 					<span>{{localize "EH.Consumption.Amount.Label"}}</span>
 					<input type="number" name="system.resource.amount" value="{{system.resource.amount}}">
 				</label>
-				<label>
-					<span>{{localize "EH.Consumption.Target.Label"}}</span>
-					{{#if item.isEmbedded}}
-						<select name="system.resource.target">
-							{{selectOptions resources selected=system.resource.target blank=""}}
-						</select>
-					{{else}}
-						<input type="text" name="system.resource.target" value="{{source.resource.target}}">
-					{{/if}}
-				</label>
+				{{#unless (eq (lookup (lookup CONFIG.consumptionTypes system.resource.type) "target") false)}}
+					<label>
+						<span>{{localize "EH.Consumption.Target.Label"}}</span>
+						{{#if item.isEmbedded}}
+							<select name="system.resource.target">
+								{{selectOptions resources selected=system.resource.target blank=""}}
+							</select>
+						{{else}}
+							<input type="text" name="system.resource.target" value="{{source.resource.target}}">
+						{{/if}}
+					</label>
+				{{/unless}}
 			{{/if}}
 		</div>
 	</fieldset>

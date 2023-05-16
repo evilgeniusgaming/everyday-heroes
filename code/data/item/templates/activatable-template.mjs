@@ -77,7 +77,7 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 	 * @type {boolean}
 	 */
 	get consumesResource() {
-		return !!(this.resource.amount && this.resource.type && this.resource.target);
+		return !!(this.resource.amount && this.resource.type);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -238,7 +238,7 @@ export default class ItemEH extends Item {
 				use: item.system.consumesUses ?? false
 			},
 			roll: {
-				resource: true
+				resource: item.system.resource.type === "resource"
 			}
 		}, config);
 		if ( activationConfig.configure === undefined ) {
@@ -257,9 +257,9 @@ export default class ItemEH extends Item {
 		if ( Hooks.call("everydayHeroes.preActivateItem", item, activationConfig, message) === false ) return;
 
 		// TODO: Display configuration dialog
-		if ( activationConfig.configure ) {
-			console.log("Configuration Dialog!");
-		}
+		// if ( activationConfig.configure ) {
+		//   console.log("Configuration Dialog!");
+		// }
 
 		/**
 		 * A hook event that fires before an item's resource consumption has been calculated.
@@ -355,19 +355,32 @@ export default class ItemEH extends Item {
 
 		if ( config.consume.resource ) {
 			const res = this.system.resource;
-			// TODO: Support other consumption types
-			if ( res.type !== "resource" ) {
-				throw new Error(game.i18n.format("EH.Consumption.Warning.InvalidType", { type: res.type }));
+			switch (res.type) {
+				case "resource":
+					const resource = this.actor?.system.resources?.[res.target];
+					if ( !resource ) throw new Error(game.i18n.format("EH.Consumption.Warning.NotFound", { target: res.target }));
+					if ( resource.available < res.amount ) {
+						const type = resource.available ? "Some" : "None";
+						throw new Error(game.i18n.format(`EH.Consumption.Warning.Insufficient${type}`, {
+							available: resource.available, resource: resource.label, required: res.amount
+						}));
+					}
+					updates.actor[`system.resources.${res.target}.spent`] = resource.spent + res.amount;
+					break;
+				case "hitDice":
+					const hd = this.actor?.system.attributes?.hd ?? {};
+					const newSpent = (hd.spent ?? 0) + res.amount;
+					if ( newSpent > hd.max ) {
+						const type = hd.available ? "Some" : "None";
+						throw new Error(game.i18n.format(`EH.Consumption.Warning.Insufficient${type}`, {
+							available: hd.available, resource: game.i18n.localize("EH.HitDice.Label[other]"), required: res.amount
+						}));
+					}
+					updates.actor["system.attributes.hd.spent"] = Math.clamped(0, newSpent, hd.max);
+					break;
+				default:
+					throw new Error(game.i18n.format("EH.Consumption.Warning.InvalidType", { type: res.type }));
 			}
-			const resource = this.actor?.system.resources?.[res.target];
-			if ( !resource ) throw new Error(game.i18n.format("EH.Consumption.Warning.NotFound", { target: res.target }));
-			if ( resource.available < res.amount ) {
-				const type = resource.available ? "Some" : "None";
-				throw new Error(game.i18n.format(`EH.Consumption.Warning.Insufficient${type}`, {
-					available: resource.available, resource: resource.label, required: res.amount
-				}));
-			}
-			updates.actor[`system.resources.${res.target}.spent`] = resource.spent + res.amount;
 		}
 
 		if ( config.consume.use ) {
