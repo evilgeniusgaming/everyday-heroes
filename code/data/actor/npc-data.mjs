@@ -132,4 +132,19 @@ export default class NPCData extends SystemDataModel.mixin(
 			CONFIG.EverydayHeroes.creatureTypes[this.traits.type.value]?.label ?? ""}`;
 		if ( this.traits.type.tags.length ) this.traits.type.label += ` (${this.traits.type.tagList})`;
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Socket Event Handlers                    */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _preUpdate(changed, options, user) {
+		const newSize = foundry.utils.getProperty(changed, "system.traits.size");
+		if ( (newSize === this.traits.size)
+			|| foundry.utils.hasProperty(changed, "prototypeToken.width")
+			|| foundry.utils.hasProperty(changed, "prototypeToken.height") ) return;
+		const size = CONFIG.EverydayHeroes.sizes[newSize]?.token;
+		changed.prototypeToken ??= {};
+		changed.prototypeToken.width = size;
+		changed.prototypeToken.height = size;
+	}
 }
