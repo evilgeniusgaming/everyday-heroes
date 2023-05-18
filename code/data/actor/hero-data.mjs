@@ -1,3 +1,5 @@
+import AdvancementConfirmationDialog from "../../applications/advancement/advancement-confirmation-dialog.mjs";
+import AdvancementManager from "../../applications/advancement/advancement-manager.mjs";
 import Proficiency from "../../documents/proficiency.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
@@ -245,5 +247,44 @@ export default class HeroData extends SystemDataModel.mixin(
 		hp.max = base + levelBonus + overallBonus;
 		hp.value = Math.clamped(0, hp.value, hp.max);
 		hp.damage = hp.max - hp.value;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Socket Event Handlers                    */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _preCreate(data, options, user) {
+		this.parent.updateSource({prototypeToken: {actorLink: true, disposition: 1}});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _preUpdate(changed, options, user) {
+		const changedHP = foundry.utils.getProperty(changed, "system.attributes.hp.value");
+		if ( changedHP !== undefined ) {
+			if ( (changedHP > 0) || (this.attributes.hp.max === 0) ) {
+				foundry.utils.setProperty(changed, "system.attributes.death.status", "alive");
+				foundry.utils.setProperty(changed, "system.attributes.death.success", 0);
+				foundry.utils.setProperty(changed, "system.attributes.death.failure", 0);
+			} else if ( this.attributes.death.status === "alive" ) {
+				foundry.utils.setProperty(changed, "system.attributes.death.status", "dying");
+			}
+		}
+
+		if ( options.isAdvancement ) return;
+		const changedLevel = foundry.utils.getProperty(changed, "system.details.level");
+		const delta = changedLevel - this.details.level;
+		if ( changedLevel && delta ) {
+			foundry.utils.setProperty(changed, "system.details.level", this.details.level);
+			this.parent.updateSource(changed);
+			const manager = AdvancementManager.forLevelChange(this.parent, delta);
+			if ( manager.steps.length ) {
+				if ( delta > 0 ) return manager.render(true);
+				try {
+					const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forLevelDown(this.parent);
+					if ( shouldRemoveAdvancements ) return manager.render(true);
+				} catch(err) { }
+			}
+		}
 	}
 }

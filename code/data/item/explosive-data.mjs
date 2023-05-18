@@ -160,4 +160,12 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 	prepareFinalDC() {
 		this.dc = this._source.dc || 8 + this.attackMod;
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Socket Event Handlers                    */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _preCreate(data, options, user) {
+		if ( this.parent.parent?.type === "npc" ) this.parent.updateSource({type: "npcExplosive"});
+	}
 }

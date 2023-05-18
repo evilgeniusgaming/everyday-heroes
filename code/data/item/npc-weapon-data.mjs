@@ -178,4 +178,12 @@ export default class NPCWeaponData extends WeaponData {
 		}
 		return label;
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Socket Event Handlers                    */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _preCreate(data, options, user) {
+		if ( this.parent.parent?.type !== "npc" ) this.parent.updateSource({type: "weapon"});
+	}
 }

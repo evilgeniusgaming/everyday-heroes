@@ -119,4 +119,12 @@ export default class NPCExplosiveData extends ExplosiveData {
 		if ( actions.length ) label += ` (${listFormatter.format(actions)})`;
 		return label;
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Socket Event Handlers                    */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _preCreate(data, options, user) {
+		if ( this.parent.parent?.type !== "npc" ) this.parent.updateSource({type: "explosive"});
+	}
 }

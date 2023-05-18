@@ -1,6 +1,4 @@
 import RestDialog from "../applications/actor/dialogs/rest-dialog.mjs";
-import AdvancementConfirmationDialog from "../applications/advancement/advancement-confirmation-dialog.mjs";
-import AdvancementManager from "../applications/advancement/advancement-manager.mjs";
 import { buildMinimum, buildRoll } from "../dice/utils.mjs";
 import { numberFormat, simplifyBonus } from "../utils.mjs";
 import Proficiency from "./proficiency.mjs";
@@ -1195,48 +1193,21 @@ export default class ActorEH extends Actor {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async _preCreate(data, options, user) {
-		if ( this.type === "hero" ) {
-			this.updateSource({prototypeToken: {actorLink: true, disposition: 1}});
-		}
+		await super._preCreate(data, options, user);
+		await this.system._preCreate?.(data, options, user);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async _preUpdate(changed, options, user) {
-		if ( this.type !== "hero" ) return;
-
-		const changedHP = foundry.utils.getProperty(changed, "system.attributes.hp.value");
-		if ( changedHP !== undefined ) {
-			if ( (changedHP > 0) || (this.system.attributes.hp.max === 0) ) {
-				foundry.utils.setProperty(changed, "system.attributes.death.status", "alive");
-				foundry.utils.setProperty(changed, "system.attributes.death.success", 0);
-				foundry.utils.setProperty(changed, "system.attributes.death.failure", 0);
-			} else if ( this.system.attributes.death.status === "alive" ) {
-				foundry.utils.setProperty(changed, "system.attributes.death.status", "dying");
-			}
-		}
-
-		if ( options.isAdvancement ) return;
-		const changedLevel = foundry.utils.getProperty(changed, "system.details.level");
-		const delta = changedLevel - this.system.details.level;
-		if ( changedLevel && delta ) {
-			foundry.utils.setProperty(changed, "system.details.level", this.system.details.level);
-			this.updateSource(changed);
-			const manager = AdvancementManager.forLevelChange(this, delta);
-			if ( manager.steps.length ) {
-				if ( delta > 0 ) return manager.render(true);
-				try {
-					const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forLevelDown(this);
-					if ( shouldRemoveAdvancements ) return manager.render(true);
-				} catch(err) { }
-			}
-		}
+		await super._preUpdate(changed, options, user);
+		await this.system._preUpdate?.(changed, options, user);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async _onCreate(data, options, userId) {
-		super._onCreate(data, options, userId);
+		await super._onCreate(data, options, userId);
 		if ( userId !== game.user.id ) return;
 
 		// Ensure abilities & skills have their default values populated
@@ -1245,6 +1216,13 @@ export default class ActorEH extends Actor {
 		if ( foundry.utils.isEmpty(this.system._source.abilities) ) updates["system.abilities"] = this.system.abilities;
 		if ( foundry.utils.isEmpty(this.system._source.abilities) ) updates["system.skills"] = this.system.skills;
 		if ( !foundry.utils.isEmpty(updates) ) this.update(updates);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _preDelete( options, user) {
+		await super._preDelete( options, user);
+		await this.system._preUpdate?.( options, user);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

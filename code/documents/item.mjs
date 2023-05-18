@@ -1072,13 +1072,8 @@ export default class ItemEH extends Item {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async _preCreate(data, options, user) {
-		// Convert between standard & npc weapons
-		if ( data.type === "npcWeapon" && this.parent?.type !== "npc" ) this.updateSource({type: "weapon"});
-		else if ( data.type === "weapon" && this.parent?.type === "npc" ) this.updateSource({type: "npcWeapon"});
-		else if ( data.type === "npcExplosive" && this.parent?.type !== "npc" ) this.updateSource({type: "explosive"});
-		else if ( data.type === "explosive" && this.parent?.type === "npc" ) this.updateSource({type: "npcExplosive"});
-
 		await super._preCreate(data, options, user);
+		await this.system._preCreate?.(data, options, user);
 
 		if ( !data.img || data.img === this.constructor.DEFAULT_ICON ) {
 			const img = this.system.constructor.metadata.image;
@@ -1087,6 +1082,20 @@ export default class ItemEH extends Item {
 		if ( this.system.hasOwnProperty("identifier") && !this.system.identifier.value ) {
 			this.updateSource({"system.identifier.value": this.identifier});
 		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _preUpdate(changed, options, user) {
+		await super._preUpdate(changed, options, user);
+		await this.system._preUpdate?.(changed, options, user);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _preDelete( options, user) {
+		await super._preDelete( options, user);
+		await this.system._preUpdate?.( options, user);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
