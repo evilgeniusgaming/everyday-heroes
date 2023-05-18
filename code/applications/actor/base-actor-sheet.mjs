@@ -303,6 +303,10 @@ export default class BaseActorSheet extends ActorSheet {
 					}, data);
 					return this.actor.createEmbeddedDocuments("Item", [data]);
 				} catch(err) { return; }
+			case "armor-damage":
+				return item?.update({"system.damaged": true});
+			case "armor-repair":
+				return item?.update({"system.damaged": false});
 			case "chat":
 				return item?.displayInChat();
 			case "clear-jam":

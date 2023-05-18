@@ -52,7 +52,7 @@ export default class ArmorData extends SystemDataModel.mixin(
 				initial: 0, min: 0, integer: true,
 				label: "EH.Equipment.Trait.ArmorValue.Label", hint: "EH.Equipment.Trait.ArmorValue.Hint"
 			}),
-			damaged: new foundry.data.fields.BooleanField({label: "EH.Armor.Damaged"}),
+			damaged: new foundry.data.fields.BooleanField({label: "EH.Armor.Damage"}),
 			bonuses: new foundry.data.fields.SchemaField({
 				save: new FormulaField({label: "EH.Armor.Bonuses.Save.Label"})
 			})
@@ -69,6 +69,14 @@ export default class ArmorData extends SystemDataModel.mixin(
 			icon: "systems/everyday-heroes/artwork/svg/action/armor-save.svg",
 			tooltip: game.i18n.format("EH.Action.Roll", {type: game.i18n.localize("EH.Armor.Action.Save.Label")}),
 			data: { type: "armor-save", disadvantage: this.damaged }
+		}, {
+			action: "item",
+			label: game.i18n.localize(`EH.Armor.State.${this.damaged ? "Damaged" : "Intact"}`),
+			icon: `systems/everyday-heroes/artwork/svg/action/armor-${this.damaged ? "damaged" : "intact"}.svg`,
+			tooltip: game.i18n.format(`EH.Armor.Action.${this.damaged ? "Repair" : "Damage"}.Label`, {
+				type: CONFIG.EverydayHeroes.armorTypes[this.type.value]?.label ?? ""
+			}),
+			data: { type: `armor-${this.damaged ? "repair" : "damage"}` }
 		}];
 	}
 
@@ -96,7 +104,7 @@ export default class ArmorData extends SystemDataModel.mixin(
 			...this.propertiesTags,
 			...this.proficiencyTags,
 			...this.physicalTags,
-			{ label: game.i18n.localize("EH.Armor.Damaged"), class: "negative status", hidden: !this.damaged }
+			{ label: game.i18n.localize("EH.Armor.State.Damaged"), class: "negative status", hidden: !this.damaged }
 		];
 	}
 

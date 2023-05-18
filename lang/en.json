@@ -165,7 +165,9 @@
 
 "Any": "Any",
 
-"Armor.Damaged": "Damaged",
+"Armor.Damage": "Damage",
+"Armor.Action.Damage.Label": "Damage {type}",
+"Armor.Action.Repair.Label": "Repair {type}",
 "Armor.Action.Save.Label": "Armor Saving Throw",
 "Armor.Action.Save.Short": "save {number}",
 "Armor.Bonuses.Save.Label": "Armor Save Bonus",
@@ -175,6 +177,8 @@
 "Armor.Property.Concealable.Label": "Concealable",
 "Armor.Property.Small.Label": "Small",
 "Armor.Property.StabProof.Label": "Stab Proof",
+"Armor.State.Damaged": "Damaged",
+"Armor.State.Intact": "Intact",
 "Armor.Type.Label": "Armor Type",
 "Armor.Type.Armor.Label": "Armor",
 "Armor.Type.Shield.Label": "Shield",
