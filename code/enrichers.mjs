@@ -5,11 +5,34 @@ import { simplifyBonus } from "./utils.mjs";
  */
 export function registerCustomEnrichers() {
 	CONFIG.TextEditor.enrichers.push({
+		pattern: /@FallbackUUID\[(?<uuid>[^\]]+)\]{(?<label>[^}]+)}/g,
+		enricher: enrichFallbackContentLink
+	});
+	CONFIG.TextEditor.enrichers.push({
 		pattern: /@(?<type>Check|Save|Skill)\[(?<config>[^\]]+)\](?:{(?<label>[^}]+)})?/g,
 		enricher: enrichString
 	});
 
 	document.querySelector("body").addEventListener("click", rollAction);
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Convert text of the form @FallbackUUID[uuid]{name} to anchor element, falling back to plain text
+ * if the targeted content cannot be found.
+ * @param {RegExpMatchArray} match - The regular expression match result.
+ * @param {EnrichmentOptions} options - Options provided to customize text enrichment.
+ * @returns {Promise<HTMLElement|null>} - An HTML element to insert in place of the matched text or null to
+ *                                        indicate that no replacement should be made.
+ */
+export async function enrichFallbackContentLink(match, options) {
+	const { uuid, label } = match.groups;
+	if ( fromUuidSync(uuid) ) return await TextEditor._createContentLink([null, "UUID", uuid, null, label], options);
+	const span = document.createElement("span");
+	span.innerText = label;
+	span.classList.add("missing-link");
+	return span;
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
