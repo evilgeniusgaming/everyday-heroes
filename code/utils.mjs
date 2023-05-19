@@ -314,6 +314,58 @@ export function tagInput(selected, options={}) {
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Register sheet listeners for the tag input.
+ * @param {DocumentSheet} sheet - Sheet that might contain a tag input.
+ * @param {HTMLElement} html - HTML of the sheet.
+ */
+export function registerTagInputListeners(sheet, html) {
+	for ( const element of html.querySelectorAll(".tag-input input") ) {
+		element.addEventListener("change", handleTagInputAction.bind(sheet, "add"));
+	}
+	for ( const element of html.querySelectorAll('.tag-input [data-action="delete"]') ) {
+		element.addEventListener("click", handleTagInputAction.bind(sheet, "delete"));
+	}
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Handle actions associated with tag inputs.
+ * @param {string} type - Action type being handled.
+ * @param {ClickEvent} event - Triggering click event.
+ * @returns {Promise}
+ */
+export async function handleTagInputAction(type, event) {
+	event.preventDefault();
+	const tagInput = event.target.closest(".tag-input");
+	if ( !tagInput ) return;
+	const name = tagInput.dataset.target;
+	const shouldValidate = tagInput.dataset.validate;
+	const collection = foundry.utils.getProperty(this.document, name);
+
+	switch (type) {
+		case "add":
+			const validOptions = Array.from(event.target.list?.options ?? []).map(o => o.value);
+			if ( shouldValidate && !validOptions.includes(event.target.value) ) return;
+			if ( foundry.utils.getType(collection) === "Array" ) collection.push(event.target.value);
+			else if ( foundry.utils.getType(collection) === "Set" ) collection.add(event.target.value);
+			else console.warn("Invalid collection type found for tag input");
+			break;
+		case "delete":
+			const key = event.target.closest("[data-key]")?.dataset.key;
+			if ( foundry.utils.getType(collection) === "Array" ) collection.findSplice(v => v === key);
+			else if ( foundry.utils.getType(collection) === "Set" ) collection.delete(key);
+			else console.warn("Invalid collection type found for tag input");
+			break;
+		default:
+			return console.warn(`Invalid tag action type ${type}`);
+	}
+	this.document.update({[name]: Array.from(collection)});
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Register custom Handlebars helpers for use by the system.
  */
 export function registerHandlebarsHelpers() {

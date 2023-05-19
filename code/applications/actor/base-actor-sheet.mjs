@@ -1,4 +1,5 @@
 import ActiveEffectEH from "../../documents/active-effect.mjs";
+import { registerTagInputListeners } from "../../utils.mjs";
 import AdvancementManager from "../advancement/advancement-manager.mjs";
 import AdvancementConfirmationDialog from "../advancement/advancement-confirmation-dialog.mjs";
 import AbilityConfig from "./dialogs/ability-config.mjs";
@@ -205,12 +206,7 @@ export default class BaseActorSheet extends ActorSheet {
 		}
 
 		// Tag Inputs
-		for ( const element of html.querySelectorAll(".tag-input input") ) {
-			element.addEventListener("change", this._onTagInputAction.bind(this, "add"));
-		}
-		for ( const element of html.querySelectorAll('.tag-input [data-action="delete"]') ) {
-			element.addEventListener("click", this._onTagInputAction.bind(this, "delete"));
-		}
+		registerTagInputListeners(this, html);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -391,41 +387,5 @@ export default class BaseActorSheet extends ActorSheet {
 		const { type, ...config } = event.currentTarget.dataset;
 		config.event = event;
 		return this.actor.roll(type, config);
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Handle actions associated with tag inputs.
-	 * @param {string} type - Action type being handled.
-	 * @param {ClickEvent} event - Triggering click event.
-	 * @returns {Promise}
-	 */
-	async _onTagInputAction(type, event) {
-		event.preventDefault();
-		const tagInput = event.target.closest(".tag-input");
-		if ( !tagInput ) return;
-		const name = tagInput.dataset.target;
-		const shouldValidate = tagInput.dataset.validate;
-		const collection = foundry.utils.getProperty(this.actor, name);
-
-		switch (type) {
-			case "add":
-				const validOptions = Array.from(event.target.list?.options ?? []).map(o => o.value);
-				if ( shouldValidate && !validOptions.includes(event.target.value) ) return;
-				if ( foundry.utils.getType(collection) === "Array" ) collection.push(event.target.value);
-				else if ( foundry.utils.getType(collection) === "Set" ) collection.add(event.target.value);
-				else console.warn("Invalid collection type found for tag input");
-				break;
-			case "delete":
-				const key = event.target.closest("[data-key]")?.dataset.key;
-				if ( foundry.utils.getType(collection) === "Array" ) collection.findSplice(v => v === key);
-				else if ( foundry.utils.getType(collection) === "Set" ) collection.delete(key);
-				else console.warn("Invalid collection type found for tag input");
-				break;
-			default:
-				return console.warn(`Invalid tag action type ${type}`);
-		}
-		this.actor.update({[name]: Array.from(collection)});
 	}
 }

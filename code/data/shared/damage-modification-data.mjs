@@ -1,5 +1,5 @@
 /**
- * Data model template for items that modify the damage of another.
+ * Data model for modification to another damage.
  *
  * @property {number} number - Change to the damage dice count.
  * @property {number} denomination - Change to the damage denomination.

@@ -1,11 +1,11 @@
 /**
- * Data model template for items that cause damage.
+ * Data model for base damage.
  *
  * @property {number} number - Number of dice rolled.
  * @property {number} denomination - Denomination of damage dice.
  * @property {string} type - Type of damage.
  */
-export default class Damage extends foundry.abstract.DataModel {
+export default class DamageData extends foundry.abstract.DataModel {
 
 	static defineSchema() {
 		return {

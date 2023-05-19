@@ -30,11 +30,11 @@
 	font-weight: bold;
 	text-transform: uppercase;
 }
-.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > :is(input, select) {
+.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > :is(input, select, .tag-input) {
 	grid-column: 2 / -1;
 	width: unset;
 }
-.everyday-heroes.item.sheet [data-tab="details"] section > fieldset.triple > :is(input, select) {
+.everyday-heroes.item.sheet [data-tab="details"] section > fieldset.triple > :is(input, select, .tag-input) {
 	grid-column: unset;
 }
 .everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields {

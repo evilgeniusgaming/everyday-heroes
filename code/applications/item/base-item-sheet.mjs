@@ -1,5 +1,7 @@
+import { registerTagInputListeners } from "../../utils.mjs";
+
 /**
- * Base sheet that provides common features for Hero and NPC sheets.
+ * Base sheet that provides common features for all items.
  */
 export default class BaseItemSheet extends ItemSheet {
 
@@ -73,6 +75,9 @@ export default class BaseItemSheet extends ItemSheet {
 				this.render();
 			});
 		}
+
+		// Tag Inputs
+		registerTagInputListeners(this, html);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

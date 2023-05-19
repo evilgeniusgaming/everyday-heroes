@@ -273,6 +273,7 @@
 "Creature.Type.Swarm.Label": "Swarm",
 "Creature.Type.Undead.Label": "Undead",
 
+"Damage.Multiple": "Multiple Types",
 "Damage.None": "No Damage",
 "Damage.Specific": "{type} Damage",
 "Damage.Immunity.Label": "Damage Immunity",
@@ -374,6 +375,8 @@
 "Equipment.Trait.Damage.Count.Label": "Dice Count",
 "Equipment.Trait.Damage.Denomination.Label": "Denomination",
 "Equipment.Trait.Damage.Type.Label": "Damage Type",
+"Equipment.Trait.Damage.Types.Label": "Damage Types",
+"Equipment.Trait.Damage.Types.Hint": "The attacker may choose whichever listed damage type is more favorable to the moment.",
 "Equipment.Trait.DamageModification.Label": "Damage Modification",
 "Equipment.Trait.DamageModification.Hint": "This is how much the damage of the base weapon is modified by this ammunition.",
 "Equipment.Trait.DamageModification.NoChange": "No Change",

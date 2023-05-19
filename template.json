@@ -262,7 +262,8 @@
         "damage": {
           "number": null,
           "denomination": null,
-          "type": ""
+          "type": "",
+          "alternateTypes": []
         },
         "overrides": {
           "ability": {

@@ -1,5 +1,5 @@
 import { simplifyBonus } from "../../../utils.mjs";
-import DamageData from "../../shared/damage-data.mjs";
+import PrimaryDamageData from "../../shared/primary-damage-data.mjs";
 import DamageModificationData from "../../shared/damage-modification-data.mjs";
 
 /**
@@ -24,7 +24,7 @@ export default class Damage extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
 			damage: new foundry.data.fields.EmbeddedDataField(
-				this.damageMode === "regular" ? DamageData : DamageModificationData,
+				this.damageMode === "regular" ? PrimaryDamageData : DamageModificationData,
 				{ label: "EH.Equipment.Trait.Damage.Label", hint: "EH.Equipment.Trait.Damage.Hint" }
 			),
 			overrides: new foundry.data.fields.SchemaField({
