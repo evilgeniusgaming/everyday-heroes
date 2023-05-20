@@ -1,14 +1,49 @@
 /**
+ * Dialog rendering options for roll configuration dialogs.
+ *
+ * @typedef {DialogOptions} BaseConfigurationDialogOptions
+ * @property {typeof Roll} rollType - Roll type to use when constructing final roll.
+ * @property {*} resolve - Method to call when resolving successfully.
+ * @property {*} reject - Method to call when the dialog is closed or process fails.
+ */
+
+/**
  * Roll configuration dialog.
  *
- * @param {BaseRoll} roll - Roll being configured.
- * @param {DialogData} data
- * @param {DialogOptions} options - Dialog rendering options.
+ * @param {BaseRollBuilder} [buildConfig] - Roll config builder.
+ * @param {BaseRollConfiguration} [rollConfig={}] - Initial roll configuration.
+ * @param {BaseConfigurationDialogOptions} [options={}] - Dialog rendering options.
  */
-export default class BaseConfigurationDialog extends Dialog {
-	constructor(roll, data, options) {
-		super(data, options);
-		this.roll = roll;
+export default class BaseConfigurationDialog extends FormApplication {
+	constructor(buildConfig, rollConfig={}, options={}) {
+		super(null, options);
+
+		/**
+		 * Roll builder.
+		 * @type {BaseRollBuilder}
+		 */
+		Object.defineProperty(this, "buildConfig", { value: buildConfig, writable: false, enumerable: true });
+
+		/**
+		 * Roll configuration.
+		 * @type {BaseRollConfiguration}
+		 */
+		Object.defineProperty(this, "rollConfig", { value: rollConfig, writable: false, enumerable: true });
+
+		this.object = this._buildRoll(foundry.utils.deepClone(this.rollConfig));
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static get defaultOptions() {
+		return foundry.utils.mergeObject(super.defaultOptions, {
+			template: "systems/everyday-heroes/templates/dice/roll-dialog.hbs",
+			classes: ["everyday-heroes", "dialog", "roll"],
+			submitOnChange: true,
+			closeOnSubmit: false,
+			jQuery: false,
+			rollType: CONFIG.Dice.BaseRoll
+		});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -17,16 +52,14 @@ export default class BaseConfigurationDialog extends Dialog {
 	 * The roll being configured.
 	 * @type {BaseRoll}
 	 */
-	roll;
+	get roll() {
+		return this.object;
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			template: "systems/everyday-heroes/templates/dice/roll-dialog.hbs",
-			classes: ["everyday-heroes", "dialog", "roll"],
-			jQuery: false
-		});
+	get title() {
+		return this.options.title ?? game.i18n.localize("EH.Roll.Configuration.LabelGeneric");
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -35,51 +68,47 @@ export default class BaseConfigurationDialog extends Dialog {
 
 	/**
 	 * A helper constructor that displays the roll configuration dialog.
-	 * @param {BaseRoll} roll - Roll being configured.
-	 * @param {BaseDialogConfiguration} options - Configuration information for the dialog.
+	 * @param {BaseRollConfiguration} [rollConfig] - Initial roll configuration.
+	 * @param {BaseDialogConfiguration} [options] - Configuration information for the dialog.
 	 * @returns {Promise}
 	 */
-	static async configure(roll, options) {
+	static async configure(rollConfig={}, options={}) {
 		return new Promise((resolve, reject) => {
-			new this(roll, {
-				title: options.options?.title ?? game.i18n.localize("EH.Roll.Configuration.LabelGeneric"),
-				buttons: this._dialogButtons(roll, options, resolve, reject),
-				default: "roll", // TODO: Allow this to be set
-				close: () => reject()
-			}, options.options).render(true);
+			new this(
+				options.buildConfig,
+				rollConfig,
+				foundry.utils.mergeObject({ resolve, reject }, options.options)
+			).render(true);
 		});
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Buttons displayed in the configuration dialog.
-	 * @param {BaseRoll} roll - Roll being configured.
-	 * @param {BaseDialogConfiguration} options - Data for the roll configuration dialog.
-	 * @param {*} resolve
-	 * @param {*} reject
-	 * @returns {object}
-	 * @internal
-	 */
-	static _dialogButtons(roll, options, resolve, reject) {
-		return {
-			roll: {
-				label: game.i18n.localize("EH.Dice.Action.Roll"),
-				callback: html => resolve(this._onDialogSubmit(roll, html))
-			}
-		};
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Context Preparation                      */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/**
+	 * Buttons displayed in the configuration dialog.
+	 * @returns {object}
+	 * @protected
+	 */
+	getButtons() {
+		return {
+			roll: {
+				label: game.i18n.localize("EH.Dice.Action.Roll")
+			}
+		};
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	getData(options={}) {
 		return foundry.utils.mergeObject({
 			CONFIG: CONFIG.EverydayHeroes,
 			default: this.options.default ?? {},
-			formula: `${this.roll.formula} + @bonus`,
-			rollModes: CONFIG.Dice.rollModes
+			formula: this._getFormula(),
+			rollModes: CONFIG.Dice.rollModes,
+			bonus: this.roll.data.bonus,
+			buttons: this.getButtons()
 		}, super.getData(options));
 	}
 
@@ -89,8 +118,28 @@ export default class BaseConfigurationDialog extends Dialog {
 
 	activateListeners(jQuery) {
 		super.activateListeners(jQuery);
-		// TODO: Adjust formula as bonus is modified
-		// const html = jQuery[0];
+		const html = jQuery[0];
+		for ( const button of html.querySelectorAll("button[data-action]") ) {
+			button.addEventListener("click", this._onButtonAction.bind(this));
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async close(options={}) {
+		this.options.reject?.();
+		return super.close(options);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Final roll preparation based on the pressed button.
+	 * @param {string} action - That button that was pressed.
+	 * @returns {BaseRoll}
+	 */
+	finalizeRoll(action) {
+		return this.roll;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -103,23 +152,58 @@ export default class BaseConfigurationDialog extends Dialog {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
-	 * Handle submission of the Roll evaluation configuration Dialog.
-	 * @param {BaseRoll} roll - Roll being configured.
-	 * @param {HTMLElement} html - The submitted dialog content.
-	 * @param {object} [options={}] - Additional options passed from the dialog.
-	 * @returns {BaseRoll} - The formed roll.
-	 * @internal
+	 * Build a roll from the provided config.
+	 * @param {BaseRollConfiguration} config - Roll configuration data.
+	 * @param {object} formData - Data provided by the configuration form.
+	 * @returns {BaseRoll}
 	 */
-	static _onDialogSubmit(roll, html, options={}) {
-		const form = html.querySelector("form");
+	_buildRoll(config, formData={}) {
+		config = foundry.utils.mergeObject({parts: [], data: {}, options: {}}, config);
+		if ( this.buildConfig ) config = this.buildConfig(config, formData);
 
-		if ( form.bonus.value ) {
-			const bonus = new Roll(form.bonus.value, roll.data);
-			if ( !(bonus.terms[0] instanceof OperatorTerm) ) roll.terms.push(new OperatorTerm({operator: "+"}));
-			roll.terms = roll.terms.concat(bonus.terms);
+		if ( formData.bonus ) {
+			config.parts.push("@bonus");
+			config.data.bonus = formData.bonus;
 		}
 
-		roll.options.rollMode = form.rollMode.value;
-		return roll;
+		if ( formData.rollMode ) {
+			config.options.rollMode = formData.rollMode;
+		}
+
+		const RollType = this.options.rollType ?? Roll;
+		return new RollType(config.parts.join(" + "), config.data, config.options);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Format the roll's formula for display.
+	 * @returns {string}
+	 * @internal
+	 */
+	_getFormula() {
+		const formula = this.roll.formula;
+		if ( this.roll.data.bonus ) return formula;
+		else if ( formula ) return `${formula} + @bonus`;
+		else return "@bonus";
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Handle clicks to the buttons.
+	 * @param {HTMLEvent} event - Triggering click event.
+	 */
+	_onButtonAction(event) {
+		const roll = this.finalizeRoll(event.currentTarget.dataset.action);
+		this.options.resolve?.(roll);
+		this.close({submit: false, force: true});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_updateObject(event, formData) {
+		this.object = this._buildRoll(foundry.utils.deepClone(this.rollConfig), formData);
+		this.render();
 	}
 }

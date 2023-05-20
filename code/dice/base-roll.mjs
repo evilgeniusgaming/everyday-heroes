@@ -31,10 +31,20 @@ import BaseConfigurationDialog from "./base-configuration-dialog.mjs";
  *
  * @typedef {object} BaseDialogConfiguration
  * @property {boolean} [configure=true] - Should the roll configuration dialog be displayed?
+ * @property {BaseRollBuilder} [rollBuilder] - Method for constructing a roll from roll configuration.
  * @property {string} [template] - Override the default configuration template.
  * @property {object} [default]
  * @property {number} [default.rollMode] - The roll mode that is selected by default.
- * @property {object} [options] - Additional options passed through to the configuration dialog.
+ * @property {BaseConfigurationDialogOptions} [options] - Additional options passed through to the configuration dialog.
+ */
+
+/**
+ * Method for constructing a roll from the provided roll configuration.
+ *
+ * @callback BaseRollBuilder
+ * @param {BaseRollConfiguration} config - Roll configuration data.
+ * @param {object} formData - Data provided by the configuration form.
+ * @returns {BaseRoll}
  */
 
 /**
@@ -69,20 +79,20 @@ export default class BaseRoll extends Roll {
 	static async build(config={}, message={}, options={}) {
 		this.applyKeybindings(config, options);
 
-		const formula = (config.parts ?? []).join(" + ");
-		const roll = new this(formula, config.data, config.options);
-
+		let roll;
 		if ( options.configure !== false ) {
 			try {
-				await this.ConfigurationDialog.configure(roll, options);
+				roll = await this.ConfigurationDialog.configure(config, options);
 				roll._formula = this.getFormula(roll.terms);
 			} catch(err) {
 				if ( !err ) return;
 				throw err;
 			}
+		} else {
+			const formula = (config.parts ?? []).join(" + ");
+			roll = new this(formula, config.data, config.options);
 		}
 
-		roll._formula = this.getFormula(roll.terms);
 		await roll.evaluate({async: true});
 
 		if ( roll && (message.create !== false) ) await roll.toMessage(message.data, {

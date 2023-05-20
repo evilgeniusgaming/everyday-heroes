@@ -2,36 +2,27 @@ import BaseConfigurationDialog from "./base-configuration-dialog.mjs";
 
 /**
  * Roll configuration dialog for Challenge Rolls.
- *
- * @param {ChallengeRoll} roll - Roll being configured.
  */
 export default class ChallengeConfigurationDialog extends BaseConfigurationDialog {
 
-	static _dialogButtons(roll, options, resolve, reject) {
-		return {
-			advantage: {
-				label: game.i18n.localize("EH.Dice.Action.Advantage"),
-				callback: html => resolve(this._onDialogSubmit(roll, html, {
-					mode: CONFIG.Dice.ChallengeDie.MODES.ADVANTAGE
-				}))
-			},
-			normal: {
-				label: game.i18n.localize("EH.Dice.Action.Normal"),
-				callback: html => resolve(this._onDialogSubmit(roll, html, {
-					mode: CONFIG.Dice.ChallengeDie.MODES.NORMAL
-				}))
-			},
-			disadvantage: {
-				label: game.i18n.localize("EH.Dice.Action.Disadvantage"),
-				callback: html => resolve(this._onDialogSubmit(roll, html, {
-					mode: CONFIG.Dice.ChallengeDie.MODES.DISADVANTAGE
-				}))
-			}
-		};
+	static get defaultOptions() {
+		return foundry.utils.mergeObject(super.defaultOptions, {
+			rollType: CONFIG.Dice.ChallengeRoll
+		});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Context Preparation                      */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	getButtons() {
+		return {
+			advantage: { label: game.i18n.localize("EH.Dice.Action.Advantage") },
+			normal: { label: game.i18n.localize("EH.Dice.Action.Normal") },
+			disadvantage: { label: game.i18n.localize("EH.Dice.Action.Disadvantage") }
+		};
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	getData(options={}) {
@@ -44,10 +35,20 @@ export default class ChallengeConfigurationDialog extends BaseConfigurationDialo
 	/*  Action Handlers                          */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	static _onDialogSubmit(roll, html, options={}) {
-		super._onDialogSubmit(roll, html, options);
-		roll.options.advantageMode = options.mode;
+	finalizeRoll(action) {
+		const roll = this.roll;
+		switch (action) {
+			case "advantage":
+				roll.options.advantageMode = CONFIG.Dice.ChallengeDie.MODES.ADVANTAGE;
+				break;
+			case "disadvantage":
+				roll.options.advantageMode = CONFIG.Dice.ChallengeDie.MODES.DISADVANTAGE;
+				break;
+			case "normal":
+				roll.options.advantageMode = CONFIG.Dice.ChallengeDie.MODES.NORMAL;
+				break;
+		}
 		roll.configureRoll();
-		return roll;
+		return this.roll;
 	}
 }

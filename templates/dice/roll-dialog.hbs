@@ -2,11 +2,11 @@
 	<section class="main-form">
 		<fieldset>
 			<label>Formula</label>{{!-- TODO: Localize --}}
-			<span>{{formula}}</span>
+			<input type="text" value="{{formula}}" readonly>
 		</fieldset>
 		<fieldset>
 			<label>Extra Terms</label>{{!-- TODO: Localize --}}
-			<input type="text" name="bonus" value="" placeholder="">
+			<input type="text" name="bonus" value="{{bonus}}" placeholder="">
 		</fieldset>
 		<fieldset>
 			<label>Roll Mode</label>{{!-- TODO: Localize --}}
@@ -18,8 +18,8 @@
 
 	<nav class="dialog-buttons skewed">
 		<ul>
-			{{#each buttons as |button id|}}
-				<li><button class="dialog-button" data-button="{{id}}">{{{button.icon}}} {{{button.label}}}</button></li>
+			{{#each buttons as |button action|}}
+				<li><button data-action="{{action}}">{{{button.icon}}} {{{button.label}}}</button></li>
 			{{/each}}
 		</ul>
 	</nav>
