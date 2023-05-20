@@ -66,6 +66,30 @@ ul {
 	text-transform: uppercase;
 }
 
+.read-aloud {
+	margin: 0;
+	border: 4px double var(--eh-border-color-read-aloud);
+	padding: 0.5em;
+	background-color: var(--eh-background-color-read-aloud);
+	font-style: normal;
+}
+.read-aloud + .read-aloud {
+	margin-block-start: 0.5em;
+}
+.read-aloud h5 {
+	margin-block-start: 0;
+	margin-inline: -0.5em;
+	border-block-end: 4px double var(--eh-border-color-read-aloud);
+	padding-inline: 0.5em;
+	font-size: unset;
+}
+.read-aloud p:first-child {
+	margin-block-start: 0;
+}
+.read-aloud p:last-child {
+	margin-block-end: 0;
+}
+
 .journal-sheet strong.archetype {
 	color: var(--eh-text-color-red);
 	text-transform: uppercase;

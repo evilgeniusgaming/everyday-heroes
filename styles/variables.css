@@ -7,9 +7,11 @@
 	--eh-background-color-white: rgb(255, 255, 255);
 	--eh-background-color-failure: rgb(255, 217, 215); /* lch(90%, 10%, 25%) */
 	--eh-background-color-success: rgb(217, 231, 202); /* lch(90%, 10%, 125%) */
+	--eh-background-color-read-aloud: rgb(230, 230, 239);
 
 	--eh-border-color-strong: rgb(0, 0, 0);
 	--eh-border-color-weak: rgba(0, 0, 0, 0.5);
+	--eh-border-color-read-aloud: rgb(60, 71, 122);
 
 	--eh-config-color: rgb(255, 59, 59);
 
