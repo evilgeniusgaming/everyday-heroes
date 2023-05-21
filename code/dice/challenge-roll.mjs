@@ -22,6 +22,16 @@ import { areKeysPressed } from "./utils.mjs";
  */
 
 /**
+ * @typedef {BaseDialogConfiguration} ChallengeDialogConfiguration
+ * @property {ChallengeConfigurationDialogOptions} [options] - Configuration options.
+ */
+
+/**
+ * @typedef {BaseConfigurationDialogOptions} ChallengeConfigurationDialogOptions
+ * @property {boolean} [chooseAbility=false] - Should the ability selector be shown?
+ */
+
+/**
  * Roll used for challenges and contests, usually using a D20, such as attacks, checks, and saves.
  * @param {string} formula - The formula used to construct the roll.
  * @param {object} data - The roll data used to resolve the formula.
@@ -43,13 +53,24 @@ export default class ChallengeRoll extends BaseRoll {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Create a roll instance from the provided config.
+	 * @param {ChallengeRollConfiguration} config - Roll configuration data.
+	 * @returns {ChallengeRoll}
+	 */
+	static create(config) {
+		const formula = [(new CONFIG.Dice.ChallengeDie()).formula].concat(config.parts ?? []).join(" + ");
+		return new this(formula, config.data, config.options);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Construct and perform a Challenge Roll through the standard workflow.
 	 * @param {ChallengeRollConfiguration} [config={}] - Roll configuration data.
 	 * @param {BaseMessageConfiguration} [message={}] - Configuration data that guides roll message creation.
-	 * @param {BaseDialogConfiguration} [options={}] - Data for the roll configuration dialog.
+	 * @param {ChallengeDialogConfiguration} [options={}] - Data for the roll configuration dialog.
 	 */
 	static async build(config={}, message={}, options={}) {
-		config.parts = [(new CONFIG.Dice.ChallengeDie()).formula].concat(config.parts ?? []);
 		config.options ??= {};
 		config.options.criticalSuccess ??= CONFIG.Dice.ChallengeDie.CRITICAL_SUCCESS_TOTAL;
 		config.options.criticalFailure ??= CONFIG.Dice.ChallengeDie.CRITICAL_FAILURE_TOTAL;

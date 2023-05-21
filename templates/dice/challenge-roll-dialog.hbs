@@ -4,6 +4,14 @@
 			<label>{{localize "EH.Dice.Formula"}}</label>
 			<input type="text" value="{{formula}}" readonly>
 		</fieldset>
+		{{#if options.chooseAbility}}
+			<fieldset>
+				<label>{{localize "EH.Ability.Label[one]"}}</label>
+				<select name="ability">
+					{{selectOptions CONFIG.abilities selected=selectedAbility labelAttr="label"}}
+				</select>
+			</fieldset>
+		{{/if}}
 		<fieldset>
 			<label>{{localize "EH.Dice.ExtraTerms"}}</label>
 			<input type="text" name="bonus" value="{{bonus}}" placeholder="">

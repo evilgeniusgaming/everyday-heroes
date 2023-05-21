@@ -43,3 +43,11 @@
 .everyday-heroes.rest [data-action="roll-medicine"] {
 	grid-column: 1 / -1;
 }
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Rolling                                  */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.everyday-heroes.roll .main-form {
+	grid-template-columns: 1fr 2fr;
+}

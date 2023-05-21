@@ -1,13 +1,4 @@
 /**
- * Dialog rendering options for roll configuration dialogs.
- *
- * @typedef {DialogOptions} BaseConfigurationDialogOptions
- * @property {typeof Roll} rollType - Roll type to use when constructing final roll.
- * @property {*} resolve - Method to call when resolving successfully.
- * @property {*} reject - Method to call when the dialog is closed or process fails.
- */
-
-/**
  * Roll configuration dialog.
  *
  * @param {BaseRollBuilder} [buildConfig] - Roll config builder.
@@ -39,6 +30,7 @@ export default class BaseConfigurationDialog extends FormApplication {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			template: "systems/everyday-heroes/templates/dice/roll-dialog.hbs",
 			classes: ["everyday-heroes", "dialog", "roll"],
+			width: 400,
 			submitOnChange: true,
 			closeOnSubmit: false,
 			jQuery: false,
@@ -171,7 +163,7 @@ export default class BaseConfigurationDialog extends FormApplication {
 		}
 
 		const RollType = this.options.rollType ?? Roll;
-		return new RollType(config.parts.join(" + "), config.data, config.options);
+		return RollType.create(config);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -329,6 +329,9 @@
 "Details.Wealth.Bonus.Label": "Wealth Bonus",
 
 "Dice.Denomination": "Denomination",
+"Dice.ExtraTerms": "Extra Terms",
+"Dice.Formula": "Formula",
+"Dice.RollMode": "Roll Mode",
 "Dice.Action.Advantage": "Advantage",
 "Dice.Action.Critical": "Critical",
 "Dice.Action.Disadvantage": "Disadvantage",

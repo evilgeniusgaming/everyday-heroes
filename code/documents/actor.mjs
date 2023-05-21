@@ -1038,29 +1038,37 @@ export default class ActorEH extends Actor {
 	 */
 	async rollSkill(config={}, message={}, dialog={}) {
 		const skill = this.system.skills[config.skill];
-		const ability = this.system.abilities[config.ability ?? skill.ability];
-		const defaultAbility = config.ability ?? skill.ability;
 
-		const { parts, data } = buildRoll({
-			mod: ability?.mod,
-			prof: skill.proficiency.hasProficiency ? skill.proficiency.term : null,
-			[`${defaultAbility}CheckBonus`]: ability?.bonuses.check,
-			globalCheckBonus: this.system.bonuses?.ability?.check,
-			bonus: skill.bonuses.check,
-			globalSkillBonus: this.system.bonuses?.skill?.check
-		}, this.getRollData());
-		data.defaultAbility = defaultAbility;
+		const prepareSkillConfig = (baseConfig={}, formData={}) => {
+			const abilityId = formData.ability ?? baseConfig.ability ?? skill.ability;
+			const ability = this.system.abilities[abilityId];
+			console.log("prepareSkillConfig", abilityId);
 
-		const rollConfig = foundry.utils.mergeObject({
-			data,
-			options: {
-				minimum: buildMinimum([
-					skill.minimum, ability?.minimums.check,
-					this.system.overrides?.skill?.minimum, this.system.overrides?.ability?.minimums.check
-				], data)
-			}
-		}, config);
-		rollConfig.parts = parts.concat(config.parts ?? []);
+			const { parts, data } = buildRoll({
+				mod: ability?.mod,
+				prof: skill.proficiency.hasProficiency ? skill.proficiency.term : null,
+				[`${abilityId}CheckBonus`]: ability?.bonuses.check,
+				globalCheckBonus: this.system.bonuses?.ability?.check,
+				bonus: skill.bonuses.check,
+				globalSkillBonus: this.system.bonuses?.skill?.check
+			}, this.getRollData());
+			data.abilityId = abilityId;
+
+			const rollConfig = foundry.utils.mergeObject(baseConfig, {
+				data,
+				options: {
+					minimum: buildMinimum([
+						skill.minimum, ability?.minimums.check,
+						this.system.overrides?.skill?.minimum, this.system.overrides?.ability?.minimums.check
+					], data)
+				}
+			});
+			rollConfig.parts = parts.concat(config.parts ?? []);
+
+			return rollConfig;
+		};
+
+		const rollConfig = prepareSkillConfig();
 
 		const type = game.i18n.format("EH.Skill.Action.CheckSpecific", {
 			skill: CONFIG.EverydayHeroes.skills[config.skill].label
@@ -1079,7 +1087,9 @@ export default class ActorEH extends Actor {
 		}, message);
 
 		const dialogConfig = foundry.utils.mergeObject({
+			buildConfig: prepareSkillConfig,
 			options: {
+				chooseAbility: true,
 				title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", { type })
 			}
 		}, dialog);

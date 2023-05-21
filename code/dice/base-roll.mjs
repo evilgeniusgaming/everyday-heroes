@@ -32,10 +32,18 @@ import BaseConfigurationDialog from "./base-configuration-dialog.mjs";
  * @typedef {object} BaseDialogConfiguration
  * @property {boolean} [configure=true] - Should the roll configuration dialog be displayed?
  * @property {BaseRollBuilder} [rollBuilder] - Method for constructing a roll from roll configuration.
- * @property {string} [template] - Override the default configuration template.
- * @property {object} [default]
- * @property {number} [default.rollMode] - The roll mode that is selected by default.
  * @property {BaseConfigurationDialogOptions} [options] - Additional options passed through to the configuration dialog.
+ */
+
+/**
+ * Dialog rendering options for roll configuration dialogs.
+ *
+ * @typedef {DialogOptions} BaseConfigurationDialogOptions
+ * @property {object} default
+ * @property {number} default.rollMode - The roll mode that is selected by default.
+ * @property {typeof BaseRoll} rollType - Roll type to use when constructing final roll.
+ * @property {*} resolve - Method to call when resolving successfully.
+ * @property {*} reject - Method to call when the dialog is closed or process fails.
  */
 
 /**
@@ -71,6 +79,18 @@ export default class BaseRoll extends Roll {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Create a roll instance from the provided config.
+	 * @param {BaseRollConfiguration} config - Roll configuration data.
+	 * @returns {BaseRoll}
+	 */
+	static create(config) {
+		const formula = (config.parts ?? []).join(" + ");
+		return new this(formula, config.data, config.options);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Construct and perform a Base Roll through the standard workflow.
 	 * @param {BaseRollConfiguration} [config={}] - Roll configuration data.
 	 * @param {BaseMessageConfiguration} [message={}] - Configuration data that guides roll message creation.
@@ -89,8 +109,7 @@ export default class BaseRoll extends Roll {
 				throw err;
 			}
 		} else {
-			const formula = (config.parts ?? []).join(" + ");
-			roll = new this(formula, config.data, config.options);
+			roll = this.create(config);
 		}
 
 		await roll.evaluate({async: true});
