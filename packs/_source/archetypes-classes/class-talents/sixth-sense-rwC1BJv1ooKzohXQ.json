@@ -57,7 +57,8 @@
       ],
       "tint": null,
       "transfer": true,
-      "flags": {}
+      "flags": {},
+      "sort": 0
     }
   ],
   "ownership": {

@@ -48,7 +48,7 @@
       "changes": [
         {
           "key": "system.attributes.defense.bonus",
-          "mode": 2,
+          "mode": 5,
           "value": "+3",
           "priority": null
         }
@@ -76,7 +76,7 @@
       "changes": [
         {
           "key": "system.attributes.defense.bonus",
-          "mode": 2,
+          "mode": 5,
           "value": "+4",
           "priority": null
         }
@@ -104,7 +104,7 @@
       "changes": [
         {
           "key": "system.attributes.defense.bonus",
-          "mode": 2,
+          "mode": 5,
           "value": "+5"
         }
       ],
@@ -120,10 +120,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.1",
+    "systemVersion": "0.1.5",
     "coreVersion": "10.291",
     "createdTime": 1679161995056,
-    "modifiedTime": 1681013185204,
+    "modifiedTime": 1684766339614,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

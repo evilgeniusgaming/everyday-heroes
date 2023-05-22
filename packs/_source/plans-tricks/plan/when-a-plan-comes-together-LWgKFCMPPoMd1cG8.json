@@ -4,7 +4,7 @@
   "img": "systems/everyday-heroes/artwork/icons/plans/when-a-plan-comes-together.svg",
   "system": {
     "description": {
-      "value": "<p>After you enact any other plan, you may use this plan as a free action to inspire your team. You and up to six of your allies that can see or hear you gain temporary hit points equal to your [[/r @abilities.int.mod]]{Intelligence modifier}.</p><hr /><p><strong>Level 3:</strong> You and your allies gain temporary hit points equal to [[/r 1d4+@abilities.int.mod]]{1d4 + your Intelligence modifier} instead.</p><p><strong>Level 5:</strong> You and your allies gain temporary hit points equal to [[/r 1d4+@abilities.int.mod]]{2d4 + your Intelligence modifier} instead.</p><p><strong>Level 7:</strong> You and your allies gain temporary hit points equal to [[/r 1d4+@abilities.int.mod]]{3d4 + your Intelligence modifier} instead.</p><p><strong>Level 9:</strong> You and your allies gain temporary hit points equal to [[/r 1d4+@abilities.int.mod]]{4d4 + your Intelligence modifier} instead.</p>",
+      "value": "<p>After you enact any other plan, you may use this plan as a free action to inspire your team. You and up to six of your allies that can see or hear you gain temporary hit points equal to your [[/r @abilities.int.mod]]{Intelligence modifier}.</p><hr /><p><strong>Level 3:</strong> You and your allies gain temporary hit points equal to [[/r 1d4+@abilities.int.mod]]{1d4 + your Intelligence modifier} instead.</p><p><strong>Level 5:</strong> You and your allies gain temporary hit points equal to [[/r 2d4+@abilities.int.mod]]{2d4 + your Intelligence modifier} instead.</p><p><strong>Level 7:</strong> You and your allies gain temporary hit points equal to [[/r 3d4+@abilities.int.mod]]{3d4 + your Intelligence modifier} instead.</p><p><strong>Level 9:</strong> You and your allies gain temporary hit points equal to [[/r 4d4+@abilities.int.mod]]{4d4 + your Intelligence modifier} instead.</p>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -36,10 +36,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.1",
+    "systemVersion": "0.1.5",
     "coreVersion": "10.291",
     "createdTime": 1679162238988,
-    "modifiedTime": 1681013423725,
+    "modifiedTime": 1684766327013,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
