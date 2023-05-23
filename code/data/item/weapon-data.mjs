@@ -371,7 +371,8 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	static migrateOverride(source) {
-		if ( foundry.utils.getType(source.overrides.ability) !== "Object" ) {
+		if ( foundry.utils.getType(source.overrides?.ability) !== "Object" ) {
+			source.overrides ??= {};
 			source.overrides.ability = { attack: source.overrides.ability };
 		}
 	}
