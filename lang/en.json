@@ -633,6 +633,7 @@
 "Sheet.Concept": "Default Concept Item Sheet",
 "Sheet.Feature": "Default Feature Item Sheet",
 "Sheet.Hero": "Default Hero Sheet",
+"Sheet.JournalEntry": "Default Journal Sheet",
 "Sheet.NPC": "Default NPC Sheet",
 "Sheet.Physical": "Default Physical Item Sheet",
 "Sheet.Section.Advancement": "Advancement",

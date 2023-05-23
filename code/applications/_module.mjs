@@ -1,10 +1,12 @@
 import * as actor from "./actor/_module.mjs";
 import * as item from "./item/_module.mjs";
+import * as journal from "./journal/_module.mjs";
 
 /**
  * Register the various sheets provided by Everyday Heroes during initialization.
  */
 export function registerSheets() {
+	DocumentSheetConfig.unregisterSheet(Actor, "core", ActorSheet);
 	DocumentSheetConfig.registerSheet(Actor, "everyday-heroes", actor.HeroSheet, {
 		types: ["hero"],
 		makeDefault: true,
@@ -15,6 +17,7 @@ export function registerSheets() {
 		makeDefault: true,
 		label: "EH.Sheet.NPC"
 	});
+	DocumentSheetConfig.unregisterSheet(Item, "core", ItemSheet);
 	DocumentSheetConfig.registerSheet(Item, "everyday-heroes", item.ConceptSheet, {
 		types: CONFIG.EverydayHeroes.itemCategories.concept.types,
 		makeDefault: true,
@@ -30,8 +33,13 @@ export function registerSheets() {
 		makeDefault: true,
 		label: "EH.Sheet.Physical"
 	});
+	DocumentSheetConfig.unregisterSheet(JournalEntry, "core", JournalSheet);
+	DocumentSheetConfig.registerSheet(JournalEntry, "core", journal.JournalSheetEH, {
+		makeDefault: true,
+		label: "EH.Sheet.JournalEntry"
+	});
 }
 
-export {actor, item};
+export {actor, item, journal};
 export * as advancement from "./advancement/_module.mjs";
 export * as compendium from "./compendium/_module.mjs";

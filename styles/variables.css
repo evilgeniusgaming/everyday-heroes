@@ -35,6 +35,7 @@
 	--eh-text-color-placeholder: rgb(128, 128, 128);
 	--eh-text-color-red: rgb(199, 55, 61);
 	--eh-text-color-white: rgb(255, 255, 255);
+	--eh-text-color-character-quote: rgb(23, 33, 94);
 
 	--eh-sheet-backdrop-filter: blur(2px) brightness(200%) contrast(65%) saturate(50%) blur(4px);
 	--eh-sheet-content-background: none;

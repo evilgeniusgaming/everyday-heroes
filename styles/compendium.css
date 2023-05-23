@@ -95,6 +95,11 @@ ul {
 	text-transform: uppercase;
 }
 
+q.character {
+	color: var(--eh-text-color-character-quote);
+	font-style: italic;
+}
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Special Headers                          */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
