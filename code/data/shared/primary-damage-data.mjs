@@ -16,4 +16,13 @@ export default class PrimaryDamageData extends DamageData {
 		};
 	}
 
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Migrations                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static migrateData(source) {
+		source.alternateTypes ??= [];
+		return super.migrateData(source);
+	}
+
 }
