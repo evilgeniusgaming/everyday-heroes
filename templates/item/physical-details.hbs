@@ -22,7 +22,7 @@
 		<span class="left stripes"></span>
 		<span class="center">
 			{{#if (eq item.type "armor")}}{{localize "EH.Armor.Property.Label"}}
-			{{else if (eq item.type "explosive")}}{{localize "EH.Explosive.Properties.Label"}}
+			{{else if (or (eq item.type "explosive") (eq item.type "npcExplosive"))}}{{localize "EH.Explosive.Properties.Label"}}
 			{{else}}{{localize "EH.Weapon.Property.Label"}}{{/if}}
 		</span>
 		<span class="right stripes"></span>

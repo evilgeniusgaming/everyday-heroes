@@ -53,6 +53,10 @@ preLocalize("consumptionTypes", { key: "label" });
  * @enum {LabeledConfiguration}
  */
 export const recoveryPeriods = {
+	turn: {
+		label: "EH.Uses.Recovery.Period.Turn.Label",
+		abbreviation: "EH.Uses.Recovery.Period.Turn.Label"
+	},
 	sr: {
 		label: "EH.Rest.Type.Short.Label",
 		abbreviation: "EH.Rest.Type.Short.Abbreviation"
