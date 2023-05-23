@@ -282,6 +282,7 @@ export const applicableProperties = {
 	]
 };
 applicableProperties.ammunition = applicableProperties.weapon;
+applicableProperties.npcExplosive = applicableProperties.explosive;
 applicableProperties.npcWeapon = [...applicableProperties.weapon, "swarm"];
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -125,6 +125,6 @@ export default class NPCExplosiveData extends ExplosiveData {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async _preCreate(data, options, user) {
-		if ( this.parent.parent?.type !== "npc" ) this.parent.updateSource({type: "explosive"});
+		if ( this.parent.parent && this.parent.parent?.type !== "npc" ) this.parent.updateSource({type: "explosive"});
 	}
 }
