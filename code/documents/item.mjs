@@ -939,7 +939,9 @@ export default class ItemEH extends Item {
 					.map(d => Roll.replaceFormulaData(d, data))
 					.join(" + "),
 				bonusDice: (item.system.bonuses.critical?.dice ?? 0) + (ammunition?.system.bonuses.critical?.dice ?? 0),
-				type: item.system.damage.type,
+				type: item.system.damage.type === "multiple"
+					? item.system.damage.alternateTypes.first()
+					: item.system.damage.type,
 				pv: item.system.penetrationValue
 			}
 		}, config);
@@ -966,7 +968,8 @@ export default class ItemEH extends Item {
 			options: {
 				title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", {
 					type: game.i18n.format("EH.Weapon.Action.DamageGeneric.Label")
-				})
+				}),
+				damageTypes: item.system.damage.type === "multiple" ? item.system.damage.alternateTypes : null
 			}
 		}, dialog);
 

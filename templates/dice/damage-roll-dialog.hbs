@@ -1,0 +1,34 @@
+<form class="dialog-content" autocomplete="off">{{log this}}
+	<section class="main-form">
+		<fieldset>
+			<label>{{localize "EH.Dice.Formula"}}</label>
+			<input type="text" value="{{formula}}" readonly>
+		</fieldset>
+		{{#if damageTypes}}
+			<fieldset>
+				<label>{{localize "EH.Damage.Type.Label[one]"}}</label>
+				<select name="damageType">
+					{{selectOptions damageTypes selected=selectedDamageType labelAttr="label"}}
+				</select>
+			</fieldset>
+		{{/if}}
+		<fieldset>
+			<label>{{localize "EH.Dice.ExtraTerms"}}</label>
+			<input type="text" name="bonus" value="{{bonus}}" placeholder="">
+		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Dice.RollMode"}}</label>
+			<select name="rollMode">
+				{{selectOptions rollModes selected=default.rollMode localize=true}}
+			</select>
+		</fieldset>
+	</section>
+
+	<nav class="dialog-buttons skewed">
+		<ul>
+			{{#each buttons as |button action|}}
+				<li><button data-action="{{action}}">{{{button.icon}}} {{{button.label}}}</button></li>
+			{{/each}}
+		</ul>
+	</nav>
+</form>

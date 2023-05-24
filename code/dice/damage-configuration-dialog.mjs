@@ -7,6 +7,7 @@ export default class DamageConfigurationDialog extends BaseConfigurationDialog {
 
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
+			template: "systems/everyday-heroes/templates/dice/damage-roll-dialog.hbs",
 			rollType: CONFIG.Dice.DamageRoll
 		});
 	}
@@ -23,6 +24,17 @@ export default class DamageConfigurationDialog extends BaseConfigurationDialog {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	getData(options={}) {
+		return foundry.utils.mergeObject({
+			damageTypes: Object.fromEntries(Object.entries(CONFIG.EverydayHeroes.damageTypes)
+				.filter(([k, v]) => this.options.damageTypes?.has(k))
+			),
+			selectedDamageType: this.roll.options.type
+		}, super.getData(options));
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Action Handlers                          */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -31,5 +43,13 @@ export default class DamageConfigurationDialog extends BaseConfigurationDialog {
 		roll.options.critical = action === "critical";
 		roll.configureRoll();
 		return this.roll;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_buildRoll(config, formData={}) {
+		config = foundry.utils.mergeObject({parts: [], data: {}, options: {}}, config);
+		if ( formData.damageType ) config.options.type = formData.damageType;
+		return super._buildRoll(config, formData);
 	}
 }
