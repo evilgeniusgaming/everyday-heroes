@@ -119,16 +119,6 @@ export default class NPCSheet extends BaseActorSheet {
 					}
 				]
 			},
-			trick: {
-				label: "EH.Item.Type.Trick[other]",
-				items: [],
-				create: [
-					{
-						label: "EH.Item.Type.Trick[one]",
-						dataset: {type: "trick"}
-					}
-				]
-			},
 			plan: {
 				label: "EH.Item.Type.Plan[other]",
 				items: [],
@@ -136,6 +126,26 @@ export default class NPCSheet extends BaseActorSheet {
 					{
 						label: "EH.Item.Type.Plan[one]",
 						dataset: {type: "plan"}
+					}
+				]
+			},
+			power: {
+				label: "EH.Item.Type.Power[other]",
+				items: [],
+				create: [
+					{
+						label: "EH.Item.Type.Power[one]",
+						dataset: {type: "power"}
+					}
+				]
+			},
+			trick: {
+				label: "EH.Item.Type.Trick[other]",
+				items: [],
+				create: [
+					{
+						label: "EH.Item.Type.Trick[one]",
+						dataset: {type: "trick"}
 					}
 				]
 			},
@@ -181,6 +191,9 @@ export default class NPCSheet extends BaseActorSheet {
 				case "plan":
 					context.inventory.plan.items.push(item);
 					break;
+				case "power":
+					context.inventory.power.items.push(item);
+					break;
 				case "trick":
 					context.inventory.trick.items.push(item);
 					break;
@@ -212,8 +225,9 @@ export default class NPCSheet extends BaseActorSheet {
 				&& !!item.system.rounds.type;
 		}
 
-		if ( !context.inventory.trick.items.length ) delete context.inventory.trick;
 		if ( !context.inventory.plan.items.length ) delete context.inventory.plan;
+		if ( !context.inventory.power.items.length ) delete context.inventory.power;
+		if ( !context.inventory.trick.items.length ) delete context.inventory.trick;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

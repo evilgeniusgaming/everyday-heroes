@@ -130,16 +130,6 @@ export default class HeroSheet extends BaseActorSheet {
 					}
 				]
 			},
-			trick: {
-				label: "EH.Item.Type.Trick[other]",
-				items: [],
-				create: [
-					{
-						label: "EH.Item.Type.Trick[one]",
-						dataset: {type: "trick"}
-					}
-				]
-			},
 			plan: {
 				label: "EH.Item.Type.Plan[other]",
 				items: [],
@@ -147,6 +137,26 @@ export default class HeroSheet extends BaseActorSheet {
 					{
 						label: "EH.Item.Type.Plan[one]",
 						dataset: {type: "plan"}
+					}
+				]
+			},
+			power: {
+				label: "EH.Item.Type.Power[other]",
+				items: [],
+				create: [
+					{
+						label: "EH.Item.Type.Power[one]",
+						dataset: {type: "power"}
+					}
+				]
+			},
+			trick: {
+				label: "EH.Item.Type.Trick[other]",
+				items: [],
+				create: [
+					{
+						label: "EH.Item.Type.Trick[one]",
+						dataset: {type: "trick"}
 					}
 				]
 			},
@@ -237,11 +247,14 @@ export default class HeroSheet extends BaseActorSheet {
 				case "profession":
 					context.features.profession.primary.item = item;
 					break;
-				case "trick":
-					context.features.trick.items.push(item);
-					break;
 				case "plan":
 					context.features.plan.items.push(item);
+					break;
+				case "power":
+					context.features.power.items.push(item);
+					break;
+				case "trick":
+					context.features.trick.items.push(item);
 					break;
 				case "specialFeature":
 				case "talent":
@@ -306,8 +319,9 @@ export default class HeroSheet extends BaseActorSheet {
 			dataset: { type: "profession" }
 		});
 
-		if ( !context.features.trick.items.length ) delete context.features.trick;
 		if ( !context.features.plan.items.length ) delete context.features.plan;
+		if ( !context.features.power.items.length ) delete context.features.power;
+		if ( !context.features.trick.items.length ) delete context.features.trick;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

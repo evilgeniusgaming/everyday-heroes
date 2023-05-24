@@ -10,6 +10,7 @@ import NPCExplosiveData from "./npc-explosive-data.mjs";
 import NPCFeatureData from "./npc-feature-data.mjs";
 import NPCWeaponData from "./npc-weapon-data.mjs";
 import PlanData from "./plan-data.mjs";
+import PowerData from "./power-data.mjs";
 import ProfessionData from "./profession-data.mjs";
 import SpecialFeatureData from "./special-feature-data.mjs";
 import TalentData from "./talent-data.mjs";
@@ -29,6 +30,7 @@ export {
 	NPCFeatureData,
 	NPCWeaponData,
 	PlanData,
+	PowerData,
 	ProfessionData,
 	SpecialFeatureData,
 	TalentData,
@@ -56,6 +58,7 @@ export const config = {
 	npcFeature: NPCFeatureData,
 	npcWeapon: NPCWeaponData,
 	plan: PlanData,
+	power: PowerData,
 	profession: ProfessionData,
 	specialFeature: SpecialFeatureData,
 	talent: TalentData,

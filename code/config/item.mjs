@@ -90,7 +90,7 @@ export const itemCategories = {
 	},
 	feature: {
 		label: "EH.Item.Category.Feature.Label",
-		types: ["talent", "specialFeature", "plan", "trick", "feat", "npcFeature"]
+		types: ["talent", "specialFeature", "plan", "power", "trick", "feat", "npcFeature"]
 	},
 	physical: {
 		label: "EH.Item.Category.Physical.Label",

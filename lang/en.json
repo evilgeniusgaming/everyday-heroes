@@ -497,6 +497,8 @@
 "Item.Type.NPCWeapon[other]": "NPC Weapons",
 "Item.Type.Plan[one]": "Plan",
 "Item.Type.Plan[other]": "Plans",
+"Item.Type.Power[one]": "Power",
+"Item.Type.Power[other]": "Powers",
 "Item.Type.Profession[one]": "Profession",
 "Item.Type.Profession[other]": "Professions",
 "Item.Type.SpecialFeature[one]": "Special Feature",

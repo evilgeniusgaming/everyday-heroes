@@ -224,6 +224,7 @@
       "npcFeature",
       "npcWeapon",
       "plan",
+      "power",
       "profession",
       "specialFeature",
       "talent",
@@ -466,6 +467,19 @@
         "amount": 1,
         "target": "genius",
         "type": "resource"
+      }
+    },
+    "power": {
+      "templates": ["description", "activatable"],
+      "identifier": {
+        "value": "",
+        "class": ""
+      },
+      "resource": {
+        "amount": 1,
+        "target": "focus",
+        "type": "resource",
+        "dice": null
       }
     },
     "profession": {
