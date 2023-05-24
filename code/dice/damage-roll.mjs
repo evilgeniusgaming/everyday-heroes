@@ -40,6 +40,10 @@ export default class DamageRoll extends BaseRoll {
 	static ConfigurationDialog = DamageConfigurationDialog;
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static CHAT_TEMPLATE = "systems/everyday-heroes/templates/dice/damage-roll.hbs";
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Static Constructor                       */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -174,5 +178,27 @@ export default class DamageRoll extends BaseRoll {
 
 		// Mark configuration as complete
 		this.options.configured = true;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Chat Messages                            */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async render({flavor, template=this.constructor.CHAT_TEMPLATE, isPrivate=false}={}) {
+		if ( !this._evaluated ) await this.evaluate({async: true});
+		const chatData = {
+			CONFIG: CONFIG.EverydayHeroes,
+			formula: isPrivate ? "???" : this._formula,
+			flavor: isPrivate ? null : flavor,
+			user: game.user.id,
+			tooltip: isPrivate ? "" : await this.getTooltip(),
+			total: isPrivate ? "?" : Math.round(this.total * 100) / 100,
+			damageType: isPrivate ? "???" : this.options.type,
+			pv: this.options.pv !== undefined
+				? `${game.i18n.localize("EH.Equipment.Trait.PenetrationValue.Abbreviation")} ${isPrivate ? "?" : this.options.pv}`
+				: null
+			// TODO: Add display for damage that ignores armor when implemented
+		};
+		return renderTemplate(template, chatData);
 	}
 }

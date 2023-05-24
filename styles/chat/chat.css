@@ -1,3 +1,4 @@
+@import "./damage-card.css";
 @import "./item-card.css";
 
 .dice-roll.critical-success .dice-total {

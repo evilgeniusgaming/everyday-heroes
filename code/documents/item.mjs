@@ -939,7 +939,8 @@ export default class ItemEH extends Item {
 					.map(d => Roll.replaceFormulaData(d, data))
 					.join(" + "),
 				bonusDice: (item.system.bonuses.critical?.dice ?? 0) + (ammunition?.system.bonuses.critical?.dice ?? 0),
-				type: item.system.damage.type
+				type: item.system.damage.type,
+				pv: item.system.penetrationValue
 			}
 		}, config);
 		rollConfig.parts = [item.system.damage.dice].concat(parts).concat(config.parts ?? []);
