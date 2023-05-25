@@ -1,11 +1,13 @@
 import { simplifyBonus } from "../../../utils.mjs";
 import PrimaryDamageData from "../../shared/primary-damage-data.mjs";
+import SupplementalDamageData from "../../shared/supplemental-damage-data.mjs";
 import DamageModificationData from "../../shared/damage-modification-data.mjs";
 
 /**
  * Data model template for items that cause damage.
  *
- * @property {DamageData} damage - Damage represented by this item.
+ * @property {PrimaryDamageData} damage - Damage represented by this item.
+ * @property {SupplementalDamageData[]} supplementalDamage - Additional damage parts.
  * @property {object} overrides
  * @property {object} overrides.ability
  * @property {string} overrides.ability.damage - Ability used when calculating damage.
@@ -26,6 +28,11 @@ export default class Damage extends foundry.abstract.DataModel {
 			damage: new foundry.data.fields.EmbeddedDataField(
 				this.damageMode === "regular" ? PrimaryDamageData : DamageModificationData,
 				{ label: "EH.Equipment.Trait.Damage.Label", hint: "EH.Equipment.Trait.Damage.Hint" }
+			),
+			supplementalDamage: new foundry.data.fields.ArrayField(
+				new foundry.data.fields.EmbeddedDataField(SupplementalDamageData), {
+					label: "EH.Equipment.Trait.SupplementalDamage.Label", hint: "EH.Equipment.Trait.SupplementalDamage.Hint"
+				}
 			),
 			overrides: new foundry.data.fields.SchemaField({
 				ability: new foundry.data.fields.SchemaField({
@@ -199,6 +206,14 @@ export default class Damage extends foundry.abstract.DataModel {
 	 */
 	get hasDamageSave() {
 		return false;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Migrations                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static migrateSupplementalDamage(source) {
+		source.supplementalDamage ??= [];
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

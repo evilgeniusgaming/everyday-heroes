@@ -135,7 +135,7 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Data Migrations                          */
+	/*  Migrations                               */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	static migrateOverride(source) {

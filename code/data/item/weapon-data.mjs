@@ -367,7 +367,7 @@ export default class WeaponData extends SystemDataModel.mixin(
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Data Migrations                          */
+	/*  Migrations                               */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	static migrateOverride(source) {

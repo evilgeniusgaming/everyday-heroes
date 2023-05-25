@@ -266,6 +266,7 @@
           "type": "",
           "alternateTypes": []
         },
+        "supplementalDamage": [],
         "overrides": {
           "ability": {
             "damage": ""

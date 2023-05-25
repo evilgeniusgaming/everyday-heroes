@@ -58,69 +58,7 @@
 		</fieldset>
 	{{/if}}
 
-	{{#if (eq item.system.damageMode "regular")}}
-		<fieldset class="triple">
-			<label>{{localize "EH.Equipment.Trait.Damage.Label"}}</label>
-			<div class="fields">
-				{{#if item.system.hasDamage}}
-					<label>
-						<span>{{localize "EH.Equipment.Trait.Damage.Count.Label"}}</span>
-						<input type="number" name="system.damage.number" value="{{source.damage.number}}">
-					</label>
-					<label>
-						<span>{{localize "EH.Equipment.Trait.Damage.Denomination.Label"}}</span>
-						<select name="system.damage.denomination">
-							{{selectOptions diceSteps selected=source.damage.denomination blank=""}}
-						</select>
-					</label>
-				{{/if}}
-				<label>
-					<span>{{localize "EH.Equipment.Trait.Damage.Type.Label"}}</span>
-					<select name="system.damage.type">
-						{{#select source.damage.type}}
-							{{selectOptions CONFIG.damageTypes blank=(localize "EH.Damage.None") labelAttr="label"}}
-							<option value="multiple">{{localize "EH.Damage.Multiple"}}</option>
-						{{/select}}
-					</select>
-				</label>
-			</div>
-			<p class="hint">{{localize "EH.Equipment.Trait.Damage.Hint"}}</p>
-		</fieldset>
-		{{#if (eq source.damage.type "multiple")}}
-			<fieldset>
-				<label>{{localize "EH.Equipment.Trait.Damage.Types.Label"}}</label>
-				{{everydayHeroes-tagInput source.damage.alternateTypes choices=CONFIG.damageTypes labelAttr="label"
-					name="system.damage.alternateTypes" validate=true}}
-				<p class="hint">{{localize "EH.Equipment.Trait.Damage.Types.Hint"}}</p>
-			</fieldset>
-		{{/if}}
-	{{else if (eq item.system.damageMode "modification")}}
-		<fieldset class="triple">
-			<label>{{localize "EH.Equipment.Trait.DamageModification.Label"}}</label>
-			<div class="fields">
-				<label>
-					<span>{{localize "EH.Equipment.Trait.Damage.Count.Label"}}</span>
-					<select name="system.damage.number">
-						{{selectOptions diceMod.count selected=source.damage.number nameAttr="name" labelAttr="label"}}
-					</select>
-				</label>
-				<label>
-					<span>{{localize "EH.Equipment.Trait.Damage.Denomination.Label"}}</span>
-					<select name="system.damage.denomination">
-						{{selectOptions diceMod.denomination selected=source.damage.denomination nameAttr="name" labelAttr="label"}}
-					</select>
-				</label>
-				<label>
-					<span>{{localize "EH.Equipment.Trait.Damage.Type.Label"}}</span>
-					<select name="system.damage.type">
-						{{selectOptions CONFIG.damageTypes selected=source.damage.type labelAttr="label"
-				  		blank=(localize "EH.Equipment.Trait.DamageModification.NoChange")}}
-					</select>
-				</label>
-			</div>
-			<p class="hint">{{localize "EH.Equipment.Trait.DamageModification.Hint"}}</p>
-		</fieldset>
-	{{/if}}
+	{{> "everydayHeroes.physical-damage"}}
 
 	{{#if (and (everydayHeroes-has item "system._source.dc") item.system.hasDamage)}}
 		<fieldset>

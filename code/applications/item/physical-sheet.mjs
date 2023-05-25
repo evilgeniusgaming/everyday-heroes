@@ -62,8 +62,14 @@ export default class PhysicalSheet extends BaseItemSheet {
 		super.activateListeners(jQuery);
 		const html = jQuery[0];
 
+		// Property cycling
 		for ( const element of html.querySelectorAll('.properties [type="checkbox"]') ) {
 			element.addEventListener("click", this._onCycleProperty.bind(this));
+		}
+
+		// Damage Actions
+		for ( const element of html.querySelectorAll('[data-action="damage"]') ) {
+			element.addEventListener("click", this._onDamageAction.bind(this));
 		}
 	}
 
@@ -86,6 +92,35 @@ export default class PhysicalSheet extends BaseItemSheet {
 			input.value = input.value === "add" ? "" : "add";
 		}
 		return this._onSubmit(event);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Handle clicking one of the supplemental damage action buttons.
+	 * @param {ClickEvent} event - The triggering click event.
+	 * @returns {Promise}
+	 */
+	_onDamageAction(event) {
+		event.preventDefault();
+		const type = event.currentTarget.dataset.type;
+		const damageCollection = this.item.system.supplementalDamage;
+		if ( !damageCollection ) return console.warn(
+			"Everyday Heroes | Damage action does not work on types without supplemental damage."
+		);
+
+		switch (type) {
+			case "add":
+				damageCollection.push({});
+				break;
+			case "remove":
+				const index = event.target.closest("[data-index]").dataset.index;
+				damageCollection.splice(index, 1);
+				break;
+			default:
+				return console.warn(`Everyday Heroes | Invalid damage action type clicked ${type}.`);
+		}
+		return this.item.update({"system.supplementalDamage": damageCollection});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
