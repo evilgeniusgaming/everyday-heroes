@@ -222,5 +222,6 @@ export default class Damage extends foundry.abstract.DataModel {
 
 	prepareBaseDamage() {
 		this.damage.prepareBaseData?.();
+		this.supplementalDamage.forEach(d => d.prepareBaseData?.());
 	}
 }

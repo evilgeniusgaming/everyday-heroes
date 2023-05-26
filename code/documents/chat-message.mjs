@@ -14,6 +14,23 @@ export default class ChatMessageEH extends ChatMessage {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	async _renderRollContent(messageData) {
+		await super._renderRollContent(messageData);
+
+		// Display total damage for damage rolls
+		if ( messageData.message.flags["everyday-heroes"]?.roll?.type === "damage" ) {
+			const total = this.rolls.reduce((t, r) => t + r.total, 0);
+			messageData.message.content += `
+				<div class="damage dice-roll">
+				  <div class="dice-result">
+						<h4 class="dice-total">${game.i18n.localize("EH.Total")}: ${total}</h4>
+					</div>
+				</div>`;
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	/**
 	 * Append any actions provided in the flags onto the roll.
 	 * @param {HTMLElement} html - Chat message HTML.

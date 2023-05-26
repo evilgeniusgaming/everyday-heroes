@@ -6,6 +6,7 @@ import { areKeysPressed } from "./utils.mjs";
  * Damage roll configuration data.
  *
  * @typedef {BaseRollConfiguration} DamageRollConfiguration
+ * @property {DamageRollConfiguration[]} [supplementalDamage] - Additional damage parts to roll.
  * @property {DamageRollOptions} [options] - Options passed through to the roll.
  */
 
@@ -20,6 +21,8 @@ import { areKeysPressed } from "./utils.mjs";
  * @property {boolean} [multiplyNumeric=false] - Should numeric terms be multiplied along side dice during criticals?
  * @property {number} [bonusDice=0] - Additional dice added to first term when calculating critical damage.
  * @property {string} [bonusDamage] - Additional, unmodified, damage formula added when calculating a critical.
+ * @property {string} [type] - Type of damage represented.
+ * @property {number} [pv] - Penetration value of the damage, if applicable.
  */
 
 /**
@@ -64,6 +67,16 @@ export default class DamageRoll extends BaseRoll {
 		// Determine critical mode
 		config.options ??= {};
 		config.options.critical = config.options.critical || keys.critical;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static create(config) {
+		let rolls = super.create(config);
+		for ( const supplementalConfig of config.supplementalDamage ?? [] ) {
+			rolls = rolls.concat(super.create(supplementalConfig));
+		}
+		return rolls;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -28,7 +28,7 @@ export default class ChallengeConfigurationDialog extends BaseConfigurationDialo
 
 	getData(options={}) {
 		return foundry.utils.mergeObject({
-			selectedAbility: this.roll.data.abilityId
+			selectedAbility: this.rolls[0].data.abilityId
 		}, super.getData(options));
 	}
 
@@ -36,8 +36,8 @@ export default class ChallengeConfigurationDialog extends BaseConfigurationDialo
 	/*  Action Handlers                          */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	finalizeRoll(action) {
-		const roll = this.roll;
+	finalizeRolls(action) {
+		const roll = this.rolls[0];
 		switch (action) {
 			case "advantage":
 				roll.options.advantageMode = CONFIG.Dice.ChallengeDie.MODES.ADVANTAGE;
@@ -50,6 +50,6 @@ export default class ChallengeConfigurationDialog extends BaseConfigurationDialo
 				break;
 		}
 		roll.configureRoll();
-		return this.roll;
+		return [roll];
 	}
 }

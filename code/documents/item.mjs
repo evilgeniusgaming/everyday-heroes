@@ -730,7 +730,7 @@ export default class ItemEH extends Item {
 	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
 	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
-	 * @returns {Promise<ChallengeRoll|void>}
+	 * @returns {Promise<ChallengeRoll[]|void>}
 	 */
 	async rollArmorSave(config={}, message={}, dialog={}) {
 		if ( !this.hasArmorSave ) return console.warn(`${this.name} does not support armor saving throws.`);
@@ -783,19 +783,18 @@ export default class ItemEH extends Item {
 		if ( Hooks.call("everydayHeroes.preRollAbilityCheck", this, rollConfig, messageConfig,
 			dialogConfig) === false ) return;
 
-		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
-		if ( !roll ) return;
+		const rolls = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
 
 		/**
 		 * A hook event that fires after an armor save has been rolled for an Item.
 		 * @function everydayHeroes.rollArmorSave
 		 * @memberof hookEvents
 		 * @param {ItemEH} item - Item for which the armor save has been rolled.
-		 * @param {D20Roll} roll - The resulting roll.
+		 * @param {ChallengeRoll[]} rolls - The resulting rolls.
 		 */
-		Hooks.callAll("everydayHeroes.rollAbilityCheck", this, roll);
+		if ( !rolls?.length ) Hooks.callAll("everydayHeroes.rollAbilityCheck", this, rolls);
 
-		return roll;
+		return rolls;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -805,7 +804,7 @@ export default class ItemEH extends Item {
 	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
 	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
-	 * @returns {Promise<ChallengeRoll|void>}
+	 * @returns {Promise<ChallengeRoll[]|void>}
 	 */
 	async rollAttack(config={}, message={}, dialog={}) {
 		if ( !this.hasAttack ) return console.warn(`${this.name} does not support attack rolls.`);
@@ -877,8 +876,9 @@ export default class ItemEH extends Item {
 		 */
 		if ( Hooks.call("everydayHeroes.preRollAttack", this, rollConfig, messageConfig, dialogConfig) === false ) return;
 
-		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
-		if ( !roll ) return;
+		const rolls = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
+		if ( !rolls?.length ) return;
+		const roll = rolls[0];
 
 		const updates = {};
 		if ( this.system.roundsToSpend ) {
@@ -893,10 +893,10 @@ export default class ItemEH extends Item {
 		 * @function everydayHeroes.rollAttack
 		 * @memberof hookEvents
 		 * @param {ItemEH} item - Item that attacked.
-		 * @param {D20Roll} roll - The resulting roll.
+		 * @param {ChallengeRoll[]} rolls - The resulting rolls.
 		 * @param {object} updates - Updates that will be applied to the weapon.
 		 */
-		Hooks.callAll("everydayHeroes.rollAttack", this, roll, updates);
+		Hooks.callAll("everydayHeroes.rollAttack", this, rolls, updates);
 
 		if ( !foundry.utils.isEmpty(updates) ) await this.update(updates);
 
@@ -910,7 +910,7 @@ export default class ItemEH extends Item {
 	 * @param {DamageRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
 	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
-	 * @returns {Promise<DamageRoll|void>}
+	 * @returns {Promise<DamageRoll[]|void>}
 	 */
 	async rollDamage(config={}, message={}, dialog={}) {
 		if ( !this.hasDamage ) return console.warn(`${this.name} does not support damage rolls.`);
@@ -930,6 +930,7 @@ export default class ItemEH extends Item {
 
 		const rollConfig = foundry.utils.mergeObject({
 			data,
+			supplementalDamage: [],
 			options: {
 				mode: item.system.mode,
 				allowCritical: ammunition ? ammunition.system.canCritical : item.system.canCritical,
@@ -946,6 +947,20 @@ export default class ItemEH extends Item {
 			}
 		}, config);
 		rollConfig.parts = [item.system.damage.dice].concat(parts).concat(config.parts ?? []);
+
+		for ( const damage of item.system.supplementalDamage ) {
+			const { parts, data } = buildRoll({ bonus: damage.bonus }, this.getRollData());
+			rollConfig.supplementalDamage.push({
+				data,
+				parts: [damage.dice].concat(parts),
+				options: {
+					mode: "supplemental",
+					allowCritical: rollConfig.options.allowCritical,
+					multiplier: rollConfig.options.multiplier,
+					type: damage.type
+				}
+			});
+		}
 
 		const flavor = game.i18n.format("EH.Action.Roll", {
 			type: game.i18n.format("EH.Weapon.Action.DamageSourced.Label", {source: this.name})
@@ -985,17 +1000,19 @@ export default class ItemEH extends Item {
 		 */
 		if ( Hooks.call("everydayHeroes.preRollDamage", this, rollConfig, messageConfig, dialogConfig) === false ) return;
 
-		const roll = await CONFIG.Dice.DamageRoll.build(rollConfig, messageConfig, dialogConfig);
-		if ( !roll ) return;
+		const rolls = await CONFIG.Dice.DamageRoll.build(rollConfig, messageConfig, dialogConfig);
+		if ( !rolls ) return;
 
 		/**
 		 * A hook event that fires after a damage has been rolled for an Item.
 		 * @function everydayHeroes.rollDamage
 		 * @memberof hookEvents
 		 * @param {ItemEH} item - Item for which the roll was performed.
-		 * @param {DamageRoll} roll - The resulting roll.
+		 * @param {DamageRoll[]} rolls - The resulting rolls.
 		 */
-		Hooks.callAll("everydayHeroes.rollDamage", this, roll);
+		Hooks.callAll("everydayHeroes.rollDamage", this, rolls);
+
+		return rolls;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -1005,7 +1022,7 @@ export default class ItemEH extends Item {
 	 * @param {BaseRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
 	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
-	 * @returns {Promise<BaseRoll|void>}
+	 * @returns {Promise<BaseRoll[]|void>}
 	 */
 	async rollRecharge(config={}, message={}, dialog={}) {
 		if ( !this.system.recharge || this.system.recharge.charged || !this.system.recharge.target ) {
@@ -1052,24 +1069,24 @@ export default class ItemEH extends Item {
 		 */
 		if ( Hooks.call("everydayHeroes.preRollRecharge", this, rollConfig, messageConfig, dialogConfig) === false ) return;
 
-		const roll = await CONFIG.Dice.BaseRoll.build(rollConfig, messageConfig, dialogConfig);
+		const rolls = await CONFIG.Dice.BaseRoll.build(rollConfig, messageConfig, dialogConfig);
 		const updates = {};
-		if ( roll.isSuccess ) updates["system.recharge.charged"] = true;
+		if ( rolls[0]?.isSuccess ) updates["system.recharge.charged"] = true;
 
 		/**
 		 * A hook event that fires after a recharge has been rolled for an Item, but before the item has been updated.
 		 * @function everydayHeroes.rollRecharge
 		 * @memberof hookEvents
 		 * @param {ActorEH} actor - Item for which the recharge has been rolled.
-		 * @param {D20Roll} roll - The resulting roll.
+		 * @param {BaseRoll[]} rolls - The resulting rolls.
 		 * @param {object} updates - Updates that will be applied to the item.
 		 * @returns {boolean} - Explicitly return `false` to prevent any changes from being applied to the actor.
 		 */
-		if ( Hooks.call("everydayHeroes.rollRecharge", this, roll, updates) === false ) return roll;
+		if ( Hooks.call("everydayHeroes.rollRecharge", this, rolls, updates) === false ) return rolls;
 
 		if ( !foundry.utils.isEmpty(updates) ) await this.update(updates);
 
-		return roll;
+		return rolls;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -81,11 +81,11 @@ export default class BaseRoll extends Roll {
 	/**
 	 * Create a roll instance from the provided config.
 	 * @param {BaseRollConfiguration} config - Roll configuration data.
-	 * @returns {BaseRoll}
+	 * @returns {BaseRoll[]}
 	 */
 	static create(config) {
 		const formula = (config.parts ?? []).join(" + ");
-		return new this(formula, config.data, config.options);
+		return [new this(formula, config.data, config.options)];
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -95,29 +95,31 @@ export default class BaseRoll extends Roll {
 	 * @param {BaseRollConfiguration} [config={}] - Roll configuration data.
 	 * @param {BaseMessageConfiguration} [message={}] - Configuration data that guides roll message creation.
 	 * @param {BaseDialogConfiguration} [options={}] - Data for the roll configuration dialog.
+	 * @returns {BaseRoll[]} - Any rolls created.
 	 */
 	static async build(config={}, message={}, options={}) {
 		this.applyKeybindings(config, options);
 
-		let roll;
+		let rolls;
 		if ( options.configure !== false ) {
 			try {
-				roll = await this.ConfigurationDialog.configure(config, options);
-				roll._formula = this.getFormula(roll.terms);
+				rolls = await this.ConfigurationDialog.configure(config, options);
 			} catch(err) {
 				if ( !err ) return;
 				throw err;
 			}
 		} else {
-			roll = this.create(config);
+			rolls = this.create(config);
 		}
 
-		await roll.evaluate({async: true});
+		for ( const roll of rolls ) {
+			await roll.evaluate({async: true});
+		}
 
-		if ( roll && (message.create !== false) ) await roll.toMessage(message.data, {
-			rollMode: roll.options.rollMode ?? message.rollMode
+		if ( rolls?.length && (message.create !== false) ) await this.toMessage(rolls, message.data, {
+			rollMode: rolls[0].options.rollMode ?? message.rollMode
 		});
-		return roll;
+		return rolls;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -155,5 +157,48 @@ export default class BaseRoll extends Roll {
 		if ( !this._evaluated ) return undefined;
 		if ( !Number.isNumeric(this.options.target) ) return false;
 		return this.total >= this.options.target;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Chat Messages                            */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Transform a Roll instance into a ChatMessage, displaying the roll result.
+	 * This function can either create the ChatMessage directly, or return the data object that will be used to create.
+	 *
+	 * @param {BaseRoll[]} rolls - Rolls to add to the message.
+	 * @param {object} messageData - The data object to use when creating the message
+	 * @param {options} [options] - Additional options which modify the created message.
+	 * @param {string} [options.rollMode] - The template roll mode to use for the message from CONFIG.Dice.rollModes
+	 * @param {boolean} [options.create=true] - Whether to automatically create the chat message, or only return the
+	 *                                          prepared chatData object.
+	 * @returns {Promise<ChatMessage|object>} - A promise which resolves to the created ChatMessage document if create is
+	 *                                         true, or the Object of prepared chatData otherwise.
+	 */
+	static async toMessage(rolls, messageData={}, {rollMode, create=true}={}) {
+		for ( const roll of rolls ) {
+			if ( !roll._evaluated ) await roll.evaluate({async: true});
+		}
+
+		// Prepare chat data
+		messageData = foundry.utils.mergeObject({
+			user: game.user.id,
+			type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+			content: "total", // TODO: fix this
+			sound: CONFIG.sounds.dice
+		}, messageData);
+		messageData.rolls = rolls;
+
+		// Either create the message or just return the chat data
+		const cls = getDocumentClass("ChatMessage");
+		const msg = new cls(messageData);
+
+		// Either create or return the data
+		if ( create ) return cls.create(msg.toObject(), { rollMode });
+		else {
+			if ( rollMode ) msg.applyRollMode(rollMode);
+			return msg.toObject();
+		}
 	}
 }

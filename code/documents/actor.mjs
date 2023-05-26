@@ -367,7 +367,7 @@ export default class ActorEH extends Actor {
 	 * @param {AbilityRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
 	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
-	 * @returns {Promise<ChallengeRoll|void>}
+	 * @returns {Promise<ChallengeRoll[]|void>}
 	 */
 	async rollAbilityCheck(config={}, message={}, dialog={}) {
 		const ability = this.system.abilities[config.ability];
@@ -422,19 +422,19 @@ export default class ActorEH extends Actor {
 		 */
 		if ( Hooks.call("everydayHeroes.preRollAbilityCheck", this, rollConfig, messageConfig, dialogConfig) === false ) return;
 
-		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
+		const rolls = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
 
 		/**
 		 * A hook event that fires after an ability check has been rolled for an Actor.
 		 * @function everydayHeroes.rollAbilityCheck
 		 * @memberof hookEvents
 		 * @param {ActorEH} actor - Actor for which the ability check has been rolled.
-		 * @param {D20Roll} roll - The resulting roll.
+		 * @param {ChallengeRoll[]} rolls - The resulting rolls.
 		 * @param {string} ability - ID of the ability that was rolled as defined in `CONFIG.EverydayHeroes.abilities`.
 		 */
-		if ( roll ) Hooks.callAll("everydayHeroes.rollAbilityCheck", this, roll, config.ability);
+		if ( rolls?.length ) Hooks.callAll("everydayHeroes.rollAbilityCheck", this, rolls, config.ability);
 
-		return roll;
+		return rolls;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -444,7 +444,7 @@ export default class ActorEH extends Actor {
 	 * @param {AbilityRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
 	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
-	 * @returns {Promise<ChallengeRoll|void>}
+	 * @returns {Promise<ChallengeRoll[]|void>}
 	 */
 	async rollAbilitySave(config={}, message={}, dialog={}) {
 		const ability = this.system.abilities[config.ability];
@@ -499,19 +499,19 @@ export default class ActorEH extends Actor {
 		 */
 		if ( Hooks.call("everydayHeroes.preRollAbilitySave", this, rollConfig, messageConfig, dialogConfig) === false ) return;
 
-		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
+		const rolls = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
 
 		/**
 		 * A hook event that fires after an ability save has been rolled for an Actor.
 		 * @function everydayHeroes.rollAbilitySave
 		 * @memberof hookEvents
 		 * @param {ActorEH} actor - Actor for which the ability save has been rolled.
-		 * @param {D20Roll} roll - The resulting roll.
+		 * @param {ChallengeRoll[]} rolls - The resulting rolls.
 		 * @param {string} ability - ID of the ability that was rolled as defined in `CONFIG.EverydayHeroes.abilities`.
 		 */
-		if ( roll ) Hooks.callAll("everydayHeroes.rollAbilitySave", this, roll, config.ability);
+		if ( rolls?.length ) Hooks.callAll("everydayHeroes.rollAbilitySave", this, rolls, config.ability);
 
-		return roll;
+		return rolls;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -529,7 +529,7 @@ export default class ActorEH extends Actor {
 	 * @param {DeathSaveRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
 	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
-	 * @returns {Promise<ChallengeRoll|void>}
+	 * @returns {Promise<ChallengeRoll[]|void>}
 	 */
 	async rollDeathSave(config={}, message={}, dialog={}) {
 		const death = this.system.attributes.death;
@@ -583,8 +583,9 @@ export default class ActorEH extends Actor {
 		 */
 		if ( Hooks.call("everydayHeroes.preRollDeathSave", this, rollConfig, messageConfig, dialogConfig) === false ) return;
 
-		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
-		if ( !roll ) return;
+		const rolls = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
+		if ( !rolls?.length ) return;
+		const roll = roll[0];
 
 		const details = {};
 
@@ -640,7 +641,7 @@ export default class ActorEH extends Actor {
 		 * @function everydayHeroes.rollDeathSave
 		 * @memberof hookEvents
 		 * @param {ActorEH} actor - Actor for which the death saving throw has been rolled.
-		 * @param {D20Roll} roll - The resulting roll.
+		 * @param {ChallengeRoll[]} rolls - The resulting rolls.
 		 * @param {object} details
 		 * @param {object} details.updates - Updates that will be applied to the actor as a result of this save.
 		 * @param {string} details.chatString - Localizable string displayed in the create chat message. If not set,
@@ -648,7 +649,7 @@ export default class ActorEH extends Actor {
 		 * @param {number} details.count - Number of rolls succeeded or failed to result in this message.
 		 * @returns {boolean} - Explicitly return `false` to prevent updates from being performed.
 		 */
-		if ( Hooks.call("everydayHeroes.rollDeathSave", this, roll, details) === false ) return roll;
+		if ( Hooks.call("everydayHeroes.rollDeathSave", this, rolls, details) === false ) return roll;
 
 		if ( !foundry.utils.isEmpty(details.updates) ) await this.update(details.updates);
 
@@ -668,7 +669,7 @@ export default class ActorEH extends Actor {
 			await ChatMessage.create(chatData);
 		}
 
-		return roll;
+		return rolls;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -687,7 +688,7 @@ export default class ActorEH extends Actor {
 	 * @param {HitDieRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
 	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
-	 * @returns {Promise<BaseRoll|void>}
+	 * @returns {Promise<BaseRoll[]|void>}
 	 */
 	async rollHitDie(config={}, message={}, dialog={}) {
 		const denomination = this.system.attributes.hd.denomination;
@@ -741,7 +742,7 @@ export default class ActorEH extends Actor {
 		if ( Hooks.call("everydayHeroes.preRollHitDie", this, rollConfig, messageConfig,
 			dialogConfig, denomination) === false ) return;
 
-		const roll = await CONFIG.Dice.BaseRoll.build(rollConfig, messageConfig, dialogConfig);
+		const rolls = await CONFIG.Dice.BaseRoll.build(rollConfig, messageConfig, dialogConfig);
 
 		const updates = {};
 		if ( rollConfig.modifySpentHitDie !== false ) {
@@ -749,7 +750,7 @@ export default class ActorEH extends Actor {
 		}
 		if ( rollConfig.modifyHitPoints !== false ) {
 			const hp = this.system.attributes.hp;
-			updates["system.attributes.hp.value"] = Math.min(hp.max, hp.value + roll.total);
+			updates["system.attributes.hp.value"] = Math.min(hp.max, hp.value + (rolls[0]?.total ?? 0));
 		}
 
 		/**
@@ -757,15 +758,15 @@ export default class ActorEH extends Actor {
 		 * @function everydayHeroes.rollHitDie
 		 * @memberof hookEvents
 		 * @param {ActorEH} actor - Actor for which the hit die has been rolled.
-		 * @param {Roll} roll - The resulting roll.
+		 * @param {BaseRoll[]} rolls - The resulting rolls.
 		 * @param {object} updates - Updates that will be applied to the actor.
 		 * @returns {boolean} - Explicitly return `false` to prevent updates from being performed.
 		 */
-		if ( Hooks.call("everydayHeroes.rollHitDie", this, roll, updates) === false ) return roll;
+		if ( Hooks.call("everydayHeroes.rollHitDie", this, rolls, updates) === false ) return rolls;
 
 		if ( !foundry.utils.isEmpty(updates) ) await this.update(updates);
 
-		return roll;
+		return rolls;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -775,7 +776,7 @@ export default class ActorEH extends Actor {
 	 * @param {BaseRollConfiguration} config - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} message - Configuration data that guides roll message creation.
 	 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
-	 * @returns {Promise<BaseRoll>}
+	 * @returns {Promise<BaseRoll[]|void>}
 	 */
 	async rollHitPoints(config={}, message={}, dialog={}) {
 		// Hero Hit Points
@@ -819,20 +820,21 @@ export default class ActorEH extends Actor {
 			 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
 			 * @returns {boolean} - Explicitly return `false` to prevent hit points from being rolled.
 			 */
-			if ( Hooks.call("everydayHeroes.preRollHeroHitPoints", this, rollConfig, messageConfig, dialogConfig) === false ) return;
+			if ( Hooks.call("everydayHeroes.preRollHeroHitPoints", this, rollConfig,
+				messageConfig, dialogConfig) === false ) return;
 
-			const roll = await CONFIG.Dice.BaseRoll.build(rollConfig, messageConfig, dialogConfig);
+			const rolls = await CONFIG.Dice.BaseRoll.build(rollConfig, messageConfig, dialogConfig);
 
 			/**
 			 * A hook event that fires after hit points have been rolled for an Actor.
 			 * @function everydayHeroes.rollHeroHitPoints
 			 * @memberof hookEvents
 			 * @param {ActorEH} actor - Actor for which the hit points have been rolled.
-			 * @param {D20Roll} [roll] - The resulting roll.
+			 * @param {BaseRoll[]} rolls - The resulting rolls.
 			 */
-			Hooks.callAll("everydayHeroes.rollHeroHitPoints", this, roll);
+			Hooks.callAll("everydayHeroes.rollHeroHitPoints", this, rolls);
 
-			return roll;
+			return rolls;
 		}
 
 		// NPC Hit Points
@@ -864,7 +866,7 @@ export default class ActorEH extends Actor {
 	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
 	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
-	 * @returns {Promise<ChallengeRoll|void>}
+	 * @returns {Promise<ChallengeRoll[]|void>}
 	 */
 	async rollLuckSave(config={}, message={}, dialog={}) {
 		const { parts, data } = buildRoll({
@@ -911,18 +913,18 @@ export default class ActorEH extends Actor {
 		 */
 		if ( Hooks.call("everydayHeroes.preRollLuckSave", this, rollConfig, messageConfig, dialogConfig) === false ) return;
 
-		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
+		const rolls = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
 
 		/**
 		 * A hook event that fires after an luck save has been rolled for an Actor.
 		 * @function everydayHeroes.rollLuckSave
 		 * @memberof hookEvents
 		 * @param {ActorEH} actor - Actor for which the luck save has been rolled.
-		 * @param {D20Roll} roll - The resulting roll.
+		 * @param {ChallengeRoll[]} rolls - The resulting rolls.
 		 */
-		if ( roll ) Hooks.callAll("everydayHeroes.rollLuckSave", this, roll);
+		if ( rolls?.length ) Hooks.callAll("everydayHeroes.rollLuckSave", this, rolls);
 
-		return roll;
+		return rolls;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -941,7 +943,7 @@ export default class ActorEH extends Actor {
 	 * @param {ResourceRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
 	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
-	 * @returns {Promise<BaseRoll|void>}
+	 * @returns {Promise<BaseRoll[]|void>}
 	 */
 	async rollResource(config={}, message={}, dialog={}) {
 		const resource = this.system.resources[config.resource];
@@ -996,8 +998,8 @@ export default class ActorEH extends Actor {
 		 */
 		if ( Hooks.call("everydayHeroes.preRollResource", this, rollConfig, messageConfig, dialogConfig) === false ) return;
 
-		let roll;
-		if ( rollConfig.parts.length ) roll = await CONFIG.Dice.BaseRoll.build(rollConfig, messageConfig, dialogConfig);
+		const rolls = rollConfig.parts.length
+			? await CONFIG.Dice.BaseRoll.build(rollConfig, messageConfig, dialogConfig) : undefined;
 		const updates = rollConfig.consumed ? {
 			[`system.resources.${rollConfig.resource}.spent`]: resource.spent + rollConfig.consumed
 		} : {};
@@ -1007,16 +1009,16 @@ export default class ActorEH extends Actor {
 		 * @function everydayHeroes.rollResource
 		 * @memberof hookEvents
 		 * @param {ActorEH} actor - Actor for which the resource has been rolled.
-		 * @param {D20Roll} [roll] - The resulting roll, if one was performed
+		 * @param {BaseRoll[]} rolls - The resulting rolls, if any were performed.
 		 * @param {string} resource - ID of the resource that was rolled.
 		 * @param {object} updates - Updates that will be applied to the actor.
 		 * @returns {boolean} - Explicitly return `false` to prevent any changes from being applied to the actor.
 		 */
-		if ( Hooks.call("everydayHeroes.rollResource", this, roll, rollConfig.resource, updates) === false ) return roll;
+		if ( Hooks.call("everydayHeroes.rollResource", this, rolls, rollConfig.resource, updates) === false ) return rolls;
 
 		if ( !foundry.utils.isEmpty(updates) ) await this.update(updates);
 
-		return roll;
+		return rolls;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -1034,7 +1036,7 @@ export default class ActorEH extends Actor {
 	 * @param {SkillRollConfiguration} [config] - Configuration information for the roll.
 	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
 	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
-	 * @returns {Promise<ChallengeRoll|void>}
+	 * @returns {Promise<ChallengeRoll[]|void>}
 	 */
 	async rollSkill(config={}, message={}, dialog={}) {
 		const skill = this.system.skills[config.skill];
@@ -1106,19 +1108,19 @@ export default class ActorEH extends Actor {
 		 */
 		if ( Hooks.call("everydayHeroes.preRollSkill", this, rollConfig, messageConfig, dialogConfig) === false ) return;
 
-		const roll = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
+		const rolls = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
 
 		/**
 		 * A hook event that fires after a skill check has been rolled for an Actor.
 		 * @function everydayHeroes.rollSkill
 		 * @memberof hookEvents
 		 * @param {ActorEH} actor - Actor for which the skill check has been rolled.
-		 * @param {D20Roll} roll - The resulting roll.
+		 * @param {ChallengeRoll} rolls - The resulting rolls.
 		 * @param {string} skill - ID of the skill that was rolled as defined in `CONFIG.EverydayHeroes.skills`.
 		 */
-		if ( roll ) Hooks.callAll("everydayHeroes.rollSkill", this, roll, config.skill);
+		if ( rolls?.length ) Hooks.callAll("everydayHeroes.rollSkill", this, rolls, config.skill);
 
-		return roll;
+		return rolls;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

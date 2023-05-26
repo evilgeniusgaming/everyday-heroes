@@ -30,7 +30,7 @@ export default class DamageConfigurationDialog extends BaseConfigurationDialog {
 			damageTypes: this.options.damageTypes ? Object.fromEntries(Object.entries(CONFIG.EverydayHeroes.damageTypes)
 				.filter(([k, v]) => this.options.damageTypes.has(k))
 			) : null,
-			selectedDamageType: this.roll.options.type
+			selectedDamageType: this.rolls[0].options.type
 		}, super.getData(options));
 	}
 
@@ -38,11 +38,13 @@ export default class DamageConfigurationDialog extends BaseConfigurationDialog {
 	/*  Action Handlers                          */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	finalizeRoll(action) {
-		const roll = this.roll;
-		roll.options.critical = action === "critical";
-		roll.configureRoll();
-		return this.roll;
+	finalizeRolls(action) {
+		const rolls = this.rolls;
+		for ( const roll of rolls ) {
+			roll.options.critical = action === "critical";
+			roll.configureRoll();
+		}
+		return rolls;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -50,6 +52,6 @@ export default class DamageConfigurationDialog extends BaseConfigurationDialog {
 	_buildRoll(config, formData={}) {
 		config = foundry.utils.mergeObject({parts: [], data: {}, options: {}}, config);
 		if ( formData.damageType ) config.options.type = formData.damageType;
-		return super._buildRoll(config, formData);
+		return super._buildRolls(config, formData);
 	}
 }

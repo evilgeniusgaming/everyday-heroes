@@ -21,7 +21,7 @@ export default class BaseConfigurationDialog extends FormApplication {
 		 */
 		Object.defineProperty(this, "rollConfig", { value: rollConfig, writable: false, enumerable: true });
 
-		this.object = this._buildRoll(foundry.utils.deepClone(this.rollConfig));
+		this.object = this._buildRolls(foundry.utils.deepClone(this.rollConfig));
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -41,10 +41,10 @@ export default class BaseConfigurationDialog extends FormApplication {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
-	 * The roll being configured.
-	 * @type {BaseRoll}
+	 * The rolls being configured.
+	 * @type {BaseRoll[]}
 	 */
-	get roll() {
+	get rolls() {
 		return this.object;
 	}
 
@@ -97,9 +97,9 @@ export default class BaseConfigurationDialog extends FormApplication {
 		return foundry.utils.mergeObject({
 			CONFIG: CONFIG.EverydayHeroes,
 			default: this.options.default ?? {},
-			formula: this._getFormula(),
+			formula: this.rolls[0].formula ?? "",
 			rollModes: CONFIG.Dice.rollModes,
-			bonus: this.roll.data.bonus,
+			bonus: this.rolls[0].data.bonus,
 			buttons: this.getButtons()
 		}, super.getData(options));
 	}
@@ -128,10 +128,10 @@ export default class BaseConfigurationDialog extends FormApplication {
 	/**
 	 * Final roll preparation based on the pressed button.
 	 * @param {string} action - That button that was pressed.
-	 * @returns {BaseRoll}
+	 * @returns {BaseRoll[]}
 	 */
-	finalizeRoll(action) {
-		return this.roll;
+	finalizeRolls(action) {
+		return this.rolls;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -147,9 +147,9 @@ export default class BaseConfigurationDialog extends FormApplication {
 	 * Build a roll from the provided config.
 	 * @param {BaseRollConfiguration} config - Roll configuration data.
 	 * @param {object} formData - Data provided by the configuration form.
-	 * @returns {BaseRoll}
+	 * @returns {BaseRoll[]}
 	 */
-	_buildRoll(config, formData={}) {
+	_buildRolls(config, formData={}) {
 		config = foundry.utils.mergeObject({parts: [], data: {}, options: {}}, config);
 		if ( this.buildConfig ) config = this.buildConfig(config, formData);
 
@@ -169,33 +169,19 @@ export default class BaseConfigurationDialog extends FormApplication {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
-	 * Format the roll's formula for display.
-	 * @returns {string}
-	 * @internal
-	 */
-	_getFormula() {
-		const formula = this.roll.formula;
-		if ( this.roll.data.bonus ) return formula;
-		else if ( formula ) return `${formula} + @bonus`;
-		else return "@bonus";
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
 	 * Handle clicks to the buttons.
 	 * @param {HTMLEvent} event - Triggering click event.
 	 */
 	_onButtonAction(event) {
-		const roll = this.finalizeRoll(event.currentTarget.dataset.action);
-		this.options.resolve?.(roll);
+		const rolls = this.finalizeRolls(event.currentTarget.dataset.action);
+		this.options.resolve?.(rolls);
 		this.close({submit: false, force: true});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	_updateObject(event, formData) {
-		this.object = this._buildRoll(foundry.utils.deepClone(this.rollConfig), formData);
+		this.object = this._buildRolls(foundry.utils.deepClone(this.rollConfig), formData);
 		this.render();
 	}
 }

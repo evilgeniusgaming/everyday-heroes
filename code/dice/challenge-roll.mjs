@@ -55,11 +55,11 @@ export default class ChallengeRoll extends BaseRoll {
 	/**
 	 * Create a roll instance from the provided config.
 	 * @param {ChallengeRollConfiguration} config - Roll configuration data.
-	 * @returns {ChallengeRoll}
+	 * @returns {ChallengeRoll[]}
 	 */
 	static create(config) {
 		const formula = [(new CONFIG.Dice.ChallengeDie()).formula].concat(config.parts ?? []).join(" + ");
-		return new this(formula, config.data, config.options);
+		return [new this(formula, config.data, config.options)];
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
