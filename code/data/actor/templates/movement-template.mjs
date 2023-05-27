@@ -37,6 +37,7 @@ export default class MovementTemplate extends foundry.abstract.DataModel {
 			else if ( item.system.type.value === "shield" ) hasAwkwardShield = true;
 		}
 		this.attributes.movement.reduction = 0 + (hasAwkwardArmor ? 10 : 0) + (hasAwkwardShield ? 10 : 0);
+		this.attributes.movement.reductionSource = hasAwkwardArmor ? "armor" : hasAwkwardShield ? "shield" : null;
 		this.attributes.movement.value -= this.attributes.movement.reduction;
 		for ( const [key, value] of Object.entries(this.attributes.movement.special) ) {
 			this.attributes.movement.special[key] = Math.max(0, value - this.attributes.movement.reduction);
@@ -62,9 +63,10 @@ export default class MovementTemplate extends foundry.abstract.DataModel {
 
 		// Speed reduction
 		if ( this.attributes.movement.reduction ) movements = movements.map(([speed, label]) => `${label} (${
-			game.i18n.format("EH.Speed.WithoutReduction", { speed: numberFormat(speed + this.attributes.movement.reduction, {
-				unit: this.attributes.movement.units
-			}) })
+			game.i18n.format("EH.Speed.WithoutReduction", {
+				speed: numberFormat(speed + this.attributes.movement.reduction, { unit: this.attributes.movement.units }),
+				type: CONFIG.EverydayHeroes.armorTypes[this.attributes.movement.reductionSource].label.toLowerCase()
+			})
 		})`);
 		else movements = movements.map(a => a[1]);
 
