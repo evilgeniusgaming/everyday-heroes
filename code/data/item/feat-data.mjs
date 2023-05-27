@@ -43,18 +43,42 @@ export default class FeatData extends SystemDataModel.mixin(
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static getCompendiumSection(index, sorting) {
+		const type = foundry.utils.getProperty(index, "system.type") ?? {};
+		const sort = {
+			"basic-feat": 0,
+			"advanced-minor-feat": 100,
+			"advanced-major-feat": 200,
+			"multiclass-feat": 300
+		};
+		let key;
+		if ( !type.category ) key = "feat";
+		else if ( type.category === "advanced" ) key = `advanced-${type.value}-feat`;
+		else key = `${type.category}-feat`;
+		return [key, {
+			label: this.typeLabel(type, true),
+			sort: sorting.feat + (sort[key] ?? 900)
+		}];
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedTypeLabel() {
-		const subtype = this.type.category === "advanced"
-			? CONFIG.EverydayHeroes.featTypes[this.type.value]?.label ?? "" : "";
-		this.type.label = game.i18n.format("EH.Item.Type.DetailedLabel", {
-			category: CONFIG.EverydayHeroes.featCategories[this.type.category]?.label ?? "",
-			type: game.i18n.localize("EH.Item.Type.Feat[one]"),
-			subtype
-		}).trim().replace("  ", " ");
+		this.type.label = this.constructor.typeLabel(this.type);
 		// TODO: Multiclass feats should display like "Strong Hero Multiclass Feat"
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static typeLabel(type, plural=false) {
+		return game.i18n.format("EH.Item.Type.DetailedLabel", {
+			category: CONFIG.EverydayHeroes.featCategories[type.category]?.label ?? "",
+			type: game.i18n.localize(`EH.Item.Type.Feat[${plural ? "other" : "one"}]`),
+			subtype: type.category === "advanced" ? CONFIG.EverydayHeroes.featTypes[type.value]?.label ?? "" : ""
+		}).trim().replace("  ", " ");
 	}
 }
 

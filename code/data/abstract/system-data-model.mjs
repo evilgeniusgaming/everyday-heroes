@@ -73,6 +73,21 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/**
+	 * Produce a compendium section in which this item should appear.
+	 * @param {object} index - Index data for an item of this type.
+	 * @param {object} sorting - Pre-generated sorting orders for primary types.
+	 * @returns {[string, CompendiumSectionData]}
+	 */
+	static getCompendiumSection(index, sorting) {
+		return [this.metadata.type, {
+			label: game.i18n.localize(`${this.metadata.localization}[other]`),
+			sort: sorting[this.metadata.type] ?? Infinity
+		}];
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static defineSchema() {
 		const schema = {};
 		for ( const template of this._schemaTemplates ) {

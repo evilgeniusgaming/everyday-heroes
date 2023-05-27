@@ -35,14 +35,33 @@ export default class SpecialFeatureData extends SystemDataModel.mixin(
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static getCompendiumSection(index, sorting) {
+		const type = foundry.utils.getProperty(index, "system.type") ?? {};
+		let key;
+		if ( !type.value ) key = "special-feature";
+		else key = `${type.value}-special-feature`;
+		return [key, {
+			label: this.typeLabel(type, true),
+			sort: sorting[key] ?? Infinity
+		}];
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedTypeLabel() {
-		this.type.label = game.i18n.format("EH.Item.Type.DetailedLabel", {
+		this.type.label = this.constructor.typeLabel(this.type);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static typeLabel(type, plural=false) {
+		return game.i18n.format("EH.Item.Type.DetailedLabel", {
 			category: "",
-			type: game.i18n.localize("EH.Item.Type.SpecialFeature[one]"),
-			subtype: CONFIG.EverydayHeroes.specialFeatureTypes[this.type.value]?.label ?? ""
-		}).trim();
+			type: game.i18n.localize(`EH.Item.Type.SpecialFeature[${plural ? "other" : "one"}]`),
+			subtype: CONFIG.EverydayHeroes.specialFeatureTypes[type.value]?.label ?? ""
+		}).trim().replace("  ", " ");
 	}
 }

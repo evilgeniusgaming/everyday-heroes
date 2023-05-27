@@ -11,11 +11,10 @@ export default class CompendiumEH extends Compendium {
 	 */
 	static get sections() {
 		const concept = [
-			"archetype", "class", "background", "profession",
-			"archetype-talent", "class-talent", "talent",
-			"background-specialFeature", "profession-specialFeature", "specialFeature",
-			"plan", "trick",
-			"basic-feat", "advanced-minor-feat", "advanced-major-feat", "multiclass-feat", "feat"
+			"archetype", "class", "archetype-talent", "class-talent", "talent",
+			"background", "background-special-feature", "profession", "profession-special-feature", "special-feature",
+			"plan", "trick", "feat",
+			"weapon", "armor", "shield", "ammunition", "explosive"
 		];
 		return concept
 			.concat(Object.keys(CONFIG.EverydayHeroes.gearTypes));
@@ -36,14 +35,22 @@ export default class CompendiumEH extends Compendium {
 
 	async getData(options={}) {
 		const context = await super.getData(options);
-		// TODO: Auto-index these fields in V11
-		await this.collection.getIndex({ fields: ["system.type.value", "system.type.category"] });
+		await this.collection.getIndex({
+			fields: ["system.type.value", "system.type.category", "flags.everyday-heroes.category"]
+		});
 		if ( !context.index ) {
 			// TODO: Temp solution for bug with V11
 			context.index = this.collection.index.contents;
 			context.index.sort((a, b) => (a.sort || 0) - (b.sort || 0) || a.name.localeCompare(b.name));
 		}
-		context.sections = this._createSections(context);
+		switch (this.collection.metadata.flags.sorting) {
+			case "auto":
+				context.sections = this._createAutoSections(context);
+				break;
+			case "manual":
+				context.sections = this._createManualSections(context);
+				break;
+		}
 		return context;
 	}
 
@@ -55,66 +62,54 @@ export default class CompendiumEH extends Compendium {
 	 * @returns {object} - Grouped sections.
 	 * @private
 	 */
-	_createSections(context) {
+	_createAutoSections(context) {
 		const sections = {};
-		const { sortValues } = this.constructor.sections.reduce(({sortValues, last}, s) => {
-			sortValues[s] = last + 10;
-			return {sortValues, last: sortValues[s]};
-		}, {sortValues: {}, last: 0});
+		const sortValues = this._sortValues(this.constructor.sections);
 		for ( const item of context.index ) {
-			let section;
-			const typeValue = foundry.utils.getProperty(item, "system.type.value");
-			const typeCategory = foundry.utils.getProperty(item, "system.type.category");
-			if ( CONFIG.Item.systemDataModels[typeValue] ) {
-				section = sections[`${typeValue}-${item.type}`] ??= {
-					label: `${
-						game.i18n.localize(CONFIG.Item.typeLabels[typeValue])} ${
-						game.i18n.localize(CONFIG.Item.typeLabelsPlural[item.type])}`,
-					index: [],
-					sort: sortValues[`${typeValue}-${item.type}`] ?? Infinity
-				};
-			} else if ( item.type === "feat" ) {
-				if ( typeCategory === "advanced" ) {
-					section = sections[`${typeCategory}-${typeValue}-feat`] ??= {
-						label: `${
-							CONFIG.EverydayHeroes.featCategories[typeCategory].label} ${
-							game.i18n.localize("EH.Item.Type.Feat[other]")} - ${
-							CONFIG.EverydayHeroes.featTypes[typeValue].label}`,
-						index: [],
-						sort: sortValues[`${typeCategory}-${typeValue}-feat`] ?? Infinity
-					};
-				} else if ( typeCategory ) {
-					section = sections[`${typeCategory}-feat`] ??= {
-						label: `${
-							CONFIG.EverydayHeroes.featCategories[typeCategory].label} ${
-							game.i18n.localize("EH.Item.Type.Feat[other]")}`,
-						index: [],
-						sort: sortValues[`${typeCategory}-feat`] ?? Infinity
-					};
-				} else {
-					section = sections.feat ??= {
-						label: game.i18n.localize("EH.Item.Type.Feat[other]"),
-						index: [],
-						sort: sortValues.feat ?? Infinity
-					};
-				}
-			} else if ( item.type === "gear" ) {
-				// TODO: Use plural forms
-				section = sections[typeValue] ??= {
-					label: CONFIG.EverydayHeroes.gearTypes[typeValue]?.label,
-					index: [],
-					sort: sortValues[typeValue] ?? Infinity
-				};
-			} else {
-				section = sections[item.type] ??= {
-					label: game.i18n.localize(CONFIG.Item.typeLabelsPlural[item.type]),
-					index: [],
-					sort: sortValues[item.type] ?? Infinity
-				};
-			}
-			section.index.push(item);
+			const Type = CONFIG[this.collection.metadata.type][
+				game.release.generation > 10 ? "dataModels" : "systemDataModels"][item.type];
+			const [key, section] = Type.getCompendiumSection(item, sortValues);
+			sections[key] ??= section;
+			sections[key].index ??= [];
+			sections[key].index.push(item);
 		}
 		return sortObjectEntries(sections, "sort");
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Sort entries into sections defined in manifest.
+	 * @param {object} context - Context being prepared.
+	 * @returns {object} - Grouped sections.
+	 * @private
+	 */
+	_createManualSections(context) {
+		const sections = {};
+		const categories = this.collection.metadata.flags.categories ?? {};
+		const sortValues = this._sortValues(Object.keys(categories));
+		for ( const item of context.index ) {
+			const key = foundry.utils.getProperty(item, "flags.everyday-heroes.category");
+			sections[key] ??= categories[key] ?? {};
+			sections[key].sort ??= sortValues[key];
+			sections[key].index ??= [];
+			sections[key].index.push(item);
+		}
+		return sortObjectEntries(sections, "sort");
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Create a mapping of keys to sorting values based on the provided iterator.
+	 * @param {string[]} sections - Section keys in the desired order.
+	 * @returns {Object<string, number>}
+	 */
+	_sortValues(sections) {
+		return sections.reduce(({sortValues, last}, s) => {
+			sortValues[s] = last + 1000;
+			return {sortValues, last: sortValues[s]};
+		}, {sortValues: {}, last: 0}).sortValues;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -22,6 +22,17 @@ export default class GearData extends SystemDataModel.mixin(DescribedTemplate, P
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static getCompendiumSection(index, sorting) {
+		const type = foundry.utils.getProperty(index, "system.type") ?? {};
+		const key = type.value ?? "gear";
+		return [key, {
+			label: CONFIG.EverydayHeroes.gearTypes[type.value]?.label,
+			sort: sorting[key] ?? Infinity
+		}];
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Properties                               */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

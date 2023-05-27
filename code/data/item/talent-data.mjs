@@ -39,14 +39,33 @@ export default class TalentData extends SystemDataModel.mixin(DescribedTemplate,
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static getCompendiumSection(index, sorting) {
+		const type = foundry.utils.getProperty(index, "system.type") ?? {};
+		let key;
+		if ( !type.value ) key = "talent";
+		else key = `${type.value}-talent`;
+		return [key, {
+			label: this.typeLabel(type, true),
+			sort: sorting[key] ?? Infinity
+		}];
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedTypeLabel() {
-		this.type.label = game.i18n.format("EH.Item.Type.DetailedLabel", {
+		this.type.label = this.constructor.typeLabel(this.type);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static typeLabel(type, plural=false) {
+		return game.i18n.format("EH.Item.Type.DetailedLabel", {
 			category: "",
-			type: game.i18n.localize("EH.Item.Type.Talent[one]"),
-			subtype: CONFIG.EverydayHeroes.talentTypes[this.type.value]?.label ?? ""
-		}).trim();
+			type: game.i18n.localize(`EH.Item.Type.Talent[${plural ? "other" : "one"}]`),
+			subtype: CONFIG.EverydayHeroes.talentTypes[type.value]?.label ?? ""
+		}).trim().replace("  ", " ");
 	}
 }

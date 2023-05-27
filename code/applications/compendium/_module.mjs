@@ -7,8 +7,9 @@ export { CompendiumEH };
  */
 export function setupCompendiumApps() {
 	if ( game.release.generation > 10 ) return;
+	// TODO: Implement custom compendium apps in v11
 	for ( const pack of game.packs ) {
-		if ( !pack.metadata.flags?.type ) continue;
+		if ( !pack.metadata.flags?.sorting ) continue;
 		const app = new CompendiumEH(pack);
 		pack.apps = [app];
 	}

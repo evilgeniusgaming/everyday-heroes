@@ -60,6 +60,18 @@ export default class ArmorData extends SystemDataModel.mixin(
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static getCompendiumSection(index, sorting) {
+		const type = foundry.utils.getProperty(index, "system.type.value");
+		const key = type ?? "armor";
+		// TODO: Use plural form for shields
+		return [key, {
+			label: CONFIG.EverydayHeroes.armorTypes[type]?.label ?? "",
+			sort: sorting[key] ?? Infinity
+		}];
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Properties                               */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
