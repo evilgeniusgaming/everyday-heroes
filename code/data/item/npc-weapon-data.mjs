@@ -6,6 +6,10 @@ import WeaponData from "./weapon-data.mjs";
  *
  * @property {object} description
  * @property {string} description.npc - Description that appears for weapon on NPC details tab.
+ * @property {object} target
+ * @property {number} target.value - Number of targets for this weapon.
+ * @property {string[]} target.conditions - Conditions required on the target to make the attack.
+ * @property {string} target.custom - Custom target text that replaces automatically generated version.
  */
 export default class NPCWeaponData extends WeaponData {
 
@@ -22,7 +26,14 @@ export default class NPCWeaponData extends WeaponData {
 		return this.mergeSchema(super.defineSchema(), {
 			description: new foundry.data.fields.SchemaField({
 				npc: new foundry.data.fields.HTMLField({nullable: true, label: ""})
-			})
+			}),
+			target: new foundry.data.fields.SchemaField({
+				value: new foundry.data.fields.NumberField({initial: 1, min: 0, integer: true, label: "EH.Target.Count.Label"}),
+				conditions: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField(), {
+					label: "EH.Target.Conditions.Label", hint: "EH.Target.Conditions.Hint"
+				}),
+				custom: new foundry.data.fields.StringField({label: "EH.Target.Custom.Label"})
+			}, {label: "EH.Target.Label[other]"})
 		});
 	}
 
@@ -47,6 +58,17 @@ export default class NPCWeaponData extends WeaponData {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Migrations                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static migrateTarget(source) {
+		source.target ??= {};
+		source.target.value ??= 1;
+		source.target.conditions ??= [];
+		source.target.custom ??= "";
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -56,6 +78,46 @@ export default class NPCWeaponData extends WeaponData {
 			this.damage.modify({ number: -Math.ceil(this.damage.number / 2) });
 			this.supplementalDamage.forEach(s => s.modify({ number: -Math.ceil(s.number / 2) }));
 		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedTarget() {
+		if ( this.target.value ) {
+			const count = game.i18n.has(`EH.Number[${this.target.value}]`)
+				? game.i18n.localize(`EH.Number[${this.target.value}]`) : numberFormat(this.target.value);
+			const pluralRules = new Intl.PluralRules(game.i18n.lang);
+			const target = game.i18n.localize(`EH.Target.Label[${pluralRules.select(this.target.value)}]`).toLowerCase();
+
+			// Conditions required to target
+			if ( this.target.conditions.length ) {
+				const listFormatter = new Intl.ListFormat(game.i18n.lang, { style: "long", type: "disjunction" });
+				const conditions = this.target.conditions.map(c => CONFIG.EverydayHeroes.conditions[c]?.label);
+				this.target.generated = game.i18n.format("EH.Target.Description.Conditions", {
+					count, target,
+					conditions: listFormatter.format(conditions.filter(c => c))
+				});
+			}
+
+			// Unconditional targeting
+			else {
+				this.target.generated = game.i18n.format("EH.Target.Description.Simple", { count, target });
+			}
+
+			// Swarm attacks with a reach of 0 can only affect their own space
+			if ( (this.type.value === "melee") && (this.range.reach === 0) && this.properties.has("swarm") ) {
+				this.target.generated = game.i18n.format("EH.Target.Description.Swarm", {
+					description: this.target.generated
+				});
+			}
+		}
+
+		// No targets
+		else {
+			this.target.generated = game.i18n.localize("EH.Target.Description.None");
+		}
+
+		this.target.description = this.target.custom ? this.target.custom : this.target.generated;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -80,7 +142,7 @@ export default class NPCWeaponData extends WeaponData {
 		elements.push(this._npcRangeAndReach());
 
 		// Targets
-		// TODO: Add support for weapon targets
+		elements.push(this.target.description);
 
 		// Damage types
 		if ( this.hasDamage ) elements.push(this._npcDamages());

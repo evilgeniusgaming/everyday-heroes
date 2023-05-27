@@ -58,6 +58,32 @@
 		</fieldset>
 	{{/if}}
 
+	{{#if (everydayHeroes-has item "system.target")}}
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Target.Label[other]"}}</span>
+			<span class="right stripes"></span>
+		</h3>
+
+		<fieldset>
+			<label>{{localize "EH.Target.Count.Label"}}</label>
+			<input type="number" name="system.target.value" value="{{source.target.value}}">
+		</fieldset>
+
+		<fieldset>
+			<label>{{localize "EH.Target.Conditions.Label"}}</label>
+			{{everydayHeroes-tagInput source.target.conditions choices=CONFIG.conditions labelAttr="label"
+				name="system.target.conditions" validate=true}}
+			<p class="hint">{{localize "EH.Target.Conditions.Hint"}}</p>
+		</fieldset>
+
+		<fieldset>
+			<label>{{localize "EH.Target.Custom.Label"}}</label>
+			<input type="text" name="system.target.custom" value="{{source.target.custom}}"
+				placeholder="{{system.target.generated}}">
+		</fieldset>
+	{{/if}}
+
 	{{> "everydayHeroes.physical-damage"}}
 
 	{{#if (and (everydayHeroes-has item "system._source.dc") item.system.hasDamage)}}

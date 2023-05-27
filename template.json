@@ -444,6 +444,11 @@
         "capacity": null,
         "burst": null
       },
+      "target": {
+        "value": 1,
+        "conditions": [],
+        "custom": ""
+      },
       "bonuses": {
         "attack": "",
         "damage": "",

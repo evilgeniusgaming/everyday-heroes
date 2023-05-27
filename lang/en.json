@@ -548,6 +548,16 @@
 
 "NotApplicable.Abbreviation": "N/A",
 
+"Number[1]": "one",
+"Number[2]": "two",
+"Number[3]": "three",
+"Number[4]": "four",
+"Number[5]": "five",
+"Number[6]": "six",
+"Number[7]": "seven",
+"Number[8]": "eight",
+"Number[9]": "nine",
+
 "Override.Label": "Overrides",
 "Override.Ability.Label": "Alternative Abilities",
 "Override.Ability.Hint": "Alternative abilities will be considered against the default ability for this calculation and the one with the highest modifier will be chosen.",
@@ -703,6 +713,17 @@
 "Skill.Override.Minimum": "Skill Check Minimum",
 "Skill.Proficiency.Label[one]": "Skill Proficiency",
 "Skill.Proficiency.Label[other]": "Skill Proficiencies",
+
+"Target.Label[one]": "Target",
+"Target.Label[other]": "Targets",
+"Target.Conditions.Label": "Required Conditions",
+"Target.Conditions.Hint": "Creatures must have one of these conditions to be targeted.",
+"Target.Count.Label": "Target Count",
+"Target.Custom.Label": "Custom Text",
+"Target.Description.Conditions": "{count} {conditions} {target}",
+"Target.Description.None": "no targets",
+"Target.Description.Simple": "{count} {target}",
+"Target.Description.Swarm": "{description} in the swarm's space",
 
 "Total": "Total",
 
