@@ -47,7 +47,8 @@
           "movement": {
             "value": 30,
             "special": {},
-            "units": "foot"
+            "units": "foot",
+            "tags": []
           }
         }
       },

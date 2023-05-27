@@ -219,6 +219,27 @@ export const maxLevel = 10;
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Configuration data for movement tags.
+ *
+ * @typedef {LabeledConfiguration} MovementTagConfiguration
+ * @property {string} [associatedType] - Which special movement type is this tag associated with?
+ */
+
+/**
+ * Tags that can be added to describe an actor's movement.
+ * @enum {string}
+ */
+export const movementTags = {
+	hover: {
+		label: "EH.Movement.Tag.Hover.Label",
+		associatedType: "fly"
+	}
+};
+preLocalize("movementTags", { key: "label", sort: true });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Pre-suggested movement types available on actors.
  * @enum {string}
  */

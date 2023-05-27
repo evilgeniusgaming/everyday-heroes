@@ -17,8 +17,11 @@ export default class MovementTemplate extends foundry.abstract.DataModel {
 					special: new MappingField(new foundry.data.fields.NumberField({ ...speedConfig }), {
 						label: "EH.Speed.Special.Label"
 					}),
-					units: new foundry.data.fields.StringField({initial: "foot", label: "EH.Measurement.Units"})
+					units: new foundry.data.fields.StringField({initial: "foot", label: "EH.Measurement.Units"}),
 					// TODO: Set default based on default units setting
+					tags: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField(), {
+						label: "EH.Speed.Tags.Label"
+					})
 				}, {label: "EH.Speed.Label"})
 			})
 		};
@@ -48,7 +51,9 @@ export default class MovementTemplate extends foundry.abstract.DataModel {
 
 	prepareDerivedMovementLabel() {
 		let movements = [];
+		const tags = new Set(this.attributes.movement.tags);
 		const listFormatter = new Intl.ListFormat(game.i18n.lang, { type: "unit" });
+		const tagFormatter = t => CONFIG.EverydayHeroes.movementTags[t]?.label.toLowerCase() ?? t.toLowerCase();
 
 		// Base speed
 		movements.push([this.attributes.movement.value, numberFormat(
@@ -56,10 +61,19 @@ export default class MovementTemplate extends foundry.abstract.DataModel {
 		)]);
 
 		// Special speeds
-		for ( const [key, speed] of Object.entries(this.attributes.movement.special) ) movements.push([speed, `${
-			(CONFIG.EverydayHeroes.movementTypes[key] ?? key).toLowerCase()} ${
-			numberFormat(speed, { unit: this.attributes.movement.units })
-		}`]);
+		for ( const [key, speed] of Object.entries(this.attributes.movement.special) ) {
+			let label = `${
+				(CONFIG.EverydayHeroes.movementTypes[key] ?? key).toLowerCase()} ${
+				numberFormat(speed, { unit: this.attributes.movement.units })
+			}`;
+			const thisTags = tags.filter(t => CONFIG.EverydayHeroes.movementTags[t]?.associatedType === key);
+			thisTags.forEach(t => tags.delete(t));
+			if ( thisTags.size ) label += ` (${listFormatter.format(thisTags.map(t => tagFormatter(t)))})`;
+			movements.push([speed, label]);
+		}
+
+		// Any remaining tags go with base speed
+		if ( tags.size ) movements[0][1] += ` (${listFormatter.format(tags.map(t => tagFormatter(t)))})`;
 
 		// Speed reduction
 		if ( this.attributes.movement.reduction ) movements = movements.map(([speed, label]) => `${label} (${

@@ -15,6 +15,11 @@
 				{{selectOptions CONFIG.lengthUnits selected=source.attributes.movement.units labelAttr="label"}}
 			</select>
 		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Movement.Tags.Label"}}</label>
+			{{everydayHeroes-tagInput source.attributes.movement.tags choices=CONFIG.movementTags labelAttr="label"
+				name="system.attributes.movement.tags"}}
+		</fieldset>
 	</section>
 
 	<section>

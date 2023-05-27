@@ -540,6 +540,8 @@
 
 "Movement.Base.Label": "Base Movement",
 "Movement.Special.Label": "Special Movement",
+"Movement.Tags.Label": "Movement Tags",
+"Movement.Tag.Hover.Label": "Hover",
 "Movement.Type.Burrow.Label": "Burrow",
 "Movement.Type.Climb.Label": "Climb",
 "Movement.Type.Fly.Label": "Fly",

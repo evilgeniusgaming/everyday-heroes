@@ -1,3 +1,4 @@
+import { registerTagInputListeners } from "../../../utils.mjs";
 import BaseConfig from "./base-config.mjs";
 
 /**
@@ -24,6 +25,13 @@ export default class SpeedConfig extends BaseConfig {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Action Handlers                          */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	activateListeners(jQuery) {
+		super.activateListeners(jQuery);
+		registerTagInputListeners(this, jQuery[0]);
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async _updateObject(event, formData) {
