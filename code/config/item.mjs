@@ -156,7 +156,8 @@ preLocalize("equipmentCategories", { key: "label" });
  */
 export const equipmentProperties = {
 	aquatic: {
-		label: "EH.Weapon.Property.Aquatic.Label"
+		label: "EH.Weapon.Property.Aquatic.Label",
+		npcHint: "EH.Weapon.Property.Aquatic.NPCHint"
 	},
 	awkward: {
 		label: "EH.Armor.Property.Awkward.Label"
@@ -226,7 +227,8 @@ export const equipmentProperties = {
 		label: "EH.Weapon.Property.SemiAuto.Label"
 	},
 	shot: {
-		label: "EH.Weapon.Property.Shot.Label"
+		label: "EH.Weapon.Property.Shot.Label",
+		npcHint: "EH.Weapon.Property.Shot.NPCHint"
 	},
 	slowFiring: {
 		label: "EH.Weapon.Property.SlowFiring.Label"
@@ -263,7 +265,7 @@ export const equipmentProperties = {
 		label: "EH.Weapon.Property.Versatile.Label"
 	}
 };
-preLocalize("equipmentProperties", { keys: ["label", "hint", "npcEffect"], sort: true });
+preLocalize("equipmentProperties", { keys: ["label", "hint", "npcHint"], sort: true });
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -472,7 +474,7 @@ preLocalize("gearTypes", { key: "label" });
  * Configuration data for weapon modes.
  *
  * @typedef {LabeledConfiguration} WeaponModeConfiguration
- * @property {string} npcHint - Extra text that will be displayed on NPC sheets.
+ * @property {string} [npcHint] - Extra text that will be displayed on NPC sheets.
  * @property {string} [icon] - Icon to use for all modes.
  * @property {object} [icons]
  * @property {string} [icons.melee] - Melee icon variant.

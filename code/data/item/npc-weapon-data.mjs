@@ -87,7 +87,13 @@ export default class NPCWeaponData extends WeaponData {
 
 		description += `${listFormatter.format(elements.filter(e => e))} `;
 
-		if ( this.description.chat ) description += this.description.chat.replace(/^<p>/, "");
+		// Property hints
+		for ( const property of this.properties ) {
+			const config = CONFIG.EverydayHeroes.equipmentProperties[property];
+			if ( config?.npcHint ) description += config.npcHint;
+		}
+
+		if ( this.description.chat ) description += this.description.chat.replace(/^<p>/, " ");
 		else description += "</p>";
 
 		return await TextEditor.enrichHTML(description, {
