@@ -32,19 +32,6 @@ export default class DamageData extends foundry.abstract.DataModel {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * The average damage performed with the formula.
-	 * @type {number}
-	 */
-	get average() {
-		// TODO: Move this into damageTemplate to take advantage of mode
-		const ability = this._actor?.system.abilities[this.parent?.damageAbility]?.mod ?? 0;
-		if ( !this.denomination ) return this.number;
-		return Math.floor((this.denomination + 1) / 2 * this.number) + ability;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -53,11 +40,23 @@ export default class DamageData extends foundry.abstract.DataModel {
 		this.number = this._source.number;
 		this.denomination = this._source.denomination;
 		if ( this.denomination ) this.dice = `${this.number ?? 1}d${this.denomination}`;
-		else this.dice = this.number ?? 0;
+		else this.dice = this.number || 1;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Helper Methods                           */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * The average damage performed with the formula.
+	 * @param {number} [mod=0] - Additional modifier to apply.
+	 * @returns {number}
+	 */
+	average(mod=0) {
+		if ( !this.denomination ) return this.number || 1;
+		return Math.floor((this.denomination + 1) / 2 * this.number) + mod;
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
@@ -78,11 +77,16 @@ export default class DamageData extends foundry.abstract.DataModel {
 	 */
 	modify(modification) {
 		this.number += modification.number ?? 0;
-		this.denomination = EverydayHeroes.dice.utils.stepDenomination(
-			this.denomination, modification.denomination
-		);
+		if ( this.number <= 0 ) {
+			this.number = null;
+			this.denomination = null;
+		} else {
+			this.denomination = EverydayHeroes.dice.utils.stepDenomination(
+				this.denomination, modification.denomination
+			);
+		}
 		if ( modification.type ) this.type = modification.type;
 		if ( this.denomination ) this.dice = `${this.number ?? 1}d${this.denomination}`;
-		else this.dice = this.number ?? 0;
+		else this.dice = this.number || 1;
 	}
 }

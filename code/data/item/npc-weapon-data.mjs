@@ -53,14 +53,8 @@ export default class NPCWeaponData extends WeaponData {
 	prepareDerivedDamage() {
 		super.prepareDerivedDamage();
 		if ( this.mode === "swarm" ) {
-			const reduction = Math.ceil(this.damage.number / 2);
-			this.damage.modify({ number: -Math.min(this.damage.number - 1, reduction) });
-			this.supplementalDamage.forEach(s => {
-				console.log(Math.ceil(s.number / 2), s.number - 1, -Math.min(s.number - 1, Math.ceil(s.number / 2)));
-				s.modify({
-					number: -Math.min(s.number - 1, Math.ceil(s.number / 2))
-				});
-			});
+			this.damage.modify({ number: -Math.ceil(this.damage.number / 2) });
+			this.supplementalDamage.forEach(s => s.modify({ number: -Math.ceil(s.number / 2) }));
 		}
 	}
 
@@ -155,7 +149,7 @@ export default class NPCWeaponData extends WeaponData {
 		const listFormatter = new Intl.ListFormat(game.i18n.lang, {type: "disjunction", style: "short"});
 
 		const damageBit = (damage, mod) => {
-			let bit = damage.average;
+			let bit = damage.average(mod);
 			if ( damage.denomination ) bit += ` (${damage.formula(mod)})`;
 			bit += ` ${game.i18n.format("EH.Damage.Specific", {
 				type: CONFIG.EverydayHeroes.damageTypes[damage.type]?.label
@@ -176,8 +170,6 @@ export default class NPCWeaponData extends WeaponData {
 			if ( config.npcHint && damages.length ) string += ` ${config.npcHint}`;
 			damages.push(string);
 		}
-		// "Hit: 20 (2d12 + 7) slashing damage plus 16 (3d10) fire damage."
-		// "Hit: 5 (2d4) piercing damage plus 5 (2d4) poison damage, or 2 (1d4) piercing damage plus 2 (1d4) poison damage if the swarm is at half its hit points or fewer."
 
 		return `<em>Hit:</em> ${listFormatter.format(damages)}.`;
 	}
