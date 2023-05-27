@@ -1,3 +1,4 @@
+import { simplifyBonus } from "../../utils.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import DamageData from "./damage-data.mjs";
 
@@ -13,6 +14,15 @@ export default class SupplementalDamageData extends DamageData {
 			...super.defineSchema(),
 			bonus: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label"})
 		};
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Helper Methods                           */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	formula(mod=0) {
+		mod += simplifyBonus(this.bonus, this.parent?.parent?.getRollData());
+		return super.formula(mod);
 	}
 
 }

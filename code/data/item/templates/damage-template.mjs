@@ -138,12 +138,15 @@ export default class Damage extends foundry.abstract.DataModel {
 
 	/**
 	 * The simplified damage formula for this item, taking mode into account if it has one.
-	 * @type {number}
+	 * @type {string}
 	 */
 	get damageFormula() {
-		const mod = this.damageMod;
-		if ( !mod ) return this.damage.dice;
-		return `${this.damage.dice} + ${mod}`;
+		const formulas = [
+			this.damage.formula(this.damageMod),
+			...this.supplementalDamage.map(s => s.formula())
+		].filter(f => f);
+		return formulas.join(" + ");
+		// TODO: Add formula simplification
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

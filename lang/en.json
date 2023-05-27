@@ -276,6 +276,7 @@
 "Damage.Multiple": "Multiple Types",
 "Damage.None": "No Damage",
 "Damage.Specific": "{type} Damage",
+"Damage.Plus": " plus ",
 "Damage.Immunity.Label": "Damage Immunity",
 "Damage.Reduction.Label": "Damage Reduction",
 "Damage.Action.ApplyDouble": "Apply Double Damage",

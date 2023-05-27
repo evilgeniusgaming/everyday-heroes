@@ -61,6 +61,18 @@ export default class DamageData extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Formatted formula for this damage.
+	 * @param {number} [mod=0] - Additional modifier to apply.
+	 * @returns {string}
+	 */
+	formula(mod=0) {
+		if ( !mod ) return this.dice;
+		return `${this.dice} + ${mod}`;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Modify this item's damage with changes from a "modification" damage object.
 	 * @param {object} modification - Changes to make to this item's data.
 	 */
