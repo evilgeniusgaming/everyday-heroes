@@ -86,7 +86,7 @@ export default class CompendiumEH extends Compendium {
 	 */
 	_createManualSections(context) {
 		const sections = {};
-		const categories = this.collection.metadata.flags.categories ?? {};
+		const categories = foundry.utils.deepClone(this.collection.metadata.flags.categories ?? {});
 		const sortValues = this._sortValues(Object.keys(categories));
 		for ( const item of context.index ) {
 			const key = foundry.utils.getProperty(item, "flags.everyday-heroes.category");
