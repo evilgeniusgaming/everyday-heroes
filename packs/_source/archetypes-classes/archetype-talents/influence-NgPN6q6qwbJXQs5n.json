@@ -1,7 +1,7 @@
 {
-  "name": "Infleunce",
+  "name": "Influence",
   "type": "talent",
-  "img": "icons/skills/social/diplomacy-handshake.webp",
+  "img": "systems/everyday-heroes/artwork/icons/archetypes/influence.svg",
   "system": {
     "description": {
       "value": "<p>You have two influence dice, which are d6s. An influence die is expended when it is rolled. You regain all your expended influence dice when you finish a short or long rest.</p><p>You gain additional influence dice as you gain levels, as shown in the Charming Hero table.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "influence"
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679162607598,
-    "modifiedTime": 1680381507131,
+    "modifiedTime": 1685311069277,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

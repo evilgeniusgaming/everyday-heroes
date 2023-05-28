@@ -1,7 +1,7 @@
 {
   "name": "Fast Reflexes",
   "type": "talent",
-  "img": "icons/skills/movement/feet-winged-boots-glowing-yellow.webp",
+  "img": "systems/everyday-heroes/artwork/icons/archetypes/fast-reflexes.svg",
   "system": {
     "description": {
       "value": "<p>You have advantage on initiative rolls.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "fast-reflexes"
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679161083729,
-    "modifiedTime": 1679178757718,
+    "modifiedTime": 1685311054105,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

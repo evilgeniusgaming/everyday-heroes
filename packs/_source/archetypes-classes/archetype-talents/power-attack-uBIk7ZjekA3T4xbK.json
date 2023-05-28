@@ -1,7 +1,7 @@
 {
   "name": "Power Attack",
   "type": "talent",
-  "img": "icons/skills/melee/maneuver-sword-katana-yellow.webp",
+  "img": "systems/everyday-heroes/artwork/icons/archetypes/power-attack.svg",
   "system": {
     "description": {
       "value": "<p>Before making an attack roll with a melee weapon (including weapons with the thrown property) during your turn, you can take a –5 penalty on the attack roll to gain a +10 bonus to damage if the attack hits. You cannot use Power Attack if the attack was made as part of a bonus action, with a thrown explosive, or when using Reckless Attack. You also cannot use Power Attack with any attack that does not require an attack roll.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "power-attack"
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679160907695,
-    "modifiedTime": 1680381761971,
+    "modifiedTime": 1685311114174,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

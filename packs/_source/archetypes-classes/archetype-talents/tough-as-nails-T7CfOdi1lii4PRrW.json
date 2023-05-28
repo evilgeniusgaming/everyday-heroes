@@ -1,7 +1,7 @@
 {
   "name": "Tough as Nails",
   "type": "talent",
-  "img": "icons/skills/wounds/injury-pain-body-orange.webp",
+  "img": "systems/everyday-heroes/artwork/icons/archetypes/tough-as-nails.svg",
   "system": {
     "description": {
       "value": "<p>You gain damage reduction (against all damage types) equal to your proficiency bonus.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "tough-as-nails"
@@ -52,7 +52,8 @@
         {
           "key": "system.traits.damage.reduction.all",
           "mode": 2,
-          "value": "+@prof"
+          "value": "+@prof",
+          "priority": null
         }
       ],
       "tint": null,
@@ -67,10 +68,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679161266094,
-    "modifiedTime": 1679438934549,
+    "modifiedTime": 1685311129314,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
