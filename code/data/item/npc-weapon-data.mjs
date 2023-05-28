@@ -219,9 +219,8 @@ export default class NPCWeaponData extends WeaponData {
 		const damageBit = (damage, mod) => {
 			let bit = damage.average(mod);
 			if ( damage.denomination ) bit += ` (${damage.formula(mod)})`;
-			bit += ` ${game.i18n.format("EH.Damage.Specific", {
-				type: CONFIG.EverydayHeroes.damageTypes[damage.type]?.label
-			}).toLowerCase()}`;
+			const damages = damage.type === "multiple" ? damage.alternateTypes : [damage.type];
+			bit += ` ${game.i18n.format("EH.Damage.Specific", { type: listFormatter.format(damages) }).toLowerCase()}`;
 			return bit;
 		};
 
