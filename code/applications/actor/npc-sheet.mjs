@@ -200,6 +200,7 @@ export default class NPCSheet extends BaseActorSheet {
 				default:
 					context.inventory.feature.items.push(item);
 					if ( !item.system.activation?.type ) context.actionSections.passive.items.push(item);
+					else if ( item.system.activation.type === "attack" ) context.actionSections.action.items.push(item);
 					else context.actionSections[item.system.activation.type]?.items.push(item);
 					break;
 			}

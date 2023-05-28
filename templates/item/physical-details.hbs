@@ -84,7 +84,9 @@
 		</fieldset>
 	{{/if}}
 
-	{{> "everydayHeroes.physical-damage"}}
+	{{#if (everydayHeroes-has item "system.damage")}}
+		{{> "everydayHeroes.physical-damage"}}
+	{{/if}}
 
 	{{#if (and (everydayHeroes-has item "system._source.dc") item.system.hasDamage)}}
 		<fieldset>
