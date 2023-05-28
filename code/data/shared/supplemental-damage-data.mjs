@@ -20,6 +20,13 @@ export default class SupplementalDamageData extends DamageData {
 	/*  Helper Methods                           */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	average(mod=0) {
+		mod += simplifyBonus(this.bonus, this.parent?.parent?.getRollData());
+		return super.average(mod);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	formula(mod=0) {
 		mod += simplifyBonus(this.bonus, this.parent?.parent?.getRollData());
 		return super.formula(mod);
