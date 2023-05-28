@@ -1,7 +1,7 @@
 {
   "name": "De-escalation",
   "type": "specialFeature",
-  "img": "icons/skills/social/diplomacy-handshake-gray.webp",
+  "img": "systems/everyday-heroes/artwork/icons/professions/de-escalation.svg",
   "system": {
     "description": {
       "value": "<p>You gain advantage on Charisma checks to calm angry people or to persuade someone to show you mercy.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "de-escalation"
@@ -38,10 +38,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679451748816,
-    "modifiedTime": 1679451793634,
+    "modifiedTime": 1685307906411,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

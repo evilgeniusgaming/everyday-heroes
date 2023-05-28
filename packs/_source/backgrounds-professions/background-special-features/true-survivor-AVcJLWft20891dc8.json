@@ -1,7 +1,7 @@
 {
   "name": "True Survivor",
   "type": "specialFeature",
-  "img": "icons/magic/death/hand-dirt-undead-zombie.webp",
+  "img": "systems/everyday-heroes/artwork/icons/backgrounds/true-survivor.svg",
   "system": {
     "description": {
       "value": "<p>You need two successful death saving throws to stabilize, rather than three.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "true-survivor"
@@ -51,7 +51,8 @@
         {
           "key": "system.attributes.death.overrides.success",
           "mode": 5,
-          "value": "2"
+          "value": "2",
+          "priority": null
         }
       ],
       "tint": null,
@@ -66,10 +67,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679370743949,
-    "modifiedTime": 1679373182445,
+    "modifiedTime": 1685307882976,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

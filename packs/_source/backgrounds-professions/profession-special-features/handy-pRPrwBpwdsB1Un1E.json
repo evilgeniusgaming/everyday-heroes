@@ -1,7 +1,7 @@
 {
   "name": "Handy",
   "type": "specialFeature",
-  "img": "icons/tools/hand/wrench-iron-grey.webp",
+  "img": "systems/everyday-heroes/artwork/icons/professions/handy.svg",
   "system": {
     "description": {
       "value": "<p>Choose a specific trade you focus on. You gain advantage on Intelligence checks for activities performed in the practice of that trade.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "handy"
@@ -38,10 +38,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679451024776,
-    "modifiedTime": 1679451106033,
+    "modifiedTime": 1685307896110,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

@@ -1,7 +1,7 @@
 {
   "name": "Servicemember",
   "type": "specialFeature",
-  "img": "icons/sundries/flags/banner-blue.webp",
+  "img": "systems/everyday-heroes/artwork/icons/professions/servicemember.svg",
   "system": {
     "description": {
       "value": "<p>You gain the following benefits:</p><ul><li><p>When on mission or on base, you have access to military weapons, vehicles, and equipment. This includes the weapons and armor in your iconic equipment.</p></li><li><p>You can travel for free to many destinations if you're traveling alone.</p></li><li><p>You are provided with room and board while living on base.</p></li></ul>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "servicemember"
@@ -38,10 +38,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679451120352,
-    "modifiedTime": 1679451180546,
+    "modifiedTime": 1685307915123,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

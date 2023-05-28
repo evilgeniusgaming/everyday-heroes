@@ -1,7 +1,7 @@
 {
   "name": "That's Need to Know",
   "type": "specialFeature",
-  "img": "icons/sundries/documents/document-letter-blue.webp",
+  "img": "systems/everyday-heroes/artwork/icons/professions/thats-need-to-know.svg",
   "system": {
     "description": {
       "value": "<p>Your extensive access to classified government data gives you advantage on Intelligence (Investigation) checks made to gather information about people and organizations.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "thats-need-to-know"
@@ -38,10 +38,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679451438210,
-    "modifiedTime": 1679451508598,
+    "modifiedTime": 1685307919886,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

@@ -1,7 +1,7 @@
 {
   "name": "Common Tongue",
   "type": "specialFeature",
-  "img": "icons/skills/social/diplomacy-peace-alliance.webp",
+  "img": "systems/everyday-heroes/artwork/icons/backgrounds/common-tongue.svg",
   "system": {
     "description": {
       "value": "<p>You know basic informational phrases in a large number of languages and can understand simple replies. This allows rudimentary communication no matter where you go or what language the people speak there.</p><ul><li><p>\u0017Polite greetings and apologies \u0017 Where is (place or thing)?</p></li><li><p>Exchanging names</p></li><li><p>What time is it?</p></li><li><p>What is this place/thing called? \u0017 How much does this cost?</p></li><li><p>We are tourists.</p></li></ul>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "common-tongue"
@@ -38,10 +38,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679371483170,
-    "modifiedTime": 1679371575334,
+    "modifiedTime": 1685307862317,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

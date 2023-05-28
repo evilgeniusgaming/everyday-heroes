@@ -1,7 +1,7 @@
 {
   "name": "Safe House",
   "type": "specialFeature",
-  "img": "icons/environment/settlement/hut.webp",
+  "img": "systems/everyday-heroes/artwork/icons/professions/safe-house.svg",
   "system": {
     "description": {
       "value": "<p>While employed by the agency, you have access to a level 3 safe house somewhere in the city. This safe house serves as a secure haven that no one else knows about and can be used for a long rest. (See chapter 6 for details on safe houses.)</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "safe-house"
@@ -38,10 +38,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679451606432,
-    "modifiedTime": 1679451656711,
+    "modifiedTime": 1685307910577,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

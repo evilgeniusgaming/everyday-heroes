@@ -1,7 +1,7 @@
 {
   "name": "Have You Ever Read",
   "type": "specialFeature",
-  "img": "icons/sundries/books/book-stack.webp",
+  "img": "systems/everyday-heroes/artwork/icons/backgrounds/have-you-ever-read.svg",
   "system": {
     "description": {
       "value": "<p>You can use your proficiency bonus on any ability check to recall knowledge on the subject of authors and literature.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "have-you-ever-read"
@@ -38,10 +38,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679371544394,
-    "modifiedTime": 1679371576641,
+    "modifiedTime": 1685307867821,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

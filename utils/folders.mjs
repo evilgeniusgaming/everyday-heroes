@@ -27,12 +27,12 @@ export default async function getSubfolderName(data, pack) {
 
 	const config = CONFIG_CACHE[pack];
 	let name = "";
-	switch (config?.flags?.type) {
-		case "concept":
-			name = sortConcept(data, config);
+	switch (config?.flags?.sorting) {
+		case "auto":
+			name = sortAuto(data, config);
 			break;
-		case "physical":
-			name = sortPhysical(data, config);
+		case "manual":
+			name = sortManual(data, config);
 			break;
 		case "flat":
 		default:
@@ -44,24 +44,32 @@ export default async function getSubfolderName(data, pack) {
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
- * Determine subfolders for concept Items.
+ * Determine subfolders automatically using item type information.
  * @param {object} data - Data for the entry being processed.
  * @param {object} config - Configuration data for the compendium pack being processed.
  * @returns {string}
  */
-function sortConcept(data, config) {
+function sortAuto(data, config) {
+	const category = data.system.type?.category;
+	const type = data.system.type?.value;
 	switch (data.type) {
 		case "feat":
-			if ( !data.system.type.category ) break;
-			if ( data.system.type.category === "advanced" ) {
-				return `advanced-${data.system.type.value}-feats`;
-			} else return `${data.system.type.category}-feats`;
+			if ( !category ) break;
+			if ( category === "advanced" ) {
+				return `advanced-${type}-feats`;
+			} else return `${category}-feats`;
 		case "talent":
-			if ( !data.system.type.value ) break;
-			return `${data.system.type.value}-talents`;
+			if ( !type ) break;
+			return `${type}-talents`;
 		case "specialFeature":
-			if ( !data.system.type.value ) break;
-			return `${data.system.type.value}-special-features`;
+			if ( !type ) break;
+			return `${type}-special-features`;
+		case "weapon":
+			if ( !category ) break;
+			return `weapon/${category}`;
+		case "gear":
+			if ( !type ) break;
+			return `gear/${type}`;
 	}
 	return data.type;
 }
@@ -69,11 +77,11 @@ function sortConcept(data, config) {
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
- * Determine subfolders for physical Items.
+ * Determine subfolders manually using flags.
  * @param {object} data - Data for the entry being processed.
  * @param {object} config - Configuration data for the compendium pack being processed.
  * @returns {string}
  */
-function sortPhysical(data, config) {
-	return data.type;
+function sortManual(data, config) {
+	return "";
 }

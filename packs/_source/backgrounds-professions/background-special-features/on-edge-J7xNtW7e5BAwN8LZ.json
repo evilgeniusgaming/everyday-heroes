@@ -1,7 +1,7 @@
 {
   "name": "On Edge",
   "type": "specialFeature",
-  "img": "icons/magic/movement/portal-vortex-orange.webp",
+  "img": "systems/everyday-heroes/artwork/icons/backgrounds/on-edge.svg",
   "system": {
     "description": {
       "value": "<p>Whenever you roll initiative, you can reroll once and must use the new result.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "on-edge"
@@ -38,10 +38,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679371404940,
-    "modifiedTime": 1679371573958,
+    "modifiedTime": 1685307878515,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
