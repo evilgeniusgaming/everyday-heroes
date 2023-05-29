@@ -1157,16 +1157,39 @@ export default class ActorEH extends Actor {
 	 */
 	async applyDamage(damage, options={}) {
 		const hp = this.system.attributes.hp;
+		let inverted = false;
+		let multiplier = options.multiplier ?? 1;
+		if ( multiplier < 0 ) {
+			inverted = true;
+			multiplier *= -1;
+		}
 
-		// Total damage and apply multiplier
-		let amount = damage.reduce((total, d) => total + d.value, 0);
-		// TODO: Take damage immunity into account
-		amount = Math.floor(amount * (options.multiplier ?? 1));
+		let amount = damage.reduce((total, d) => {
+			// Ignore damage types with immunity
+			if ( !options.ignoreImmunity && this.system.traits?.damage?.immunity?.has(d.type) ) return total;
 
-		// Apply damage reduction
+			// Apply damage multiplier
+			let value = d.value * multiplier;
+
+			// Apply type-specific damage reduction
+			if ( !options.ignoreReduction ) value -= simplifyBonus(
+				this.system.traits?.damage?.reduction?.[d.type], this.getRollData({deterministic: true})
+			);
+
+			return total + Math.max(value, 0);
+		}, 0);
+
+		// Apply overall damage reduction
 		if ( !options.ignoreReduction ) {
 			amount -= simplifyBonus(this.system.traits?.damage?.reduction?.all, this.getRollData({deterministic: true}));
+			amount = Math.max(amount, 0);
 		}
+
+		// Round damage down
+		amount = Math.floor(amount);
+
+		// Invert damage if multiplier is negative
+		if ( inverted ) amount *= -1;
 
 		// Subtract from temp HP first & then from normal HP
 		const deltaTemp = amount > 0 ? Math.min(hp.temp, amount) : 0;
