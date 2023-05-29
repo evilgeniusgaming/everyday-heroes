@@ -95,7 +95,8 @@
         },
         "hd": {
           "spent": 0,
-          "minimum": ""
+          "minimum": "",
+          "recovery": 0.5
         },
         "hp": {
           "value": 0,

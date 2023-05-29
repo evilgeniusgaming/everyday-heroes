@@ -65,7 +65,8 @@ export default class HeroData extends SystemDataModel.mixin(
 				}, {label: "EH.Defense.Label"}),
 				hd: new foundry.data.fields.SchemaField({
 					spent: new foundry.data.fields.NumberField({initial: 0, min: 0, integer: true, label: "EH.HitDice.Spent"}),
-					minimum: new FormulaField({deterministic: true, label: ""})
+					minimum: new FormulaField({deterministic: true, label: "EH.HitDice.Minimum.Label"}),
+					recovery: new foundry.data.fields.NumberField({initial: 0.5, min: -1, max: 1, label: "EH.HitDice.Recovery.Label"})
 				}, {label: "EH.HitDice.Label[other]"}),
 				hp: new foundry.data.fields.SchemaField({
 					value: new foundry.data.fields.NumberField({

@@ -437,6 +437,8 @@
 "HitDice.Label[one]": "Hit Die",
 "HitDice.Label[other]": "Hit Dice",
 "HitDice.Spent": "Spent Hit Dice",
+"HitDice.Minimum.Label": "Minimum Hit Dice Roll",
+"HitDice.Recovery.Label": "Hit Dice Recovery Percentage",
 
 "HitPoints.Label[one]": "Hit Point",
 "HitPoints.Label[other]": "Hit Points",
