@@ -35,7 +35,7 @@
   "effects": [
     {
       "label": "Watch Your Six",
-      "icon": "icons/magic/defensive/shield-barrier-deflect-teal.webp",
+      "icon": "systems/everyday-heroes/artwork/icons/classes/watch-your-six.svg",
       "origin": "Item.7DhLR4tn559VRset",
       "duration": {
         "rounds": null,
@@ -52,8 +52,7 @@
         {
           "key": "system.attributes.defense.bonus",
           "mode": 2,
-          "value": "+1",
-          "priority": null
+          "value": "+1"
         }
       ],
       "tint": null,
@@ -71,7 +70,7 @@
     "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679515434790,
-    "modifiedTime": 1685314265203,
+    "modifiedTime": 1685335876622,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

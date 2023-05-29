@@ -34,7 +34,7 @@
   "effects": [
     {
       "label": "True Survivor",
-      "icon": "icons/magic/death/hand-dirt-undead-zombie.webp",
+      "icon": "systems/everyday-heroes/artwork/icons/backgrounds/true-survivor.svg",
       "origin": "Item.0KI9tkDbZU9wxqr5",
       "duration": {
         "rounds": null,
@@ -51,8 +51,7 @@
         {
           "key": "system.attributes.death.overrides.success",
           "mode": 5,
-          "value": "2",
-          "priority": null
+          "value": "2"
         }
       ],
       "tint": null,
@@ -70,7 +69,7 @@
     "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679370743949,
-    "modifiedTime": 1685307882976,
+    "modifiedTime": 1685335854313,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

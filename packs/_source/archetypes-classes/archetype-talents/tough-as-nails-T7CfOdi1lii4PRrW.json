@@ -35,7 +35,7 @@
   "effects": [
     {
       "label": "Tough as Nails",
-      "icon": "icons/skills/wounds/injury-pain-body-orange.webp",
+      "icon": "systems/everyday-heroes/artwork/icons/archetypes/tough-as-nails.svg",
       "origin": "Compendium.everyday-heroes.archetypes-classes.T7CfOdi1lii4PRrW",
       "duration": {
         "rounds": null,
@@ -52,8 +52,7 @@
         {
           "key": "system.traits.damage.reduction.all",
           "mode": 2,
-          "value": "+@prof",
-          "priority": null
+          "value": "+@prof"
         }
       ],
       "tint": null,
@@ -71,7 +70,7 @@
     "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679161266094,
-    "modifiedTime": 1685311129314,
+    "modifiedTime": 1685335835041,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "advancement": [],
     "identifier": {
@@ -36,7 +36,7 @@
   "effects": [
     {
       "label": "Investments",
-      "icon": "icons/commodities/currency/coins-plain-stack-gold-yellow.webp",
+      "icon": "systems/everyday-heroes/artwork/icons/feats/investments.svg",
       "origin": "Compendium.eh-core-rulebook.feats.LveRtTGxW1fgfBgb",
       "duration": {
         "rounds": null,
@@ -53,8 +53,7 @@
         {
           "key": "system.details.wealth.bonus",
           "mode": 2,
-          "value": "+1",
-          "priority": null
+          "value": "+1"
         }
       ],
       "tint": null,
@@ -69,10 +68,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679977454351,
-    "modifiedTime": 1680459268696,
+    "modifiedTime": 1685335752559,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "advancement": [],
     "identifier": {
@@ -36,7 +36,7 @@
   "effects": [
     {
       "label": "Jack of All Trades",
-      "icon": "icons/skills/trades/academics-investigation-puzzles.webp",
+      "icon": "systems/everyday-heroes/artwork/icons/feats/jack-of-all-trades.svg",
       "origin": "Compendium.eh-core-rulebook.feats.d0wKJfUcSBC9ry5g",
       "duration": {
         "rounds": null,
@@ -53,8 +53,7 @@
         {
           "key": "system.overrides.skill.proficiency.multiplier",
           "mode": 4,
-          "value": "0.5",
-          "priority": null
+          "value": "0.5"
         }
       ],
       "tint": null,
@@ -69,10 +68,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679978329040,
-    "modifiedTime": 1680459663816,
+    "modifiedTime": 1685335740673,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

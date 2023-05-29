@@ -35,7 +35,7 @@
   "effects": [
     {
       "label": "Situational Awareness",
-      "icon": "icons/magic/defensive/shield-barrier-deflect-gold.webp",
+      "icon": "systems/everyday-heroes/artwork/icons/classes/situational-awareness.svg",
       "origin": "Item.rANpLNK8TZtSshJJ",
       "duration": {
         "rounds": null,
@@ -52,8 +52,7 @@
         {
           "key": "system.attributes.defense.bonus",
           "mode": 2,
-          "value": "+1",
-          "priority": null
+          "value": "+1"
         }
       ],
       "tint": null,
@@ -71,7 +70,7 @@
     "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679515559953,
-    "modifiedTime": 1685314194017,
+    "modifiedTime": 1685335797673,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

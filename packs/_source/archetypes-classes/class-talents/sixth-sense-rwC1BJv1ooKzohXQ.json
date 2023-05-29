@@ -35,7 +35,7 @@
   "effects": [
     {
       "label": "Sixth Sense",
-      "icon": "icons/magic/perception/third-eye-blue-red.webp",
+      "icon": "systems/everyday-heroes/artwork/icons/classes/sixth-sense.svg",
       "origin": "Compendium.everyday-heroes.archetypes-classes.rwC1BJv1ooKzohXQ",
       "duration": {
         "rounds": null,
@@ -52,8 +52,7 @@
         {
           "key": "system.overrides.ability.initiative",
           "mode": 2,
-          "value": "wis",
-          "priority": null
+          "value": "wis"
         }
       ],
       "tint": null,
@@ -71,7 +70,7 @@
     "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679516807537,
-    "modifiedTime": 1685314218729,
+    "modifiedTime": 1685335867705,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
