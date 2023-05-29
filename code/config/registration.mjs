@@ -1,4 +1,4 @@
-import { slugify } from "../utils.mjs";
+import { slugify, sortObjectEntries } from "../utils.mjs";
 
 /**
  * @typedef {object} ItemRegistration
@@ -118,7 +118,10 @@ async function _registerItemType(type, indexes) {
 	}
 	console.groupEnd();
 
-	return {type, registrations};
+	return {
+		type,
+		registrations: sortObjectEntries(registrations, "name")
+	};
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -151,6 +154,8 @@ function _onCreateItem(item, options, userId) {
 	let source = all[item.type] ??= {};
 	if ( !source ) source = all[item.type] = {};
 	_handleCreate(source, item.identifier, item);
+
+	all[item.type] = sortObjectEntries(source, "name");
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -194,6 +199,8 @@ function _onUpdateItem(item, changes, options, userId) {
 	if ( idx !== source[item.identifier].sources.length - 1 ) return;
 	source[item.identifier].name = item.name;
 	source[item.identifier].img = item.img;
+
+	all[item.type] = sortObjectEntries(source, "name");
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
