@@ -238,7 +238,7 @@ export default class ItemEH extends Item {
 				use: item.system.consumesUses ?? false
 			},
 			roll: {
-				resource: item.system.resource.type === "resource"
+				resource: item.system.resource?.type === "resource"
 			}
 		}, config);
 		if ( activationConfig.configure === undefined ) {

@@ -83,7 +83,10 @@ export default class NPCExplosiveData extends ExplosiveData {
 
 		// Penetration Value
 		elements.push(`${game.i18n.localize("EH.Equipment.Trait.PenetrationValue.Abbreviation")} ${
-			this.hasDamage ? numberFormat(this.penetrationValue) : game.i18n.localize("EH.NotApplicable.Abbreviation")}`);
+			(this.hasDamage && this.penetrationValue !== null)
+				? numberFormat(this.penetrationValue)
+				: game.i18n.localize("EH.NotApplicable.Abbreviation")
+		}`);
 
 		// Range
 		const distance = this.range.long > this.range.short
