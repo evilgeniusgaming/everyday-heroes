@@ -43,42 +43,53 @@
 		</fieldset>
 	{{/if}}
 
-	<fieldset class="supplemental-damage">
-		<label>{{localize "EH.Equipment.Trait.SupplementalDamage.Label"}}</label>
-		<span class="control">
-			<a data-action="damage" data-type="add" data-tooltip="{{localize 'EH.Action.AddSpecific'
-				type=(localize 'EH.Equipment.Trait.SupplementalDamage.Label')}}"><i class="fas fa-plus"></i></a>
-		</span>
-		<p class="hint">{{localize "EH.Equipment.Trait.SupplementalDamage.Hint"}}</p>
-		{{#each source.supplementalDamage}}
-			<div class="damage-entry" data-index="{{@index}}">
-				<label>
-					<span>{{localize "EH.Equipment.Trait.Damage.Count.Label"}}</span>
-					<input type="number" name="system.supplementalDamage.{{@index}}.number" value="{{this.number}}">
-				</label>
-				<label>
-					<span>{{localize "EH.Equipment.Trait.Damage.Denomination.Label"}}</span>
-					<select name="system.supplementalDamage.{{@index}}.denomination">
-						{{selectOptions @root.diceSteps selected=this.denomination blank=""}}
-					</select>
-				</label>
-				<label>
-					<span>{{localize "EH.Equipment.Trait.Damage.Type.Label"}}</span>
-					<select name="system.supplementalDamage.{{@index}}.type">
-						{{selectOptions @root.CONFIG.damageTypes selected=this.type labelAttr="label"}}
-					</select>
-				</label>
-				<label>
-					<span>{{localize "EH.Bonus.Label[one]"}}</span>
-					<input type="text" name="system.supplementalDamage.{{@index}}.bonus" value="{{this.bonus}}">
-				</label>
-				<span class="control">
-					<a data-action="damage" data-type="remove" data-tooltip="{{localize 'EH.Action.RemoveSpecific'
-						type=(localize 'EH.Equipment.Trait.SupplementalDamage.Label')}}"><i class="fas fa-trash"></i></a>
-				</span>
-			</div>
-		{{/each}}
-	</fieldset>
+	{{#if item.system.hasDamage}}
+		{{#if (everydayHeroes-has item "system.penetrationValue")}}
+			<fieldset>
+				<label>{{localize "EH.Equipment.Trait.PenetrationValue.Label"}}</label>
+				<input type="number" name="system.penetrationValue" value="{{source.penetrationValue}}"
+					placeholder="{{localize 'EH.Damage.IgnoresArmor.Label'}}">
+				<p class="hint">{{localize "EH.Equipment.Trait.PenetrationValue.Hint"}}</p>
+			</fieldset>
+		{{/if}}
+	
+		<fieldset class="supplemental-damage">
+			<label>{{localize "EH.Equipment.Trait.SupplementalDamage.Label"}}</label>
+			<span class="control">
+				<a data-action="damage" data-type="add" data-tooltip="{{localize 'EH.Action.AddSpecific'
+					type=(localize 'EH.Equipment.Trait.SupplementalDamage.Label')}}"><i class="fas fa-plus"></i></a>
+			</span>
+			<p class="hint">{{localize "EH.Equipment.Trait.SupplementalDamage.Hint"}}</p>
+			{{#each source.supplementalDamage}}
+				<div class="damage-entry" data-index="{{@index}}">
+					<label>
+						<span>{{localize "EH.Equipment.Trait.Damage.Count.Label"}}</span>
+						<input type="number" name="system.supplementalDamage.{{@index}}.number" value="{{this.number}}">
+					</label>
+					<label>
+						<span>{{localize "EH.Equipment.Trait.Damage.Denomination.Label"}}</span>
+						<select name="system.supplementalDamage.{{@index}}.denomination">
+							{{selectOptions @root.diceSteps selected=this.denomination blank=""}}
+						</select>
+					</label>
+					<label>
+						<span>{{localize "EH.Equipment.Trait.Damage.Type.Label"}}</span>
+						<select name="system.supplementalDamage.{{@index}}.type">
+							{{selectOptions @root.CONFIG.damageTypes selected=this.type labelAttr="label"}}
+						</select>
+					</label>
+					<label>
+						<span>{{localize "EH.Bonus.Label[one]"}}</span>
+						<input type="text" name="system.supplementalDamage.{{@index}}.bonus" value="{{this.bonus}}">
+					</label>
+					<span class="control">
+						<a data-action="damage" data-type="remove" data-tooltip="{{localize 'EH.Action.RemoveSpecific'
+							type=(localize 'EH.Equipment.Trait.SupplementalDamage.Label')}}"><i class="fas fa-trash"></i></a>
+					</span>
+				</div>
+			{{/each}}
+		</fieldset>
+	{{/if}}
 
 {{else if (eq item.system.damageMode "modification")}}
 
@@ -108,4 +119,11 @@
 		<p class="hint">{{localize "EH.Equipment.Trait.DamageModification.Hint"}}</p>
 	</fieldset>
 
+{{/if}}
+
+{{#if (and (everydayHeroes-has item "system._source.dc") item.system.hasDamage)}}
+	<fieldset>
+		<label>{{localize "EH.Explosive.DC.Label"}}</label>
+		<input type="number" name="system.dc" value="{{source.dc}}">
+	</fieldset>
 {{/if}}

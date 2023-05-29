@@ -199,6 +199,13 @@ export default class DamageRoll extends BaseRoll {
 
 	async render({flavor, template=this.constructor.CHAT_TEMPLATE, isPrivate=false}={}) {
 		if ( !this._evaluated ) await this.evaluate({async: true});
+
+		let pv;
+		const pvAbbr = game.i18n.localize("EH.Equipment.Trait.PenetrationValue.Abbreviation");
+		if ( isPrivate ) pv = `${pvAbbr} ?`;
+		else if ( this.options.pv === null ) pv = game.i18n.localize("EH.Damage.IgnoresArmor.Label");
+		else if ( this.options.pv !== undefined ) pv = `${pvAbbr} ${this.options.pv}`;
+
 		const chatData = {
 			CONFIG: CONFIG.EverydayHeroes,
 			formula: isPrivate ? "???" : this._formula,
@@ -207,10 +214,7 @@ export default class DamageRoll extends BaseRoll {
 			tooltip: isPrivate ? "" : await this.getTooltip(),
 			total: isPrivate ? "?" : Math.round(this.total * 100) / 100,
 			damageType: isPrivate ? "???" : this.options.type,
-			pv: this.options.pv !== undefined
-				? `${game.i18n.localize("EH.Equipment.Trait.PenetrationValue.Abbreviation")} ${isPrivate ? "?" : this.options.pv}`
-				: null
-			// TODO: Add display for damage that ignores armor when implemented
+			pv
 		};
 		return renderTemplate(template, chatData);
 	}

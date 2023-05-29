@@ -20,11 +20,7 @@
 
 	<h3 class="striped">
 		<span class="left stripes"></span>
-		<span class="center">
-			{{#if (eq item.type "armor")}}{{localize "EH.Armor.Property.Label"}}
-			{{else if (or (eq item.type "explosive") (eq item.type "npcExplosive"))}}{{localize "EH.Explosive.Properties.Label"}}
-			{{else}}{{localize "EH.Weapon.Property.Label"}}{{/if}}
-		</span>
+		<span class="center">{{localize "EH.Equipment.Property.Label[other]"}}</span>
 		<span class="right stripes"></span>
 	</h3>
 
@@ -50,11 +46,32 @@
 		</fieldset>
 	{{/if}}
 
-	{{#if (everydayHeroes-has item "system.penetrationValue")}}
+	{{#if (everydayHeroes-has item "system.radius")}}
+		<fieldset class="triple">
+			<label>{{localize "EH.Equipment.Trait.Radius.Label"}}</label>
+			<input type="number" name="system.radius.value" value="{{source.radius.value}}">
+			<select name="system.radius.units">
+				{{selectOptions CONFIG.lengthUnits selected=source.radius.value labelAttr="label"}}
+			</select>
+			<p class="hint">{{localize "EH.Equipment.Trait.Radius.Hint"}}</p>
+		</fieldset>
+	{{/if}}
+
+	{{#if system.usesRange}}
+		<fieldset class="triple">
+			<label>{{localize "EH.Equipment.Trait.Range.Label"}}</label>
+			<input type="number" name="system.range.short" value="{{source.range.short}}">
+			<input type="number" name="system.range.long" value="{{source.range.long}}">
+			<select name="system.range.units">
+				{{selectOptions CONFIG.lengthUnits selected=source.range.value labelAttr="label"}}
+			</select>
+		</fieldset>
+	{{/if}}
+
+	{{#if itemProperties.reach.value}}
 		<fieldset>
-			<label>{{localize "EH.Equipment.Trait.PenetrationValue.Label"}}</label>
-			<input type="number" name="system.penetrationValue" value="{{source.penetrationValue}}">
-			<p class="hint">{{localize "EH.Equipment.Trait.PenetrationValue.Hint"}}</p>
+			<label>{{localize "EH.Equipment.Trait.Range.Reach"}}</label>
+			<input type="number" name="system.range.reach" value="{{source.range.reach}}">
 		</fieldset>
 	{{/if}}
 
@@ -88,84 +105,8 @@
 		{{> "everydayHeroes.physical-damage"}}
 	{{/if}}
 
-	{{#if (and (everydayHeroes-has item "system._source.dc") item.system.hasDamage)}}
-		<fieldset>
-			<label>{{localize "EH.Explosive.DC.Label"}}</label>
-			<input type="number" name="system.dc" value="{{source.dc}}">
-		</fieldset>
-	{{/if}}
-
-	{{#if (everydayHeroes-has item "system.radius")}}
-		<fieldset class="triple">
-			<label>{{localize "EH.Equipment.Trait.Radius.Label"}}</label>
-			<input type="number" name="system.radius.value" value="{{source.radius.value}}">
-			<select name="system.radius.units">
-				{{selectOptions CONFIG.lengthUnits selected=source.radius.value labelAttr="label"}}
-			</select>
-			<p class="hint">{{localize "EH.Equipment.Trait.Radius.Hint"}}</p>
-		</fieldset>
-	{{/if}}
-
-	{{#if system.usesRange}}
-		<fieldset class="triple">
-			<label>{{localize "EH.Equipment.Trait.Range.Label"}}</label>
-			<input type="number" name="system.range.short" value="{{source.range.short}}">
-			<input type="number" name="system.range.long" value="{{source.range.long}}">
-			<select name="system.range.units">
-				{{selectOptions CONFIG.lengthUnits selected=source.range.value labelAttr="label"}}
-			</select>
-		</fieldset>
-	{{/if}}
-
-	{{#if itemProperties.reach.value}}
-		<fieldset>
-			<label>{{localize "EH.Equipment.Trait.Range.Reach"}}</label>
-			<input type="number" name="system.range.reach" value="{{source.range.reach}}">
-		</fieldset>
-	{{/if}}
-
 	{{#if system.usesRounds}}
-		<fieldset>
-			<label>{{localize "EH.Ammunition.Type.Label"}}</label>
-			<select name="system.rounds.type">
-				{{#select source.rounds.type}}
-					<option value="">{{localize "None"}}</option>
-					<optgroup label="{{localize 'EH.Item.Type.Ammunition[other]'}}">
-						{{selectOptions CONFIG.ammunitionTypes labelAttr="label"}}
-					</optgroup>
-					<optgroup label="{{localize 'EH.Item.Type.Explosive[other]'}}">
-						{{selectOptions CONFIG.explosiveTypes labelAttr="label"}}
-					</optgroup>
-				{{/select}}
-			</select>
-		</fieldset>
-
-		<fieldset>
-			<label>{{localize "EH.Equipment.Trait.Rounds.Label"}}</label>
-			{{#if system.beltFed}}
-				<input type="text" placeholder="{{localize 'EH.Weapon.Property.Belt.Tag'}}" disabled>
-			{{else}}
-				<input type="number" name="system.rounds.capacity" value="{{source.rounds.capacity}}">
-			{{/if}}
-			<p class="hint">{{localize "EH.Equipment.Trait.Rounds.Hint"}}</p>
-		</fieldset>
-
-		{{#if (or system.rounds.capacity system.beltFed)}}
-			<fieldset>
-				<label>{{localize "EH.Equipment.Trait.Reload.Label"}}</label>
-				<select name="system.reload">
-					{{selectOptions CONFIG.actionTypesReload selected=source.reload blank=(localize "EH.Action.Reload.None")}}
-				</select>
-			</fieldset>
-		{{/if}}
-
-		{{#if itemProperties.burst.value}}
-			<fieldset>
-				<label>{{localize "EH.Equipment.Trait.Rounds.Burst.Label"}}</label>
-				<input type="number" name="system.rounds.burst" value="{{source.rounds.burst}}">
-				<p class="hint">{{localize "EH.Equipment.Trait.Rounds.Burst.Hint"}}</p>
-			</fieldset>
-		{{/if}}
+		{{> "everydayHeroes.physical-rounds"}}
 	{{/if}}
 
 	{{#if (everydayHeroes-has item "system.bonuses")}}

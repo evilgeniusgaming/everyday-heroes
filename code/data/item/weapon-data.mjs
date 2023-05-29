@@ -224,8 +224,11 @@ export default class WeaponData extends SystemDataModel.mixin(
 		const tags = [
 			{ label: this.type.label, class: "type" },
 			{
-				label: `${game.i18n.localize(
-					"EH.Equipment.Trait.PenetrationValue.Abbreviation")} ${numberFormat(this.penetrationValue)}`,
+				label: `${game.i18n.localize("EH.Equipment.Trait.PenetrationValue.Abbreviation")} ${
+					this.penetrationValue === null
+						? game.i18n.localize("EH.NotApplicable.Abbreviation")
+						: numberFormat(this.penetrationValue)
+				}`,
 				class: "detail"
 			},
 			...this.propertiesTags,
@@ -413,7 +416,12 @@ export default class WeaponData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedPenetrationValue() {
-		this.penetrationValue = this._source.penetrationValue + (this.ammunition?.system.penetrationValue ?? 0);
+		if ( (this._source.penetrationValue === null)
+			&& (!this.ammunition || this.ammunition.system.penetrationValue === null ) ) {
+			this.penetrationValue = null;
+		} else {
+			this.penetrationValue = (this._source.penetrationValue ?? 0) + (this.ammunition?.system.penetrationValue ?? 0);
+		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

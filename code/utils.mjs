@@ -407,6 +407,7 @@ export async function registerHandlebarsPartials() {
 		"item/item-summary.hbs",
 		"item/physical-damage.hbs",
 		"item/physical-details.hbs",
+		"item/physical-rounds.hbs",
 		"shared/active-effects.hbs"
 	];
 

@@ -18,7 +18,7 @@ export default class ChatMessageEH extends ChatMessage {
 		await super._renderRollContent(messageData);
 
 		// Display total damage for damage rolls
-		if ( messageData.message.flags["everyday-heroes"]?.roll?.type === "damage" ) {
+		if ( (messageData.message.flags["everyday-heroes"]?.roll?.type === "damage") && (this.rolls.length > 1) ) {
 			const total = this.rolls.reduce((t, r) => t + r.total, 0);
 			messageData.message.content += `
 				<div class="damage dice-roll">
@@ -114,7 +114,12 @@ export default class ChatMessageEH extends ChatMessage {
 		const message = game.messages.get(li.data("messageId"));
 		const origin = foundry.utils.getProperty(message, "flags.everyday-heroes.roll.origin");
 		const source = origin ? await fromUuid(origin) : null;
-		const damage = message?.rolls?.map(roll => ({ value: roll.total, type: roll.options.type, source }));
+		const damage = message?.rolls?.map(roll => ({
+			value: roll.total,
+			type: roll.options.type,
+			pv: roll.options.pv,
+			source
+		}));
 		return Promise.all(canvas.tokens.controlled.map(t => t.actor.applyDamage(damage, { multiplier })));
 	}
 

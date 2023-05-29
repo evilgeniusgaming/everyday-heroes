@@ -1,0 +1,47 @@
+<h3 class="striped">
+	<span class="left stripes"></span>
+	<span class="center">{{localize "EH.Equipment.Trait.Rounds.Label"}}</span>
+	<span class="right stripes"></span>
+</h3>
+
+<fieldset>
+	<label>{{localize "EH.Ammunition.Type.Label"}}</label>
+	<select name="system.rounds.type">
+		{{#select source.rounds.type}}
+			<option value="">{{localize "None"}}</option>
+			<optgroup label="{{localize 'EH.Item.Type.Ammunition[other]'}}">
+				{{selectOptions CONFIG.ammunitionTypes labelAttr="label"}}
+			</optgroup>
+			<optgroup label="{{localize 'EH.Item.Type.Explosive[other]'}}">
+				{{selectOptions CONFIG.explosiveTypes labelAttr="label"}}
+			</optgroup>
+		{{/select}}
+	</select>
+</fieldset>
+
+<fieldset>
+	<label>{{localize "EH.Equipment.Trait.Rounds.Capacity"}}</label>
+	{{#if system.beltFed}}
+		<input type="text" placeholder="{{localize 'EH.Weapon.Property.Belt.Tag'}}" disabled>
+	{{else}}
+		<input type="number" name="system.rounds.capacity" value="{{source.rounds.capacity}}">
+	{{/if}}
+	<p class="hint">{{localize "EH.Equipment.Trait.Rounds.Hint"}}</p>
+</fieldset>
+
+{{#if (or system.rounds.capacity system.beltFed)}}
+	<fieldset>
+		<label>{{localize "EH.Equipment.Trait.Reload.Label"}}</label>
+		<select name="system.reload">
+			{{selectOptions CONFIG.actionTypesReload selected=source.reload blank=(localize "EH.Action.Reload.None")}}
+		</select>
+	</fieldset>
+{{/if}}
+
+{{#if itemProperties.burst.value}}
+	<fieldset>
+		<label>{{localize "EH.Equipment.Trait.Rounds.Burst.Label"}}</label>
+		<input type="number" name="system.rounds.burst" value="{{source.rounds.burst}}">
+		<p class="hint">{{localize "EH.Equipment.Trait.Rounds.Burst.Hint"}}</p>
+	</fieldset>
+{{/if}}
