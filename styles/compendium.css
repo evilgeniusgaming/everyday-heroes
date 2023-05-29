@@ -2,41 +2,49 @@
 	margin-block-start: 0.5em;
 }
 
+figure.company-logo {
+	display: flex;
+}
+figure.company-logo img {
+	max-width: 50%;
+	border: none;
+}
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Journals                                 */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-:is(.journal-sheet, .everyday-heroes.sheet .editor) :is(h1, h2, h3, h4) {
+:is(.journal-entry-content, .journal-sheet .editor, .everyday-heroes.sheet .editor) :is(h1, h2, h3, h4) {
 	font-weight: bold;
 	text-transform: uppercase;
 }
-:is(.journal-sheet, .everyday-heroes.sheet .editor) :is(h1, h2) {
+:is(.journal-entry-content, .journal-sheet .editor, .everyday-heroes.sheet .editor) :is(h1, h2) {
 	border: none;
 	color: var(--eh-text-color-red);
 }
-:is(.journal-sheet, .everyday-heroes.sheet .editor) h1 {
+:is(.journal-entry-content, .journal-sheet .editor, .everyday-heroes.sheet .editor) h1 {
 	font-size: var(--font-size-48);
 	text-align: center;
 }
-:is(.journal-sheet, .everyday-heroes.sheet .editor) h2 {
+:is(.journal-entry-content, .journal-sheet .editor, .everyday-heroes.sheet .editor) h2 {
 	font-size: var(--font-size-32);
 }
-:is(.journal-sheet, .everyday-heroes.sheet .editor) h3 {
+:is(.journal-entry-content, .journal-sheet .editor, .everyday-heroes.sheet .editor) h3 {
 	border-block-end: 4px solid var(--eh-border-color-strong);
 	font-size: var(--font-size-24);
 }
-:is(.journal-sheet, .everyday-heroes.sheet .editor) h4 {
+:is(.journal-entry-content, .journal-sheet .editor, .everyday-heroes.sheet .editor) h4 {
 	font-size: var(--font-size-18);
 }
-:is(.journal-sheet, .everyday-heroes.sheet .editor) h5 {
+:is(.journal-entry-content, .journal-sheet .editor, .everyday-heroes.sheet .editor) h5 {
 	margin-block-end: 0;
 	text-transform: uppercase;
 }
-:is(.journal-sheet, .everyday-heroes.sheet .editor) :is(h1, h2, h3, h4) strong {
+:is(.journal-entry-content, .journal-sheet .editor, .everyday-heroes.sheet .editor) :is(h1, h2, h3, h4) strong {
 	color: var(--eh-text-color-red);
 	font-weight: bolder;
 }
-:is(.journal-sheet, .everyday-heroes.sheet .editor) strong.ability {
+:is(.journal-entry-content, .journal-sheet .editor, .everyday-heroes.sheet .editor) strong.ability {
 	color: var(--eh-text-color-red);
 	text-transform: uppercase;
 }
@@ -139,51 +147,51 @@ h3.arrowed::after {
 /*  Table                                    */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.journal-sheet table caption {
+:is(.journal-entry-content, .journal-sheet .editor) table caption {
 	margin-block-end: 0.5em;
 	color: var(--eh-text-color-red);
 	font-size: var(--font-size-20);
 	font-weight: bold;
 	text-transform: uppercase;
 }
-.journal-sheet table thead {
+:is(.journal-entry-content, .journal-sheet .editor) table thead {
 	background: none;
 }
-.journal-sheet table th {
+:is(.journal-entry-content, .journal-sheet .editor) table th {
 	color: var(--eh-text-color-black);
 	font-weight: bold;
 	text-align: center;
 	text-shadow: none;
 	text-transform: uppercase;
 }
-.journal-sheet table.full {
+:is(.journal-entry-content, .journal-sheet .editor) table.full {
 	border: none;
 	background: none;
 }
-.journal-sheet table.full :is(td, th) {
+:is(.journal-entry-content, .journal-sheet .editor) table.full :is(td, th) {
 	padding: 0.5em;
 }
-.journal-sheet table.full tr:not(:last-of-type) {
+:is(.journal-entry-content, .journal-sheet .editor) table.full tr:not(:last-of-type) {
 	border-block-end: 1px solid var(--eh-border-color-strong);
 }
-.journal-sheet table.full tbody :is(tr.dark, tr:not(.dark, .light):nth-of-type(odd)) {
+:is(.journal-entry-content, .journal-sheet .editor) table.full tbody :is(tr.dark, tr:not(.dark, .light):nth-of-type(odd)) {
 	background-color: rgba(214, 228, 229, 0.5);
 }
-.journal-sheet table.full tbody :is(tr.light, tr:not(.dark, .light):nth-of-type(even)) {
+:is(.journal-entry-content, .journal-sheet .editor) table.full tbody :is(tr.light, tr:not(.dark, .light):nth-of-type(even)) {
 	background-color: rgba(255, 255, 255, 0.5);
 }
-.journal-sheet table.full tbody th[colspan] {
+:is(.journal-entry-content, .journal-sheet .editor) table.full tbody th[colspan] {
 	padding-block: 1em;
 	background-color: rgba(247, 241, 193, 0.5);
 }
 
-.journal-sheet table.full.internal-borders thead {
+:is(.journal-entry-content, .journal-sheet .editor) table.full.internal-borders thead {
 	border: none;
 }
-.journal-sheet table.full.internal-borders tr:not(:last-of-type) {
+:is(.journal-entry-content, .journal-sheet .editor) table.full.internal-borders tr:not(:last-of-type) {
 	border-block: none;
 }
-.journal-sheet table.full.internal-borders :is(th, td):not(:last-child) {
+:is(.journal-entry-content, .journal-sheet .editor) table.full.internal-borders :is(th, td):not(:last-child) {
 	border-inline-end: 4px double var(--eh-border-color-weak);
 }
 
@@ -191,7 +199,7 @@ h3.arrowed::after {
 /*  Callout Tables                           */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.journal-sheet table:is(.yellow, .blue) {
+:is(.journal-entry-content, .journal-sheet .editor) table:is(.yellow, .blue) {
 	width: calc(100% - 6em);
 	overflow: clip;
 	margin: 3em;
@@ -201,64 +209,64 @@ h3.arrowed::after {
 	border-spacing: 0;
 	background: none;
 }
-.journal-sheet table:is(.yellow, .blue).narrow {
+:is(.journal-entry-content, .journal-sheet .editor) table:is(.yellow, .blue).narrow {
 	width: calc(100% - 16em);
 	margin-inline: 8em;
 }
-.journal-sheet table:is(.yellow, .blue).wide {
+:is(.journal-entry-content, .journal-sheet .editor) table:is(.yellow, .blue).wide {
 	width: calc(100% - 2em);
 	margin-inline: 1em;
 }
 
-.journal-sheet table:is(.yellow, .blue) thead {
+:is(.journal-entry-content, .journal-sheet .editor) table:is(.yellow, .blue) thead {
 	background: none;
 }
-.journal-sheet table:is(.yellow, .blue) :is(td, th) {
+:is(.journal-entry-content, .journal-sheet .editor) table:is(.yellow, .blue) :is(td, th) {
 	border: none;
 }
-.journal-sheet table:is(.yellow, .blue) thead tr:first-child th {
+:is(.journal-entry-content, .journal-sheet .editor) table:is(.yellow, .blue) thead tr:first-child th {
 	border-block-start: 4px solid var(--eh-border-color-strong);
 	padding-block-start: 1em;
 }
-.journal-sheet table:is(.yellow, .blue) thead tr th:first-child {
+:is(.journal-entry-content, .journal-sheet .editor) table:is(.yellow, .blue) thead tr th:first-child {
 	border-inline-start: 4px solid var(--eh-border-color-strong);
 	padding-inline-start: 2em;
 }
-.journal-sheet table:is(.yellow, .blue) thead tr th:last-child {
+:is(.journal-entry-content, .journal-sheet .editor) table:is(.yellow, .blue) thead tr th:last-child {
 	border-inline-end: 4px solid var(--eh-border-color-strong);
 	padding-inline-end: 2em;
 }
-.journal-sheet table:is(.yellow, .blue) thead tr:first-child :is(td, th):first-child {
+:is(.journal-entry-content, .journal-sheet .editor) table:is(.yellow, .blue) thead tr:first-child :is(td, th):first-child {
 	border-top-left-radius: 40px;
 }
-.journal-sheet table:is(.yellow, .blue) thead tr:first-child :is(td, th):last-child {
+:is(.journal-entry-content, .journal-sheet .editor) table:is(.yellow, .blue) thead tr:first-child :is(td, th):last-child {
 	border-top-right-radius: 40px;
 }
-.journal-sheet table:is(.yellow, .blue) tbody tr:last-child :is(td, th) {
+:is(.journal-entry-content, .journal-sheet .editor) table:is(.yellow, .blue) tbody tr:last-child :is(td, th) {
 	border-block-end: 4px solid var(--eh-border-color-strong);
 	padding-block-end: 1em;
 }
-.journal-sheet table:is(.yellow, .blue) tbody tr :is(td, th):first-child {
+:is(.journal-entry-content, .journal-sheet .editor) table:is(.yellow, .blue) tbody tr :is(td, th):first-child {
 	border-inline-start: 4px solid var(--eh-border-color-strong);
 	padding-inline-start: 2em;
 }
-.journal-sheet table:is(.yellow, .blue) tbody tr :is(td, th):last-child {
+:is(.journal-entry-content, .journal-sheet .editor) table:is(.yellow, .blue) tbody tr :is(td, th):last-child {
 	border-inline-end: 4px solid var(--eh-border-color-strong);
 	padding-inline-end: 2em;
 }
-.journal-sheet table:is(.yellow, .blue) tbody tr:last-child :is(td, th):first-child {
+:is(.journal-entry-content, .journal-sheet .editor) table:is(.yellow, .blue) tbody tr:last-child :is(td, th):first-child {
 	border-bottom-left-radius: 40px;
 }
-.journal-sheet table:is(.yellow, .blue) tbody tr:last-child :is(td, th):last-child {
+:is(.journal-entry-content, .journal-sheet .editor) table:is(.yellow, .blue) tbody tr:last-child :is(td, th):last-child {
 	border-bottom-right-radius: 40px;
 }
 
-.journal-sheet table:is(.yellow, .blue) :is(th, td) {
+:is(.journal-entry-content, .journal-sheet .editor) table:is(.yellow, .blue) :is(th, td) {
 	padding-inline: 0.5em;
 }
-.journal-sheet table:is(.yellow, .blue) :is(th, td):not(:last-child) {
+:is(.journal-entry-content, .journal-sheet .editor) table:is(.yellow, .blue) :is(th, td):not(:last-child) {
 	border-inline-end: 4px double var(--eh-border-color-weak);
 }
-.journal-sheet table:is(.yellow, .blue).narrow td {
+:is(.journal-entry-content, .journal-sheet .editor) table:is(.yellow, .blue).narrow td {
 	text-align: center;
 }
