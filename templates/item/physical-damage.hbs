@@ -61,7 +61,7 @@
 			</span>
 			<p class="hint">{{localize "EH.Equipment.Trait.SupplementalDamage.Hint"}}</p>
 			{{#each source.supplementalDamage}}
-				<div class="damage-entry" data-index="{{@index}}">
+				<div class="fields" data-index="{{@index}}">
 					<label>
 						<span>{{localize "EH.Equipment.Trait.Damage.Count.Label"}}</span>
 						<input type="number" name="system.supplementalDamage.{{@index}}.number" value="{{this.number}}">
@@ -81,6 +81,18 @@
 					<label>
 						<span>{{localize "EH.Bonus.Label[one]"}}</span>
 						<input type="text" name="system.supplementalDamage.{{@index}}.bonus" value="{{this.bonus}}">
+					</label>
+					<label>
+						<span>
+							{{localize "EH.Equipment.Trait.PenetrationValue.Abbreviation"}}
+							<input type="checkbox" name="system.supplementalDamage.{{@index}}.customPV"
+								data-tooltip="EH.Equipment.Trait.SupplementalDamage.CustomPV" {{checked this.customPV}}>
+						</span>
+						<input type="number" name="system.supplementalDamage.{{@index}}.penetrationValue"
+							value="{{this.penetrationValue}}" placeholder="
+								{{~#if (or this.customPV (eq @root.source.penetrationValue null))}}
+								{{~localize 'EH.Damage.IgnoresArmor.Label'}}{{else}}{{@root.source.penetrationValue}}{{/if}}"
+								{{disabled (not this.customPV)}}>
 					</label>
 					<span class="control">
 						<a data-action="damage" data-type="remove" data-tooltip="{{localize 'EH.Action.RemoveSpecific'

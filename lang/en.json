@@ -411,6 +411,7 @@
 "Equipment.Trait.Rounds.Spent": "Spent Rounds",
 "Equipment.Trait.SupplementalDamage.Label": "Supplemental Damage",
 "Equipment.Trait.SupplementalDamage.Hint": "Additional damage parts applied on top of the base item damage.",
+"Equipment.Trait.SupplementalDamage.CustomPV": "Custom Penetration Value",
 
 "Explosive.DC.Label": "Explosive Damage Save DC",
 "Explosive.Properties.Label": "Explosive Properties",

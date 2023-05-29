@@ -957,7 +957,8 @@ export default class ItemEH extends Item {
 					mode: "supplemental",
 					allowCritical: rollConfig.options.allowCritical,
 					multiplier: rollConfig.options.multiplier,
-					type: damage.type
+					type: damage.type,
+					pv: damage.customPV ? damage.penetrationValue : undefined
 				}
 			});
 		}

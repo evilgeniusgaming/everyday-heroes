@@ -114,10 +114,11 @@ export default class ChatMessageEH extends ChatMessage {
 		const message = game.messages.get(li.data("messageId"));
 		const origin = foundry.utils.getProperty(message, "flags.everyday-heroes.roll.origin");
 		const source = origin ? await fromUuid(origin) : null;
+		const basePV = message?.rolls?.[0]?.options.pv ?? null;
 		const damage = message?.rolls?.map(roll => ({
 			value: roll.total,
 			type: roll.options.type,
-			pv: roll.options.pv,
+			pv: roll.options.pv === undefined ? basePV : roll.options.pv,
 			source
 		}));
 		return Promise.all(canvas.tokens.controlled.map(t => t.actor.applyDamage(damage, { multiplier })));

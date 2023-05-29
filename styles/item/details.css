@@ -42,8 +42,7 @@
 	display: grid;
 	grid-template-columns: subgrid;
 }
-.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label,
-.everyday-heroes.item.sheet [data-tab="details"] .supplemental-damage .damage-entry > label {
+.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label {
 	display: flex;
 	flex-direction: column;
 }
@@ -53,15 +52,19 @@
 .everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label.triple {
 	grid-column: span 3;
 }
-.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label > :is(input, select),
-.everyday-heroes.item.sheet [data-tab="details"] .supplemental-damage .damage-entry > label > :is(input, select) {
+.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label > :is(input, select) {
 	flex: 1 0 calc(var(--form-field-height) + 1px);
 }
-.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label > span,
-.everyday-heroes.item.sheet [data-tab="details"] .supplemental-damage .damage-entry > label > span {
+.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label > span {
 	font-size: var(--font-size-12);
 	font-variant: small-caps;
 	font-weight: bold;
+}
+.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label > span > input[type="checkbox"] {
+	float: right;
+	width: 1em;
+	height: 1em;
+	margin: 0;
 }
 .everyday-heroes.item.sheet [data-tab="details"] section > fieldset .hint {
 	grid-column: 1 / -1;
@@ -107,9 +110,4 @@
 	align-items: center;
 	justify-content: end;
 	padding-inline-end: 0.5em;
-}
-.everyday-heroes.item.sheet [data-tab="details"] .supplemental-damage .damage-entry {
-	grid-column: 1 / -1;
-	display: grid;
-	grid-template-columns: subgrid;
 }
