@@ -1,7 +1,7 @@
 {
   "name": "Deduction",
   "type": "talent",
-  "img": "icons/skills/trades/academics-investigation-study-blue.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/deduction.svg",
   "system": {
     "description": {
       "value": "<p>When you fail an Intelligence ability check, you can reroll that check. This can be done only once per ability check.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "deduction"
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679516800231,
-    "modifiedTime": 1680382491185,
+    "modifiedTime": 1685314066180,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

@@ -1,7 +1,7 @@
 {
   "name": "Banter",
   "type": "talent",
-  "img": "icons/magic/sonic/scream-wail-shout-teal.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/banter.svg",
   "system": {
     "description": {
       "value": "<p>As a bonus action, you can give your allies an opening by drawing the attention of an opponent you are aware of who can hear you within 60 feet. The next attack one of your allies makes against that target before the start of your next turn has advantage.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "banter"
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679517608180,
-    "modifiedTime": 1680382150675,
+    "modifiedTime": 1685314036368,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

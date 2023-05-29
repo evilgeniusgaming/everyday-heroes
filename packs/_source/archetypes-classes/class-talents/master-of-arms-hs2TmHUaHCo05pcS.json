@@ -1,7 +1,7 @@
 {
   "name": "Master of Arms",
   "type": "talent",
-  "img": "icons/skills/melee/maneuver-daggers-paired-orange.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/master-of-arms.svg",
   "system": {
     "description": {
       "value": "<p>You add one die to the damage of all weapons you wield. (See \"Dice Rules\" in chapter 8 for details on extra dice.)</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "master-of-arms"
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679515614308,
-    "modifiedTime": 1680382981328,
+    "modifiedTime": 1685314135658,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

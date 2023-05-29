@@ -1,7 +1,7 @@
 {
   "name": "Grenadier",
   "type": "talent",
-  "img": "icons/skills/ranged/bomb-grenade-thrown-yellow.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/grenadier.svg",
   "system": {
     "description": {
       "value": "<p>You can draw, arm, and throw a grenade as a bonus action. You must have a free hand or already be holding the grenade to do this.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "grenadier"
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679515497300,
-    "modifiedTime": 1680382795394,
+    "modifiedTime": 1685314102317,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

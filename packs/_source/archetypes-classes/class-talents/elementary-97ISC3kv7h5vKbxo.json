@@ -1,7 +1,7 @@
 {
   "name": "Elementary",
   "type": "talent",
-  "img": "icons/skills/trades/academics-investigation-puzzles.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/elementary.svg",
   "system": {
     "description": {
       "value": "<p>You always treat a roll of 9 or lower as a 10 on any ability check you make that uses Perception, Insight, or Investigation, even if you are not proficient in those skills.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "elementary"
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679516844773,
-    "modifiedTime": 1680382523742,
+    "modifiedTime": 1685314072121,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

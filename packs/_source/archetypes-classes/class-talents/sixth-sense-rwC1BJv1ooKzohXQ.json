@@ -1,7 +1,7 @@
 {
   "name": "Sixth Sense",
   "type": "talent",
-  "img": "icons/magic/perception/third-eye-blue-red.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/sixth-sense.svg",
   "system": {
     "description": {
       "value": "<p>You gain the following benefits:</p><ul><li><p>You can use Wisdom instead of Dexterity for any attack or damage roll you make with weapons that don't have the heavy property.</p></li><li><p>You can use Wisdom instead of Dexterity when you roll for initiative.</p></li><li><p>You can take the Search action as a bonus action.</p></li></ul>",
@@ -52,7 +52,8 @@
         {
           "key": "system.overrides.ability.initiative",
           "mode": 2,
-          "value": "wis"
+          "value": "wis",
+          "priority": null
         }
       ],
       "tint": null,
@@ -67,10 +68,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.3",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679516807537,
-    "modifiedTime": 1682016930482,
+    "modifiedTime": 1685314218729,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

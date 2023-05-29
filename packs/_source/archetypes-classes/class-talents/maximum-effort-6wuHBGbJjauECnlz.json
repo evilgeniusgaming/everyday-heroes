@@ -1,7 +1,7 @@
 {
   "name": "Maximum Effort",
   "type": "talent",
-  "img": "icons/magic/fire/beam-jet-stream-embers.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/maximum-effort.svg",
   "system": {
     "description": {
       "value": "<p>You can use your Extra Effort ability twice before finishing a short or long rest, instead of only once. You can use Extra Effort only once per turn.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "maximum-effort"
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679515531071,
-    "modifiedTime": 1680383049918,
+    "modifiedTime": 1685314170463,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

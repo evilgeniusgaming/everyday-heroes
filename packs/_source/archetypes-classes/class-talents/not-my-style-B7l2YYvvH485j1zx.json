@@ -1,7 +1,7 @@
 {
   "name": "Not My Style",
   "type": "talent",
-  "img": "icons/skills/social/diplomacy-handshake-yellow.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/not-my-style.svg",
   "system": {
     "description": {
       "value": "<p>Whenever you roll a 1 on an influence die or a damage die, you can reroll that die once, taking the new result.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "not-my-style"
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679517695433,
-    "modifiedTime": 1680383076388,
+    "modifiedTime": 1685314176499,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

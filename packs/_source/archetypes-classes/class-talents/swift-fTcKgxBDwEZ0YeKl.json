@@ -1,7 +1,7 @@
 {
   "name": "Swift",
   "type": "talent",
-  "img": "icons/skills/movement/arrow-upward-blue.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/swift.svg",
   "system": {
     "description": {
       "value": "<p>As a bonus action, you can make a Dexterity (Security) check, a Dexterity (Sleight of Hand) check, use the Hide action, or use the Object Interaction action.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "swift"
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679458753087,
-    "modifiedTime": 1680460872283,
+    "modifiedTime": 1685314243294,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

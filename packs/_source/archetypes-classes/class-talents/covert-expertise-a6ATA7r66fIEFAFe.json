@@ -1,7 +1,7 @@
 {
   "name": "Covert Expertise",
   "type": "talent",
-  "img": "icons/magic/symbols/question-stone-yellow.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/covert-expertise.svg",
   "system": {
     "description": {
       "value": "<p>You gain expertise in two of the following skills: Deception, Security, Sleight of Hand, Stealth, or Streetwise. You must be proficient in a skill to take expertise in that skill.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "covert-expertise"
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679458816503,
-    "modifiedTime": 1680382435751,
+    "modifiedTime": 1685314051993,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

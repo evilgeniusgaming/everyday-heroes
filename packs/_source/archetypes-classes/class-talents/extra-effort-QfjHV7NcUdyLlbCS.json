@@ -1,7 +1,7 @@
 {
   "name": "Extra Effort",
   "type": "talent",
-  "img": "icons/magic/fire/explosion-fireball-large-red-orange.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/extra-effort.svg",
   "system": {
     "description": {
       "value": "<p>By pushing yourself to the limit, you can take an additional action during your turn. You can do this only once before you finish a short or long rest.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "@scale.extra-effort",
       "period": "sr",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "extra-effort"
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679515477804,
-    "modifiedTime": 1680382658909,
+    "modifiedTime": 1685314085886,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

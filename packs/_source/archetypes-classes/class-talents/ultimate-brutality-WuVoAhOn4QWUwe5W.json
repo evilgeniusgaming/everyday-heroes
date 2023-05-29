@@ -1,7 +1,7 @@
 {
   "name": "Ultimate Brutality",
   "type": "talent",
-  "img": "icons/skills/melee/swords-parry-block-yellow.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/ultimate-brutality.svg",
   "system": {
     "description": {
       "value": "<p>You add one damage die to your melee weapon damage rolls. (See \"Dice Rules\" in chapter 8 for details on extra dice.)</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "ultimate-brutality"
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679455749377,
-    "modifiedTime": 1680383413582,
+    "modifiedTime": 1685314247461,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

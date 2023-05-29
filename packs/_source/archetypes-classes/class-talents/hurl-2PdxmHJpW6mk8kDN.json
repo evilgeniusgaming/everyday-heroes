@@ -1,7 +1,7 @@
 {
   "name": "Hurl",
   "type": "talent",
-  "img": "icons/skills/ranged/bullets-triple-ball-orange.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/hurl.svg",
   "system": {
     "description": {
       "value": "<p>You can double the throwing range when you attack with any weapon that has the thrown property.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "hurl"
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679455526843,
-    "modifiedTime": 1680382909927,
+    "modifiedTime": 1685314115222,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

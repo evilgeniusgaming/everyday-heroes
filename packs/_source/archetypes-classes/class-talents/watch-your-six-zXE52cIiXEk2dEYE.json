@@ -1,7 +1,7 @@
 {
   "name": "Watch Your Six",
   "type": "talent",
-  "img": "icons/magic/defensive/shield-barrier-deflect-teal.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/watch-your-six.svg",
   "system": {
     "description": {
       "value": "<p>You gain a +1 bonus to your Defense.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "watch-your-six"
@@ -68,10 +68,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679515434790,
-    "modifiedTime": 1679518445546,
+    "modifiedTime": 1685314265203,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

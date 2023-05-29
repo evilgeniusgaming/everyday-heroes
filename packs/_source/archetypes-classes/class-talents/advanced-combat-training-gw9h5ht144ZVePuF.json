@@ -1,7 +1,7 @@
 {
   "name": "Advanced Combat Training",
   "type": "talent",
-  "img": "icons/skills/melee/spear-tips-triple-orange.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/advanced-combat-training.svg",
   "system": {
     "description": {
       "value": "<p>Once during your turn, when you take the Attack action, you can make two attacks as part of that action.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "advanced-combat-training"
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679515515757,
-    "modifiedTime": 1680382011962,
+    "modifiedTime": 1685314023310,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

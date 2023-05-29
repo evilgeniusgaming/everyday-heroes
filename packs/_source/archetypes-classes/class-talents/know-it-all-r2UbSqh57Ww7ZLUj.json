@@ -1,7 +1,7 @@
 {
   "name": "Know-It-All",
   "type": "talent",
-  "img": "icons/skills/trades/academics-book-study-runes.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/know-it-all.svg",
   "system": {
     "description": {
       "value": "<p>You have advantage on all ability checks to recall information.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "know-it-all"
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679516697039,
-    "modifiedTime": 1680382957765,
+    "modifiedTime": 1685314130066,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

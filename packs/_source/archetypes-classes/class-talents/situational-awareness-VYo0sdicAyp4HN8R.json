@@ -1,7 +1,7 @@
 {
   "name": "Situational Awareness",
   "type": "talent",
-  "img": "icons/magic/defensive/shield-barrier-deflect-gold.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/situational-awareness.svg",
   "system": {
     "description": {
       "value": "<p>You gain a +2 bonus to your Defense, replacing the bonus from Watch Your Six.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "situational-awareness"
@@ -68,10 +68,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679515559953,
-    "modifiedTime": 1679518456926,
+    "modifiedTime": 1685314194017,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

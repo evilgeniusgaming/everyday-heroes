@@ -1,7 +1,7 @@
 {
   "name": "Weak Spot",
   "type": "talent",
-  "img": "icons/skills/ranged/target-bullseye-arrow-glowing.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/weak-spot.svg",
   "system": {
     "description": {
       "value": "<p>As a bonus action, you can spend 1 Focus to gain advantage on your next attack roll against one opponent you can see. If that attack hits, you deal an additional 1d6 damage.</p><p>The amount of extra damage increases as you gain levels in this class, as shown in the Weak Spot column of the Sleuth table.</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "weak-spot"
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679516812672,
-    "modifiedTime": 1679517343295,
+    "modifiedTime": 1685314270696,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

@@ -1,7 +1,7 @@
 {
   "name": "Haymaker",
   "type": "talent",
-  "img": "icons/skills/trades/farming-sickle-harvest-wheat.webp",
+  "img": "systems/everyday-heroes/artwork/icons/classes/haymaker.svg",
   "system": {
     "description": {
       "value": "<p>When making an unarmed strike and using Reckless Attack, you can also use Power Attack. (Normally, you cannot use Power Attack when using Reckless Attack.)</p>",
@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "identifier": {
       "value": "haymaker"
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.0",
     "coreVersion": "10.291",
     "createdTime": 1679455696741,
-    "modifiedTime": 1680382822259,
+    "modifiedTime": 1685314107764,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
