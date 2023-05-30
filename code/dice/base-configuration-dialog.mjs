@@ -97,7 +97,7 @@ export default class BaseConfigurationDialog extends FormApplication {
 		return foundry.utils.mergeObject({
 			CONFIG: CONFIG.EverydayHeroes,
 			default: this.options.default ?? {},
-			formula: this.rolls[0].formula ?? "",
+			rolls: this.rolls,
 			rollModes: CONFIG.Dice.rollModes,
 			bonus: this.rolls[0].data.bonus,
 			buttons: this.getButtons()

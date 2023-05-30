@@ -1,9 +1,8 @@
 <form class="dialog-content" autocomplete="off">
 	<section class="main-form">
-		<fieldset>
-			<label>{{localize "EH.Dice.Formula"}}</label>
-			<input type="text" value="{{formula}}" readonly>
-		</fieldset>
+		<ul class="formulas">
+			{{#each rolls}}<li>{{this.formula}}</li>{{/each}}
+		</ul>
 		{{#if options.chooseAbility}}
 			<fieldset>
 				<label>{{localize "EH.Ability.Label[one]"}}</label>

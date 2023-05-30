@@ -1,9 +1,15 @@
 <form class="dialog-content" autocomplete="off">
 	<section class="main-form">
-		<fieldset>
-			<label>{{localize "EH.Dice.Formula"}}</label>
-			<input type="text" value="{{formula}}" readonly>
-		</fieldset>
+		<ul class="formulas damage">
+			{{#each rolls}}
+				<li>
+					<span>{{this.formula}}</span>
+					{{#with (lookup (lookup @root.CONFIG.damageTypes this.options.type) "label") as |damage|}}
+						<span class="damage-type">{{damage}}</span>
+					{{/with}}
+				</li>
+			{{/each}}
+		</ul>
 		{{#if damageTypes}}
 			<fieldset>
 				<label>{{localize "EH.Damage.Type.Label[one]"}}</label>

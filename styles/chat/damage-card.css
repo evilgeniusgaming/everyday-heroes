@@ -4,7 +4,7 @@
 	align-items: center;
 	gap: 0.25em;
 }
-.damage.dice-roll .dice-total :is(.damage-type, .pv) {
+:is(.damage.dice-roll .dice-total, .everyday-heroes.roll .formulas) :is(.damage-type, .pv) {
 	border: 1px solid var(--eh-border-color-weak);
 	border-radius: 5px;
 	padding-inline: 0.5em;

@@ -49,7 +49,7 @@ export default class DamageConfigurationDialog extends BaseConfigurationDialog {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	_buildRoll(config, formData={}) {
+	_buildRolls(config, formData={}) {
 		config = foundry.utils.mergeObject({parts: [], data: {}, options: {}}, config);
 		if ( formData.damageType ) config.options.type = formData.damageType;
 		return super._buildRolls(config, formData);
