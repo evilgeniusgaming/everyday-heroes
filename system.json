@@ -36,7 +36,9 @@
       "banner": "systems/everyday-heroes/artwork/interface/banners/archetypes-classes.webp",
       "type": "Item",
       "flags": {
-        "sorting": "auto"
+        "everyday-heroes": {
+          "sorting": "auto"
+        }
       }
     },
     {
@@ -47,7 +49,9 @@
       "banner": "systems/everyday-heroes/artwork/interface/banners/backgrounds-professions.webp",
       "type": "Item",
       "flags": {
-        "sorting": "auto"
+        "everyday-heroes": {
+          "sorting": "auto"
+        }
       }
     },
     {
@@ -58,7 +62,9 @@
       "banner": "systems/everyday-heroes/artwork/interface/banners/plans-tricks.webp",
       "type": "Item",
       "flags": {
-        "sorting": "auto"
+        "everyday-heroes": {
+          "sorting": "auto"
+        }
       }
     },
     {
@@ -69,7 +75,9 @@
       "banner": "systems/everyday-heroes/artwork/interface/banners/feats.webp",
       "type": "Item",
       "flags": {
-        "sorting": "auto"
+        "everyday-heroes": {
+          "sorting": "auto"
+        }
       }
     },
     {

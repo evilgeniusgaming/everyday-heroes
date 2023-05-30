@@ -27,7 +27,7 @@ export default async function getSubfolderName(data, pack) {
 
 	const config = CONFIG_CACHE[pack];
 	let name = "";
-	switch (config?.flags?.sorting) {
+	switch (config?.flags?.["everyday-heroes"]?.sorting) {
 		case "auto":
 			name = sortAuto(data, config);
 			break;

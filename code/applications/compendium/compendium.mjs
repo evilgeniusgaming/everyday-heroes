@@ -43,7 +43,7 @@ export default class CompendiumEH extends Compendium {
 			context.index = this.collection.index.contents;
 			context.index.sort((a, b) => (a.sort || 0) - (b.sort || 0) || a.name.localeCompare(b.name));
 		}
-		switch (this.collection.metadata.flags.sorting) {
+		switch (this.collection.metadata.flags["everyday-heroes"].sorting) {
 			case "auto":
 				context.sections = this._createAutoSections(context);
 				break;
@@ -86,7 +86,7 @@ export default class CompendiumEH extends Compendium {
 	 */
 	_createManualSections(context) {
 		const sections = {};
-		const categories = foundry.utils.deepClone(this.collection.metadata.flags.categories ?? {});
+		const categories = foundry.utils.deepClone(this.collection.metadata.flags["everyday-heroes"].categories ?? {});
 		const sortValues = this._sortValues(Object.keys(categories));
 		for ( const item of context.index ) {
 			const key = foundry.utils.getProperty(item, "flags.everyday-heroes.category");
