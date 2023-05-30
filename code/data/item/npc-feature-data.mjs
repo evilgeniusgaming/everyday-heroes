@@ -19,6 +19,7 @@ export default class NPCFeatureData extends SystemDataModel.mixin(DescribedTempl
 			type: "npcFeature",
 			category: "feature",
 			localization: "EH.Item.Type.NPCFeature",
+			sheetLocalization: "EH.Item.Type.Feature",
 			icon: "fa-solid fa-otter",
 			image: "systems/everyday-heroes/artwork/svg/items/feature.svg"
 		};

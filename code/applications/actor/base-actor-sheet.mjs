@@ -143,6 +143,115 @@ export default class BaseActorSheet extends ActorSheet {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Sort provided items into sections defined in `CONFIG.EverydayHeroes.sheetSections` for this actor type.
+	 * @param {object} context - Context object for rendering the sheet. **Will be mutated.**
+	 * @param {async Function} callback - Method called for each item after it is added to a section.
+	 */
+	async _prepareItemSections(context, callback) {
+		const sections = this._buildSections();
+		context.itemContext ??= {};
+
+		for ( const item of Array.from(context.actor.items).sort((a, b) => a.sort - b.sort) ) {
+			const section = this._organizeItem(item, sections);
+			const ctx = context.itemContext[item.id] ??= {};
+			await callback(item, section, ctx);
+
+			// Prepare expanded data
+			if ( this.itemsExpanded.has(item.id) ) {
+				ctx.expandedData = await item.chatContext({secrets: this.actor.isOwner});
+			}
+		}
+
+		for ( const tab of Object.values(sections) ) {
+			for ( const [key, section] of Object.entries(tab) ) {
+				if ( !this.editingMode && section.options?.autoHide && !section.items.length ) delete tab[key];
+				else if ( section.primary && !section.primary?.item ) section.create.unshift({
+					label: section.primary.label, dataset: section.primary.dataset
+				});
+			}
+		}
+
+		Object.entries(sections).forEach(([key, section]) => context[key] = section);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Construct sheet sections based on data in `CONFIG.EverydayHeroes.sheetSections`.
+	 * @returns {object}
+	 * @internal
+	 */
+	_buildSections() {
+		const sections = {};
+		const formatter = new Intl.ListFormat(game.i18n.lang, {style: "short", type: "conjunction"});
+		const typeModels = CONFIG.Item[game.release.generation > 10 ? "dataModels" : "systemDataModels"];
+
+		for ( const config of CONFIG.EverydayHeroes.sheetSections[this.actor.type] ?? {} ) {
+			const tab = sections[config.tab] ??= {};
+			const primaryType = typeModels[config.primaryType?.type];
+			const types = config.types.map(t => ({ dataset: t, model: typeModels[t.type] }));
+			const id = primaryType ? primaryType.metadata.type : types.map(t => t.model.metadata.type).join("-");
+			const section = tab[id] = { config, items: [], options: config.options };
+
+			// Use custom label, singular for primary items, or plural list for others
+			if ( config.label ) section.label = game.i18n.localize(config.label);
+			else if ( primaryType ) section.label = game.i18n.localize(
+				`${primaryType.metadata.sheetLocalization ?? primaryType.metadata.localization}[one]`
+			);
+			else section.label = formatter.format(types.map(t =>
+				game.i18n.localize(`${t.model.metadata.sheetLocalization ?? t.model.metadata.localization}[other]`)
+			));
+
+			// Add create options
+			if ( primaryType ) section.primary = { item: null, label: section.label, dataset: config.primaryType };
+			section.create = types.map(({dataset, model}) => ({
+				label: `${model.metadata.sheetLocalization ?? model.metadata.localization}[one]`,
+				dataset
+			}));
+		}
+
+		return sections;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Place an item in the appropriate section.
+	 * @param {ItemEH} item - Item to organize.
+	 * @param {object} sections - Sections to populate.
+	 * @returns {object} - Section into which the item was inserted.
+	 * @internal
+	 */
+	_organizeItem(item, sections) {
+		const checkFilter = (item, filter) => Object.entries(filter)
+			.every(([key, value]) => foundry.utils.getProperty(item, key) === value);
+
+		for ( const tab of Object.values(sections) ) {
+			for ( const section of Object.values(tab) ) {
+				if ( section.primary && !section.primary.item && checkFilter(item, section.config.primaryType) ) {
+					section.primary.item = item;
+					return section;
+				}
+				for ( const type of section.config.types ) {
+					if ( checkFilter(item, type) ) {
+						section.items.push(item);
+						return section;
+					}
+				}
+			}
+		}
+
+		// No matching section found, add to uncategorized section if editing mode is enabled
+		if ( !this.editingMode ) return;
+		const firstTab = Object.keys(sections)[0];
+		const section = sections[firstTab].uncategorized ??= { label: "what the what?", items: [] };
+		section.items.push(item);
+		return section;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Prepare various lists that might be displayed on the actor's sheet.
 	 * @param {object} context - Context object for rendering the sheet. **Will be mutated.**
 	 */

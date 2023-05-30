@@ -327,6 +327,102 @@ preLocalize("senses", { sort: true });
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Sections that will appear on actor sheets.
+ */
+export const sheetSections = {
+	hero: [
+		{
+			tab: "features",
+			types: [{type: "talent", "system.type.value": "archetype"}],
+			primaryType: {type: "archetype"}
+		},
+		{
+			tab: "features",
+			types: [{type: "talent", "system.type.value": "class"}],
+			primaryType: {type: "class"}
+		},
+		{
+			tab: "features",
+			types: [{type: "specialFeature", "system.type.value": "background"}],
+			primaryType: {type: "background"}
+		},
+		{
+			tab: "features",
+			types: [{type: "specialFeature", "system.type.value": "profession"}],
+			primaryType: {type: "profession"}
+		},
+		{
+			tab: "features",
+			types: [{type: "plan"}],
+			options: { autoHide: true }
+		},
+		{
+			tab: "features",
+			types: [{type: "trick"}],
+			options: { autoHide: true }
+		},
+		{
+			tab: "features",
+			types: [{type: "feat"}]
+		},
+		{
+			tab: "inventory",
+			types: [{type: "armor"}],
+			options: { equippable: true }
+		},
+		{
+			tab: "inventory",
+			types: [{type: "weapon"}],
+			options: { equippable: true }
+		},
+		{
+			tab: "inventory",
+			types: [{type: "ammunition"}, {type: "explosive"}]
+		},
+		{
+			tab: "inventory",
+			types: [{type: "gear"}]
+		}
+	],
+	npc: [
+		{
+			tab: "inventory",
+			types: [{type: "armor"}],
+			options: { equippable: true }
+		},
+		{
+			tab: "inventory",
+			types: [{type: "npcWeapon"}],
+			options: { equippable: true }
+		},
+		{
+			tab: "inventory",
+			types: [{type: "ammunition"}, {type: "npcExplosive"}]
+		},
+		{
+			tab: "inventory",
+			types: [{type: "gear"}]
+		},
+		{
+			tab: "inventory",
+			types: [{type: "plan"}],
+			options: { autoHide: true }
+		},
+		{
+			tab: "inventory",
+			types: [{type: "trick"}],
+			options: { autoHide: true }
+		},
+		{
+			tab: "inventory",
+			types: [{type: "npcFeature"}]
+		}
+	]
+};
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Configuration data for actor sizes.
  *
  * @typedef {LabeledConfiguration} SizeConfiguration

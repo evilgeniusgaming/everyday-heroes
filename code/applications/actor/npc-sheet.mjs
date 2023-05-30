@@ -40,10 +40,9 @@ export default class NPCSheet extends BaseActorSheet {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async prepareItems(context) {
-		context.itemContext = {};
+		const ammunitionTypes = {};
 
 		context.actionSections = {
-			// TODO: Dynamically create these sections
 			passive: {
 				label: "EH.Action.Passive",
 				items: []
@@ -61,160 +60,31 @@ export default class NPCSheet extends BaseActorSheet {
 				items: []
 			}
 		};
-		context.passiveFeatures = [];
 
-		const formatter = new Intl.ListFormat(game.i18n.lang, {style: "short", type: "conjunction"});
-		context.inventory = {
-			armor: {
-				label: "EH.Item.Type.Armor[other]",
-				items: [],
-				options: { equippable: true },
-				create: [
-					{
-						label: "EH.Item.Type.Armor[one]",
-						icon: "artwork/svg/equipment/armor.svg",
-						dataset: {type: "armor"}
-					}
-				]
-			},
-			weapon: {
-				label: "EH.Item.Type.Weapon[other]",
-				items: [],
-				options: { equippable: true },
-				create: [
-					{
-						label: "EH.Item.Type.Weapon[one]",
-						icon: "artwork/svg/equipment/weapon.svg",
-						dataset: {type: "npcWeapon", system: {type: {value: "melee"}}}
-					}
-				]
-			},
-			ammunitionExplosive: {
-				label: formatter.format([
-					game.i18n.localize("EH.Item.Type.Ammunition[other]"),
-					game.i18n.localize("EH.Item.Type.Explosive[other]")
-				]),
-				items: [],
-				create: [
-					{
-						label: "EH.Item.Type.Ammunition[one]",
-						icon: "artwork/svg/equipment/ammunition.svg",
-						dataset: {type: "ammunition"}
-					},
-					{
-						label: "EH.Item.Type.Explosive[one]",
-						icon: "artwork/svg/equipment/explosive.svg",
-						dataset: {type: "npcExplosive"}
-					}
-				]
-			},
-			gear: {
-				label: "EH.Item.Type.Gear[other]",
-				items: [],
-				create: [
-					{
-						label: "EH.Item.Type.Gear[one]",
-						icon: "artwork/svg/equipment/gear.svg",
-						dataset: {type: "gear"}
-					}
-				]
-			},
-			plan: {
-				label: "EH.Item.Type.Plan[other]",
-				items: [],
-				create: [
-					{
-						label: "EH.Item.Type.Plan[one]",
-						dataset: {type: "plan"}
-					}
-				]
-			},
-			power: {
-				label: "EH.Item.Type.Power[other]",
-				items: [],
-				create: [
-					{
-						label: "EH.Item.Type.Power[one]",
-						dataset: {type: "power"}
-					}
-				]
-			},
-			trick: {
-				label: "EH.Item.Type.Trick[other]",
-				items: [],
-				create: [
-					{
-						label: "EH.Item.Type.Trick[one]",
-						dataset: {type: "trick"}
-					}
-				]
-			},
-			feature: {
-				label: "EH.Item.Type.NPCFeature[other]",
-				items: [],
-				create: [
-					{
-						label: "EH.Item.Type.NPCFeature[one]",
-						icon: "",
-						dataset: {type: "npcFeature"}
-					}
-				]
+		const callback = async (item, section, ctx) => {
+			ctx.label = await item.npcLabel();
+			ctx.description = await item.npcDescription();
+
+			if ( ["ammunition", "npcExplosive"].includes(item.type) ) {
+				ammunitionTypes[item.system.type.value] ??= {};
+				ammunitionTypes[item.system.type.value][item.id] = item;
+			}
+			if ( ["npcExplosive", "npcWeapon"].includes(item.type) ) {
+				context.actionSections.action.items.push(item);
+			}
+			if ( item.type === "npcFeature" ) {
+				if ( !item.system.activation.type ) context.actionSections.passive.items.push(item);
+				else if ( item.system.activation.type === "attack" ) context.actionSections.action.items.push(item);
+				else context.actionSections[item.system.activation.type]?.items.push(item);
 			}
 		};
 
-		const ammunitionTypes = {};
-		const items = [...context.actor.items].sort((a, b) => a.sort - b.sort);
-		for ( const item of items ) {
-			const ctx = context.itemContext[item.id] ??= {
-				label: await item.npcLabel(), description: await item.npcDescription()
-			};
-			switch (item.type) {
-				case "armor":
-					context.inventory.armor.items.push(item);
-					break;
-				case "weapon":
-				case "npcWeapon":
-					context.inventory.weapon.items.push(item);
-					context.actionSections.action.items.push(item);
-					break;
-				case "npcExplosive":
-					context.actionSections.action.items.push(item);
-				case "ammunition":
-				case "explosive":
-					ammunitionTypes[item.system.type.value] ??= {};
-					ammunitionTypes[item.system.type.value][item.id] = item;
-					context.inventory.ammunitionExplosive.items.push(item);
-					break;
-				case "gear":
-					context.inventory.gear.items.push(item);
-					break;
-				case "plan":
-					context.inventory.plan.items.push(item);
-					break;
-				case "power":
-					context.inventory.power.items.push(item);
-					break;
-				case "trick":
-					context.inventory.trick.items.push(item);
-					break;
-				default:
-					context.inventory.feature.items.push(item);
-					if ( !item.system.activation?.type ) context.actionSections.passive.items.push(item);
-					else if ( item.system.activation.type === "attack" ) context.actionSections.action.items.push(item);
-					else context.actionSections[item.system.activation.type]?.items.push(item);
-					break;
-			}
-
-			// Prepare expanded data
-			if ( this.itemsExpanded.has(item.id) ) {
-				ctx.expandedData = await item.chatContext({secrets: this.actor.isOwner});
-			}
-		}
+		await this._prepareItemSections(context, callback);
 
 		context.armor = context.inventory.armor.items[0];
 
 		// Prepare ammunition lists
-		for ( const item of context.inventory.weapon.items ) {
+		for ( const item of context.inventory.npcWeapon.items ) {
 			const ctx = context.itemContext[item.id].ammunition ??= {};
 			const ammunitionTypeConfig = CONFIG.EverydayHeroes.ammunitionTypes[item.system.rounds.type];
 			ctx.defaultLabel = ammunitionTypeConfig ? game.i18n.format("EH.Ammunition.Standard.Label", {
@@ -225,10 +95,6 @@ export default class NPCSheet extends BaseActorSheet {
 			ctx.displayAmmunitionSelector = (!foundry.utils.isEmpty(ctx.types) || ctx.defaultLabel)
 				&& !!item.system.rounds.type;
 		}
-
-		if ( !context.inventory.plan.items.length ) delete context.inventory.plan;
-		if ( !context.inventory.power.items.length ) delete context.inventory.power;
-		if ( !context.inventory.trick.items.length ) delete context.inventory.trick;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

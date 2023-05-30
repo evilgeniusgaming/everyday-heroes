@@ -18,7 +18,8 @@ export default class NPCExplosiveData extends ExplosiveData {
 	static get metadata() {
 		return foundry.utils.mergeObject(super.metadata, {
 			type: "npcExplosive",
-			localization: "EH.Item.Type.NPCExplosive"
+			localization: "EH.Item.Type.NPCExplosive",
+			sheetLocalization: "EH.Item.Type.Explosive"
 		});
 	}
 

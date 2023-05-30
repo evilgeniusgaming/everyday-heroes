@@ -60,7 +60,16 @@ export default class HeroSheet extends BaseActorSheet {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async prepareItems(context) {
-		context.itemContext = {};
+		const ammunitionTypes = {};
+
+		const callback = (item, section) => {
+			if ( ["ammunition", "explosive"].includes(item.type) ) {
+				ammunitionTypes[item.system.type.value] ??= {};
+				ammunitionTypes[item.system.type.value][item.id] = item;
+			}
+		};
+
+		await this._prepareItemSections(context, callback);
 
 		context.equipped = {
 			armor: {
@@ -72,222 +81,6 @@ export default class HeroSheet extends BaseActorSheet {
 				items: []
 			}
 		};
-
-		context.features = {
-			archetype: {
-				label: "EH.Item.Type.Archetype[one]",
-				primary: {
-					item: null,
-					dataset: {type: "archetype"}
-				},
-				items: [],
-				create: [
-					{
-						label: "EH.Item.Type.Talent[one]",
-						dataset: {type: "talent", "system.type.value": "archetype"}
-					}
-				]
-			},
-			class: {
-				label: "EH.Item.Type.Class[one]",
-				primary: {
-					item: null,
-					dataset: {type: "class"}
-				},
-				items: [],
-				create: [
-					{
-						label: "EH.Item.Type.Talent[one]",
-						dataset: {type: "talent", "system.type.value": "class"}
-					}
-				]
-			},
-			background: {
-				label: "EH.Item.Type.Background[one]",
-				primary: {
-					item: null,
-					dataset: {type: "background"}
-				},
-				items: [],
-				create: [
-					{
-						label: "EH.Item.Type.SpecialFeature[one]",
-						dataset: {type: "specialFeature", "system.type.value": "background"}
-					}
-				]
-			},
-			profession: {
-				label: "EH.Item.Type.Profession[one]",
-				primary: {
-					item: null,
-					dataset: {type: "profession"}
-				},
-				items: [],
-				create: [
-					{
-						label: "EH.Item.Type.SpecialFeature[one]",
-						dataset: {type: "specialFeature", "system.type.value": "profession"}
-					}
-				]
-			},
-			plan: {
-				label: "EH.Item.Type.Plan[other]",
-				items: [],
-				create: [
-					{
-						label: "EH.Item.Type.Plan[one]",
-						dataset: {type: "plan"}
-					}
-				]
-			},
-			power: {
-				label: "EH.Item.Type.Power[other]",
-				items: [],
-				create: [
-					{
-						label: "EH.Item.Type.Power[one]",
-						dataset: {type: "power"}
-					}
-				]
-			},
-			trick: {
-				label: "EH.Item.Type.Trick[other]",
-				items: [],
-				create: [
-					{
-						label: "EH.Item.Type.Trick[one]",
-						dataset: {type: "trick"}
-					}
-				]
-			},
-			feat: {
-				label: "EH.Item.Type.Feat[other]",
-				items: [],
-				create: [
-					{
-						label: "EH.Item.Type.Feat[one]",
-						dataset: {type: "feat"}
-					}
-				]
-			}
-		};
-
-		const formatter = new Intl.ListFormat(game.i18n.lang, {style: "short", type: "conjunction"});
-		context.inventory = {
-			armor: {
-				label: "EH.Item.Type.Armor[other]",
-				items: [],
-				options: { equippable: true },
-				create: [
-					{
-						label: "EH.Item.Type.Armor[one]",
-						icon: "artwork/svg/equipment/armor.svg",
-						dataset: {type: "armor"}
-					}
-				]
-			},
-			weapon: {
-				label: "EH.Item.Type.Weapon[other]",
-				items: [],
-				options: { equippable: true },
-				create: [
-					{
-						label: "EH.Item.Type.Weapon[one]",
-						icon: "artwork/svg/equipment/weapon.svg",
-						dataset: {type: "weapon"}
-					}
-				]
-			},
-			ammunitionExplosive: {
-				label: formatter.format([
-					game.i18n.localize("EH.Item.Type.Ammunition[other]"),
-					game.i18n.localize("EH.Item.Type.Explosive[other]")
-				]),
-				items: [],
-				create: [
-					{
-						label: "EH.Item.Type.Ammunition[one]",
-						icon: "artwork/svg/equipment/ammunition.svg",
-						dataset: {type: "ammunition"}
-					},
-					{
-						label: "EH.Item.Type.Explosive[one]",
-						icon: "artwork/svg/equipment/explosive.svg",
-						dataset: {type: "explosive"}
-					}
-				]
-			},
-			gear: {
-				label: "EH.Item.Type.Gear[other]",
-				items: [],
-				create: [
-					{
-						label: "EH.Item.Type.Gear[one]",
-						icon: "artwork/svg/equipment/gear.svg",
-						dataset: {type: "gear"}
-					}
-				]
-			}
-		};
-
-		const ammunitionTypes = {};
-		const items = [...context.actor.items].sort((a, b) => a.sort - b.sort);
-		for ( const item of items ) {
-			const ctx = context.itemContext[item.id] ??= { actions: [] };
-			switch (item.type) {
-				case "archetype":
-					context.features.archetype.primary.item = item;
-					break;
-				case "class":
-					context.features.class.primary.item = item;
-					break;
-				case "background":
-					context.features.background.primary.item = item;
-					break;
-				case "profession":
-					context.features.profession.primary.item = item;
-					break;
-				case "plan":
-					context.features.plan.items.push(item);
-					break;
-				case "power":
-					context.features.power.items.push(item);
-					break;
-				case "trick":
-					context.features.trick.items.push(item);
-					break;
-				case "specialFeature":
-				case "talent":
-					if ( context.features[item.system.type.value] ) {
-						context.features[item.system.type.value].items.push(item);
-						break;
-					}
-					// TODO: Add warning about talent not associated with item type
-				case "feat":
-					context.features.feat.items.push(item);
-					break;
-				case "armor":
-					context.inventory.armor.items.push(item);
-					break;
-				case "weapon":
-					context.inventory.weapon.items.push(item);
-					break;
-				case "ammunition":
-				case "explosive":
-					ammunitionTypes[item.system.type.value] ??= {};
-					ammunitionTypes[item.system.type.value][item.id] = item;
-					context.inventory.ammunitionExplosive.items.push(item);
-					break;
-				case "gear":
-					context.inventory.gear.items.push(item);
-					break;
-			}
-
-			// Prepare expanded data
-			if ( this.itemsExpanded.has(item.id) ) {
-				ctx.expandedData = await item.chatContext({secrets: this.actor.isOwner});
-			}
-		}
 
 		// Prepare ammunition lists
 		for ( const item of context.inventory.weapon.items ) {
@@ -301,27 +94,6 @@ export default class HeroSheet extends BaseActorSheet {
 			ctx.displayAmmunitionSelector = (!foundry.utils.isEmpty(ctx.types) || ctx.defaultLabel)
 				&& !!item.system.rounds.type;
 		}
-
-		if ( !context.features.archetype.primary.item ) context.features.archetype.create.unshift({
-			label: "EH.Item.Type.Archetype[one]",
-			dataset: { type: "archetype" }
-		});
-		if ( !context.features.class.primary.item ) context.features.class.create.unshift({
-			label: "EH.Item.Type.Class[one]",
-			dataset: { type: "class" }
-		});
-		if ( !context.features.background.primary.item ) context.features.background.create.unshift({
-			label: "EH.Item.Type.Background[one]",
-			dataset: { type: "background" }
-		});
-		if ( !context.features.profession.primary.item ) context.features.profession.create.unshift({
-			label: "EH.Item.Type.Profession[one]",
-			dataset: { type: "profession" }
-		});
-
-		if ( !context.features.plan.items.length ) delete context.features.plan;
-		if ( !context.features.power.items.length ) delete context.features.power;
-		if ( !context.features.trick.items.length ) delete context.features.trick;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

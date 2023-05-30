@@ -499,6 +499,8 @@
 "Item.Type.Explosive[other]": "Explosives",
 "Item.Type.Feat[one]": "Feat",
 "Item.Type.Feat[other]": "Feats",
+"Item.Type.Feature[one]": "Feature",
+"Item.Type.Feature[other]": "Features",
 "Item.Type.Gear[one]": "Gear",
 "Item.Type.Gear[other]": "Gear",
 "Item.Type.NPCExplosive[one]": "NPC Explosive",

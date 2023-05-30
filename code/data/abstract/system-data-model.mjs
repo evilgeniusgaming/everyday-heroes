@@ -30,6 +30,7 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 * @property {string} localization - Base localization key for this type. This should be a localization key that
 	 *                                   accepts plural types (e.g. `EH.Item.Type.Weapon` becomes
 	 *                                   `EH.Item.Type.Weapon[few]` and `EH.Item.Type.Weapon[other]`).
+	 * @property {string} [sheetLocalization] - Alternate localization key used when displaying an item on an actor sheet.
 	 * @property {string} [icon] - Font awesome icon string used for links to this type.
 	 * @property {string} [image] - Default image used when creating a Document of this type.
 	 * @property {boolean} [register] - Register all items of this type within the central list. Only used on Items.

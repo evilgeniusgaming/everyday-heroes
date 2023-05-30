@@ -16,7 +16,8 @@ export default class NPCWeaponData extends WeaponData {
 	static get metadata() {
 		return foundry.utils.mergeObject(super.metadata, {
 			type: "npcWeapon",
-			localization: "EH.Item.Type.NPCWeapon"
+			localization: "EH.Item.Type.NPCWeapon",
+			sheetLocalization: "EH.Item.Type.Weapon"
 		});
 	}
 
