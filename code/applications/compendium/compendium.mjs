@@ -68,6 +68,7 @@ export default class CompendiumEH extends Compendium {
 		for ( const item of context.index ) {
 			const Type = CONFIG[this.collection.metadata.type][
 				game.release.generation > 10 ? "dataModels" : "systemDataModels"][item.type];
+			if ( !Type ) continue;
 			const [key, section] = Type.getCompendiumSection(item, sortValues);
 			sections[key] ??= section;
 			sections[key].index ??= [];
