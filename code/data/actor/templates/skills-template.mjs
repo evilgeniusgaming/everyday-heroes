@@ -7,7 +7,8 @@ import Proficiency from "../../../documents/proficiency.mjs";
  * Data for a skill.
  *
  * @typedef {object} SkillData
- * @property {Set<string>} abilities - Abilities that can be used when rolling this skill, the highest will be default.
+ * @property {Set<string>} abilities - Abilities that can be used when rolling this skill in addition to the one
+ *                                     defined in the skill config. The highest will be rolled.
  * @property {Proficiency} proficiency - Proficiency in this skill.
  * @property {object} bonuses
  * @property {string} bonuses.check - Bonus to checks with this skill.
@@ -53,7 +54,9 @@ export default class SkillsTemplate extends foundry.abstract.DataModel {
 				})
 			}, {label: "EH.Override.Label"}),
 			skills: new MappingField(new foundry.data.fields.SchemaField({
-				ability: new foundry.data.fields.StringField({label: "EH.Ability.Label[one]"}),
+				abilities: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+					label: "EH.Skill.Abilities.Label", hint: "EH.Skill.Abilities.Hint"
+				}),
 				proficiency: new foundry.data.fields.SchemaField({
 					multiplier: new foundry.data.fields.NumberField({
 						nullable: false, initial: 0, min: 0, max: 2, step: 0.5, label: "EH.Proficiency.Multiplier"
@@ -65,24 +68,9 @@ export default class SkillsTemplate extends foundry.abstract.DataModel {
 				}),
 				minimum: new FormulaField({determinstic: true, label: "EH.Skill.Orverride.Minimum"})
 			}), {
-				initialKeys: CONFIG.EverydayHeroes.skills, initialValue: this._initialSkillValue,
-				prepareKeys: true, label: "EH.Skill.Label[other]"
+				initialKeys: CONFIG.EverydayHeroes.skills, prepareKeys: true, label: "EH.Skill.Label[other]"
 			})
 		};
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Populate the proper initial abilities for the skills.
-	 * @param {string} key - Key for which the initial data will be created.
-	 * @param {object} initial - The initial skill object.
-	 * @returns {object} - Initial skills object with the ability defined.
-	 * @internal
-	 */
-	static _initialSkillValue(key, initial) {
-		initial.ability = CONFIG.EverydayHeroes.skills[key]?.ability ?? initial.ability;
-		return initial;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -96,7 +84,19 @@ export default class SkillsTemplate extends foundry.abstract.DataModel {
 			+ simplifyBonus(this.bonuses.skill.check, rollData);
 		const globalPassiveBonus = simplifyBonus(this.bonuses.skill.passive, rollData);
 		for ( const [key, skill] of Object.entries(this.skills) ) {
+			const config = CONFIG.EverydayHeroes.skills[key];
+
 			skill._source = this._source.skills?.[key] ?? {};
+
+			skill.abilities.add(config.ability);
+			const defaultAbility = this.abilities?.[config.ability];
+			if ( defaultAbility ) {
+				defaultAbility.alternates.all.forEach(a => skill.abilities.add(a));
+				if ( skill.proficiency.multiplier >= 1 ) {
+					defaultAbility.alternates.proficient.forEach(a => skill.abilities.add(a));
+				}
+			}
+			skill.ability ??= this.bestAbility(skill.abilities);
 
 			skill.proficiency = new Proficiency(
 				prof,

@@ -30,6 +30,12 @@
 			<input type="text" name="system.skills.{{skillId}}.bonuses.passive"
 				value="{{skill.bonuses.passive}}" data-formula-editor>
 		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Skill.Abilities.Label"}}</label>
+			{{everydayHeroes-tagInput skill.abilities choices=CONFIG.abilities labelAttr="label"
+				name=(concat "system.skills." skillId ".abilities")}}
+			<p class="hint">{{localize "EH.Skill.Abilities.Hint"}}</p>
+		</fieldset>
 	</section>
 
 	<section>

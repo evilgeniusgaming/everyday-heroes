@@ -8,6 +8,9 @@ import Proficiency from "../../../documents/proficiency.mjs";
  *
  * @typedef {object} AbilityData
  * @property {Proficiency} saveProficiency - Proficiency in this skill's saving throws.
+ * @property {object} alternates
+ * @property {Set<string>} all - Alternate abilities available for any skill in which this ability is default.
+ * @property {Set<string>} proficient - Alternate abilities available for skills in which the actor is proficient.
  * @property {object} bonuses
  * @property {string} bonuses.check - Bonus to checks with this ability.
  * @property {string} bonuses.dc - Bonus to this ability's DC.
@@ -52,6 +55,14 @@ export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 						nullable: false, initial: 0, min: 0, max: 2, step: 0.5, label: "EH.Proficiency.Multiplier"
 					})
 				}, {label: "EH.Proficiency.Label[one]"}),
+				alternates: new foundry.data.fields.SchemaField({
+					all: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+						label: "EH.Ability.Alternate.All.Label", hint: "EH.Ability.Alternate.All.Hint"
+					}),
+					proficient: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+						label: "EH.Ability.Alternate.Proficient.Label", hint: "EH.Ability.Alternate.Proficient.Hint"
+					})
+				}, {label: "EH.Ability.Alternate.Label"}),
 				bonuses: new foundry.data.fields.SchemaField({
 					check: new FormulaField({label: "EH.Ability.Bonus.Check"}),
 					dc: new FormulaField({label: "EH.Ability.Bonus.DC"}),

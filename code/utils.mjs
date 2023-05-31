@@ -341,21 +341,17 @@ export async function handleTagInputAction(type, event) {
 	if ( !tagInput ) return;
 	const name = tagInput.dataset.target;
 	const shouldValidate = tagInput.dataset.validate;
-	const collection = foundry.utils.getProperty(this.document, name);
+	const collection = foundry.utils.getProperty(this.document.toObject(), name);
 
 	switch (type) {
 		case "add":
 			const validOptions = Array.from(event.target.list?.options ?? []).map(o => o.value);
 			if ( shouldValidate && !validOptions.includes(event.target.value) ) return;
-			if ( foundry.utils.getType(collection) === "Array" ) collection.push(event.target.value);
-			else if ( foundry.utils.getType(collection) === "Set" ) collection.add(event.target.value);
-			else console.warn("Invalid collection type found for tag input");
+			collection.push(event.target.value);
 			break;
 		case "delete":
 			const key = event.target.closest("[data-key]")?.dataset.key;
-			if ( foundry.utils.getType(collection) === "Array" ) collection.findSplice(v => v === key);
-			else if ( foundry.utils.getType(collection) === "Set" ) collection.delete(key);
-			else console.warn("Invalid collection type found for tag input");
+			collection.findSplice(v => v === key);
 			break;
 		default:
 			return console.warn(`Invalid tag action type ${type}`);

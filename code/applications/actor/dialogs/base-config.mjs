@@ -1,3 +1,5 @@
+import { registerTagInputListeners } from "../../../utils.mjs";
+
 /**
  * Base configuration dialog for actor properties.
  */
@@ -38,5 +40,14 @@ export default class BaseConfig extends DocumentSheet {
 			source: this.document.toObject().system,
 			system: this.document.system
 		}, await super.getData(options));
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Action Handlers                          */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	activateListeners(jQuery) {
+		super.activateListeners(jQuery);
+		registerTagInputListeners(this, jQuery[0]);
 	}
 }

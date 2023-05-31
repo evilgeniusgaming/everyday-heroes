@@ -106,7 +106,7 @@ export default class NPCData extends SystemDataModel.mixin(
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	prepareBaseData() {
+	prepareBaseDetails() {
 		this.attributes.prof = Proficiency.calculateMod(Math.max(this.details.cr, 1));
 	}
 

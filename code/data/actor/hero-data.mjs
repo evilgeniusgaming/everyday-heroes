@@ -178,7 +178,7 @@ export default class HeroData extends SystemDataModel.mixin(
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	prepareBaseData() {
+	prepareBaseDetails() {
 		this.attributes.hd.max = this.details.level;
 		this.attributes.prof = Proficiency.calculateMod(this.details.level);
 	}

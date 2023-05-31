@@ -41,6 +41,25 @@
 	<section>
 		<h3 class="striped">
 			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Ability.Alternate.Label"}}</span>
+			<span class="right stripes"></span>
+		</h3>
+		<p class="hint">{{localize "EH.Ability.Alternate.All.Hint"}}</p>
+		<fieldset>
+			<label>{{localize "EH.Ability.Alternate.All.Label"}}</label>
+			{{everydayHeroes-tagInput ability.alternates.all choices=CONFIG.abilities labelAttr="label"
+				name=(concat "system.abilities." abilityId ".alternates.all")}}
+		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Ability.Alternate.Proficient.Label"}}</label>
+			{{everydayHeroes-tagInput ability.alternates.proficient choices=CONFIG.abilities labelAttr="label"
+				name=(concat "system.abilities." abilityId ".alternates.proficient")}}
+		</fieldset>
+	</section>
+
+	<section>
+		<h3 class="striped">
+			<span class="left stripes"></span>
 			<span class="center">{{localize "EH.Ability.Configuration.Global.Label"}}</span>
 			<span class="right stripes"></span>
 		</h3>
