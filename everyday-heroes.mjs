@@ -48,6 +48,7 @@ Hooks.once("init", function() {
 });
 
 Hooks.once("setup", function() {
+	if ( game.release.generation > 10 ) applications.compendium.setupCompendiumApps();
 	settings.applyReduceTransparency();
 });
 
@@ -56,7 +57,7 @@ Hooks.once("i18nInit", function() {
 });
 
 Hooks.once("ready", function() {
-	applications.compendium.setupCompendiumApps();
+	if ( game.release.generation === 10 ) applications.compendium.setupLegacyCompendiumApps();
 	config.registration.registerItemTypes();
 
 	// Perform global migrations here if necessary

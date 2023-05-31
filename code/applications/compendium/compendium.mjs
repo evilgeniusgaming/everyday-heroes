@@ -35,6 +35,7 @@ export default class CompendiumEH extends Compendium {
 
 	async getData(options={}) {
 		const context = await super.getData(options);
+		context.isV10 = game.release.generation === 10;
 		await this.collection.getIndex({
 			fields: ["system.type.value", "system.type.category", "flags.everyday-heroes.category"]
 		});
