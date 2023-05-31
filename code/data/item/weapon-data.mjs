@@ -271,6 +271,8 @@ export default class WeaponData extends SystemDataModel.mixin(
 	get damageAbility() {
 		if ( (this.overrides.ability.damage === "none") || !this.damage.denomination
 			|| (this.mode === "offhand") ) return null;
+		if ( !this.overrides.ability.damage && (this.properties.has("blinding")
+			|| this.properties.has("stunning")) ) return null;
 		return this.overrides.ability.damage || this.attackAbility || null;
 	}
 
