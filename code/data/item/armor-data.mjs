@@ -116,7 +116,10 @@ export default class ArmorData extends SystemDataModel.mixin(
 			...this.propertiesTags,
 			...this.proficiencyTags,
 			...this.physicalTags,
-			{ label: game.i18n.localize("EH.Armor.State.Damaged"), class: "negative status", hidden: !this.damaged }
+			{
+				label: game.i18n.localize("EH.Armor.State.Damaged"),
+				tooltip: "EH.Armor.State.Hint",
+				class: "negative status", hidden: !this.damaged }
 		];
 	}
 

@@ -136,9 +136,13 @@ export default class NPCSheet extends BaseActorSheet {
 		}, []));
 
 		if ( context.armor ) {
-			context.lists.armorProperties = listFormatter.format(context.armor.system.properties.map(p =>
-				CONFIG.EverydayHeroes.equipmentProperties[p]?.label.toLowerCase() ?? null
-			).filter(p => p));
+			context.lists.armorProperties = listFormatter.format(context.armor.system.properties.map(p => {
+				const config = CONFIG.EverydayHeroes.equipmentProperties[p];
+				if ( !config ) return null;
+				const label = config.label.toLowerCase();
+				if ( !config.npcHint ) return label;
+				return `<span class="property-hint" data-tooltip="${config.npcHint}">${label}</a>`;
+			}).filter(p => p));
 		}
 
 		const senses = context.system.attributes.senses.reduce((arr, sense) => {

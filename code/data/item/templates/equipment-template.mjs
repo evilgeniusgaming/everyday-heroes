@@ -84,8 +84,7 @@ export default class EquipmentTemplate {
 					label += ` d${versatileDenomination}`;
 					break;
 			}
-			// TODO: Add tooltips with property descriptions
-			tags.push({ label, class: "property" });
+			tags.push({ label, tooltip: config.hint, class: "property" });
 		}
 		return tags;
 	}

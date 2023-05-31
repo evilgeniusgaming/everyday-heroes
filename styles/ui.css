@@ -94,3 +94,13 @@ a.roll-link i {
 .everyday-heroes section > .striped:is(h1, h2, h3, h4):first-child {
 	margin-block-start: -0.5em;
 }
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Property Tooltips                        */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.property-hint {
+	cursor: help;
+	text-decoration: underline;
+	text-decotration-style: dotted;
+}

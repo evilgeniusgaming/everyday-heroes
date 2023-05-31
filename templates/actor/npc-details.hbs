@@ -18,6 +18,7 @@
 			{{everydayHeroes-tagInput system.traits.type.tags choices=availableTags name="system.traits.type.tags"}}
 		</fieldset>
 	{{/if}}
+
 	<fieldset>
 		<label>{{localize "EH.Defense.Label"}}</label>
 		{{#if editingMode}}
@@ -26,6 +27,7 @@
 			<span>{{system.attributes.defense}}</span>
 		{{/if}}
 	</fieldset>
+
 	<fieldset>
 		<label>{{localize "EH.HitPoints.Label[other]"}}</label>
 		<input type="number" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}">
@@ -38,6 +40,7 @@
 			<span>({{system.attributes.hp.formula}})</span>
 		{{/if}}
 	</fieldset>
+
 	<fieldset>
 		<label>{{localize "EH.Item.Type.Armor[one]"}}</label>
 		{{#if armor}}
@@ -47,11 +50,12 @@
 				<a data-action="roll-item" data-type="armor-save"
 					data-tooltip="{{localize 'EH.Action.Roll' type=(localize 'EH.Armor.Action.Save.Label')}}">
 					{{~localize "EH.Armor.Action.Save.Short" number=(numberFormat armor.system.armorSaveMod sign=true)}}</a>
-				{{~#if lists.armorProperties}}, {{lists.armorProperties}}{{/if}})
+				{{~#if lists.armorProperties}}, {{{lists.armorProperties}}}{{/if}})
 		{{else}}
 			&mdash;
 		{{/if}}
 	</fieldset>
+
 	<fieldset>
 		<label>
 			{{localize "EH.Speed.Label"}}
@@ -71,6 +75,7 @@
 			<span>{{system.attributes.movement.label}}</span>
 		{{/if}}
 	</fieldset>
+
 	<fieldset class="abilities">
 		{{#if editingMode}}
 			<legend>
@@ -100,12 +105,14 @@
 			</div>
 		{{/each}}
 	</fieldset>
+
 	{{#if lists.saves}}
 		<fieldset>
 			<label>{{localize "EH.Ability.Save.Label"}}</label>
 			<span>{{{lists.saves}}}</span>
 		</fieldset>
 	{{/if}}
+
 	{{#if (or lists.skills editingMode)}}
 		<fieldset>
 			<label>
@@ -120,6 +127,7 @@
 			<span>{{{lists.skills}}}</span>
 		</fieldset>
 	{{/if}}
+
 	<fieldset>
 		<label>{{localize "EH.Sense.Label[other]"}}</label>
 		{{#if editingMode}}
@@ -129,6 +137,7 @@
 			<span>{{lists.senses}}</span>
 		{{/if}}
 	</fieldset>
+
 	{{#if (or lists.resources editingMode)}}
 		<fieldset>
 			<label>
@@ -143,6 +152,7 @@
 			<span>{{{lists.resources}}}</span>
 		</fieldset>
 	{{/if}}
+
 	{{#if (or lists.roles editingMode)}}
 		<fieldset>
 			<label>{{localize "EH.Role.Label[other]"}}</label>
@@ -153,12 +163,14 @@
 			{{/if}}
 		</fieldset>
 	{{/if}}
+
 	{{#if lists.equipment}}
 		<fieldset>
 			<label>{{localize "EH.Equipment.Label[other]"}}</label>
 			<span>{{{lists.equipment}}}</span>
 		</fieldset>
 	{{/if}}
+
 	<fieldset>
 		<label>{{localize "EH.Proficiency.Label[one]"}}</label>
 		<span>{{everydayHeroes-number system.attributes.prof sign=true}}</span>

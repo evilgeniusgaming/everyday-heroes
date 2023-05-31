@@ -157,115 +157,149 @@ preLocalize("equipmentCategories", { key: "label" });
 export const equipmentProperties = {
 	aquatic: {
 		label: "EH.Weapon.Property.Aquatic.Label",
+		hint: "EH.Weapon.Property.Aquatic.Hint",
 		npcHint: "EH.Weapon.Property.Aquatic.NPCHint"
 	},
 	awkward: {
-		label: "EH.Armor.Property.Awkward.Label"
+		label: "EH.Armor.Property.Awkward.Label",
+		hint: "EH.Armor.Property.Awkward.Hint"
 	},
 	ballistic: {
-		label: "EH.Armor.Property.Ballistic.Label"
+		label: "EH.Armor.Property.Ballistic.Label",
+		hint: "EH.Armor.Property.Ballistic.Hint"
 	},
 	belt: {
-		label: "EH.Weapon.Property.Belt.Label"
+		label: "EH.Weapon.Property.Belt.Label",
+		hint: "EH.Weapon.Property.Belt.Hint"
 	},
 	blinding: {
 		label: "EH.Weapon.Property.Blinding.Label",
+		hint: "EH.Weapon.Property.Blinding.Hint",
 		condition: "blinded"
 	},
 	burst: {
-		label: "EH.Weapon.Property.Burst.Label"
+		label: "EH.Weapon.Property.Burst.Label",
+		hint: "EH.Weapon.Property.Burst.Hint"
 	},
 	concealable: {
-		label: "EH.Armor.Property.Concealable.Label"
+		label: "EH.Armor.Property.Concealable.Label",
+		hint: "EH.Armor.Property.Concealable.Hint"
 	},
 	deafening: {
 		label: "EH.Weapon.Property.Deafening.Label",
+		hint: "EH.Weapon.Property.Deafening.Hint",
 		condition: "deafened"
 	},
 	disguised: {
-		label: "EH.Weapon.Property.Disguised.Label"
+		label: "EH.Weapon.Property.Disguised.Label",
+		hint: "EH.Weapon.Property.Disguised.Hint"
 	},
 	finesse: {
 		label: "EH.Weapon.Property.Finesse.Label",
+		hint: "EH.Weapon.Property.Finesse.Hint",
 		restriction: {"system.type.value": "melee"}
 	},
 	fullAuto: {
-		label: "EH.Weapon.Property.FullAuto.Label"
+		label: "EH.Weapon.Property.FullAuto.Label",
+		hint: "EH.Weapon.Property.FullAuto.Hint"
 	},
 	grenade: {
-		label: "EH.Weapon.Property.Grenade.Label"
+		label: "EH.Weapon.Property.Grenade.Label",
+		hint: "EH.Weapon.Property.Grenade.Hint"
 	},
 	heavy: {
-		label: "EH.Weapon.Property.Heavy.Label"
+		label: "EH.Weapon.Property.Heavy.Label",
+		hint: "EH.Weapon.Property.Heavy.Hint"
 	},
 	illuminating: {
-		label: "EH.Weapon.Property.Illuminating.Label"
+		label: "EH.Weapon.Property.Illuminating.Label",
+		hint: "EH.Weapon.Property.Illuminating.Hint"
 	},
 	improvised: {
-		label: "EH.Weapon.Property.Improvised.Label"
+		label: "EH.Weapon.Property.Improvised.Label",
+		hint: "EH.Weapon.Property.Improvised.Hint"
 	},
 	indirect: {
-		label: "EH.Weapon.Property.Indirect.Label"
+		label: "EH.Weapon.Property.Indirect.Label",
+		hint: "EH.Weapon.Property.Indirect.Hint"
 	},
 	light: {
-		label: "EH.Weapon.Property.Light.Label"
+		label: "EH.Weapon.Property.Light.Label",
+		hint: "EH.Weapon.Property.Light.Hint"
 	},
 	loud: {
-		label: "EH.Weapon.Property.Loud.Label"
+		label: "EH.Weapon.Property.Loud.Label",
+		hint: "EH.Weapon.Property.Loud.Hint"
 	},
 	reach: {
 		label: "EH.Weapon.Property.Reach.Label",
+		hint: "EH.Weapon.Property.Reach.Hint",
 		restriction: {"system.type.value": "melee"}
 	},
 	restricted: {
-		label: "EH.Weapon.Property.Restricted.Label"
+		label: "EH.Weapon.Property.Restricted.Label",
+		hint: "EH.Weapon.Property.Restricted.Hint"
 	},
 	returning: {
-		label: "EH.Weapon.Property.Returning.Label"
+		label: "EH.Weapon.Property.Returning.Label",
+		hint: "EH.Weapon.Property.Returning.Hint"
 	},
 	semiAuto: {
-		label: "EH.Weapon.Property.SemiAuto.Label"
+		label: "EH.Weapon.Property.SemiAuto.Label",
+		hint: "EH.Weapon.Property.SemiAuto.Hint"
 	},
 	shot: {
 		label: "EH.Weapon.Property.Shot.Label",
+		hint: "EH.Weapon.Property.Shot.Hint",
 		npcHint: "EH.Weapon.Property.Shot.NPCHint"
 	},
 	slowFiring: {
-		label: "EH.Weapon.Property.SlowFiring.Label"
+		label: "EH.Weapon.Property.SlowFiring.Label",
+		hint: "EH.Weapon.Property.SlowFiring.Hint"
 	},
 	small: {
-		label: "EH.Armor.Property.Small.Label"
+		label: "EH.Armor.Property.Small.Label",
+		hint: "EH.Armor.Property.Small.Hint"
 	},
 	special: {
-		label: "EH.Weapon.Property.Special.Label"
+		label: "EH.Weapon.Property.Special.Label",
+		hint: "EH.Weapon.Property.Special.Hint"
 	},
 	stabProof: {
-		label: "EH.Armor.Property.StabProof.Label"
+		label: "EH.Armor.Property.StabProof.Label",
+		hint: "EH.Armor.Property.StabProof.Hint"
 	},
 	stationary: {
-		label: "EH.Weapon.Property.Stationary.Label"
+		label: "EH.Weapon.Property.Stationary.Label",
+		hint: "EH.Weapon.Property.Stationary.Hint"
 	},
 	stunning: {
 		label: "EH.Weapon.Property.Stunning.Label",
+		hint: "EH.Weapon.Property.Stunning.Hint",
 		condition: "stunned"
 	},
 	swarm: {
-		label: "EH.Weapon.Property.Swarm.Label"
+		label: "EH.Weapon.Property.Swarm.Label",
+		hint: "EH.Weapon.Property.Swarm.Hint"
 	},
 	thrown: {
-		label: "EH.Weapon.Property.Thrown.Label"
+		label: "EH.Weapon.Property.Thrown.Label",
+		hint: "EH.Weapon.Property.Thrown.Hint"
 	},
 	twoHanded: {
-		label: "EH.Weapon.Property.TwoHanded.Label"
+		label: "EH.Weapon.Property.TwoHanded.Label",
+		hint: "EH.Weapon.Property.TwoHanded.Hint"
 	},
 	unreliable: {
-		label: "EH.Weapon.Property.Unreliable.Label"
+		label: "EH.Weapon.Property.Unreliable.Label",
+		hint: "EH.Weapon.Property.Unreliable.Hint"
 	},
 	versatile: {
-		label: "EH.Weapon.Property.Versatile.Label"
+		label: "EH.Weapon.Property.Versatile.Label",
+		hint: "EH.Weapon.Property.Versatile.Hint"
 	}
 };
-preLocalize("equipmentProperties", { keys: ["label", "hint", "npcHint"], sort: true });
+preLocalize("equipmentProperties", { keys: ["label", "npcHint"], sort: true });
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

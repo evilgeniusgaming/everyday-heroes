@@ -27,7 +27,7 @@
 	{{#if itemProperties}}
 		<div class="properties {{#if propertyModification}}modification{{/if}}">
 			{{#each itemProperties as |property key|}}
-				<fieldset class="{{property.value}}">
+				<fieldset class="{{property.value}}"{{#if property.hint}} data-tooltip="{{property.hint}}"{{/if}}>
 					<label>
 						<input type="checkbox" {{checked property.value}}>
 						<input type="hidden" name="system.properties.{{key}}" value="{{property.value}}">
