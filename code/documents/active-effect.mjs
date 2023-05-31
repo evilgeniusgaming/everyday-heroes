@@ -1,3 +1,5 @@
+import ItemEH from "./item.mjs";
+
 /**
  * Extended version of `ActiveEffect` class with Everyday Heroes-specific features.
  */
@@ -93,7 +95,7 @@ export default class ActiveEffectEH extends ActiveEffect {
 			case "add":
 				return this.document.createEmbeddedDocuments("ActiveEffect", [{
 					label: game.i18n.localize("EH.Effect.New"),
-					icon: "icons/svg/aura.svg", // TODO: Replace with item icon
+					icon: this.document.constructor === ItemEH ? this.document.img : "icons/svg/aura.svg",
 					origin: this.document.uuid,
 					duration: {
 						rounds: section === "temporary" ? 1 : undefined
