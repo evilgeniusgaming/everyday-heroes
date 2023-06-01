@@ -202,7 +202,7 @@ export default class ActorEH extends Actor {
 	_getRestHitDiceRecovery(config={}, result={}) {
 		if ( config.type !== "long" ) return;
 		const hd = this.system.attributes.hd;
-		const final = Math.clamped(0, hd.spent - Math.floor(hd.max * hd.recovery), hd.max);
+		const final = Math.clamped(hd.spent - Math.floor(hd.max * hd.recovery), 0, hd.max);
 		foundry.utils.mergeObject(result, {
 			deltas: {
 				hitDice: (result.deltas?.hitDice ?? 0) + hd.spent - final
@@ -1193,7 +1193,7 @@ export default class ActorEH extends Actor {
 
 		// Subtract from temp HP first & then from normal HP
 		const deltaTemp = amount > 0 ? Math.min(hp.temp, amount) : 0;
-		const deltaHP = Math.clamped(-hp.damage, amount - deltaTemp, hp.value);
+		const deltaHP = Math.clamped(amount - deltaTemp, -(hp.damage ?? Infinity), hp.value);
 		const updates = {
 			"system.attributes.hp.temp": hp.temp - deltaTemp,
 			"system.attributes.hp.value": hp.value - deltaHP

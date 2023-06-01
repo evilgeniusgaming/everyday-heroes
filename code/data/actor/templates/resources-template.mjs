@@ -62,7 +62,7 @@ export default class ResourcesTemplate extends foundry.abstract.DataModel {
 			if ( resource.bonus ) resource.max += resource.bonus;
 
 			resource.spent ??= 0;
-			resource.available = Math.clamped(0, resource.max - resource.spent, resource.max);
+			resource.available = Math.clamped(resource.max - resource.spent, 0, resource.max);
 		}
 	}
 }

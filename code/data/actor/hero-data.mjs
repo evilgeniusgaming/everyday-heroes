@@ -225,7 +225,7 @@ export default class HeroData extends SystemDataModel.mixin(
 
 	prepareDerivedHitDice() {
 		const hd = this.attributes.hd;
-		hd.available = Math.clamped(0, hd.max - hd.spent, hd.max);
+		hd.available = Math.clamped(hd.max - hd.spent, 0, hd.max);
 		hd.denomination = this.details.archetype?.system.hitDie;
 	}
 
@@ -246,7 +246,7 @@ export default class HeroData extends SystemDataModel.mixin(
 		const overallBonus = simplifyBonus(hp.bonuses.overall, rollData);
 
 		hp.max = base + levelBonus + overallBonus;
-		hp.value = Math.clamped(0, hp.value, hp.max);
+		hp.value = Math.clamped(hp.value, 0, hp.max);
 		hp.damage = hp.max - hp.value;
 	}
 

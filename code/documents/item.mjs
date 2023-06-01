@@ -376,7 +376,7 @@ export default class ItemEH extends Item {
 							available: hd.available, resource: game.i18n.localize("EH.HitDice.Label[other]"), required: res.amount
 						}));
 					}
-					updates.actor["system.attributes.hd.spent"] = Math.clamped(0, newSpent, hd.max);
+					updates.actor["system.attributes.hd.spent"] = Math.clamped(newSpent, 0, hd.max);
 					break;
 				default:
 					throw new Error(game.i18n.format("EH.Consumption.Warning.InvalidType", { type: res.type }));
@@ -593,7 +593,7 @@ export default class ItemEH extends Item {
 
 		// Update the item & ammunition if necessary
 		await this.update({"system.rounds.spent": Math.clamped(
-			0, this.system.rounds.spent - reloadConfig.roundsToReload, this.system.rounds.capacity
+			this.system.rounds.spent - reloadConfig.roundsToReload, 0, this.system.rounds.capacity
 		)});
 		if ( reloadConfig.ammunition ) {
 			console.log("Adjust ammunition quantity as necessary");

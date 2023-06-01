@@ -19,8 +19,8 @@ export default class TokenEH extends Token {
 	_drawHPBar(number, bar, data) {
 		const {value, max, temp} = this.document.actor.system.attributes.hp;
 
-		const tempPct = Math.clamped(0, temp, max) / max;
-		const valuePct = Math.clamped(0, value, max) / max;
+		const tempPct = Math.clamped(temp, 0, max) / max;
+		const valuePct = Math.clamped(value, 0, max) / max;
 
 		const BACKGROUND_COLOR = 0x000000;
 		const BORDER_COLOR = 0x000000;
@@ -34,7 +34,7 @@ export default class TokenEH extends Token {
 		const w = this.w;
 		let h = Math.max((canvas.dimensions.size / 12), 8);
 		if ( this.document.height >= 2 ) h *= 1.6;
-		const borderWidth = Math.clamped(1, h / 8, 2);
+		const borderWidth = Math.clamped(h / 8, 1, 2);
 
 		bar.clear();
 		bar.beginFill(BACKGROUND_COLOR, 0.5)

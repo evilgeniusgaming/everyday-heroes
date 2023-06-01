@@ -112,9 +112,17 @@ export default class NPCData extends SystemDataModel.mixin(
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	prepareDerivedHitPoints() {
+		const hp = this.attributes.hp;
+		hp.value = Math.clamped(hp.value, 0, hp.max);
+		hp.damage = hp.max - hp.value;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	prepareDerivedResources() {
 		for ( const resource of Object.values(this.resources) ) {
-			resource.available = Math.clamped(0, resource.max - resource.spent, resource.max);
+			resource.available = Math.clamped(resource.max - resource.spent, 0, resource.max);
 		}
 	}
 
