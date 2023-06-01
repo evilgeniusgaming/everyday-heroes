@@ -37,13 +37,14 @@ export default class TraitAdvancement extends Advancement {
 		return {
 			save: {
 				title: "EH.Ability.Proficiency.Label[other]",
-				localization: "EH.Ability.Proficiency.Label",
+				localization: "EH.Ability.Label",
 				icon: "systems/everyday-heroes/artwork/svg/advancement/trait-save.svg",
 				hintType: "EH.Ability.Label[other]"
 			},
 			skill: {
 				title: "EH.Skill.Proficiency.Label[other]",
-				localization: "EH.Skill.Proficiency.Label",
+				titleExpertise: "EH.Skill.Expertise.Label[other]",
+				localization: "EH.Skill.Label",
 				icon: "systems/everyday-heroes/artwork/svg/advancement/trait-skill.svg",
 				iconExpertise: "systems/everyday-heroes/artwork/svg/advancement/trait-expertise.svg",
 				hintType: "EH.Skill.Label[other]"
@@ -56,8 +57,6 @@ export default class TraitAdvancement extends Advancement {
 			}
 		};
 	}
-
-	// TODO: Adjust sorting to ensure expertise is always after proficiency
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Instance Properties                      */
@@ -86,9 +85,12 @@ export default class TraitAdvancement extends Advancement {
 	 */
 	prepareData() {
 		const traitConfig = this.constructor.traits[this.configuration.type];
-		this.title = this.title || game.i18n.localize(traitConfig?.title) || this.constructor.metadata.title;
+		const isExpertise = (this.configuration.type === "skill") && this.configuration.expertise;
+		this.title = this.title
+			|| game.i18n.localize(traitConfig?.[isExpertise ? "titleExpertise" : "title"])
+			|| this.constructor.metadata.title;
 		this.icon = this.icon
-			|| traitConfig?.[(this.configuration.type === "skill") && this.configuration.expertise ? "iconExpertise" : "icon"]
+			|| traitConfig?.[isExpertise ? "iconExpertise" : "icon"]
 			|| this.constructor.metadata.icon;
 		super.prepareData();
 	}

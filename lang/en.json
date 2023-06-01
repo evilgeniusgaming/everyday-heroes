@@ -730,6 +730,8 @@
 "Skill.Configuration.Hint": "The bonus applies to skill check formulas and the minimum prevents the d20 roll from dropping below a certain number.",
 "Skill.Configuration.Global.Label": "Global Skill Configuration",
 "Skill.Configuration.Global.Hint": "The following options apply to all skills.",
+"Skill.Expertise.Label[one]": "Skill Expertise",
+"Skill.Expertise.Label[other]": "Skill Expertise",
 "Skill.Configuration.Specific.Label": "{type} Configuration",
 "Skill.Override.Minimum": "Skill Check Minimum",
 "Skill.Proficiency.Label[one]": "Skill Proficiency",
