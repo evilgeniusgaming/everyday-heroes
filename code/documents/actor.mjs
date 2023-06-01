@@ -1157,8 +1157,10 @@ export default class ActorEH extends Actor {
 	 */
 	async applyDamage(damage, options={}) {
 		const hp = this.system.attributes.hp;
+		const rollData = this.getRollData({deterministic: true});
 		let inverted = false;
 		let multiplier = options.multiplier ?? 1;
+
 		if ( multiplier < 0 ) {
 			inverted = true;
 			multiplier *= -1;
@@ -1171,18 +1173,21 @@ export default class ActorEH extends Actor {
 			// Apply damage multiplier
 			let value = d.value * multiplier;
 
-			// Apply type-specific damage reduction
-			if ( !options.ignoreReduction ) value -= simplifyBonus(
-				this.system.traits?.damage?.reduction?.[d.type], this.getRollData({deterministic: true})
-			);
+			// Apply type-specific damage reduction, ensuring damage reduction doesn't cause healing by accident
+			if ( !options.ignoreReduction ) {
+				const reduction = simplifyBonus(this.system.traits?.damage?.reduction?.[d.type], rollData);
+				if ( Math.sign(value) !== Math.sign(value - reduction) ) value = 0;
+				else value -= reduction;
+			}
 
-			return total + Math.max(value, 0);
+			return total + value;
 		}, 0);
 
 		// Apply overall damage reduction
 		if ( !options.ignoreReduction ) {
-			amount -= simplifyBonus(this.system.traits?.damage?.reduction?.all, this.getRollData({deterministic: true}));
-			amount = Math.max(amount, 0);
+			const reduction = simplifyBonus(this.system.traits?.damage?.reduction?.all, rollData);
+			if ( Math.sign(amount) !== Math.sign(amount - reduction) ) amount = 0;
+			else amount -= reduction;
 		}
 
 		// Round damage down
