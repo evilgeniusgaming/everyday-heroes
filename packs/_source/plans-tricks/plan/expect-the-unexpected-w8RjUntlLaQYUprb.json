@@ -47,10 +47,9 @@
       "_id": "KAMCi3xKUNPAOISK",
       "changes": [
         {
-          "key": "system.attributes.defense.bonus",
+          "key": "system.attributes.defense.override",
           "mode": 5,
-          "value": "+3",
-          "priority": null
+          "value": "3"
         }
       ],
       "tint": null,
@@ -75,9 +74,9 @@
       "_id": "H9QDSoZIN2woS5cr",
       "changes": [
         {
-          "key": "system.attributes.defense.bonus",
+          "key": "system.attributes.defense.override",
           "mode": 5,
-          "value": "+4",
+          "value": "4",
           "priority": null
         }
       ],
@@ -103,9 +102,10 @@
       "_id": "vGMMbfeW0M40wgrt",
       "changes": [
         {
-          "key": "system.attributes.defense.bonus",
+          "key": "system.attributes.defense.override",
           "mode": 5,
-          "value": "+5"
+          "value": "5",
+          "priority": null
         }
       ],
       "tint": null,
@@ -120,10 +120,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.5",
+    "systemVersion": "0.2.1",
     "coreVersion": "10.291",
     "createdTime": 1679161995056,
-    "modifiedTime": 1684766339614,
+    "modifiedTime": 1685641496531,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

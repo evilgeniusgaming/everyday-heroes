@@ -210,6 +210,7 @@ export default class HeroData extends SystemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedDefense() {
+		const rollData = this.parent.getRollData();
 		const archetype = this.details.archetype?.system.defense;
 		const defense = this.attributes.defense ??= {};
 
@@ -217,7 +218,8 @@ export default class HeroData extends SystemDataModel.mixin(
 			?? CONFIG.EverydayHeroes.defaultAbilities.defense;
 		const ability = this.abilities[defense.ability];
 
-		defense.bonus = simplifyBonus(this.attributes.defense.bonus, this.parent.getRollData()) + (archetype?.bonus ?? 0);
+		if ( Number.isNumeric(defense.override) ) defense.bonus = Number(defense.override);
+		else defense.bonus = simplifyBonus(this.attributes.defense.bonus, rollData) + (archetype?.bonus ?? 0);
 		defense.value = 10 + (ability?.mod ?? 0) + defense.bonus;
 	}
 
