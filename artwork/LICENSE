@@ -121,6 +121,48 @@ icons/tricks/insult-to-injury.svg - "Internal injury" by Lorc under CC BY 3.0
 icons/tricks/magnetic-personality.svg - "Star struck" by Delapouite under CC BY 3.0
 icons/tricks/taunting-blow.svg - "Screaming" by Lorc under CC BY 3.0
 icons/tricks/watch-this.svg - "Theater" by Delapouite under CC BY 3.0
+icons/vehicles/ambulance-civilian.svg - "Ambulance" by Delapouite under CC BY 3.0
+icons/vehicles/ambulance-military.svg - "Military ambulance" by Quoting under CC BY 3.0
+icons/vehicles/airplane-commerical.svg - "Airplane departure" by Delapouite under CC BY 3.0 (modified)
+icons/vehicles/airplane-personal.svg - "Airplane" by Skoll under CC BY 3.0
+icons/vehicles/atv.svg - "Jeep" by Delapouite under CC BY 3.0 (modified)
+icons/vehicles/bicycle.svg - "Dutch bike" by Delapouite under CC BY 3.0
+icons/vehicles/boat-fishing.svg - "Fishing boat" by Delapouite under CC BY 3.0
+icons/vehicles/bus.svg - "Bus" by Delapouite under CC BY 3.0
+icons/vehicles/car-armored.svg - "Jeep" by Skoll under CC BY 3.0 (modified)
+icons/vehicles/car-convertable.svg - "Race car" by Skoll under CC BY 3.0
+icons/vehicles/car-jeep.svg - "Jeep" by Delapouite under CC BY 3.0
+icons/vehicles/car-police.svg - "Mechanic garage" & "Ambulance" by Delapouite under CC BY 3.0 (combined)
+icons/vehicles/car-race.svg - "F1 car" by Skoll under CC BY 3.0
+icons/vehicles/car-sedan.svg - "City car" by Delapouite under CC BY 3.0
+icons/vehicles/construction-bulldozer.svg - "Bulldozer" by Delapouite under CC BY 3.0
+icons/vehicles/construction-dump-truck.svg - "Mine truck" by Delapouite under CC BY 3.0
+icons/vehicles/construction-forklift.svg - "Forklift" by Delapouite under CC BY 3.0
+icons/vehicles/construction-steamroller.svg - "Steamroller" by Caro Asercion under CC BY 3.0
+icons/vehicles/construction-tractor.svg - "Farm tractor" by Delapouite under CC BY 3.0
+icons/vehicles/hang-glider.svg - "Hang glider" by Delapouite under CC BY 3.0
+icons/vehicles/helicopter-civilian.svg - "Helicopter" by Delapouite under CC BY 3.0
+icons/vehicles/hot-air-balloon.svg - "Air balloon" by Delapouite under CC BY 3.0
+icons/vehicles/rv-caravan.svg - "Caravan" by Delapouite under CC BY 3.0
+icons/vehicles/rv-motorhome.svg - "Bus" by Delapouite under CC BY 3.0 (modified)
+icons/vehicles/scooter-kick.svg - "Kick scooter" by Delapouite under CC BY 3.0
+icons/vehicles/scooter-motor.svg - "Scooter" by Delapouite under CC BY 3.0
+icons/vehicles/space-shuttle.svg - "Space shuttle" by Delapouite under CC BY 3.0
+icons/vehicles/submarine-personal.svg - "Mini submarine" by Delapouite under CC BY 3.0
+icons/vehicles/tank-apc.svg - "APC" by Skoll under CC BY 3.0
+icons/vehicles/tank-historic.svg - "Great war tank" by Cathelineau under CC BY 3.0
+icons/vehicles/tank-modern.svg - "Tank" by Lorc under CC BY 3.0
+icons/vehicles/tank-police.svg - "Jeep" by Skoll under CC BY 3.0
+icons/vehicles/train-steam.svg - "Steam locomotive" by Delapouite under CC BY 3.0
+icons/vehicles/truck-18-wheeler.svg - "Truck" by Delapouite under CC BY 3.0
+icons/vehicles/truck-box.svg - "Flatbed covered" by Skoll under CC BY 3.0
+icons/vehicles/truck-flatbed.svg - "Flatbed" by Skoll under CC BY 3.0
+icons/vehicles/truck-food.svg - "Food truck" by Delapouite under CC BY 3.0
+icons/vehicles/truck-semi.svg - "Truck" by Delapouite under CC BY 3.0 (modified)
+icons/vehicles/truck-tow.svg - "Tow truck" by Delapouite under CC BY 3.0
+icons/vehicles/van-commercial.svg - "Surfer van" by Delapouite under CC BY 3.0 (modified)
+icons/vehicles/van-personal.svg - "Surfer van" by Delapouite under CC BY 3.0
+icons/vehicles/zeppelin.svg - "Zeppelin" by Skoll under CC BY 3.0
 icons/weapons/artillery-anti-aircraft.svg - "Anti aircraft gun" by Pierre Leducq under CC BY 3.0
 icons/weapons/axe-battle.svg - "Sharp axe" by Delapouite under CC BY 3.0
 icons/weapons/axe-fire.svg - "Fire axe" by Lorc under CC BY 3.0
@@ -243,6 +285,7 @@ svg/action/damage-ranged.svg - "Meteor impact" by Lorc under CC BY 3.0
 svg/action/reload.svg - "Reload gun barrel" by Delapouite under CC BY 3.0
 svg/actors/hero.svg - "Spy" by Delapouite under CC BY 3.0
 svg/actors/npc.svg - "Balaclava" by by Skoll under CC BY 3.0
+svg/actors/vehicle.svg - "City car" by Delapouite under CC BY 3.0
 svg/advancement/asi.svg - "Weight lifting up" by Delapouite under CC BY 3.0
 svg/advancement/defense.svg - "Bordered shield" by Lorc under CC BY 3.0
 svg/advancement/hit-points.svg - "Heart plus" by Zeromancer under CC0 PDD
