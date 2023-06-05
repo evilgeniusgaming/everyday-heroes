@@ -79,6 +79,7 @@ export default class VehicleData extends SystemDataModel {
 				min: 0, integer: true
 			}), {label: "EH.Condition.Label[other]"}),
 			details: new foundry.data.fields.SchemaField({
+				driver: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseActor, {idOnly: true}),
 				passengers: new foundry.data.fields.SchemaField({
 					min: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.Range.Min"}),
 					max: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.Range.Max"})
@@ -88,6 +89,15 @@ export default class VehicleData extends SystemDataModel {
 					label: "EH.Equipment.Trait.PriceLevel.Label", hint: "EH.Equipment.Trait.PriceLevel.Hint"
 				})
 			}, {label: "EH.Details.Label"}),
+			items: new MappingField(new foundry.data.fields.SchemaField({
+				ammunition: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, {idOnly: true, label: ""}),
+				mounted: new foundry.data.fields.BooleanField({label: ""}),
+				mode: new foundry.data.fields.StringField({label: ""})
+			})),
+			people: new MappingField(new foundry.data.fields.SchemaField({
+				sort: new foundry.data.fields.IntegerSortField(),
+				weapon: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, {idOnly: true, label: ""})
+			})),
 			traits: new foundry.data.fields.SchemaField({
 				properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
 					label: "EH.Weapon.Property.Label"
@@ -103,6 +113,13 @@ export default class VehicleData extends SystemDataModel {
 
 	prepareBaseArmorValue() {
 		this.attributes.armor.windowsTires = 1;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareBasePeople() {
+		for ( const [id, contents] of Object.entries(this.people) ) contents.actor = game.actors.get(id);
+		this.details.driver = this.people[this.details.driver]?.actor;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -160,6 +177,50 @@ export default class VehicleData extends SystemDataModel {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Helpers                                  */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Add the provided actor to the vehicle.
+	 * @param {ActorEH} actor - Actor to add.
+	 * @param {object} [options={}]
+	 * @param {boolean} [options.driver=false] - Should this actor be set as the driver?
+	 */
+	addPerson(actor, { driver=false }={}) {
+		if ( actor.type === "vehicle" ) throw new Error(game.i18n.localize("EH.Vehicle.Error.NoVehicles"));
+		if ( actor.pack ) throw new Error(game.i18n.localize("EH.Vehicle.Error.NoPacks"));
+		if ( this.people[actor.id] ) return;
+
+		// Ensure the vehicle isn't full
+		if ( this.details.passengers.max ) {
+			const peopleCount = Object.values(this.people).filter(p => p.actor).length;
+			if ( peopleCount >= this.details.passengers.max ) {
+				const pluralRule = new Intl.PluralRules(game.i18n.lang);
+				throw new Error(game.i18n.format("EH.Vehicle.Error.NoSpace", {
+					number: numberFormat(this.details.passengers.max), people: game.i18n.localize(
+						`EH.Vehicle.People.Label[${pluralRule.select(this.details.passengers.max)}]`
+					).toLowerCase()
+				}));
+			}
+		}
+
+		const sort = Object.values(this.people)
+			.reduce((sort, p) => p.sort > sort ? p.sort : sort, 0) + CONST.SORT_INTEGER_DENSITY;
+		const updates = {[`system.people.${actor.id}`]: { sort }};
+		if ( driver ) updates["system.details.driver"] = actor.id;
+		this.parent.update(updates);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Remove a person from the vehicle.
+	 * @param {ActorEH} actor - Actor to remove.
+	 */
+	removePerson(actor) {
+		if ( !this.people[actor.id] ) throw new Error(`Actor ${actor.name} not found in the vehicle.`);
+		this.parent.update({[`system.people.-=${actor.id}`]: null});
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**

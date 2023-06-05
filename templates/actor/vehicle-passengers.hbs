@@ -5,9 +5,9 @@
 		</header>
 		<ol class="item-list">
 			{{#each section.actors as |actor|}}
-			{{#everydayHeroes-itemContext actor as |ctx|}}
-				<li class="item" data-item-id="{{actor.id}}">
-					<h4>
+			{{#everydayHeroes-context actor variableName="personContext" as |ctx|}}
+				<li class="item" data-actor-id="{{actor.id}}">
+					<h4>{{!-- TODO: This shouldn't show a finger points because it isn't clickable --}}
 						<figure style="background-image: url('{{actor.img}}')"></figure>
 						{{actor.name}}
 					</h4>
@@ -20,24 +20,29 @@
 								<i class="{{#if item.isEquipped}}fa-solid fa-hand{{else}}fa-regular fa-hand{{/if}}"></i>
 							</a>
 						{{/if}}
-						{{#if (and @root.editable @root.editingMode)}}
-							<a data-action="item" data-type="edit"
-								data-tooltip="{{localize 'EH.Item.Action.Edit' type=item.typeLabel}}">
-								<i class="fas fa-edit"></i>
-							</a>
-							<a data-action="item" data-type="delete"
-								data-tooltip="{{localize 'EH.Item.Action.Delete' type=item.typeLabel}}">
-								<i class="fas fa-trash"></i>
-							</a>
-						{{else}}
-							<a data-action="item" data-type="edit"
-								data-tooltip="{{localize 'EH.Item.Action.View' type=item.typeLabel}}">
-								<i class="fa-regular fa-eye"></i>
-							</a>
+						<a data-action="person" data-type="view"
+							data-tooltip="{{localize 'EH.Item.Action.View' type=section.type}}">
+							<i class="fa-regular fa-eye"></i>
+						</a>{{!-- TODO: Only show if viewing permissions exist for this actor --}}
+						{{#if @root.editable}}
+							{{#if ctx.isDriver}}
+								<a data-action="person" data-type="makePassenger" data-tooltip="EH.Vehicle.Action.MakePassenger">
+									<i class="fa-solid fa-turn-down"></i>
+								</a>
+							{{else}}
+								<a data-action="person" data-type="makeDriver" data-tooltip="EH.Vehicle.Action.MakeDriver">
+									<i class="fa-solid fa-turn-up"></i>
+								</a>
+							{{/if}}
+							{{#if @root.editingMode}}
+								<a data-action="person" data-type="exit" data-tooltip="EH.Vehicle.Action.Exit">
+									<i class="fa-solid fa-person-walking-arrow-right"></i>
+								</a>
+							{{/if}}
 						{{/if}}
 					</fieldset>
 				</li>
-			{{/everydayHeroes-itemContext}}
+			{{/everydayHeroes-context}}
 			{{/each}}
 		</ol>
 	</section>

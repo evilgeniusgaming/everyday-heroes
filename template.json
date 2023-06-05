@@ -236,12 +236,15 @@
       },
       "conditions": {},
       "details": {
+        "driver": null,
         "passengers": {
           "min": null,
           "max": null
         },
         "price": 0
       },
+      "items": {},
+      "people": {},
       "traits": {
         "properties": [],
         "size": "huge"

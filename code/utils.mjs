@@ -251,10 +251,11 @@ function has(context, options) {
  * @returns {string}
  */
 function itemContext(context, options) {
-	if ( arguments.length !== 2 ) throw new Error("#everydayHeroes-itemContext requires exactly one argument");
+	if ( arguments.length !== 2 ) throw new Error("#everydayHeroes-context requires exactly one argument");
 	if ( foundry.utils.getType(context) === "function" ) context = context.call(this);
+	const variableName = options.hash.variableName ?? "itemContext";
 
-	const ctx = options.data.root.itemContext?.[context.id];
+	const ctx = options.data.root[variableName]?.[context.id];
 	if ( !ctx ) {
 		const inverse = options.inverse(this);
 		if ( inverse ) return options.inverse(this);
@@ -424,10 +425,10 @@ export async function handleTagInputAction(type, event) {
  */
 export function registerHandlebarsHelpers() {
 	Handlebars.registerHelper({
+		"everydayHeroes-context": itemContext,
 		"everydayHeroes-dataset": dataset,
 		"everydayHeroes-groupedSelectOptions": (choices, options) => groupedSelectOptions(choices, options.hash),
 		"everydayHeroes-has": has,
-		"everydayHeroes-itemContext": itemContext,
 		"everydayHeroes-jsonStringify": jsonStringify,
 		"everydayHeroes-linkForUUID": linkForUUID,
 		"everydayHeroes-number": (value, options) => numberFormat(value, options.hash),

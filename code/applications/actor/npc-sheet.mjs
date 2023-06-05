@@ -10,8 +10,7 @@ export default class NPCSheet extends BaseActorSheet {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			tabs: [{navSelector: 'nav[data-group="primary"]', contentSelector: "main", initial: "details"}],
 			width: 460,
-			height: "auto",
-			dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
+			height: "auto"
 		});
 	}
 

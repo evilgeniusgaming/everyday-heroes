@@ -199,12 +199,12 @@
 				<span class="right stripes"></span>
 			</h3>
 			{{#each section.items as |item|}}
-			{{#everydayHeroes-itemContext item as |ctx|}}
+			{{#everydayHeroes-context item as |ctx|}}
 				<fieldset data-item-id="{{item.id}}">
 					<label>{{{ctx.label}}}</label>
 					{{{ctx.description}}}
 				</fieldset>
-			{{/everydayHeroes-itemContext}}
+			{{/everydayHeroes-context}}
 			{{/each}}
 		</section>
 	{{/if}}
