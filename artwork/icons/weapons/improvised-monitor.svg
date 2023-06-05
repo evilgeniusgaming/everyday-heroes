@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg style="height: 512px; width: 512px;" viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient x1="0" x2="0" y1="0" y2="1" id="skoll-pc-gradient-0">
+      <stop offset="0" stop-color="#b9b9b9" stop-opacity="1"/>
+      <stop offset="1" stop-color="#666666" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#skoll-pc-gradient-0)" height="512" width="512" rx="64" ry="64"/>
+  <g class="" style="" transform="matrix(1.181003, 0, 0, 1.181003, -43.627655, -32.512569)">
+    <path d="M 226.31 332.136 L 299.41 332.136 L 299.41 371.846 L 341.15 371.846 L 341.15 387.846 L 184.59 387.846 L 184.59 371.846 L 226.33 371.846 L 226.33 332.136 L 226.31 332.136 Z M 108.31 111.626 L 108.31 316.136 L 417.46 316.136 L 417.46 111.626 L 108.3 111.626 L 108.31 111.626 Z M 401.46 300.136 L 124.3 300.136 L 124.3 127.626 L 401.46 127.626 L 401.46 300.136 Z" fill="#ffffff" fill-opacity="1" transform="matrix(0.951057, -0.309017, 0.309017, 0.951057, -64.306406, 93.457334)"/>
+  </g>
+</svg>

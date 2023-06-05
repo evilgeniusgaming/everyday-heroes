@@ -19,6 +19,16 @@ icons/archetypes/quickness.svg - "Focused lightning" by Lorc under CC BY 3.0
 icons/archetypes/reckless-attack.svg - "Bolas" by Lorc under CC BY 3.0
 icons/archetypes/tough-as-nails.svg - "Andromeda chain" by Lorc under CC BY 3.0
 icons/archetypes/tricks.svg - "Card random" by Faithtoken under CC BY 3.0
+icons/armor/armor-kevlar.svg - "Kevlar vest" by Skoll under CC BY 3.0
+icons/armor/armor-leather.svg - "Leather armor" by Delapouite under CC BY 3.0
+icons/armor/armor-scale.svg - "Scale mail" by Lorc under CC BY 3.0
+icons/armor/armor-metal.svg - "Chest armor" by Delapouite under CC BY 3.0
+icons/armor/armor-ninja.svg - "Ninja armor" by Delapouite under CC BY 3.0
+icons/armor/armor-sport.svg - "American football player" by Delapouite under CC BY 3.0
+icons/armor/shield-car-door.svg - "Car door" by Delapouite under CC BY 3.0
+icons/armor/shield-checked.svg - "Checked Shield" by Lorc under CC BY 3.0
+icons/armor/shield-riot.svg - "Riot shield" by Lorc under CC BY 3.0
+icons/armor/shield-round.svg - "Viking shield" by Delapouite under CC BY 3.0
 icons/backgrounds/common-tongue.svg - "Talk" by Skoll under CC BY 3.0
 icons/backgrounds/have-you-ever-read.svg - "Bookshelf" by Delapouite under CC BY 3.0
 icons/backgrounds/its-coming-back-to-me.svg - "Skills" by Delapouite under CC BY 3.0
@@ -60,6 +70,19 @@ icons/classes/vital-strike.svg - "Broken Bone" by Lorc under CC BY 3.0
 icons/classes/watch-your-six.svg - "Armor upgrade" by Delapouite under CC BY 3.0
 icons/classes/weak-spot.svg - "Nailed foot" by Lorc under CC BY 3.0
 icons/classes/youre-doing-it-wrong.svg - "Book storm" by Lorc under CC BY 3.0
+icons/explosives/bomd-dynamite.svg - "Dynamite" by Delapouite under CC BY 3.0
+icons/explosives/bomb-improvised.svg - "Paper bomb" by Lorc under CC BY 3.0
+icons/explosives/bomb-nuclear.svg - "Nuclear bomb" by Skoll under CC BY 3.0
+icons/explosives/bomb-round.svg - "Unlit bomb" by Lorc under CC BY 3.0
+icons/explosives/grenade-bundle.svg - "Bundle grenade" by Skoll under CC BY 3.0
+icons/explosives/grenade-flash.svg - "Flash grenade" by Lorc under CC BY 3.0
+icons/explosives/grenade-fragmentation.svg - "Grenade" by Lorc under CC BY 3.0
+icons/explosives/grenade-smoke.svg - "Stun grenade" by Delapouite under CC BY 3.0
+icons/explosives/grenade-stick.svg - "Stick grenade" by Skoll under CC BY 3.0
+icons/explosives/mine-claymore.svg - "Claymore explosive" by Delapouite under CC BY 3.0
+icons/explosives/mine-land.svg - "Teller mine" by Skoll under CC BY 3.0
+icons/explosives/molotov-cocktail.svg - "Molotov" by Lorc under CC BY 3.0
+icons/explosives/rocket-generic.svg - "Rocket" by Lorc under CC BY 3.0
 icons/feats/ability-score-training.svg - "Weight lifting up" by Delapouite under CC BY 3.0
 icons/feats/advanced-skill-training.svg - "Tightrope" by Delapouite under CC BY 3.0
 icons/feats/battlefield-medic.svg - "First aid kit" by Delapouite under CC BY 3.0
@@ -70,6 +93,8 @@ icons/feats/jack-of-all-trades.svg - "Skills" by Delapouite under CC BY 3.0
 icons/feats/skill-training.svg - "Juggler" by Lorc under CC BY 3.0
 icons/feats/signature-weapon.svg - "Sparkling sabre" by Delapouite under CC BY 3.0
 icons/feats/survival-training.svg - "Dodging" by Lorc under CC BY 3.0
+icons/gear/crowbar.svg - "Crowbar" by Delapouite under CC BY 3.0
+icons/gear/wrench-monkey.svg - "Monkey wrench" by Delapouite under CC BY 3.0
 icons/plans/coordinated-maneuvers.svg - "Digital trace" by SpencerDub under CC BY 3.0
 icons/plans/dirty-little-secrets.svg - "Lock spy" by Delapouite under CC BY 3.0
 icons/plans/expect-the-unexpected.svg - "Orrery" by Caro Asercion under CC BY 3.0
@@ -96,6 +121,106 @@ icons/tricks/insult-to-injury.svg - "Internal injury" by Lorc under CC BY 3.0
 icons/tricks/magnetic-personality.svg - "Star struck" by Delapouite under CC BY 3.0
 icons/tricks/taunting-blow.svg - "Screaming" by Lorc under CC BY 3.0
 icons/tricks/watch-this.svg - "Theater" by Delapouite under CC BY 3.0
+icons/weapons/axe-battle.svg - "Sharp axe" by Delapouite under CC BY 3.0
+icons/weapons/axe-fire.svg - "Fire axe" by Lorc under CC BY 3.0
+icons/weapons/axe-halberd.svg - "Sharp haldberd" by Delapouite under CC BY 3.0
+icons/weapons/axe-hatchet.svg - "Hatchet" by Delapouite under CC BY 3.0
+icons/weapons/axe-stone.svg - "Stone axe" by Lorc under CC BY 3.0
+icons/weapons/axe-tomahawk.svg - "Tomahawk" by Delapouite under CC BY 3.0
+icons/weapons/axe-war.svg - "War axe" by Delapouite under CC BY 3.0
+icons/weapons/axe-wood.svg - "Wood axe" by Lorc under CC BY 3.0
+icons/weapons/bat-baseball.svg - "Baseball bat" by Delapouite under CC BY 3.0
+icons/weapons/bat-cricket.svg - "Cricket bat" by Delapouite under CC BY 3.0
+icons/weapons/bat-spiked.svg - "Spiked bat" by Skoll under CC BY 3.0
+icons/weapons/baton-police.svg - "Baton" by Skoll under CC BY 3.0
+icons/weapons/baton-telescopic.svg - "Telescopic baton" by Skoll under CC BY 3.0
+icons/weapons/boomerang-armored.svg - "Armored boomerang" by Delapouite under CC BY 3.0
+icons/weapons/boomerang-normal.svg - "Boomerang" by Delapouite under CC BY 3.0
+icons/weapons/brass-knuckles.svg - "Brass knuckles" by Delapouite under CC BY 3.0
+icons/weapons/bow-historic.svg - "High shot" by Lorc under CC BY 3.0
+icons/weapons/chainsaw.svg - "Chainsaw" by Delapouite under CC BY 3.0
+icons/weapons/club-wooden.svg - "Wood club" by Delapouite under CC BY 3.0
+icons/weapons/crossbow-historic.svg - "Crossbow" by Carl Olsen under CC BY 3.0
+icons/weapons/flail.svg - "Flail" by Delapouite under CC BY 3.0
+icons/weapons/flamethrower.svg - "Flamethrower" by Delapouite under CC BY 3.0
+icons/weapons/hammer-claw.svg - "Claw hammer" by Lorc under CC BY 3.0
+icons/weapons/hammer-heavy.svg - "Thor hammer" by Delapouite under CC BY 3.0
+icons/weapons/hammer-sledge.svg - "Thor hammer" by Delapouite under CC BY 3.0 (modified)
+icons/weapons/hammer-war.svg - "Warhammer" by Delapouite under CC BY 3.0
+icons/weapons/harpoon.svg - "Harpoon chain" by Lorc under CC BY 3.0
+icons/weapons/improvised-broken-bottle.svg - "Broken bottle" by Lorc under CC BY 3.0
+icons/weapons/improvised-glass-shards.svg - "Shattered Glass" by Lorc under CC BY 3.0 (modified)
+icons/weapons/improvised-knitting-needles.svg - "Sewing needle" by Lorc under CC BY 3.0 (modified)
+icons/weapons/improvised-monitor.svg - "PC" by Skoll under CC BY 3.0
+icons/weapons/improvised-propeller.svg - "Boat propeller" by Delapouite under CC BY 3.0
+icons/weapons/improvised-scythe.svg - "Scythe" by Lorc under CC BY 3.0
+icons/weapons/improvised-tv.svg - "TV" by Delapouite under CC BY 3.0
+icons/weapons/improvised-wall.svg - "Brick wall" by Delapouite under CC BY 3.0
+icons/weapons/knife-bayonet.svg - "Bayonet" by Skoll under CC BY 3.0
+icons/weapons/knife-bone.svg - "Bone knife" by Delapouite under CC BY 3.0
+icons/weapons/knife-bowie.svg - "by Lorc under CC BY 3.0" 
+icons/weapons/knife-butterfly.svg - "Butterfly knife" by Skoll under CC BY 3.0
+icons/weapons/knife-cleaver.svg - "Meat cleaver" by Lorc under CC BY 3.0
+icons/weapons/knife-kitchen.svg - "Kitchen knives" by Lorc under CC BY 3.0 (modified)
+icons/weapons/knife-razor.svg - "Razor" by Delapouite under CC BY 3.0
+icons/weapons/knife-scalpel.svg - "Scalpel" by Lorc under CC BY 3.0
+icons/weapons/knife-stiletto.svg - "Stiletto" by Skoll under CC BY 3.0
+icons/weapons/knife-switchblade.svg - "Switchblade" by Skoll under CC BY 3.0
+icons/weapons/knife-throwing.svg - "Thrown knife" by Lorc under CC BY 3.0
+icons/weapons/knife-trench.svg - "Trench knife" by Skoll under CC BY 3.0
+icons/weapons/mace-spiked.svg - "Spiked mace" by Lorc under CC BY 3.0
+icons/weapons/machine-gun-mini.svg - "Minigun" by Lorc under CC BY 3.0
+icons/weapons/net.svg - "Fishing net" by Lorc under CC BY 3.0
+icons/weapons/ninja-kusarigama.svg - "Kusarigama" by DarkZaitzev under CC BY 3.0
+icons/weapons/ninja-nunchaku.svg - "Nunchaku" by Delapouite under CC BY 3.0
+icons/weapons/ninja-rope-dart.svg - "Rope dart" by Delapouite under CC BY 3.0
+icons/weapons/ninja-sai.svg - "Sai" by Delapouite under CC BY 3.0
+icons/weapons/ninja-shuriken.svg - "Shuriken" by DarkZaitzev under CC BY 3.0
+icons/weapons/pepper-spray.svg - "Spray" by Lorc under CC BY 3.0
+icons/weapons/pipe-lead.svg - "Lead pipe" by Delapouite under CC BY 3.0
+icons/weapons/pistol-c96.svg - "C96" by Skoll under CC BY 3.0
+icons/weapons/pistol-desert-eagle.svg - "Desert Eagle" by Skoll under CC BY 3.0
+icons/weapons/pistol-colt-m1911.svg - "Colt M1911" by Skoll under CC BY 3.0
+icons/weapons/pistol-glock.svg - "Glock" by Skoll under CC BY 3.0
+icons/weapons/pistol-luger.svg - "Luger" by Skoll under CC BY 3.0
+icons/weapons/pistol-ray.svg - "Ray gun" by Lorc under CC BY 3.0
+icons/weapons/pistol-revolver.svg - "Revolver" by Skoll under CC BY 3.0
+icons/weapons/pistol-snub-nose.svg - "Revolver" by Skoll under CC BY 3.0 (modified)
+icons/weapons/pistol-walther-ppk.svg - "Walther PPK" by Skoll under CC BY 3.0
+icons/weapons/pistol-water.svg - "Water gun" by Delapouite under CC BY 3.0
+icons/weapons/rifle-ak47.svg - "AK47" by Skoll under CC BY 3.0
+icons/weapons/rifle-ak47u.svg - "AK47u" by Skoll under CC BY 3.0
+icons/weapons/rifle-fn-fal.svg - "FN FAL" by Skoll under CC BY 3.0
+icons/weapons/rifle-famas.svg - "Famas" by Skoll under CC BY 3.0
+icons/weapons/rifle-lee-enfield.svg - "Lee Enfield" by Skoll under CC BY 3.0
+icons/weapons/rifle-steyr-aug.svg - "Steyr AUG" by Skoll under CC BY 3.0
+icons/weapons/rifle-musket.svg - "Musket" by Skoll under CC BY 3.0
+icons/weapons/rifle-winchester.svg - "Winchester rifle" by Skoll under CC BY 3.0
+icons/weapons/rocket-panzerfaust.svg - "Panzerfaust" by Delapouite under CC BY 3.0
+icons/weapons/shotgun-sawed-off.svg - "Sawed-off shotgun" by Delapouite under CC BY 3.0
+icons/weapons/sling.svg - "Sling" by Delapouite under CC BY 3.0
+icons/weapons/slingshot.svg - "Slingshot" by Delapouite under CC BY 3.0
+icons/weapons/spear.svg - "Thrown spear" by Lorc under CC BY 3.0
+icons/weapons/smg-cz-skorpion.svg - "CZ Skorpion" by Skoll under CC BY 3.0
+icons/weapons/smg-m3-grease-gun.svg - "M3 Grease Gun" by Skoll under CC BY 3.0
+icons/weapons/smg-mac-10.svg - "Mac 10" by Skoll under CC BY 3.0
+icons/weapons/smg-mp40.svg - "MP40" by Skoll under CC BY 3.0
+icons/weapons/smg-spectre-m4.svg - "Spectre M4" by Skoll under CC BY 3.0
+icons/weapons/smg-p90.svg - "P90" by Skoll under CC BY 3.0
+icons/weapons/smg-mp5.svg - "MP5" by Skoll under CC BY 3.0
+icons/weapons/smg-mp5k.svg - "MP5K" by Skoll under CC BY 3.0
+icons/weapons/smg-tec-9.svg - "TEC 9" by Skoll under CC BY 3.0
+icons/weapons/smg-thompson-m1.svg - "Thompson M1" by Skoll under CC BY 3.0
+icons/weapons/smg-thompson-m1928.svg - "Thompson M1928" by Skoll under CC BY 3.0
+icons/weapons/smg-uzi.svg - "Uzi" by Delapouite under CC BY 3.0
+icons/weapons/staff-bo.svg - "Bo" by Delapouite under CC BY 3.0
+icons/weapons/sword-gladius.svg - "Gladius" by Skoll under CC BY 3.0
+icons/weapons/sword-glaive.svg - "Glaive" by Delapouite under CC BY 3.0
+icons/weapons/sword-katana.svg - "Katana" by Delapouite under CC BY 3.0
+icons/weapons/sword-two-handed.svg - "Two handed sword" by Delapouite under CC BY 3.0
+icons/weapons/thrown-explosive.svg - "Trench assault" by Quoting under CC BY 3.0
+icons/weapons/unarmed-strike.svg - "Armor punch" by Delapouite under CC BY 3.0 (modified)
+icons/weapons/whip.svg - "Whip" by Lorc under CC BY 3.0
 svg/action/armor-damaged.svg - "Broken Shield" by Lorc under CC BY 3.0
 svg/action/armor-intact.svg - "Broken Shield" by Lorc under CC BY 3.0 (modified)
 svg/action/armor-save.svg - "Shield reflect" by Lorc under CC BY 3.0

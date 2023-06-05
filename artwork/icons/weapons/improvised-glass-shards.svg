@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg style="height: 512px; width: 512px;" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" width="512" height="512">
+  <defs>
+    <linearGradient x1="0" x2="0" y1="0" y2="1" id="lorc-shattered-glass-gradient-0">
+      <stop offset="0" stop-color="#b9b9b9" stop-opacity="1"/>
+      <stop offset="1" stop-color="#666666" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#lorc-shattered-glass-gradient-0)" height="512" width="512" rx="64" ry="64"/>
+  <g class="" style="" transform="translate(0,0)">
+    <path d="M 421.576 108.902 L 288.08 213.901 L 461.2 179.514 L 421.575 108.9 L 421.576 108.902 Z M 227.746 110.348 L 193.459 256.47 L 320.768 110.348 L 227.746 110.348 Z M 93.212 216.115 L 37.37 353.453 L 114.921 376.758 L 167.269 322.957 L 139.425 216.113 L 93.212 216.113 L 93.212 216.115 Z M 363.687 233.81 L 233.088 278.525 L 363.888 389.114 C 368.209 366.9 370.525 342.539 370.525 315.958 C 370.525 289.001 368.109 261.364 363.685 233.81 L 363.687 233.81 Z" fill="#ffffff" fill-opacity="1" style="" transform="matrix(0.927184, -0.374607, 0.374607, 0.927184, -75.127696, 111.515542)"/>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg style="height: 512px; width: 512px;" viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient x1="0" x2="0" y1="0" y2="1" id="delapouite-thor-hammer-gradient-0">
+      <stop offset="0" stop-color="#b9b9b9" stop-opacity="1"/>
+      <stop offset="1" stop-color="#666666" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#delapouite-thor-hammer-gradient-0)" height="512" width="512" rx="64" ry="64"/>
+  <g class="" style="" transform="matrix(0.63807, 0, 0, 0.63807, 173.574646, 11.733763)">
+    <path d="M 266.033 32.42 L 180.795 117.658 L 180.795 137.457 L 285.832 32.42 L 266.033 32.42 Z M 307.561 36.148 L 184.523 159.186 L 352.814 327.476 L 475.852 204.44 L 307.56 36.15 L 307.561 36.148 Z M 479.581 226.168 L 374.542 331.205 L 394.341 331.205 L 479.579 245.967 L 479.579 226.168 L 479.581 226.168 Z M 239.032 239.699 L -157.404 654.458 L -124.877 686.985 L 271.325 272.861 L 239.032 239.699 Z M -186.273 663.458 L -193.777 685.97 L -156.389 723.358 L -133.877 715.854 L -133.877 703.44 L -173.861 663.458 L -186.273 663.458 Z" fill="#ffffff" fill-opacity="1"/>
+  </g>
+</svg>
