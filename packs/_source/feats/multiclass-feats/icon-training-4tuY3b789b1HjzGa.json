@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "advancement": [
       {
@@ -74,6 +74,12 @@
           "mode": 2,
           "value": "+1",
           "priority": null
+        },
+        {
+          "key": "system.details.limits.trick.formula",
+          "mode": 2,
+          "value": "+2",
+          "priority": null
         }
       ],
       "tint": null,
@@ -92,10 +98,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.1",
     "coreVersion": "10.291",
     "createdTime": 1680041471718,
-    "modifiedTime": 1680050791094,
+    "modifiedTime": 1685997983719,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

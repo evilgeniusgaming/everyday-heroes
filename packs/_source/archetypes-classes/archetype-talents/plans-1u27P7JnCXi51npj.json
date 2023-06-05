@@ -32,17 +32,45 @@
       "level": 1
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "label": "Plan Limit",
+      "icon": "systems/everyday-heroes/artwork/icons/archetypes/plans.svg",
+      "origin": "Compendium.everyday-heroes.archetypes-classes.1u27P7JnCXi51npj",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "_id": "LitSHe6bUR1iUyiv",
+      "changes": [
+        {
+          "key": "system.details.limits.plan.formula",
+          "mode": 5,
+          "value": "floor(@details.level / 2) + max(@abilities.int.mod, 1)"
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "sort": 0
+    }
+  ],
   "ownership": {
     "default": 0
   },
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.2.0",
+    "systemVersion": "0.2.1",
     "coreVersion": "10.291",
     "createdTime": 1679161506923,
-    "modifiedTime": 1685311108882,
+    "modifiedTime": 1685997411816,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

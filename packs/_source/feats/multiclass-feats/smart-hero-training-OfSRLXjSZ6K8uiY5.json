@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "advancement": [
       {
@@ -54,17 +54,49 @@
       "category": "multiclass"
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "label": "Smart Hero Training",
+      "icon": "systems/everyday-heroes/artwork/icons/archetypes/smart.webp",
+      "origin": "Compendium.everyday-heroes.feats.OfSRLXjSZ6K8uiY5",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "_id": "aDzdbHQIwCbx9sET",
+      "changes": [
+        {
+          "key": "system.details.limits.plan.formula",
+          "mode": 2,
+          "value": "+2"
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.everyday-heroes.archetypes-classes.1u27P7JnCXi51npj.ActiveEffect.LitSHe6bUR1iUyiv"
+        }
+      },
+      "sort": 0
+    }
+  ],
   "ownership": {
     "default": 0
   },
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.1",
     "coreVersion": "10.291",
     "createdTime": 1680041347524,
-    "modifiedTime": 1680042211959,
+    "modifiedTime": 1685998119380,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

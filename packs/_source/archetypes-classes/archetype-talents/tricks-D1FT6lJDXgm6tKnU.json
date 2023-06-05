@@ -32,17 +32,45 @@
       "level": 1
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "label": "Trick Limit",
+      "icon": "systems/everyday-heroes/artwork/icons/archetypes/tricks.svg",
+      "origin": "Compendium.everyday-heroes.archetypes-classes.D1FT6lJDXgm6tKnU",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "_id": "R0Vi3TFgAfhCgw83",
+      "changes": [
+        {
+          "key": "system.details.limits.trick.formula",
+          "mode": 5,
+          "value": "@scale.tricks"
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "sort": 0
+    }
+  ],
   "ownership": {
     "default": 0
   },
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.2.0",
+    "systemVersion": "0.2.1",
     "coreVersion": "10.291",
     "createdTime": 1679162613096,
-    "modifiedTime": 1685311133414,
+    "modifiedTime": 1685997849220,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

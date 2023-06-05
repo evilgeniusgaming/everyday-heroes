@@ -21,8 +21,8 @@
       "spent": 0,
       "max": "",
       "period": "",
-      "recovery": "",
-      "formula": ""
+      "formula": "",
+      "recovery": ""
     },
     "advancement": [],
     "identifier": {
@@ -53,14 +53,17 @@
         {
           "key": "system.scale.influence.number",
           "mode": 2,
-          "value": "+1",
-          "priority": null
+          "value": "+1"
         },
         {
           "key": "system.scale.influence.denomination",
           "mode": 4,
-          "value": "8",
-          "priority": null
+          "value": "8"
+        },
+        {
+          "key": "system.details.limits.trick.formula",
+          "mode": 2,
+          "value": "+1"
         }
       ],
       "tint": null,
@@ -79,10 +82,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.1",
     "coreVersion": "10.291",
     "createdTime": 1680041475065,
-    "modifiedTime": 1680050711765,
+    "modifiedTime": 1685998007788,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
