@@ -164,7 +164,8 @@ export default class BaseActorSheet extends ActorSheet {
 
 		for ( const tab of Object.values(sections) ) {
 			for ( const [key, section] of Object.entries(tab) ) {
-				if ( !this.editingMode && section.options?.autoHide && !section.items.length ) delete tab[key];
+				if ( !this.editingMode && section.options?.autoHide
+						&& !section.items.length && !section.limits?.max ) delete tab[key];
 				else if ( section.primary && !section.primary?.item ) section.create.unshift({
 					label: section.primary.label, dataset: section.primary.dataset
 				});
@@ -208,6 +209,9 @@ export default class BaseActorSheet extends ActorSheet {
 				label: `${model.metadata.sheetLocalization ?? model.metadata.localization}[one]`,
 				dataset
 			}));
+
+			// Add limits
+			section.limits = this.actor.system.details?.limits?.[config.options?.limited];
 		}
 
 		return sections;

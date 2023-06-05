@@ -447,6 +447,9 @@
 "Gear.Type.SpecialtyGoods.Label": "Specialty Goods",
 "Gear.Type.SportingGoods.Label": "Sporting Goods",
 
+"Feature.Limit.Label": "Feature Limits",
+"Feature.Limit.Formula": "Limit Formula",
+
 "Health.Label": "Health",
 
 "HitDice.Label[one]": "Hit Die",

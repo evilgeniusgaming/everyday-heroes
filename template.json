@@ -137,6 +137,7 @@
       },
       "details": {
         "level": 1,
+        "limits": {},
         "wealth": {
           "bonus": ""
         }

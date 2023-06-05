@@ -128,6 +128,9 @@ export default class HeroData extends SystemDataModel.mixin(
 				level: new foundry.data.fields.NumberField({
 					nullable: false, initial: 1, min: 1, max: CONFIG.EverydayHeroes.maxLevel, integer: true, label: "EH.Level.Label[one]"
 				}),
+				limits: new MappingField(new foundry.data.fields.SchemaField({
+					formula: new FormulaField({label: "EH.Feature.Limit.Formula"})
+				}), {label: "EH.Feature.Limit.Label"}),
 				wealth: new foundry.data.fields.SchemaField({
 					bonus: new FormulaField({deterministic: true, label: "EH.Details.Wealth.Bonus.Label"})
 				}, {label: "EH.Details.Wealth.Label"})
@@ -231,6 +234,25 @@ export default class HeroData extends SystemDataModel.mixin(
 		const hd = this.attributes.hd;
 		hd.available = Math.clamped(hd.max - hd.spent, 0, hd.max);
 		hd.denomination = this.details.archetype?.system.hitDie;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedLimits() {
+		const rollData = this.parent.getRollData({deterministic: true});
+		const limits = this.details.limits;
+		for ( const config of CONFIG.EverydayHeroes.sheetSections[this.constructor.metadata.type] ) {
+			if ( !config.options?.limited ) continue;
+			const limit = limits[config.options.limited] ??= {};
+			limit.value = 0;
+			limit.max = simplifyBonus(limit.formula ?? "", rollData);
+		}
+		for ( const item of this.parent.items ) {
+			const limit = limits[item.type];
+			if ( !limit ) continue;
+			limit.value += 1;
+		}
+		// TODO: Add sheet warning if you exceed your maximum
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -65,6 +65,10 @@
 	font-variant: small-caps;
 	font-weight: bold;
 }
+.everyday-heroes.sheet .tab.inventory > section header h2 .limits {
+	font-size: var(--font-size-14);
+	font-weight: normal;
+}
 .everyday-heroes.sheet .tab.inventory > section header .primary.item {
 	margin-block-start: 0.5em;
 }

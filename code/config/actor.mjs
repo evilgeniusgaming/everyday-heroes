@@ -327,7 +327,23 @@ preLocalize("senses", { sort: true });
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
- * Sections that will appear on actor sheets.
+ * Configuration data for sheet sections.
+ *
+ * @typedef {object} SheetSectionConfiguration
+ * @property {string} tab - Name of the tab on which this section will appear. Places the section into an object
+ *                          for that tab's name within the sheet rendering context.
+ * @property {object[]} types - Set of filters for object types that should appear in this section.
+ * @property {object} [primaryType] - Filters for an object that will appear as the primary item of this section.
+ * @property {object} [options]
+ * @property {boolean} [options.autoHide=false] - Should this section be hidden unless it has items?
+ * @property {boolean} [options.equippable=false] - Should the items in this section be equippable?
+ * @property {string} [options.limited] - An item type here will limit the amount of items of that type can appear
+ *                                        in this section using a formula defined in actor data.
+ */
+
+/**
+ * Sections that will appear on actor sheets. They are arrays of objects grouped by actor type.
+ * @enum {SheetSectionConfiguration[]}
  */
 export const sheetSections = {
 	hero: [
@@ -354,12 +370,12 @@ export const sheetSections = {
 		{
 			tab: "features",
 			types: [{type: "plan"}],
-			options: { autoHide: true }
+			options: { autoHide: true, limited: "plan" }
 		},
 		{
 			tab: "features",
 			types: [{type: "trick"}],
-			options: { autoHide: true }
+			options: { autoHide: true, limited: "trick" }
 		},
 		{
 			tab: "features",

@@ -1,7 +1,14 @@
 {{#each sections as |section id|}}
 	<section data-section-id="{{id}}">
 		<header>
-			<h2>{{localize section.label}}</h2>
+			<h2>
+				{{localize section.label}}
+				{{#if section.limits}}
+					<span class="limits" data-tooltip="{{localize 'EH.Feature.Limit.Formula'}}: {{section.limits.formula}}">
+						({{section.limits.value}}/{{section.limits.max}})
+					</span>
+				{{/if}}
+			</h2>
 			{{#if @root.editingMode}}
 				<fieldset>
 					{{#each section.create as |create|}}
