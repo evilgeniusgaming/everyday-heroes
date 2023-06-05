@@ -31,7 +31,9 @@ export default class HeroData extends SystemDataModel.mixin(
 
 	static metadata = {
 		type: "hero",
-		localization: "EH.Actor.Type.Hero"
+		category: "person",
+		localization: "EH.Actor.Type.Hero",
+		image: "systems/everyday-heroes/artwork/svg/actors/hero.svg"
 	};
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

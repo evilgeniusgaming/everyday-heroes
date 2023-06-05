@@ -20,7 +20,9 @@ export default class NPCData extends SystemDataModel.mixin(
 
 	static metadata = {
 		type: "npc",
-		localization: "EH.Actor.Type.NPC"
+		category: "person",
+		localization: "EH.Actor.Type.NPC",
+		image: "systems/everyday-heroes/artwork/svg/actors/npc.svg"
 	};
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

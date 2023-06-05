@@ -1234,6 +1234,11 @@ export default class ActorEH extends Actor {
 	async _preCreate(data, options, user) {
 		await super._preCreate(data, options, user);
 		await this.system._preCreate?.(data, options, user);
+
+		if ( !data.img || data.img === this.constructor.DEFAULT_ICON ) {
+			const img = this.system.constructor.metadata.image;
+			if ( img ) this.updateSource({img});
+		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
