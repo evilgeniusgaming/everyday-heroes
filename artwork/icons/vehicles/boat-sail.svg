@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg style="height: 512px; width: 512px;" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" width="512" height="512">
+  <defs>
+    <linearGradient x1="0" x2="0" y1="0" y2="1" id="delapouite-sailboat-gradient-0">
+      <stop offset="0" stop-color="#b9b9b9" stop-opacity="1"/>
+      <stop offset="1" stop-color="#666666" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#delapouite-sailboat-gradient-0)" height="512" width="512" rx="64" ry="64"/>
+  <g class="" style="" transform="translate(0,0)">
+    <path d="M199.256 74.5v285H27.744l25.998 78H380.255l104-78h-267v-285h-18zm18 18c36.787 88.85 64.94 216 0 250h208c22-34-11.905-164.76-208-250zm-36 0c-33.046 69.333-50 200-144 250h144v-250z" fill="#ffffff" fill-opacity="1"/>
+  </g>
+</svg>
