@@ -23,6 +23,7 @@ globalThis.EverydayHeroes = {
 	dice,
 	documents,
 	enrichers,
+	modules: {},
 	settings,
 	utils
 };
@@ -36,8 +37,8 @@ Hooks.once("init", function() {
 	CONFIG.EverydayHeroes = config;
 	applications.registerSheets();
 	canvas.registerCanvas();
-	data.utils.registerDataModels("Actor", data.actor.config);
-	data.utils.registerDataModels("Item", data.item.config);
+	data.registerDataModels("Actor", data.actor.config);
+	data.registerDataModels("Item", data.item.config);
 	dice.registerDice();
 	documents.registerDocumentClasses();
 	enrichers.registerCustomEnrichers();
