@@ -39,4 +39,20 @@ export default class PlanData extends SystemDataModel.mixin(DescribedTemplate, A
 			})
 		});
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * List of additional fields to be added to the header that allow the selection of registered items.
+	 * @type {object[]}
+	 */
+	static get registeredFields() {
+		return [{
+			label: "EH.Item.Type.Class[one]",
+			blankLabel: "EH.Shared",
+			keyPath: "system.identifier.class",
+			type: "class",
+			filterCallback: e => e.system.identifier.archetype === "smart"
+		}];
+	}
 }

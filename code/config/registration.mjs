@@ -39,8 +39,35 @@ export function get(type, identifier) {
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * @callback RegistrationFilterCallback
+ * @param {Document} element - The current element being processed.
+ * @param {string} identifier - Identifier of the item.
+ * @returns {boolean}
+ */
+
+/**
+ * Filter registered items.
+ * @param {string} type - Item type to filter.
+ * @param {RegistrationFilterCallback} callbackFn - Function executed to perform the filtering.
+ * @returns {Object<string, ItemRegistration>|undefined}
+ */
+export async function filter(type, callbackFn) {
+	let obj = list(type);
+	if ( !obj ) return;
+	obj = foundry.utils.deepClone(obj);
+	for ( const [identifier, data] of Object.entries(obj) ) {
+		const element = await fromUuid(data.sources[data.sources.length - 1]);
+		if ( !element ) return obj;
+		if ( !callbackFn(element, identifier) ) delete obj[identifier];
+	}
+	return obj;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Fetch all registered items of the specified type.
- * @param {string} type - Item type to get.
+ * @param {string} type - Item type to list.
  * @returns {Object<string, ItemRegistration>|undefined}
  */
 export function list(type) {

@@ -31,6 +31,13 @@ export default class FeatureSheet extends AdvancementItemSheet {
 			return obj;
 		}, {});
 
+		context.registeredFields = [];
+		for ( const field of context.item.system.constructor.registeredFields ?? [] ) {
+			field.options = await CONFIG.EverydayHeroes.registration.filter(field.type, field.filterCallback);
+			field.selected = foundry.utils.getProperty(context.item, field.keyPath);
+			context.registeredFields.push(field);
+		}
+
 		return context;
 	}
 

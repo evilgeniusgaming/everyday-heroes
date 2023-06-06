@@ -670,6 +670,8 @@
 "Settings.ReduceTransparency.Label": "Reduce Transparency",
 "Settings.ReduceTransparency.Hint": "Remove the transparency from behind sheets to reduce visual distraction.",
 
+"Shared": "Shared",
+
 "Sheet.Concept": "Default Concept Item Sheet",
 "Sheet.Feature": "Default Feature Item Sheet",
 "Sheet.Hero": "Default Hero Sheet",
