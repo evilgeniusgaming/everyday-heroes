@@ -281,8 +281,8 @@ export default class BaseActorSheet extends ActorSheet {
 		});
 
 		// Editor selector
-		for ( const field of html.querySelectorAll('[name="editorSelected"]') ) {
-			field.addEventListener("change", event => {
+		for ( const element of html.querySelectorAll('[name="editorSelected"]') ) {
+			element.addEventListener("change", event => {
 				this.editorSelected = event.target.value;
 				this.render();
 			});
@@ -332,13 +332,24 @@ export default class BaseActorSheet extends ActorSheet {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	_onChangeInput(event) {
+		// Input deltas
+		if ( event.target.dataset.delta !== undefined ) {
+			const value = event.target.value.trim();
+			if ( value.startsWith("+") || value.startsWith("-") ) {
+				const delta = parseFloat(value);
+				event.target.value = Number(foundry.utils.getProperty(this.actor, event.target.name)) + delta;
+			} else if ( value.startsWith("=") ) {
+				event.target.value = value.slice(1);
+			}
+		}
+
 		super._onChangeInput(event);
 
 		// Choose ammunition
 		if ( event.target.name === "ammunition" ) {
 			const ammoId = event.target.value;
 			const weaponId = event.target.closest("[data-item-id]")?.dataset.itemId;
-			this.actor.update({[`system.items.${weaponId}.ammunition`]: ammoId});
+			return this.actor.update({[`system.items.${weaponId}.ammunition`]: ammoId});
 		}
 	}
 

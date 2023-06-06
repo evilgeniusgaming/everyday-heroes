@@ -132,14 +132,14 @@
 				</fieldset>
 				<fieldset class="current-hp">
 					<label>{{localize "EH.HitPoints.Current"}}</label>
-					<input type="number" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}"
-						step="1" min="0" max="{{system.attributes.hp.max}}">
+					<input type="text" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}"
+						step="1" min="0" max="{{system.attributes.hp.max}}" data-delta>
 				</fieldset>
 				{{#if (eq system.attributes.death.status "alive")}}
 					<fieldset class="temp-hp">
 						<label>{{localize "EH.HitPoints.Temp"}}</label>
-						<input type="number" name="system.attributes.hp.temp" value="{{system.attributes.hp.temp}}"
-							step="1" min="0">
+						<input type="text" name="system.attributes.hp.temp" value="{{system.attributes.hp.temp}}"
+							step="1" min="0" data-delta>
 					</fieldset>
 				{{/if}}
 				<fieldset class="hit-dice">

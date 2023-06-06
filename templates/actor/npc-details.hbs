@@ -30,7 +30,7 @@
 
 	<fieldset>
 		<label>{{localize "EH.HitPoints.Label[other]"}}</label>
-		<input type="number" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}">
+		<input type="text" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}" data-delta>
 		/
 		<input type="number" name="system.attributes.hp.max" value="{{system.attributes.hp.max}}"
 			placeholder="{{localize 'EH.HitPoints.Max'}}" {{disabled (not editingMode)}}>
