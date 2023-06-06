@@ -15,6 +15,11 @@
 	}
 }
 
+.hero.sheet label [data-action] {
+	text-decoration: underline;
+	text-decoration-style: dashed;
+}
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Hero ID                                  */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -224,6 +229,9 @@
 	height: 100%;
 	border-inline-end: 1px solid var(--eh-border-color-weak);
 	padding-inline-end: 0.25em;
+}
+.hero.sheet [data-tab="details"] .skills .skill label [data-action] {
+	text-decoration: none;
 }
 .hero.sheet [data-tab="details"] .skills .skill:first-of-type > * {
 	padding-block-start: 0.25em;

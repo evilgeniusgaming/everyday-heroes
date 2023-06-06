@@ -83,7 +83,8 @@
 						{{/if}}
 					</label>
 					<aside class="modifier">
-						<a data-action="roll" data-type="ability-check" data-ability="{{key}}">{{ability.mod}}</a>
+						<a data-action="roll" data-type="ability-check" data-ability="{{key}}" data-tooltip="{{localize 'EH.Action.Roll'
+							type=(localize 'EH.Ability.Action.CheckSpecific' ability=ability.label)}}">{{ability.mod}}</a>
 					</aside>
 					<div class="contents">
 						<input class="value" type="number" name="system.abilities.{{key}}.value"
@@ -92,7 +93,8 @@
 							{{> "everydayHeroes.actor-proficiency-selector" type="single"
 							  name=(concat "system.abilities." key ".saveProficiency")
 								value=ability.saveProficiency source=ability._source.saveProficiency}}
-							<a data-action="roll" data-type="ability-save" data-ability="{{key}}">{{ability.save}}</a>
+							<a data-action="roll" data-type="ability-save" data-ability="{{key}}" data-tooltip="{{localize 'EH.Action.Roll'
+								type=(localize 'EH.Ability.Action.SaveSpecificShort' ability=ability.label)}}">{{ability.save}}</a>
 						</div>
 					</div>
 				</div>
@@ -102,7 +104,8 @@
 			{{#each skills as |skill key|}}
 				<div class="skill" data-key="{{key}}">
 					<label>
-						<a data-action="roll" data-type="skill" data-skill="{{key}}">{{skill.label}}</a>
+						<a data-action="roll" data-type="skill" data-skill="{{key}}" data-tooltip="{{localize 'EH.Action.Roll'
+							type=(localize 'EH.Skill.Action.CheckSpecific' skill=skill.label)}}">{{skill.label}}</a>
 						{{#if @root.editingMode}}
 							<a data-action="config" data-type="skill" data-key="{{key}}"
 								data-tooltip="{{localize 'EH.Action.Configure' type=skill.label}}">
@@ -142,7 +145,10 @@
 				{{/if}}
 				<fieldset class="hit-dice">
 					<label>
-						<a data-action="roll" data-type="hit-die">{{localize "EH.HitDice.Label[other]"}}</a>
+						<a data-action="roll" data-type="hit-die"
+							data-tooltip="{{localize 'EH.Action.Roll' type=(localize 'EH.HitDice.Label[one]')}}">
+							{{localize "EH.HitDice.Label[other]"}}
+						</a>
 					</label>
 					<span>
 						{{#if system.attributes.hd.denomination}}
@@ -163,7 +169,10 @@
 			{{#unless (eq system.attributes.death.status "alive")}}
 				<div class="death-saves">
 					<label>
-						<a data-action="roll" data-type="death-save">{{localize "EH.Death.Label[other]"}}</a>
+						<a data-action="roll" data-type="death-save"
+							data-tooltip="{{localize 'EH.Action.Roll' type=(localize 'EH.Death.Label[one]')}}">
+							{{localize "EH.Death.Label[other]"}}
+						</a>
 					</label>
 					<fieldset class="success">
 						<label>{{localize "EH.Death.Success"}}</label>
@@ -201,7 +210,12 @@
 				<span>{{system.attributes.defense.value}}</span>
 			</fieldset>
 			<fieldset class="initiative">
-				<label><a data-action="roll" data-type="initiative">{{localize "EH.Initiative.Label"}}</a></label>
+				<label>
+					<a data-action="roll" data-type="initiative"
+						data-tooltip="{{localize 'EH.Action.Roll' type=(localize 'EH.Initiative.Label')}}">
+						{{localize "EH.Initiative.Label"}}
+					</a>
+				</label>
 				<span>{{system.attributes.initiative.mod}}</span>
 			</fieldset>
 			<fieldset class="passive-perception">
@@ -221,7 +235,9 @@
 				{{#unless resource.disabled}}
 					<fieldset data-resource-key="{{key}}" {{!--style="background-image: url('{{resource.backdrop}}');"--}}>
 						<label>
-							<a data-action="roll" data-type="resource" data-resource="{{key}}">{{resource.label}}</a>
+							<a data-action="roll" data-type="resource" data-resource="{{key}}" data-tooltip="
+								{{~#if resource.denomination}}{{localize 'EH.Action.Roll' type=resource.label}}
+								{{~else}}{{localize 'EH.Action.Spend' type=resource.label}}{{/if}}">{{resource.label}}</a>
 						</label>
 						<span>{{resource.available}}/{{resource.max}}</span>
 						<span class="die">
