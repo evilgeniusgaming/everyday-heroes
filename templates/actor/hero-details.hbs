@@ -132,14 +132,12 @@
 				</fieldset>
 				<fieldset class="current-hp">
 					<label>{{localize "EH.HitPoints.Current"}}</label>
-					<input type="text" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}"
-						step="1" min="0" max="{{system.attributes.hp.max}}" data-delta>
+					<input type="text" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}" data-delta>
 				</fieldset>
 				{{#if (eq system.attributes.death.status "alive")}}
 					<fieldset class="temp-hp">
 						<label>{{localize "EH.HitPoints.Temp"}}</label>
-						<input type="text" name="system.attributes.hp.temp" value="{{system.attributes.hp.temp}}"
-							step="1" min="0" data-delta>
+						<input type="text" name="system.attributes.hp.temp" value="{{system.attributes.hp.temp}}" data-delta>
 					</fieldset>
 				{{/if}}
 				<fieldset class="hit-dice">
@@ -155,7 +153,7 @@
 				<fieldset class="total-dmg">
 					{{#unless (eq system.attributes.hp.value 0)}}
 						<label>{{localize "EH.HitPoints.Damage"}}</label>
-						<span>{{system.attributes.hp.damage}}</span>
+						<input type="text" name="system.attributes.hp.damage" value="{{system.attributes.hp.damage}}" data-delta>
 					{{else}}
 						<label>{{localize "EH.Death.Status.Label"}}</label>
 						<span>{{lookup CONFIG.deathStatus system.attributes.death.status}}</span>

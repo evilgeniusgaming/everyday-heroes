@@ -299,6 +299,11 @@ export default class BaseActorSheet extends ActorSheet {
 			element.addEventListener("contextmenu", this._onCycleProficiency.bind(this));
 		}
 
+		// Hit Points & Damage
+		for ( const element of html.querySelectorAll(':is([name$=".hp.value"], [name$=".hp.damage"])') ) {
+			element.addEventListener("change", this._onChangeHP.bind(this));
+		}
+
 		// Item Action Listeners
 		for ( const element of html.querySelectorAll('[data-action="item"]') ) {
 			element.addEventListener("click", this._onItemAction.bind(this));
@@ -327,6 +332,30 @@ export default class BaseActorSheet extends ActorSheet {
 	_disableFields(form) {
 		super._disableFields(form);
 		form.querySelectorAll('[name="editorSelected"]').forEach(f => f.disabled = false);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Handle changes to the HP and damage on character sheets.
+	 * @param {Event} event - Triggering event.
+	 * @returns {Promise}
+	 */
+	_onChangeHP(event) {
+		event.stopPropagation();
+		let value = event.target.value.trim();
+		let delta;
+		if ( value.startsWith("+") || value.startsWith("-") ) delta = parseInt(value);
+		else {
+			if ( value.startsWith("=") ) value = value.slice(1);
+			delta = parseInt(value) - foundry.utils.getProperty(this.actor, event.target.name);
+		}
+
+		return this.actor.applyDamage([{ value: delta }], {
+			ignoreImmunity: true,
+			ignoreReduction: true,
+			multiplier: event.target.name.endsWith(".damage") ? 1 : -1
+		});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
