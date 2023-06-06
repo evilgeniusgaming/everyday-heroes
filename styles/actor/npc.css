@@ -2,6 +2,11 @@
 	min-width: 350px;
 }
 
+.everyday-heroes.npc.sheet [data-action]:not([data-type="activate"]):not([data-type="edit"]) {
+	text-decoration: underline;
+	text-decoration-style: dashed;
+}
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Header                                   */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

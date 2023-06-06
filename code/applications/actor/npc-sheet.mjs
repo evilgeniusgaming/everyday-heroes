@@ -113,25 +113,42 @@ export default class NPCSheet extends BaseActorSheet {
 
 		context.lists.resources = listFormatter.format(
 			Object.entries(context.system.resources).reduce((arr, [key, resource]) => {
-				let label = `<a data-action="roll" data-type="resource" data-resource="${key}">${resource.label}</a> `;
-				label += `(${numberFormat(resource.available)}/${numberFormat(resource.max)})`;
-				arr.push(label);
+				arr.push(
+					`<a data-action="roll" data-type="resource" data-resource="${key}" data-tooltip="${
+						game.i18n.format(`EH.Action.${resource.denomination ? "Roll" : "Spend"}`, { type: resource.label })
+					}">${resource.label}</a> (${numberFormat(resource.available)}/${numberFormat(resource.max)})`
+				);
 				return arr;
 			}, [])
 		);
+
 		context.lists.roles = listFormatter.format(context.system.biography.roles.reduce((arr, role) => {
 			const label = CONFIG.EverydayHeroes.roles[role];
 			arr.push(label ?? role);
 			return arr;
 		}, []));
+
 		context.lists.saves = listFormatter.format(Object.entries(context.abilities).reduce((arr, [key, ability]) => {
 			if ( !ability.saveProficiency.hasProficiency ) return arr;
-			arr.push(`<a data-action="roll" data-type="ability-save" data-ability="${key}">${ability.label} ${ability.save}</a>`);
+			arr.push(
+				`<a data-action="roll" data-type="ability-save" data-ability="${key}" data-tooltip="${
+					game.i18n.format("EH.Action.Roll", {
+						type: game.i18n.format("EH.Ability.Action.SaveSpecificShort", { ability: ability.label })
+					})
+				}">${ability.label} ${ability.save}</a>`
+			);
 			return arr;
 		}, []));
+
 		context.lists.skills = listFormatter.format(Object.entries(context.skills).reduce((arr, [key, skill]) => {
 			if ( !skill.proficiency.hasProficiency ) return arr;
-			arr.push(`<a data-action="roll" data-type="skill" data-skill="${key}">${skill.label} ${skill.mod}</a>`);
+			arr.push(
+				`<a data-action="roll" data-type="skill" data-skill="${key}" data-tooltip="${
+					game.i18n.format("EH.Action.Roll", {
+						type: game.i18n.format("EH.Skill.Action.CheckSpecific", { skill: skill.label })
+					})
+				}">${skill.label} ${skill.mod}</a>`
+			);
 			return arr;
 		}, []));
 
