@@ -1,0 +1,175 @@
+{
+  "name": "Intoxicated",
+  "type": "condition",
+  "img": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
+  "system": {
+    "description": {
+      "value": "<p>An intoxicated character is suffering from the effects of drugs and other substances that depress the function of the central nervous system. Intoxication is measured in four levels, each of which has a cumulative effect.</p><p>Whenever a character becomes intoxicated, they gain the indicated level of Intoxication. If the character is already intoxicated and another intoxicating effect is applied, their Intoxication level does not increase. Rather, the highest level applies. Unless otherwise noted, for every 2 hours that a character is not exposed to the source of their Intoxication, they reduce their Intoxication by one level.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "type": {
+      "value": "cumulative",
+      "target": "people"
+    },
+    "identifier": {
+      "value": "intoxicated"
+    },
+    "levels": [
+      {
+        "description": "Disadvantage on Dexterity, Intelligence, and Wisdom checks and saving throws",
+        "effect": "GrOJuhLJtbAP8Apq"
+      },
+      {
+        "description": "Speed halved, and Sickened",
+        "effect": "CskTVEMpmVyEzQDR"
+      },
+      {
+        "description": "Unconscious",
+        "effect": "SbRWej0UI2K33RBL"
+      },
+      {
+        "description": "Reduced to 0 hit points and must make death saving throws",
+        "effect": "TdNX9QU2Mvmmzd6w"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "name": "Intoxicated (level one)",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 1
+        }
+      },
+      "_id": "GrOJuhLJtbAP8Apq",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!vzUDWHyJUxiIVNPT.GrOJuhLJtbAP8Apq"
+    },
+    {
+      "name": "Intoxicated (level two)",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 2
+        }
+      },
+      "_id": "CskTVEMpmVyEzQDR",
+      "changes": [
+        {
+          "key": "system.conditions.sickened",
+          "mode": 5,
+          "value": "1"
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!vzUDWHyJUxiIVNPT.CskTVEMpmVyEzQDR"
+    },
+    {
+      "name": "Intoxicated (level three)",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 3
+        }
+      },
+      "_id": "SbRWej0UI2K33RBL",
+      "changes": [
+        {
+          "key": "system.conditions.unconcious",
+          "mode": 5,
+          "value": "1"
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!vzUDWHyJUxiIVNPT.SbRWej0UI2K33RBL"
+    },
+    {
+      "name": "Intoxicated (level four)",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 4
+        }
+      },
+      "_id": "TdNX9QU2Mvmmzd6w",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!vzUDWHyJUxiIVNPT.TdNX9QU2Mvmmzd6w"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.0",
+    "coreVersion": "11.305",
+    "createdTime": 1686607191448,
+    "modifiedTime": 1689360886632,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "vzUDWHyJUxiIVNPT",
+  "_key": "!items!vzUDWHyJUxiIVNPT"
+}

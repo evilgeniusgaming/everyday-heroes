@@ -5,6 +5,7 @@
 @import "./styles/forms.css";
 @import "./styles/ui.css";
 
+@import "./styles/active-effect.css";
 @import "./styles/actor/actor.css";
 @import "./styles/advancement/advancement.css";
 @import "./styles/chat/chat.css";

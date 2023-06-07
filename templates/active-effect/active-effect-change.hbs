@@ -1,0 +1,16 @@
+<li class="effect-change" data-change-index="{{@index}}">
+	<fieldset class="key">
+		<input type="text" name="{{prefix}}changes.{{@index}}.key" value="{{change.key}}">
+	</fieldset>
+	<fieldset class="mode">
+		<select name="{{prefix}}changes.{{@index}}.mode" data-dtype="Number">
+			{{selectOptions @root.modes selected=change.mode}}
+		</select>
+	</fieldset>
+	<fieldset class="value">
+		<input type="text" name="{{prefix}}changes.{{@index}}.value" value="{{change.value}}">
+	</fieldset>
+	<div class="effect-controls">
+		<a data-action="effect" data-type="delete"><i class="fas fa-trash"></i></a>
+	</div>
+</li>

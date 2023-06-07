@@ -1,0 +1,69 @@
+{
+  "name": "Encumbered",
+  "type": "condition",
+  "img": "systems/everyday-heroes/artwork/icons/conditions/encumbered.svg",
+  "system": {
+    "description": {
+      "value": "<p>An Encumbered character's speed is halved, and it can't use the Dash action.</p><ul><li><p>The character has disadvantage on Dexterity saving throws.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "type": {
+      "value": "single",
+      "target": "people"
+    },
+    "identifier": {
+      "value": "encumbered"
+    },
+    "levels": [
+      {
+        "effect": "adydmQ85GGlVtL6A"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "name": "Encumbered",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/encumbered.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 1
+        }
+      },
+      "_id": "adydmQ85GGlVtL6A",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!DEI87ArlxCvEIaf6.adydmQ85GGlVtL6A"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.0",
+    "coreVersion": "11.305",
+    "createdTime": 1686607041015,
+    "modifiedTime": 1689360493862,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "DEI87ArlxCvEIaf6",
+  "_key": "!items!DEI87ArlxCvEIaf6"
+}

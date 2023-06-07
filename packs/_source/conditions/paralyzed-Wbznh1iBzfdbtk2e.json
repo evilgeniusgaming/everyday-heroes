@@ -1,0 +1,69 @@
+{
+  "name": "Paralyzed",
+  "type": "condition",
+  "img": "systems/everyday-heroes/artwork/icons/conditions/paralyzed.svg",
+  "system": {
+    "description": {
+      "value": "<p>A Paralyzed character is Incapacitated and can't move or speak. They automatically fail Strength and Dexterity saving throws.</p><ul><li><p>Attack rolls against the character have advantage.</p></li><li><p>Any attack that hits the character is a critical hit if the attacker is within 5 feet.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "type": {
+      "value": "single",
+      "target": "people"
+    },
+    "identifier": {
+      "value": "paralyzed"
+    },
+    "levels": [
+      {
+        "effect": "oXmHLCbdyRWh4zh4"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "name": "Paralyzed",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/paralyzed.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 1
+        }
+      },
+      "_id": "oXmHLCbdyRWh4zh4",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!Wbznh1iBzfdbtk2e.oXmHLCbdyRWh4zh4"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.0",
+    "coreVersion": "11.305",
+    "createdTime": 1686607074660,
+    "modifiedTime": 1689360906201,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "Wbznh1iBzfdbtk2e",
+  "_key": "!items!Wbznh1iBzfdbtk2e"
+}

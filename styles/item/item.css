@@ -1,4 +1,5 @@
 @import "./advancement.css";
+@import "./condition.css";
 @import "./details.css";
 
 .item.sheet form {

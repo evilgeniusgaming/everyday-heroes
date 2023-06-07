@@ -1,0 +1,69 @@
+{
+  "name": "Blinded",
+  "type": "condition",
+  "img": "systems/everyday-heroes/artwork/icons/conditions/blinded.svg",
+  "system": {
+    "description": {
+      "value": "<p>A Blinded character can't see and fails any ability check requiring sight.</p><ul><li><p>The character has disadvantage on attack rolls.</p></li><li><p>Attack rolls made against a Blinded character have advantage.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "type": {
+      "value": "single",
+      "target": "people"
+    },
+    "identifier": {
+      "value": "blinded"
+    },
+    "levels": [
+      {
+        "effect": "vDsir9AdSL9pDQR8"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "name": "Blinded",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/blinded.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 1
+        }
+      },
+      "_id": "vDsir9AdSL9pDQR8",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!cBIm6fL1nsT1vHcJ.vDsir9AdSL9pDQR8"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.0",
+    "coreVersion": "11.305",
+    "createdTime": 1686607003858,
+    "modifiedTime": 1689360466736,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "cBIm6fL1nsT1vHcJ",
+  "_key": "!items!cBIm6fL1nsT1vHcJ"
+}

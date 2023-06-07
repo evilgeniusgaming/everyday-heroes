@@ -1,0 +1,69 @@
+{
+  "name": "Distracted",
+  "type": "condition",
+  "img": "systems/everyday-heroes/artwork/icons/conditions/distracted.svg",
+  "system": {
+    "description": {
+      "value": "<p>A Distracted character can't take bonus actions or reactions.</p><ul><li><p>The character has disadvantage on Intelligence and Wisdom checks unless those checks are directed at the source of the distraction.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "type": {
+      "value": "single",
+      "target": "people"
+    },
+    "identifier": {
+      "value": "distracted"
+    },
+    "levels": [
+      {
+        "effect": "QbmwM9WjyWTBZile"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "name": "Distracted",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/distracted.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 1
+        }
+      },
+      "_id": "QbmwM9WjyWTBZile",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!F9dXA7LTouFAwnIv.QbmwM9WjyWTBZile"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.0",
+    "coreVersion": "11.305",
+    "createdTime": 1686607034250,
+    "modifiedTime": 1689360489278,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "F9dXA7LTouFAwnIv",
+  "_key": "!items!F9dXA7LTouFAwnIv"
+}

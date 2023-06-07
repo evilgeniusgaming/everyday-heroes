@@ -1,0 +1,69 @@
+{
+  "name": "Grappled",
+  "type": "condition",
+  "img": "systems/everyday-heroes/artwork/icons/conditions/grappled.svg",
+  "system": {
+    "description": {
+      "value": "<p>A Grappled character's speed becomes 0, and they can't benefit from any bonus to their speed.</p><ul><li><p>The condition ends if the grappler is Incapacitated.</p></li><li><p>The condition ends if an effect removes the Grappled character from the reach of the grappler or grappling effect.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "type": {
+      "value": "single",
+      "target": "people"
+    },
+    "identifier": {
+      "value": "grappled"
+    },
+    "levels": [
+      {
+        "effect": "4mZ4AZ49I2QWRRj8"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "name": "Grappled",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/grappled.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 1
+        }
+      },
+      "_id": "4mZ4AZ49I2QWRRj8",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!YI6DLnBsoZJeWVev.4mZ4AZ49I2QWRRj8"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.0",
+    "coreVersion": "11.305",
+    "createdTime": 1686607056426,
+    "modifiedTime": 1689360760867,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "YI6DLnBsoZJeWVev",
+  "_key": "!items!YI6DLnBsoZJeWVev"
+}

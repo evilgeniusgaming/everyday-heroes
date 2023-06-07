@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg style="height: 512px; width: 512px;" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" width="512" height="512">
+  <polygon points="477.7,384,256,512,34.3,384,34.3,128,256,0,477.7,128" fill="#ffffff" fill-opacity="1"/>
+  <g class="" style="" transform="matrix(0.963408, 0, 0, 0.963408, 8.50806, 10.227401)">
+    <path d="M52.47 16.94L16.95 52.45 71.3 106.6h22.59L215 227.7v56.5L93.84 405.4H71.28l-54.26 54.2 35.34 35.5 54.24-54.4v-22.5L227.8 297h56.4l121.2 121.2v22.5l54.2 54.3 35.4-35.4-54.3-54.2h-22.5L297 284.2v-56.5l121.1-121.1h22.6L495 52.36 459.7 17l-54.3 54.25v22.57L284.2 215h-56.4L106.6 93.86V71.28L52.47 16.94z" fill="#000000" fill-opacity="1" transform="translate(76.8, 76.8) scale(0.7, 0.7) rotate(0, 256, 256) skewX(0) skewY(0)"/>
+  </g>
+</svg>

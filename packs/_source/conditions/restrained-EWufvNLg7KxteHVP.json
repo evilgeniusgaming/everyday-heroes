@@ -1,0 +1,69 @@
+{
+  "name": "Restrained",
+  "type": "condition",
+  "img": "systems/everyday-heroes/artwork/icons/conditions/restrained.svg",
+  "system": {
+    "description": {
+      "value": "<p>A Restrained character's speed becomes 0, and the character can't benefit from any bonus to their speed.</p><ul><li><p>Attack rolls against them have advantage, and their attack rolls have disadvantage.</p></li><li><p>The character has disadvantage on Dexterity saving throws.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "type": {
+      "value": "single",
+      "target": "people"
+    },
+    "identifier": {
+      "value": "restrained"
+    },
+    "levels": [
+      {
+        "effect": "QsZvKBs556tdMaJy"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "name": "Restrained",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/restrained.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 1
+        }
+      },
+      "_id": "QsZvKBs556tdMaJy",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!EWufvNLg7KxteHVP.QsZvKBs556tdMaJy"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.0",
+    "coreVersion": "11.305",
+    "createdTime": 1686607084519,
+    "modifiedTime": 1689360914201,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "EWufvNLg7KxteHVP",
+  "_key": "!items!EWufvNLg7KxteHVP"
+}

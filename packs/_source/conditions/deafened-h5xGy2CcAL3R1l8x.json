@@ -1,0 +1,69 @@
+{
+  "name": "Deafened",
+  "type": "condition",
+  "img": "systems/everyday-heroes/artwork/icons/conditions/deafened.svg",
+  "system": {
+    "description": {
+      "value": "<p>A Deafened character can't hear and fails any ability check requiring hearing.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "type": {
+      "value": "single",
+      "target": "people"
+    },
+    "identifier": {
+      "value": "deafened"
+    },
+    "levels": [
+      {
+        "effect": "3erUfyNK0Y0AqgO8"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "name": "Deafened",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/deafened.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 1
+        }
+      },
+      "_id": "3erUfyNK0Y0AqgO8",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!h5xGy2CcAL3R1l8x.3erUfyNK0Y0AqgO8"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.0",
+    "coreVersion": "11.305",
+    "createdTime": 1686112447817,
+    "modifiedTime": 1689360483782,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "h5xGy2CcAL3R1l8x",
+  "_key": "!items!h5xGy2CcAL3R1l8x"
+}

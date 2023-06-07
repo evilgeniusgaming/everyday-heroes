@@ -1,0 +1,80 @@
+{
+  "name": "Blown Tires",
+  "type": "condition",
+  "img": "systems/everyday-heroes/artwork/icons/conditions/blown-tires.svg",
+  "system": {
+    "description": {
+      "value": "<p>When a vehicle no longer has enough functional tires to operate safely, it has two permanent levels of both @UUID[Compendium.everyday-heroes.conditions.gcBPh3oEtQShFaDw]{Loss of Control} and @UUID[Compendium.everyday-heroes.conditions.Eq8be3KVJD1pTVNT]{Loss of Power} until the tires are repaired.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "type": {
+      "value": "single",
+      "target": "vehicles"
+    },
+    "identifier": {
+      "value": "blown-tires"
+    },
+    "levels": [
+      {
+        "effect": "HgcTXONy8VkJ5Pta"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "name": "Blown Tires",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/blown-tires.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 1
+        }
+      },
+      "_id": "HgcTXONy8VkJ5Pta",
+      "changes": [
+        {
+          "key": "system.conditions.loss-of-control",
+          "mode": 4,
+          "value": "2"
+        },
+        {
+          "key": "system.conditions.loss-of-power",
+          "mode": 4,
+          "value": "2"
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!r3ZpKUtPGAtD7XRR.HgcTXONy8VkJ5Pta"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.0",
+    "coreVersion": "11.305",
+    "createdTime": 1686607555776,
+    "modifiedTime": 1689360982024,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "r3ZpKUtPGAtD7XRR",
+  "_key": "!items!r3ZpKUtPGAtD7XRR"
+}

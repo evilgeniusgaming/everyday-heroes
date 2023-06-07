@@ -4,6 +4,7 @@ import ArmorData from "./armor-data.mjs";
 import BackgroundData from "./background-data.mjs";
 import ClothesData from "./clothes-data.mjs";
 import ClassData from "./class-data.mjs";
+import ConditionData from "./condition-data.mjs";
 import ExplosiveData from "./explosive-data.mjs";
 import FeatData from "./feat-data.mjs";
 import GearData from "./gear-data.mjs";
@@ -26,6 +27,7 @@ export {
 	BackgroundData,
 	ClothesData,
 	ClassData,
+	ConditionData,
 	ExplosiveData,
 	FeatData,
 	GearData,
@@ -56,6 +58,7 @@ export const config = {
 	background: BackgroundData,
 	clothes: ClothesData,
 	class: ClassData,
+	condition: ConditionData,
 	explosive: ExplosiveData,
 	feat: FeatData,
 	gear: GearData,

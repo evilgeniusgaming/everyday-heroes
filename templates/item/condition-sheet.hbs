@@ -1,0 +1,76 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+	<header>
+		<div class="image">
+			<img src="{{item.img}}" data-edit="img">
+		</div>
+		<div class="fields">
+			<fieldset>
+				<label>{{localize "Name"}}</label>
+				<input type="text" name="name" value="{{item.name}}">
+			</fieldset>
+			<fieldset>
+				<label>{{localize "EH.Condition.Target.Label"}}</label>
+				<select name="system.type.target">
+					{{selectOptions CONFIG.conditionTargets selected=system.type.target}}
+				</select>
+			</fieldset>
+			<fieldset>
+				<label>{{localize "EH.Condition.Type.Label"}}</label>
+				<select name="system.type.value">
+					{{selectOptions CONFIG.conditionTypes selected=system.type.value}}
+				</select>
+			</fieldset>
+			{{#unless (eq system.type.value "single")}}
+				<fieldset>
+					<label>{{localize "EH.Condition.Level.Label[other]"}}</label>
+					<input type="number" name="levels" value="{{system.levels.length}}">
+				</fieldset>
+			{{/unless}}
+		</div>
+	</header>
+
+	<main>
+		<div data-tab="description">
+			{{> "everydayHeroes.item-description"}}
+		</div>
+		<div data-tab="effects">
+			{{#each system.levels as |level|}}
+				<fieldset data-index="{{@index}}">
+					<legend>
+						{{#if (eq @root.system.type.value "single")}}
+							{{localize "EH.Condition.Effects.LabelGeneric"}}
+						{{else}}
+							{{level.label}}
+						{{/if}}
+					</legend>
+					{{#unless (eq @root.system.type.value "single")}}
+						<input type="text" name="system.levels.{{@index}}.description" value="{{level.description}}"
+							placeholder="{{localize 'EH.Condition.Effects.LabelGeneric'}}">
+					{{/unless}}
+					{{#if level.effect}}
+					<input type="hidden" name="system.levels.{{@index}}.effect" value="{{level.effect.id}}">
+						<div class="active-effect-changes">
+							<header>
+								<div class="key">{{ localize "EFFECT.ChangeKey" }}</div>
+								<div class="mode">{{ localize "EFFECT.ChangeMode" }}</div>
+								<div class="value">{{ localize "EFFECT.ChangeValue" }}</div>
+								<div class="effect-controls">
+										<a data-action="effect" data-type="add"><i class="far fa-plus-square"></i></a>
+								</div>
+							</header>
+							<ol>
+								{{#each level.effect.changes}}
+									{{> "everydayHeroes.active-effect-change" change=this prefix=(concat "effects." level.effect.id ".")}}
+								{{/each}}
+							</ol>
+						</div>
+					{{else}}
+						<a data-action="effect" data-type="create">{{localize "EH.Effect.Action.Create"}}</a>
+					{{/if}}
+				</fieldset>
+			{{/each}}
+		</div>
+	</main>
+
+</form>

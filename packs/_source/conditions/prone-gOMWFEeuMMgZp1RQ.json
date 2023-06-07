@@ -1,0 +1,69 @@
+{
+  "name": "Prone",
+  "type": "condition",
+  "img": "systems/everyday-heroes/artwork/icons/conditions/prone.svg",
+  "system": {
+    "description": {
+      "value": "<p>A Prone character's only movement option is to stand up or crawl.</p><ul><li><p>The character has disadvantage on attack rolls with melee weapons.</p></li><li><p>Melee attack rolls against a Prone target have advantage.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "type": {
+      "value": "single",
+      "target": "people"
+    },
+    "identifier": {
+      "value": "prone"
+    },
+    "levels": [
+      {
+        "effect": "1WNWecKTl9kmwb2L"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "name": "Prone",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/prone.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 1
+        }
+      },
+      "_id": "1WNWecKTl9kmwb2L",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!gOMWFEeuMMgZp1RQ.1WNWecKTl9kmwb2L"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.0",
+    "coreVersion": "11.305",
+    "createdTime": 1686607078672,
+    "modifiedTime": 1689360910479,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "gOMWFEeuMMgZp1RQ",
+  "_key": "!items!gOMWFEeuMMgZp1RQ"
+}

@@ -1,0 +1,69 @@
+{
+  "name": "Sickened",
+  "type": "condition",
+  "img": "systems/everyday-heroes/artwork/icons/conditions/sickened.svg",
+  "system": {
+    "description": {
+      "value": "<p>A Sickened character has disadvantage on attack rolls and ability checks.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "type": {
+      "value": "single",
+      "target": "people"
+    },
+    "identifier": {
+      "value": "sickened"
+    },
+    "levels": [
+      {
+        "effect": "g65PERkwdhuip5Fy"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "name": "Sickened",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/sickened.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 1
+        }
+      },
+      "_id": "g65PERkwdhuip5Fy",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!avJtRWaoFn7y3n1D.g65PERkwdhuip5Fy"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.0",
+    "coreVersion": "11.305",
+    "createdTime": 1686607089138,
+    "modifiedTime": 1689360917376,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "avJtRWaoFn7y3n1D",
+  "_key": "!items!avJtRWaoFn7y3n1D"
+}

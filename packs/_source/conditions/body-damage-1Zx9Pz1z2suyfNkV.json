@@ -1,0 +1,144 @@
+{
+  "name": "Body Damage",
+  "type": "condition",
+  "img": "systems/everyday-heroes/artwork/icons/conditions/body-damage.svg",
+  "system": {
+    "description": {
+      "value": "<p>Damage to a vehicle's exterior and physical framework covers three levels of effect.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "type": {
+      "value": "cumulative",
+      "target": "vehicles"
+    },
+    "identifier": {
+      "value": "body-damage"
+    },
+    "levels": [
+      {
+        "description": "The vehicle has a −2 penalty to Constitution saving throws made to prevent vehicle damage.",
+        "effect": "oezPQfi2iOnxwKzI"
+      },
+      {
+        "description": "The vehicle has disadvantage on Constitution saving throws made to prevent vehicle damage.",
+        "effect": "wyHZpeatKcB14CSe"
+      },
+      {
+        "description": "The vehicle is Totaled.",
+        "effect": "RfBXsEpfse4ggYJd"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "name": "Body Damage (level one)",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/body-damage.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 1
+        }
+      },
+      "_id": "oezPQfi2iOnxwKzI",
+      "changes": [
+        {
+          "key": "system.bonuses.roll.damageSave",
+          "mode": 2,
+          "value": "-2"
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!1Zx9Pz1z2suyfNkV.oezPQfi2iOnxwKzI"
+    },
+    {
+      "name": "Body Damage (level two)",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/body-damage.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 2
+        }
+      },
+      "_id": "wyHZpeatKcB14CSe",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!1Zx9Pz1z2suyfNkV.wyHZpeatKcB14CSe"
+    },
+    {
+      "name": "Body Damage (level three)",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/body-damage.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 3
+        }
+      },
+      "_id": "RfBXsEpfse4ggYJd",
+      "changes": [
+        {
+          "key": "system.conditions.totaled",
+          "mode": 5,
+          "value": "1"
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!1Zx9Pz1z2suyfNkV.RfBXsEpfse4ggYJd"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.0",
+    "coreVersion": "11.305",
+    "createdTime": 1686607564955,
+    "modifiedTime": 1689361040763,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "1Zx9Pz1z2suyfNkV",
+  "_key": "!items!1Zx9Pz1z2suyfNkV"
+}

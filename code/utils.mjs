@@ -465,6 +465,7 @@ export function registerHandlebarsHelpers() {
  */
 export async function registerHandlebarsPartials() {
 	const partials = [
+		"active-effect/active-effect-change.hbs",
 		"actor/actor-biography.hbs",
 		"actor/actor-inventory.hbs",
 		"actor/actor-proficiency-selector.hbs",

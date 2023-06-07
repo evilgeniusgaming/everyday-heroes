@@ -1,0 +1,69 @@
+{
+  "name": "Totaled",
+  "type": "condition",
+  "img": "systems/everyday-heroes/artwork/icons/conditions/totaled.svg",
+  "system": {
+    "description": {
+      "value": "<p>A vehicle that is Totaled can't move under its own power. It can't be controlled and crashes and comes to a full stop if it is moving.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "type": {
+      "value": "single",
+      "target": "vehicles"
+    },
+    "identifier": {
+      "value": "totaled"
+    },
+    "levels": [
+      {
+        "effect": "3g8oMeCVh52SIddo"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "name": "Totaled",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/totaled.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 1
+        }
+      },
+      "_id": "3g8oMeCVh52SIddo",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!PPajnFe8vsVCIF3a.3g8oMeCVh52SIddo"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.0",
+    "coreVersion": "11.305",
+    "createdTime": 1686607598935,
+    "modifiedTime": 1689361198913,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "PPajnFe8vsVCIF3a",
+  "_key": "!items!PPajnFe8vsVCIF3a"
+}

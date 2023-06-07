@@ -1,0 +1,143 @@
+{
+  "name": "Loss of Power",
+  "type": "condition",
+  "img": "systems/everyday-heroes/artwork/icons/conditions/loss-of-power.svg",
+  "system": {
+    "description": {
+      "value": "<p>Three levels of Loss of Power represent a vehicle's reduced ability to move at speed.</p><p>A plane or other airborne vehicle that has three levels of the Loss of Power condition stalls. It might be possible for a skilled pilot to get the vehicle on a glide path, buying time to restore power, or to slow the speed of the vehicle when it crashes. This requires a Dexterity (Vehicles) check against a DC based on the GM's judgment of the circumstances.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "type": {
+      "value": "cumulative",
+      "target": "vehicles"
+    },
+    "identifier": {
+      "value": "loss-of-power"
+    },
+    "levels": [
+      {
+        "description": "The vehicle has a −2 penalty to Strength checks and saving throws.",
+        "effect": "fxnWa87GR4UIzKGK"
+      },
+      {
+        "description": "The vehicle has disadvantage on Strength checks and saving throws.",
+        "effect": "i2HQr6svUbuqY5gW"
+      },
+      {
+        "description": "Wheeled vehicles slow by one speed category, and risk a crash if they are moving at the start of their turn. Aquatic vehicles slow one speed category per turn and suffer three levels of Loss of Control. • Tracked vehicles come to a complete stop. • Airborne vehicles stall.",
+        "effect": "WB3E4u0lz7RJTrLg"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "name": "Loss of Power (level one)",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/loss-of-power.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 1
+        }
+      },
+      "_id": "fxnWa87GR4UIzKGK",
+      "changes": [
+        {
+          "key": "system.abilities.str.bonuses.check",
+          "mode": 2,
+          "value": "-2"
+        },
+        {
+          "key": "system.abilities.str.bonuses.save",
+          "mode": 2,
+          "value": "-2"
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!Eq8be3KVJD1pTVNT.fxnWa87GR4UIzKGK"
+    },
+    {
+      "name": "Loss of Power (level two)",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/loss-of-power.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 2
+        }
+      },
+      "_id": "i2HQr6svUbuqY5gW",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!Eq8be3KVJD1pTVNT.i2HQr6svUbuqY5gW"
+    },
+    {
+      "name": "Loss of Power (level three)",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/loss-of-power.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 3
+        }
+      },
+      "_id": "WB3E4u0lz7RJTrLg",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!Eq8be3KVJD1pTVNT.WB3E4u0lz7RJTrLg"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.0",
+    "coreVersion": "11.305",
+    "createdTime": 1686607586417,
+    "modifiedTime": 1689361165853,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "Eq8be3KVJD1pTVNT",
+  "_key": "!items!Eq8be3KVJD1pTVNT"
+}

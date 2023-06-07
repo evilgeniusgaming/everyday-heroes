@@ -1,0 +1,69 @@
+{
+  "name": "Stunned",
+  "type": "condition",
+  "img": "systems/everyday-heroes/artwork/icons/conditions/stunned.svg",
+  "system": {
+    "description": {
+      "value": "<p>A Stunned character is Incapacitated, can't move, and can speak only falteringly.</p><ul><li><p>The character automatically fails Strength and Dexterity saving throws.</p></li><li><p>Attack rolls against them have advantage.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "type": {
+      "value": "single",
+      "target": "people"
+    },
+    "identifier": {
+      "value": "stunned"
+    },
+    "levels": [
+      {
+        "effect": "5k5nMliTDIwA75DK"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "name": "Stunned",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/stunned.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 1
+        }
+      },
+      "_id": "5k5nMliTDIwA75DK",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!G4MjtFAxhsGFjORy.5k5nMliTDIwA75DK"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.0",
+    "coreVersion": "11.305",
+    "createdTime": 1686607094408,
+    "modifiedTime": 1689360922809,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "G4MjtFAxhsGFjORy",
+  "_key": "!items!G4MjtFAxhsGFjORy"
+}

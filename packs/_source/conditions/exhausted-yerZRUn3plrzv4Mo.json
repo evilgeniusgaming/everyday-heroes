@@ -1,0 +1,225 @@
+{
+  "name": "Exhausted",
+  "type": "condition",
+  "img": "systems/everyday-heroes/artwork/icons/conditions/exhausted.svg",
+  "system": {
+    "description": {
+      "value": "<p>Environmental hazards and other effects, including starvation and the long-term effects of freezing or scorching temperatures, can lead to a special condition called Exhaustion. Exhaustion is measured in six levels, each of which has a cumulative effect. Whenever a character becomes exhausted, they gain one level of Exhaustion. Finishing a long rest reduces Exhaustion by one level provided that food and drink are available.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "type": {
+      "value": "cumulative",
+      "target": "people"
+    },
+    "identifier": {
+      "value": "exhausted"
+    },
+    "levels": [
+      {
+        "description": "Disadvantage on ability checks",
+        "effect": "GsyOOyKe2Dyc9vnY"
+      },
+      {
+        "description": "Speed halved",
+        "effect": "dj4N4G6nrLt2TByK"
+      },
+      {
+        "description": "Disadvantage on attack rolls and saving throws",
+        "effect": "4n9zKNIYapnLLNrj"
+      },
+      {
+        "description": "Hit point maximum halved",
+        "effect": "q3cfq0fKOOMMePbS"
+      },
+      {
+        "description": "Speed reduced to 0",
+        "effect": "rXVL7KPdr9mfNpuO"
+      },
+      {
+        "description": "Death",
+        "effect": "B7YDTMqxJBrG8oRd"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "name": "Exhausted (level one)",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/exhausted.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 1
+        }
+      },
+      "_id": "GsyOOyKe2Dyc9vnY",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!yerZRUn3plrzv4Mo.GsyOOyKe2Dyc9vnY"
+    },
+    {
+      "name": "Exhausted (level two)",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/exhausted.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 2
+        }
+      },
+      "_id": "dj4N4G6nrLt2TByK",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!yerZRUn3plrzv4Mo.dj4N4G6nrLt2TByK"
+    },
+    {
+      "name": "Exhausted (level three)",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/exhausted.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 3
+        }
+      },
+      "_id": "4n9zKNIYapnLLNrj",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!yerZRUn3plrzv4Mo.4n9zKNIYapnLLNrj"
+    },
+    {
+      "name": "Exhausted (level four)",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/exhausted.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 4
+        }
+      },
+      "_id": "q3cfq0fKOOMMePbS",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!yerZRUn3plrzv4Mo.q3cfq0fKOOMMePbS"
+    },
+    {
+      "name": "Exhausted (level five)",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/exhausted.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 5
+        }
+      },
+      "_id": "rXVL7KPdr9mfNpuO",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!yerZRUn3plrzv4Mo.rXVL7KPdr9mfNpuO"
+    },
+    {
+      "name": "Exhausted (level six)",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/exhausted.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 6
+        }
+      },
+      "_id": "B7YDTMqxJBrG8oRd",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!yerZRUn3plrzv4Mo.B7YDTMqxJBrG8oRd"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.0",
+    "coreVersion": "11.305",
+    "createdTime": 1686594337925,
+    "modifiedTime": 1689360501265,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "yerZRUn3plrzv4Mo",
+  "_key": "!items!yerZRUn3plrzv4Mo"
+}

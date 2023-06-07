@@ -275,6 +275,7 @@
       "background",
       "clothes",
       "class",
+      "condition",
       "explosive",
       "feat",
       "gear",
@@ -411,6 +412,20 @@
     },
     "clothes": {
       "templates": ["description", "physical"]
+    },
+    "condition": {
+      "templates": ["description"],
+      "type": {
+        "value": "single",
+        "target": "people"
+      },
+      "identifier": {
+        "value": ""
+      },
+      "levels": [{
+        "description": "",
+        "effect": null
+      }]
     },
     "explosive": {
       "templates": ["attack", "damage", "description", "physical"],

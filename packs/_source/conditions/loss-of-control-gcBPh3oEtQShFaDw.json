@@ -1,0 +1,149 @@
+{
+  "name": "Loss of Control",
+  "type": "condition",
+  "img": "systems/everyday-heroes/artwork/icons/conditions/loss-of-control.svg",
+  "system": {
+    "description": {
+      "value": "<p>Three levels of Loss of Control represent how difficult it is for a vehicle to be handled.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "type": {
+      "value": "cumulative",
+      "target": "vehicles"
+    },
+    "identifier": {
+      "value": "loss-of-control"
+    },
+    "levels": [
+      {
+        "description": "The vehicle has a −2 penalty to Dexterity (Vehicles) checks and Dexterity saving throws made by the driver.",
+        "effect": "0R4yk5ZVckj9zTk3"
+      },
+      {
+        "description": "The vehicle has disadvantage on Dexterity (Vehicles) checks and Dexterity saving throws made by the driver.",
+        "effect": "MmC2nocMfZJws8Pg"
+      },
+      {
+        "description": "The vehicle risks a crash at the start of its turn. Additionally, the vehicle’s Dexterity modifier can’t be higher than 0.",
+        "effect": "o2DtkYll030kVsT3"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "name": "Loss of Control (level one)",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/loss-of-control.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 1
+        }
+      },
+      "_id": "0R4yk5ZVckj9zTk3",
+      "changes": [
+        {
+          "key": "system.abiliites.dex.bonuses.check",
+          "mode": 2,
+          "value": "-2"
+        },
+        {
+          "key": "system.abilities.dex.bonuses.save",
+          "mode": 2,
+          "value": "-2"
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!gcBPh3oEtQShFaDw.0R4yk5ZVckj9zTk3"
+    },
+    {
+      "name": "Loss of Control (level two)",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/loss-of-control.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 2
+        }
+      },
+      "_id": "MmC2nocMfZJws8Pg",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!gcBPh3oEtQShFaDw.MmC2nocMfZJws8Pg"
+    },
+    {
+      "name": "Loss of Control (level three)",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/loss-of-control.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 3
+        }
+      },
+      "_id": "o2DtkYll030kVsT3",
+      "changes": [
+        {
+          "key": "system.abilities.dex.mod",
+          "mode": 3,
+          "value": "0"
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!gcBPh3oEtQShFaDw.o2DtkYll030kVsT3"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.0",
+    "coreVersion": "11.305",
+    "createdTime": 1686607575655,
+    "modifiedTime": 1689361128619,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "gcBPh3oEtQShFaDw",
+  "_key": "!items!gcBPh3oEtQShFaDw"
+}

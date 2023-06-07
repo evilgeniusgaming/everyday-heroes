@@ -1,0 +1,69 @@
+{
+  "name": "Frightened",
+  "type": "condition",
+  "img": "systems/everyday-heroes/artwork/icons/conditions/frightened.svg",
+  "system": {
+    "description": {
+      "value": "<p>A Frightened character has disadvantage on ability checks and attack rolls while the source of their fear is visible to them.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "type": {
+      "value": "single",
+      "target": "people"
+    },
+    "identifier": {
+      "value": "frightened"
+    },
+    "levels": [
+      {
+        "effect": "NYCjsCHYX9vx8yLI"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "name": "Frightened",
+      "icon": "systems/everyday-heroes/artwork/icons/conditions/frightened.svg",
+      "flags": {
+        "everyday-heroes": {
+          "type": "condition",
+          "level": 1
+        }
+      },
+      "_id": "NYCjsCHYX9vx8yLI",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "transfer": true,
+      "statuses": [],
+      "_key": "!items.effects!gDFIIFClFsQD8ek9.NYCjsCHYX9vx8yLI"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.0",
+    "coreVersion": "11.305",
+    "createdTime": 1686607051230,
+    "modifiedTime": 1689360747970,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "gDFIIFClFsQD8ek9",
+  "_key": "!items!gDFIIFClFsQD8ek9"
+}

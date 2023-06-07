@@ -136,7 +136,7 @@ export const itemCategories = {
 	},
 	meta: {
 		label: "EH.Item.Category.Meta.Label",
-		types: []
+		types: ["condition"]
 	}
 };
 preLocalize("itemCategories", { key: "label" });
@@ -428,6 +428,32 @@ export const armorTypes = {
 	}
 };
 preLocalize("armorTypes", { key: "label" });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Conditions                               */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Types of actors to which a condition can be applied.
+ * @enum {string}
+ */
+export const conditionTargets = {
+	people: "EH.Condition.Target.People",
+	vehicles: "EH.Condition.Target.Vehicles"
+};
+preLocalize("conditionTargets");
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * General condition types.
+ * @enum {string}
+ */
+export const conditionTypes = {
+	single: "EH.Condition.Type.Single",
+	cumulative: "EH.Condition.Type.Cumulative"
+};
+preLocalize("conditionTypes");
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Explosive                                */
