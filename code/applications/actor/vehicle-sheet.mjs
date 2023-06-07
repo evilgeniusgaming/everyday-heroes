@@ -24,6 +24,23 @@ export default class VehicleSheet extends BaseActorSheet {
 
 		this.preparePeople(context);
 
+		context.sizes = CONFIG.EverydayHeroes.vehicleSizes.reduce((obj, k) => {
+			obj[k] = CONFIG.EverydayHeroes.sizes[k];
+			return obj;
+		}, {});
+
+		context.speedCategories = {};
+		let currentCategoryFound = false;
+		for ( const [key, category] of Object.entries(CONFIG.EverydayHeroes.vehicleSpeedCategories) ) {
+			if ( key === "airspeed" && !this.actor.system.traits.properties.has("airspeed") ) continue;
+			const c = context.speedCategories[key] = {
+				...category,
+				current: key === this.actor.system.attributes.speed.category
+			};
+			c.cssClass = currentCategoryFound ? "" : c.current ? "current" : "exceeded";
+			if ( c.current ) currentCategoryFound = true;
+		}
+
 		return context;
 	}
 

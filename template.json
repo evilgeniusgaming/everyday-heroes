@@ -220,6 +220,7 @@
           "value": 0
         },
         "speed": {
+          "category": "stopped",
           "min": null,
           "max": null,
           "units": "mile-per-hour"

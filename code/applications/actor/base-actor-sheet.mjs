@@ -93,7 +93,7 @@ export default class BaseActorSheet extends ActorSheet {
 
 		context.effects = ActiveEffectEH.prepareActiveEffectSections(context.actor.effects);
 
-		const modFormatter = new Intl.NumberFormat(game.i18n.lang, { signDisplay: "exceptZero" });
+		const modFormatter = new Intl.NumberFormat(game.i18n.lang, { signDisplay: "always" });
 
 		if ( context.system.abilities ) {
 			context.abilities = foundry.utils.deepClone(context.system.abilities);

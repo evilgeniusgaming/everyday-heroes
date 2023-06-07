@@ -1,3 +1,18 @@
+.everyday-heroes.vehicle.sheet {
+	--speed-stopped-outer-color: rgb(164, 164, 164);
+	--speed-stopped-inner-color: rgb(227, 227, 227);
+	--speed-low-outer-color: rgb(159, 255, 87);
+	--speed-low-inner-color: rgb(231, 255, 236);
+	--speed-mid-outer-color: rgb(238, 237, 3);
+	--speed-mid-inner-color: rgb(255, 254, 213);
+	--speed-high-outer-color: rgb(255, 156, 57);
+	--speed-high-inner-color: rgb(255, 236, 216);
+	--speed-extreme-outer-color: rgb(215, 31, 31);
+	--speed-extreme-inner-color: rgb(255, 237, 237);
+	--speed-airspeed-outer-color: rgb(145, 250, 255);
+	--speed-airspeed-inner-color: rgb(244, 255, 254);
+}
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Header                                   */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -74,7 +89,7 @@
 	padding-inline-end: 0.5em;
 }
 .everyday-heroes.vehicle.sheet .vehicle-id > div.details > fieldset :is(input, select) {
-	margin-block-start: -2px;
+	margin-block: -2px;
 }
 .everyday-heroes.vehicle.sheet .vehicle-id > div.details .range {
 	flex: 0 1 8em;
@@ -87,6 +102,9 @@
 }
 .everyday-heroes.vehicle.sheet .vehicle-id > div.details .range .seperator + input:not(:disabled) {
 	text-align: start;
+}
+.everyday-heroes.vehicle.sheet .vehicle-id > div.details > .ability {
+	flex: 1 0 30%;
 }
 .everyday-heroes.vehicle.sheet .vehicle-id > div.details > .armorBody {
 	flex: 1 0 40%;
@@ -103,29 +121,111 @@
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-/*  Abilities                                */
+/*  Speed Control                            */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.everyday-heroes.vehicle.sheet .abilities {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	border: 4px solid var(--eh-border-color-strong);
-	border-radius: 20px;
-	padding: 1em;
-	background-color: var(--eh-background-color-white);
+.everyday-heroes.vehicle.sheet section.speed {
+	margin-inline: calc(-0.5em - 1px);
+	padding-inline: 1.5em;
+	background-color: var(--eh-background-color-dark);
+	border-block: 2px solid var(--eh-border-color-strong);
+	overflow: clip;
 }
-.everyday-heroes.vehicle.sheet .abilities fieldset > label {
+.everyday-heroes.vehicle.sheet section.speed ul {
 	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
+	justify-content: center;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
-.everyday-heroes.vehicle.sheet .abilities fieldset > label > span:first-child {
-	font-weight: bold;
-	text-align: center;
-	text-transform: uppercase;
+.everyday-heroes.vehicle.sheet section.speed li {
+	contain: layout;
+	flex: 1 0;
+	margin-inline: -1px;
+	filter: drop-shadow(5px 0 5px rgba(0, 0, 0, 0.5));
+	cursor: pointer;
 }
-.everyday-heroes.vehicle.sheet .abilities fieldset > label > input {
-	padding: 0.5rem;
-	font-size: var(--font-size-18);
+.everyday-heroes.vehicle.sheet section.speed li:first-child {
+	margin-inline-start: -5em;
+	padding-inline-start: 5em;
+}
+.everyday-heroes.vehicle.sheet section.speed li:first-child :is(.top, .bottom) {
+	background-position-x: 1em;
+}
+.everyday-heroes.vehicle.sheet section.speed li.speed-stopped { z-index: 6; }
+.everyday-heroes.vehicle.sheet section.speed li.speed-low { z-index: 5; }
+.everyday-heroes.vehicle.sheet section.speed li.speed-mid { z-index: 4; }
+.everyday-heroes.vehicle.sheet section.speed li.speed-high { z-index: 3; }
+.everyday-heroes.vehicle.sheet section.speed li.speed-extreme { z-index: 2; }
+.everyday-heroes.vehicle.sheet section.speed li.speed-airspeed { z-index: 1; }
+
+.everyday-heroes.vehicle.sheet section.speed li label {
+	position: relative;
+	display: block;
+	padding-block: 0.5em;
+	color: var(--eh-text-color-white);
 	text-align: center;
+	font-size: var(--font-size-14);
+	cursor: pointer;
+}
+.everyday-heroes.vehicle.sheet section.speed li label input {
+	display: none;
+}
+.everyday-heroes.vehicle.sheet section.speed li:is(:hover, .exceeded, .current) label {
+	color: var(--eh-text-color-black);
+}
+
+.everyday-heroes.vehicle.sheet section.speed li :is(.top, .bottom) {
+	position: absolute;
+	left: 0;
+	right: 0;
+	border-inline: 2px solid var(--eh-border-color-strong);
+	background-color: var(--eh-background-color-dark);
+	background-size: 125% 200%;
+	background-position-x: center;
+}
+.everyday-heroes.vehicle.sheet section.speed li:hover :is(.top, .bottom) {
+	background-color: var(--eh-background-color-light);
+}
+.everyday-heroes.vehicle.sheet section.speed.stopped li:not(:hover):is(.exceeded, .current) :is(.top, .bottom) {
+	background-image: radial-gradient(ellipse farthest-corner,
+		var(--speed-stopped-inner-color) 40%,
+		var(--speed-stopped-outer-color) 100%);	
+}
+.everyday-heroes.vehicle.sheet section.speed.low li:not(:hover):is(.exceeded, .current) :is(.top, .bottom) {
+	background-image: radial-gradient(ellipse farthest-corner,
+		var(--speed-low-inner-color) 40%,
+		var(--speed-low-outer-color) 100%);
+}
+.everyday-heroes.vehicle.sheet section.speed.mid li:not(:hover):is(.exceeded, .current) :is(.top, .bottom) {
+	background-image: radial-gradient(ellipse farthest-corner,
+		var(--speed-mid-inner-color) 40%,
+		var(--speed-mid-outer-color) 100%);
+}
+.everyday-heroes.vehicle.sheet section.speed.high li:not(:hover):is(.exceeded, .current) :is(.top, .bottom) {
+	background-image: radial-gradient(ellipse farthest-corner,
+		var(--speed-high-inner-color) 40%,
+		var(--speed-high-outer-color) 100%);
+}
+.everyday-heroes.vehicle.sheet section.speed.extreme li:not(:hover):is(.exceeded, .current) :is(.top, .bottom) {
+	background-image: radial-gradient(ellipse farthest-corner,
+		var(--speed-extreme-inner-color) 40%,
+		var(--speed-extreme-outer-color) 100%);
+}
+.everyday-heroes.vehicle.sheet section.speed.airspeed li:not(:hover):is(.exceeded, .current) :is(.top, .bottom) {
+	background-image: radial-gradient(ellipse farthest-corner,
+		var(--speed-airspeed-inner-color) 40%,
+		var(--speed-airspeed-outer-color) 100%);
+}
+.everyday-heroes.vehicle.sheet section.speed li .top {
+	top: 0;
+	bottom: 50%;
+	transform: skew(30deg);
+	background-position-y: top;
+}
+.everyday-heroes.vehicle.sheet section.speed li .bottom {
+	top: 50%;
+	bottom: 0;
+	transform: skew(-30deg);
+	background-position-y: bottom;
 }

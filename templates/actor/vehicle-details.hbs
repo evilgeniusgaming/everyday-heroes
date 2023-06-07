@@ -8,7 +8,7 @@
 			<fieldset class="type">
 				{{#if editingMode}}
 					<select name="system.traits.size">
-						{{selectOptions CONFIG.sizes selected=source.traits.size labelAttr="label"}}
+						{{selectOptions sizes selected=source.traits.size labelAttr="label"}}
 					</select>
 					<select name="system.attributes.type.category">
 						{{selectOptions CONFIG.vehicleCategories selected=source.attributes.type.category labelAttr="label" blank=""}}
@@ -39,6 +39,16 @@
 					<span>{{system.details.passengers.label}}</span>
 				{{/if}}
 			</fieldset>
+			{{#each abilities as |ability key|}}
+				<fieldset class="ability">
+					<label>{{ability.abbreviation}}</label>
+					{{#if @root.editingMode}}
+						<input type="number" name="system.abilities.{{key}}.mod" value="{{ability._source.mod}}">
+					{{else}}
+						<span>{{ability.mod}}</span>
+					{{/if}}
+				</fieldset>
+			{{/each}}
 			<fieldset class="armorBody">
 				<label>{{localize "EH.Vehicle.Trait.ArmorValue.Body.Label"}}</label>
 				{{#if editingMode}}
@@ -88,18 +98,18 @@
 		</div>
 	</header>
 
-	<section class="abilities">
-		{{#each abilities as |ability key|}}
-			<fieldset>
-				<label>
-					<span>{{ability.label}}</span>
-					{{#if @root.editingMode}}
-						<input type="number" name="system.abilities.{{key}}.mod" value="{{ability._source.mod}}">
-					{{else}}
-						<input type="text" value="{{ability.mod}}" disabled>
-					{{/if}}
-				</label>
-			</fieldset>
-		{{/each}}
+	<section class="speed {{system.attributes.speed.category}}">
+		<ul>
+			{{#each speedCategories as |category key|}}
+				<li class="speed-{{key}} {{category.cssClass}}">
+					<div class="top"></div>
+					<div class="bottom"></div>
+					<label data-tooltip="{{category.hint}}">
+						{{category.label}}
+						<input type="radio" name="system.attributes.speed.category" value="{{key}}" {{checked category.current}}>
+					</label>
+				</li>
+			{{/each}}
+		</ul>
 	</section>
 </section>

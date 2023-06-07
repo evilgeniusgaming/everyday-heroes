@@ -17,6 +17,7 @@ import MappingField from "../fields/mapping-field.mjs";
  * @property {object} attributes.armor
  * @property {number} attributes.armor.value - Armor value of the vehicle's body.
  * @property {object} attributes.speed
+ * @property {string} attributes.speed.category - Current speed category.
  * @property {number} attributes.speed.min - Minimum vehicle speed range.
  * @property {number} attributes.speed.max - Maximum vehicle speed.
  * @property {string} attributes.speed.units - Units in which the speed is measured.
@@ -61,6 +62,9 @@ export default class VehicleData extends SystemDataModel {
 					})
 				}, {label: "EH.Equipment.Trait.ArmorValue.Label", hint: "EH.Vehicle.Trait.ArmorValue.Hint"}),
 				speed: new foundry.data.fields.SchemaField({
+					category: new foundry.data.fields.StringField({
+						initial: "stopped", label: "EH.Vehicle.Trait.SpeedCategory.Label"
+					}),
 					min: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.Range.Min"}),
 					max: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.Range.Max"}),
 					units: new foundry.data.fields.StringField({initial: "miles-per-hour", label: "EH.Measurement.Units"})

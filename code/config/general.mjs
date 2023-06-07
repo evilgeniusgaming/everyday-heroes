@@ -7,6 +7,13 @@ import { preLocalize } from "./utils.mjs";
  * @property {string} label - Localized label.
  */
 
+/**
+ * General data model that contains a label and a hint.
+ *
+ * @typedef {LabeledConfiguration} HintedConfiguration
+ * @property {string} hint - Localizable hint.
+ */
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Action Economy                           */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

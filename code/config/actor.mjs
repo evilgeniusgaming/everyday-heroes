@@ -672,15 +672,8 @@ preLocalize("vehicleCategories", { key: "label" });
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
- * Configuration data for vehicle properties.
- *
- * @typedef {LabeledConfiguration} VehiclePropertyConfiguration
- * @property {string} [hint] - Localized hint.
- */
-
-/**
  * Properties for vehicle actors.
- * @enum {VehiclePropertyConfiguration}
+ * @enum {HintedConfiguration}
  */
 export const vehicleProperties = {
 	accidentProne: {
@@ -745,6 +738,40 @@ preLocalize("vehicleProperties", { key: "label", sort: true });
  * @type {string[]}
  */
 export const vehicleSizes = ["medium", "large", "huge", "gargantuan"];
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Speed categories at which a vehicle can travel.
+ * @param {HintedConfiguration}
+ */
+export const vehicleSpeedCategories = {
+	stopped: {
+		label: "EH.Vehicle.Trait.SpeedCategory.Stopped.Label",
+		hint: "EH.Vehicle.Trait.SpeedCategory.Stopped.Hint"
+	},
+	low: {
+		label: "EH.Vehicle.Trait.SpeedCategory.Low.Label",
+		hint: "EH.Vehicle.Trait.SpeedCategory.Low.Hint"
+	},
+	mid: {
+		label: "EH.Vehicle.Trait.SpeedCategory.Mid.Label",
+		hint: "EH.Vehicle.Trait.SpeedCategory.Mid.Hint"
+	},
+	high: {
+		label: "EH.Vehicle.Trait.SpeedCategory.High.Label",
+		hint: "EH.Vehicle.Trait.SpeedCategory.High.Hint"
+	},
+	extreme: {
+		label: "EH.Vehicle.Trait.SpeedCategory.Extreme.Label",
+		hint: "EH.Vehicle.Trait.SpeedCategory.Extreme.Hint"
+	},
+	airspeed: {
+		label: "EH.Vehicle.Trait.SpeedCategory.Airspeed.Label",
+		hint: "EH.Vehicle.Trait.SpeedCategory.Airspeed.Hint"
+	}
+};
+preLocalize("vehicleSpeedCategories", { key: "label" });
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
