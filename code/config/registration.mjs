@@ -1,4 +1,4 @@
-import { slugify, sortObjectEntries } from "../utils.mjs";
+import { slugify, sortObjectEntries, systemLog } from "../utils.mjs";
 
 /**
  * @typedef {object} ItemRegistration
@@ -84,7 +84,7 @@ export function list(type) {
  */
 export function registerItemTypes() {
 	const indexes = _indexCompendiums();
-	console.log("Everyday Heroes | Preparing central item registrations");
+	systemLog("Preparing central item registrations");
 	const registrations = [];
 	for ( const type of Item.TYPES ) {
 		const dataModel = CONFIG.Item[game.release.generation > 10 ? "dataModels" : "systemDataModels"][type];
@@ -96,7 +96,7 @@ export function registerItemTypes() {
 	Promise.all(registrations).then(registrations => {
 		registrations.forEach(r => all[r.type] = r.registrations);
 		ready = true;
-		console.log("Everyday Heroes | Central item registration setup complete");
+		systemLog("Central item registration setup complete");
 
 		/**
 		 * A hook event that fires when startup item registration is complete.
@@ -129,19 +129,19 @@ async function _registerItemType(type, indexes) {
 		registrations[identifier].sources.push(`${uuidPrefix}.${item._id}`);
 	};
 
-	console.groupCollapsed(`Everyday Heroes | Registering ${type} items`);
+	systemLog(`Everyday Heroes | Registering ${type} items`, {level: "groupCollapsed"});
 	const registrations = {};
 	for ( const [pack, index] of Object.entries(indexes) ) {
 		for ( const item of index ) {
 			const dataModel = CONFIG.Item[game.release.generation > 10 ? "dataModels" : "systemDataModels"][item.type];
 			if ( dataModel?.metadata.type !== type ) continue;
-			console.log(`Everyday Heroes | Registering ${item.name} from ${pack}`);
+			systemLog(`Everyday Heroes | Registering ${item.name} from ${pack}`);
 			registerItem(item, `Compendium.${pack}`);
 		}
 	}
 	for ( const item of game.items.values() ) {
 		if ( item.system.constructor.metadata?.type !== type ) continue;
-		console.log(`Everyday Heroes | Registering ${item.name} in world`);
+		systemLog(`Everyday Heroes | Registering ${item.name} in world`);
 		registerItem(item, "Item");
 	}
 	console.groupEnd();

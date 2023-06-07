@@ -1,4 +1,4 @@
-import { simplifyBonus } from "./utils.mjs";
+import { simplifyBonus, systemLog } from "./utils.mjs";
 
 /**
  * Set up the custom text enricher.
@@ -154,7 +154,7 @@ export async function enrichSave(config, label, options) {
 	dc = simplifyBonus(dc, options.rollData ?? {});
 
 	const abilityConfig = CONFIG.EverydayHeroes.abilities[ability];
-	if ( !abilityConfig ) return console.log(`Everyday Heroes | Ability ${ability} not found`);
+	if ( !abilityConfig ) return systemLog(`Ability ${ability} not found`, {color: "FireBrick"});
 
 	if ( !label ) {
 		label = game.i18n.format("EH.Inline.Save", { ability: abilityConfig.label });
@@ -187,7 +187,7 @@ export async function enrichSkill(config, label, options) {
 	dc = simplifyBonus(dc, options.rollData ?? {});
 
 	const skillConfig = CONFIG.EverydayHeroes.skills[skill];
-	if ( !skillConfig ) return console.log(`Everyday Heros | Skill ${skill} not found`);
+	if ( !skillConfig ) return systemLog(`Skill ${skill} not found`, {color: "FireBrick"});
 
 	if ( !label ) {
 		label = game.i18n.format("EH.Inline.Check", { ability: skillConfig.label });

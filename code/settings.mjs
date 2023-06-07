@@ -1,8 +1,10 @@
+import { systemLog } from "./utils.mjs";
+
 /**
  * Register custom keybindings offered by Everyday Heroes.
  */
 export function registerKeybindings() {
-	console.log("Everyday Heroes | Registering Keybindings");
+	systemLog("Registering Keybindings");
 
 	game.keybindings.register("everyday-heroes", "challengeRollNormal", {
 		name: "EH.Keybinding.ChallengeRoll.Normal.Label",
@@ -57,7 +59,7 @@ export function registerKeybindings() {
  * Register the settings offered by Everyday Heroes.
  */
 export function registerSettings() {
-	console.log("Everyday Heroes | Registering Settings");
+	systemLog("Registering Settings");
 
 	game.settings.register("everyday-heroes", "systemMigrationVersion", {
 		name: "System Migration Version",
