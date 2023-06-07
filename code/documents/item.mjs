@@ -1095,9 +1095,9 @@ export default class ItemEH extends Item {
 	/*  Socket Event Handlers                    */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	async _preCreate(data, options, user) {
-		await super._preCreate(data, options, user);
-		await this.system._preCreate?.(data, options, user);
+	async _preCreate(data, options, userId) {
+		await super._preCreate(data, options, userId);
+		await this.system._preCreate?.(data, options, userId);
 
 		if ( !data.img || data.img === this.constructor.DEFAULT_ICON ) {
 			const img = this.system.constructor.metadata.image;
@@ -1110,22 +1110,37 @@ export default class ItemEH extends Item {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	async _preUpdate(changed, options, user) {
-		await super._preUpdate(changed, options, user);
-		await this.system._preUpdate?.(changed, options, user);
+	async _preUpdate(changed, options, userId) {
+		await super._preUpdate(changed, options, userId);
+		await this.system._preUpdate?.(changed, options, userId);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	async _preDelete( options, user) {
-		await super._preDelete( options, user);
-		await this.system._preUpdate?.( options, user);
+	async _preDelete(options, userId) {
+		await super._preDelete(options, userId);
+		await this.system._preUpdate?.(options, userId);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_onCreate(data, options, userId) {
+		super._onCreate(data, options, userId);
+		this.system._onCreate?.(data, options, userId);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_onUpdate(changed, options, userId) {
+		super._onUpdate(changed, options, userId);
+		this.system._onUpdate?.(changed, options, userId);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	_onDelete(options, userId) {
 		super._onDelete(options, userId);
+		this.system._onDelete?.(options, userId);
 		if ( (userId !== game.user.id) || !this.parent ) return;
 
 		// Clear actor/item relationship information

@@ -1,5 +1,6 @@
-import { numberFormat } from "../../utils.mjs";
+import { numberFormat, simplifyBonus } from "../../utils.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
+import FormulaField from "../fields/formula-field.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 
 /**
@@ -16,6 +17,8 @@ import MappingField from "../fields/mapping-field.mjs";
  * @property {object} attributes
  * @property {object} attributes.armor
  * @property {number} attributes.armor.value - Armor value of the vehicle's body.
+ * @property {object} attributes.defense
+ * @property {string} attributes.defense.bonus - Bonus added to the vehicle's defense.
  * @property {object} attributes.speed
  * @property {string} attributes.speed.category - Current speed category.
  * @property {number} attributes.speed.min - Minimum vehicle speed range.
@@ -61,6 +64,9 @@ export default class VehicleData extends SystemDataModel {
 						initial: 0, min: 0, integer: true, label: "EH.Vehicle.Trait.ArmorValue.Body.Label"
 					})
 				}, {label: "EH.Equipment.Trait.ArmorValue.Label", hint: "EH.Vehicle.Trait.ArmorValue.Hint"}),
+				defense: new foundry.data.fields.SchemaField({
+					bonus: new FormulaField({deterministic: true, label: "EH.Defense.Bonus.Label"})
+				}, {label: "EH.Defense.Label"}),
 				speed: new foundry.data.fields.SchemaField({
 					category: new foundry.data.fields.StringField({
 						initial: "stopped", label: "EH.Vehicle.Trait.SpeedCategory.Label"
@@ -112,6 +118,24 @@ export default class VehicleData extends SystemDataModel {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Properties                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * The skill object for a driver's Vehicles skill, or Athletics if the vehicle is muscle-powered.
+	 * @type {SkillData|void}
+	 */
+	get driverSkill() {
+		return this.details.driver?.system.skills?.[this.traits.properties.has("musclePowered") ? "athl" : "vehi"];
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get shouldPrepareFinalData() {
+		return !this.details.driver;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -132,16 +156,6 @@ export default class VehicleData extends SystemDataModel {
 		for ( const [key, ability] of Object.entries(this.abilities) ) {
 			ability._source = this._source.abilities?.[key] ?? {};
 		}
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	prepareDerivedArmorValue() {
-		const armor = this.attributes.armor;
-		if ( this.traits.properties.has("bulletproof") ) armor.windowsTires += 2;
-		armor.label = `${numberFormat(armor.value)} (${game.i18n.format(
-			"EH.Vehicle.Trait.ArmorValue.WindowsTires.LabelSpecific", { number: numberFormat(armor.windowsTires) }
-		)})`;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -177,6 +191,29 @@ export default class VehicleData extends SystemDataModel {
 			category: CONFIG.EverydayHeroes.vehicleCategories[this.attributes.type.category]?.label ?? "",
 			type: CONFIG.EverydayHeroes.vehicleTypes[this.attributes.type.value]?.label ?? ""
 		}).trim().replace("  ", " ");
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareFinalArmorValue() {
+		const armor = this.attributes.armor;
+		if ( this.traits.properties.has("bulletproof") ) armor.windowsTires += 2;
+		armor.label = `${numberFormat(armor.value)} (${game.i18n.format(
+			"EH.Vehicle.Trait.ArmorValue.WindowsTires.LabelSpecific", { number: numberFormat(armor.windowsTires) }
+		)})`;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareFinalDefense() {
+		const rollData = this.parent.getRollData({deterministic: true});
+		const bonus = simplifyBonus(this.attributes.defense.bonus, rollData);
+		if ( this.attributes.speed.category === "stopped" || ((this.driverSkill?.proficiency.multiplier ?? 0) < 1 ) ) {
+			this.attributes.defense.value = 5 + bonus;
+		} else {
+			const value = Math.min(this.abilities.dex?.mod ?? Infinity, this.driverSkill?.mod ?? Infinity);
+			this.attributes.defense.value = 10 + (Number.isFinite(value) ? value : 0);
+		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -241,5 +278,14 @@ export default class VehicleData extends SystemDataModel {
 		if ( !max ) return `${numberFormat(min, options)}+`; // Only Min (3+)
 		else if ( !min || (min === max) ) return numberFormat(max, options); // Only Max, same Min & Max (3)
 		else return `${numberFormat(min)}–${numberFormat(max, options)}`; // Different Min & Max (3–5)
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Socket Event Handlers                    */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_onUpdate(changes, options, user) {
+		super._onUpdate(changes, options, user);
+		if ( !this.shouldPrepareFinalData ) this.prepareFinalData();
 	}
 }

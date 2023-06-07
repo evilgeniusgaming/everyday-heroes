@@ -106,10 +106,10 @@
 .everyday-heroes.vehicle.sheet .vehicle-id > div.details > .ability {
 	flex: 1 0 30%;
 }
-.everyday-heroes.vehicle.sheet .vehicle-id > div.details > .armorBody {
+.everyday-heroes.vehicle.sheet .vehicle-id > div.details > :is(.armorBody, .defense) {
 	flex: 1 0 40%;
 }
-.everyday-heroes.vehicle.sheet .vehicle-id > div.details > .armorWindowsTires {
+.everyday-heroes.vehicle.sheet .vehicle-id > div.details > :is(.armorWindowsTires, .price) {
 	flex: 1 0 60%;
 }
 .everyday-heroes.vehicle.sheet .vehicle-id > div.details .tag-input {

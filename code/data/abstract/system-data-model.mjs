@@ -227,6 +227,18 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Properties                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Should this Document run final data preparation on its own, or wait for another Document to call those methods?
+	 * @type {boolean}
+	 */
+	get shouldPrepareFinalData() {
+		return !this.parent?.isEmbedded;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -255,7 +267,7 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 */
 	prepareDerivedData() {
 		this.constructor._getMethods({ startingWith: "prepareDerived" }).forEach(k => this[k]());
-		if ( !this.parent?.isEmbedded ) this.prepareFinalData();
+		if ( this.shouldPrepareFinalData ) this.prepareFinalData();
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -301,4 +313,37 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 * @protected
 	 */
 	async _preDelete(options, user) {}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Post-creation logic for this system data.
+	 * @param {object} data - The initial data object provided to the document creation request.
+	 * @param {object} options - Additional options which modify the creation request.
+	 * @param {string} userId - The id of the User requesting the document update.
+	 * @protected
+	 */
+	_onCreate(data, options, userId) {}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Post-update logic for this system data.
+	 * @param {object} changed - The differential data that was changed relative to the documents prior values.
+	 * @param {object} options - Additional options which modify the update request.
+	 * @param {string} userId - The id of the User requesting the document update.
+	 * @protected
+	 */
+	_onUpdate(changed, options, userId) {}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Post-deletion logic for this system data.
+	 * @param {object} options - Additional options which modify the deletion request
+	 * @param {string} userId - The id of the User requesting the document update
+	 * @protected
+	 */
+	_onDelete(options, userId) {}
+
 }

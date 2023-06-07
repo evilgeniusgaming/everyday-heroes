@@ -6,6 +6,7 @@ import FormulaField from "../fields/formula-field.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import { simplifyBonus } from "../../utils.mjs";
 import AbilitiesTemplate from "./templates/abilities-template.mjs";
+import DriverTemplate from "./templates/driver-template.mjs";
 import InitiativeTemplate from "./templates/initiative-template.mjs";
 import MovementTemplate from "./templates/movement-template.mjs";
 import ResourcesTemplate from "./templates/resources-template.mjs";
@@ -14,6 +15,7 @@ import SkillsTemplate from "./templates/skills-template.mjs";
 /**
  * Data definition for Character actors.
  * @mixes {@link AbilitiesTemplate}
+ * @mixes {@link DriverTemplate}
  * @mixes {@link InitiativeTemplate}
  * @mixes {@link MovementTemplate}
  * @mixes {@link ResourcesTemplate}
@@ -26,7 +28,7 @@ import SkillsTemplate from "./templates/skills-template.mjs";
  * @property {Set<string>} overrides.ability.ranged - Abilities to consider in place of `dex` for ranged attacks.
  */
 export default class HeroData extends SystemDataModel.mixin(
-	AbilitiesTemplate, InitiativeTemplate, MovementTemplate, ResourcesTemplate, SkillsTemplate
+	AbilitiesTemplate, DriverTemplate, InitiativeTemplate, MovementTemplate, ResourcesTemplate, SkillsTemplate
 ) {
 
 	static metadata = {

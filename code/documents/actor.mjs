@@ -1325,9 +1325,9 @@ export default class ActorEH extends Actor {
 	/*  Socket Event Handlers                    */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	async _preCreate(data, options, user) {
-		await super._preCreate(data, options, user);
-		await this.system._preCreate?.(data, options, user);
+	async _preCreate(data, options, userId) {
+		await super._preCreate(data, options, userId);
+		await this.system._preCreate?.(data, options, userId);
 
 		if ( !data.img || data.img === this.constructor.DEFAULT_ICON ) {
 			const img = this.system.constructor.metadata.image;
@@ -1337,15 +1337,23 @@ export default class ActorEH extends Actor {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	async _preUpdate(changed, options, user) {
-		await super._preUpdate(changed, options, user);
-		await this.system._preUpdate?.(changed, options, user);
+	async _preUpdate(changed, options, userId) {
+		await super._preUpdate(changed, options, userId);
+		await this.system._preUpdate?.(changed, options, userId);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	async _onCreate(data, options, userId) {
-		await super._onCreate(data, options, userId);
+	async _preDelete(options, userId) {
+		await super._preDelete(options, userId);
+		await this.system._preUpdate?.(options, userId);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_onCreate(data, options, userId) {
+		super._onCreate(data, options, userId);
+		this.system._onCreate?.(data, options, userId);
 		if ( userId !== game.user.id ) return;
 
 		// Ensure abilities & skills have their default values populated
@@ -1358,9 +1366,16 @@ export default class ActorEH extends Actor {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	async _preDelete( options, user) {
-		await super._preDelete( options, user);
-		await this.system._preUpdate?.( options, user);
+	_onUpdate(changed, options, userId) {
+		super._onUpdate(changed, options, userId);
+		this.system._onUpdate?.(changed, options, userId);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_onDelete(options, userId) {
+		super._onDelete(options, userId);
+		this.system._onDelete?.(options, userId);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -31,6 +31,11 @@
           }
         }
       },
+      "driver": {
+        "vehicle": {
+          "actor": null
+        }
+      },
       "initiative": {
         "attributes": {
           "initiative": {
@@ -78,7 +83,7 @@
       "biography.notes"
     ],
     "hero": {
-      "templates": ["abilities", "initiative", "movement", "skills"],
+      "templates": ["abilities", "driver", "initiative", "movement", "skills"],
       "attributes": {
         "death": {
           "status": "alive",
@@ -167,7 +172,7 @@
       }
     },
     "npc": {
-      "templates": ["abilities", "initiative", "movement", "skills"],
+      "templates": ["abilities", "driver", "initiative", "movement", "skills"],
       "attributes": {
         "defense": 10,
         "hd": {
