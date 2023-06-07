@@ -155,7 +155,14 @@ export default class VehicleData extends SystemDataModel {
 	prepareDerivedAbilities() {
 		for ( const [key, ability] of Object.entries(this.abilities) ) {
 			ability._source = this._source.abilities?.[key] ?? {};
+			ability._baseMod = ability.mod;
 		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedArmorValue() {
+		this.attributes.armor._baseWindowsTires = 1;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -195,9 +202,25 @@ export default class VehicleData extends SystemDataModel {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	prepareFinalAbilities() {
+		const driver = this.details.driver;
+		if ( !driver ) return;
+		const rollData = driver.getRollData({deterministic: true});
+		for ( const [key, ability] of Object.entries(this.abilities) ) {
+			const driverBonus = simplifyBonus(driver.system.vehicle?.bonuses.ability[key] ?? "", rollData);
+			ability.mod = ability._baseMod + driverBonus;
+			if ( key === "str" && this.traits.properties.has("musclePowered") ) {
+				console.log("prepare muscle-powered strength");
+				ability.mod += driver.system.abilities?.str?.mod ?? 0;
+			}
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	prepareFinalArmorValue() {
 		const armor = this.attributes.armor;
-		if ( this.traits.properties.has("bulletproof") ) armor.windowsTires += 2;
+		if ( this.traits.properties.has("bulletproof") ) armor.windowsTires = armor._baseWindowsTires + 2;
 		armor.label = `${numberFormat(armor.value)} (${game.i18n.format(
 			"EH.Vehicle.Trait.ArmorValue.WindowsTires.LabelSpecific", { number: numberFormat(armor.windowsTires) }
 		)})`;

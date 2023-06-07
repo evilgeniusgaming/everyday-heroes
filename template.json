@@ -33,7 +33,11 @@
       },
       "driver": {
         "vehicle": {
-          "actor": null
+          "actor": null,
+          "bonuses": {
+            "ability": {},
+            "roll": {}
+          }
         }
       },
       "initiative": {
