@@ -23,6 +23,7 @@ export default class VehicleSheet extends BaseActorSheet {
 		const context = await super.getData(options);
 
 		this.preparePeople(context);
+		this.prepareRolls(context);
 
 		context.sizes = CONFIG.EverydayHeroes.vehicleSizes.reduce((obj, k) => {
 			obj[k] = CONFIG.EverydayHeroes.sizes[k];
@@ -86,6 +87,27 @@ export default class VehicleSheet extends BaseActorSheet {
 			const ctx = context.personContext[actor.id] ??= {};
 			ctx.isDriver = actor === context.actor.system.details.driver;
 			context.people[ctx.isDriver ? "driver" : "passengers"].actors.push(actor);
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Prepare the list of rolls this vehicle can take.
+	 * @param {object} context - Context object for rendering the sheet. **Will be mutated.**
+	 */
+	prepareRolls(context) {
+		context.rolls = {};
+		const modFormatter = new Intl.NumberFormat(game.i18n.lang, { signDisplay: "always" });
+		const driverSkill = this.actor.system.driverSkill;
+		for ( const [key, roll] of Object.entries(CONFIG.EverydayHeroes.vehicleRolls) ) {
+			const ability = this.actor.system.abilities[roll.ability];
+			// TODO: Vehicle should be able to override default ability
+			let mod = driverSkill?.mod ?? 0;
+			if ( roll.mode === "add" ) mod += ability?.mod ?? 0;
+			else if ( roll.mode === "max" ) mod = Math.min(mod, ability.mod ?? 0);
+			// TODO: Support roll-specific bonuses
+			context.rolls[key] = { ...roll, disabled: !driverSkill, mod: modFormatter.format(mod) };
 		}
 	}
 
@@ -162,10 +184,11 @@ export default class VehicleSheet extends BaseActorSheet {
 		}
 
 		const closestSection = event.target.closest("[data-section-id]");
+		const currentTab = event.target.closest("[data-tab]");
 		const isDriver = this.actor.system.details.driver === actor;
 
-		// If passenger dropped on driver section, make this actor the driver
-		if ( (closestSection?.dataset.sectionId === "driver") && !isDriver ) {
+		// If passenger dropped on driver section or on the details tab, make this actor the driver
+		if ( ((closestSection?.dataset.sectionId === "driver") || (currentTab.dataset.tab === "details")) && !isDriver ) {
 			return this.actor.update({"system.details.driver": actor.id});
 		}
 

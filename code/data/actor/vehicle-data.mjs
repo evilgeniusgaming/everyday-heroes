@@ -210,7 +210,6 @@ export default class VehicleData extends SystemDataModel {
 			const driverBonus = simplifyBonus(driver.system.vehicle?.bonuses.ability[key] ?? "", rollData);
 			ability.mod = ability._baseMod + driverBonus;
 			if ( key === "str" && this.traits.properties.has("musclePowered") ) {
-				console.log("prepare muscle-powered strength");
 				ability.mod += driver.system.abilities?.str?.mod ?? 0;
 			}
 		}

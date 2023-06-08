@@ -289,7 +289,7 @@ svg/action/armor-save.svg - "Shield reflect" by Lorc under CC BY 3.0
 svg/action/attack-burst.svg - "Bullet impacts" by Delapouite under CC BY 3.0 (modified)
 svg/action/attack-explosive.svg - "Throwing ball" by Delapouite under CC BY 3.0
 svg/action/attack-melee-one-handed.svg - "Sword brandish" by Delapouite under CC BY 3.0
-svg/action/attack-melee-two-handed.svg - "TSword brandish" by Delapouite under CC BY 3.0 (modified)
+svg/action/attack-melee-two-handed.svg - "Sword brandish" by Delapouite under CC BY 3.0 (modified)
 svg/action/attack-power.svg - "Hammer drop" by Lorc under CC BY 3.0
 svg/action/attack-offhand.svg - "Swords power" by Delapouite under CC BY 3.0
 svg/action/attack-thrown.svg - "Thrown spear" by Lorc under CC BY 3.0
@@ -302,6 +302,10 @@ svg/action/damage-explosive.svg - "Mine explosion" by Lorc under CC BY 3.0
 svg/action/damage-melee.svg - "Armor punch" by Delapouite under CC BY 3.0
 svg/action/damage-ranged.svg - "Meteor impact" by Lorc under CC BY 3.0
 svg/action/reload.svg - "Reload gun barrel" by Delapouite under CC BY 3.0
+svg/action/vehicle-crash.svg - "Corner explosion" by Lorc under CC BY 3.0
+svg/action/vehicle-maneuverability.svg - "Steering wheel" by Delapouite under CC BY 3.0
+svg/action/vehicle-speed.svg - "Speedometer" by Delapouite under CC BY 3.0
+svg/action/vehicle-stunt.svg - "Cycle" by Lorc under CC BY 3.0
 svg/actors/hero.svg - "Spy" by Delapouite under CC BY 3.0
 svg/actors/npc.svg - "Balaclava" by by Skoll under CC BY 3.0
 svg/actors/vehicle.svg - "City car" by Delapouite under CC BY 3.0

@@ -116,4 +116,29 @@
 			{{/each}}
 		</ul>
 	</section>
+
+	<section class="driver">
+		{{#with system.details.driver as |driver|}}
+			<figure style="background-image: url('{{driver.img}}');"></figure>
+			<h4>
+				<a data-action="person" data-type="view" data-actor-id="{{driver.id}}">{{driver.name}}</a>
+			</h4>
+		{{else}}
+			<h4 class="no-driver">No Driver</h4>
+		{{/with}}
+	</section>
+
+	<section class="rolls">
+		<ul>
+			{{#each rolls as |roll key|}}
+				<li class="skewed {{#if roll.disabled}}disabled{{/if}}">
+					<button data-action="roll" data-type="vehicle" data-key="{{key}}" {{disabled roll.disabled}}>
+						<figure style="background-image: url('{{roll.icon}}');"></figure>
+						<span class="label">{{roll.label}}</span>
+						<span class="modifier">{{roll.mod}}</span>
+					</button>
+				</li>
+			{{/each}}
+		</ul>
+	</section>
 </section>

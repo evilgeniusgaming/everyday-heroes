@@ -734,6 +734,50 @@ preLocalize("vehicleProperties", { key: "label", sort: true });
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Configuration data for vehicle rolls.
+ *
+ * @typedef {LabeledConfiguration} VehicleRollConfiguration
+ * @property {string} icon - Icon used on roll buttons.
+ * @property {string} ability - Ability associated with this roll by default.
+ * @property {string} mode - Whether the associated ability is added to the roll ("add") or whether the roll bonus
+ *                           is capped by that ability ("max").
+ */
+
+/**
+ * Basic rolls that can be performed by a vehicle.
+ * @enum {VehicleRollConfiguration}
+ */
+export const vehicleRolls = {
+	speed: {
+		label: "EH.Vehicle.Roll.SpeedContest.Label",
+		icon: "systems/everyday-heroes/artwork/svg/action/vehicle-speed.svg",
+		ability: "str",
+		mode: "add"
+	},
+	maneuverability: {
+		label: "EH.Vehicle.Roll.ManeuverabilityContest.Label",
+		icon: "systems/everyday-heroes/artwork/svg/action/vehicle-maneuverability.svg",
+		ability: "dex",
+		mode: "add"
+	},
+	stunt: {
+		label: "EH.Vehicle.Roll.StuntCheck.Label",
+		icon: "systems/everyday-heroes/artwork/svg/action/vehicle-stunt.svg",
+		ability: "dex",
+		mode: "max"
+	},
+	crash: {
+		label: "EH.Vehicle.Roll.CrashCheck.Label",
+		icon: "systems/everyday-heroes/artwork/svg/action/vehicle-crash.svg",
+		ability: "dex",
+		mode: "add"
+	}
+};
+preLocalize("vehicleRolls", { key: "label" });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Valid actor sizes for vehicles.
  * @type {string[]}
  */

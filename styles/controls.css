@@ -70,7 +70,7 @@
 /*  Skewed Buttons                           */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.everyday-heroes nav.skewed {
+.everyday-heroes :is(nav, li).skewed {
 	transform: skew(-16deg);
 	margin-block-start: 1em;
 	margin-inline: 0.25em;
@@ -88,10 +88,10 @@
 	flex-grow: 1;
 	text-align: center;
 }
-.everyday-heroes nav.skewed li:has(:is(a:not([data-action]), button:disabled)) {
+.everyday-heroes :is(nav.skewed li, li.skewed):has(:is(a:not([data-action]), button:disabled)) {
 	cursor: none;
 }
-.everyday-heroes nav.skewed li:hover:not(:has(:is(a:not([data-action]), button:disabled))) {
+.everyday-heroes :is(nav.skewed li, li.skewed):hover:not(:has(:is(a:not([data-action]), button:disabled))) {
 	box-shadow: inset 0 0 5px var(--color-shadow-primary);
 }
 @supports not selector(:has(a)) {
@@ -102,7 +102,7 @@
 .everyday-heroes nav.skewed li:not(:last-of-type) {
 	border-inline-end: 1px solid var(--eh-border-color-weak);
 }
-.everyday-heroes nav.skewed li > :is(a, button) {
+.everyday-heroes :is(nav.skewed li, li.skewed) > :is(a, button) {
 	display: block;
 	transform: skew(16deg);
 	margin: 0;
@@ -110,11 +110,11 @@
 	padding: 0.25em;
 	background: none;
 }
-.everyday-heroes nav.skewed li > :is(a:not([data-action]), button:disabled) {
+.everyday-heroes :is(nav.skewed li, li.skewed) > :is(a:not([data-action]), button:disabled) {
 	opacity: 0.5;
 	cursor: default;
 }
-.everyday-heroes nav.skewed li > :is(a, button):hover {
+.everyday-heroes :is(nav.skewed li, li.skewed) > :is(a, button):hover {
 	box-shadow: none;
 	text-shadow: none;
 }
