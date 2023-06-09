@@ -174,21 +174,23 @@ export default class VehicleSheet extends BaseActorSheet {
 		const actor = await ActorEH.fromDropData(data);
 		if ( !actor ) return;
 
+		const closestSection = event.target.closest("[data-section-id]");
+		const driverDrop = (closestSection?.dataset.sectionId === "driver")
+			|| (event.target.closest("[data-tab]").dataset.tab === "details");
+
 		// Add actor to people if not already in vehicle
 		if ( !this.actor.system.people[actor.id] ) {
 			try {
-				return this.actor.system.addPerson(actor);
+				return await this.actor.system.addPerson(actor, { driver: driverDrop });
 			} catch(err) {
 				return ui.notifications.error(err.message);
 			}
 		}
 
-		const closestSection = event.target.closest("[data-section-id]");
-		const currentTab = event.target.closest("[data-tab]");
 		const isDriver = this.actor.system.details.driver === actor;
 
 		// If passenger dropped on driver section or on the details tab, make this actor the driver
-		if ( ((closestSection?.dataset.sectionId === "driver") || (currentTab.dataset.tab === "details")) && !isDriver ) {
+		if ( driverDrop && !isDriver ) {
 			return this.actor.update({"system.details.driver": actor.id});
 		}
 

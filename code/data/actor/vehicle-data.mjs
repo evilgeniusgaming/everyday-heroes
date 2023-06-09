@@ -122,11 +122,22 @@ export default class VehicleData extends SystemDataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Driver of this vehicle.
+	 * @type {ActorEH|null}
+	 */
+	get driver() {
+		if ( foundry.utils.getType(this.details.driver) !== "string" ) return this.details.driver ?? null;
+		return game.actors.get(this.details.driver) ?? null;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * The skill object for a driver's Vehicles skill, or Athletics if the vehicle is muscle-powered.
 	 * @type {SkillData|void}
 	 */
 	get driverSkill() {
-		return this.details.driver?.system.skills?.[this.traits.properties.has("musclePowered") ? "athl" : "vehi"];
+		return this.driver?.system.skills?.[this.traits.properties.has("musclePowered") ? "athl" : "vehi"];
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -203,14 +214,13 @@ export default class VehicleData extends SystemDataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareFinalAbilities() {
-		const driver = this.details.driver;
-		if ( !driver ) return;
-		const rollData = driver.getRollData({deterministic: true});
+		if ( !this.driver ) return;
+		const rollData = this.driver.getRollData({deterministic: true});
 		for ( const [key, ability] of Object.entries(this.abilities) ) {
-			const driverBonus = simplifyBonus(driver.system.vehicle?.bonuses.ability[key] ?? "", rollData);
+			const driverBonus = simplifyBonus(this.driver.system.vehicle?.bonuses.ability[key] ?? "", rollData);
 			ability.mod = ability._baseMod + driverBonus;
 			if ( key === "str" && this.traits.properties.has("musclePowered") ) {
-				ability.mod += driver.system.abilities?.str?.mod ?? 0;
+				ability.mod += this.driver.system.abilities?.str?.mod ?? 0;
 			}
 		}
 	}
@@ -248,10 +258,44 @@ export default class VehicleData extends SystemDataModel {
 	 * @param {object} [options={}]
 	 * @param {boolean} [options.driver=false] - Should this actor be set as the driver?
 	 */
-	addPerson(actor, { driver=false }={}) {
-		if ( actor.type === "vehicle" ) throw new Error(game.i18n.localize("EH.Vehicle.Error.NoVehicles"));
+	async addPerson(actor, { driver=false }={}) {
+		if ( actor.system.constructor.metadata.category !== "person" ) {
+			throw new Error(game.i18n.localize("EH.Vehicle.Error.OnlyPeople"));
+		}
 		if ( actor.pack ) throw new Error(game.i18n.localize("EH.Vehicle.Error.NoPacks"));
 		if ( this.people[actor.id] ) return;
+
+		// Ensure the person isn't already in another vehicle
+		const otherVehicle = actor.system.vehicle?.actor;
+		console.log(otherVehicle);
+		if ( otherVehicle && otherVehicle !== this.parent ) {
+			try {
+				await new Promise((resolve, reject) => {
+					new Dialog({
+						title: game.i18n.localize("EH.Vehicle.Prompt.Title"),
+						content: game.i18n.format("EH.Vehicle.Prompt.Message", { this: this.parent.name, other: otherVehicle.name }),
+						focus: true,
+						default: "move",
+						buttons: {
+							move: {
+								icon: "",
+								label: game.i18n.format("EH.Vehicle.Prompt.Move", { vehicle: this.parent.name }),
+								callback: resolve
+							},
+							stay: {
+								icon: "",
+								label: game.i18n.format("EH.Vehicle.Prompt.Stay", { vehicle: otherVehicle.name }),
+								callback: reject
+							}
+						},
+						close: reject
+					}).render(true);
+				});
+			} catch(err) {
+				return;
+			}
+			await otherVehicle.system.removePerson(actor);
+		}
 
 		// Ensure the vehicle isn't full
 		if ( this.details.passengers.max ) {
@@ -270,7 +314,9 @@ export default class VehicleData extends SystemDataModel {
 			.reduce((sort, p) => p.sort > sort ? p.sort : sort, 0) + CONST.SORT_INTEGER_DENSITY;
 		const updates = {[`system.people.${actor.id}`]: { sort }};
 		if ( driver ) updates["system.details.driver"] = actor.id;
-		this.parent.update(updates);
+		console.log(driver, updates);
+		await this.parent.update(updates);
+		await actor.update({"system.vehicle.actor": this.parent.id});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -279,9 +325,10 @@ export default class VehicleData extends SystemDataModel {
 	 * Remove a person from the vehicle.
 	 * @param {ActorEH} actor - Actor to remove.
 	 */
-	removePerson(actor) {
+	async removePerson(actor) {
 		if ( !this.people[actor.id] ) throw new Error(`Actor ${actor.name} not found in the vehicle.`);
-		this.parent.update({[`system.people.-=${actor.id}`]: null});
+		await this.parent.update({[`system.people.-=${actor.id}`]: null});
+		if ( actor.system.vehicle?.actor === this.parent ) await actor.update({"system.vehicle.actor": null});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
