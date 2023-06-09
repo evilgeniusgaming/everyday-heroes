@@ -7,17 +7,46 @@ import { preLocalize } from "./utils.mjs";
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Configuration data for advancement types.
+ *
+ * @typedef {object} AdvancementTypeConfig
+ * @property {typeof Advancement} type - Advancement type represented.
+ * @property {Set<string>} validItemTypes - Types to which this advancement can be added.
+ */
+
+/**
  * Advancement types that can be added to items.
- * @enum {typeof Advancement}
+ * @enum {AdvancementTypeConfig}
  */
 export const advancementTypes = {
-	ASI: advancement.ASIAdvancement,
-	Defense: advancement.DefenseAdvancement,
-	HitPoints: advancement.HitPointsAdvancement,
-	ItemGrant: advancement.ItemGrantAdvancement,
-	Resource: advancement.ResourceAdvancement,
-	ScaleValue: advancement.ScaleValueAdvancement,
-	Trait: advancement.TraitAdvancement
+	ASI: {
+		type: advancement.ASIAdvancement,
+		validItemTypes: new Set(["background", "profession", "feat"])
+	},
+	Defense: {
+		type: advancement.DefenseAdvancement,
+		validItemTypes: new Set(["archetype"])
+	},
+	HitPoints: {
+		type: advancement.HitPointsAdvancement,
+		validItemTypes: new Set(["archetype"])
+	},
+	ItemGrant: {
+		type: advancement.ItemGrantAdvancement,
+		validItemTypes: new Set(["archetype", "class", "background", "profession"])
+	},
+	Resource: {
+		type: advancement.ResourceAdvancement,
+		validItemTypes: new Set(["archetype", "class", "background", "profession", "feat"])
+	},
+	ScaleValue: {
+		type: advancement.ScaleValueAdvancement,
+		validItemTypes: new Set(["archetype", "class", "background", "profession", "feat"])
+	},
+	Trait: {
+		type: advancement.TraitAdvancement,
+		validItemTypes: new Set(["background", "profession", "class", "feat"])
+	}
 };
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

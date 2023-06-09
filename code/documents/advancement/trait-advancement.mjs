@@ -19,7 +19,6 @@ export default class TraitAdvancement extends Advancement {
 			icon: "systems/everyday-heroes/artwork/svg/advancement/trait.svg",
 			title: game.i18n.localize("EH.Advancement.Trait.Title"),
 			hint: game.i18n.localize("EH.Advancement.Trait.Hint"),
-			validItemTypes: new Set(["background", "profession", "class", "feat"]),
 			apps: {
 				config: TraitConfig,
 				flow: TraitFlow

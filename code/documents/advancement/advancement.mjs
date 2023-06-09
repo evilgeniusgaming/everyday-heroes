@@ -67,7 +67,6 @@ export default class Advancement extends BaseAdvancement {
 	 *                                  the level selection control in the configuration window is hidden and the
 	 *                                  advancement should provide its own implementation of `Advancement#levels`
 	 *                                  and potentially its own level configuration interface.
-	 * @property {Set<string>} validItemTypes - Set of types to which this advancement can be added.
 	 * @property {object} apps
 	 * @property {*} apps.config - Subclass of AdvancementConfig that allows for editing of this advancement type.
 	 * @property {*} apps.flow - Subclass of AdvancementFlow that is displayed while fulfilling this advancement.
@@ -88,7 +87,6 @@ export default class Advancement extends BaseAdvancement {
 				hint: ""
 			},
 			multiLevel: false,
-			validItemTypes: new Set(["archetype", "class", "background", "profession", "feat"]),
 			apps: {
 				config: AdvancementConfig,
 				flow: AdvancementFlow

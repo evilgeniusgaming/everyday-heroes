@@ -22,7 +22,6 @@ export default class HitPointsAdvancement extends Advancement {
 			title: game.i18n.localize("EH.Advancement.HitPoints.Title"),
 			hint: game.i18n.localize("EH.Advancement.HitPoints.Hint"),
 			multiLevel: true,
-			validItemTypes: new Set(["archetype"]),
 			apps: {
 				config: HitPointsConfig,
 				flow: HitPointsFlow

@@ -19,7 +19,6 @@ export default class DefenseAdvancement extends ScaleValueAdvancement {
 			identifier: {
 				configurable: false
 			},
-			validItemTypes: new Set(["archetype"]),
 			apps: {
 				config: DefenseConfig
 			}

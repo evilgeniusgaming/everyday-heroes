@@ -97,10 +97,11 @@ export default class ItemEH extends Item {
 	createAdvancement(type, data={}, { showConfig=true, source=false }={}) {
 		if ( !this.system.advancement ) return this;
 
-		const Advancement = CONFIG.EverydayHeroes.advancementTypes[type];
+		const config = CONFIG.EverydayHeroes.advancementTypes[type];
+		const Advancement = config?.type;
 		if ( !Advancement ) throw new Error(`${type} not found in CONFIG.EverydayHeroes.advancementTypes`);
 
-		if ( !Advancement.metadata.validItemTypes.has(this.type) || !Advancement.availableForItem(this) ) {
+		if ( !config.validItemTypes.has(this.type) || !Advancement.availableForItem(this) ) {
 			throw new Error(`${type} advancement cannot be added to ${this.name}`);
 		}
 

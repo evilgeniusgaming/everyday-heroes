@@ -213,8 +213,9 @@ export default class AdvancementItemSheet extends BaseItemSheet {
 			return false;
 		}
 		advancements = advancements.filter(a => {
+			const config = CONFIG.EverydayHeroes.advancementTypes[a.type];
 			return !this.item.system.advancement.get(a.id)
-				&& a.constructor.metadata.validItemTypes.has(this.item.type)
+				&& config?.validItemTypes.has(this.item.type)
 				&& a.constructor.availableForItem(this.item);
 		});
 

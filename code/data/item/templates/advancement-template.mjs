@@ -21,7 +21,7 @@ export default class AdvancementTemplate extends foundry.abstract.DataModel {
 			advancement: new AdvancementField(
 				new TypeField({
 					determineType: value => value._type,
-					modelLookup: type => CONFIG.EverydayHeroes.advancementTypes[type] ?? null
+					modelLookup: type => CONFIG.EverydayHeroes.advancementTypes[type]?.type ?? null
 				}),
 				{label: "EH.Advancement.Title[other]"}
 			)

@@ -19,7 +19,6 @@ export default class ItemGrantAdvancement extends Advancement {
 			icon: "systems/everyday-heroes/artwork/svg/advancement/item-grant.svg",
 			title: game.i18n.localize("EH.Advancement.ItemGrant.Title"),
 			hint: game.i18n.localize("EH.Advancement.ItemGrant.Hint"),
-			validItemTypes: new Set(["archetype", "class", "background", "profession"]),
 			apps: {
 				config: ItemGrantConfig,
 				flow: ItemGrantFlow
