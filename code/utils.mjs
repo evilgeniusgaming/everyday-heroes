@@ -49,7 +49,7 @@ export function linkForUUID(uuid) {
 export function insertBetween(array, toInsert, positions) {
 	for ( const position of positions ) {
 		let matcher = position.after ?? position.before;
-		if ( foundry.utils.getType(matcher) !== "function" ) matcher = e => e === matcher;
+		if ( foundry.utils.getType(matcher) !== "function" ) matcher = e => e === (position.after ?? position.before);
 		let insertIdx = array.findIndex(matcher);
 		if ( insertIdx === -1 ) continue;
 		if ( position.after ) insertIdx += 1;

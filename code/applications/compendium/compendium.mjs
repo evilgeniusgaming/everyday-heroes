@@ -5,23 +5,6 @@ import { sortObjectEntries } from "../../utils.mjs";
  */
 export default class CompendiumEH extends Compendium {
 
-	/**
-	 * The potential sections in the order they should appear.
-	 * @type {string[]}
-	 */
-	static get sections() {
-		const concept = [
-			"archetype", "class", "archetype-talent", "class-talent", "talent",
-			"background", "background-special-feature", "profession", "profession-special-feature", "special-feature",
-			"plan", "trick", "feat",
-			"weapon", "armor", "shield", "ammunition", "explosive"
-		];
-		return concept
-			.concat(Object.keys(CONFIG.EverydayHeroes.gearTypes));
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ["everyday-heroes-compendium"],
@@ -65,7 +48,7 @@ export default class CompendiumEH extends Compendium {
 	 */
 	_createAutoSections(context) {
 		const sections = {};
-		const sortValues = this._sortValues(this.constructor.sections);
+		const sortValues = this._sortValues(CONFIG.EverydayHeroes.itemCompendiumSections);
 		for ( const item of context.index ) {
 			const Type = CONFIG[this.collection.metadata.type][
 				game.release.generation > 10 ? "dataModels" : "systemDataModels"][item.type];
