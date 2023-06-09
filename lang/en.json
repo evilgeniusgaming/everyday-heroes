@@ -146,7 +146,7 @@
 "Advancement.ScaleValue.Type.Number.Hint": "Use this for purely numerical values like flat damage bonuses.",
 
 "Advancement.Trait.Title": "Proficiency",
-"Advancement.Trait.Hint": "Grant the player proficiency in saves, skills, equipment, or languages.",
+"Advancement.Trait.Hint": "Grant the player proficiency in saves, skills, or equipment.",
 "Advancement.Trait.Choices.Label": "Choices",
 "Advancement.Trait.Choices.Hint": "The player will be able to choose from among these {type}, limited by the number of selections allowed. If nothing is checked, they will be able to select from any available.",
 "Advancement.Trait.Choices.Summary.Any": "Choose {number} {type}",
