@@ -48,7 +48,7 @@ export function get(type, identifier) {
 /**
  * Filter registered items.
  * @param {string} type - Item type to filter.
- * @param {RegistrationFilterCallback} callbackFn - Function executed to perform the filtering.
+ * @param {RegistrationFilterCallback} [callbackFn] - Function executed to perform the filtering.
  * @returns {Object<string, ItemRegistration>|undefined}
  */
 export async function filter(type, callbackFn) {
@@ -58,7 +58,7 @@ export async function filter(type, callbackFn) {
 	for ( const [identifier, data] of Object.entries(obj) ) {
 		const element = await fromUuid(data.sources[data.sources.length - 1]);
 		if ( !element ) return obj;
-		if ( !callbackFn(element, identifier) ) delete obj[identifier];
+		if ( callbackFn && !callbackFn(element, identifier) ) delete obj[identifier];
 	}
 	return obj;
 }
@@ -89,7 +89,7 @@ export function registerItemTypes() {
 	for ( const type of Item.TYPES ) {
 		const dataModel = CONFIG.Item[game.release.generation > 10 ? "dataModels" : "systemDataModels"][type];
 		if ( !dataModel?.metadata?.register ) continue;
-		registrations.push(_registerItemType(type, indexes));
+		registrations.push(_registerItemType(dataModel.metadata.type, indexes));
 	}
 
 	// When all settled, populate registration, set to ready, and emit registration complete hook
@@ -133,13 +133,14 @@ async function _registerItemType(type, indexes) {
 	const registrations = {};
 	for ( const [pack, index] of Object.entries(indexes) ) {
 		for ( const item of index ) {
-			if ( item.type !== type ) continue;
+			const dataModel = CONFIG.Item[game.release.generation > 10 ? "dataModels" : "systemDataModels"][item.type];
+			if ( dataModel?.metadata.type !== type ) continue;
 			console.log(`Everyday Heroes | Registering ${item.name} from ${pack}`);
 			registerItem(item, `Compendium.${pack}`);
 		}
 	}
 	for ( const item of game.items.values() ) {
-		if ( item.type !== type ) continue;
+		if ( item.system.constructor.metadata?.type !== type ) continue;
 		console.log(`Everyday Heroes | Registering ${item.name} in world`);
 		registerItem(item, "Item");
 	}
@@ -178,11 +179,12 @@ const message = operation => `Everyday Heroes | Attempted to ${operation} item b
 function _onCreateItem(item, options, userId) {
 	if ( item.isEmbedded || !item.system.constructor.metadata.register ) return;
 	if ( !ready ) console.warn(message("create"));
-	let source = all[item.type] ??= {};
-	if ( !source ) source = all[item.type] = {};
+	const type = item.system.constructor.metadata.type;
+	let source = all[type] ??= {};
+	if ( !source ) source = all[type] = {};
 	_handleCreate(source, item.identifier, item);
 
-	all[item.type] = sortObjectEntries(source, "name");
+	all[type] = sortObjectEntries(source, "name");
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -212,7 +214,8 @@ function _preUpdateItem(item, changes, options, userId) {
 function _onUpdateItem(item, changes, options, userId) {
 	if ( item.isEmbedded || !item.system.constructor.metadata.register ) return;
 	if ( !ready ) console.warn(message("update"));
-	const source = all[item.type] ??= {};
+	const type = item.system.constructor.metadata.type;
+	const source = all[type] ??= {};
 
 	// Identifier has changed, move this to the new location
 	if ( item.identifier !== options.everydayHeroes?.identifier ) {
@@ -227,7 +230,7 @@ function _onUpdateItem(item, changes, options, userId) {
 	source[item.identifier].name = item.name;
 	source[item.identifier].img = item.img;
 
-	all[item.type] = sortObjectEntries(source, "name");
+	all[type] = sortObjectEntries(source, "name");
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -241,7 +244,8 @@ function _onUpdateItem(item, changes, options, userId) {
 function _onDeleteItem(item, options, userId) {
 	if ( item.isEmbedded || !item.system.constructor.metadata.register ) return;
 	if ( !ready ) console.warn(message("delete"));
-	const source = all[item.type] ??= {};
+	const type = item.system.constructor.metadata.type;
+	const source = all[type] ??= {};
 	if ( !source?.[item.identifier] ) return;
 	_handleDelete(source, item.identifier, item);
 }
