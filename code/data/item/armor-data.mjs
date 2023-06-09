@@ -33,7 +33,10 @@ export default class ArmorData extends SystemDataModel.mixin(
 			category: "physical",
 			localization: "EH.Item.Type.Armor",
 			icon: "fa-solid fa-shield-halved",
-			image: "systems/everyday-heroes/artwork/svg/items/armor.svg"
+			image: "systems/everyday-heroes/artwork/svg/items/armor.svg",
+			advancement: {
+				grantable: true
+			}
 		};
 	}
 

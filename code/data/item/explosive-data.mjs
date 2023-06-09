@@ -40,7 +40,10 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 			category: "physical",
 			localization: "EH.Item.Type.Explosive",
 			icon: "fa-solid fa-burst",
-			image: "systems/everyday-heroes/artwork/svg/items/explosive.svg"
+			image: "systems/everyday-heroes/artwork/svg/items/explosive.svg",
+			advancement: {
+				grantable: true
+			}
 		};
 	}
 

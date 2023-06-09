@@ -27,16 +27,6 @@ export default class ItemGrantAdvancement extends Advancement {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * The item types that are supported in Item Grant.
-	 * @type {Set<string>}
-	 */
-	static VALID_TYPES = new Set([
-		"specialFeature", "talent", "plan", "trick", "armor", "weapon", "ammunition", "explosive", "gear"
-	]);
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Display Methods                          */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -136,7 +126,7 @@ export default class ItemGrantAdvancement extends Advancement {
 	 * @throws An error if the item is invalid and strict is `true`.
 	 */
 	_validateItemType(item, { strict=true }={}) {
-		if ( this.constructor.VALID_TYPES.has(item.type) ) return true;
+		if ( item.system.constructor.metadata.advancement?.grantable ) return true;
 		const type = game.i18n.localize(CONFIG.Item.typeLabels[item.type]);
 		if ( strict ) throw new Error(game.i18n.format("EH.Advancement.Config.Warning.Invalid", {type}));
 		return false;

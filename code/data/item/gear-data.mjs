@@ -17,7 +17,10 @@ export default class GearData extends SystemDataModel.mixin(DescribedTemplate, P
 			category: "physical",
 			localization: "EH.Item.Type.Gear",
 			icon: "fa-solid fa-bag-shopping",
-			image: "systems/everyday-heroes/artwork/svg/items/gear.svg"
+			image: "systems/everyday-heroes/artwork/svg/items/gear.svg",
+			advancement: {
+				grantable: true
+			}
 		};
 	}
 

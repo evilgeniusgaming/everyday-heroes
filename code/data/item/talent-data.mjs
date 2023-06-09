@@ -21,7 +21,10 @@ export default class TalentData extends SystemDataModel.mixin(DescribedTemplate,
 			category: "feature",
 			localization: "EH.Item.Type.Talent",
 			icon: "fa-solid fa-users-rectangle",
-			image: "systems/everyday-heroes/artwork/svg/items/feature.svg"
+			image: "systems/everyday-heroes/artwork/svg/items/feature.svg",
+			advancement: {
+				grantable: true
+			}
 		};
 	}
 

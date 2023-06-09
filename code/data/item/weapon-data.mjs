@@ -53,7 +53,10 @@ export default class WeaponData extends SystemDataModel.mixin(
 			category: "physical",
 			localization: "EH.Item.Type.Weapon",
 			icon: "fa-solid fa-gun",
-			image: "systems/everyday-heroes/artwork/svg/items/weapon.svg"
+			image: "systems/everyday-heroes/artwork/svg/items/weapon.svg",
+			advancement: {
+				grantable: true
+			}
 		};
 	}
 

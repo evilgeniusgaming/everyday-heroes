@@ -24,7 +24,10 @@ export default class TrickData extends SystemDataModel.mixin(DescribedTemplate, 
 			category: "feature",
 			localization: "EH.Item.Type.Trick",
 			icon: "fa-solid fa-ruler",
-			image: "systems/everyday-heroes/artwork/svg/items/plan-trick.svg"
+			image: "systems/everyday-heroes/artwork/svg/items/plan-trick.svg",
+			advancement: {
+				grantable: true
+			}
 		};
 	}
 

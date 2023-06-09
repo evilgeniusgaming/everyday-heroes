@@ -20,7 +20,10 @@ export default class PlanData extends SystemDataModel.mixin(DescribedTemplate, A
 			category: "feature",
 			localization: "EH.Item.Type.Plan",
 			icon: "fa-solid fa-ruler",
-			image: "systems/everyday-heroes/artwork/svg/items/plan-trick.svg"
+			image: "systems/everyday-heroes/artwork/svg/items/plan-trick.svg",
+			advancement: {
+				grantable: true
+			}
 		};
 	}
 
