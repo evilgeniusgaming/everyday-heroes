@@ -534,6 +534,8 @@
 "Item.Type.Talent[other]": "Talents",
 "Item.Type.Trick[one]": "Trick",
 "Item.Type.Trick[other]": "Tricks",
+"Item.Type.Unidentified[one]": "Unidentified Item",
+"Item.Type.Unidentified[other]": "Unidentified Items",
 "Item.Type.Weapon[one]": "Weapon",
 "Item.Type.Weapon[other]": "Weapons",
 

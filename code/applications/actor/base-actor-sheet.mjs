@@ -236,7 +236,7 @@ export default class BaseActorSheet extends ActorSheet {
 					section.primary.item = item;
 					return section;
 				}
-				for ( const type of section.config.types ) {
+				for ( const type of section.config?.types ?? [] ) {
 					if ( checkFilter(item, type) ) {
 						section.items.push(item);
 						return section;
@@ -248,7 +248,9 @@ export default class BaseActorSheet extends ActorSheet {
 		// No matching section found, add to uncategorized section if editing mode is enabled
 		if ( !this.editingMode ) return;
 		const firstTab = Object.keys(sections)[0];
-		const section = sections[firstTab].uncategorized ??= { label: "what the what?", items: [] };
+		const section = sections[firstTab].uncategorized ??= {
+			label: game.i18n.localize("EH.Item.Type.Unidentified[other]"), items: []
+		};
 		section.items.push(item);
 		return section;
 	}

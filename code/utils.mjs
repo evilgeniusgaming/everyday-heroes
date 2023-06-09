@@ -41,13 +41,16 @@ export function linkForUUID(uuid) {
  * Insert a new element into an array in a specific position.
  * @param {Array} array - Array into which to insert.
  * @param {*} toInsert - Element to insert.
- * @param {{after: [string], before: [string]}[]} positions - List of objects that describe where the new element should
- *                                                            be inserted, if matching elements are found.
+ * @param {{after: [*|Function], before: [*|Function]}[]} positions - List of objects that describe where the new
+ *                                                                    element should be inserted, if matching elements
+ *                                                                    are found, or functions to call to do the same.
  * @returns {number} - Index of the newly inserted element.
  */
 export function insertBetween(array, toInsert, positions) {
 	for ( const position of positions ) {
-		let insertIdx = array.findIndex(e => e === (position.after ?? position.before));
+		let matcher = position.after ?? position.before;
+		if ( foundry.utils.getType(matcher) !== "function" ) matcher = e => e === matcher;
+		let insertIdx = array.findIndex(matcher);
 		if ( insertIdx === -1 ) continue;
 		if ( position.after ) insertIdx += 1;
 		array.splice(insertIdx, 0, toInsert);
