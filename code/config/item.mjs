@@ -129,20 +129,6 @@ export const itemCategories = {
 preLocalize("itemCategories", { key: "label" });
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-/**
- * Sorting order for compendium sections.
- * @type {string[]}
- */
-export const itemCompendiumSections = [
-	"archetype", "class", "archetype-talent", "class-talent", "talent",
-	"background", "background-special-feature",
-	"profession", "profession-special-feature", "special-feature",
-	"plan", "trick", "feat",
-	"weapon", "armor", "shield", "ammunition", "explosive"
-];
-
-/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Equipment                                */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -667,3 +653,19 @@ export const weaponTypes = {
 	}
 };
 preLocalize("weaponTypes", { key: "label" });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Compendium Sections                      */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Sorting order for compendium sections.
+ * @type {string[]}
+ */
+export const itemCompendiumSections = [
+	"archetype", "class", "archetype-talent", "class-talent", "talent",
+	"background", "background-special-feature",
+	"profession", "profession-special-feature", "special-feature",
+	"plan", "trick", "feat",
+	"weapon", "armor", "shield", "ammunition", "explosive"
+].concat(Object.keys(gearTypes));

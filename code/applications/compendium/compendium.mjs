@@ -22,10 +22,11 @@ export default class CompendiumEH extends Compendium {
 		await this.collection.getIndex({
 			fields: ["system.type.value", "system.type.category", "flags.everyday-heroes.category"]
 		});
-		if ( !context.index ) {
-			// TODO: Temp solution for bug with V11
-			context.index = this.collection.index.contents;
-			context.index.sort((a, b) => (a.sort || 0) - (b.sort || 0) || a.name.localeCompare(b.name));
+		if ( !context.isV10 ) {
+			if ( !context.index ) context.index = this.collection.index.contents;
+			context.index = Array.from(context.index).sort((a, b) =>
+				(a.sort || 0) - (b.sort || 0) || a.name.localeCompare(b.name)
+			);
 		}
 		switch (this.collection.metadata.flags["everyday-heroes"].sorting) {
 			case "auto":
