@@ -179,13 +179,13 @@
 	padding: 0.15em 0.5em;
 	background-color: var(--eh-background-color-light);
 }
-.everyday-heroes.sheet .tab.inventory > section .item-list li > div .action.disabled {
+.everyday-heroes.sheet .tab.inventory > section .item-list li > div .action:is(.disabled, :not([data-action])) {
 	opacity: 0.5;
 }
-.everyday-heroes.sheet .tab.inventory > section .item-list li > div .action:not(.disabled) {
+.everyday-heroes.sheet .tab.inventory > section .item-list li > div .action:not(:is(.disabled, :not([data-action]))) {
 	cursor: pointer;
 }
-.everyday-heroes.sheet .tab.inventory > section .item-list li > div .action:not(.disabled):hover {
+.everyday-heroes.sheet .tab.inventory > section .item-list li > div .action:not(:is(.disabled, :not([data-action]))):hover {
 	outline: 2px solid var(--eh-border-color-strong);
 }
 .everyday-heroes.sheet .tab.inventory > section .item-list li > div .action > span {

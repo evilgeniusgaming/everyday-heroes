@@ -114,7 +114,7 @@ export default class NPCSheet extends BaseActorSheet {
 		context.lists.resources = listFormatter.format(
 			Object.entries(context.system.resources).reduce((arr, [key, resource]) => {
 				arr.push(
-					`<a data-action="roll" data-type="resource" data-resource="${key}" data-tooltip="${
+					`<a ${context.editable ? `data-action="roll" data-type="resource" data-resource="${key}"` : ""} data-tooltip="${
 						game.i18n.format(`EH.Action.${resource.denomination ? "Roll" : "Spend"}`, { type: resource.label })
 					}">${resource.label}</a> (${numberFormat(resource.available)}/${numberFormat(resource.max)})`
 				);

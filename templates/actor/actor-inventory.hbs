@@ -70,7 +70,8 @@
 									<ul>
 										{{#each item.system.modes as |mode key|}}
 											<li {{#if (eq item.system.mode key)}}class="selected"{{/if}}>
-												<a data-action="item" data-type="mode" data-key="{{key}}" data-tooltip="{{mode.label}}">
+												<a {{#if editable}}data-action="item" data-type="mode" data-key="{{key}}"{{/if}}
+													data-tooltip="{{mode.label}}">
 													<figure style="background-image: url('{{mode.icon}}');"></figure>
 												</a>
 											</li>
@@ -82,7 +83,7 @@
 						<nav class="item-actions">
 							{{#each item.system.actions as |action|}}
 								<div class="action{{#if action.disabled}} disabled{{/if}}"
-									data-action="{{#if action.action}}{{action.action}}{{else}}roll-item{{/if}}"
+									{{#if editable}}data-action="{{#if action.action}}{{action.action}}{{else}}roll-item{{/if}}"{{/if}}
 									data-tooltip="{{action.tooltip}}" {{everydayHeroes-dataset action.data}}>
 									{{#if action.icon}}
 										<figure style="background-image: url('{{action.icon}}');"></figure>
@@ -97,7 +98,7 @@
 							{{#if (or item.system.rounds.capacity ctx.ammunition.displayAmmunitionSelector)}}
 								<div class="ammunition">
 									{{#if item.system.rounds.capacity}}
-										<div class="reload action" data-action="item" data-type="reload"
+										<div class="reload action" {{#if editable}}data-action="item" data-type="reload"{{/if}}
 											data-tooltip="{{#if item.system.reload}}
 												{{~lookup @root.CONFIG.actionTypesReload item.system.reload}}
 												{{~else}}{{localize 'EH.Action.Reload.None'}}{{/if}}">

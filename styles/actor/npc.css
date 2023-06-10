@@ -2,8 +2,9 @@
 	min-width: 350px;
 }
 
-.everyday-heroes.npc.sheet [data-action]:not([data-type="activate"]):not([data-type="edit"]) {
+.everyday-heroes.npc.sheet [data-tab="details"] [data-action]:not([data-type="activate"]):not([data-type="edit"]) {
 	text-decoration: underline;
+	text-decoration-color: var(--eh-text-color-underline);
 	text-decoration-style: dashed;
 }
 

@@ -17,6 +17,7 @@
 
 .hero.sheet label [data-action] {
 	text-decoration: underline;
+	text-decoration-color: var(--eh-text-color-underline);
 	text-decoration-style: dashed;
 }
 

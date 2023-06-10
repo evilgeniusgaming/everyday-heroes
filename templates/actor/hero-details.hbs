@@ -145,10 +145,14 @@
 				{{/if}}
 				<fieldset class="hit-dice">
 					<label>
-						<a data-action="roll" data-type="hit-die"
-							data-tooltip="{{localize 'EH.Action.Roll' type=(localize 'EH.HitDice.Label[one]')}}">
+						{{#if editable}}
+							<a data-action="roll" data-type="hit-die"
+								data-tooltip="{{localize 'EH.Action.Roll' type=(localize 'EH.HitDice.Label[one]')}}">
+								{{localize "EH.HitDice.Label[other]"}}
+							</a>
+						{{else}}
 							{{localize "EH.HitDice.Label[other]"}}
-						</a>
+						{{/if}}
 					</label>
 					<span>
 						{{#if system.attributes.hd.denomination}}
@@ -195,8 +199,8 @@
 		<nav class="controls skewed">
 			<ul>
 				<li><a data-action="roll" data-type="luck">{{localize "EH.Luck.Label"}}</a></li>
-				<li><a data-action="short-rest">{{localize "EH.Rest.Type.Short.Label"}}</a></li>
-				<li><a data-action="long-rest">{{localize "EH.Rest.Type.Long.Label"}}</a></li>
+				<li><a {{#if editable}}data-action="short-rest"{{/if}}>{{localize "EH.Rest.Type.Short.Label"}}</a></li>
+				<li><a {{#if editable}}data-action="long-rest"{{/if}}>{{localize "EH.Rest.Type.Long.Label"}}</a></li>
 			</ul>
 		</nav>
 	

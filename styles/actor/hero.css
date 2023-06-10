@@ -98,6 +98,9 @@
 .everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:not(.disabled) label {
 	cursor: pointer;
 }
+.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies.disabled input {
+	cursor: default;
+}
 .everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:not(.disabled) label:hover {
 	text-shadow: 0 0 8px var(--color-shadow-primary);
 }
