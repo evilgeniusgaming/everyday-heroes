@@ -2,14 +2,14 @@
   "id": "everyday-heroes",
   "title": "Everyday Heroes",
   "description": "The core system for the Everyday Heroes role-playing game.",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "compatibility": {
     "minimum": "10.291",
     "verified": "11"
   },
   "url": "https://github.com/evilgeniusgaming/everyday-heroes",
   "manifest": "https://raw.githubusercontent.com/evilgeniusgaming/everyday-heroes/main/system.json",
-  "download": "https://github.com/evilgeniusgaming/everyday-heroes/releases/download/release-0.2.2/everyday-heroes-release-0.2.2.zip",
+  "download": "https://github.com/evilgeniusgaming/everyday-heroes/releases/download/release-0.2.3/everyday-heroes-release-0.2.3.zip",
   "authors": [
     {
       "name": "Jeff ‘Arbron’ Hitchcock",
@@ -92,7 +92,11 @@
       "label": "Rules",
       "path": "./packs/rules.db",
       "type": "JournalEntry",
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "sorting": "table-of-contents"
+        }
+      }
     }
   ],
   "languages": [
