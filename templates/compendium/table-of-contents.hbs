@@ -1,0 +1,21 @@
+<article>{{log this}}
+	<h1>Table of Contents</h1>
+	<section class="contents">
+		<ol>
+			{{#each parts as |part|}}
+				<li data-entry-id="{{part.id}}">
+					{{#if part.name}}<h2><a>{{part.name}}</a></h2>{{/if}}
+					<ol>
+						{{#each part.chapters as |chapter|}}
+							<li data-entry-id="{{chapter.entryId}}" data-page-id="{{chapter.pageId}}" data-level="{{chapter.level}}">
+								<h{{chapter.level}} {{#if chapter.style}}class="{{chapter.style}}"{{/if}}>
+									<a>{{chapter.name}}</a>
+								</h{{chapter.level}}>
+							</li>
+						{{/each}}
+					</ol>
+				</li>
+			{{/each}}
+		</ol>
+	</section>
+</article>

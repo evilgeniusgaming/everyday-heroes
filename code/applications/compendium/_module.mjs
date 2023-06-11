@@ -1,14 +1,19 @@
 import CompendiumEH from "./compendium.mjs";
+import TableOfContentsCompendium from "./table-of-contents.mjs";
 
-export { CompendiumEH };
+export {
+	CompendiumEH,
+	TableOfContentsCompendium
+};
 
 /**
  * Replace the apps for any compendiums with a type defined in flags for V11 or later.
  */
 export function setupCompendiumApps() {
 	for ( const pack of game.packs ) {
-		if ( !pack.metadata.flags?.["everyday-heroes"]?.sorting ) continue;
-		pack.applicationClass = CompendiumEH;
+		const sorting = pack.metadata.flags?.["everyday-heroes"]?.sorting;
+		if ( !sorting ) continue;
+		pack.applicationClass = sorting === "table-of-contents" ? TableOfContentsCompendium : CompendiumEH;
 	}
 }
 
@@ -17,8 +22,10 @@ export function setupCompendiumApps() {
  */
 export function setupLegacyCompendiumApps() {
 	for ( const pack of game.packs ) {
-		if ( !pack.metadata.flags?.["everyday-heroes"]?.sorting ) continue;
-		const app = new CompendiumEH(pack);
+		const sorting = pack.metadata.flags?.["everyday-heroes"]?.sorting;
+		if ( !sorting ) continue;
+		const Cls = sorting === "table-of-contents" ? TableOfContentsCompendium : CompendiumEH;
+		const app = new Cls(pack);
 		pack.apps = [app];
 	}
 }

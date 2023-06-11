@@ -3,7 +3,7 @@
   "pages": [
     {
       "sort": 0,
-      "name": "Cover",
+      "name": "Illustration: Cover",
       "type": "image",
       "_id": "iZy0fsxBAMq5FefM",
       "title": {
@@ -25,7 +25,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 100000,
@@ -34,7 +38,7 @@
       "_id": "aEVtmkbmkFwrXqEl",
       "title": {
         "show": true,
-        "level": 1
+        "level": 2
       },
       "image": {},
       "text": {
@@ -346,7 +350,7 @@
       "_id": "yQGhixp8YM3bMSOz",
       "title": {
         "show": true,
-        "level": 1
+        "level": 3
       },
       "image": {},
       "text": {
@@ -372,6 +376,9 @@
   "flags": {
     "core": {
       "viewMode": 2
+    },
+    "everyday-heroes": {
+      "type": "introduction"
     }
   },
   "_stats": {

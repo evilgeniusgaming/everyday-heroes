@@ -3,7 +3,7 @@
   "pages": [
     {
       "sort": 100000,
-      "name": "Game Rules",
+      "name": "Illustration: Bazaar",
       "type": "image",
       "_id": "By9kBge8GrkakOCx",
       "title": {
@@ -25,7 +25,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 200000,
@@ -34,7 +38,7 @@
       "_id": "4BqfSuR6Vb2q71OD",
       "title": {
         "show": false,
-        "level": 1
+        "level": 3
       },
       "image": {},
       "text": {
@@ -51,7 +55,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 300000,
@@ -268,7 +276,7 @@
       "_id": "YsycAk3kbPbDLLtA",
       "title": {
         "show": true,
-        "level": 2
+        "level": 3
       },
       "image": {},
       "text": {
@@ -623,7 +631,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 2600000,
@@ -741,7 +753,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p>Real-life combat happens all at once, but in Everyday Heroes, fights focus on one combatant at a time. It’s up to the imaginations of the players and GM to picture how the individual actions of the heroes and their foes play out together.</p><p><strong>The overall structure of combat in the game works as follows:</strong></p><p>During combat, time is measured in rounds, each of which is about 6 seconds long (so that 10 rounds equals about 1 minute of game time).</p><p>During a round, each combat participant takes a turn. During their turn, each combatant can move and perform certain actions.</p><p>A round ends when all combatants have taken their turns.</p><p>Another round then starts, with subsequent rounds continuing until combat ends.</p><h3>Step 1: Surprise</h3><p>Characters can be taken by surprise when combat starts. For this to happen, the attackers need to catch the defenders completely unaware. The most common scenario occurs when the attackers are in hiding, but surprise can also happen when an attack comes from someone the defenders didn’t see as a potential threat. Either way, combatants that are surprised roll initiative normally (see below), but they can’t move or take any actions during the first round of combat.</p><p>Surprise is determined in one of two ways, depending on whether the heroes are the defenders or the attackers.</p><p><strong>If the heroes are the defenders:</strong></p><p>The GM determines a DC for the heroes to detect the attackers before they strike.</p><p>The GM makes a passive Perception check for all the heroes. Those that succeed are not surprised, those that fail are surprised.</p><p><strong>If the heroes are the attackers:</strong></p><p>The players designate which hero is leading the ambush who makes a Dexterity (Stealth) check. The result sets a DC for the NPCs.</p><p>The GM makes a passive perception check for all the NPCs against the DC. Those that succeed are not surprised, those that fail are surprised.</p><p><strong>Alternate Types of Surprise.</strong> In the case of the attackers pretending to be harmless, use Charisma (Deception) for attackers and passive Wisdom (Insight) for the defenders. You can use this same pattern, but with appropriate ability score checks for other situations that might initiate combat unexpectedly.</p><blockquote><p><strong>Example:</strong> Kat Whitlock and her three companions walk into an abandoned warehouse where members of the dreaded Black Scorpion gang lie in wait for them. The GM sets the check for the heroes to notice the hidden gang members at DC 14. Kat, ever perceptive, has a passive Perception check of 19, so she isn’t surprised. Luis Garza has a 14, just enough to avoid surprise, but Johnny Blaze and Mack Williams aren’t so perceptive. Johnny and Mack are surprised and unable to respond in the first round of combat.</p></blockquote><h3>Step 2: Position</h3><p>As the fight gets underway, the GM will establish where all visible combatants are located with respect to one another. This includes distance, direction, and the environment of the battlefield.</p><h4>Maps or Mapless</h4><p>Combat in Everyday Heroes is designed so that players can choose whether to play with a battle map and miniatures, a digital map, or no map at all. Playing with a map makes it easier for everyone to understand and keep track of where all the combatants are, especially as the number of participants increases. That said, combat in the modern era can take place at a considerable distance thanks to modern firearms, in or on a moving vehicle, or even between combatants in different vehicles—all scenarios that can make maps impractical. Chapter 12 has advice for the GM on handling all kinds of combat encounters.</p><p>Whether a game uses maps or not, Everyday Heroes measures movement and range in 5-foot increments. Maps with other scales perform equally as well for combat encounters, as long as the GM makes the scale of the maps clear.</p><h3>Step 3: Initiative</h3><p>When combat starts, each combatant makes an initiative roll. This is a Dexterity check made with no proficiency bonus or other modifiers, though class talents and other features might grant you advantage on initiative, give you a bonus to your initiative checks, or let you swap your Dexterity modifier for a different ability. Combatants then take turns in initiative order, from highest initiative to lowest each round.</p><p>If any combatants tie on their initiative rolls, the GM decides in what order the tied combatants act. The GM can also decide to make one initiative roll for a number of enemies as a group, or for all enemies as one group, to help speed up combat. Initiative is rolled only once during the course of combat.</p><p><strong>Initiative: d20 + Dexterity modifier</strong></p><p>Any player can choose to lower their hero’s initiative after it is rolled but before combat starts, allowing them to act after opponents or after an ally if they so choose.</p><h3>Step 4: Combat Turns</h3><p>Every character participating in the combat encounter takes a turn according to the initiative order. Each participant’s turn consists of a wide variety of potential activities, described throughout this chapter.</p><p><strong>During a turn, a combatant can do all the following things, in any order they like:</strong></p><p><strong>Move up to their speed</strong> (see “Movement” below)</p><p><strong>Take one action</strong>, which might include an Attack action (see “Actions” and “Attacks” below)</p><p><strong>Take one bonus action</strong>, if available (see “Bonus Actions” below)</p><p><strong>Perform free actions</strong> (see “Free Actions” below)</p><p><strong>Use your reaction</strong> under certain circumstances (see “Reactions” below)</p><p>None of these activities are required, and a combatant’s turn happens even if they choose to take no actions or to not move.</p><p>The round ends once every combatant has taken a turn.</p><h3>Step 5: Repeat Until Done</h3><p>The fight continues in a new round at the top of the initiative order and proceeds as long as the fight persists. Combat ends when the fighting stops, whether that means some or all of the opposing forces have been knocked out, killed, called for a truce, escaped, or are otherwise no longer actively battling each other.</p>",
+        "content": "<p>Real-life combat happens all at once, but in Everyday Heroes, fights focus on one combatant at a time. It’s up to the imaginations of the players and GM to picture how the individual actions of the heroes and their foes play out together.</p><p><strong>The overall structure of combat in the game works as follows:</strong></p><p>During combat, time is measured in rounds, each of which is about 6 seconds long (so that 10 rounds equals about 1 minute of game time).</p><p>During a round, each combat participant takes a turn. During their turn, each combatant can move and perform certain actions.</p><p>A round ends when all combatants have taken their turns.</p><p>Another round then starts, with subsequent rounds continuing until combat ends.</p>",
         "markdown": ""
       },
       "video": {
@@ -1663,7 +1675,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 7100000,
@@ -1689,7 +1705,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 7200000,
@@ -1715,7 +1735,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 7300000,
@@ -1741,7 +1765,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 7400000,
@@ -2002,6 +2030,136 @@
         "default": -1
       },
       "flags": {}
+    },
+    {
+      "sort": 3300000,
+      "name": "Step 1: Surprise",
+      "type": "text",
+      "_id": "ckQ3K9VRHUELc68c",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Characters can be taken by surprise when combat starts. For this to happen, the attackers need to catch the defenders completely unaware. The most common scenario occurs when the attackers are in hiding, but surprise can also happen when an attack comes from someone the defenders didn’t see as a potential threat. Either way, combatants that are surprised roll initiative normally (see below), but they can’t move or take any actions during the first round of combat.</p><p>Surprise is determined in one of two ways, depending on whether the heroes are the defenders or the attackers.</p><p><strong>If the heroes are the defenders:</strong></p><p>The GM determines a DC for the heroes to detect the attackers before they strike.</p><p>The GM makes a passive Perception check for all the heroes. Those that succeed are not surprised, those that fail are surprised.</p><p><strong>If the heroes are the attackers:</strong></p><p>The players designate which hero is leading the ambush who makes a Dexterity (Stealth) check. The result sets a DC for the NPCs.</p><p>The GM makes a passive perception check for all the NPCs against the DC. Those that succeed are not surprised, those that fail are surprised.</p><p><strong>Alternate Types of Surprise.</strong> In the case of the attackers pretending to be harmless, use Charisma (Deception) for attackers and passive Wisdom (Insight) for the defenders. You can use this same pattern, but with appropriate ability score checks for other situations that might initiate combat unexpectedly.</p><blockquote><p><strong>Example:</strong> Kat Whitlock and her three companions walk into an abandoned warehouse where members of the dreaded Black Scorpion gang lie in wait for them. The GM sets the check for the heroes to notice the hidden gang members at DC 14. Kat, ever perceptive, has a passive Perception check of 19, so she isn’t surprised. Luis Garza has a 14, just enough to avoid surprise, but Johnny Blaze and Mack Williams aren’t so perceptive. Johnny and Mack are surprised and unable to respond in the first round of combat.</p></blockquote>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 3450000,
+      "name": "Step 2: Position",
+      "type": "text",
+      "_id": "T3KVQp2AreSTvxhd",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>As the fight gets underway, the GM will establish where all visible combatants are located with respect to one another. This includes distance, direction, and the environment of the battlefield.</p><h4>Maps or Mapless</h4><p>Combat in Everyday Heroes is designed so that players can choose whether to play with a battle map and miniatures, a digital map, or no map at all. Playing with a map makes it easier for everyone to understand and keep track of where all the combatants are, especially as the number of participants increases. That said, combat in the modern era can take place at a considerable distance thanks to modern firearms, in or on a moving vehicle, or even between combatants in different vehicles—all scenarios that can make maps impractical. Chapter 12 has advice for the GM on handling all kinds of combat encounters.</p><p>Whether a game uses maps or not, Everyday Heroes measures movement and range in 5-foot increments. Maps with other scales perform equally as well for combat encounters, as long as the GM makes the scale of the maps clear.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 3525000,
+      "name": "Step 3: Initiative",
+      "type": "text",
+      "_id": "QtkeYuVFox7FZALr",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>When combat starts, each combatant makes an initiative roll. This is a Dexterity check made with no proficiency bonus or other modifiers, though class talents and other features might grant you advantage on initiative, give you a bonus to your initiative checks, or let you swap your Dexterity modifier for a different ability. Combatants then take turns in initiative order, from highest initiative to lowest each round.</p><p>If any combatants tie on their initiative rolls, the GM decides in what order the tied combatants act. The GM can also decide to make one initiative roll for a number of enemies as a group, or for all enemies as one group, to help speed up combat. Initiative is rolled only once during the course of combat.</p><p><strong>Initiative: d20 + Dexterity modifier</strong></p><p>Any player can choose to lower their hero’s initiative after it is rolled but before combat starts, allowing them to act after opponents or after an ally if they so choose.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 3562500,
+      "name": "Step 4: Combat Turns",
+      "type": "text",
+      "_id": "ru4TpIEjsFLCI48P",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Every character participating in the combat encounter takes a turn according to the initiative order. Each participant’s turn consists of a wide variety of potential activities, described throughout this chapter.</p><p><strong>During a turn, a combatant can do all the following things, in any order they like:</strong></p><p><strong>Move up to their speed</strong> (see “Movement” below)</p><p><strong>Take one action</strong>, which might include an Attack action (see “Actions” and “Attacks” below)</p><p><strong>Take one bonus action</strong>, if available (see “Bonus Actions” below)</p><p><strong>Perform free actions</strong> (see “Free Actions” below)</p><p><strong>Use your reaction</strong> under certain circumstances (see “Reactions” below)</p><p>None of these activities are required, and a combatant’s turn happens even if they choose to take no actions or to not move.</p><p>The round ends once every combatant has taken a turn.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 3581250,
+      "name": "Step 5: Repeat Until Done",
+      "type": "text",
+      "_id": "JCWky4tX6e2T7ysW",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The fight continues in a new round at the top of the initiative order and proceeds as long as the fight persists. Combat ends when the fighting stops, whether that means some or all of the opposing forces have been knocked out, killed, called for a truce, escaped, or are otherwise no longer actively battling each other.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
     }
   ],
   "ownership": {
@@ -2010,14 +2168,18 @@
   "flags": {
     "core": {
       "viewMode": 2
+    },
+    "everyday-heroes": {
+      "type": "part",
+      "order": 2
     }
   },
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
+    "systemVersion": "0.2.3",
     "coreVersion": "10.291",
     "createdTime": 1680215731125,
-    "modifiedTime": 1680370488087,
+    "modifiedTime": 1686515453055,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

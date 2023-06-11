@@ -25,7 +25,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     }
   ],
   "ownership": {
@@ -34,6 +38,10 @@
   "flags": {
     "core": {
       "viewMode": 2
+    },
+    "everyday-heroes": {
+      "type": "appendix",
+      "order": 1
     }
   },
   "_stats": {

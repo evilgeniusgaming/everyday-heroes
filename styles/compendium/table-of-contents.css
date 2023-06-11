@@ -1,0 +1,69 @@
+.table-of-contents article {
+	margin: 1em;
+}
+
+.table-of-contents article ol {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.table-of-contents article ol ol {
+	column-count: 2;
+	gap: 2rem;
+}
+
+.table-of-contents article :is(h1, h2, h3, h4, h5) {
+	text-transform: uppercase;
+}
+.table-of-contents article :is(h1, h2, h3) {
+	font-weight: bold;
+}
+.table-of-contents article :is(h4, h5) {
+	font-weight: normal;
+}
+.table-of-contents article :is(h1, h2, h3.alt) {
+	color: var(--eh-text-color-red);
+}
+.table-of-contents article :is(h3, h4, h5) {
+	color: var(--eh-text-color-black);
+}
+.table-of-contents article h1 {
+	border: none;
+	font-size: var(--font-size-48);
+	text-align: center;
+}
+.table-of-contents article h2 {
+	margin-block-end: 1rem;
+	border-block-end: 2px solid var(--eh-text-color-red);
+	font-size: var(--font-size-28);
+	line-height: 0.9em;
+}
+.table-of-contents article li:not(:first-child) > h2 {
+	margin-block-start: 1rem;
+}
+.table-of-contents article h3 {
+	border-block-end: 2px dashed var(--eh-border-color-strong);
+	font-size: var(--font-size-24);
+	line-height: 0.9em;
+}
+.table-of-contents article li:not(:first-child) > h3 {
+	margin-block-start: 1rem;
+}
+.table-of-contents article h3.alt {
+	border: none;
+}
+.table-of-contents article h4 {
+	margin-block: 0;
+	margin-inline-start: 0.5rem;
+	font-size: var(--font-size-18);
+}
+.table-of-contents article h5 {
+	margin-block: 0.25rem;
+	margin-inline-start: 1.5rem;
+	font-size: var(--font-size-14);
+	font-weight: normal;
+}
+
+.table-of-contents article [data-level="3"] {
+	break-after: avoid;
+}

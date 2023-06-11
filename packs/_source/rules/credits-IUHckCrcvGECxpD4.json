@@ -25,7 +25,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": 2
+        }
+      }
     },
     {
       "sort": 200000,
@@ -51,7 +55,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     }
   ],
   "ownership": {
@@ -60,6 +68,9 @@
   "flags": {
     "core": {
       "viewMode": 2
+    },
+    "everyday-heroes": {
+      "type": "credits"
     }
   },
   "_stats": {

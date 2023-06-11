@@ -3,7 +3,7 @@
   "pages": [
     {
       "sort": 100000,
-      "name": "Heroes",
+      "name": "Illustration: Heroes",
       "type": "image",
       "_id": "sTP9QqqVpHTjMMFM",
       "title": {
@@ -25,7 +25,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 200000,
@@ -34,7 +38,7 @@
       "_id": "R5hHYtbLySJLQ5Ha",
       "title": {
         "show": false,
-        "level": 1
+        "level": 3
       },
       "image": {},
       "text": {
@@ -51,7 +55,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 300000,
@@ -129,7 +137,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 600000,
@@ -181,7 +193,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 800000,
@@ -207,7 +223,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 900000,
@@ -215,13 +235,13 @@
       "type": "text",
       "_id": "ERerxSPWmzNoOv2i",
       "title": {
-        "show": true,
-        "level": 2
+        "show": false,
+        "level": 3
       },
       "image": {},
       "text": {
         "format": 1,
-        "content": "<table class=\"archetypes-classes\"><thead><tr><th scope=\"col\">Archetype</th><th scope=\"col\">Class and Description</th><th scope=\"col\">Key Ability Scores</th><th scope=\"col\">Secondary Scores</th><th scope=\"col\">Simplicity</th></tr></thead><tbody><tr class=\"strong\"><td>Strong</td><td>The @UUID[Compendium.everyday-heroes.archetypes-classes.3OoSrJuURRzG5rEB]{brawler} is an in-your-face warrior who can fight with anything.</td><td>Strength, Constitution</td><td>Dexterity</td><td><strong>Medium</strong></td></tr><tr class=\"agile\"><td>Agile</td><td>The @UUID[Compendium.everyday-heroes.archetypes-classes.c1jDkSBxMvBzsy32]{scoundrel} has a variety of useful skills and is a quick, dangerous fighter.</td><td>Dexterity</td><td>Intelligence, Wisdom, Charisma</td><td><strong>Medium</strong></td></tr><tr class=\"tough\"><td>Tough</td><td>The @UUID[Compendium.everyday-heroes.archetypes-classes.F2u3BinMJz1qGF0D]{commando} is a well-rounded warrior with military training.</td><td>Constitution</td><td>Strength, Dexterity</td><td><strong>Simple</strong></td></tr><tr class=\"smart\"><td>Smart</td><td>The @UUID[Compendium.everyday-heroes.archetypes-classes.I6Mj7UBrNCnN3L9q]{mastermind} concocts intricate plans to outwit everyone.</td><td>Intelligence</td><td>Wisdom, Charisma</td><td><strong>Complex</strong></td></tr><tr class=\"wise\"><td>Wise</td><td>The @UUID[Compendium.everyday-heroes.archetypes-classes.Ba2Tzh4RGQMVzuTr]{sleuth} uses intuition and experience to uncover the truth.</td><td>Intelligence, Wisdom</td><td>Constitution, Charisma</td><td><strong>Medium</strong></td></tr><tr class=\"charming\"><td>Charming</td><td>The @UUID[Compendium.everyday-heroes.archetypes-classes.e0Ktsf1DtLfb6BGm]{icon} conquers challenges by virtue of fame and personality.</td><td>Dexterity, Charisma</td><td>Constitution</td><td><strong>Medium</strong></td></tr></tbody></table>",
+        "content": "<table class=\"archetypes-classes\"><caption>Archetypes and Classes Table</caption><thead><tr><th scope=\"col\">Archetype</th><th scope=\"col\">Class and Description</th><th scope=\"col\">Key Ability Scores</th><th scope=\"col\">Secondary Scores</th><th scope=\"col\">Simplicity</th></tr></thead><tbody><tr class=\"strong\"><td>Strong</td><td>The @UUID[Compendium.everyday-heroes.archetypes-classes.3OoSrJuURRzG5rEB]{brawler} is an in-your-face warrior who can fight with anything.</td><td>Strength, Constitution</td><td>Dexterity</td><td><strong>Medium</strong></td></tr><tr class=\"agile\"><td>Agile</td><td>The @UUID[Compendium.everyday-heroes.archetypes-classes.c1jDkSBxMvBzsy32]{scoundrel} has a variety of useful skills and is a quick, dangerous fighter.</td><td>Dexterity</td><td>Intelligence, Wisdom, Charisma</td><td><strong>Medium</strong></td></tr><tr class=\"tough\"><td>Tough</td><td>The @UUID[Compendium.everyday-heroes.archetypes-classes.F2u3BinMJz1qGF0D]{commando} is a well-rounded warrior with military training.</td><td>Constitution</td><td>Strength, Dexterity</td><td><strong>Simple</strong></td></tr><tr class=\"smart\"><td>Smart</td><td>The @UUID[Compendium.everyday-heroes.archetypes-classes.I6Mj7UBrNCnN3L9q]{mastermind} concocts intricate plans to outwit everyone.</td><td>Intelligence</td><td>Wisdom, Charisma</td><td><strong>Complex</strong></td></tr><tr class=\"wise\"><td>Wise</td><td>The @UUID[Compendium.everyday-heroes.archetypes-classes.Ba2Tzh4RGQMVzuTr]{sleuth} uses intuition and experience to uncover the truth.</td><td>Intelligence, Wisdom</td><td>Constitution, Charisma</td><td><strong>Medium</strong></td></tr><tr class=\"charming\"><td>Charming</td><td>The @UUID[Compendium.everyday-heroes.archetypes-classes.e0Ktsf1DtLfb6BGm]{icon} conquers challenges by virtue of fame and personality.</td><td>Dexterity, Charisma</td><td>Constitution</td><td><strong>Medium</strong></td></tr></tbody></table>",
         "markdown": ""
       },
       "video": {
@@ -233,7 +253,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 1000000,
@@ -259,7 +283,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 1100000,
@@ -285,7 +313,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 1200000,
@@ -311,7 +343,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 1300000,
@@ -337,7 +373,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 1400000,
@@ -363,7 +403,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 1500000,
@@ -545,7 +589,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 2200000,
@@ -575,7 +623,7 @@
     },
     {
       "sort": 2300000,
-      "name": "Critical Calculation",
+      "name": "Critical Calculations",
       "type": "text",
       "_id": "3EnIRLUA0srSxXGv",
       "title": {
@@ -649,7 +697,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 2600000,
@@ -675,7 +727,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 2700000,
@@ -701,7 +757,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 2800000,
@@ -727,7 +787,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 2900000,
@@ -753,7 +817,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 3000000,
@@ -779,7 +847,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 3100000,
@@ -805,7 +877,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 3200000,
@@ -831,7 +907,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 3300000,
@@ -857,7 +937,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 3400000,
@@ -935,7 +1019,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 3700000,
@@ -961,7 +1049,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 3800000,
@@ -1013,7 +1105,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 4000000,
@@ -1039,7 +1135,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 4100000,
@@ -1065,7 +1165,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 4200000,
@@ -1117,7 +1221,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 4400000,
@@ -1351,7 +1459,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": 1
+        }
+      }
     },
     {
       "sort": 5300000,
@@ -1403,7 +1515,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 5500000,
@@ -1688,7 +1804,11 @@
       "ownership": {
         "default": -1
       },
-      "flags": {}
+      "flags": {
+        "everyday-heroes": {
+          "toc": false
+        }
+      }
     },
     {
       "sort": 2150000,
@@ -1715,8 +1835,8 @@
         "default": -1
       },
       "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.rules.c99xr13P6d0yMJet.JournalEntryPage.4imuTRvXJpJAyr29"
+        "everyday-heroes": {
+          "toc-style": "alt"
         }
       }
     },
@@ -1745,8 +1865,8 @@
         "default": -1
       },
       "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.rules.c99xr13P6d0yMJet.JournalEntryPage.YtbSYf3UYqEiHSl5"
+        "everyday-heroes": {
+          "toc": false
         }
       }
     },
@@ -1774,8 +1894,8 @@
         "default": -1
       },
       "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.rules.c99xr13P6d0yMJet.JournalEntryPage.4imuTRvXJpJAyr29"
+        "everyday-heroes": {
+          "toc-style": "alt"
         }
       },
       "_id": "BsvqSFpsJgnigAVB"
@@ -1804,8 +1924,8 @@
         "default": -1
       },
       "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.rules.c99xr13P6d0yMJet.JournalEntryPage.YtbSYf3UYqEiHSl5"
+        "everyday-heroes": {
+          "toc": false
         }
       },
       "_id": "jYJ9zySyQ116Q9Mt"
@@ -1834,8 +1954,8 @@
         "default": -1
       },
       "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.rules.c99xr13P6d0yMJet.JournalEntryPage.4imuTRvXJpJAyr29"
+        "everyday-heroes": {
+          "toc-style": "alt"
         }
       },
       "_id": "89lzrF2xeCHHKO5n"
@@ -1864,8 +1984,8 @@
         "default": -1
       },
       "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.rules.c99xr13P6d0yMJet.JournalEntryPage.YtbSYf3UYqEiHSl5"
+        "everyday-heroes": {
+          "toc": false
         }
       },
       "_id": "iVkPD22nukkUy7Hf"
@@ -1894,8 +2014,8 @@
         "default": -1
       },
       "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.rules.c99xr13P6d0yMJet.JournalEntryPage.4imuTRvXJpJAyr29"
+        "everyday-heroes": {
+          "toc-style": "alt"
         }
       },
       "_id": "AakHmzvzvRSyfjls"
@@ -1924,8 +2044,8 @@
         "default": -1
       },
       "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.rules.c99xr13P6d0yMJet.JournalEntryPage.YtbSYf3UYqEiHSl5"
+        "everyday-heroes": {
+          "toc": false
         }
       },
       "_id": "s8rHkJSYANVEhrjB"
@@ -1954,8 +2074,8 @@
         "default": -1
       },
       "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.rules.c99xr13P6d0yMJet.JournalEntryPage.4imuTRvXJpJAyr29"
+        "everyday-heroes": {
+          "toc-style": "alt"
         }
       },
       "_id": "MtjuIETMPrMWp92T"
@@ -1984,8 +2104,8 @@
         "default": -1
       },
       "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.rules.c99xr13P6d0yMJet.JournalEntryPage.YtbSYf3UYqEiHSl5"
+        "everyday-heroes": {
+          "toc": false
         }
       },
       "_id": "WOjtszrhL1LXLPW7"
@@ -2014,8 +2134,8 @@
         "default": -1
       },
       "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.rules.c99xr13P6d0yMJet.JournalEntryPage.4imuTRvXJpJAyr29"
+        "everyday-heroes": {
+          "toc-style": "alt"
         }
       },
       "_id": "nZXKSOaKCxjWu3NW"
@@ -2044,8 +2164,8 @@
         "default": -1
       },
       "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.rules.c99xr13P6d0yMJet.JournalEntryPage.YtbSYf3UYqEiHSl5"
+        "everyday-heroes": {
+          "toc": false
         }
       },
       "_id": "u4W8dxsAOCgXreYk"
@@ -2057,6 +2177,10 @@
   "flags": {
     "core": {
       "viewMode": 2
+    },
+    "everyday-heroes": {
+      "type": "part",
+      "order": 1
     }
   },
   "_stats": {
