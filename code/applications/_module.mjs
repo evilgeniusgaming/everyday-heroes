@@ -33,11 +33,6 @@ export function registerSheets() {
 		makeDefault: true,
 		label: "EH.Sheet.Physical"
 	});
-	DocumentSheetConfig.unregisterSheet(JournalEntry, "core", JournalSheet);
-	DocumentSheetConfig.registerSheet(JournalEntry, "core", journal.JournalSheetEH, {
-		makeDefault: true,
-		label: "EH.Sheet.JournalEntry"
-	});
 }
 
 export {actor, item, journal};
