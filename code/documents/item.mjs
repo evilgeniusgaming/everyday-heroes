@@ -846,7 +846,7 @@ export default class ItemEH extends Item {
 			data: {
 				title: `${flavor}: ${this.name}`,
 				flavor,
-				speaker: ChatMessage.getSpeaker({actor: this}),
+				speaker: ChatMessage.getSpeaker({actor: this.actor}),
 				"flags.everyday-heroes.roll": {
 					type: "attack",
 					mode: this.system.mode,
@@ -856,6 +856,7 @@ export default class ItemEH extends Item {
 				}
 			}
 		}, message);
+		console.log(messageConfig.data.speaker);
 
 		const dialogConfig = foundry.utils.mergeObject({
 			options: {
@@ -1045,7 +1046,7 @@ export default class ItemEH extends Item {
 			data: {
 				title: `${flavor}: ${this.name}`,
 				flavor,
-				speaker: ChatMessage.getSpeaker({actor: this}),
+				speaker: ChatMessage.getSpeaker({actor: this.actor}),
 				"flags.everyday-heroes.roll": {
 					type: "recharge"
 				}
