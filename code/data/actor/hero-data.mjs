@@ -223,9 +223,8 @@ export default class HeroData extends SystemDataModel.mixin(
 			?? CONFIG.EverydayHeroes.defaultAbilities.defense;
 		const ability = this.abilities[defense.ability];
 
-		defense._sourceBonus ??= defense.bonus;
 		if ( Number.isNumeric(defense.override) ) defense.bonus = Number(defense.override);
-		else defense.bonus = simplifyBonus(defense._sourceBonus, rollData) + (archetype?.bonus ?? 0);
+		else defense.bonus = simplifyBonus(defense.bonus, rollData) + (archetype?.bonus ?? 0);
 		defense.value = 10 + (ability?.mod ?? 0) + defense.bonus;
 	}
 

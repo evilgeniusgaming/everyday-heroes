@@ -20,7 +20,7 @@ export default class ActorEH extends Actor {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareBaseData() {
-		this.system.prepareBaseData?.();
+		if ( game.release.generation < 11 ) this.system.prepareBaseData?.();
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -33,7 +33,7 @@ export default class ActorEH extends Actor {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedData() {
-		this.system.prepareDerivedData?.();
+		if ( game.release.generation < 11 ) this.system.prepareDerivedData?.();
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
