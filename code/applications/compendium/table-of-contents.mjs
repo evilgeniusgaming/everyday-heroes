@@ -16,7 +16,9 @@ export default class TableOfContentsCompendium extends Compendium {
 			template: "systems/everyday-heroes/templates/compendium/table-of-contents.hbs",
 			width: 800,
 			height: 950,
-			resizable: true
+			resizable: true,
+			contextMenuSelector: "[data-document-id]",
+			dragDrop: [{dragSelector: "[data-document-id]", dropSelector: "article"}]
 		});
 	}
 
@@ -58,7 +60,7 @@ export default class TableOfContentsCompendium extends Compendium {
 		const chapters = [];
 		for ( const page of entry.pages.contents.sort((lhs, rhs) => lhs.sort - rhs.sort) ) {
 			const toc = page.getFlag("everyday-heroes", "toc");
-			if ( toc === false || page.type !== "text" ) continue;
+			if ( toc === false || (page.type !== "text" && toc === undefined) ) continue;
 			chapters.push({
 				entryId: entry.id,
 				pageId: page.id,
@@ -85,6 +87,13 @@ export default class TableOfContentsCompendium extends Compendium {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	_contextMenu(html) {
+		if ( game.release.generation > 10 ) return super._contextMenu(html);
+		ContextMenu.create(this, html, "[data-document-id]", this._getEntryContextOptions());
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	async _onClickLink(event) {
 		const entryId = event.currentTarget.closest("[data-entry-id]")?.dataset.entryId;
 		if ( !entryId ) return;
@@ -92,5 +101,22 @@ export default class TableOfContentsCompendium extends Compendium {
 		entry?.sheet.render(true, {
 			pageId: event.currentTarget.closest("[data-page-id]")?.dataset.pageId
 		});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_onDragStart(event) {
+		let dragData;
+		if ( game.release.generation > 10 ) {
+			if ( ui.context ) ui.context.close({animate: false});
+			dragData = this._getEntryDragData(event.target.dataset.documentId);
+		} else {
+			dragData = {
+				type: this.collection.documentName,
+				uuid: `Compendium.${this.collection.collection}.${event.target.dataset.documentId}`
+			};
+		}
+		if ( !dragData ) return;
+		event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
 	}
 }

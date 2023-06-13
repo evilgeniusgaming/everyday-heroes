@@ -856,7 +856,6 @@ export default class ItemEH extends Item {
 				}
 			}
 		}, message);
-		console.log(messageConfig.data.speaker);
 
 		const dialogConfig = foundry.utils.mergeObject({
 			options: {

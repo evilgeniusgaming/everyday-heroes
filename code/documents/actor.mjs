@@ -1137,7 +1137,6 @@ export default class ActorEH extends Actor {
 		const prepareSkillConfig = (baseConfig={}, formData={}) => {
 			const abilityId = formData.ability ?? baseConfig.ability ?? skill.ability;
 			const ability = this.system.abilities[abilityId];
-			console.log("prepareSkillConfig", abilityId);
 
 			const { parts, data } = buildRoll({
 				mod: ability?.mod,

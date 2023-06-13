@@ -13,6 +13,5 @@ export function renderItemSheet(app, jQuery, options) {
 	const newClass = app.document.getFlag("everyday-heroes", "source");
 	if ( !newClass ) return;
 	const container = jQuery[0];
-	console.log(newClass, container);
 	container.classList.add(newClass);
 }
