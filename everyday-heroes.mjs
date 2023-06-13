@@ -36,6 +36,7 @@ Hooks.once("init", function() {
 	game.everydayHeroes = globalThis.EverydayHeroes;
 	CONFIG.EverydayHeroes = config;
 	applications.registerSheets();
+	CONFIG.ui.combat = applications.CombatTrackerEH;
 	canvas.registerCanvas();
 	data.registerDataModels("Actor", data.actor.config);
 	data.registerDataModels("Item", data.item.config);

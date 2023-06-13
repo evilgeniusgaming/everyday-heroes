@@ -340,7 +340,7 @@ export default class ActorEH extends Actor {
 			case "hit-die":
 				return this.rollHitDie(config, message, dialog);
 			case "initiative":
-				return this.rollInitiative(config, message, dialog);
+				return this.configureInitiativeRoll(config, message, dialog);
 			case "luck":
 				return this.rollLuckSave(config, message, dialog);
 			case "resource":
@@ -845,17 +845,111 @@ export default class ActorEH extends Actor {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
-	 * Roll initiative.
-	 * @param {object} [options] - Options for the initiative process (see Actor#rollInitiative).
-	 * @param {boolean} [options.dialog=false] - Should the configuration dialog be shown?
-	 * @param {ChallengeRollOptions} [rollOptions] - Additional options passed to the roll.
-	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * Construct an initiative roll.
+	 * @param {ChallengeRollOptions} [options] - Options for the roll.
+	 * @returns {ChallengeRollConfiguration}
+	 */
+	getInitiativeRollConfig(options={}) {
+		const init = this.system.attributes?.initiative ?? {};
+		const abilityKey = init.ability ?? CONFIG.EverydayHeroes.defaultAbilities.initiative;
+		const ability = this.system.abilities?.[abilityKey] ?? {};
+
+		const { parts, data } = buildRoll({
+			mod: ability.mod,
+			prof: init.prof?.hasProficiency ? init.prof.term : null,
+			bonus: init.bonus,
+			[`${abilityKey}Bonus`]: ability.bonuses?.check,
+			globalBonus: this.system.bonuses?.ability?.check,
+			tiebreaker: (game.settings.get("everyday-heroes", "initiativeTiebreaker") && ability) ? ability.value / 100 : null
+		}, this.getRollData());
+
+		const rollOptions = foundry.utils.mergeObject({
+			minimum: buildMinimum([
+				ability?.minimums.check, this.system.overrides?.ability?.minimums.check
+			], data)
+		}, options);
+
+		const rollConfig = { data, parts, options: rollOptions };
+
+		/**
+		 * A hook event that fires when initiative roll configuration is being prepared.
+		 * @function everydayHeroes.initiativeConfig
+		 * @memberof hookEvents
+		 * @param {ActorEH} actor - Actor for which the initiative is being configured.
+		 * @param {ChallengeRollConfiguration} config - Configuration data for the pending roll.
+		 */
+		Hooks.callAll("everydayHeroes.initiativeConfig", this, rollConfig);
+
+		return rollConfig;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Present the initiative roll configuration dialog and then roll initiative.
+	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
+	 * @param {BaseMessageConfiguration} message - Configuration data that guides roll message creation (ignored).
+	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
 	 * @returns {Promise<Combat|void>}
 	 */
-	async rollInitiative(options={}, rollOptions={}, message={}) {
-		if ( options.dialog ) console.log("Configure initiative dialog");
-		// TODO: Add hooks
-		return super.rollInitiative(options);
+	async configureInitiativeRoll(config={}, message={}, dialog={}) {
+		const rollConfig = foundry.utils.mergeObject(this.getInitiativeRollConfig(config.options), config);
+
+		const dialogConfig = foundry.utils.mergeObject({
+			options: {
+				title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", {
+					type: game.i18n.localize("EH.Initiative.Label")
+				})
+			}
+		}, dialog);
+
+		const Roll = CONFIG.Dice.ChallengeRoll;
+		Roll.applyKeybindings(rollConfig, dialogConfig);
+
+		let roll;
+		if ( dialogConfig.configure ) {
+			try {
+				roll = (await Roll.ConfigurationDialog.configure(rollConfig, dialogConfig))?.[0];
+			} catch(err) {
+				if ( !err ) return;
+				throw err;
+			}
+		} else {
+			roll = Roll.create(rollConfig)[0];
+		}
+
+		this._cachedInitiativeRoll = roll;
+		await this.rollInitiative({createCombatants: true});
+		delete this._cachedInitiativeRoll;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async rollInitiative(options={}) {
+		/**
+		 * A hook event that fires before initiative is rolled for an Actor.
+		 * @function everydayHeroes.preRollInitiative
+		 * @memberof hookEvents
+		 * @param {ActorEH} actor - Actor for which the initiative is being rolled.
+		 * @param {ChallengeRoll} roll - The initiative roll.
+		 * @returns {boolean} - Explicitly return `false` to prevent initiative from being rolled.
+		 */
+		if ( Hooks.call("everydayHeroes.preRollInitiative", this, this._cachedInitiativeRoll) === false ) return;
+
+		const combat = await super.rollInitiative(options);
+		const combatants = this.isToken ? this.getActiveTokens(false, true)
+			.filter(t => game.combat.getCombatantByToken(t.id)) : [game.combat.getCombatantByActor(this.id)];
+
+		/**
+		 * A hook event that fires after an Actor has rolled for initiative.
+		 * @function everydayHeroes.rollInitiative
+		 * @memberof hookEvents
+		 * @param {ActorEH} actor - The Actor that has rolled initiative.
+		 * @param {CombatantEH[]} combatants - The associated Combatants in the Combat.
+		 */
+		Hooks.callAll("everydayHeroes.rollInitiative", this, combatants);
+
+		return combat;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -37,4 +37,5 @@ export function registerSheets() {
 
 export {actor, item, journal};
 export * as advancement from "./advancement/_module.mjs";
+export {default as CombatTrackerEH} from "./combat-tracker.mjs";
 export * as compendium from "./compendium/_module.mjs";
