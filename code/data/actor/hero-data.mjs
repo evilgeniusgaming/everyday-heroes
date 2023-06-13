@@ -299,7 +299,7 @@ export default class HeroData extends SystemDataModel.mixin(
 			}
 		}
 
-		if ( options.isAdvancement ) return;
+		if ( options.isAdvancement || options.noHook ) return;
 		const changedLevel = foundry.utils.getProperty(changed, "system.details.level");
 		const delta = changedLevel - this.details.level;
 		if ( changedLevel && delta ) {
