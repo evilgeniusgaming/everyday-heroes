@@ -120,6 +120,13 @@ q.character {
 	font-style: italic;
 }
 
+q.header {
+	font-family: serif;
+	font-size: var(--font-size-16);
+	font-style: italic;
+	font-weight: 400;
+}
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Special Headers                          */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

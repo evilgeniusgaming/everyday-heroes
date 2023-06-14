@@ -596,7 +596,7 @@
       }
     },
     {
-      "sort": 2200000,
+      "sort": 3500000,
       "name": "Chapter 5: Finishing Touches",
       "type": "text",
       "_id": "7YvgCoyj9Xkdnw89",
@@ -622,7 +622,7 @@
       "flags": {}
     },
     {
-      "sort": 2300000,
+      "sort": 3600000,
       "name": "Critical Calculations",
       "type": "text",
       "_id": "3EnIRLUA0srSxXGv",
@@ -648,7 +648,7 @@
       "flags": {}
     },
     {
-      "sort": 2400000,
+      "sort": 3700000,
       "name": "Persona",
       "type": "text",
       "_id": "RFCveOtsOmHUBGmN",
@@ -674,7 +674,7 @@
       "flags": {}
     },
     {
-      "sort": 2500000,
+      "sort": 3800000,
       "name": "Motivations",
       "type": "text",
       "_id": "5yBD9WlutYQqFo0d",
@@ -704,7 +704,7 @@
       }
     },
     {
-      "sort": 2600000,
+      "sort": 3900000,
       "name": "Attachments",
       "type": "text",
       "_id": "4faUJRjBTRxxtgga",
@@ -734,7 +734,7 @@
       }
     },
     {
-      "sort": 2700000,
+      "sort": 4000000,
       "name": "Biography",
       "type": "text",
       "_id": "HuSxABBEhbLq3ciJ",
@@ -764,7 +764,7 @@
       }
     },
     {
-      "sort": 2800000,
+      "sort": 4100000,
       "name": "Beliefs",
       "type": "text",
       "_id": "nUzgGOfhcbpJmZ9O",
@@ -794,7 +794,7 @@
       }
     },
     {
-      "sort": 2900000,
+      "sort": 4200000,
       "name": "Role",
       "type": "text",
       "_id": "NNpl8qxqgavbUG8i",
@@ -824,7 +824,7 @@
       }
     },
     {
-      "sort": 3000000,
+      "sort": 4300000,
       "name": "Appearance",
       "type": "text",
       "_id": "cFDvbwaosrtcQPuZ",
@@ -854,7 +854,7 @@
       }
     },
     {
-      "sort": 3100000,
+      "sort": 4400000,
       "name": "Virtues",
       "type": "text",
       "_id": "ox2NJSdjPnsuu3p3",
@@ -884,7 +884,7 @@
       }
     },
     {
-      "sort": 3200000,
+      "sort": 4500000,
       "name": "Flaws",
       "type": "text",
       "_id": "emDdfIsqL0XcvNlG",
@@ -914,7 +914,7 @@
       }
     },
     {
-      "sort": 3300000,
+      "sort": 4600000,
       "name": "Quirks",
       "type": "text",
       "_id": "V6RDfS9K8Y5EMRR6",
@@ -944,7 +944,7 @@
       }
     },
     {
-      "sort": 3400000,
+      "sort": 4700000,
       "name": "Chapter 6: Equipment",
       "type": "text",
       "_id": "eP4ub3J4jA1AlOcr",
@@ -970,7 +970,7 @@
       "flags": {}
     },
     {
-      "sort": 3500000,
+      "sort": 4800000,
       "name": "Wealth",
       "type": "text",
       "_id": "srd9m2ZIq8WXkvys",
@@ -996,7 +996,7 @@
       "flags": {}
     },
     {
-      "sort": 3600000,
+      "sort": 4900000,
       "name": "Making Purchases",
       "type": "text",
       "_id": "sH2wos0PAEdID77t",
@@ -1026,7 +1026,7 @@
       }
     },
     {
-      "sort": 3700000,
+      "sort": 5000000,
       "name": "Gaining and Losing Wealth",
       "type": "text",
       "_id": "pavqh8x8Bv5BPCav",
@@ -1056,7 +1056,7 @@
       }
     },
     {
-      "sort": 3800000,
+      "sort": 5100000,
       "name": "Starting Equipment",
       "type": "text",
       "_id": "2E2xYGq1fvmpJlrR",
@@ -1082,7 +1082,7 @@
       "flags": {}
     },
     {
-      "sort": 3900000,
+      "sort": 5200000,
       "name": "Everyday Stuff",
       "type": "text",
       "_id": "OfWX9DgqgnxHLLy0",
@@ -1112,7 +1112,7 @@
       }
     },
     {
-      "sort": 4000000,
+      "sort": 5300000,
       "name": "Equipment Packs",
       "type": "text",
       "_id": "xQ6EVK4gc070fjlu",
@@ -1142,7 +1142,7 @@
       }
     },
     {
-      "sort": 4100000,
+      "sort": 5400000,
       "name": "Specialized Kits",
       "type": "text",
       "_id": "RlZIqvVbLIuUtSOf",
@@ -1172,7 +1172,7 @@
       }
     },
     {
-      "sort": 4200000,
+      "sort": 5500000,
       "name": "Equipment Rules",
       "type": "text",
       "_id": "pkz9j70d0uaHu4xp",
@@ -1198,7 +1198,7 @@
       "flags": {}
     },
     {
-      "sort": 4300000,
+      "sort": 5600000,
       "name": "Reading the Tables",
       "type": "text",
       "_id": "SukidgfxXY9tTXoy",
@@ -1228,7 +1228,7 @@
       }
     },
     {
-      "sort": 4400000,
+      "sort": 5700000,
       "name": "Bulk and Encumbrance",
       "type": "text",
       "_id": "mNHr29tv1638MJkA",
@@ -1254,7 +1254,7 @@
       "flags": {}
     },
     {
-      "sort": 4500000,
+      "sort": 5800000,
       "name": "Armor and Shields",
       "type": "text",
       "_id": "c6z09NuR6UzXL9sP",
@@ -1280,7 +1280,7 @@
       "flags": {}
     },
     {
-      "sort": 4600000,
+      "sort": 5900000,
       "name": "Explosives",
       "type": "text",
       "_id": "Olr6E7LpNrOM0T2h",
@@ -1306,7 +1306,7 @@
       "flags": {}
     },
     {
-      "sort": 4700000,
+      "sort": 6000000,
       "name": "Basic Equipment",
       "type": "text",
       "_id": "xBQmbBuvGcvLMmER",
@@ -1332,7 +1332,7 @@
       "flags": {}
     },
     {
-      "sort": 4800000,
+      "sort": 6100000,
       "name": "Advanced Equipment",
       "type": "text",
       "_id": "YshP7aDN05XBosPm",
@@ -1358,7 +1358,7 @@
       "flags": {}
     },
     {
-      "sort": 4900000,
+      "sort": 6200000,
       "name": "Historical Equipment",
       "type": "text",
       "_id": "riRZr6nkDefFqWku",
@@ -1384,7 +1384,7 @@
       "flags": {}
     },
     {
-      "sort": 5000000,
+      "sort": 6300000,
       "name": "Improvised Equipment",
       "type": "text",
       "_id": "XCN2mqzFxFeTTusB",
@@ -1410,7 +1410,7 @@
       "flags": {}
     },
     {
-      "sort": 5100000,
+      "sort": 6400000,
       "name": "Military Equipment",
       "type": "text",
       "_id": "zINdPdBqhCWifKt2",
@@ -1436,7 +1436,7 @@
       "flags": {}
     },
     {
-      "sort": 5200000,
+      "sort": 6500000,
       "name": "Everything Else",
       "type": "text",
       "_id": "bGQc291m4uY4IHTt",
@@ -1466,7 +1466,7 @@
       }
     },
     {
-      "sort": 5300000,
+      "sort": 6600000,
       "name": "Ammunition",
       "type": "text",
       "_id": "X8Ojb4abWJgCqjEC",
@@ -1492,7 +1492,7 @@
       "flags": {}
     },
     {
-      "sort": 5400000,
+      "sort": 6700000,
       "name": "Ammunition Types",
       "type": "text",
       "_id": "aYpVKUAu2lZUB5TL",
@@ -1522,7 +1522,7 @@
       }
     },
     {
-      "sort": 5500000,
+      "sort": 6800000,
       "name": "Firearm Accessories",
       "type": "text",
       "_id": "1pPavCYFwYa894cl",
@@ -1547,7 +1547,7 @@
       "flags": {}
     },
     {
-      "sort": 5600000,
+      "sort": 6900000,
       "name": "Carrying Cases",
       "type": "text",
       "_id": "oPz9oAw5XoTCXMbP",
@@ -1573,7 +1573,7 @@
       "flags": {}
     },
     {
-      "sort": 5700000,
+      "sort": 7000000,
       "name": "Electronics",
       "type": "text",
       "_id": "2lql5nJlQV2iKrxs",
@@ -1599,7 +1599,7 @@
       "flags": {}
     },
     {
-      "sort": 5800000,
+      "sort": 7100000,
       "name": "Hardware",
       "type": "text",
       "_id": "2rd0QtRELPD7Z5Vo",
@@ -1625,7 +1625,7 @@
       "flags": {}
     },
     {
-      "sort": 5900000,
+      "sort": 7200000,
       "name": "Specialty Goods",
       "type": "text",
       "_id": "BHCbzrISgMMzMCmr",
@@ -1651,7 +1651,7 @@
       "flags": {}
     },
     {
-      "sort": 6000000,
+      "sort": 7300000,
       "name": "Sporting Goods",
       "type": "text",
       "_id": "FUhrdJGQk4POtoMN",
@@ -1677,7 +1677,7 @@
       "flags": {}
     },
     {
-      "sort": 6100000,
+      "sort": 7400000,
       "name": "Vehicles",
       "type": "text",
       "_id": "4WFU1eMEHnnVzGhz",
@@ -1703,7 +1703,7 @@
       "flags": {}
     },
     {
-      "sort": 6200000,
+      "sort": 7500000,
       "name": "Useful Places",
       "type": "text",
       "_id": "AIUM1jsL7RrhVPRy",
@@ -1729,7 +1729,7 @@
       "flags": {}
     },
     {
-      "sort": 6300000,
+      "sort": 7600000,
       "name": "Chapter 7: Feats",
       "type": "text",
       "_id": "8L7HHAmAr0K7vzQ8",
@@ -1755,7 +1755,7 @@
       "flags": {}
     },
     {
-      "sort": 6400000,
+      "sort": 7700000,
       "name": "Acquiring Feats",
       "type": "text",
       "_id": "oAgAvg1uJ31levqn",
@@ -1781,7 +1781,7 @@
       "flags": {}
     },
     {
-      "sort": 6500000,
+      "sort": 7800000,
       "name": "Multiclass Feats",
       "type": "text",
       "_id": "DLdYsnDIAOSFZLGR",
@@ -1811,7 +1811,7 @@
       }
     },
     {
-      "sort": 2150000,
+      "sort": 2200000,
       "name": "Strong Heroes",
       "type": "image",
       "_id": "4imuTRvXJpJAyr29",
@@ -1836,12 +1836,13 @@
       },
       "flags": {
         "everyday-heroes": {
+          "toc": true,
           "toc-style": "alt"
         }
       }
     },
     {
-      "sort": 2150000,
+      "sort": 2300000,
       "name": "Leveling Up",
       "type": "text",
       "_id": "YtbSYf3UYqEiHSl5",
@@ -1852,7 +1853,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p>You have trained your body for strength and explosive power. You hit hard, excelling in close combat. As a hero, you fight because others can't.</p><p>@UUID[Compendium.everyday-heroes.archetypes-classes.JDzQkR2Zpr6TOQCj]{Strong heroes} are durable fighters who make high damage attacks. They specialize in melee attacks, whether they favor unarmed strikes or close combat weapons.</p><p><strong>Hit Dice:</strong> 1d10 per hero level</p><p><strong>Starting Hit Points:</strong> 10 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d10 (or 6) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Meat Shield):</strong> 10 + Strength modifier + Strong Hero Defense bonus</p><table class=\"yellow wide\"><caption>Leveling Up</caption><thead><tr><th scope=\"col\">Level</th><th scope=\"col\">Talents</th><th scope=\"col\">Proficiency Bonus</th><th scope=\"col\">Defense Bonus</th></tr></thead><tbody><tr><th scope=\"row\">1</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.4fVReFtHq0TWxtGg]{Reckless Attack}, Class Talent(s)</td><td>+2</td><td>+1</td></tr><tr><th scope=\"row\">2</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.uBIk7ZjekA3T4xbK]{Power Attack}, Two Minor Feats or One Major Feat</td><td>+2</td><td>+1</td></tr><tr><th scope=\"row\">3</th><td>Class Talent(s)</td><td>+2</td><td>+2</td></tr><tr><th scope=\"row\">4</th><td>Two Minor Feats or One Major Feat</td><td>+2</td><td>+2</td></tr><tr><th scope=\"row\">5</th><td>Class Talent(s)</td><td>+3</td><td>+2</td></tr><tr><th scope=\"row\">6</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+2</td></tr><tr><th scope=\"row\">7</th><td>Class Talent(s)</td><td>+3</td><td>+3</td></tr><tr><th scope=\"row\">8</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+3</td></tr><tr><th scope=\"row\">9</th><td>Class Talent(s)</td><td>+4</td><td>+3</td></tr><tr><th scope=\"row\">10</th><td>Two Minor Feats or One Major Feat</td><td>+4</td><td>+3</td></tr></tbody></table><h4>Classes</h4><ul class=\"multi-column-list\"><li><p>@UUID[Compendium.everyday-heroes.archetypes-classes.3OoSrJuURRzG5rEB]{Brawler}</p></li></ul>",
+        "content": "<p>You have trained your body for strength and explosive power. You hit hard, excelling in close combat. As a hero, you fight because others can't.</p><p>@UUID[Compendium.everyday-heroes.archetypes-classes.JDzQkR2Zpr6TOQCj]{Strong heroes} are durable fighters who make high damage attacks. They specialize in melee attacks, whether they favor unarmed strikes or close combat weapons.</p><p><strong>Hit Dice:</strong> 1d10 per hero level</p><p><strong>Starting Hit Points:</strong> 10 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d10 (or 6) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Meat Shield):</strong> 10 + Strength modifier + Strong Hero Defense bonus</p><table class=\"yellow wide\"><caption>Leveling Up</caption><thead><tr><th scope=\"col\">Level</th><th scope=\"col\">Talents</th><th scope=\"col\">Proficiency Bonus</th><th scope=\"col\">Defense Bonus</th></tr></thead><tbody><tr><th scope=\"row\">1</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.4fVReFtHq0TWxtGg]{Reckless Attack}, Class Talent(s)</td><td>+2</td><td>+1</td></tr><tr><th scope=\"row\">2</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.uBIk7ZjekA3T4xbK]{Power Attack}, Two Minor Feats or One Major Feat</td><td>+2</td><td>+1</td></tr><tr><th scope=\"row\">3</th><td>Class Talent(s)</td><td>+2</td><td>+2</td></tr><tr><th scope=\"row\">4</th><td>Two Minor Feats or One Major Feat</td><td>+2</td><td>+2</td></tr><tr><th scope=\"row\">5</th><td>Class Talent(s)</td><td>+3</td><td>+2</td></tr><tr><th scope=\"row\">6</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+2</td></tr><tr><th scope=\"row\">7</th><td>Class Talent(s)</td><td>+3</td><td>+3</td></tr><tr><th scope=\"row\">8</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+3</td></tr><tr><th scope=\"row\">9</th><td>Class Talent(s)</td><td>+4</td><td>+3</td></tr><tr><th scope=\"row\">10</th><td>Two Minor Feats or One Major Feat</td><td>+4</td><td>+3</td></tr></tbody></table>",
         "markdown": ""
       },
       "video": {
@@ -1871,7 +1872,7 @@
       }
     },
     {
-      "sort": 2150000,
+      "sort": 2500000,
       "name": "Agile Heroes",
       "type": "image",
       "title": {
@@ -1895,13 +1896,14 @@
       },
       "flags": {
         "everyday-heroes": {
+          "toc": true,
           "toc-style": "alt"
         }
       },
       "_id": "BsvqSFpsJgnigAVB"
     },
     {
-      "sort": 2150000,
+      "sort": 2600000,
       "name": "Leveling Up",
       "type": "text",
       "title": {
@@ -1911,7 +1913,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p>You are a master of speed and precision. You have honed your reflexes to the point you can act faster than you can think. Your pinpoint accuracy makes you a deadly foe in any firefight.</p><p>@UUID[Compendium.everyday-heroes.archetypes-classes.nsBzmGJlG97raFBl]{Agile heroes} focus on ranged attacks and light weapons. Their high mobility and rapid attacks make them deadly heroes in combat.</p><p><strong>Hit Dice:</strong> 1d8 per hero level</p><p><strong>Starting Hit Points:</strong> 8 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d8 (or 5) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Agile Movement):</strong> 10 + Dexterity modifier + Agile Hero Defense Bonus</p><table class=\"yellow wide\"><caption>Leveling Up</caption><thead><tr><th scope=\"col\">Level</th><th scope=\"col\">Talents</th><th scope=\"col\">Proficiency Bonus</th><th scope=\"col\">Defense Bonus</th></tr></thead><tbody><tr><th scope=\"row\">1</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.P9UoV83h8qliyle8]{Fast Reflexes}, Class Talent(s)</td><td>+2</td><td>+1</td></tr><tr><th scope=\"row\">2</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.gPy9nyJL3wfTrWFU]{Quickness}, Two Minor Feats or One Major Feat</td><td>+2</td><td>+1</td></tr><tr><th scope=\"row\">3</th><td>Class Talent(s)</td><td>+2</td><td>+1</td></tr><tr><th scope=\"row\">4</th><td>Two Minor Feats or One Major Feat</td><td>+2</td><td>+1</td></tr><tr><th scope=\"row\">5</th><td>Class Talent(s)</td><td>+3</td><td>+2</td></tr><tr><th scope=\"row\">6</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+2</td></tr><tr><th scope=\"row\">7</th><td>Class Talent(s)</td><td>+3</td><td>+2</td></tr><tr><th scope=\"row\">8</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+2</td></tr><tr><th scope=\"row\">9</th><td>Class Talent(s)</td><td>+4</td><td>+3</td></tr><tr><th scope=\"row\">10</th><td>Two Minor Feats or One Major Feat</td><td>+4</td><td>+3</td></tr></tbody></table><h4>Classes</h4><ul class=\"multi-column-list\"><li><p>@UUID[Compendium.everyday-heroes.archetypes-classes.c1jDkSBxMvBzsy32]{Scoundrel}</p></li></ul>",
+        "content": "<p>You are a master of speed and precision. You have honed your reflexes to the point you can act faster than you can think. Your pinpoint accuracy makes you a deadly foe in any firefight.</p><p>@UUID[Compendium.everyday-heroes.archetypes-classes.nsBzmGJlG97raFBl]{Agile heroes} focus on ranged attacks and light weapons. Their high mobility and rapid attacks make them deadly heroes in combat.</p><p><strong>Hit Dice:</strong> 1d8 per hero level</p><p><strong>Starting Hit Points:</strong> 8 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d8 (or 5) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Agile Movement):</strong> 10 + Dexterity modifier + Agile Hero Defense Bonus</p><table class=\"yellow wide\"><caption>Leveling Up</caption><thead><tr><th scope=\"col\">Level</th><th scope=\"col\">Talents</th><th scope=\"col\">Proficiency Bonus</th><th scope=\"col\">Defense Bonus</th></tr></thead><tbody><tr><th scope=\"row\">1</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.P9UoV83h8qliyle8]{Fast Reflexes}, Class Talent(s)</td><td>+2</td><td>+1</td></tr><tr><th scope=\"row\">2</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.gPy9nyJL3wfTrWFU]{Quickness}, Two Minor Feats or One Major Feat</td><td>+2</td><td>+1</td></tr><tr><th scope=\"row\">3</th><td>Class Talent(s)</td><td>+2</td><td>+1</td></tr><tr><th scope=\"row\">4</th><td>Two Minor Feats or One Major Feat</td><td>+2</td><td>+1</td></tr><tr><th scope=\"row\">5</th><td>Class Talent(s)</td><td>+3</td><td>+2</td></tr><tr><th scope=\"row\">6</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+2</td></tr><tr><th scope=\"row\">7</th><td>Class Talent(s)</td><td>+3</td><td>+2</td></tr><tr><th scope=\"row\">8</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+2</td></tr><tr><th scope=\"row\">9</th><td>Class Talent(s)</td><td>+4</td><td>+3</td></tr><tr><th scope=\"row\">10</th><td>Two Minor Feats or One Major Feat</td><td>+4</td><td>+3</td></tr></tbody></table>",
         "markdown": ""
       },
       "video": {
@@ -1931,7 +1933,7 @@
       "_id": "jYJ9zySyQ116Q9Mt"
     },
     {
-      "sort": 2150000,
+      "sort": 2700000,
       "name": "Tough Heroes",
       "type": "image",
       "title": {
@@ -1955,13 +1957,14 @@
       },
       "flags": {
         "everyday-heroes": {
+          "toc": true,
           "toc-style": "alt"
         }
       },
       "_id": "89lzrF2xeCHHKO5n"
     },
     {
-      "sort": 2150000,
+      "sort": 2800000,
       "name": "Leveling Up",
       "type": "text",
       "title": {
@@ -1971,7 +1974,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p>You don't know what it means to give up. No matter what knocks you down, you get up again. Where there is a fight to be found, you'll be in the thick of it, often risking your life to protect others.</p><p>@UUID[Compendium.everyday-heroes.archetypes-classes.zoMzfdLk69CX8Bi1]{Tough heroes} are durable characters, sometimes at the expense of offensive options or out of combat abilities. Many excel at protecting their teammates.</p><p><strong>Hit Dice:</strong> 1d12 per hero level</p><p><strong>Starting Hit Points:</strong> 12 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d12 (or 7) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Thick Skinned):</strong> 10 + (Constitution or Dexterity) modifier + Tough Hero Defense bonus</p><table class=\"yellow wide\"><caption>Leveling Up</caption><thead><tr><th scope=\"col\">Level</th><th scope=\"col\">Talents</th><th scope=\"col\">Proficiency Bonus</th><th scope=\"col\">Tough as Nails</th><th scope=\"col\">Defense Bonus</th></tr></thead><tbody><tr><th scope=\"row\">1</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.0UNFAPrP0b2QETT2]{Payback}, Class Talent(s)</td><td>+2</td><td>—</td><td>+2</td></tr><tr><th scope=\"row\">2</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.T7CfOdi1lii4PRrW]{Tough as Nails}, Two Minor Feats or One Major Feat</td><td>+2</td><td>(DR 2)</td><td>+2</td></tr><tr><th scope=\"row\">3</th><td>Class Talent(s)</td><td>+2</td><td>(DR 2)</td><td>+2</td></tr><tr><th scope=\"row\">4</th><td>Two Minor Feats or One Major Feat</td><td>+2</td><td>(DR 2)</td><td>+2</td></tr><tr><th scope=\"row\">5</th><td>Class Talent(s)</td><td>+3</td><td>(DR 3)</td><td>+3</td></tr><tr><th scope=\"row\">6</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>(DR 3)</td><td>+3</td></tr><tr><th scope=\"row\">7</th><td>Class Talent(s)</td><td>+3</td><td>(DR 3)</td><td>+3</td></tr><tr><th scope=\"row\">8</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>(DR 3)</td><td>+3</td></tr><tr><th scope=\"row\">9</th><td>Class Talent(s)</td><td>+4</td><td>(DR 4)</td><td>+4</td></tr><tr><th scope=\"row\">10</th><td>Two Minor Feats or One Major Feat</td><td>+4</td><td>(DR 4)</td><td>+4</td></tr></tbody></table><h4>Classes</h4><ul class=\"multi-column-list\"><li><p>@UUID[Compendium.everyday-heroes.archetypes-classes.F2u3BinMJz1qGF0D]{Commando}</p></li></ul>",
+        "content": "<p>You don't know what it means to give up. No matter what knocks you down, you get up again. Where there is a fight to be found, you'll be in the thick of it, often risking your life to protect others.</p><p>@UUID[Compendium.everyday-heroes.archetypes-classes.zoMzfdLk69CX8Bi1]{Tough heroes} are durable characters, sometimes at the expense of offensive options or out of combat abilities. Many excel at protecting their teammates.</p><p><strong>Hit Dice:</strong> 1d12 per hero level</p><p><strong>Starting Hit Points:</strong> 12 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d12 (or 7) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Thick Skinned):</strong> 10 + (Constitution or Dexterity) modifier + Tough Hero Defense bonus</p><table class=\"yellow wide\"><caption>Leveling Up</caption><thead><tr><th scope=\"col\">Level</th><th scope=\"col\">Talents</th><th scope=\"col\">Proficiency Bonus</th><th scope=\"col\">Tough as Nails</th><th scope=\"col\">Defense Bonus</th></tr></thead><tbody><tr><th scope=\"row\">1</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.0UNFAPrP0b2QETT2]{Payback}, Class Talent(s)</td><td>+2</td><td>—</td><td>+2</td></tr><tr><th scope=\"row\">2</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.T7CfOdi1lii4PRrW]{Tough as Nails}, Two Minor Feats or One Major Feat</td><td>+2</td><td>(DR 2)</td><td>+2</td></tr><tr><th scope=\"row\">3</th><td>Class Talent(s)</td><td>+2</td><td>(DR 2)</td><td>+2</td></tr><tr><th scope=\"row\">4</th><td>Two Minor Feats or One Major Feat</td><td>+2</td><td>(DR 2)</td><td>+2</td></tr><tr><th scope=\"row\">5</th><td>Class Talent(s)</td><td>+3</td><td>(DR 3)</td><td>+3</td></tr><tr><th scope=\"row\">6</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>(DR 3)</td><td>+3</td></tr><tr><th scope=\"row\">7</th><td>Class Talent(s)</td><td>+3</td><td>(DR 3)</td><td>+3</td></tr><tr><th scope=\"row\">8</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>(DR 3)</td><td>+3</td></tr><tr><th scope=\"row\">9</th><td>Class Talent(s)</td><td>+4</td><td>(DR 4)</td><td>+4</td></tr><tr><th scope=\"row\">10</th><td>Two Minor Feats or One Major Feat</td><td>+4</td><td>(DR 4)</td><td>+4</td></tr></tbody></table>",
         "markdown": ""
       },
       "video": {
@@ -1991,7 +1994,7 @@
       "_id": "iVkPD22nukkUy7Hf"
     },
     {
-      "sort": 2150000,
+      "sort": 2900000,
       "name": "Smart Heroes",
       "type": "image",
       "title": {
@@ -2015,13 +2018,14 @@
       },
       "flags": {
         "everyday-heroes": {
+          "toc": true,
           "toc-style": "alt"
         }
       },
       "_id": "AakHmzvzvRSyfjls"
     },
     {
-      "sort": 2150000,
+      "sort": 3000000,
       "name": "Leveling Up",
       "type": "text",
       "title": {
@@ -2031,7 +2035,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p>While others are playing checkers, you're playing 4-dimensional chess. The human mind is the ultimate weapon, and yours is honed to a razor's edge.</p><p>@UUID[Compendium.everyday-heroes.archetypes-classes.FBLv7Az4ke2UqomX]{Smart heroes} use their genius to enact plans. Plans are powerful but limited effects that can break the fourth wall, effectively changing the past to affect the present.</p><p><strong>Hit Dice:</strong> 1d6</p><p><strong>Starting Hit Points:</strong> 6 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d6 (or 4) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Superior Tactics):</strong> 10 + Intelligence modifier + Smart Hero Defense bonus</p><table class=\"yellow wide\"><caption>Leveling Up</caption><thead><tr><th scope=\"col\">Level</th><th scope=\"col\">Talents</th><th scope=\"col\">Proficiency Bonus</th><th scope=\"col\">Defense Bonus</th><th scope=\"col\">Genius</th><th scope=\"col\">Plans</th></tr></thead><tbody><tr><th scope=\"row\">1</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.1u27P7JnCXi51npj]{Plans}, @UUID[Compendium.everyday-heroes.archetypes-classes.67m84PVxB0edNCog]{Genius}, Class Talent(s)</td><td>+2</td><td>+0</td><td>2</td><td>Intelligence modifier (min. 1)</td></tr><tr><th scope=\"row\">2</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.IF7wcNIdIm7FHie0]{Mental Refresh}, Two Minor Feats or One Major Feat</td><td>+2</td><td>+0</td><td>3</td><td>1 + Int modifier</td></tr><tr><th scope=\"row\">3</th><td>Plans Improve, Class Talent(s)</td><td>+2</td><td>+0</td><td>4</td><td>1 + Int modifier</td></tr><tr><th scope=\"row\">4</th><td>Two Minor Feats or One Major Feat</td><td>+2</td><td>+0</td><td>4</td><td>2 + Int modifier</td></tr><tr><th scope=\"row\">5</th><td>Plans Improve, Class Talent(s)</td><td>+3</td><td>+1</td><td>5</td><td>2 + Int modifier</td></tr><tr><th scope=\"row\">6</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+1</td><td>5</td><td>3 + Int modifier</td></tr><tr><th scope=\"row\">7</th><td>Plans Improve, Class Talent(s)</td><td>+3</td><td>+1</td><td>6</td><td>3 + Int modifier</td></tr><tr><th scope=\"row\">8</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+1</td><td>6</td><td>4 + Int modifier</td></tr><tr><th scope=\"row\">9</th><td>Plans Improve, Class Talent(s)</td><td>+4</td><td>+2</td><td>7</td><td>4 + Int modifier</td></tr><tr><th scope=\"row\">10</th><td>Two Minor Feats or One Major Feat</td><td>+4</td><td>+2</td><td>7</td><td>5 + Int modifier</td></tr></tbody></table><h4>Smart Hero Shared Plans</h4><p>These plans are available to all Smart Heroes. Plans represent the ability of the Smart Hero to anticipate situations and have preparations in place to deal with the challenges that face them. Players are not required to explain precisely how those arrangements came into being, but it can add a lot of fun to the game. The GM is welcome to help with this as well.</p><p>Each plan has some level of detail explaining how it can be used, but we encourage both players and the GM to invent creative new uses for these plans in keeping with the idea behind each. Doing so can lead to fun moments in roleplay and problem solving. However, the GM gets final say in just how far you can push the boundaries with your plans.</p><ul class=\"multi-column-list\"><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.gmpAIBKPn27XAxzF]{Coordinated Maneuvers}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.nnz4IyVvPvreT1cw]{Dirty Little Secrets}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.w8RjUntlLaQYUprb]{Expect the Unexpected}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.kji6ZdaayvqLtGyi]{Know the Layout}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.tF4Z8d98VVxT4VYB]{The Right Tool}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.DlzzpVNBecvKhmYa]{Watch Your Step}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.LWgKFCMPPoMd1cG8]{When a Plan Comes Together}</p></li></ul><h4>Classes</h4><ul class=\"multi-column-list\"><li><p>@UUID[Compendium.everyday-heroes.archetypes-classes.I6Mj7UBrNCnN3L9q]{Mastermind}</p></li></ul>",
+        "content": "<p>While others are playing checkers, you're playing 4-dimensional chess. The human mind is the ultimate weapon, and yours is honed to a razor's edge.</p><p>@UUID[Compendium.everyday-heroes.archetypes-classes.FBLv7Az4ke2UqomX]{Smart heroes} use their genius to enact plans. Plans are powerful but limited effects that can break the fourth wall, effectively changing the past to affect the present.</p><p><strong>Hit Dice:</strong> 1d6</p><p><strong>Starting Hit Points:</strong> 6 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d6 (or 4) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Superior Tactics):</strong> 10 + Intelligence modifier + Smart Hero Defense bonus</p><table class=\"yellow wide\"><caption>Leveling Up</caption><thead><tr><th scope=\"col\">Level</th><th scope=\"col\">Talents</th><th scope=\"col\">Proficiency Bonus</th><th scope=\"col\">Defense Bonus</th><th scope=\"col\">Genius</th><th scope=\"col\">Plans</th></tr></thead><tbody><tr><th scope=\"row\">1</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.1u27P7JnCXi51npj]{Plans}, @UUID[Compendium.everyday-heroes.archetypes-classes.67m84PVxB0edNCog]{Genius}, Class Talent(s)</td><td>+2</td><td>+0</td><td>2</td><td>Intelligence modifier (min. 1)</td></tr><tr><th scope=\"row\">2</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.IF7wcNIdIm7FHie0]{Mental Refresh}, Two Minor Feats or One Major Feat</td><td>+2</td><td>+0</td><td>3</td><td>1 + Int modifier</td></tr><tr><th scope=\"row\">3</th><td>Plans Improve, Class Talent(s)</td><td>+2</td><td>+0</td><td>4</td><td>1 + Int modifier</td></tr><tr><th scope=\"row\">4</th><td>Two Minor Feats or One Major Feat</td><td>+2</td><td>+0</td><td>4</td><td>2 + Int modifier</td></tr><tr><th scope=\"row\">5</th><td>Plans Improve, Class Talent(s)</td><td>+3</td><td>+1</td><td>5</td><td>2 + Int modifier</td></tr><tr><th scope=\"row\">6</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+1</td><td>5</td><td>3 + Int modifier</td></tr><tr><th scope=\"row\">7</th><td>Plans Improve, Class Talent(s)</td><td>+3</td><td>+1</td><td>6</td><td>3 + Int modifier</td></tr><tr><th scope=\"row\">8</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+1</td><td>6</td><td>4 + Int modifier</td></tr><tr><th scope=\"row\">9</th><td>Plans Improve, Class Talent(s)</td><td>+4</td><td>+2</td><td>7</td><td>4 + Int modifier</td></tr><tr><th scope=\"row\">10</th><td>Two Minor Feats or One Major Feat</td><td>+4</td><td>+2</td><td>7</td><td>5 + Int modifier</td></tr></tbody></table><h4>Smart Hero Shared Plans</h4><p>These plans are available to all Smart Heroes. Plans represent the ability of the Smart Hero to anticipate situations and have preparations in place to deal with the challenges that face them. Players are not required to explain precisely how those arrangements came into being, but it can add a lot of fun to the game. The GM is welcome to help with this as well.</p><p>Each plan has some level of detail explaining how it can be used, but we encourage both players and the GM to invent creative new uses for these plans in keeping with the idea behind each. Doing so can lead to fun moments in roleplay and problem solving. However, the GM gets final say in just how far you can push the boundaries with your plans.</p><ul class=\"multi-column-list\"><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.gmpAIBKPn27XAxzF]{Coordinated Maneuvers}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.nnz4IyVvPvreT1cw]{Dirty Little Secrets}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.w8RjUntlLaQYUprb]{Expect the Unexpected}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.kji6ZdaayvqLtGyi]{Know the Layout}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.tF4Z8d98VVxT4VYB]{The Right Tool}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.DlzzpVNBecvKhmYa]{Watch Your Step}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.LWgKFCMPPoMd1cG8]{When a Plan Comes Together}</p></li></ul>",
         "markdown": ""
       },
       "video": {
@@ -2051,7 +2055,7 @@
       "_id": "s8rHkJSYANVEhrjB"
     },
     {
-      "sort": 2150000,
+      "sort": 3100000,
       "name": "Wise Heroes",
       "type": "image",
       "title": {
@@ -2075,13 +2079,14 @@
       },
       "flags": {
         "everyday-heroes": {
+          "toc": true,
           "toc-style": "alt"
         }
       },
       "_id": "MtjuIETMPrMWp92T"
     },
     {
-      "sort": 2150000,
+      "sort": 3200000,
       "name": "Leveling Up",
       "type": "text",
       "title": {
@@ -2091,7 +2096,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p>You are known as a person who thinks before you act. You observe the world around you and move with its rhythms instead of struggling against the tide. By first knowing yourself, you can reach out and make the world a better place.</p><p>@UUID[Compendium.everyday-heroes.archetypes-classes.hdXk8RrABBGHEeTR]{Wise heroes} are thematically diverse, but they all have a Focus mechanic that can be spent to activate special actions and abilities.</p><p><strong>Hit Dice:</strong> 1d10 per hero level</p><p><strong>Starting Hit Points:</strong> 10 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d10 (or 6) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Know Your Enemy):</strong> 10 + (Wisdom or Dexterity) modifier + Wise Hero Defense bonus</p><table class=\"yellow wide\"><caption>Leveling Up</caption><thead><tr><th scope=\"col\">Level</th><th scope=\"col\">Talents</th><th scope=\"col\">Proficiency Bonus</th><th scope=\"col\">Defense Bonus</th><th scope=\"col\">Focus</th></tr></thead><tbody><tr><th scope=\"row\">1</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.aDG4Bb72P8OReWJp]{Focus}, @UUID[Compendium.everyday-heroes.archetypes-classes.iuNFaP8IRHayGtuu]{Concentration}, Class Talent(s)</td><td>+2</td><td>+2</td><td>2</td></tr><tr><th scope=\"row\">2</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.DKKs0TaKmbvLrYCl]{One Step Ahead}, Two Minor Feats or One Major Feat</td><td>+2</td><td>+2</td><td>3</td></tr><tr><th scope=\"row\">3</th><td>Class Talent(s)</td><td>+2</td><td>+2</td><td>4</td></tr><tr><th scope=\"row\">4</th><td>Two Minor Feats or One Major Feat</td><td>+2</td><td>+2</td><td>5</td></tr><tr><th scope=\"row\">5</th><td>Class Talent(s)</td><td>+3</td><td>+3</td><td>5</td></tr><tr><th scope=\"row\">6</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+3</td><td>6</td></tr><tr><th scope=\"row\">7</th><td>Class Talent(s)</td><td>+3</td><td>+3</td><td>7</td></tr><tr><th scope=\"row\">8</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+3</td><td>8</td></tr><tr><th scope=\"row\">9</th><td>Class Talent(s)</td><td>+4</td><td>+4</td><td>8</td></tr><tr><th scope=\"row\">10</th><td>Two Minor Feats or One Major Feat</td><td>+4</td><td>+5</td><td>9</td></tr></tbody></table><h4>Classes</h4><ul class=\"multi-column-list\"><li><p>@UUID[Compendium.everyday-heroes.archetypes-classes.Ba2Tzh4RGQMVzuTr]{Sleuth}</p></li></ul>",
+        "content": "<p>You are known as a person who thinks before you act. You observe the world around you and move with its rhythms instead of struggling against the tide. By first knowing yourself, you can reach out and make the world a better place.</p><p>@UUID[Compendium.everyday-heroes.archetypes-classes.hdXk8RrABBGHEeTR]{Wise heroes} are thematically diverse, but they all have a Focus mechanic that can be spent to activate special actions and abilities.</p><p><strong>Hit Dice:</strong> 1d10 per hero level</p><p><strong>Starting Hit Points:</strong> 10 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d10 (or 6) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Know Your Enemy):</strong> 10 + (Wisdom or Dexterity) modifier + Wise Hero Defense bonus</p><table class=\"yellow wide\"><caption>Leveling Up</caption><thead><tr><th scope=\"col\">Level</th><th scope=\"col\">Talents</th><th scope=\"col\">Proficiency Bonus</th><th scope=\"col\">Defense Bonus</th><th scope=\"col\">Focus</th></tr></thead><tbody><tr><th scope=\"row\">1</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.aDG4Bb72P8OReWJp]{Focus}, @UUID[Compendium.everyday-heroes.archetypes-classes.iuNFaP8IRHayGtuu]{Concentration}, Class Talent(s)</td><td>+2</td><td>+2</td><td>2</td></tr><tr><th scope=\"row\">2</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.DKKs0TaKmbvLrYCl]{One Step Ahead}, Two Minor Feats or One Major Feat</td><td>+2</td><td>+2</td><td>3</td></tr><tr><th scope=\"row\">3</th><td>Class Talent(s)</td><td>+2</td><td>+2</td><td>4</td></tr><tr><th scope=\"row\">4</th><td>Two Minor Feats or One Major Feat</td><td>+2</td><td>+2</td><td>5</td></tr><tr><th scope=\"row\">5</th><td>Class Talent(s)</td><td>+3</td><td>+3</td><td>5</td></tr><tr><th scope=\"row\">6</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+3</td><td>6</td></tr><tr><th scope=\"row\">7</th><td>Class Talent(s)</td><td>+3</td><td>+3</td><td>7</td></tr><tr><th scope=\"row\">8</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+3</td><td>8</td></tr><tr><th scope=\"row\">9</th><td>Class Talent(s)</td><td>+4</td><td>+4</td><td>8</td></tr><tr><th scope=\"row\">10</th><td>Two Minor Feats or One Major Feat</td><td>+4</td><td>+5</td><td>9</td></tr></tbody></table>",
         "markdown": ""
       },
       "video": {
@@ -2111,7 +2116,7 @@
       "_id": "WOjtszrhL1LXLPW7"
     },
     {
-      "sort": 2150000,
+      "sort": 3300000,
       "name": "Charming Heroes",
       "type": "image",
       "title": {
@@ -2135,13 +2140,14 @@
       },
       "flags": {
         "everyday-heroes": {
+          "toc": true,
           "toc-style": "alt"
         }
       },
       "_id": "nZXKSOaKCxjWu3NW"
     },
     {
-      "sort": 2150000,
+      "sort": 3400000,
       "name": "Leveling Up",
       "type": "text",
       "title": {
@@ -2151,7 +2157,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p>When you smile, the whole world smiles with you. It might be your beauty, your golden voice, or your way with words, but your ability to influence others is the key to your success.</p><p>@UUID[Compendium.everyday-heroes.archetypes-classes.ZGy9FnmUpeF2DkeI]{Charming heroes} use influence dice to boost their other die rolls. They focus on helping allies and hindering enemies in combat rather than relying on their own strengths.</p><p><strong>Hit Dice:</strong> 1d8 per hero level</p><p><strong>Starting Hit Points:</strong> 8 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d8 (or 5) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Not in the Face!):</strong> 10 + (Charisma or Dexterity) modifier + Charming Hero Defense bonus</p><table class=\"yellow wide\"><caption>Leveling Up</caption><thead><tr><th scope=\"col\">Level</th><th scope=\"col\">Talents</th><th scope=\"col\">Proficiency Bonus</th><th scope=\"col\">Defense Bonus</th><th scope=\"col\">Influence Dice</th><th scope=\"col\">Tricks</th></tr></thead><tbody><tr><th scope=\"row\">1</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.NgPN6q6qwbJXQs5n]{Infleunce}, @UUID[Compendium.everyday-heroes.archetypes-classes.D1FT6lJDXgm6tKnU]{Tricks}, Class Talent(s)</td><td>+2</td><td>+1</td><td>2d6</td><td>2</td></tr><tr><th scope=\"row\">2</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.3kx5bLlzvDaIQ4M2]{Charm}, Two Minor Feats or One Major Feat</td><td>+2</td><td>+1</td><td>3d6</td><td>2</td></tr><tr><th scope=\"row\">3</th><td>Class Talent(s)</td><td>+2</td><td>+1</td><td>3d6</td><td>3</td></tr><tr><th scope=\"row\">4</th><td>Two Minor Feats or One Major Feat</td><td>+2</td><td>+1</td><td>4d6</td><td>3</td></tr><tr><th scope=\"row\">5</th><td>Class Talent(s)</td><td>+3</td><td>+2</td><td>4d8</td><td>3</td></tr><tr><th scope=\"row\">6</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+2</td><td>5d8</td><td>4</td></tr><tr><th scope=\"row\">7</th><td>Class Talent(s)</td><td>+3</td><td>+2</td><td>5d8</td><td>4</td></tr><tr><th scope=\"row\">8</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+2</td><td>6d8</td><td>4</td></tr><tr><th scope=\"row\">9</th><td>Class Talent(s)</td><td>+4</td><td>+3</td><td>6d10</td><td>5</td></tr><tr><th scope=\"row\">10</th><td>Two Minor Feats or One Major Feat</td><td>+4</td><td>+3</td><td>7d10</td><td>5</td></tr></tbody></table><h4>Classes</h4><ul class=\"multi-column-list\"><li><p>@UUID[Compendium.everyday-heroes.archetypes-classes.e0Ktsf1DtLfb6BGm]{Icon}</p></li></ul>",
+        "content": "<p>When you smile, the whole world smiles with you. It might be your beauty, your golden voice, or your way with words, but your ability to influence others is the key to your success.</p><p>@UUID[Compendium.everyday-heroes.archetypes-classes.ZGy9FnmUpeF2DkeI]{Charming heroes} use influence dice to boost their other die rolls. They focus on helping allies and hindering enemies in combat rather than relying on their own strengths.</p><p><strong>Hit Dice:</strong> 1d8 per hero level</p><p><strong>Starting Hit Points:</strong> 8 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d8 (or 5) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Not in the Face!):</strong> 10 + (Charisma or Dexterity) modifier + Charming Hero Defense bonus</p><table class=\"yellow wide\"><caption>Leveling Up</caption><thead><tr><th scope=\"col\">Level</th><th scope=\"col\">Talents</th><th scope=\"col\">Proficiency Bonus</th><th scope=\"col\">Defense Bonus</th><th scope=\"col\">Influence Dice</th><th scope=\"col\">Tricks</th></tr></thead><tbody><tr><th scope=\"row\">1</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.NgPN6q6qwbJXQs5n]{Infleunce}, @UUID[Compendium.everyday-heroes.archetypes-classes.D1FT6lJDXgm6tKnU]{Tricks}, Class Talent(s)</td><td>+2</td><td>+1</td><td>2d6</td><td>2</td></tr><tr><th scope=\"row\">2</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.3kx5bLlzvDaIQ4M2]{Charm}, Two Minor Feats or One Major Feat</td><td>+2</td><td>+1</td><td>3d6</td><td>2</td></tr><tr><th scope=\"row\">3</th><td>Class Talent(s)</td><td>+2</td><td>+1</td><td>3d6</td><td>3</td></tr><tr><th scope=\"row\">4</th><td>Two Minor Feats or One Major Feat</td><td>+2</td><td>+1</td><td>4d6</td><td>3</td></tr><tr><th scope=\"row\">5</th><td>Class Talent(s)</td><td>+3</td><td>+2</td><td>4d8</td><td>3</td></tr><tr><th scope=\"row\">6</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+2</td><td>5d8</td><td>4</td></tr><tr><th scope=\"row\">7</th><td>Class Talent(s)</td><td>+3</td><td>+2</td><td>5d8</td><td>4</td></tr><tr><th scope=\"row\">8</th><td>Two Minor Feats or One Major Feat</td><td>+3</td><td>+2</td><td>6d8</td><td>4</td></tr><tr><th scope=\"row\">9</th><td>Class Talent(s)</td><td>+4</td><td>+3</td><td>6d10</td><td>5</td></tr><tr><th scope=\"row\">10</th><td>Two Minor Feats or One Major Feat</td><td>+4</td><td>+3</td><td>7d10</td><td>5</td></tr></tbody></table>",
         "markdown": ""
       },
       "video": {
@@ -2169,6 +2175,162 @@
         }
       },
       "_id": "u4W8dxsAOCgXreYk"
+    },
+    {
+      "sort": 2400000,
+      "name": "Brawler",
+      "type": "text",
+      "_id": "I6vRyKOMilVektbT",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><q class=\"header\">If brute force ain't workin', yer just not usin' enough!</q> <em><strong>—Mack Williams</strong></em></p><p>You break stuff and hit people. Sometimes you mix it up by hitting stuff and breaking people.</p><p>You imprinted on comics as a kid, and it shows in your approach to a fight. With fists like hammers and the ability to turn nearly anything into a deadly weapon, you are dangerous and everyone knows it.</p><p>The @UUID[Compendium.everyday-heroes.archetypes-classes.3OoSrJuURRzG5rEB]{brawler} charges into melee combat, hitting hard and destroying everything in their path. They enjoy using improvised weapons but are also great unarmed combatants. The brawler doesn't need to carry weapons to fight at full strength.</p><div class=\"callout\"><h5>Proficiencies</h5><ul><li><p><strong>Saving Throws:</strong> Strength and Constitution</p></li><li><p><strong>Skills:</strong> Choose two from Acrobatics, Athletics, Endurance, Intimidation, Mechanics, and Streetwise</p></li><li><p><strong>Equipment:</strong> Basic Equipment and Improvised Equipment</p></li></ul><h5>Equipment Recommendations</h5><ul><li><p><strong>Equipment Pack:</strong> Badass Pack</p></li><li><p><strong>Weapons:</strong> Unarmed strikes and anything you find lying around</p></li></ul></div><table class=\"yellow wide\"><caption>Brawler Level Up</caption><thead><tr><th scope=\"col\" style=\"min-width:6em\">Level</th><th scope=\"col\">Talents</th><th scope=\"col\">Smash Damage/with Power Attack</th></tr></thead><tbody><tr><th scope=\"row\">1</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.1adFAmJrUgTOpdYc]{Crush}, @UUID[Compendium.everyday-heroes.archetypes-classes.2PdxmHJpW6mk8kDN]{Hurl}, @UUID[Compendium.everyday-heroes.archetypes-classes.hkHSRKi99v4wbGLL]{Smash}</td><td>1d6/1d12</td></tr><tr><th scope=\"row\">3</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.xAYoiqFyafuePyXI]{Rampage}</td><td>2d6/2d12</td></tr><tr><th scope=\"row\">5</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.Gt0zLPAk8WvOgStA]{Bits and Pieces}, @UUID[Compendium.everyday-heroes.archetypes-classes.3wrYAFD5EXcNXjOd]{Haymaker}</td><td>3d6/3d12</td></tr><tr><th scope=\"row\">7</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.FLwOnN8YdY9w4uNg]{Unstoppable}</td><td>4d6/4d12</td></tr><tr><th scope=\"row\">9</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.WuVoAhOn4QWUwe5W]{Ultimate Brutality}</td><td>5d6/5d12</td></tr></tbody></table>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 2650000,
+      "name": "Scoundrel",
+      "type": "text",
+      "_id": "28IB1djO95LodHUC",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><q class=\"header\">Oh, did I hurt your pride? Consider that an appetizer.</q> <em><strong>—daxx</strong></em></p><p>Honorable combat is a sucker bet. There isn't a low blow, dirty trick, or cheap shot you don't know. You have mastered skills that can be put to disreputable uses. These skills don't make you a bad person, but you do have the necessary credentials to play the part.</p><p>The @UUID[Compendium.everyday-heroes.archetypes-classes.c1jDkSBxMvBzsy32]{scoundrel} is a capable fighter who boasts a range of useful skill proficiencies. Getting advantage on attacks is key to their success in a fight. For this reason, shotguns are a great weapon choice for scoundrels in ranged combat, since the shot property always offers advantage within 30 feet.</p><div class=\"callout\"><h5>Proficiencies</h5><ul><li><p><strong>Saving Throws:</strong> Dexterity and Charisma</p></li><li><p><strong>Skills:</strong> Choose three from Acrobatics, Deception, Intimidation, Security, Sleight of Hand, Stealth, Streetwise, and Vehicles</p></li><li><p><strong>Equipment:</strong> Basic Equipment and Advanced Equipment</p></li><li><p><strong>Criminal Expertise:</strong> You gain expertise in one of the following skills: Deception, Security, Sleight of Hand, Stealth, or Streetwise. You must be proficient in a skill to take expertise in that skill.</p></li></ul><h5>Equipment Recommendations</h5><ul><li><p><strong>Equipment Pack:</strong> Street Criminal Pack or Spy Pack</p></li><li><p><strong>Weapons:</strong> Pump shotgun, brass knuckles, or stun gun</p></li></ul></div><table class=\"yellow wide\"><caption>Scoundrel Level Up</caption><thead><tr><th scope=\"col\" style=\"min-width:6em\">Level</th><th scope=\"col\">Talents</th><th scope=\"col\" style=\"min-width:6em\">Vital Strike</th></tr></thead><tbody><tr><th scope=\"row\">1</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.C0THMHVPlwi0NSAk]{Vital Strike}</td><td>1d6</td></tr><tr><th scope=\"row\">3</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.fTcKgxBDwEZ0YeKl]{Swift}, @UUID[Compendium.everyday-heroes.archetypes-classes.H91nc3f1zKds3oqC]{Surprise Attack}</td><td>2d6</td></tr><tr><th scope=\"row\">5</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.z0t1SETPA15q3Vo0]{Roll With It}</td><td>3d6</td></tr><tr><th scope=\"row\">7</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.a6ATA7r66fIEFAFe]{Covert Expertise}</td><td>4d6</td></tr><tr><th scope=\"row\">9</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.rvuZ38mGSsvxVlwn]{Master of Subterfuge}</td><td>5d6</td></tr></tbody></table>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 2850000,
+      "name": "Commando",
+      "type": "text",
+      "_id": "WKW34wPMdJnqh0zx",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><q class=\"header\">The wise recruit hopes for peace but prepares for war. For the veteran, peace is like a fallen comrade, something you never get back.</q> <em><strong>—Sue Fairfield</strong></em></p><p>You are the consummate warrior, dangerous with any weapon and trained to survive every circumstance. You are ready for whatever the enemy has to throw at you. The only thing you might be unprepared for is peace.</p><p>The @UUID[Compendium.everyday-heroes.archetypes-classes.F2u3BinMJz1qGF0D]{commando} is an all-around combat class that offers a great blend of defense and offense. Unlike the other tough heroes, they can't directly protect their allies, but they are versatile and can use nearly any weapon. You might consider investing in Dexterity if you want to lean into offensive strategies.</p><div class=\"callout\"><h5>Proficiencies</h5><ul><li><p><strong>Saving Throws:</strong> Strength and Constitution</p></li><li><p><strong>Skills:</strong> Choose two from Athletics, Endurance, Mechanics, Persuasion, Streetwise, Survival, and Vehicles</p></li><li><p><strong>Equipment:</strong> Basic Equipment, Advanced Equipment, and Military Equipment</p></li></ul><h5>Equipment Recommendations</h5><ul><li><p><strong>Equipment Pack:</strong> Soldier Pack</p></li><li><p><strong>Weapons:</strong> Assault carbine rifle, 9mm semi-auto pistol, combat knife</p></li></ul></div><table class=\"yellow wide\"><caption>Commando Level Up</caption><thead><tr><th scope=\"col\" style=\"min-width:6em\">Level</th><th scope=\"col\">Talents</th></tr></thead><tbody><tr><th scope=\"row\">1</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.M6AJFh7Sk4Dw76pa]{Fighting Spirit}, @UUID[Compendium.everyday-heroes.archetypes-classes.zXE52cIiXEk2dEYE]{Watch Your Six}</td></tr><tr><th scope=\"row\">3</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.QfjHV7NcUdyLlbCS]{Extra Effort}, @UUID[Compendium.everyday-heroes.archetypes-classes.sKI4c9zss7NrBlMG]{Grenadier}</td></tr><tr><th scope=\"row\">5</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.gw9h5ht144ZVePuF]{Advanced Combat Training}</td></tr><tr><th scope=\"row\">7</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.6wuHBGbJjauECnlz]{Maximum Effort}, @UUID[Compendium.everyday-heroes.archetypes-classes.VYo0sdicAyp4HN8R]{Situational Awareness}</td></tr><tr><th scope=\"row\">9</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.hs2TmHUaHCo05pcS]{Master of Arms}</td></tr></tbody></table>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 3050000,
+      "name": "Mastermind",
+      "type": "text",
+      "_id": "vyniR9OFEqMFIlti",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><q class=\"header\">Never bet against stupid. They never know when to quit and they have a clear numbers advantage.</q> <em><strong>—Wesley Scott</strong></em></p><p>You are always at least one step ahead of your enemies, plotting, scheming, and planning your next masterstroke. Your allies benefit from your genius as well. If only you could find someone to truly challenge you.</p><p>@UUID[Compendium.everyday-heroes.archetypes-classes.I6Mj7UBrNCnN3L9q]{Mastermind} plans involve strategies that were retroactively enacted in the past, to be revealed only in the present moment. This makes the mastermind very powerful outside combat, with the ability to shortcut difficult challenges. In combat, however, they are rather weak and vulnerable.</p><div class=\"callout\"><h5>Proficiencies</h5><ul><li><p><strong>Saving Throws:</strong> Intelligence and Wisdom</p></li><li><p><strong>\u0017Skills:</strong> Choose four from Computers, Deception, Insight, Investigation, Medicine, Natural Sciences, Perception, Persuasion, Security, Social Sciences, and Streetwise</p></li><li><p><strong>Equipment:</strong> Basic Equipment</p></li><li><p><strong>Mental Expertise:</strong> Choose two from Computers, Deception, Insight, Investigation, Perception, Persuasion, Security, Social Sciences, and Streetwise. You must be proficient in a skill to take expertise in that skill.</p></li></ul><h5>Equipment Recommendations</h5><ul><li><p><strong>Equipment Pack:</strong> Executive Pack</p></li><li><p><strong>Weapons:</strong> Pocket .38 pistol or hunting rifle</p></li></ul></div><table class=\"yellow wide\"><caption>Mastermind Level Up</caption><thead><tr><th scope=\"col\" style=\"min-width:6em\">Level</th><th scope=\"col\">Talents</th></tr></thead><tbody><tr><th scope=\"row\">1</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.r2UbSqh57Ww7ZLUj]{Know-It-All}, @UUID[Compendium.everyday-heroes.archetypes-classes.jNyWa8AMKVXhc0Zz]{You're Doing It Wrong}</td></tr><tr><th scope=\"row\">3</th><td>Plans improve</td></tr><tr><th scope=\"row\">5</th><td>Plans improve</td></tr><tr><th scope=\"row\">7</th><td>Plans improve</td></tr><tr><th scope=\"row\">9</th><td>Plans improve</td></tr></tbody></table><h4 class=\"rounded\">Mastermind Plans</h4><p>Your Smart Hero level determines the number of plans you know, as shown in the Plans column of the @UUID[Compendium.everyday-heroes.rules.c99xr13P6d0yMJet.JournalEntryPage.s8rHkJSYANVEhrjB]{Smart Hero table}. Masterminds can select from these plans in addition to the shared plans available to all Smart Heroes.</p><ul class=\"multi-column-list\"><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.U8h7lB2FFuA86ugH]{I Had It Poisoned}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.gq8IRATatLKJScQM]{I Had Them Bugged}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.m29GbjB2KpgTrNhY]{I Have the Perfect Disguise}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.jcubnjN5uh2JJpFm]{I Knew You'd Do That}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.97AwDC8SacrqlcWq]{I Lured You Into Danger}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.4K2w3PsavdYuxKI5]{I'll Tell You How It's Done}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.tzKxD9h2EfacQL5R]{They'll Never See Us Coming}</p></li></ul>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 3250000,
+      "name": "Sleuth",
+      "type": "text",
+      "_id": "WHB5UnjoW1gBam5z",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><q class=\"header\">The truth is strong medicine. It can make you whole, but it leaves a very bitter taste in your mouth.</q> <em><strong>—Kat Whitlock</strong></em></p><p>Evil never sleeps, so neither do you. Your keen perception pierces the veil of the devious. Your inner darkness gives you insight into the worst villains humanity has to offer. It's a dirty job, but someone's gotta do it.</p><p>The @UUID[Compendium.everyday-heroes.archetypes-classes.Ba2Tzh4RGQMVzuTr]{sleuth} has the skills necessary to solve mysteries and avoid dangers. They are the most defensive of the Wise Heroes with abilities to help them stay alive. At higher levels they gain offense to make them dangerous to unwary enemies.</p><div class=\"callout\"><h5>Proficiencies</h5><ul><li><p><strong>Saving Throws:</strong> Intelligence and Wisdom</p></li><li><p><strong>Skills:</strong> Choose three from Arts and Crafts, Computers, Deception, Insight, Investigation, Perception, Security, Stealth, Streetwise, and Vehicles</p></li><li><p><strong>Equipment:</strong> Basic Equipment</p></li><li><p><strong>Investigative Expertise:</strong> Choose one from Insight, Investigation, or Perception. You gain expertise in that skill. You must be proficient in a skill to take expertise in that skill.</p></li></ul><h5>Equipment Recommendations</h5><ul><li><p><strong>Equipment Pack:</strong> Detective Pack or Police Pack</p></li><li><p><strong>Weapons:</strong> Heavy revolver pistol or hunting rifle</p></li></ul></div><table class=\"yellow wide\"><caption>Sleuth Level Up</caption><thead><tr><th scope=\"col\" style=\"min-width:6em\">Level</th><th scope=\"col\">Talents</th><th scope=\"col\" style=\"min-width:6em\">Weak Spot</th></tr></thead><tbody><tr><th scope=\"row\">1</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.PzshkZ6vIrG3BdJf]{Deduction}, @UUID[Compendium.everyday-heroes.archetypes-classes.rwC1BJv1ooKzohXQ]{Sixth Sense}</td><td>1d6</td></tr><tr><th scope=\"row\">3</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.j85X4VVhc0mTW6Bw]{Alert}, @UUID[Compendium.everyday-heroes.archetypes-classes.TJrWKejE46oqK0ER]{Investigative Expertise}</td><td>2d6</td></tr><tr><th scope=\"row\">5</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.z0t1SETPA15q3Vo0]{Roll With It}</td><td>3d6</td></tr><tr><th scope=\"row\">7</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.HLDKLlKX5Pqev5TV]{Evasion}</td><td>4d6</td></tr><tr><th scope=\"row\">9</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.97ISC3kv7h5vKbxo]{Elementary}</td><td>5d6</td></tr></tbody></table>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
+    },
+    {
+      "sort": 3450000,
+      "name": "Icon",
+      "type": "text",
+      "_id": "6lGNRLFlrh4HsTZA",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><q class=\"header\">I'm so cool I got penguins writing me postcards.</q> <em><strong>—Johnny Blaze</strong></em></p><p>You are too cool for school, a legend among those who know of you. You add something special to everything you do and you make sure everyone knows about it. You're sure you were born to be a hero.</p><p>The @UUID[Compendium.everyday-heroes.archetypes-classes.e0Ktsf1DtLfb6BGm]{icon} offers an even mix of offense, defense, and social skills. Their abilities are unique, fun, and versatile, but if you're looking for a powerhouse in combat, this is not the class for you. If you want to be wonderfully ridiculous, you have come to the right place.</p><div class=\"callout\"><h5>Proficiencies</h5><ul><li><p><strong>Saving Throws:</strong> Dexterity and Charisma</p></li><li><p><strong>Skills:</strong> Choose three from Acrobatics, Athletics, Arts and Crafts, Deception, Intimidation, Performance, Persuasion, and Streetwise</p></li><li><p><strong>Equipment:</strong> Basic Equipment and Advanced Equipment</p></li><li><p><strong>Celebrity Expertise:</strong> Choose one from Arts and Crafts, Performance, and Persuasion. You must be proficient in a skill to gain expertise in that skill.</p></li></ul><h5>Equipment Recommendations</h5><ul><li><p><strong>Equipment Pack:</strong> Entertainer Pack</p></li><li><p><strong>Weapons:</strong> Pump shotgun or hand cannon</p></li></ul></div><table class=\"yellow wide\"><caption>Icon Level Up</caption><thead><tr><th scope=\"col\" style=\"min-width:6em\">Level</th><th scope=\"col\">Talents</th></tr></thead><tbody><tr><th scope=\"row\">1</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.JGiJlml2g2LLBZ2P]{Banter}, @UUID[Compendium.everyday-heroes.archetypes-classes.vTlstrKJbqJQhgAu]{Center of Attention}</td></tr><tr><th scope=\"row\">3</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.vZHDbtjyK5Tbo8l2]{Flinch}</td></tr><tr><th scope=\"row\">5</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.gw9h5ht144ZVePuF]{Advanced Combat Training}</td></tr><tr><th scope=\"row\">7</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.B7l2YYvvH485j1zx]{Not My Style}</td></tr><tr><th scope=\"row\">9</th><td>@UUID[Compendium.everyday-heroes.archetypes-classes.7GvJ2mKrLppEgLjp]{Star of the Show}</td></tr></tbody></table><h4 class=\"rounded\">Icon Tricks</h4><ul class=\"multi-column-list\"><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.SqRhUUrAGpnl608B]{Do You Know Who I Am?}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.ryjUTJxJ6WlqsviR]{Frightening Blow}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.PvJKwirwGKVFPnWg]{Insult to Injury}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.wDDwgVFEdf3ak9VS]{Magnetic Personality}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.LO00bP36CHwC3jts]{Taunting Blow}</p></li><li><p>@UUID[Compendium.everyday-heroes.plans-tricks.FImQicYqQDJh5sNf]{Watch This}</p></li></ul>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1
+      },
+      "flags": {}
     }
   ],
   "ownership": {
@@ -2185,10 +2347,10 @@
   },
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.2",
+    "systemVersion": "0.2.3",
     "coreVersion": "10.291",
     "createdTime": 1680152492057,
-    "modifiedTime": 1681141614604,
+    "modifiedTime": 1686702980697,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
