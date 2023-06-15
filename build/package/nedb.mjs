@@ -19,12 +19,13 @@ import slugify from "./slugify.mjs";
 export async function unpackNedb(packageData, compendiumData, argv) {
 	const filename = Path.join(packageData.directory, compendiumData.path);
 	const db = new Datastore({ filename, autoload: true });
+
 	const outputDir = Path.join(packageData.directory, `packs/_source/${compendiumData.name}`);
+	if ( !existsSync(outputDir) ) mkdirSync(outputDir, { recursive: true });
 	const existingFiles = new Set(Object.keys(await loadSources(outputDir)));
 
 	log(`Unpacking "${Chalk.magenta(compendiumData.label)}" from ${Chalk.blue(filename)} into ${Chalk.blue(outputDir)}`);
 
-	if ( !existsSync(outputDir) ) mkdirSync(outputDir, { recursive: true });
 	const documents = await db.find({});
 	for ( const document of documents ) {
 		cleanPackEntry(document);
@@ -33,6 +34,7 @@ export async function unpackNedb(packageData, compendiumData, argv) {
 		const documentPath = Path.join(outputDir, subfolder, documentFilename);
 		existingFiles.delete(documentPath);
 
+		if ( !existsSync(Path.join(outputDir, subfolder)) ) mkdirSync(Path.join(outputDir, subfolder), { recursive: true });
 		writeFile(documentPath, `${JSON.stringify(document, null, 2)}\n`, { mode: 0o664 });
 		if ( existsSync(documentPath) ) log(`${Chalk.blue("Updated")} ${Path.join(subfolder, documentFilename)}`);
 		else log(`${Chalk.green("Created")} ${Path.join(subfolder, documentFilename)}`);
