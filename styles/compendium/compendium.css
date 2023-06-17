@@ -120,7 +120,7 @@ q.character {
 	font-style: italic;
 }
 
-q.header {
+p.header q, q.header {
 	font-family: serif;
 	font-size: var(--font-size-16);
 	font-style: italic;
