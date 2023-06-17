@@ -248,7 +248,7 @@ export default class HeroData extends SystemDataModel.mixin(
 			limit.max = simplifyBonus(limit.formula ?? "", rollData);
 		}
 		for ( const item of this.parent.items ) {
-			const limit = limits[item.type];
+			const limit = limits[item.system.constructor.metadata?.type];
 			if ( !limit ) continue;
 			limit.value += 1;
 		}
