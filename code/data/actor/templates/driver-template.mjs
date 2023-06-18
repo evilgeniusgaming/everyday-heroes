@@ -33,11 +33,13 @@ export default class DriverTemplate extends foundry.abstract.DataModel {
 	prepareBaseVehicle() {
 		const actor = game.actors.get(this._source.vehicle.actor);
 		if ( actor ) this.vehicle.actor = actor;
+		this.vehicle.isDriver = actor?.system.details.driver === this.parent.id;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareFinalVehicle() {
+		if ( !this.vehicle.isDriver ) return;
 		this.vehicle.actor?.system.prepareFinalData();
 		this.vehicle.actor?.render();
 	}

@@ -347,10 +347,12 @@ export default class ActorEH extends Actor {
 				return this.rollResource(config, message, dialog);
 			case "skill":
 				return this.rollSkill(config, message, dialog);
-			case "vehicle":
-				return this.rollVehicleCheck(config, message, dialog);
 			default:
-				return console.warn(`Everyday Heroes | Invalid roll type clicked ${type}.`);
+				if ( foundry.utils.getType(this.system.roll) === "function" ) {
+					return this.system.roll(type, config, message, dialog);
+				} else {
+					return console.warn(`Everyday Heroes | Invalid roll type clicked ${type}.`);
+				}
 		}
 	}
 
@@ -376,15 +378,15 @@ export default class ActorEH extends Actor {
 
 		const { parts, data } = buildRoll({
 			mod: ability.mod,
-			prof: ability.checkProficiency.hasProficiency ? ability.checkProficiency.term : null,
-			bonus: ability.bonuses.check,
+			prof: ability.checkProficiency?.hasProficiency ? ability.checkProficiency.term : null,
+			bonus: ability.bonuses?.check,
 			globalBonus: this.system.bonuses?.ability?.check
 		}, this.getRollData());
 
 		const rollConfig = foundry.utils.mergeObject({
 			data,
 			options: {
-				minimum: buildMinimum([ability.minimums.check, this.system.overrides?.ability?.minimums.check], data)
+				minimum: buildMinimum([ability.minimums?.check, this.system.overrides?.ability?.minimums.check], data)
 			}
 		}, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
@@ -453,15 +455,15 @@ export default class ActorEH extends Actor {
 
 		const { parts, data } = buildRoll({
 			mod: ability.mod,
-			prof: ability.saveProficiency.hasProficiency ? ability.saveProficiency.term : null,
-			bonus: ability.bonuses.save,
+			prof: ability.saveProficiency?.hasProficiency ? ability.saveProficiency.term : null,
+			bonus: ability.bonuses?.save,
 			globalBonus: this.system.bonuses?.ability?.save
 		}, this.getRollData());
 
 		const rollConfig = foundry.utils.mergeObject({
 			data,
 			options: {
-				minimum: buildMinimum([ability.minimums.save, this.system.overrides?.ability?.minimums.save], data)
+				minimum: buildMinimum([ability.minimums?.save, this.system.overrides?.ability?.minimums.save], data)
 			}
 		}, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
@@ -1213,93 +1215,6 @@ export default class ActorEH extends Actor {
 		 * @param {string} skill - ID of the skill that was rolled as defined in `CONFIG.EverydayHeroes.skills`.
 		 */
 		if ( rolls?.length ) Hooks.callAll("everydayHeroes.rollSkill", this, rolls, config.skill);
-
-		return rolls;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Configuration information for an vehicle check.
-	 *
-	 * @typedef {ChallengeRollConfiguration} VehicleCheckRollConfiguration
-	 * @property {string} key - Type of vehicle roll to perform as defined in `CONFIG.EverydayHeroes.vehicleRolls`.
-	 * @property {string} [skill] - The driver's skill to use when rolling rather than the default.
-	 */
-
-	/**
-	 * Roll a vehicle check.
-	 * @param {VehicleCheckRollConfiguration} [config] - Configuration information for the roll.
-	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
-	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
-	 * @returns {Promise<ChallengeRoll[]|void>}
-	 */
-	async rollVehicleCheck(config={}, message={}, dialog={}) {
-		const defaultConfig = CONFIG.EverydayHeroes.vehicleRolls[config.key];
-		if ( !defaultConfig ) return console.warn(`Vehicle roll type ${config.type} not found.`);
-
-		const abilityKey = defaultConfig.ability;
-		// TODO: Vehicle should be able to override default ability for a roll type
-		const ability = this.system.abilities[abilityKey] ?? {};
-		const skill = this.system.driverSkill ?? {};
-
-		// TODO: Support roll-specific bonuses
-		const { parts, data } = buildRoll({
-			mod: Math.min(skill.mod ?? 0, defaultConfig.mode === "max" ? (ability.mod ?? 0) : Infinity),
-			[abilityKey]: defaultConfig.mode === "add" ? (ability.mod ?? 0) : null
-		}, this.getRollData());
-
-		const rollConfig = foundry.utils.mergeObject({
-			data
-		}, config);
-		rollConfig.parts = parts.concat(config.parts ?? []);
-
-		const type = game.i18n.localize(defaultConfig.label);
-		const flavor = game.i18n.format("EH.Action.Roll", { type });
-		const messageConfig = foundry.utils.mergeObject({
-			data: {
-				title: `${flavor}: ${this.name}`,
-				flavor,
-				speaker: ChatMessage.getSpeaker({actor: this}),
-				"flags.everyday-heroes.roll": {
-					type: "vehicle",
-					key: config.key,
-					ability: abilityKey
-					// TODO: Add skill key
-				}
-			}
-		}, message);
-
-		const dialogConfig = foundry.utils.mergeObject({
-			options: {
-				title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", { type })
-			}
-		}, dialog);
-
-		/**
-		 * A hook event that fires before an vehicle check is rolled for an Actor.
-		 * @function everydayHeroes.preRollVehicleCheck
-		 * @memberof hookEvents
-		 * @param {ActorEH} actor - Actor for which the vehicle check is being rolled.
-		 * @param {VehicleCheckRollConfiguration} config - Configuration data for the pending roll.
-		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
-		 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
-		 * @returns {boolean} - Explicitly return `false` to prevent vehicle check from being rolled.
-		 */
-		if ( Hooks.call("everydayHeroes.preRollVehicleCheck", this,
-			rollConfig, messageConfig, dialogConfig) === false ) return;
-
-		const rolls = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
-
-		/**
-		 * A hook event that fires after an vehicle check has been rolled for an Actor.
-		 * @function everydayHeroes.rollVehicleCheck
-		 * @memberof hookEvents
-		 * @param {ActorEH} actor - Actor for which the vehicle check has been rolled.
-		 * @param {ChallengeRoll[]} rolls - The resulting rolls.
-		 * @param {string} key - Type of vehicle check rolled as defined in `CONFIG.EverydayHeroes.vehicleRolls`.
-		 */
-		if ( rolls?.length ) Hooks.callAll("everydayHeroes.rollVehicleCheck", this, rolls, config.key);
 
 		return rolls;
 	}

@@ -738,9 +738,11 @@ preLocalize("vehicleProperties", { key: "label", sort: true });
  *
  * @typedef {LabeledConfiguration} VehicleRollConfiguration
  * @property {string} icon - Icon used on roll buttons.
+ * @property {string} type - Type of roll to perform (e.g. "check", "damage", "save").
  * @property {string} ability - Ability associated with this roll by default.
- * @property {string} mode - Whether the associated ability is added to the roll ("add") or whether the roll bonus
- *                           is capped by that ability ("max").
+ * @property {string} mode - For check rolls, Whether the associated ability is added to the roll ("add") or whether the
+ *                           roll bonus is capped by that ability ("max"). For damage rolls this indicates what type of
+ *                           damage is represented by this roll.
  */
 
 /**
@@ -751,26 +753,42 @@ export const vehicleRolls = {
 	speed: {
 		label: "EH.Vehicle.Roll.SpeedContest.Label",
 		icon: "systems/everyday-heroes/artwork/svg/action/vehicle-speed.svg",
+		type: "vehicle-check",
 		ability: "str",
 		mode: "add"
 	},
 	maneuverability: {
 		label: "EH.Vehicle.Roll.ManeuverabilityContest.Label",
 		icon: "systems/everyday-heroes/artwork/svg/action/vehicle-maneuverability.svg",
+		type: "vehicle-check",
 		ability: "dex",
 		mode: "add"
 	},
 	stunt: {
 		label: "EH.Vehicle.Roll.StuntCheck.Label",
 		icon: "systems/everyday-heroes/artwork/svg/action/vehicle-stunt.svg",
+		type: "vehicle-check",
 		ability: "dex",
 		mode: "max"
 	},
 	crash: {
 		label: "EH.Vehicle.Roll.CrashCheck.Label",
 		icon: "systems/everyday-heroes/artwork/svg/action/vehicle-crash.svg",
+		type: "vehicle-check",
 		ability: "dex",
 		mode: "add"
+	},
+	vehicleDamage: {
+		label: "EH.Vehicle.Roll.VehicleDamage.Label",
+		icon: "systems/everyday-heroes/artwork/svg/action/vehicle-damage-vehicle.svg",
+		type: "vehicle-damage",
+		mode: "vehicle"
+	},
+	passengerDamage: {
+		label: "EH.Vehicle.Roll.PassengerDamage.Label",
+		icon: "systems/everyday-heroes/artwork/svg/action/vehicle-damage-passenger.svg",
+		type: "vehicle-damage",
+		mode: "passenger"
 	}
 };
 preLocalize("vehicleRolls", { key: "label" });
@@ -786,8 +804,20 @@ export const vehicleSizes = ["medium", "large", "huge", "gargantuan"];
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Configuration data for vehicle speed categories.
+ *
+ * @typedef {HintedConfiguration} VehicleSpeedCategoryConfiguration
+ * @property {object} [damage] - Damage for crashes at this speed. Each can be either a roll formula or
+ *                               a localizable label for the effect.
+ * @property {string} [damage.vehicle]
+ * @property {string} [damage.passenger]
+ * @property {number} [dc] - Adjustment to crash DC when traveling at this speed.
+ * @property {number} [pv] - Adjustment to crash damage PV when traveling at this speed.
+ */
+
+/**
  * Speed categories at which a vehicle can travel.
- * @param {HintedConfiguration}
+ * @param {VehicleSpeedCategoryConfiguration}
  */
 export const vehicleSpeedCategories = {
 	stopped: {
@@ -796,23 +826,51 @@ export const vehicleSpeedCategories = {
 	},
 	low: {
 		label: "EH.Vehicle.Trait.SpeedCategory.Low.Label",
-		hint: "EH.Vehicle.Trait.SpeedCategory.Low.Hint"
+		hint: "EH.Vehicle.Trait.SpeedCategory.Low.Hint",
+		damage: {
+			vehicle: "4d6"
+		},
+		dc: -5,
+		pv: 0
 	},
 	mid: {
 		label: "EH.Vehicle.Trait.SpeedCategory.Mid.Label",
-		hint: "EH.Vehicle.Trait.SpeedCategory.Mid.Hint"
+		hint: "EH.Vehicle.Trait.SpeedCategory.Mid.Hint",
+		damage: {
+			vehicle: "8d6",
+			passenger: "2d6"
+		},
+		pv: 1
 	},
 	high: {
 		label: "EH.Vehicle.Trait.SpeedCategory.High.Label",
-		hint: "EH.Vehicle.Trait.SpeedCategory.High.Hint"
+		hint: "EH.Vehicle.Trait.SpeedCategory.High.Hint",
+		damage: {
+			vehicle: "12d6",
+			passenger: "3d6"
+		},
+		dc: 5,
+		pv: 1
 	},
 	extreme: {
 		label: "EH.Vehicle.Trait.SpeedCategory.Extreme.Label",
-		hint: "EH.Vehicle.Trait.SpeedCategory.Extreme.Hint"
+		hint: "EH.Vehicle.Trait.SpeedCategory.Extreme.Hint",
+		damage: {
+			vehicle: "16d6",
+			passenger: "4d6"
+		},
+		dc: 10,
+		pv: 2
 	},
 	airspeed: {
 		label: "EH.Vehicle.Trait.SpeedCategory.Airspeed.Label",
-		hint: "EH.Vehicle.Trait.SpeedCategory.Airspeed.Hint"
+		hint: "EH.Vehicle.Trait.SpeedCategory.Airspeed.Hint",
+		damage: {
+			vehicle: "∞",
+			vehicleHint: "EH.Vehicle.Trait.SpeedCategory.Airspeed.Destruction",
+			passenger: "∞",
+			passengerHint: "EH.Vehicle.Trait.SpeedCategory.Airspeed.Death"
+		}
 	}
 };
 preLocalize("vehicleSpeedCategories", { key: "label" });

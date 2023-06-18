@@ -1,0 +1,122 @@
+{
+  "name": "Vehicle Damage",
+  "img": "systems/everyday-heroes/artwork/svg/action/vehicle-damage-vehicle.svg",
+  "description": "",
+  "results": [
+    {
+      "type": 0,
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "documentCollection": "",
+      "_id": "ZnTDOCnwQhK71K3N",
+      "text": "Cargo: A random piece of important cargo is hit by the attack. If the vehicle has no cargo, there is no effect.",
+      "img": "icons/svg/d20-black.svg",
+      "documentId": null,
+      "flags": {},
+      "_key": "!tables.results!fnFDz5tU30XlN3Ix.ZnTDOCnwQhK71K3N"
+    },
+    {
+      "type": 0,
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "documentCollection": "",
+      "_id": "ZQmG4nCt65AsiTYR",
+      "text": "Body: The vehicle gains one permanent level of Body Damage.",
+      "img": "icons/svg/d20-black.svg",
+      "documentId": null,
+      "flags": {},
+      "_key": "!tables.results!fnFDz5tU30XlN3Ix.ZQmG4nCt65AsiTYR"
+    },
+    {
+      "type": 0,
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "documentCollection": "",
+      "_id": "hajaWroDKKGGT1ad",
+      "text": "Control: The vehicle gains one permanent level of Loss of Control.",
+      "img": "icons/svg/d20-black.svg",
+      "documentId": null,
+      "flags": {},
+      "_key": "!tables.results!fnFDz5tU30XlN3Ix.hajaWroDKKGGT1ad"
+    },
+    {
+      "type": 0,
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "documentCollection": "",
+      "_id": "LdVUQnM6UuQxPbtG",
+      "text": "Power: The vehicle gains one permanent level of Loss of Power.",
+      "img": "icons/svg/d20-black.svg",
+      "documentId": null,
+      "flags": {},
+      "_key": "!tables.results!fnFDz5tU30XlN3Ix.LdVUQnM6UuQxPbtG"
+    },
+    {
+      "type": 0,
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "documentCollection": "",
+      "_id": "wRftx0CjrsZsE1dr",
+      "text": "Tires: If the vehicle has tires, it has the Blown Tires condition and risks a crash. A vehicle without tires gains one permanent level of Body Damage.",
+      "img": "icons/svg/d20-black.svg",
+      "documentId": null,
+      "flags": {},
+      "_key": "!tables.results!fnFDz5tU30XlN3Ix.wRftx0CjrsZsE1dr"
+    },
+    {
+      "type": 0,
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "documentCollection": "",
+      "_id": "JHFlR0TXXDNKJfzE",
+      "text": "Passenger: A random passenger is hit by the attack instead of the vehicle.",
+      "img": "icons/svg/d20-black.svg",
+      "documentId": null,
+      "flags": {},
+      "_key": "!tables.results!fnFDz5tU30XlN3Ix.JHFlR0TXXDNKJfzE"
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.2.5",
+    "coreVersion": "10.291",
+    "createdTime": 1687148274625,
+    "modifiedTime": 1687148526072,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "fnFDz5tU30XlN3Ix",
+  "_key": "!tables!fnFDz5tU30XlN3Ix"
+}

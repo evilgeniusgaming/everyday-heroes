@@ -1,3 +1,4 @@
+import { buildRoll } from "../../dice/utils.mjs";
 import { numberFormat, simplifyBonus } from "../../utils.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
@@ -137,7 +138,17 @@ export default class VehicleData extends SystemDataModel {
 	 * @type {SkillData|void}
 	 */
 	get driverSkill() {
-		return this.driver?.system.skills?.[this.traits.properties.has("musclePowered") ? "athl" : "vehi"];
+		return this.driver?.system.skills?.[this.driverSkillKey];
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * The key for the driver's Vehicles skill, or Athletics if the vehicle is muscle-powered.
+	 * @type {string}
+	 */
+	get driverSkillKey() {
+		return this.traits.properties.has("musclePowered") ? "athl" : "vehi";
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -347,6 +358,272 @@ export default class VehicleData extends SystemDataModel {
 		if ( !max ) return `${numberFormat(min, options)}+`; // Only Min (3+)
 		else if ( !min || (min === max) ) return numberFormat(max, options); // Only Max, same Min & Max (3)
 		else return `${numberFormat(min)}–${numberFormat(max, options)}`; // Different Min & Max (3–5)
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Rolling                                  */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Handle a roll event and pass it on to the indicated rolling method.
+	 * @param {string} type - Type of roll to perform.
+	 * @param {object} [config] - Additional configuration options.
+	 * @param {object} [message] - Configuration data that guides roll message creation.
+	 * @param {object} [dialog] - Presentation data for the roll configuration dialog.
+	 * @returns {Promise}
+	 */
+	async roll(type, config={}, message={}, dialog={}) {
+		switch (type) {
+			case "vehicle-check":
+				return this.rollCheck(config, message, dialog);
+			case "vehicle-damage":
+				return this.rollDamage(config, message, dialog);
+			case "vehicle-save":
+				return this.rollSave(config, message, dialog);
+			default:
+				return console.warn(`Everyday Heroes | Invalid roll type clicked ${type}.`);
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Configuration information for an vehicle check.
+	 *
+	 * @typedef {ChallengeRollConfiguration} VehicleCheckRollConfiguration
+	 * @property {string} key - Type of vehicle roll to perform as defined in `CONFIG.EverydayHeroes.vehicleRolls`.
+	 * @property {string} [skill] - The driver's skill to use when rolling rather than the default.
+	 */
+
+	/**
+	 * Roll a vehicle check.
+	 * @param {VehicleCheckRollConfiguration} [config] - Configuration information for the roll.
+	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
+	 * @returns {Promise<ChallengeRoll[]|void>}
+	 */
+	async rollCheck(config={}, message={}, dialog={}) {
+		const defaultConfig = CONFIG.EverydayHeroes.vehicleRolls[config.key];
+		if ( !defaultConfig ) return console.warn(`Vehicle roll type ${config.type} not found.`);
+
+		const abilityKey = defaultConfig.ability;
+		// TODO: Vehicle should be able to override default ability for a roll type
+		const ability = this.abilities[abilityKey] ?? {};
+		const skill = this.driverSkill ?? {};
+
+		// TODO: Support roll-specific bonuses
+		const { parts, data } = buildRoll({
+			mod: Math.min(skill.mod ?? 0, defaultConfig.mode === "max" ? (ability.mod ?? 0) : Infinity),
+			[abilityKey]: defaultConfig.mode === "add" ? (ability.mod ?? 0) : null
+		}, this.parent.getRollData());
+
+		const rollConfig = foundry.utils.mergeObject({
+			data
+		}, config);
+		rollConfig.parts = parts.concat(config.parts ?? []);
+
+		const type = game.i18n.localize(defaultConfig.label);
+		const flavor = game.i18n.format("EH.Action.Roll", { type });
+		const messageConfig = foundry.utils.mergeObject({
+			data: {
+				title: `${flavor}: ${this.parent.name}`,
+				flavor,
+				speaker: ChatMessage.getSpeaker({actor: this.parent}),
+				"flags.everyday-heroes.roll": {
+					type: "vehicle",
+					key: config.key,
+					ability: abilityKey,
+					skill: this.driverSkillKey
+				}
+			}
+		}, message);
+
+		const dialogConfig = foundry.utils.mergeObject({
+			options: {
+				title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", { type })
+			}
+		}, dialog);
+
+		/**
+		 * A hook event that fires before an vehicle check is rolled for an Actor.
+		 * @function everydayHeroes.preRollVehicleCheck
+		 * @memberof hookEvents
+		 * @param {ActorEH} actor - Actor for which the vehicle check is being rolled.
+		 * @param {VehicleCheckRollConfiguration} config - Configuration data for the pending roll.
+		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
+		 * @returns {boolean} - Explicitly return `false` to prevent vehicle check from being rolled.
+		 */
+		if ( Hooks.call("everydayHeroes.preRollVehicleCheck", this.parent,
+			rollConfig, messageConfig, dialogConfig) === false ) return;
+
+		const rolls = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
+
+		/**
+		 * A hook event that fires after an vehicle check has been rolled for an Actor.
+		 * @function everydayHeroes.rollVehicleCheck
+		 * @memberof hookEvents
+		 * @param {ActorEH} actor - Actor for which the vehicle check has been rolled.
+		 * @param {ChallengeRoll[]} rolls - The resulting rolls.
+		 * @param {string} key - Type of vehicle check rolled as defined in `CONFIG.EverydayHeroes.vehicleRolls`.
+		 */
+		if ( rolls?.length ) Hooks.callAll("everydayHeroes.rollVehicleCheck", this.parent, rolls, config.key);
+
+		return rolls;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Roll vehicle or passenger damage.
+	 * @param {DamageRollConfiguration} [config] - Configuration information for the roll.
+	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
+	 * @returns {Promise<ChallengeRoll[]|ChatMessage|void>}
+	 */
+	async rollDamage(config={}, message={}, dialog={}) {
+		const defaultConfig = CONFIG.EverydayHeroes.vehicleRolls[config.key];
+		if ( !defaultConfig ) return console.warn(`Vehicle roll type ${config.type} not found.`);
+
+		const speedCategory = CONFIG.EverydayHeroes.vehicleSpeedCategories[this.attributes.speed.category];
+		const damageFormula = speedCategory?.damage?.[defaultConfig.mode];
+		if ( !damageFormula ) return;
+
+		// Not valid formula, just display in roll message as text
+		if ( !Roll.validate(damageFormula) ) {
+			const text = game.i18n.localize(speedCategory.damage[`${defaultConfig.mode}Hint`] ?? damageFormula);
+			const messageConfig = foundry.utils.mergeObject({
+				data: {
+					title: `${defaultConfig.label}: ${this.parent.name}`,
+					flavor: defaultConfig.label,
+					content: text,
+					speaker: ChatMessage.getSpeaker({actor: this.parent}),
+					"flags.everyday-heroes.roll": {
+						type: "damage",
+						origin: this.parent.uuid
+					}
+				}
+			}, message);
+
+			if ( message.create === false ) return;
+			ChatMessage.applyRollMode(messageConfig.data, game.settings.get("core", "rollMode"));
+			return ChatMessage.create(messageConfig.data);
+		}
+
+		let pv;
+		if ( defaultConfig.mode === "passenger" ) pv = null;
+		else if ( speedCategory.pv !== undefined ) pv = numberFormat(speedCategory.pv, { sign: true });
+
+		const rollConfig = foundry.utils.mergeObject({
+			data: this.parent.getRollData(),
+			options: {
+				allowCritical: false,
+				type: "bludgeoning",
+				pv
+			}
+		}, config);
+		rollConfig.parts = [damageFormula].concat(config.parts ?? []);
+
+		const messageConfig = foundry.utils.mergeObject({
+			preCreate: (rolls, messageConfig) => {
+				const isVehicle = defaultConfig.mode === "vehicle";
+				const dc = isVehicle ? Math.floor(rolls[0].total / 2) : 15;
+				messageConfig.data["flags.everyday-heroes.actions"] ??= [];
+				messageConfig.data["flags.everyday-heroes.actions"].push({
+					label: game.i18n.format("EH.ChallengeRating.Action", {
+						dc, action: game.i18n.format("EH.Ability.Action.SaveSpecificShort", {
+							ability: CONFIG.EverydayHeroes.abilities.con?.label ?? ""
+						})
+					}),
+					results: {
+						success: {
+							label: game.i18n.localize("EH.Roll.Result.Success"),
+							summary: game.i18n.localize(`EH.Damage.Effect.${isVehicle ? "Vehicle.Rolled" : "Half"}`)
+							// TODO: Automatically roll on damage table on success
+						},
+						failure: {
+							label: game.i18n.localize("EH.Roll.Result.Failure"),
+							summary: game.i18n.localize(`EH.Damage.Effect.${isVehicle ? "Vehicle.Totaled" : "Full"}`)
+							// TODO: Automatically set condition to "Totaled" on failure
+						}
+					},
+					type: "ability-save",
+					dataset: { ability: "con", options: { target: dc } }
+				});
+			},
+			data: {
+				title: `${defaultConfig.label}: ${this.parent.name}`,
+				flavor: defaultConfig.label,
+				speaker: ChatMessage.getSpeaker({actor: this.parent}),
+				"flags.everyday-heroes.roll": {
+					type: "damage",
+					origin: this.parent.uuid
+				}
+			}
+		}, message);
+
+		const dialogConfig = foundry.utils.mergeObject({
+			options: {
+				title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", { type: defaultConfig.label })
+			}
+		}, dialog);
+
+		/**
+		 * A hook event that fires before a damage is rolled for a vehicle.
+		 * @function everydayHeroes.preRollVehicleDamage
+		 * @memberof hookEvents
+		 * @param {ActorEH} actor - Vehicle for which the roll is being performed.
+		 * @param {DamageRollConfiguration} config - Configuration data for the pending roll.
+		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
+		 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
+		 * @returns {boolean} - Explicitly return false to prevent the roll from being performed.
+		 */
+		if ( Hooks.call("everydayHeroes.preRollVehicleDamage", this.parent, rollConfig,
+			messageConfig, dialogConfig) === false ) return;
+
+		const rolls = await CONFIG.Dice.DamageRoll.build(rollConfig, messageConfig, dialogConfig);
+		if ( !rolls ) return;
+
+		/**
+		 * A hook event that fires after a damage has been rolled for a vehicle.
+		 * @function everydayHeroes.rollVehicleDamage
+		 * @memberof hookEvents
+		 * @param {ActorEH} actor - Vehicle for which the roll was performed.
+		 * @param {DamageRoll[]} rolls - The resulting rolls.
+		 */
+		Hooks.callAll("everydayHeroes.rollVehicleDamage", this.parent, rolls);
+
+		return rolls;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Roll a vehicle's saving throw.
+	 * @param {ChallengeRollConfiguration} [config] - Configuration information for the roll.
+	 * @param {BaseMessageConfiguration} [message] - Configuration data that guides roll message creation.
+	 * @param {BaseDialogConfiguration} [dialog] - Presentation data for the roll configuration dialog.
+	 * @returns {Promise<ChallengeRoll[]|void>}
+	 */
+	async rollSave(config={}, message={}, dialog={}) {
+		const rollConfig = foundry.utils.mergeObject({ ability: "con" }, config);
+
+		const type = game.i18n.localize("EH.Vehicle.Roll.DamageSave.Label");
+		const messageConfig = foundry.utils.mergeObject({
+			data: {
+				title: `${type}: ${this.parent.name}`,
+				flavor: type,
+				"flags.everyday-heroes.roll": {
+					type: "vehicle-save"
+				}
+			}
+		}, message);
+
+		const dialogConfig = foundry.utils.mergeObject({
+			options: { title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", { type }) }
+		}, dialog);
+
+		return this.parent.rollAbilitySave(rollConfig, messageConfig, dialogConfig);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

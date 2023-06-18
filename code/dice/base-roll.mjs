@@ -23,7 +23,16 @@ import BaseConfigurationDialog from "./base-configuration-dialog.mjs";
  * @typedef {object} BaseMessageConfiguration
  * @property {boolean} [create=true] - Should a message be created when this roll is complete?
  * @property {string} [rollMode] - The roll mode to apply to this message from `CONFIG.Dice.rollModes`.
+ * @property {PreCreateMessageCallback} [preCreate] - Message configuration callback.
  * @property {object} [data={}] - Additional data used when creating the message.
+ */
+
+/**
+ * Method called after the rolls are completed but before the message is created for further message customization.
+ *
+ * @callback PreCreateMessageCallback
+ * @param {BaseRoll[]} rolls - Rolls that have been executed.
+ * @param {BaseMessageConfiguration} message - Message configuration information.
  */
 
 /**
@@ -116,9 +125,10 @@ export default class BaseRoll extends Roll {
 			await roll.evaluate({async: true});
 		}
 
-		if ( rolls?.length && (message.create !== false) ) await this.toMessage(rolls, message.data, {
-			rollMode: rolls[0].options.rollMode ?? message.rollMode
-		});
+		if ( rolls?.length && (message.create !== false) ) {
+			if ( foundry.utils.getType(message.preCreate) === "function" ) message.preCreate(rolls, message);
+			await this.toMessage(rolls, message.data, { rollMode: rolls[0].options.rollMode ?? message.rollMode });
+		}
 		return rolls;
 	}
 

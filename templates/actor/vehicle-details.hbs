@@ -124,7 +124,7 @@
 				<a data-action="person" data-type="view" data-actor-id="{{driver.id}}">{{driver.name}}</a>
 			</h4>
 		{{else}}
-			<h4 class="no-driver">No Driver</h4>
+			<h4 class="no-driver">{{localize "EH.Vehicle.People.Driver.None"}}</h4>
 		{{/with}}
 	</section>
 
@@ -132,7 +132,7 @@
 		<ul>
 			{{#each rolls as |roll key|}}
 				<li class="skewed {{#if roll.disabled}}disabled{{/if}}">
-					<button data-action="roll" data-type="vehicle" data-key="{{key}}" {{disabled roll.disabled}}>
+					<button data-action="roll" data-type="{{type}}" data-key="{{key}}" {{disabled roll.disabled}}>
 						<figure style="background-image: url('{{roll.icon}}');"></figure>
 						<span class="label">{{roll.label}}</span>
 						<span class="modifier">{{roll.mod}}</span>

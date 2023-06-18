@@ -16,7 +16,8 @@
       "text": "The target uses all its movement to move in a random direction. To determine the direction, roll a [[/r d8]] and assign a direction to each die face. The target doesn’t take an action this turn.",
       "img": "icons/svg/d20-black.svg",
       "documentId": null,
-      "flags": {}
+      "flags": {},
+      "_key": "!tables.results!cKRtsGh2488X9WJX.h6Kb3YYQcQURwmqH"
     },
     {
       "type": 0,
@@ -31,7 +32,8 @@
       "text": "The target doesn’t move or take actions this turn.",
       "img": "icons/svg/d20-black.svg",
       "documentId": null,
-      "flags": {}
+      "flags": {},
+      "_key": "!tables.results!cKRtsGh2488X9WJX.aADW6eABwM4Kyd98"
     },
     {
       "type": 0,
@@ -46,7 +48,8 @@
       "text": "The target uses its action to make an attack with whatever it is holding against a randomly determined target within range.",
       "img": "icons/svg/d20-black.svg",
       "documentId": null,
-      "flags": {}
+      "flags": {},
+      "_key": "!tables.results!cKRtsGh2488X9WJX.e1BfXR2PdhLx7gie"
     },
     {
       "type": 0,
@@ -61,7 +64,8 @@
       "text": "The target can act and move normally but is poisoned during this turn.",
       "img": "icons/svg/d20-black.svg",
       "documentId": null,
-      "flags": {}
+      "flags": {},
+      "_key": "!tables.results!cKRtsGh2488X9WJX.zCzyERg86B88thR7"
     }
   ],
   "formula": "1d10",
@@ -81,5 +85,6 @@
   },
   "folder": null,
   "sort": 0,
-  "_id": "cKRtsGh2488X9WJX"
+  "_id": "cKRtsGh2488X9WJX",
+  "_key": "!tables!cKRtsGh2488X9WJX"
 }

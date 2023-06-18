@@ -17,10 +17,12 @@ export default class DamageConfigurationDialog extends BaseConfigurationDialog {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	getButtons() {
-		return {
-			critical: { label: game.i18n.localize("EH.Dice.Action.Critical") },
-			normal: { label: game.i18n.localize("EH.Dice.Action.Normal") }
-		};
+		const buttons = {};
+		if ( this.rollConfig.options.allowCritical !== false ) {
+			buttons.critical = { label: game.i18n.localize("EH.Dice.Action.Critical") };
+		}
+		buttons.normal = { label: game.i18n.localize("EH.Dice.Action.Normal") };
+		return buttons;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

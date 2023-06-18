@@ -10,7 +10,7 @@ export default class VehicleSheet extends BaseActorSheet {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			tabs: [{navSelector: 'nav[data-group="primary"]', contentSelector: "main", initial: "details"}],
 			width: 580,
-			height: 580,
+			height: 620,
 			dragDrop: [{dragSelector: ".item-list .item", dropSelector: "form"}]
 		});
 	}
@@ -101,13 +101,28 @@ export default class VehicleSheet extends BaseActorSheet {
 		const modFormatter = new Intl.NumberFormat(game.i18n.lang, { signDisplay: "always" });
 		const driverSkill = this.actor.system.driverSkill;
 		for ( const [key, roll] of Object.entries(CONFIG.EverydayHeroes.vehicleRolls) ) {
-			const ability = this.actor.system.abilities[roll.ability];
-			// TODO: Vehicle should be able to override default ability
-			let mod = driverSkill?.mod ?? 0;
-			if ( roll.mode === "add" ) mod += ability?.mod ?? 0;
-			else if ( roll.mode === "max" ) mod = Math.min(mod, ability.mod ?? 0);
-			// TODO: Support roll-specific bonuses
-			context.rolls[key] = { ...roll, disabled: !driverSkill, mod: modFormatter.format(mod) };
+			switch (roll.type) {
+				case "vehicle-check":
+					const ability = this.actor.system.abilities[roll.ability];
+					// TODO: Vehicle should be able to override default ability
+					let mod = driverSkill?.mod ?? 0;
+					if ( roll.mode === "add" ) mod += ability?.mod ?? 0;
+					else if ( roll.mode === "max" ) mod = Math.min(mod, ability.mod ?? 0);
+					// TODO: Support roll-specific bonuses
+					context.rolls[key] = { ...roll, disabled: !driverSkill, mod: modFormatter.format(mod) };
+					break;
+				case "vehicle-damage":
+					const speed = CONFIG.EverydayHeroes.vehicleSpeedCategories[this.actor.system.attributes.speed.category];
+					const formula = speed?.damage?.[roll.mode];
+					context.rolls[key] = {
+						...roll,
+						disabled: !formula,
+						mod: game.i18n.localize(formula)
+					};
+					break;
+				case "vehicle-save":
+					break;
+			}
 		}
 	}
 
