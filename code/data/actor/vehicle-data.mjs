@@ -15,6 +15,15 @@ import MappingField from "../fields/mapping-field.mjs";
  */
 
 /**
+ * Data for people in the vehicle.
+ *
+ * @typedef {object} VehiclePersonData
+ * @property {ActorEH} actor - A person in the vehicle.
+ * @property {number} sort - Sorting value of the person.
+ * @property {ItemEH} weapon - Weapon the person is currently crewing.
+ */
+
+/**
  * Data definition for Vehicle actors.
  *
  * @property {Object<string, VehicleAbilityData>} abilities
@@ -39,10 +48,13 @@ import MappingField from "../fields/mapping-field.mjs";
  * @property {object} bonuses.roll - Roll-specific bonuses.
  * @property {object} conditions - Conditions affecting this vehicle.
  * @property {object} details
+ * @property {ActorEH} details.driver - Driver of the vehicle.
  * @property {object} details.passengers
  * @property {number} details.passengers.min - Minimum passenger range.
  * @property {number} details.passengers.max - Maximum number of passengers.
  * @property {number} details.price - Price value.
+ * @property {object} items - Configuration data for embedded items.
+ * @property {VehiclePersonData[]} people - All people currently in the vehicle.
  * @property {object} traits
  * @property {object} traits.properties - Properties of this vehicle.
  * @property {string} traits.size - Size of the vehicle.
@@ -121,7 +133,8 @@ export default class VehicleData extends SystemDataModel {
 				mounted: new foundry.data.fields.BooleanField({label: ""}),
 				mode: new foundry.data.fields.StringField({label: ""})
 			})),
-			people: new MappingField(new foundry.data.fields.SchemaField({
+			people: new foundry.data.fields.ArrayField(new foundry.data.fields.SchemaField({
+				actor: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseActor, {label: ""}),
 				sort: new foundry.data.fields.IntegerSortField(),
 				weapon: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, {idOnly: true, label: ""})
 			})),
@@ -139,22 +152,11 @@ export default class VehicleData extends SystemDataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
-	 * Driver of this vehicle.
-	 * @type {ActorEH|null}
-	 */
-	get driver() {
-		if ( foundry.utils.getType(this.details.driver) !== "string" ) return this.details.driver ?? null;
-		return game.actors.get(this.details.driver) ?? null;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
 	 * The skill object for a driver's Vehicles skill, or Athletics if the vehicle is muscle-powered.
 	 * @type {SkillData|void}
 	 */
 	get driverSkill() {
-		return this.driver?.system.skills?.[this.driverSkillKey];
+		return this.details.driver?.system.skills?.[this.driverSkillKey];
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -184,12 +186,15 @@ export default class VehicleData extends SystemDataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareBasePeople() {
-		for ( const [id, contents] of Object.entries(this.people) ) {
-			Object.defineProperty(contents, "actor", {
-				get() { return game.actors.get(id); },
-				configurable: false
-			});
-		}
+		this.people = new Collection(this.people.filter(p => p.actor).map(p => [p.actor.id, p]));
+	}
+
+	static migratePeople(source) {
+		if ( foundry.utils.getType(source.people) !== "Object" ) return;
+		source.people = Object.entries(source.people).map(([id, p]) => {
+			p.actor = id;
+			return p;
+		});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -245,13 +250,13 @@ export default class VehicleData extends SystemDataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareFinalAbilities() {
-		if ( !this.driver ) return;
-		const rollData = this.driver.getRollData({deterministic: true});
+		if ( !this.details.driver ) return;
+		const rollData = this.details.driver.getRollData({deterministic: true});
 		for ( const [key, ability] of Object.entries(this.abilities) ) {
-			const driverBonus = simplifyBonus(this.driver.system.vehicle?.bonuses.ability[key] ?? "", rollData);
+			const driverBonus = simplifyBonus(this.details.driver.system.vehicle?.bonuses.ability[key] ?? "", rollData);
 			ability.mod = ability._baseMod + driverBonus;
 			if ( key === "str" && this.traits.properties.has("musclePowered") ) {
-				ability.mod += this.driver.system.abilities?.str?.mod ?? 0;
+				ability.mod += this.details.driver.system.abilities?.str?.mod ?? 0;
 			}
 		}
 	}
@@ -294,7 +299,7 @@ export default class VehicleData extends SystemDataModel {
 			throw new Error(game.i18n.localize("EH.Vehicle.Error.OnlyPeople"));
 		}
 		if ( actor.pack || this.parent.pack ) throw new Error(game.i18n.localize("EH.Vehicle.Error.NoPacks"));
-		if ( this.people[actor.id] ) return;
+		if ( this.people.get(actor.id) ) return;
 
 		// Ensure the person isn't already in another vehicle
 		const otherVehicle = actor.system.vehicle?.actor;
@@ -329,7 +334,7 @@ export default class VehicleData extends SystemDataModel {
 
 		// Ensure the vehicle isn't full
 		if ( this.details.passengers.max ) {
-			const peopleCount = Object.values(this.people).filter(p => p.actor).length;
+			const peopleCount = this.people.size;
 			if ( peopleCount >= this.details.passengers.max ) {
 				const pluralRule = new Intl.PluralRules(game.i18n.lang);
 				throw new Error(game.i18n.format("EH.Vehicle.Error.NoSpace", {
@@ -340,9 +345,11 @@ export default class VehicleData extends SystemDataModel {
 			}
 		}
 
-		const sort = Object.values(this.people)
+		const sort = this.people.contents
 			.reduce((sort, p) => p.sort > sort ? p.sort : sort, 0) + CONST.SORT_INTEGER_DENSITY;
-		const updates = {[`system.people.${actor.id}`]: { sort }};
+		const peopleCollection = this.toObject().people;
+		peopleCollection.push({ actor: actor.id, sort });
+		const updates = { "system.people": peopleCollection };
 		if ( driver ) updates["system.details.driver"] = actor.id;
 		await this.parent.update(updates);
 		await actor.update({"system.vehicle.actor": this.parent.id});
@@ -355,8 +362,12 @@ export default class VehicleData extends SystemDataModel {
 	 * @param {ActorEH} actor - Actor to remove.
 	 */
 	async removePerson(actor) {
-		if ( !this.people[actor.id] ) throw new Error(`Actor ${actor.name} not found in the vehicle.`);
-		await this.parent.update({[`system.people.-=${actor.id}`]: null});
+		if ( !this.people.get(actor.id) ) throw new Error(`Actor ${actor.name} not found in the vehicle.`);
+		const peopleCollection = this.toObject().people;
+		peopleCollection.findSplice(p => p.actor === actor.id);
+		const updates = { "system.people": peopleCollection };
+		if ( this.details.driver === actor ) updates["system.details.driver"] = null;
+		await this.parent.update(updates);
 		if ( actor.system.vehicle?.actor === this.parent ) await actor.update({"system.vehicle.actor": null});
 	}
 
@@ -667,6 +678,13 @@ export default class VehicleData extends SystemDataModel {
 		changed.prototypeToken ??= {};
 		changed.prototypeToken.width = size;
 		changed.prototypeToken.height = size;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _preCreate(data, options, user) {
+		if ( options.keepEmbeddedId ) return;
+		this.parent.updateSource({"system.details.driver": null, "system.people": []});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

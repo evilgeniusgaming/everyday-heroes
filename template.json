@@ -228,6 +228,9 @@
         "armor": {
           "value": 0
         },
+        "defense": {
+          "bonus": ""
+        },
         "speed": {
           "category": "stopped",
           "min": null,
@@ -257,7 +260,7 @@
         "price": 0
       },
       "items": {},
-      "people": {},
+      "people": [],
       "traits": {
         "properties": [],
         "size": "huge"
