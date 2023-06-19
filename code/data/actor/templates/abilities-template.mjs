@@ -14,7 +14,7 @@ import Proficiency from "../../../documents/proficiency.mjs";
  * @property {object} bonuses
  * @property {string} bonuses.check - Bonus to checks with this ability.
  * @property {string} bonuses.dc - Bonus to this ability's DC.
- * @property {string} bonuses.save - Bonus to this ability's passive score.
+ * @property {string} bonuses.save - Bonus to saves with this ability.
  * @property {string} minimums
  * @property {string} minimums.check - Minimum Challenge Die value for checks made with this ability.
  * @property {string} minimums.save - Minimum Challenge Die value for saves made with this ability.

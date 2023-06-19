@@ -9,6 +9,9 @@ import MappingField from "../fields/mapping-field.mjs";
  *
  * @typedef {object} VehicleAbilityData
  * @property {number} mod - Ability's modifier.
+ * @property {object} bonuses
+ * @property {string} bonuses.check - Bonus to checks with this ability.
+ * @property {string} bonuses.save - Bonus to saves with this ability.
  */
 
 /**
@@ -32,6 +35,8 @@ import MappingField from "../fields/mapping-field.mjs";
  * @property {string} biography.value - Full vehicle biography.
  * @property {string} biography.public - Public-facing biography.
  * @property {string} biography.notes - Additional notes.
+ * @property {object} bonuses
+ * @property {object} bonuses.roll - Roll-specific bonuses.
  * @property {object} conditions - Conditions affecting this vehicle.
  * @property {object} details
  * @property {object} details.passengers
@@ -57,6 +62,10 @@ export default class VehicleData extends SystemDataModel {
 			abilities: new MappingField(new foundry.data.fields.SchemaField({
 				mod: new foundry.data.fields.NumberField({
 					nullable: false, initial: 0, integer: true, label: "EH.Ability.Modifier"
+				}),
+				bonuses: new foundry.data.fields.SchemaField({
+					check: new FormulaField({label: "EH.Ability.Bonus.Check"}),
+					save: new FormulaField({label: "EH.Ability.Bonus.Save"})
 				})
 			}), {initialKeys: CONFIG.EverydayHeroes.vehicleAbilities, prepareKeys: true, label: "EH.Ability.Label[other]"}),
 			attributes: new foundry.data.fields.SchemaField({
@@ -86,11 +95,18 @@ export default class VehicleData extends SystemDataModel {
 				public: new foundry.data.fields.HTMLField({label: "EH.Biography.Public"}),
 				notes: new foundry.data.fields.HTMLField({label: "EH.Biography.Notes"})
 			}, {label: "EH.Biography.Label"}),
+			bonuses: new foundry.data.fields.SchemaField({
+				roll: new MappingField(new FormulaField(), {
+					label: game.i18n.format("EH.Vehicle.Bonus.LabelSpecific[other]", {
+						type: game.i18n.localize("EH.Dice.Action.Roll")
+					})
+				})
+			}, {label: "EH.Bonus.Global.Label[other]"}),
 			conditions: new MappingField(new foundry.data.fields.NumberField({
 				min: 0, integer: true
 			}), {label: "EH.Condition.Label[other]"}),
 			details: new foundry.data.fields.SchemaField({
-				driver: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseActor, {idOnly: true}),
+				driver: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseActor),
 				passengers: new foundry.data.fields.SchemaField({
 					min: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.Range.Min"}),
 					max: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.Range.Max"})
@@ -168,8 +184,12 @@ export default class VehicleData extends SystemDataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareBasePeople() {
-		for ( const [id, contents] of Object.entries(this.people) ) contents.actor = game.actors.get(id);
-		this.details.driver = this.people[this.details.driver]?.actor;
+		for ( const [id, contents] of Object.entries(this.people) ) {
+			Object.defineProperty(contents, "actor", {
+				get() { return game.actors.get(id); },
+				configurable: false
+			});
+		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -273,12 +293,11 @@ export default class VehicleData extends SystemDataModel {
 		if ( actor.system.constructor.metadata.category !== "person" ) {
 			throw new Error(game.i18n.localize("EH.Vehicle.Error.OnlyPeople"));
 		}
-		if ( actor.pack ) throw new Error(game.i18n.localize("EH.Vehicle.Error.NoPacks"));
+		if ( actor.pack || this.parent.pack ) throw new Error(game.i18n.localize("EH.Vehicle.Error.NoPacks"));
 		if ( this.people[actor.id] ) return;
 
 		// Ensure the person isn't already in another vehicle
 		const otherVehicle = actor.system.vehicle?.actor;
-		console.log(otherVehicle);
 		if ( otherVehicle && otherVehicle !== this.parent ) {
 			try {
 				await new Promise((resolve, reject) => {
@@ -325,7 +344,6 @@ export default class VehicleData extends SystemDataModel {
 			.reduce((sort, p) => p.sort > sort ? p.sort : sort, 0) + CONST.SORT_INTEGER_DENSITY;
 		const updates = {[`system.people.${actor.id}`]: { sort }};
 		if ( driver ) updates["system.details.driver"] = actor.id;
-		console.log(driver, updates);
 		await this.parent.update(updates);
 		await actor.update({"system.vehicle.actor": this.parent.id});
 	}
@@ -407,14 +425,15 @@ export default class VehicleData extends SystemDataModel {
 		if ( !defaultConfig ) return console.warn(`Vehicle roll type ${config.type} not found.`);
 
 		const abilityKey = defaultConfig.ability;
-		// TODO: Vehicle should be able to override default ability for a roll type
 		const ability = this.abilities[abilityKey] ?? {};
 		const skill = this.driverSkill ?? {};
 
-		// TODO: Support roll-specific bonuses
 		const { parts, data } = buildRoll({
 			mod: Math.min(skill.mod ?? 0, defaultConfig.mode === "max" ? (ability.mod ?? 0) : Infinity),
-			[abilityKey]: defaultConfig.mode === "add" ? (ability.mod ?? 0) : null
+			[abilityKey]: defaultConfig.mode === "add" ? (ability.mod ?? 0) : null,
+			[`${abilityKey}Bonus`]: ability.bonuses?.check,
+			driverBonus: this.details.driver?.system.vehicle?.bonuses.roll[config.key],
+			vehicleBonus: this.bonuses.roll[config.key]
 		}, this.parent.getRollData());
 
 		const rollConfig = foundry.utils.mergeObject({
@@ -547,7 +566,7 @@ export default class VehicleData extends SystemDataModel {
 							// TODO: Automatically set condition to "Totaled" on failure
 						}
 					},
-					type: "ability-save",
+					type: isVehicle ? "vehicle-save" : "ability-save",
 					dataset: { ability: "con", options: { target: dc } }
 				});
 			},
@@ -606,7 +625,16 @@ export default class VehicleData extends SystemDataModel {
 	 * @returns {Promise<ChallengeRoll[]|void>}
 	 */
 	async rollSave(config={}, message={}, dialog={}) {
-		const rollConfig = foundry.utils.mergeObject({ ability: "con" }, config);
+		const { parts, data } = buildRoll({
+			driverBonus: this.details.driver?.system.vehicle?.bonuses.roll.damageSave,
+			vehicleBonus: this.bonuses.roll.damageSave
+		}, this.parent.getRollData());
+
+		const rollConfig = foundry.utils.mergeObject({
+			data,
+			ability: "con"
+		}, config);
+		rollConfig.parts = parts.concat(config.parts ?? []);
 
 		const type = game.i18n.localize("EH.Vehicle.Roll.DamageSave.Label");
 		const messageConfig = foundry.utils.mergeObject({
@@ -628,6 +656,19 @@ export default class VehicleData extends SystemDataModel {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Socket Event Handlers                    */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _preUpdate(changed, options, user) {
+		const newSize = foundry.utils.getProperty(changed, "system.traits.size");
+		if ( (newSize === this.traits.size)
+			|| foundry.utils.hasProperty(changed, "prototypeToken.width")
+			|| foundry.utils.hasProperty(changed, "prototypeToken.height") ) return;
+		const size = CONFIG.EverydayHeroes.sizes[newSize]?.token;
+		changed.prototypeToken ??= {};
+		changed.prototypeToken.width = size;
+		changed.prototypeToken.height = size;
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	_onUpdate(changes, options, user) {

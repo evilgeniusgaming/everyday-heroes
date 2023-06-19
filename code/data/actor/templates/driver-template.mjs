@@ -9,7 +9,7 @@ export default class DriverTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
 			vehicle: new foundry.data.fields.SchemaField({
-				actor: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseActor, {idOnly: true}),
+				actor: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseActor),
 				bonuses: new foundry.data.fields.SchemaField({
 					ability: new MappingField(new FormulaField({deterministic: true}), {
 						label: game.i18n.format("EH.Vehicle.Bonus.LabelSpecific[other]", {
@@ -31,9 +31,7 @@ export default class DriverTemplate extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareBaseVehicle() {
-		const actor = game.actors.get(this._source.vehicle.actor);
-		if ( actor ) this.vehicle.actor = actor;
-		this.vehicle.isDriver = actor?.system.details.driver === this.parent.id;
+		this.vehicle.isDriver = this.vehicle.actor?.system.details.driver === this.parent;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

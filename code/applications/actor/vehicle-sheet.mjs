@@ -1,4 +1,5 @@
 import ActorEH from "../../documents/actor.mjs";
+import { simplifyBonus } from "../../utils.mjs";
 import BaseActorSheet from "./base-actor-sheet.mjs";
 
 /**
@@ -98,17 +99,20 @@ export default class VehicleSheet extends BaseActorSheet {
 	 */
 	prepareRolls(context) {
 		context.rolls = {};
+		const system = context.system;
 		const modFormatter = new Intl.NumberFormat(game.i18n.lang, { signDisplay: "always" });
-		const driverSkill = this.actor.system.driverSkill;
+		const driverSkill = system.driverSkill;
+		const rollData = context.actor.getRollData({ determinsitic: true });
 		for ( const [key, roll] of Object.entries(CONFIG.EverydayHeroes.vehicleRolls) ) {
 			switch (roll.type) {
 				case "vehicle-check":
-					const ability = this.actor.system.abilities[roll.ability];
-					// TODO: Vehicle should be able to override default ability
+					const ability = system.abilities[roll.ability];
 					let mod = driverSkill?.mod ?? 0;
 					if ( roll.mode === "add" ) mod += ability?.mod ?? 0;
 					else if ( roll.mode === "max" ) mod = Math.min(mod, ability.mod ?? 0);
-					// TODO: Support roll-specific bonuses
+					mod += simplifyBonus(ability.bonuses?.check ?? "", rollData);
+					mod += simplifyBonus(system.details.driver?.system.vehicle?.bonuses.roll[key] ?? "", rollData);
+					mod += simplifyBonus(system.bonuses.roll[key] ?? "", rollData);
 					context.rolls[key] = { ...roll, disabled: !driverSkill, mod: modFormatter.format(mod) };
 					break;
 				case "vehicle-damage":
@@ -158,10 +162,12 @@ export default class VehicleSheet extends BaseActorSheet {
 			case "exit":
 				return this.actor.system.removePerson(actor);
 			case "makeDriver":
-				return this.actor.update({"system.details.driver": actor.id});
+				await this.actor.update({"system.details.driver": actor.id});
+				return actor?.reset();
 			case "makePassenger":
 				if ( actor !== this.actor.system.details.driver ) return;
-				return this.actor.update({"system.details.driver": null});
+				await this.actor.update({"system.details.driver": null});
+				return actor?.reset();
 			case "view":
 				return actor?.sheet.render(true);
 			default:
@@ -206,12 +212,14 @@ export default class VehicleSheet extends BaseActorSheet {
 
 		// If passenger dropped on driver section or on the details tab, make this actor the driver
 		if ( driverDrop && !isDriver ) {
-			return this.actor.update({"system.details.driver": actor.id});
+			await this.actor.update({"system.details.driver": actor.id});
+			return actor.reset();
 		}
 
 		// If driver dropped into passengers section, remove from driver's seat
 		if ( (closestSection?.dataset.sectionId === "passengers") && isDriver ) {
-			return this.actor.update({"system.details.driver": null});
+			await this.actor.update({"system.details.driver": null});
+			return actor.reset();
 		}
 
 		// If dropped on the passengers section, sort relative to other actors

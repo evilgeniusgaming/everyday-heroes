@@ -244,6 +244,9 @@
         "public": "",
         "notes": ""
       },
+      "bonuses": {
+        "roll": {}
+      },
       "conditions": {},
       "details": {
         "driver": null,

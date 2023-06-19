@@ -45,7 +45,7 @@ export default class ActorEH extends Actor {
 	 *                                            either a die term or a flat term.
 	 */
 	getRollData({ deterministic=false }={}) {
-		const data = { ...super.getRollData() };
+		const data = this.system.toObject(false);
 		data.prof = new Proficiency(this.system.attributes?.prof ?? 0, 1);
 		if ( deterministic ) data.prof = data.prof.flat;
 		return data;
