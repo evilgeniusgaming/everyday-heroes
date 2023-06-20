@@ -77,6 +77,17 @@ export function registerSettings() {
 		type: Boolean
 	});
 
+	// Enable titanic sizes
+	game.settings.register("everyday-heroes", "titanicSizes", {
+		name: "EH.Settings.TitanicSizes.Label",
+		hint: "EH.Settings.TitanicSizes.Hint",
+		scope: "world",
+		config: true,
+		default: false,
+		type: Boolean,
+		requiresReload: true
+	});
+
 	// Reduce Transparency Accessibility Toggle
 	game.settings.register("everyday-heroes", "reduceTransparency", {
 		name: "EH.Settings.ReduceTransparency.Label",

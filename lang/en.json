@@ -672,6 +672,8 @@
 "Settings.InitiativeTiebreaker.Hint": "Add initiative ability score as decimal to help break ties in initiatives.",
 "Settings.ReduceTransparency.Label": "Reduce Transparency",
 "Settings.ReduceTransparency.Hint": "Remove the transparency from behind sheets to reduce visual distraction.",
+"Settings.TitanicSizes.Label": "Titanic Sizes",
+"Settings.TitanicSizes.Hint": "Allow the use of titanic sizes on NPCs.",
 
 "Shared": "Shared",
 
@@ -690,6 +692,10 @@
 "Sheet.Section.Persona": "Persona",
 
 "Size.Label": "Size",
+"Size.Normal.Label": "Normal",
+"Size.Scale.Normal.Label": "Normal Scale",
+"Size.Scale.Titanic.Label": "Titanic Scale",
+"Size.Titan.LabelSpecific": "{size} Titan",
 "Size.Huge.Label": "Huge",
 "Size.Gargantuan.Label": "Gargantuan",
 "Size.Large.Label": "Large",

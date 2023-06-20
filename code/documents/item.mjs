@@ -1142,7 +1142,7 @@ export default class ItemEH extends Item {
 
 		// Collect data
 		const documentName = this.metadata.name;
-		const types = foundry.utils.deepClone(game.documentTypes[documentName]);
+		const types = foundry.utils.deepClone(game.documentTypes[documentName].filter(t => t !== CONST.BASE_DOCUMENT_TYPE));
 		const folders = parent ? [] : game.folders.filter(f => (f.type === documentName) && f.displayed);
 		const label = game.i18n.localize(this.metadata.label);
 		const title = game.i18n.format("DOCUMENT.Create", {type: label});

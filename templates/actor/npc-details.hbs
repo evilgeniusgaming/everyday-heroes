@@ -3,7 +3,15 @@
 		{{#if editingMode}}
 			<label>{{localize "EH.Creature.Type.Label"}}</label>
 			<select name="system.traits.size">
-				{{selectOptions CONFIG.sizes selected=system.traits.size labelAttr="label"}}
+				{{#select system.traits.size}}
+					{{#if sizes.titanic}}<optgroup label="{{localize 'EH.Size.Scale.Normal.Label'}}">{{/if}}
+					{{selectOptions sizes.normal labelAttr="label"}}
+					{{#if sizes.titanic}}</optgroup>
+						<optgroup label="{{localize 'EH.Size.Scale.Titanic.Label'}}">
+							{{selectOptions sizes.titanic labelAttr="label"}}
+						</optgroup>
+					{{/if}}
+				{{/select}}
 			</select>
 			<select name="system.traits.type.value">
 				{{selectOptions CONFIG.creatureTypes selected=system.traits.type.value labelAttr="label"}}

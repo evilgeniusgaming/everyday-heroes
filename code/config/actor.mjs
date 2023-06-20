@@ -443,6 +443,7 @@ export const sheetSections = {
  *
  * @typedef {LabeledConfiguration} SizeConfiguration
  * @property {number} token - Default token size.
+ * @property {number} [titanicToken] - Alternate Token size used for Titanic creatures of this size category.
  * @property {number} hitDie - Default hit die denomination for NPCs of this size.
  */
 
@@ -474,15 +475,34 @@ export const sizes = {
 	huge: {
 		label: "EH.Size.Huge.Label",
 		token: 3,
+		titanicToken: 2,
 		hitDie: 12
 	},
 	gargantuan: {
 		label: "EH.Size.Gargantuan.Label",
 		token: 4,
+		titanicToken: 3,
 		hitDie: 20
 	}
 };
 preLocalize("sizes", { key: "label" });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Construct titanic versions of all the standard sizes. Must be called after localization is loaded to
+ * allow the names to be formatted properly.
+ */
+export function prepareTitanicSizes() {
+	for ( const [key, normalSize] of Object.entries(sizes) ) {
+		const size = sizes[`${key}Titan`] = { ...normalSize, titanic: true };
+		if ( size.titanicToken ) {
+			size.token = size.titanicToken;
+			delete size.titanicToken;
+		}
+		size.label = game.i18n.format("EH.Size.Titan.LabelSpecific", { size: normalSize.label });
+	}
+}
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

@@ -1,4 +1,4 @@
-import { numberFormat } from "../../utils.mjs";
+import { filterObject, numberFormat } from "../../utils.mjs";
 import BaseActorSheet from "./base-actor-sheet.mjs";
 
 /**
@@ -33,6 +33,11 @@ export default class NPCSheet extends BaseActorSheet {
 		}, {});
 
 		context.cr = { 0.125: "⅛", 0.25: "¼", 0.5: "½" }[context.system.details.cr] ?? context.system.details.cr;
+		context.sizes = {
+			normal: filterObject(CONFIG.EverydayHeroes.sizes, v => !v.titanic),
+			titanic: game.settings.get("everyday-heroes", "titanicSizes")
+				? filterObject(CONFIG.EverydayHeroes.sizes, v => v.titanic) : null
+		};
 
 		return context;
 	}

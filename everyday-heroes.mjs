@@ -56,6 +56,7 @@ Hooks.once("setup", function() {
 
 Hooks.once("i18nInit", function() {
 	config.utils.performPreLocalization(config);
+	config.prepareTitanicSizes();
 });
 
 Hooks.once("ready", function() {

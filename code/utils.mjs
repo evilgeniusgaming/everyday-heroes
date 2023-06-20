@@ -65,6 +65,20 @@ export function insertBetween(array, toInsert, positions) {
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Filter an object using the provided function.
+ * @param {object} obj - Object to filter.
+ * @param {Function} filter - Function to use for filtering.
+ * @returns {object}
+ */
+export function filterObject(obj, filter) {
+	return Object.fromEntries(
+		Object.entries(obj).filter(([k, v]) => filter(v))
+	);
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Convert a object that contains boolean values to a set of keys whose values were `true`.
  * @param {Object<string, boolean>} obj
  * @returns {Set<string>}
