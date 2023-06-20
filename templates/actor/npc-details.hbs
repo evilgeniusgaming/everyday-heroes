@@ -76,9 +76,13 @@
 		</label>
 		{{#if editingMode}}
 			<input type="number" name="system.attributes.movement.value" value="{{source.attributes.movement.value}}">
-			<select name="system.attributes.movement.units">
-				{{selectOptions CONFIG.lengthUnits selected=system.attributes.movement.units labelAttr="label"}}
-			</select>
+			{{#unless system.traits.isTitanic}}
+				<select name="system.attributes.movement.units">
+					{{selectOptions CONFIG.lengthUnits selected=system.attributes.movement.units labelAttr="label"}}
+				</select>
+			{{else}}
+				{{localize "EH.Movement.Unit.Space.Label[other]"}}
+			{{/unless}}
 		{{else}}
 			<span>{{system.attributes.movement.label}}</span>
 		{{/if}}

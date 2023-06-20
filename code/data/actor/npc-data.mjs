@@ -5,6 +5,7 @@ import Proficiency from "../../documents/proficiency.mjs";
 import AbilitiesTemplate from "./templates/abilities-template.mjs";
 import InitiativeTemplate from "./templates/initiative-template.mjs";
 import MovementTemplate from "./templates/movement-template.mjs";
+import SizeTemplate from "./templates/size-template.mjs";
 import SkillsTemplate from "./templates/skills-template.mjs";
 
 /**
@@ -12,10 +13,11 @@ import SkillsTemplate from "./templates/skills-template.mjs";
  * @mixes {@link AbilitiesTemplate}
  * @mixes {@link InitiativeTemplate}
  * @mixes {@link MovementTemplate}
+ * @mixes {@link SizeTemplate}
  * @mixes {@link SkillsTemplate}
  */
 export default class NPCData extends SystemDataModel.mixin(
-	AbilitiesTemplate, InitiativeTemplate, MovementTemplate, SkillsTemplate
+	AbilitiesTemplate, InitiativeTemplate, MovementTemplate, SizeTemplate, SkillsTemplate
 ) {
 
 	static metadata = {
@@ -93,7 +95,6 @@ export default class NPCData extends SystemDataModel.mixin(
 					}),
 					reduction: new MappingField(new FormulaField({deterministic: true}), {label: "EH.Damage.Reduction.Label"})
 				}),
-				size: new foundry.data.fields.StringField({initial: "medium", label: "EH.Size.Label"}),
 				type: new foundry.data.fields.SchemaField({
 					value: new foundry.data.fields.StringField({initial: "person", label: "EH.Creature.Type.Label"}),
 					tags: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField(), {
@@ -141,20 +142,5 @@ export default class NPCData extends SystemDataModel.mixin(
 			CONFIG.EverydayHeroes.sizes[this.traits.size]?.label ?? ""} ${
 			CONFIG.EverydayHeroes.creatureTypes[this.traits.type.value]?.label ?? ""}`;
 		if ( this.traits.type.tags.length ) this.traits.type.label += ` (${this.traits.type.tagList})`;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Socket Event Handlers                    */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	async _preUpdate(changed, options, user) {
-		const newSize = foundry.utils.getProperty(changed, "system.traits.size");
-		if ( (newSize === this.traits.size)
-			|| foundry.utils.hasProperty(changed, "prototypeToken.width")
-			|| foundry.utils.hasProperty(changed, "prototypeToken.height") ) return;
-		const size = CONFIG.EverydayHeroes.sizes[newSize]?.token;
-		changed.prototypeToken ??= {};
-		changed.prototypeToken.width = size;
-		changed.prototypeToken.height = size;
 	}
 }

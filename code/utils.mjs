@@ -137,8 +137,26 @@ function isValidIdentifier(identifier) {
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+/**
+ * Determine whether the provided unit is usable within `Intl.NumberFormat`.
+ * @param {string} unit
+ * @returns {boolean}
+ */
+function isValidUnit(unit) {
+	try {
+		const formatter = new Intl.NumberFormat(game.i18n.lang, { style: "unit", unit });
+		formatter.format(1);
+		return true;
+	} catch(err) {
+		return false;
+	}
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 export const validators = {
-	isValidIdentifier: isValidIdentifier
+	isValidIdentifier,
+	isValidUnit
 };
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

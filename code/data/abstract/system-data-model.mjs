@@ -180,6 +180,21 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Determine whether this class mixes in a specific template.
+	 * @param {*} template
+	 * @returns {boolean}
+	 */
+	static mixes(template) {
+		if ( foundry.utils.getType(template) === "string" ) {
+			return this._schemaTemplates.find(t => t.name === template) !== undefined;
+		} else {
+			return this._schemaTemplates.includes(template);
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Helpers                                  */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

@@ -570,6 +570,8 @@
 "Movement.Type.Fly.Label": "Fly",
 "Movement.Type.Swim.Label": "Swim",
 "Movement.Type.Walk.Label": "Walk",
+"Movement.Unit.Space.Label[one]": "Space",
+"Movement.Unit.Space.Label[other]": "Spaces",
 
 "NotApplicable.Abbreviation": "N/A",
 
