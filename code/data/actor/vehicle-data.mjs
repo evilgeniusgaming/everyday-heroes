@@ -170,12 +170,6 @@ export default class VehicleData extends SystemDataModel {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	get shouldPrepareFinalData() {
-		return !this.details.driver;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -187,14 +181,9 @@ export default class VehicleData extends SystemDataModel {
 
 	prepareBasePeople() {
 		this.people = new Collection(this.people.filter(p => p.actor).map(p => [p.actor.id, p]));
-	}
-
-	static migratePeople(source) {
-		if ( foundry.utils.getType(source.people) !== "Object" ) return;
-		source.people = Object.entries(source.people).map(([id, p]) => {
-			p.actor = id;
-			return p;
-		});
+		if ( !this.people.get(this._source.details.driver) ) {
+			Object.defineProperty(this.details, "driver", { value: null, configurable: true });
+		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -329,7 +318,11 @@ export default class VehicleData extends SystemDataModel {
 			} catch(err) {
 				return;
 			}
-			await otherVehicle.system.removePerson(actor);
+			try {
+				await otherVehicle.system.removePerson(actor);
+			} catch(err) {
+				console.error(err.message);
+			}
 		}
 
 		// Ensure the vehicle isn't full
