@@ -544,6 +544,8 @@
 "Item.Type.Trick[other]": "Tricks",
 "Item.Type.Unidentified[one]": "Unidentified Item",
 "Item.Type.Unidentified[other]": "Unidentified Items",
+"Item.Type.VehicleWeapon[one]": "Integrated Vehicle Weapon",
+"Item.Type.VehicleWeapon[other]": "Integrated Vehicle Weapons",
 "Item.Type.Weapon[one]": "Weapon",
 "Item.Type.Weapon[other]": "Weapons",
 

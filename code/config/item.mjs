@@ -123,10 +123,26 @@ export const itemCategories = {
 	},
 	physical: {
 		label: "EH.Item.Category.Physical.Label",
-		types: ["armor", "weapon", "ammunition", "explosive", "gear", "npcWeapon", "npcExplosive"]
+		types: ["armor", "weapon", "ammunition", "explosive", "gear", "npcWeapon", "npcExplosive", "vehicleWeapon"]
 	}
 };
 preLocalize("itemCategories", { key: "label" });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Different versions of certain items depending on what actor type they are embedded within.
+ * @enum {object}
+ */
+export const itemVariants = {
+	explosive: {
+		npc: "npcExplosive"
+	},
+	weapon: {
+		npc: "npcWeapon",
+		vehicle: "vehicleWeapon"
+	}
+};
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Equipment                                */
@@ -353,6 +369,7 @@ export const applicableProperties = {
 applicableProperties.ammunition = applicableProperties.weapon;
 applicableProperties.npcExplosive = applicableProperties.explosive;
 applicableProperties.npcWeapon = [...applicableProperties.weapon, "swarm"];
+applicableProperties.vehicleWeapon = applicableProperties.weapon;
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Ammunition                               */

@@ -1,4 +1,4 @@
-import SystemDataModel from "../abstract/system-data-model.mjs";
+import ItemDataModel from "../abstract/item-data-model.mjs";
 import IdentifierField from "../fields/identifier-field.mjs";
 import ActivatableTemplate from "./templates/activatable-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
@@ -13,7 +13,7 @@ import TypedTemplate from "./templates/typed-template.mjs";
  * @property {object} type
  * @property {number} type.level - Level at which this talent is granted.
  */
-export default class TalentData extends SystemDataModel.mixin(DescribedTemplate, ActivatableTemplate, TypedTemplate) {
+export default class TalentData extends ItemDataModel.mixin(DescribedTemplate, ActivatableTemplate, TypedTemplate) {
 
 	static get metadata() {
 		return {

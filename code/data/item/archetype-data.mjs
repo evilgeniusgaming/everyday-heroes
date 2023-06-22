@@ -1,4 +1,4 @@
-import SystemDataModel from "../abstract/system-data-model.mjs";
+import ItemDataModel from "../abstract/item-data-model.mjs";
 import IdentifierField from "../fields/identifier-field.mjs";
 import AdvancementTemplate from "./templates/advancement-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
@@ -11,7 +11,7 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * @property {object} identifier
  * @property {string} identifier.value - Archetype's identifier.
  */
-export default class ArchetypeData extends SystemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {
+export default class ArchetypeData extends ItemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {
 
 	static get metadata() {
 		return {

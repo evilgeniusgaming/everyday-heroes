@@ -1,5 +1,5 @@
 import { numberFormat, simplifyBonus } from "../../utils.mjs";
-import SystemDataModel from "../abstract/system-data-model.mjs";
+import ItemDataModel from "../abstract/item-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import AttackTemplate from "./templates/attack-template.mjs";
 import DamageTemplate from "./templates/damage-template.mjs";
@@ -43,7 +43,7 @@ import TypedTemplate from "./templates/typed-template.mjs";
  * @property {object} overrides.critical
  * @property {number} overrides.critical.threshold - Number needed to roll to score a critical hit with this weapon.
  */
-export default class WeaponData extends SystemDataModel.mixin(
+export default class WeaponData extends ItemDataModel.mixin(
 	AttackTemplate, DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate, TypedTemplate
 ) {
 
@@ -56,7 +56,8 @@ export default class WeaponData extends SystemDataModel.mixin(
 			image: "systems/everyday-heroes/artwork/svg/items/weapon.svg",
 			advancement: {
 				grantable: true
-			}
+			},
+			variant: "weapon"
 		};
 	}
 
@@ -469,13 +470,5 @@ export default class WeaponData extends SystemDataModel.mixin(
 
 	prepareFinalDC() {
 		this.dc = this.ammunition?.system.dc || 8 + this.attackMod;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Socket Event Handlers                    */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	async _preCreate(data, options, user) {
-		if ( this.parent.parent?.type === "npc" ) this.parent.updateSource({type: "npcWeapon"});
 	}
 }

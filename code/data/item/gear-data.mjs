@@ -1,4 +1,4 @@
-import SystemDataModel from "../abstract/system-data-model.mjs";
+import ItemDataModel from "../abstract/item-data-model.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
 import PhysicalTemplate from "./templates/physical-template.mjs";
 import TypedTemplate from "./templates/typed-template.mjs";
@@ -9,7 +9,7 @@ import TypedTemplate from "./templates/typed-template.mjs";
  * @mixes {@link PhysicalTemplate}
  * @mixes {@link TypedTemplate}
  */
-export default class GearData extends SystemDataModel.mixin(DescribedTemplate, PhysicalTemplate, TypedTemplate) {
+export default class GearData extends ItemDataModel.mixin(DescribedTemplate, PhysicalTemplate, TypedTemplate) {
 
 	static get metadata() {
 		return {

@@ -1,4 +1,4 @@
-import SystemDataModel from "../abstract/system-data-model.mjs";
+import ItemDataModel from "../abstract/item-data-model.mjs";
 import IdentifierField from "../fields/identifier-field.mjs";
 import AdvancementTemplate from "./templates/advancement-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
@@ -13,7 +13,7 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * @property {string} identifier.value - Profession's identifier.
  * @property {number} wealth - Starting wealth level this profession provides.
  */
-export default class ProfessionData extends SystemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {
+export default class ProfessionData extends ItemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {
 
 	static get metadata() {
 		return {

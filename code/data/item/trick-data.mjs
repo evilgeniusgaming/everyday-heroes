@@ -1,4 +1,4 @@
-import SystemDataModel from "../abstract/system-data-model.mjs";
+import ItemDataModel from "../abstract/item-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import IdentifierField from "../fields/identifier-field.mjs";
 import ActivatableTemplate from "./templates/activatable-template.mjs";
@@ -16,7 +16,7 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * @property {number} resource.dice - Number of influence dice to roll.
  * @property {string} resource.bonus - Bonus added to an influence roll.
  */
-export default class TrickData extends SystemDataModel.mixin(DescribedTemplate, ActivatableTemplate) {
+export default class TrickData extends ItemDataModel.mixin(DescribedTemplate, ActivatableTemplate) {
 
 	static get metadata() {
 		return {

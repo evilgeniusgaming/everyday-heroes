@@ -1,5 +1,5 @@
 import { numberFormat } from "../../utils.mjs";
-import SystemDataModel from "../abstract/system-data-model.mjs";
+import ItemDataModel from "../abstract/item-data-model.mjs";
 import ActivatableTemplate from "./templates/activatable-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
 
@@ -12,7 +12,7 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * @property {boolean} recharge.charged - Is this item currently charged?
  * @property {number} recharge.target - Target on a D6 role required to recharge this item's usage.
  */
-export default class NPCFeatureData extends SystemDataModel.mixin(DescribedTemplate, ActivatableTemplate) {
+export default class NPCFeatureData extends ItemDataModel.mixin(DescribedTemplate, ActivatableTemplate) {
 
 	static get metadata() {
 		return {

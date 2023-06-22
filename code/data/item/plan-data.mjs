@@ -1,4 +1,4 @@
-import SystemDataModel from "../abstract/system-data-model.mjs";
+import ItemDataModel from "../abstract/item-data-model.mjs";
 import IdentifierField from "../fields/identifier-field.mjs";
 import ActivatableTemplate from "./templates/activatable-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
@@ -12,7 +12,7 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * @property {string} identifier.value - Identifier of this plan.
  * @property {string} identifier.class - Identifier for the class required to take this plan.
  */
-export default class PlanData extends SystemDataModel.mixin(DescribedTemplate, ActivatableTemplate) {
+export default class PlanData extends ItemDataModel.mixin(DescribedTemplate, ActivatableTemplate) {
 
 	static get metadata() {
 		return {

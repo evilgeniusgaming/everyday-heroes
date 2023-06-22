@@ -49,17 +49,17 @@ export default class VehicleSheet extends BaseActorSheet {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async prepareItems(context) {
-		const ammunitionTypes = {};
+		context.ammunitionTypes = {};
 
 		const callback = (item, section) => {
 			if ( ["ammunition", "explosive"].includes(item.type) ) {
-				ammunitionTypes[item.system.type.value] ??= {};
-				ammunitionTypes[item.system.type.value][item.id] = item;
+				context.ammunitionTypes[item.system.type.value] ??= {};
+				context.ammunitionTypes[item.system.type.value][item.id] = item;
 			}
 		};
 
 		await this._prepareItemSections(context, callback);
-		this._prepareItemAmmunition(context, context.contents.weapon.items);
+		this._prepareItemAmmunition(context, context.contents.vehicleWeapon.items);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -1,4 +1,4 @@
-import SystemDataModel from "../abstract/system-data-model.mjs";
+import ItemDataModel from "../abstract/item-data-model.mjs";
 import IdentifierField from "../fields/identifier-field.mjs";
 import ActivatableTemplate from "./templates/activatable-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
@@ -10,7 +10,7 @@ import TypedTemplate from "./templates/typed-template.mjs";
  * @mixes {@link DescribedTemplate}
  * @mixes {@link TypedTemplate}
  */
-export default class SpecialFeatureData extends SystemDataModel.mixin(
+export default class SpecialFeatureData extends ItemDataModel.mixin(
 	DescribedTemplate, ActivatableTemplate, TypedTemplate
 ) {
 

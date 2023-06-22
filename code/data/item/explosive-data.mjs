@@ -43,7 +43,8 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 			image: "systems/everyday-heroes/artwork/svg/items/explosive.svg",
 			advancement: {
 				grantable: true
-			}
+			},
+			variant: "explosive"
 		};
 	}
 

@@ -17,7 +17,8 @@ export default class NPCWeaponData extends WeaponData {
 		return foundry.utils.mergeObject(super.metadata, {
 			type: "npcWeapon",
 			localization: "EH.Item.Type.NPCWeapon",
-			sheetLocalization: "EH.Item.Type.Weapon"
+			sheetLocalization: "EH.Item.Type.Weapon",
+			variant: "weapon"
 		});
 	}
 
@@ -257,13 +258,5 @@ export default class NPCWeaponData extends WeaponData {
 			label += `${this.reload ? "</a>" : ""})</span>`;
 		}
 		return label;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Socket Event Handlers                    */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	async _preCreate(data, options, user) {
-		if ( this.parent.parent && this.parent.parent?.type !== "npc" ) this.parent.updateSource({type: "weapon"});
 	}
 }

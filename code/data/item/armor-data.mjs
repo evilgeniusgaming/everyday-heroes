@@ -1,6 +1,6 @@
 import Proficiency from "../../documents/proficiency.mjs";
 import { simplifyBonus } from "../../utils.mjs";
-import SystemDataModel from "../abstract/system-data-model.mjs";
+import ItemDataModel from "../abstract/item-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
 import EquipmentTemplate from "./templates/equipment-template.mjs";
@@ -23,7 +23,7 @@ import TypedTemplate from "./templates/typed-template.mjs";
  * @property {object} bonuses
  * @property {string} bonuses.save - Bonus applied to this armor's saving throws.
  */
-export default class ArmorData extends SystemDataModel.mixin(
+export default class ArmorData extends ItemDataModel.mixin(
 	DescribedTemplate, EquipmentTemplate, PhysicalTemplate, TypedTemplate
 ) {
 

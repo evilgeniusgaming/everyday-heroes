@@ -1,4 +1,4 @@
-import SystemDataModel from "../abstract/system-data-model.mjs";
+import ItemDataModel from "../abstract/item-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import DamageTemplate from "./templates/damage-template.mjs";
@@ -27,7 +27,7 @@ import TypedTemplate from "./templates/typed-template.mjs";
  * @property {object} overrides.critical
  * @property {number} overrides.critical.threshold - Number needed to roll to score a critical hit with this ammo.
  */
-export default class AmmunitionData extends SystemDataModel.mixin(
+export default class AmmunitionData extends ItemDataModel.mixin(
 	DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate, TypedTemplate
 ) {
 

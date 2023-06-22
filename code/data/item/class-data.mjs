@@ -1,4 +1,4 @@
-import SystemDataModel from "../abstract/system-data-model.mjs";
+import ItemDataModel from "../abstract/item-data-model.mjs";
 import IdentifierField from "../fields/identifier-field.mjs";
 import AdvancementTemplate from "./templates/advancement-template.mjs";
 import DescribedTemplate from "./templates/described-template.mjs";
@@ -12,7 +12,7 @@ import DescribedTemplate from "./templates/described-template.mjs";
  * @property {string} identifier.value - Class's identifier.
  * @property {string} identifier.archetype - Archetype with which this class is associated.
  */
-export default class ClassData extends SystemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {
+export default class ClassData extends ItemDataModel.mixin(DescribedTemplate, AdvancementTemplate) {
 
 	static get metadata() {
 		return {

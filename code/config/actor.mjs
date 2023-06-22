@@ -339,6 +339,7 @@ preLocalize("senses", { sort: true });
  * @property {string} tab - Name of the tab on which this section will appear. Places the section into an object
  *                          for that tab's name within the sheet rendering context.
  * @property {object[]} types - Set of filters for object types that should appear in this section.
+ * @property {object[]} create - Create controls presented. If not provided, controls will be generated for each type.
  * @property {object} [primaryType] - Filters for an object that will appear as the primary item of this section.
  * @property {object} [options]
  * @property {boolean} [options.autoHide=false] - Should this section be hidden unless it has items?
@@ -443,20 +444,20 @@ export const sheetSections = {
 	vehicle: [
 		{
 			tab: "contents",
-			types: [{type: "weapon", "system.equipped": true}],
+			types: [{type: "vehicleWeapon", "system.equipped": true}],
+			create: [
+				{label: "EH.Item.Type.Weapon[one]", dataset: { type: "vehicleWeapon" }}
+			],
 			options: { equippable: true }
 		},
-		// {
-		// 	tab: "contents",
-		// 	types: [{type: "vehicleModification"}]
-		// },
 		{
 			tab: "contents",
 			types: [
-				{type: "weapon", "system.equipped": false},
+				{type: "vehicleWeapon", "system.equipped": false},
 				{type: "ammunition"}, {type: "explosive"},
 				{type: "armor"}, {type: "gear"}
 			],
+			create: [],
 			label: "EH.Vehicle.Cargo"
 		}
 	]

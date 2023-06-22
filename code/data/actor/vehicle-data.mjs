@@ -15,12 +15,21 @@ import MappingField from "../fields/mapping-field.mjs";
  */
 
 /**
+ * Data for items in the vehicle.
+ *
+ * @typedef {object} VehicleItemData
+ * @property {ItemEH} [ammunition] - Equipped ammunition for a weapon.
+ * @property {ActorEH} [crewMember] - Person operating this weapon.
+ * @property {boolean} equipped - Is this piece of equipment currently mounted or in cargo?
+ * @property {string} [mode] - Mode the weapon is currently operating in.
+ */
+
+/**
  * Data for people in the vehicle.
  *
  * @typedef {object} VehiclePersonData
  * @property {ActorEH} actor - A person in the vehicle.
  * @property {number} sort - Sorting value of the person.
- * @property {ItemEH} weapon - Weapon the person is currently crewing.
  */
 
 /**
@@ -53,7 +62,7 @@ import MappingField from "../fields/mapping-field.mjs";
  * @property {number} details.passengers.min - Minimum passenger range.
  * @property {number} details.passengers.max - Maximum number of passengers.
  * @property {number} details.price - Price value.
- * @property {object} items - Configuration data for embedded items.
+ * @property {VehicleItemData[]} items - Configuration data for embedded items.
  * @property {VehiclePersonData[]} people - All people currently in the vehicle.
  * @property {object} traits
  * @property {object} traits.properties - Properties of this vehicle.
@@ -129,14 +138,18 @@ export default class VehicleData extends SystemDataModel {
 				})
 			}, {label: "EH.Details.Label"}),
 			items: new MappingField(new foundry.data.fields.SchemaField({
-				ammunition: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, {idOnly: true, label: ""}),
-				mounted: new foundry.data.fields.BooleanField({label: ""}),
-				mode: new foundry.data.fields.StringField({label: ""})
+				ammunition: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, {
+					required: false, initial: undefined, idOnly: true
+				}),
+				crewMember: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseActor, {
+					required: false, initial: undefined, idOnly: true
+				}),
+				equipped: new foundry.data.fields.BooleanField({label: ""}),
+				mode: new foundry.data.fields.StringField({required: false, initial: undefined, label: ""})
 			})),
 			people: new foundry.data.fields.ArrayField(new foundry.data.fields.SchemaField({
 				actor: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseActor, {label: ""}),
-				sort: new foundry.data.fields.IntegerSortField(),
-				weapon: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, {idOnly: true, label: ""})
+				sort: new foundry.data.fields.IntegerSortField()
 			})),
 			traits: new foundry.data.fields.SchemaField({
 				properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {

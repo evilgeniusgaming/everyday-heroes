@@ -207,10 +207,14 @@ export default class BaseActorSheet extends ActorSheet {
 
 			// Add create options
 			if ( primaryType ) section.primary = { item: null, label: section.label, dataset: config.primaryType };
-			section.create = types.map(({dataset, model}) => ({
-				label: `${model.metadata.sheetLocalization ?? model.metadata.localization}[one]`,
-				dataset
-			}));
+			if ( config.create ) {
+				section.create = config.create;
+			} else {
+				section.create = types.map(({dataset, model}) => ({
+					label: `${model.metadata.sheetLocalization ?? model.metadata.localization}[one]`,
+					dataset
+				}));
+			}
 
 			// Add limits
 			section.limits = this.actor.system.details?.limits?.[config.options?.limited];

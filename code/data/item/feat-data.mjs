@@ -1,4 +1,4 @@
-import SystemDataModel from "../abstract/system-data-model.mjs";
+import ItemDataModel from "../abstract/item-data-model.mjs";
 import IdentifierField from "../fields/identifier-field.mjs";
 import ActivatableTemplate from "./templates/activatable-template.mjs";
 import AdvancementTemplate from "./templates/advancement-template.mjs";
@@ -15,7 +15,7 @@ import TypedTemplate from "./templates/typed-template.mjs";
  * @property {object} type
  * @property {string} type.category - Specific category of feat (basic, advanced, multiclass).
  */
-export default class FeatData extends SystemDataModel.mixin(
+export default class FeatData extends ItemDataModel.mixin(
 	DescribedTemplate, ActivatableTemplate, AdvancementTemplate, TypedTemplate
 ) {
 

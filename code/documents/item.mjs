@@ -53,7 +53,7 @@ export default class ItemEH extends Item {
 	 */
 	get isEquipped() {
 		if ( !this.isEmbedded ) return null;
-		return this.parent.system.items?.[this.id]?.equipped ?? (this.parent.type === "npc");
+		return this.system.equipped ?? this.parent.system.items?.[this.id]?.equipped ?? (this.parent.type === "npc");
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

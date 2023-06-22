@@ -285,6 +285,7 @@
       "specialFeature",
       "talent",
       "trick",
+      "vehicleWeapon",
       "weapon"
     ],
     "templates": {
@@ -568,6 +569,45 @@
         "target": "influence",
         "type": "resource",
         "dice": null
+      }
+    },
+    "vehicleWeapon": {
+      "templates": ["attack", "damage", "description", "physical"],
+      "type": {
+        "value": "ranged",
+        "category": "military"
+      },
+      "properties": [],
+      "penetrationValue": 0,
+      "jammed": false,
+      "ammunition": {
+        "type": "",
+        "loaded": ""
+      },
+      "range": {
+        "short": null,
+        "long": null,
+        "reach": null,
+        "units": "foot"
+      },
+      "reload": "",
+      "rounds": {
+        "spent": 0,
+        "capacity": null,
+        "burst": null
+      },
+      "bonuses": {
+        "attack": "",
+        "damage": "",
+        "critical": {
+          "damage": "",
+          "dice": 0
+        }
+      },
+      "overrides": {
+        "critical": {
+          "threshold": null
+        }
       }
     },
     "weapon": {
