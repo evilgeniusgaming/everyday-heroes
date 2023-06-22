@@ -67,9 +67,10 @@ Hooks.once("ready", function() {
 });
 
 Hooks.on("getChatLogEntryContext", documents.ChatMessageEH.getContextOptions);
+Hooks.on("renderActorSheet", applications.renderDocumentSheet);
 Hooks.on("renderChatLog", documents.ChatMessageEH.attachChatListeners);
 Hooks.on("renderChatPopout", documents.ChatMessageEH.attachChatListeners);
-Hooks.on("renderItemSheet", applications.item.renderItemSheet);
+Hooks.on("renderItemSheet", applications.renderDocumentSheet);
 Hooks.on("renderJournalPageSheet", applications.journal.renderJournalPageSheet);
 config.registration.setupRegistrationHooks();
 

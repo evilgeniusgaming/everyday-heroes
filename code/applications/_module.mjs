@@ -35,6 +35,23 @@ export function registerSheets() {
 	});
 }
 
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Insert custom classes into document sheet headers.
+ * @param {DocumentSheet} app
+ * @param {jQuery} jQuery
+ * @param {object} options
+ */
+export function renderDocumentSheet(app, jQuery, options) {
+	const newClass = app.document.getFlag("everyday-heroes", "source");
+	if ( !newClass ) return;
+	const container = jQuery[0];
+	container.classList.add(newClass);
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 export {actor, item, journal};
 export * as advancement from "./advancement/_module.mjs";
 export {default as CombatTrackerEH} from "./combat-tracker.mjs";
