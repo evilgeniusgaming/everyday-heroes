@@ -28,7 +28,7 @@ export default class DamageData extends foundry.abstract.DataModel {
 	 * @type {ActorEH|void}
 	 */
 	get _actor() {
-		return this.parent?.parent?.actor;
+		return this.parent?.actor;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -41,5 +41,4 @@ export default class SupplementalDamageData extends DamageData {
 		mod += simplifyBonus(this.bonus, this.parent?.parent?.getRollData());
 		return super.formula(mod);
 	}
-
 }

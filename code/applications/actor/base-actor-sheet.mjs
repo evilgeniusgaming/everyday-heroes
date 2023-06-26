@@ -405,9 +405,9 @@ export default class BaseActorSheet extends ActorSheet {
 
 		// Choose ammunition
 		if ( event.target.name === "ammunition" ) {
-			const ammoId = event.target.value;
+			const ammoId = event.target.value ? event.target.value : null;
 			const weaponId = event.target.closest("[data-item-id]")?.dataset.itemId;
-			return this.actor.update({[`system.items.${weaponId}.ammunition`]: ammoId});
+			this.actor.update({[`system.items.${weaponId}.ammunition`]: ammoId});
 		}
 	}
 

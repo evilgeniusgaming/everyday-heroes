@@ -153,6 +153,18 @@ export default class WeaponData extends ItemDataModel.mixin(
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/**
+	 * Ammunition currently equipped in this weapon.
+	 * @type {ItemEH|null}
+	 */
+	get ammunition() {
+		const ammunitionId = this.actorContext?.ammunition;
+		const ammunition = this.actor?.items.get(ammunitionId);
+		return ammunition ?? null;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	get attackAbility() {
 		if ( this.overrides.ability.attack ) return this.overrides.ability.attack;
 		const melee = this.meleeAbility;
@@ -160,7 +172,7 @@ export default class WeaponData extends ItemDataModel.mixin(
 
 		// Finesse, higher of the abilities
 		if ( this.properties.has("finesse") ) {
-			const abilities = this.parent?.actor?.system.abilities;
+			const abilities = this.user?.system.abilities;
 			if ( !abilities ) return ["ranged", "thrown"].includes(this.type) ? ranged : melee;
 			if ( abilities[ranged]?.mod > abilities[melee]?.mod ) return ranged;
 			return melee;
@@ -181,12 +193,12 @@ export default class WeaponData extends ItemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get attackMod() {
-		const rollData = this.parent?.getRollData() ?? {};
+		const rollData = this.getRollData();
 		return super.attackMod
 			+ simplifyBonus(this.bonuses.attack, rollData)
 			+ simplifyBonus(this.ammunition?.system.bonuses.attack, rollData)
-			+ simplifyBonus(this.parent?.actor?.system.bonuses?.attack?.all, rollData)
-			+ simplifyBonus(this.parent?.actor?.system.bonuses?.attack?.[this.type.value], rollData);
+			+ simplifyBonus(this.user?.system.bonuses?.attack?.all, rollData)
+			+ simplifyBonus(this.user?.system.bonuses?.attack?.[this.type.value], rollData);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -262,8 +274,8 @@ export default class WeaponData extends ItemDataModel.mixin(
 	get criticalThreshold() {
 		// TODO: Replace actor threshold with a more customizable system
 		const threshold = Math.min(
-			this.parent?.actor?.system.overrides?.critical?.threshold.all ?? Infinity,
-			this.parent?.actor?.system.overrides?.critical?.threshold[this.type.value] ?? Infinity,
+			this.user?.system.overrides?.critical?.threshold.all ?? Infinity,
+			this.user?.system.overrides?.critical?.threshold[this.type.value] ?? Infinity,
 			this.ammunition?.system.overrides?.critical?.threshold ?? Infinity,
 			this.overrides.critical.threshold ?? Infinity
 		);
@@ -277,7 +289,8 @@ export default class WeaponData extends ItemDataModel.mixin(
 			|| (this.mode === "offhand") ) return null;
 		if ( !this.overrides.ability.damage && (this.properties.has("blinding")
 			|| this.properties.has("stunning")) ) return null;
-		return this.overrides.ability.damage || this.attackAbility || null;
+		return this.overrides.ability.damage || (this.ammunition?.system.damageAbility !== undefined
+			? this.ammunition.system.damageAbility : this.attackAbility) || null;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -392,17 +405,8 @@ export default class WeaponData extends ItemDataModel.mixin(
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	prepareBaseAmmunition() {
-		const ammunitionId = this.parent?.actor?.system.items?.[this.parent?.id]?.ammunition;
-		const ammunition = this.parent?.actor?.items.get(ammunitionId);
-		if ( !ammunition ) return;
-		this.ammunition = ammunition;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
 	prepareBaseMode() {
-		const mode = this._modeOverride ?? this.parent?.actor?.system.items?.[this.parent?.id]?.mode;
+		const mode = this._modeOverride ?? this.actor?.system.items?.[this.parent?.id]?.mode;
 		this.mode = this.modes[mode] ? mode : Object.keys(this.modes)[0];
 	}
 

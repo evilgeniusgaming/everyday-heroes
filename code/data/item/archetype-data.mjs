@@ -40,7 +40,7 @@ export default class ArchetypeData extends ItemDataModel.mixin(DescribedTemplate
 
 	prepareDerivedDefense() {
 		this.defense ??= {};
-		const level = this.parent?.actor?.system.details?.level;
+		const level = this.actor?.system.details?.level;
 		const defenseAdvancement = this.advancement.byType("Defense")[0];
 		if ( !defenseAdvancement || !level ) return;
 		this.defense.abilities = defenseAdvancement.configuration.abilities;

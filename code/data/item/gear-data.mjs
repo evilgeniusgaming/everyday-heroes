@@ -46,7 +46,7 @@ export default class GearData extends ItemDataModel.mixin(DescribedTemplate, Phy
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get isEquippable() {
-		return this.parent?.actor?.type === "npc";
+		return this.actor?.type === "npc";
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

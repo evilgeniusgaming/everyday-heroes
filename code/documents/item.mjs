@@ -10,6 +10,12 @@ export default class ItemEH extends Item {
 	/*  Properties                               */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	get actor() {
+		return this.system.actor !== undefined ? this.system.actor : super.actor;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	/**
 	 * Can armor saving throws be performed by this item?
 	 * @type {boolean}
@@ -450,6 +456,9 @@ export default class ItemEH extends Item {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	getRollData({ deterministic=false }={}) {
+		if ( foundry.utils.getType(this.system.getRollData) === "function" ) {
+			return this.system.getRollData({ deterministic });
+		}
 		const rollData = {
 			...(this.actor?.getRollData({ deterministic }) ?? {}),
 			item: this.toObject(false).system
@@ -491,14 +500,15 @@ export default class ItemEH extends Item {
 	async clearJam(config={}, message={}) {
 		if ( !this.system.jammed ) return;
 
+		const actor = this.system.user !== undefined ? this.system.user : this.actor;
 		const clearJamConfig = foundry.utils.mergeObject({}, config);
 
-		const content = game.i18n.format("EH.Weapon.Action.ClearJam.Message", { actor: this.actor.name, weapon: this.name });
+		const content = game.i18n.format("EH.Weapon.Action.ClearJam.Message", { actor: actor.name, weapon: this.name });
 		const messageConfig = foundry.utils.mergeObject({
 			data: {
-				title: `${game.i18n.localize("EH.Weapon.Action.ClearJam.Label")}: ${this.actor.name}`,
+				title: `${game.i18n.localize("EH.Weapon.Action.ClearJam.Label")}: ${actor.name}`,
 				content,
-				speaker: ChatMessage.getSpeaker({actor: this.actor}),
+				speaker: ChatMessage.getSpeaker({ actor }),
 				"flags.everyday-heroes.clearJam": {
 					origin: this.uuid
 				}
@@ -556,6 +566,7 @@ export default class ItemEH extends Item {
 		if ( !this.system.rounds.spent ) return;
 		if ( this.system.jammed ) return ui.notifications.warn(game.i18n.localize("EH.Weapon.Action.Reload.Warning.Jammed"));
 
+		const actor = this.system.user !== undefined ? this.system.user : this.actor;
 		const ammunition = this.system.ammunition;
 		const roundsToReload = this.system.rounds.spent;
 
@@ -566,13 +577,13 @@ export default class ItemEH extends Item {
 
 		const content = game.i18n.format(
 			`EH.Weapon.Action.Reload.Message${ammunition ? "Specific" : "Generic"}`,
-			{ actor: this.actor.name, number: roundsToReload, ammo: ammunition?.name, weapon: this.name }
+			{ actor: actor.name, number: roundsToReload, ammo: ammunition?.name, weapon: this.name }
 		);
 		const messageConfig = foundry.utils.mergeObject({
 			data: {
-				title: `${game.i18n.localize("EH.Weapon.Action.Reload.Label")}: ${this.actor.name}`,
+				title: `${game.i18n.localize("EH.Weapon.Action.Reload.Label")}: ${actor.name}`,
 				content,
-				speaker: ChatMessage.getSpeaker({actor: this.actor}),
+				speaker: ChatMessage.getSpeaker({ actor }),
 				"flags.everyday-heroes.reload": {
 					origin: this.uuid,
 					ammunition: ammunition?.uuid,
@@ -632,6 +643,7 @@ export default class ItemEH extends Item {
 				: this.system.properties.has("semiAuto") ? "semiAuto" : null
 		];
 		if ( !fireConfig ) return console.log("Only semi-auto or full-auto weapons can perform suppressive fire.");
+		const actor = this.system.user !== undefined ? this.system.user : this.actor;
 
 		const suppressiveFireConfig = foundry.utils.mergeObject({
 			rounds: this.system.roundsToSpend,
@@ -647,13 +659,13 @@ export default class ItemEH extends Item {
 		}
 
 		const content = game.i18n.format(
-			"EH.Weapon.Action.SuppressiveFire.Message", { actor: this.actor.name, weapon: this.name }
+			"EH.Weapon.Action.SuppressiveFire.Message", { actor: actor.name, weapon: this.name }
 		);
 		const messageConfig = foundry.utils.mergeObject({
 			data: {
-				title: `${game.i18n.localize("EH.Weapon.Mode.SuppressiveFire.Label")}: ${this.actor.name}`,
+				title: `${game.i18n.localize("EH.Weapon.Mode.SuppressiveFire.Label")}: ${actor.name}`,
 				content,
-				speaker: ChatMessage.getSpeaker({actor: this.actor}),
+				speaker: ChatMessage.getSpeaker({ actor }),
 				"flags.everyday-heroes.suppressiveFire": {
 					origin: this.uuid,
 					ammunition: this.ammunition?.uuid
@@ -735,17 +747,18 @@ export default class ItemEH extends Item {
 	 */
 	async rollArmorSave(config={}, message={}, dialog={}) {
 		if ( !this.hasArmorSave ) return console.warn(`${this.name} does not support armor saving throws.`);
+		const actor = this.system.user !== undefined ? this.system.user : this.actor;
 
 		const { parts, data } = buildRoll({
 			prof: this.system.proficiency.hasProficiency ? this.system.proficiency.term : null,
 			bonus: this.system.bonuses.save,
-			globalBonus: this.actor?.system.bonuses?.ability?.save
+			globalBonus: actor?.system.bonuses?.ability?.save
 		}, this.getRollData());
 
 		const rollConfig = foundry.utils.mergeObject({
 			data,
 			options: {
-				minimum: buildMinimum([this.actor?.system.overrides?.ability?.minimums.save], data)
+				minimum: buildMinimum([actor?.system.overrides?.ability?.minimums.save], data)
 			}
 		}, config);
 		rollConfig.parts = parts.concat(config.parts ?? []);
@@ -753,9 +766,9 @@ export default class ItemEH extends Item {
 		const flavor = game.i18n.format("EH.Action.Roll", { type: game.i18n.localize("EH.Armor.Action.Save.Label") });
 		const messageConfig = foundry.utils.mergeObject({
 			data: {
-				title: `${flavor}: ${this.actor.name}`,
+				title: `${flavor}: ${actor.name}`,
 				flavor,
-				speaker: ChatMessage.getSpeaker({actor: this.actor}),
+				speaker: ChatMessage.getSpeaker({ actor }),
 				"flags.everyday-heroes.roll": {
 					type: "armor-save",
 					origin: this.uuid
@@ -809,7 +822,8 @@ export default class ItemEH extends Item {
 	 */
 	async rollAttack(config={}, message={}, dialog={}) {
 		if ( !this.hasAttack ) return console.warn(`${this.name} does not support attack rolls.`);
-		const ability = this.actor?.system.abilities[this.system.damageAbility];
+		const actor = this.system.user !== undefined ? this.system.user : this.actor;
+		const ability = actor?.system.abilities[this.system.attackAbility];
 		const ammunition = this.system.ammunition;
 
 		// Verify that the weapon isn't jammed & has enough rounds left to make the attack
@@ -828,9 +842,9 @@ export default class ItemEH extends Item {
 			prof: this.system.proficiency.hasProficiency ? this.system.proficiency.term : null,
 			weaponBonus: this.system.bonuses.attack,
 			ammoBonus: ammunition?.system.bonuses.attack,
-			globalBonus: this.actor.system.bonuses?.attack?.all,
-			globalMeleeBonus: this.actor.system.bonuses?.attack?.melee,
-			globalRangedBonus: this.actor.system.bonuses?.attack?.ranged
+			globalBonus: actor.system.bonuses?.attack?.all,
+			globalMeleeBonus: actor.system.bonuses?.attack?.melee,
+			globalRangedBonus: actor.system.bonuses?.attack?.ranged
 		}, this.getRollData());
 
 		const rollConfig = foundry.utils.mergeObject({
@@ -844,9 +858,9 @@ export default class ItemEH extends Item {
 		const flavor = this.system.attackTooltip;
 		const messageConfig = foundry.utils.mergeObject({
 			data: {
-				title: `${flavor}: ${this.name}`,
+				title: `${flavor}: ${actor.name}`,
 				flavor,
-				speaker: ChatMessage.getSpeaker({actor: this.actor}),
+				speaker: ChatMessage.getSpeaker({ actor }),
 				"flags.everyday-heroes.roll": {
 					type: "attack",
 					mode: this.system.mode,
@@ -915,18 +929,17 @@ export default class ItemEH extends Item {
 	 */
 	async rollDamage(config={}, message={}, dialog={}) {
 		if ( !this.hasDamage ) return console.warn(`${this.name} does not support damage rolls.`);
-
+		const actor = this.system.user !== undefined ? this.system.user : this.actor;
 		const item = config.options?.mode ? this.clone({"system._modeOverride": config.options.mode}) : this;
-
-		const ability = this.actor?.system.abilities[item.system.damageAbility];
+		const ability = actor?.system.abilities[item.system.damageAbility];
 		const ammunition = item.system.ammunition;
 
 		const { parts, data } = buildRoll({
 			mod: ability?.mod,
 			weaponBonus: item.system.bonuses.damage,
 			ammoBonus: ammunition?.system.bonuses.damage,
-			globalBonus: this.actor?.system.bonuses?.damage?.all,
-			[`global${item.system.type.value.capitalize()}Bonus`]: this.actor?.system.bonuses?.damage?.[item.system.type.value]
+			globalBonus: actor?.system.bonuses?.damage?.all,
+			[`global${item.system.type.value.capitalize()}Bonus`]: actor?.system.bonuses?.damage?.[item.system.type.value]
 		}, this.getRollData());
 
 		const rollConfig = foundry.utils.mergeObject({
@@ -935,7 +948,7 @@ export default class ItemEH extends Item {
 			options: {
 				mode: item.system.mode,
 				allowCritical: ammunition ? ammunition.system.canCritical : item.system.canCritical,
-				multiplier: this.actor?.system.overrides?.critical?.multiplier,
+				multiplier: actor?.system.overrides?.critical?.multiplier,
 				bonusDamage: [item.system.bonuses.critical?.damage, ammunition?.system.bonuses.critical?.damage]
 					.filter(d => d)
 					.map(d => Roll.replaceFormulaData(d, data))
@@ -969,9 +982,9 @@ export default class ItemEH extends Item {
 		});
 		const messageConfig = foundry.utils.mergeObject({
 			data: {
-				title: `${flavor}: ${this.actor?.name ?? ""}`,
+				title: `${flavor}: ${actor?.name ?? ""}`,
 				flavor,
-				speaker: ChatMessage.getSpeaker({actor: this.actor}),
+				speaker: ChatMessage.getSpeaker({ actor }),
 				"flags.everyday-heroes.actions": item.system.damageChatActions,
 				"flags.everyday-heroes.roll": {
 					type: "damage",
@@ -1144,8 +1157,8 @@ export default class ItemEH extends Item {
 		if ( (userId !== game.user.id) || !this.parent ) return;
 
 		// Clear actor/item relationship information
-		if ( this.actor.system.items?.[this.id] ) {
-			this.actor.update({[`system.items.-=${this.id}`]: null});
+		if ( this.parent.system.items?.[this.id] ) {
+			this.parent.update({[`system.items.-=${this.id}`]: null});
 		}
 	}
 

@@ -64,75 +64,77 @@
 						<a data-action="item" data-type="expand">{{item.name}}</a>
 					</h4>
 					<div>
-						<div class="item-modes">
-							{{#if item.system.modes}}
-								<nav class="skewed">
-									<ul>
-										{{#each item.system.modes as |mode key|}}
-											<li {{#if (eq item.system.mode key)}}class="selected"{{/if}}>
-												<a {{#if @root.editable}}data-action="item" data-type="mode" data-key="{{key}}"{{/if}}
-													data-tooltip="{{mode.label}}">
-													<figure style="background-image: url('{{mode.icon}}');"></figure>
-												</a>
-											</li>
-										{{/each}}
-									</ul>
-								</nav>
-							{{/if}}
-						</div>
-						<nav class="item-actions">
-							{{#each item.system.actions as |action|}}
-								<div class="action{{#if action.disabled}} disabled{{/if}}"
-									{{#if @root.editable}}data-action="{{#if action.action}}{{action.action}}{{else}}roll-item{{/if}}"{{/if}}
-									data-tooltip="{{action.tooltip}}" {{everydayHeroes-dataset action.data}}>
-									{{#if action.icon}}
-										<figure style="background-image: url('{{action.icon}}');"></figure>
-									{{/if}}
-									{{#if action.label}}
-										<span>{{action.label}}</span>
-									{{/if}}
-								</div>
-							{{/each}}
-						</nav>
-						<div class="consumption">
-							{{#if (or item.system.rounds.capacity ctx.ammunition.displayAmmunitionSelector)}}
-								<div class="ammunition">
-									{{#if item.system.rounds.capacity}}
-										<div class="reload action" {{#if @root.editable}}data-action="item" data-type="reload"{{/if}}
-											data-tooltip="{{#if item.system.reload}}
-												{{~lookup @root.CONFIG.actionTypesReload item.system.reload}}
-												{{~else}}{{localize 'EH.Action.Reload.None'}}{{/if}}">
-											<figure style="background-image: url('{{item.system.reloadIcon}}');"></figure>
-											<span>{{item.system.rounds.label}}</span>
-										</div>
-									{{/if}}
-									{{#if ctx.ammunition.displayAmmunitionSelector}}
-										<div class="ammunition-type">
-											<select name="ammunition">
-												{{selectOptions ctx.ammunition.types selected=ctx.ammunition.selected
-													blank=ctx.ammunition.defaultLabel labelAttr="name"}}
-											</select>
-										</div>
-									{{/if}}
-								</div>
-							{{/if}}
-							{{#if item.system.consumesRecharge}}
-								{{#if this.system.recharge.charged}}
-									<div>{{item.system.recharge.label}}</div>
-								{{else}}
-									<div class="action" data-action="roll-item" data-type="recharge"
-										data-tooltip="{{localize 'EH.Action.Roll' type=(localize 'EH.Recharge.Label')}}">
-										{{item.system.recharge.label}}
+						{{#unless (eq section.options.actions false)}}
+							<div class="item-modes">
+								{{#if item.system.modes}}
+									<nav class="skewed">
+										<ul>
+											{{#each item.system.modes as |mode key|}}
+												<li {{#if (eq item.system.mode key)}}class="selected"{{/if}}>
+													<a {{#if @root.editable}}data-action="item" data-type="mode" data-key="{{key}}"{{/if}}
+														data-tooltip="{{mode.label}}">
+														<figure style="background-image: url('{{mode.icon}}');"></figure>
+													</a>
+												</li>
+											{{/each}}
+										</ul>
+									</nav>
+								{{/if}}
+							</div>
+							<nav class="item-actions">
+								{{#each item.system.actions as |action|}}
+									<div class="action{{#if action.disabled}} disabled{{/if}}"
+										{{#if @root.editable}}data-action="{{#if action.action}}{{action.action}}{{else}}roll-item{{/if}}"{{/if}}
+										data-tooltip="{{action.tooltip}}" {{everydayHeroes-dataset action.data}}>
+										{{#if action.icon}}
+											<figure style="background-image: url('{{action.icon}}');"></figure>
+										{{/if}}
+										{{#if action.label}}
+											<span>{{action.label}}</span>
+										{{/if}}
+									</div>
+								{{/each}}
+							</nav>
+							<div class="consumption">
+								{{#if (or item.system.rounds.capacity ctx.ammunition.displayAmmunitionSelector)}}
+									<div class="ammunition">
+										{{#if item.system.rounds.capacity}}
+											<div class="reload action" {{#if @root.editable}}data-action="item" data-type="reload"{{/if}}
+												data-tooltip="{{#if item.system.reload}}
+													{{~lookup @root.CONFIG.actionTypesReload item.system.reload}}
+													{{~else}}{{localize 'EH.Action.Reload.None'}}{{/if}}">
+												<figure style="background-image: url('{{item.system.reloadIcon}}');"></figure>
+												<span>{{item.system.rounds.label}}</span>
+											</div>
+										{{/if}}
+										{{#if ctx.ammunition.displayAmmunitionSelector}}
+											<div class="ammunition-type">
+												<select name="ammunition">
+													{{selectOptions ctx.ammunition.types selected=ctx.ammunition.selected
+														blank=ctx.ammunition.defaultLabel labelAttr="name"}}
+												</select>
+											</div>
+										{{/if}}
 									</div>
 								{{/if}}
-							{{/if}}
-							{{#if item.system.consumesResource}}
-								<div>{{item.system.resource.label}}</div>
-							{{/if}}
-							{{#if item.system.consumesUses}}
-								<div>{{item.system.uses.label}}</div>
-							{{/if}}
-						</div>
+								{{#if item.system.consumesRecharge}}
+									{{#if this.system.recharge.charged}}
+										<div>{{item.system.recharge.label}}</div>
+									{{else}}
+										<div class="action" data-action="roll-item" data-type="recharge"
+											data-tooltip="{{localize 'EH.Action.Roll' type=(localize 'EH.Recharge.Label')}}">
+											{{item.system.recharge.label}}
+										</div>
+									{{/if}}
+								{{/if}}
+								{{#if item.system.consumesResource}}
+									<div>{{item.system.resource.label}}</div>
+								{{/if}}
+								{{#if item.system.consumesUses}}
+									<div>{{item.system.uses.label}}</div>
+								{{/if}}
+							</div>
+						{{/unless}}
 					</div>
 					<fieldset>
 						{{#if (and @root.editable item.system.isEquippable)}}

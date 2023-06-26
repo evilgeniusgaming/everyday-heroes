@@ -192,6 +192,17 @@ export default class VehicleData extends SystemDataModel {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	prepareBaseFlag() {
+		// Set a flag to indicate that base preparation has been performed
+		Object.defineProperty(this, "_prepared", {
+			value: true,
+			enumerable: false,
+			configurable: false
+		});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	prepareBasePeople() {
 		this.people = new Collection(this.people.filter(p => p.actor).map(p => [p.actor.id, p]));
 		if ( !this.people.get(this._source.details.driver) ) {

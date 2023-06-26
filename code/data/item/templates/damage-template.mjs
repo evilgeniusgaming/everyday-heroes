@@ -162,13 +162,13 @@ export default class Damage extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get damageMod() {
-		const ability = this.parent?.actor?.system.abilities[this.damageAbility];
-		const rollData = this.parent?.getRollData() ?? {};
+		const ability = this.user?.system.abilities[this.damageAbility];
+		const rollData = this.getRollData();
 		return (ability?.mod ?? 0)
 			+ simplifyBonus(this.bonuses.damage, rollData)
 			+ simplifyBonus(this.ammunition?.system.bonuses.damage, rollData)
-			+ simplifyBonus(this.parent?.actor?.system.bonuses?.damage?.all, rollData)
-			+ simplifyBonus(this.parent?.actor?.system.bonuses?.damage?.[this.type.value], rollData);
+			+ simplifyBonus(this.user?.system.bonuses?.damage?.all, rollData)
+			+ simplifyBonus(this.user?.system.bonuses?.damage?.[this.type.value], rollData);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

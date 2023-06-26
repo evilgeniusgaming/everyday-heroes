@@ -50,10 +50,10 @@ export default class AttackTemplate extends foundry.abstract.DataModel {
 	 * @type {number}
 	 */
 	get attackMod() {
-		const rollData = this.parent?.getRollData() ?? {};
+		const rollData = this.getRollData();
 		return (rollData.abilities?.[this.attackAbility]?.mod ?? 0)
 			+ simplifyBonus(this.proficiency?.term, rollData)
-			+ simplifyBonus(this.parent?.actor?.system.bonuses?.attack?.all, rollData);
+			+ simplifyBonus(this.user?.system.bonuses?.attack?.all, rollData);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -103,9 +103,9 @@ export default class AttackTemplate extends foundry.abstract.DataModel {
 	 * @type {string}
 	 */
 	get meleeAbility() {
-		return this.parent.actor?.system.bestAbility?.(new Set([
+		return this.user?.system.bestAbility?.(new Set([
 			CONFIG.EverydayHeroes.defaultAbilities.melee,
-			...this.parent.actor?.system.overrides?.ability?.melee ?? []
+			...this.user?.system.overrides?.ability?.melee ?? []
 		])) ?? CONFIG.EverydayHeroes.defaultAbilities.melee;
 	}
 
@@ -116,9 +116,9 @@ export default class AttackTemplate extends foundry.abstract.DataModel {
 	 * @type {string}
 	 */
 	get rangedAbility() {
-		return this.parent.actor?.system.bestAbility?.(new Set([
+		return this.user?.system.bestAbility?.(new Set([
 			CONFIG.EverydayHeroes.defaultAbilities.ranged,
-			...this.parent.actor?.system.overrides?.ability?.ranged ?? []
+			...this.user?.system.overrides?.ability?.ranged ?? []
 		])) ?? CONFIG.EverydayHeroes.defaultAbilities.ranged;
 	}
 }

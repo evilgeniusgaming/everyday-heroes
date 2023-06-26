@@ -1,4 +1,5 @@
 import { numberFormat } from "../../../utils.mjs";
+import ItemDataModel from "../../abstract/item-data-model.mjs";
 
 /**
  * Data model template for physical items.
@@ -9,7 +10,7 @@ import { numberFormat } from "../../../utils.mjs";
  * @property {number} price - How much wealth is required to purchase this item?
  * @mixin
  */
-export default class PhysicalTemplate extends foundry.abstract.DataModel {
+export default class PhysicalTemplate extends ItemDataModel {
 	static defineSchema() {
 		return {
 			quantity: new foundry.data.fields.SchemaField({
@@ -70,11 +71,28 @@ export default class PhysicalTemplate extends foundry.abstract.DataModel {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Actor currently using the item.
+	 * @type {ActorEH|null}
+	 */
+	get user() {
+		return this.actor;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedEquipped() {
-		this.equipped = this.parent?.actor?.system.items?.[this.parent?.id]?.equipped
-			?? ((this.parent?.actor?.type === "npc") && !this.isEquippable);
+		this.equipped = this.actorContext?.equipped ?? ((this.actor?.type === "npc") && !this.isEquippable);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Helpers                                  */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	getRollData(options) {
+		return super.getRollData({ ...options, actor: this.user });
 	}
 }

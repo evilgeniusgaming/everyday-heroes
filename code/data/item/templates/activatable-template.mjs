@@ -118,7 +118,7 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 		const number = numberFormat(this.resource.amount);
 		switch (this.resource.type) {
 			case "resource":
-				const resource = this.parent?.actor?.system.resources?.[this.resource.target];
+				const resource = this.actor?.system.resources?.[this.resource.target];
 				this.resource.label = game.i18n.format("EH.Resource.Consumption", {
 					number, resource: resource?.label ?? this.resource.target
 				});

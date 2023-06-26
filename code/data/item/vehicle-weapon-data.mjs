@@ -30,14 +30,8 @@ export default class VehicleWeaponData extends WeaponData {
 	/*  Properties                               */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	/**
-	 * The actor currently crewing this weapon, if any.
-	 * @type {ActorEH|null}
-	 */
-	get crewMember() {
-		return this.parent?.actor?.system.people?.get?.(
-			this.parent?.actor?.system.items[this.parent?.id]?.crewMember
-		)?.actor ?? null;
+	get actions() {
+		return this.usable ? super.actions : [];
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -47,20 +41,43 @@ export default class VehicleWeaponData extends WeaponData {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Can this weapon currently be fired?
+	 * @type {boolean}
+	 */
+	get usable() {
+		return this.equipped && this.actor;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get user() {
+		return this.actor?.system.people?.get?.(this.actorContext?.crewMember)?.actor ?? null;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	prepareDerivedProficiency() {
-		console.log(this.parent.name, "prepareDerivedProficiency");
-		let proficiency = 0;
-		let hasProf = false;
-		const crewMember = this.crewMember;
-		if ( this.equipped && crewMember ) {
-			proficiency = crewMember.system.attributes?.prof ?? 0;
-			hasProf = crewMember.system.traits?.equipment
-				? crewMember.system.traits.equipment.has(this.type.category) : true;
-		}
-		console.log(proficiency, hasProf);
-		this.proficiency = new Proficiency(proficiency, hasProf ? 1 : 0);
+	// prepareDerivedProficiency() {
+	// 	let proficiency = 0;
+	// 	let hasProf = false;
+	// 	if ( this.equipped && this.actor ) {
+	// 		proficiency = this.actor.system.attributes?.prof ?? 0;
+	// 		hasProf = this.actor.system.traits?.equipment
+	// 			? this.actor.system.traits.equipment.has(this.type.category) : true;
+	// 	}
+	// 	this.proficiency = new Proficiency(proficiency, hasProf ? 1 : 0);
+	// }
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Socket Event Handlers                    */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_onCreate(data, options, userId) {
+		super._onCreate(data, options, userId);
+		if ( (userId !== game.user.id) || !this.actor ) return;
+		this.actor.update({[`system.items.${this.parent.id}.equipped`]: true});
 	}
 }

@@ -341,7 +341,9 @@ preLocalize("senses", { sort: true });
  * @property {object[]} types - Set of filters for object types that should appear in this section.
  * @property {object[]} create - Create controls presented. If not provided, controls will be generated for each type.
  * @property {object} [primaryType] - Filters for an object that will appear as the primary item of this section.
+ * @property {string} [label] - Label to use instead of auto-generating one.
  * @property {object} [options]
+ * @property {boolean} [options.actions=true] - Should actions be displayed for items in this section?
  * @property {boolean} [options.autoHide=false] - Should this section be hidden unless it has items?
  * @property {boolean} [options.equippable=false] - Should the items in this section be equippable?
  * @property {string} [options.limited] - An item type here will limit the amount of items of that type can appear
@@ -458,7 +460,8 @@ export const sheetSections = {
 				{type: "armor"}, {type: "gear"}
 			],
 			create: [],
-			label: "EH.Vehicle.Cargo"
+			label: "EH.Vehicle.Cargo",
+			options: { actions: false }
 		}
 	]
 };

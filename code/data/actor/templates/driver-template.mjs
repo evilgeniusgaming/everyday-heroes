@@ -37,7 +37,7 @@ export default class DriverTemplate extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareFinalVehicle() {
-		if ( !this.vehicle.isDriver ) return;
+		if ( !this.vehicle.isDriver || !this.vehicle.actor?.system._prepared ) return;
 		this.vehicle.actor?.system.prepareFinalData();
 		this.vehicle.actor?.render();
 	}

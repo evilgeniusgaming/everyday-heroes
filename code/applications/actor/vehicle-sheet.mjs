@@ -87,6 +87,15 @@ export default class VehicleSheet extends BaseActorSheet {
 			if ( !actor ) continue;
 			const ctx = context.personContext[actor.id] ??= {};
 			ctx.isDriver = actor === context.actor.system.details.driver;
+			ctx.weapons = context.contents.vehicleWeapon.items.reduce((arr, weapon) => {
+				arr.push({
+					id: weapon.id,
+					name: weapon.name,
+					disabled: weapon.system.user && weapon.system.user !== actor
+				});
+				if ( weapon.system.user === actor ) ctx.crewedWeapon = weapon.id;
+				return arr;
+			}, []);
 			context.people[ctx.isDriver ? "driver" : "passengers"].actors.push(actor);
 		}
 	}
@@ -138,10 +147,32 @@ export default class VehicleSheet extends BaseActorSheet {
 		super.activateListeners(jQuery);
 		const html = jQuery[0];
 
+		// Weapon Crewling Listeners
+		for ( const element of html.querySelectorAll('[name="crewWeapon"]') ) {
+			element.addEventListener("change", this._onCrewAction.bind(this));
+		}
+
 		// Person Action Listeners
 		for ( const element of html.querySelectorAll('[data-action="person"]') ) {
 			element.addEventListener("click", this._onPersonAction.bind(this));
 		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Handle changing the crewing of the vehicle's weapons.
+	 * @param {Event} event - Triggering change event.
+	 */
+	async _onCrewAction(event) {
+		event.preventDefault();
+		const person = this.actor.system.people.get(event.target.closest("[data-actor-id]").dataset.actorId)?.actor;
+		const currentWeapon = this.actor.items.find(i => i.system.actor === person);
+		const newWeapon = this.actor.items.get(event.target.value);
+		const updates = {};
+		if ( currentWeapon ) updates[`system.items.${currentWeapon.id}.crewMember`] = null;
+		if ( newWeapon ) updates[`system.items.${newWeapon.id}.crewMember`] = person.id;
+		this.actor.update(updates);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

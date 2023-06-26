@@ -1,5 +1,5 @@
 import { numberFormat } from "../../utils.mjs";
-import SystemDataModel from "../abstract/system-data-model.mjs";
+import ItemDataModel from "../abstract/item-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import AttackTemplate from "./templates/attack-template.mjs";
 import DamageTemplate from "./templates/damage-template.mjs";
@@ -30,7 +30,7 @@ import TypedTemplate from "./templates/typed-template.mjs";
  * @property {object} overrides
  * @property {string} overrides.ability.dc - Ability used when determining the DC of this explosive.
  */
-export default class ExplosiveData extends SystemDataModel.mixin(
+export default class ExplosiveData extends ItemDataModel.mixin(
 	AttackTemplate, DamageTemplate, DescribedTemplate, EquipmentTemplate, PhysicalTemplate, TypedTemplate
 ) {
 
@@ -163,13 +163,5 @@ export default class ExplosiveData extends SystemDataModel.mixin(
 
 	prepareFinalDC() {
 		this.dc = this._source.dc || 8 + this.attackMod;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Socket Event Handlers                    */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	async _preCreate(data, options, user) {
-		if ( this.parent.parent?.type === "npc" ) this.parent.updateSource({type: "npcExplosive"});
 	}
 }

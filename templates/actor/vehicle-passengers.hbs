@@ -12,6 +12,15 @@
 						{{actor.name}}
 					</h4>
 					<div>
+						<select name="crewWeapon">
+							{{#select ctx.crewedWeapon}}
+								<option value="">No Weapon</option>
+								{{#each ctx.weapons}}
+									<option value="{{this.id}}" {{disabled this.disabled}}>{{this.name}}</option>
+								{{/each}}
+							{{/select}}
+						</select>
+					</div>
 					<fieldset>
 						{{#if (and @root.editable item.system.isEquippable)}}
 							<a class="{{#if item.isEquipped}}equipped{{else}}unequipped{{/if}}" data-action="item" data-type="equip"

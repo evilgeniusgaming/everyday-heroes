@@ -103,7 +103,7 @@ export default class ArmorData extends ItemDataModel.mixin(
 	 */
 	get armorSaveMod() {
 		return (Number.isNumeric(this.proficiency?.term) ? this.proficiency.flat : 0)
-			+ simplifyBonus(this.bonuses.save, this.parent?.getRollData() ?? {});
+			+ simplifyBonus(this.bonuses.save, this.getRollData());
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -139,7 +139,7 @@ export default class ArmorData extends ItemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get isEquippable() {
-		return this.parent?.actor?.type !== "npc";
+		return this.actor?.type === "hero";
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -158,11 +158,11 @@ export default class ArmorData extends ItemDataModel.mixin(
 
 	prepareFinalArmorProficiency() {
 		if ( this.proficiency.hasProficiency ) return;
-		if ( this.parent.actor?.system.overrides?.ability?.saveProficiency?.multiplier ) {
+		if ( this.user?.system.overrides?.ability?.saveProficiency?.multiplier ) {
 			this.proficiency = new Proficiency(
-				this.parent.actor.system.attributes?.prof ?? 0,
-				this.parent.actor.system.overrides.ability.saveProficiency.multiplier,
-				this.parent.actor.system.overrides.ability.saveProficiency.rounding
+				this.user.system.attributes?.prof ?? 0,
+				this.user.system.overrides.ability.saveProficiency.multiplier,
+				this.user.system.overrides.ability.saveProficiency.rounding
 			);
 		}
 	}

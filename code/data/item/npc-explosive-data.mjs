@@ -101,7 +101,7 @@ export default class NPCExplosiveData extends ExplosiveData {
 		// Effect
 		if ( this.description.chat ) {
 			description += ` <p><em>Effect:</em> ${await TextEditor.enrichHTML(this.description.chat ?? "", {
-				secrets: this.parent.isOwner, rollData: this.parent.getRollData(), async: true, relativeTo: this.parent
+				secrets: this.parent.isOwner, rollData: this.getRollData(), async: true, relativeTo: this.parent
 			})}</p>`;
 		}
 
@@ -123,13 +123,5 @@ export default class NPCExplosiveData extends ExplosiveData {
 
 		if ( actions.length ) label += ` (${listFormatter.format(actions)})`;
 		return label;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Socket Event Handlers                    */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	async _preCreate(data, options, user) {
-		if ( this.parent.parent && this.parent.parent?.type !== "npc" ) this.parent.updateSource({type: "explosive"});
 	}
 }

@@ -164,7 +164,7 @@ export default class NPCWeaponData extends WeaponData {
 		else description += "</p>";
 
 		return await TextEditor.enrichHTML(description, {
-			secrets: this.parent.isOwner, rollData: this.parent.getRollData(), async: true, relativeTo: this.parent
+			secrets: this.parent.isOwner, rollData: this.getRollData(), async: true, relativeTo: this.parent
 		});
 	}
 
