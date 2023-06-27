@@ -56,6 +56,8 @@ export default class VehicleSheet extends BaseActorSheet {
 				context.ammunitionTypes[item.system.type.value] ??= {};
 				context.ammunitionTypes[item.system.type.value][item.id] = item;
 			}
+			const ctx = context.itemContext[item.id] ??= {};
+			ctx.hideActions = !item.system.user;
 		};
 
 		await this._prepareItemSections(context, callback);
@@ -167,7 +169,7 @@ export default class VehicleSheet extends BaseActorSheet {
 	async _onCrewAction(event) {
 		event.preventDefault();
 		const person = this.actor.system.people.get(event.target.closest("[data-actor-id]").dataset.actorId)?.actor;
-		const currentWeapon = this.actor.items.find(i => i.system.actor === person);
+		const currentWeapon = this.actor.items.find(i => i.system.user === person);
 		const newWeapon = this.actor.items.get(event.target.value);
 		const updates = {};
 		if ( currentWeapon ) updates[`system.items.${currentWeapon.id}.crewMember`] = null;

@@ -192,19 +192,14 @@ export default class VehicleData extends SystemDataModel {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	prepareBaseFlag() {
-		// Set a flag to indicate that base preparation has been performed
-		Object.defineProperty(this, "_prepared", {
-			value: true,
-			enumerable: false,
-			configurable: false
-		});
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
 	prepareBasePeople() {
-		this.people = new Collection(this.people.filter(p => p.actor).map(p => [p.actor.id, p]));
+		const people = [];
+		for ( const person of this.people ) {
+			if ( !person.actor ) continue;
+			person.actor.linked[this.parent.uuid] = this.parent;
+			people.push([person.actor.id, person]);
+		}
+		this.people = new Collection(people);
 		if ( !this.people.get(this._source.details.driver) ) {
 			Object.defineProperty(this.details, "driver", { value: null, configurable: true });
 		}
@@ -213,16 +208,39 @@ export default class VehicleData extends SystemDataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedAbilities() {
+		const rollData = this.details.driver?.getRollData({deterministic: true}) ?? {};
 		for ( const [key, ability] of Object.entries(this.abilities) ) {
 			ability._source = this._source.abilities?.[key] ?? {};
-			ability._baseMod = ability.mod;
+			if ( !this.details.driver ) continue;
+			const driverBonus = simplifyBonus(this.details.driver.system.vehicle?.bonuses.ability[key] ?? "", rollData);
+			ability.mod += driverBonus;
+			if ( key === "str" && this.traits.properties.has("musclePowered") ) {
+				ability.mod += this.details.driver.system.abilities?.str?.mod ?? 0;
+			}
 		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedArmorValue() {
-		this.attributes.armor._baseWindowsTires = 1;
+		const armor = this.attributes.armor;
+		if ( this.traits.properties.has("bulletproof") ) armor.windowsTires += 2;
+		armor.label = `${numberFormat(armor.value)} (${game.i18n.format(
+			"EH.Vehicle.Trait.ArmorValue.WindowsTires.LabelSpecific", { number: numberFormat(armor.windowsTires) }
+		)})`;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedDefense() {
+		const rollData = this.parent.getRollData({deterministic: true});
+		const bonus = simplifyBonus(this.attributes.defense.bonus, rollData);
+		if ( this.attributes.speed.category === "stopped" || ((this.driverSkill?.proficiency.multiplier ?? 0) < 1 ) ) {
+			this.attributes.defense.value = 5 + bonus;
+		} else {
+			const value = Math.min(this.abilities.dex?.mod ?? Infinity, this.driverSkill?.mod ?? Infinity);
+			this.attributes.defense.value = 10 + (Number.isFinite(value) ? value : 0);
+		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -261,43 +279,6 @@ export default class VehicleData extends SystemDataModel {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	prepareFinalAbilities() {
-		if ( !this.details.driver ) return;
-		const rollData = this.details.driver.getRollData({deterministic: true});
-		for ( const [key, ability] of Object.entries(this.abilities) ) {
-			const driverBonus = simplifyBonus(this.details.driver.system.vehicle?.bonuses.ability[key] ?? "", rollData);
-			ability.mod = ability._baseMod + driverBonus;
-			if ( key === "str" && this.traits.properties.has("musclePowered") ) {
-				ability.mod += this.details.driver.system.abilities?.str?.mod ?? 0;
-			}
-		}
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	prepareFinalArmorValue() {
-		const armor = this.attributes.armor;
-		if ( this.traits.properties.has("bulletproof") ) armor.windowsTires = armor._baseWindowsTires + 2;
-		armor.label = `${numberFormat(armor.value)} (${game.i18n.format(
-			"EH.Vehicle.Trait.ArmorValue.WindowsTires.LabelSpecific", { number: numberFormat(armor.windowsTires) }
-		)})`;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	prepareFinalDefense() {
-		const rollData = this.parent.getRollData({deterministic: true});
-		const bonus = simplifyBonus(this.attributes.defense.bonus, rollData);
-		if ( this.attributes.speed.category === "stopped" || ((this.driverSkill?.proficiency.multiplier ?? 0) < 1 ) ) {
-			this.attributes.defense.value = 5 + bonus;
-		} else {
-			const value = Math.min(this.abilities.dex?.mod ?? Infinity, this.driverSkill?.mod ?? Infinity);
-			this.attributes.defense.value = 10 + (Number.isFinite(value) ? value : 0);
-		}
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Helpers                                  */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -314,9 +295,9 @@ export default class VehicleData extends SystemDataModel {
 		if ( actor.pack || this.parent.pack ) throw new Error(game.i18n.localize("EH.Vehicle.Error.NoPacks"));
 		if ( this.people.get(actor.id) ) return;
 
-		// Ensure the person isn't already in another vehicle
+		// Ensure the person isn't already in another vehicle, only if the actor's token is linked
 		const otherVehicle = actor.system.vehicle?.actor;
-		if ( otherVehicle && otherVehicle !== this.parent ) {
+		if ( actor.prototypeToken.actorLink && otherVehicle && (otherVehicle !== this.parent) ) {
 			try {
 				await new Promise((resolve, reject) => {
 					new Dialog({
@@ -385,6 +366,7 @@ export default class VehicleData extends SystemDataModel {
 		const updates = { "system.people": peopleCollection };
 		if ( this.details.driver === actor ) updates["system.details.driver"] = null;
 		await this.parent.update(updates);
+		delete actor.linked[this.parent.uuid];
 		if ( actor.system.vehicle?.actor === this.parent ) await actor.update({"system.vehicle.actor": null});
 	}
 
@@ -686,6 +668,13 @@ export default class VehicleData extends SystemDataModel {
 	/*  Socket Event Handlers                    */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	async _preCreate(data, options, user) {
+		if ( !data.prototypeToken ) this.parent.updateSource({prototypeToken: {actorLink: true, disposition: 0}});
+		if ( !options.keepEmbeddedId ) this.parent.updateSource({"system.details.driver": null, "system.people": []});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	async _preUpdate(changed, options, user) {
 		const newSize = foundry.utils.getProperty(changed, "system.traits.size");
 		if ( (newSize === this.traits.size)
@@ -695,19 +684,5 @@ export default class VehicleData extends SystemDataModel {
 		changed.prototypeToken ??= {};
 		changed.prototypeToken.width = size;
 		changed.prototypeToken.height = size;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	async _preCreate(data, options, user) {
-		if ( options.keepEmbeddedId ) return;
-		this.parent.updateSource({"system.details.driver": null, "system.people": []});
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	_onUpdate(changes, options, user) {
-		super._onUpdate(changes, options, user);
-		if ( !this.shouldPrepareFinalData ) this.prepareFinalData();
 	}
 }

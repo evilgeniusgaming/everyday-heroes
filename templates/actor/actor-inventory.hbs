@@ -64,7 +64,7 @@
 						<a data-action="item" data-type="expand">{{item.name}}</a>
 					</h4>
 					<div>
-						{{#unless (eq section.options.actions false)}}
+						{{#unless (or ctx.hideActions (eq section.options.actions false))}}
 							<div class="item-modes">
 								{{#if item.system.modes}}
 									<nav class="skewed">

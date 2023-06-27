@@ -26,6 +26,7 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 *
 	 * @typedef {object} SystemDataMetadata
 	 * @property {string} type - Name of type to which this system data model belongs.
+	 * @property {string} [module] - For module-defined types, which module provides this type.
 	 * @property {string} [category] - Which category in the create item dialog should this Document be listed?
 	 * @property {string} localization - Base localization key for this type. This should be a localization key that
 	 *                                   accepts plural types (e.g. `EH.Item.Type.Weapon` becomes
@@ -200,10 +201,11 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 * Helper method to get all enumerable methods, inherited or own, for this class.
 	 * @param {object} options
 	 * @param {string} [options.startingWith] - Optional filtering string.
+	 * @param {string} [options.notEndingWith] - Exclude any method that ends with this suffix.
 	 * @param {boolean} [options.prototype=true] - Whether the prototype should be checked or the class.
 	 * @returns {string[]} - Array of method keys.
 	 */
-	static _getMethods({ startingWith, prototype=true }) {
+	static _getMethods({ startingWith, notEndingWith, prototype=true }) {
 		let keys = [];
 		for ( const key in (prototype ? this.prototype : this) ) { keys.push(key); }
 		for ( let cls of [this, ...foundry.utils.getParentClasses(this)].reverse() ) {
@@ -212,6 +214,7 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 			keys.push(...Object.getOwnPropertyNames(cls));
 		}
 		if ( startingWith ) keys = keys.filter(key => key.startsWith(startingWith));
+		if ( notEndingWith ) keys = keys.filter(key => !key.endsWith(notEndingWith));
 		return keys;
 	}
 
@@ -220,20 +223,8 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	static migrateData(source) {
-		this._getMethods({ startingWith: "migrate", prototype: false }).forEach(k => this[k](source));
+		this._getMethods({ startingWith: "migrate", notEndingWith: "Data", prototype: false }).forEach(k => this[k](source));
 		return super.migrateData(source);
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Properties                               */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Should this Document run final data preparation on its own, or wait for another Document to call those methods?
-	 * @type {boolean}
-	 */
-	get shouldPrepareFinalData() {
-		return !this.parent?.isEmbedded;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -244,7 +235,7 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 * Prepare data related to this DataModel itself, before any embedded Documents or derived data is computed.
 	 */
 	prepareBaseData() {
-		this.constructor._getMethods({ startingWith: "prepareBase" }).forEach(k => this[k]());
+		this.constructor._getMethods({ startingWith: "prepareBase", notEndingWith: "Data" }).forEach(k => this[k]());
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -254,8 +245,7 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 * but before active effects are applied.
 	 */
 	prepareEmbeddedData() {
-		this.constructor._getMethods({ startingWith: "prepareEmbedded" })
-			.forEach(k => this[k]());
+		this.constructor._getMethods({ startingWith: "prepareEmbedded", notEndingWith: "Data" }).forEach(k => this[k]());
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -264,18 +254,7 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 * Apply transformations or derivations to the values of the source data object.
 	 */
 	prepareDerivedData() {
-		this.constructor._getMethods({ startingWith: "prepareDerived" }).forEach(k => this[k]());
-		if ( this.shouldPrepareFinalData ) this.prepareFinalData();
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Final data preparation steps performed on Items after parent actor has been fully prepared.
-	 */
-	prepareFinalData() {
-		this.constructor._getMethods({ startingWith: "prepareFinal" })
-			.forEach(k => this[k]());
+		this.constructor._getMethods({ startingWith: "prepareDerived", notEndingWith: "Data" }).forEach(k => this[k]());
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

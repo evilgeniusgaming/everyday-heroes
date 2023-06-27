@@ -7,6 +7,23 @@ import Proficiency from "./proficiency.mjs";
  * Extended version of `Actor` class to support Everyday Heroes features.
  */
 export default class ActorEH extends Actor {
+	constructor(data, context) {
+		super(data, context);
+
+		/**
+		 * A collection of Document instances which should be reset whenever this document is updated.
+		 * The keys of this object are the document UUIDs and the values are the and the Document instances.
+		 * Each Document in this object will have its reset method called after prepareDerivedData.
+		 * Care must be taken when registering items here to avoid infinite loops.
+		 * @type {Object<Document>}
+		 */
+		Object.defineProperty(this, "linked", {
+			value: {},
+			configurable: false,
+			writable: false,
+			enumerable: false
+		});
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
@@ -34,6 +51,12 @@ export default class ActorEH extends Actor {
 
 	prepareDerivedData() {
 		if ( game.release.generation < 11 ) this.system.prepareDerivedData?.();
+		for ( const doc of Object.values(this.linked ?? {}) ) {
+			// TODO: Shouldn't need to check that this exists, but somehow this method is being called before the
+			// constructor on synthetic actors from tokens. Possibly fixed with the new setup in v11.
+			doc.reset();
+			doc._sheet?.render();
+		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -4,6 +4,12 @@ import MappingField from "../../fields/mapping-field.mjs";
 /**
  * Data model template for actors that can drive vehicles.
  * @mixin
+ *
+ * @property {object} vehicle
+ * @property {ActorEH} vehicle.actor - Vehicle this person is currently driving.
+ * @property {object} vehicle.bonuses
+ * @property {object} vehicle.bonuses.ability - Bonuses to individual abilities.
+ * @property {object} vehicle.bonuses.roll - Bonuses to specific vehicle rolls.
  */
 export default class DriverTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {
@@ -32,13 +38,5 @@ export default class DriverTemplate extends foundry.abstract.DataModel {
 
 	prepareBaseVehicle() {
 		this.vehicle.isDriver = this.vehicle.actor?.system.details.driver === this.parent;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	prepareFinalVehicle() {
-		if ( !this.vehicle.isDriver || !this.vehicle.actor?.system._prepared ) return;
-		this.vehicle.actor?.system.prepareFinalData();
-		this.vehicle.actor?.render();
 	}
 }
