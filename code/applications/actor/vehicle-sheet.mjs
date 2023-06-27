@@ -149,7 +149,7 @@ export default class VehicleSheet extends BaseActorSheet {
 		super.activateListeners(jQuery);
 		const html = jQuery[0];
 
-		// Weapon Crewling Listeners
+		// Weapon Crewing Listeners
 		for ( const element of html.querySelectorAll('[name="crewWeapon"]') ) {
 			element.addEventListener("change", this._onCrewAction.bind(this));
 		}
@@ -168,13 +168,10 @@ export default class VehicleSheet extends BaseActorSheet {
 	 */
 	async _onCrewAction(event) {
 		event.preventDefault();
-		const person = this.actor.system.people.get(event.target.closest("[data-actor-id]").dataset.actorId)?.actor;
-		const currentWeapon = this.actor.items.find(i => i.system.user === person);
-		const newWeapon = this.actor.items.get(event.target.value);
-		const updates = {};
-		if ( currentWeapon ) updates[`system.items.${currentWeapon.id}.crewMember`] = null;
-		if ( newWeapon ) updates[`system.items.${newWeapon.id}.crewMember`] = person.id;
-		this.actor.update(updates);
+		this.actor.system.crewWeapon(
+			this.actor.system.people.get(event.target.closest("[data-actor-id]").dataset.actorId)?.actor,
+			this.actor.items.get(event.target.value)
+		);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

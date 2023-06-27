@@ -57,21 +57,6 @@ export default class VehicleWeaponData extends WeaponData {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Data Preparation                         */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	// prepareDerivedProficiency() {
-	// 	let proficiency = 0;
-	// 	let hasProf = false;
-	// 	if ( this.equipped && this.actor ) {
-	// 		proficiency = this.actor.system.attributes?.prof ?? 0;
-	// 		hasProf = this.actor.system.traits?.equipment
-	// 			? this.actor.system.traits.equipment.has(this.type.category) : true;
-	// 	}
-	// 	this.proficiency = new Proficiency(proficiency, hasProf ? 1 : 0);
-	// }
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Socket Event Handlers                    */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

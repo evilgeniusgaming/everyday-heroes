@@ -10,12 +10,6 @@ export default class ItemEH extends Item {
 	/*  Properties                               */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	get actor() {
-		return this.system.actor !== undefined ? this.system.actor : super.actor;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
 	/**
 	 * Can armor saving throws be performed by this item?
 	 * @type {boolean}

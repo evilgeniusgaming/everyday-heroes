@@ -198,6 +198,12 @@ export default class VehicleData extends SystemDataModel {
 			if ( !person.actor ) continue;
 			person.actor.linked[this.parent.uuid] = this.parent;
 			people.push([person.actor.id, person]);
+			Object.defineProperty(person, "weapon", {
+				get: () => this.parent.items.get(
+					Object.entries(this.items).find(([k, v]) => v.crewMember === person.actor.id)[0]
+				),
+				configurable: true
+			});
 		}
 		this.people = new Collection(people);
 		if ( !this.people.get(this._source.details.driver) ) {
@@ -351,6 +357,21 @@ export default class VehicleData extends SystemDataModel {
 		if ( driver ) updates["system.details.driver"] = actor.id;
 		await this.parent.update(updates);
 		await actor.update({"system.vehicle.actor": this.parent.id});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Assign a crew member to a integrated vehicle weapon.
+	 * @param {ActorEH} actor - Crew member whose assignment should be modified.
+	 * @param {ItemEH} [weapon] - Weapon to assign, or nothing to un-assign the crew member from any weapon.
+	 */
+	async crewWeapon(actor, weapon) {
+		const updates = {};
+		const currentWeapon = this.people.get(actor.id).weapon;
+		if ( currentWeapon ) updates[`system.items.${currentWeapon.id}.crewMember`] = null;
+		if ( weapon ) updates[`system.items.${weapon.id}.crewMember`] = actor.id;
+		this.parent.update(updates);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
