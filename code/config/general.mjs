@@ -14,6 +14,13 @@ import { preLocalize } from "./utils.mjs";
  * @property {string} hint - Localizable hint.
  */
 
+/**
+ * Configuration data for actor & item categories.
+ *
+ * @typedef {LabeledConfiguration} CategoryConfiguration
+ * @property {string[]} types - Types of items that will appear in this category and use its sheet.
+ */
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Action Economy                           */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

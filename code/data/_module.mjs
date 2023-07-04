@@ -17,6 +17,9 @@ export {default as SupplementalDamageData} from "./shared/supplemental-damage-da
  */
 export function registerDataModels(documentType, models, module) {
 	const config = CONFIG[documentType];
+	config.categories = CONFIG.EverydayHeroes[
+		`${documentType.charAt(0).toLowerCase()}${documentType.slice(1)}Categories`
+	];
 	config.typeLabelsPlural ??= {};
 	for ( let [type, model] of Object.entries(models) ) {
 		if ( model.metadata.module ) type = `${model.metadata.module}.${type}`;
@@ -24,9 +27,9 @@ export function registerDataModels(documentType, models, module) {
 		config.typeLabels[type] = `${model.metadata.localization}[one]`;
 		config.typeLabelsPlural[type] = `${model.metadata.localization}[other]`;
 		if ( model.metadata.icon ) config.typeIcons[type] = model.metadata.icon;
-		if ( documentType === "Item" && model.metadata.category ) {
-			const types = CONFIG.EverydayHeroes.itemCategories[model.metadata.category].types;
-			if ( !types.includes(type) ) insertBetween(types, type, model.metadata.categoryPosition );
+		if ( config.categories?.[model.metadata.category] ) {
+			const types = config.categories[model.metadata.category].types;
+			if ( !types.includes(type) ) insertBetween(types, type, model.metadata.categoryPosition);
 		}
 	}
 }

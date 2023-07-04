@@ -102,15 +102,8 @@ preLocalize("recoveryPeriods", { keys: ["label", "abbreviation"] });
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
- * Configuration data for item categories.
- *
- * @typedef {LabeledConfiguration} ItemCategoryConfiguration
- * @property {string[]} types - Types of items that will appear in this category and use its sheet.
- */
-
-/**
  * Broad item categories and which types belong within them.
- * @enum {ItemCategoryConfiguration}
+ * @enum {CategoryConfiguration}
  */
 export const itemCategories = {
 	concept: {

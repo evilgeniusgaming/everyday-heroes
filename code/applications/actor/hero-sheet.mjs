@@ -64,8 +64,8 @@ export default class HeroSheet extends BaseActorSheet {
 
 		const callback = (item, section) => {
 			if ( ["ammunition", "explosive"].includes(item.type) ) {
-				ammunitionTypes[item.system.type.value] ??= {};
-				ammunitionTypes[item.system.type.value][item.id] = item;
+				context.ammunitionTypes[item.system.type.value] ??= {};
+				context.ammunitionTypes[item.system.type.value][item.id] = item;
 			}
 		};
 

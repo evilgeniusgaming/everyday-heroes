@@ -1,6 +1,28 @@
 import { preLocalize } from "./utils.mjs";
 
 /**
+ * Broad actor categories and which types belong within them.
+ * @enum {CategoryConfiguration}
+ */
+export const actorCategories = {
+	people: {
+		label: "EH.Actor.Category.People.Label",
+		types: ["hero", "npc"]
+	},
+	// places: {
+	// 	label: "EH.Actor.Category.Places.Label",
+	// 	types: []
+	// },
+	things: {
+		label: "EH.Actor.Category.Things.Label",
+		types: ["vehicle"]
+	}
+};
+preLocalize("actorCategories", { key: "label" });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Configuration data for abilities.
  *
  * @typedef {LabeledConfiguration} AbilityConfiguration

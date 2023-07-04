@@ -65,6 +65,9 @@
 "Activation.Condition.Label": "Activation Condition",
 "Activation.Cost.Label": "Activation Cost",
 
+"Actor.Category.People.Label": "People",
+"Actor.Category.Places.Label": "Places",
+"Actor.Category.Things.Label": "Things",
 "Actor.Type.Hero[one]": "Hero",
 "Actor.Type.Hero[other]": "Heroes",
 "Actor.Type.NPC[one]": "Non-Player Character",
