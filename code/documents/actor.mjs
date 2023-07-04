@@ -225,7 +225,7 @@ export default class ActorEH extends Actor {
 	_getRestHitDiceRecovery(config={}, result={}) {
 		if ( config.type !== "long" ) return;
 		const hd = this.system.attributes.hd;
-		const final = Math.clamped(hd.spent - Math.floor(hd.max * hd.recovery), 0, hd.max);
+		const final = Math.clamped(hd.spent - Math.ceil(hd.max * hd.recovery), 0, hd.max);
 		foundry.utils.mergeObject(result, {
 			deltas: {
 				hitDice: (result.deltas?.hitDice ?? 0) + hd.spent - final
