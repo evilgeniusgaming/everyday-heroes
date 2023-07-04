@@ -85,7 +85,7 @@ export default class VehicleSheet extends BaseActorSheet {
 		};
 		context.personContext = {};
 		for ( const person of context.actor.system.people.contents.sort((lhs, rhs) => lhs.sort - rhs.sort) ) {
-			const actor = person.actor;
+			const actor = person.document;
 			if ( !actor ) continue;
 			const ctx = context.personContext[actor.id] ??= {};
 			ctx.isDriver = actor === context.actor.system.details.driver;
@@ -169,7 +169,7 @@ export default class VehicleSheet extends BaseActorSheet {
 	async _onCrewAction(event) {
 		event.preventDefault();
 		this.actor.system.crewWeapon(
-			this.actor.system.people.get(event.target.closest("[data-actor-id]").dataset.actorId)?.actor,
+			this.actor.system.people.get(event.target.closest("[data-actor-id]").dataset.actorId)?.document,
 			this.actor.items.get(event.target.value)
 		);
 	}
@@ -185,7 +185,7 @@ export default class VehicleSheet extends BaseActorSheet {
 		event.preventDefault();
 		const container = event.currentTarget.closest("[data-actor-id]");
 		const id = container?.dataset.actorId;
-		const actor = id ? this.actor.system.people.get(id)?.actor : null;
+		const actor = id ? this.actor.system.people.get(id)?.document : null;
 		if ( !actor ) return;
 		const { type } = event.currentTarget.dataset;
 		switch (type) {
@@ -213,7 +213,7 @@ export default class VehicleSheet extends BaseActorSheet {
 		if ( event.target.classList.contains("content-link") ) return;
 		const actorId = event.currentTarget.dataset.actorId;
 		if ( !actorId ) return super._onDragStart(event);
-		const actor = this.actor.system.people.get(actorId).actor;
+		const actor = this.actor.system.people.get(actorId).document;
 		if ( !actor ) return;
 		event.dataTransfer.setData("text/plain", JSON.stringify(actor.toDragData()));
 	}
@@ -268,17 +268,16 @@ export default class VehicleSheet extends BaseActorSheet {
 	_onSortActor(event, actor) {
 		const source = this.actor.system.people.get(actor.id);
 		const target = this.actor.system.people.get(event.target.closest("[data-actor-id]")?.dataset.actorId);
-		if ( !target?.actor || (source.actor.id === target.actor.id) ) return;
-		const siblings = this.actor.system.people.filter(s => s.actor?.id !== source.actor.id);
+		if ( !target?.document || (source.document.id === target.document.id) ) return;
+		const siblings = this.actor.system.people.filter(s => s.document?.id !== source.document.id);
 
 		// Perform the sort
-		const peopleCollection = this.actor.system.toObject().people;
+		const updates = {};
 		SortingHelpers.performIntegerSort(source, {target, siblings}).forEach(update => {
-			const target = peopleCollection.find(p => p.actor === update.target.actor.id);
-			if ( target ) target.sort = update.update.sort;
+			updates[`system.people.${update.target.document.id}.sort`] = update.update.sort;
 		});
 
-		this.actor.update({"system.people": peopleCollection});
+		this.actor.update(updates);
 	}
 
 }

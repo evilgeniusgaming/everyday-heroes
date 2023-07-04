@@ -53,7 +53,7 @@ export default class VehicleWeaponData extends WeaponData {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get user() {
-		return this.actor?.system.people?.get?.(this.actorContext?.crewMember)?.actor ?? null;
+		return this.actor?.system.people?.get?.(this.actorContext?.crewMember)?.document ?? null;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

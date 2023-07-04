@@ -1,6 +1,7 @@
 import { buildRoll } from "../../dice/utils.mjs";
 import { numberFormat, simplifyBonus } from "../../utils.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
+import DocumentContextField from "../fields/document-context-field.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 
@@ -62,8 +63,8 @@ import MappingField from "../fields/mapping-field.mjs";
  * @property {number} details.passengers.min - Minimum passenger range.
  * @property {number} details.passengers.max - Maximum number of passengers.
  * @property {number} details.price - Price value.
- * @property {VehicleItemData[]} items - Configuration data for embedded items.
- * @property {VehiclePersonData[]} people - All people currently in the vehicle.
+ * @property {Object<VehicleItemData>} items - Configuration data for embedded items.
+ * @property {Object<VehiclePersonData>} people - All people currently in the vehicle.
  * @property {object} traits
  * @property {object} traits.properties - Properties of this vehicle.
  * @property {string} traits.size - Size of the vehicle.
@@ -147,10 +148,9 @@ export default class VehicleData extends SystemDataModel {
 				equipped: new foundry.data.fields.BooleanField({label: ""}),
 				mode: new foundry.data.fields.StringField({required: false, initial: undefined, label: ""})
 			})),
-			people: new foundry.data.fields.ArrayField(new foundry.data.fields.SchemaField({
-				actor: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseActor, {label: ""}),
+			people: new DocumentContextField(foundry.documents.BaseActor, {
 				sort: new foundry.data.fields.IntegerSortField()
-			})),
+			}, { foreign: true }),
 			traits: new foundry.data.fields.SchemaField({
 				properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
 					label: "EH.Weapon.Property.Label"
@@ -193,19 +193,16 @@ export default class VehicleData extends SystemDataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareBasePeople() {
-		const people = [];
 		for ( const person of this.people ) {
-			if ( !person.actor ) continue;
-			person.actor.linked[this.parent.uuid] = this.parent;
-			people.push([person.actor.id, person]);
+			if ( !person.document ) continue;
+			person.document.linked[this.parent.uuid] = this.parent;
 			Object.defineProperty(person, "weapon", {
 				get: () => this.parent.items.get(
-					Object.entries(this.items).find(([k, v]) => v.crewMember === person.actor.id)[0]
+					Object.entries(this.items).find(([k, v]) => v.crewMember === person.document.id)[0]
 				),
 				configurable: true
 			});
 		}
-		this.people = new Collection(people);
 		if ( !this.people.get(this._source.details.driver) ) {
 			Object.defineProperty(this.details, "driver", { value: null, configurable: true });
 		}
@@ -351,9 +348,7 @@ export default class VehicleData extends SystemDataModel {
 
 		const sort = this.people.contents
 			.reduce((sort, p) => p.sort > sort ? p.sort : sort, 0) + CONST.SORT_INTEGER_DENSITY;
-		const peopleCollection = this.toObject().people;
-		peopleCollection.push({ actor: actor.id, sort });
-		const updates = { "system.people": peopleCollection };
+		const updates = { [`system.people.${actor.id}`]: { sort } };
 		if ( driver ) updates["system.details.driver"] = actor.id;
 		await this.parent.update(updates);
 		await actor.update({"system.vehicle.actor": this.parent.id});
@@ -382,9 +377,7 @@ export default class VehicleData extends SystemDataModel {
 	 */
 	async removePerson(actor) {
 		if ( !this.people.get(actor.id) ) throw new Error(`Actor ${actor.name} not found in the vehicle.`);
-		const peopleCollection = this.toObject().people;
-		peopleCollection.findSplice(p => p.actor === actor.id);
-		const updates = { "system.people": peopleCollection };
+		const updates = { [`system.people.-=${actor.id}`]: null };
 		if ( this.details.driver === actor ) updates["system.details.driver"] = null;
 		await this.parent.update(updates);
 		delete actor.linked[this.parent.uuid];
@@ -691,7 +684,7 @@ export default class VehicleData extends SystemDataModel {
 
 	async _preCreate(data, options, user) {
 		if ( !data.prototypeToken ) this.parent.updateSource({prototypeToken: {actorLink: true, disposition: 0}});
-		if ( !options.keepEmbeddedId ) this.parent.updateSource({"system.details.driver": null, "system.people": []});
+		if ( !options.keepEmbeddedId ) this.parent.updateSource({"system.details.driver": null, "system.people": {}});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
