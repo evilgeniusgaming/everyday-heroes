@@ -359,7 +359,7 @@
       "penetrationValue": 0,
       "damage": {
         "number": 0,
-        "die": 0
+        "denomination": 0
       },
       "bonuses": {
         "attack": "",
