@@ -23,7 +23,7 @@ export default class SizeTemplate extends foundry.abstract.DataModel {
 			get() {
 				return CONFIG.EverydayHeroes.sizes[this.size]?.titanic ?? false;
 			},
-			configurable: false,
+			configurable: true,
 			enumerable: true
 			// TODO: Maybe figure out a way to define this within the data model
 		});
