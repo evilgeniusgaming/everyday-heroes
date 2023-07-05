@@ -51,6 +51,18 @@ export default class SizeTemplate extends foundry.abstract.DataModel {
 				adjustValue("system.attributes.movement.value");
 				Object.keys(this.attributes.movement.special).forEach(k => adjustValue(`system.attributes.movement.special.${k}`));
 				foundry.utils.setProperty(changed, "system.attributes.movement.units", newIsTitanic ? "space" : "foot");
+
+				// Update all embedded weapons & explosives
+				const itemUpdates = [];
+				for ( const item of this.parent.items ) {
+					if ( foundry.utils.getType(item.system.titanicConversions) !== "function" ) continue;
+					const updates = item.system.titanicConversions(newIsTitanic);
+					if ( !foundry.utils.isEmpty(updates) ) {
+						updates._id = item.id;
+						itemUpdates.push(updates);
+					}
+				}
+				if ( itemUpdates.length ) await this.parent.updateEmbeddedDocuments("Item", itemUpdates);
 			}
 		}
 

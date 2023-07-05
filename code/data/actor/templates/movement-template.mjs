@@ -1,4 +1,4 @@
-import { numberFormat, validators } from "../../../utils.mjs";
+import { numberFormat } from "../../../utils.mjs";
 import MappingField from "../../fields/mapping-field.mjs";
 
 /**
@@ -54,22 +54,14 @@ export default class MovementTemplate extends foundry.abstract.DataModel {
 		const tags = new Set(this.attributes.movement.tags);
 		const listFormatter = new Intl.ListFormat(game.i18n.lang, { type: "unit" });
 		const tagFormatter = t => CONFIG.EverydayHeroes.movementTags[t]?.label.toLowerCase() ?? t.toLowerCase();
-
-		const isValidUnit = validators.isValidUnit(this.attributes.movement.units);
-		const pluralRules = new Intl.PluralRules(game.i18n.lang);
-		const unitFormatter = value => {
-			if ( isValidUnit ) return numberFormat(value, { unit: this.attributes.movement.units });
-			const key = `EH.Movement.Unit.${this.attributes.movement.units.capitalize()}.Label[${pluralRules.select(value)}]`;
-			if ( game.i18n.has(key) ) return `${numberFormat(value)} ${game.i18n.localize(key).toLowerCase()}`;
-			return `${numberFormat(value)} ${this.attributes.movement.units.toLowerCase()}`;
-		};
+		const opt = { unit: this.attributes.movement.units };
 
 		// Base speed
-		movements.push([this.attributes.movement.value, unitFormatter(this.attributes.movement.value)]);
+		movements.push([this.attributes.movement.value, numberFormat(this.attributes.movement.value, opt)]);
 
 		// Special speeds
 		for ( const [key, speed] of Object.entries(this.attributes.movement.special) ) {
-			let label = `${(CONFIG.EverydayHeroes.movementTypes[key] ?? key).toLowerCase()} ${unitFormatter(speed)}`;
+			let label = `${(CONFIG.EverydayHeroes.movementTypes[key] ?? key).toLowerCase()} ${numberFormat(speed, opt)}`;
 			const thisTags = tags.filter(t => CONFIG.EverydayHeroes.movementTags[t]?.associatedType === key);
 			thisTags.forEach(t => tags.delete(t));
 			if ( thisTags.size ) label += ` (${listFormatter.format(thisTags.map(t => tagFormatter(t)))})`;
@@ -82,7 +74,7 @@ export default class MovementTemplate extends foundry.abstract.DataModel {
 		// Speed reduction
 		if ( this.attributes.movement.reduction ) movements = movements.map(([speed, label]) => `${label} (${
 			game.i18n.format("EH.Speed.WithoutReduction", {
-				speed: unitFormatter(speed + this.attributes.movement.reduction),
+				speed: numberFormat(speed + this.attributes.movement.reduction, opt),
 				type: CONFIG.EverydayHeroes.armorTypes[this.attributes.movement.reductionSource].label.toLowerCase()
 			})
 		})`);

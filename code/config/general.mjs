@@ -136,7 +136,7 @@ export const lengthUnits = {
 		conversion: 1
 	},
 	mile: {
-		label: "EH.Measurement.Length.Mile.Label",
+		label: "EH.Measurement.Length.Miles.Label",
 		conversion: 5280
 	},
 	meter: {
@@ -144,7 +144,7 @@ export const lengthUnits = {
 		conversion: 3.28084
 	},
 	kilometer: {
-		label: "EH.Measurement.Length.Kilometer.Label",
+		label: "EH.Measurement.Length.Kilometers.Label",
 		conversion: 3280.84
 	}
 };

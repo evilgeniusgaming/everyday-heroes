@@ -571,7 +571,11 @@
 "Measurement.Radius.Label": "Radius",
 "Measurement.Radius.Tag": "{size} Radius",
 "Measurement.Length.Feet.Label": "Feet",
+"Measurement.Length.Kilometers.Label": "Kilometers",
 "Measurement.Length.Meters.Label": "Meters",
+"Measurement.Length.Miles.Label": "Miles",
+"Measurement.Length.Space.Label[one]": "Space",
+"Measurement.Length.Space.Label[other]": "Spaces",
 "Measurement.Speed.Mach.Label": "Mach",
 "Measurement.Speed.MilePerHour.Label": "Miles per Hour",
 "Measurement.Speed.KilometerPerHour.Label": "Kilometers per Hour",
@@ -586,8 +590,6 @@
 "Movement.Type.Fly.Label": "Fly",
 "Movement.Type.Swim.Label": "Swim",
 "Movement.Type.Walk.Label": "Walk",
-"Movement.Unit.Space.Label[one]": "Space",
-"Movement.Unit.Space.Label[other]": "Spaces",
 
 "NotApplicable.Abbreviation": "N/A",
 

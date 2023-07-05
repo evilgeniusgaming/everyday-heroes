@@ -303,6 +303,8 @@ function jsonStringify(context, options) {
  * @param {boolean} [options.sign] - Should the sign always be displayed?
  * @param {string} [options.unit] - What unit should be displayed?
  * @param {string} [options.unitDisplay] - Unit display style.
+ * @param {boolean} [options.unitFallback=false] - If unit is not a properly defined in the list of Javascript units,
+ *                                                 should the system fall back on the unit key or not display it at all?
  * @returns {string}
  */
 export function numberFormat(value, options={}) {
@@ -316,21 +318,23 @@ export function numberFormat(value, options={}) {
 		formatterOptions.minimumIntegerDigits = options.digits;
 		formatterOptions.maximumIntegerDigits = options.digits;
 	}
-	if ( options.unit ) {
+	if ( options.unit && isValidUnit(options.unit) ) {
 		formatterOptions.style = "unit";
 		formatterOptions.unit = options.unit;
 		formatterOptions.unitDisplay = options.unitDisplay;
+		options.unitFallback = false;
 	}
 
-	try {
-		const formatter = new Intl.NumberFormat(game.i18n.lang, formatterOptions);
-		return formatter.format(value);
-	} catch(error) {
-		delete formatterOptions.style;
-		delete formatterOptions.unit;
-		const formatter = new Intl.NumberFormat(game.i18n.lang, formatterOptions);
-		return `${formatter.format(value)} ${options.unit}`;
+	const formatter = new Intl.NumberFormat(game.i18n.lang, formatterOptions);
+	let formatted = formatter.format(value);
+
+	if ( options.unit && (options.unitFallback !== false) ) {
+		const pluralRules = new Intl.PluralRules(game.i18n.lang);
+		const key = `EH.Measurement.Length.${options.unit.capitalize()}.Label[${pluralRules.select(value)}]`;
+		formatted += ` ${(game.i18n.has(key) ? game.i18n.localize(key) : options.unit).toLowerCase()}`;
 	}
+
+	return formatted;
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

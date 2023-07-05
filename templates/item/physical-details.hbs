@@ -51,7 +51,7 @@
 			<label>{{localize "EH.Equipment.Trait.Radius.Label"}}</label>
 			<input type="number" name="system.radius.value" value="{{source.radius.value}}">
 			<select name="system.radius.units">
-				{{selectOptions CONFIG.lengthUnits selected=source.radius.value labelAttr="label"}}
+				{{selectOptions lengthUnits selected=source.radius.units labelAttr="label"}}
 			</select>
 			<p class="hint">{{localize "EH.Equipment.Trait.Radius.Hint"}}</p>
 		</fieldset>
@@ -63,7 +63,7 @@
 			<input type="number" name="system.range.short" value="{{source.range.short}}">
 			<input type="number" name="system.range.long" value="{{source.range.long}}">
 			<select name="system.range.units">
-				{{selectOptions CONFIG.lengthUnits selected=source.range.value labelAttr="label"}}
+				{{selectOptions lengthUnits selected=source.range.units labelAttr="label"}}
 			</select>
 		</fieldset>
 	{{/if}}

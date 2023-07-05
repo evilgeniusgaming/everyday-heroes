@@ -51,6 +51,13 @@ export default class PhysicalSheet extends BaseItemSheet {
 			});
 		}
 
+		context.lengthUnits = {};
+		const isTitanic = this.item.system.isTitanic;
+		if ( !isTitanic ) Object.assign(context.lengthUnits, CONFIG.EverydayHeroes.lengthUnits);
+		if ( (isTitanic === true) || (isTitanic === undefined) ) context.lengthUnits.space = {
+			label: game.i18n.localize("EH.Measurement.Length.Space.Label[other]")
+		};
+
 		return context;
 	}
 
