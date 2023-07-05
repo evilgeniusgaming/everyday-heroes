@@ -1,4 +1,5 @@
 import * as advancement from "../documents/advancement/_module.mjs";
+import * as itemSheet from "../applications/item/_module.mjs";
 import { preLocalize } from "./utils.mjs";
 
 
@@ -108,15 +109,30 @@ preLocalize("recoveryPeriods", { keys: ["label", "abbreviation"] });
 export const itemCategories = {
 	concept: {
 		label: "EH.Item.Category.Concept.Label",
-		types: ["archetype", "class", "background", "profession"]
+		types: ["archetype", "class", "background", "profession"],
+		sheet: {
+			application: itemSheet.ConceptSheet,
+			label: "EH.Sheet.Concept"
+		}
 	},
 	feature: {
 		label: "EH.Item.Category.Feature.Label",
-		types: ["talent", "specialFeature", "plan", "trick", "feat", "npcFeature"]
+		types: ["talent", "specialFeature", "plan", "trick", "feat", "npcFeature"],
+		sheet: {
+			application: itemSheet.FeatureSheet,
+			label: "EH.Sheet.Feature"
+		}
 	},
 	physical: {
 		label: "EH.Item.Category.Physical.Label",
-		types: ["armor", "weapon", "ammunition", "explosive", "gear", "npcWeapon", "npcExplosive", "vehicleWeapon"]
+		types: [
+			"armor", "weapon", "ammunition", "explosive", "gear", "npcWeapon", "npcExplosive",
+			"vehicleModification", "vehicleWeapon"
+		],
+		sheet: {
+			application: itemSheet.PhysicalSheet,
+			label: "EH.Sheet.Physical"
+		}
 	}
 };
 preLocalize("itemCategories", { key: "label" });
@@ -352,6 +368,9 @@ export const applicableProperties = {
 	explosive: [
 		"blinding", "deafening", "disguised", "grenade", "heavy", "illuminating", "improvised", "indirect", "loud", "restricted",
 		"special", "stunning", "thrown", "unreliable"
+	],
+	vehicleModification: [
+		"special"
 	],
 	weapon: [
 		"aquatic", "belt", "blinding", "burst", "deafening", "disguised", "finesse", "fullAuto", "grenade", "heavy",

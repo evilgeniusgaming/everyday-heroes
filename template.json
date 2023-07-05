@@ -285,6 +285,7 @@
       "specialFeature",
       "talent",
       "trick",
+      "vehicleModification",
       "vehicleWeapon",
       "weapon"
     ],
@@ -609,6 +610,12 @@
           "threshold": null
         }
       }
+    },
+    "vehicleModification": {
+      "templates": ["description", "physical"],
+      "abilities": {},
+      "armorValue": null,
+      "properties": []
     },
     "weapon": {
       "templates": ["attack", "damage", "description", "physical"],

@@ -1,3 +1,4 @@
+import VehicleSheet from "../../applications/actor/vehicle-sheet.mjs";
 import { buildRoll } from "../../dice/utils.mjs";
 import { numberFormat, simplifyBonus } from "../../utils.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
@@ -74,7 +75,11 @@ export default class VehicleData extends SystemDataModel {
 	static metadata = {
 		type: "vehicle",
 		localization: "EH.Actor.Type.Vehicle",
-		image: "systems/everyday-heroes/artwork/svg/actors/vehicle.svg"
+		image: "systems/everyday-heroes/artwork/svg/actors/vehicle.svg",
+		sheet: {
+			application: VehicleSheet,
+			label: "EH.Sheet.Vehicle"
+		}
 	};
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

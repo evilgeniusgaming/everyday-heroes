@@ -1,3 +1,4 @@
+import NPCSheet from "../../applications/actor/npc-sheet.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import MappingField from "../fields/mapping-field.mjs";
@@ -26,7 +27,11 @@ export default class NPCData extends SystemDataModel.mixin(
 		type: "npc",
 		category: "person",
 		localization: "EH.Actor.Type.NPC",
-		image: "systems/everyday-heroes/artwork/svg/actors/npc.svg"
+		image: "systems/everyday-heroes/artwork/svg/actors/npc.svg",
+		sheet: {
+			application: NPCSheet,
+			label: "EH.Sheet.NPC"
+		}
 	};
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

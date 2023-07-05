@@ -14,6 +14,7 @@ import ProfessionData from "./profession-data.mjs";
 import SpecialFeatureData from "./special-feature-data.mjs";
 import TalentData from "./talent-data.mjs";
 import TrickData from "./trick-data.mjs";
+import VehicleModificationData from "./vehicle-modification-data.mjs";
 import VehicleWeaponData from "./vehicle-weapon-data.mjs";
 import WeaponData from "./weapon-data.mjs";
 
@@ -34,6 +35,7 @@ export {
 	SpecialFeatureData,
 	TalentData,
 	TrickData,
+	VehicleModificationData,
 	VehicleWeaponData,
 	WeaponData
 };
@@ -62,6 +64,7 @@ export const config = {
 	specialFeature: SpecialFeatureData,
 	talent: TalentData,
 	trick: TrickData,
+	vehicleModification: VehicleModificationData,
 	vehicleWeapon: VehicleWeaponData,
 	weapon: WeaponData
 };

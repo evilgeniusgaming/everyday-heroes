@@ -1,43 +1,39 @@
+import { systemLog } from "../utils.mjs";
 import * as actor from "./actor/_module.mjs";
 import * as item from "./item/_module.mjs";
 import * as journal from "./journal/_module.mjs";
 
 /**
- * Register the various sheets provided by Everyday Heroes during initialization.
+ * Automatically register Document sheets using category information from config or metadata in SystemDataModels.
+ * @param {typeof Document} documentType - Type of document to register (e.g. Actor or Item).
+ * @param {Object<CategoryConfiguration>} categories - Categories to register.
  */
-export function registerSheets() {
-	DocumentSheetConfig.unregisterSheet(Actor, "core", ActorSheet);
-	DocumentSheetConfig.registerSheet(Actor, "everyday-heroes", actor.HeroSheet, {
-		types: ["hero"],
-		makeDefault: true,
-		label: "EH.Sheet.Hero"
-	});
-	DocumentSheetConfig.registerSheet(Actor, "everyday-heroes", actor.NPCSheet, {
-		types: ["npc"],
-		makeDefault: true,
-		label: "EH.Sheet.NPC"
-	});
-	DocumentSheetConfig.registerSheet(Actor, "everyday-heroes", actor.VehicleSheet, {
-		types: ["vehicle"],
-		makeDefault: true,
-		label: "EH.Sheet.Vehicle"
-	});
-	DocumentSheetConfig.unregisterSheet(Item, "core", ItemSheet);
-	DocumentSheetConfig.registerSheet(Item, "everyday-heroes", item.ConceptSheet, {
-		types: CONFIG.EverydayHeroes.itemCategories.concept.types,
-		makeDefault: true,
-		label: "EH.Sheet.Concept"
-	});
-	DocumentSheetConfig.registerSheet(Item, "everyday-heroes", item.FeatureSheet, {
-		types: CONFIG.EverydayHeroes.itemCategories.feature.types,
-		makeDefault: true,
-		label: "EH.Sheet.Feature"
-	});
-	DocumentSheetConfig.registerSheet(Item, "everyday-heroes", item.PhysicalSheet, {
-		types: CONFIG.EverydayHeroes.itemCategories.physical.types,
-		makeDefault: true,
-		label: "EH.Sheet.Physical"
-	});
+export function registerSheets(documentType, categories) {
+	systemLog(`Registering ${documentType.name} sheets`, {level: "groupCollapsed"});
+	const models = CONFIG[documentType.name][game.release.generation > 10 ? "dataModels" : "systemDataModels"];
+	const registered = new Set();
+	for ( const [key, category] of Object.entries(categories) ) {
+		if ( !category.sheet ) continue;
+		const filtered = category.types.filter(t => !models[t]?.metadata?.sheet);
+		filtered.forEach(f => registered.add(f));
+		DocumentSheetConfig.registerSheet(documentType, "everyday-heroes", category.sheet.application, {
+			types: Array.from(filtered), makeDefault: true, label: category.sheet.label
+		});
+		systemLog(`Registered ${key} sheet for: ${filtered.join(", ")}`);
+	}
+	for ( const type of new Set(Object.keys(models)).difference(registered) ) {
+		const metadata = models[type]?.metadata?.sheet;
+		if ( !metadata ) continue;
+		registered.add(type);
+		DocumentSheetConfig.registerSheet(documentType, "everyday-heroes", metadata.application, {
+			types: [type], makeDefault: true, label: metadata.label
+		});
+		systemLog(`Registered ${type} sheet`);
+	}
+	DocumentSheetConfig.unregisterSheet(
+		documentType, "core", {name: `${documentType.name}Sheet`}, {types: Array.from(registered)}
+	);
+	console.groupEnd();
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

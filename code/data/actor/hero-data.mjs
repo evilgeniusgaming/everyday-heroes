@@ -1,3 +1,4 @@
+import HeroSheet from "../../applications/actor/hero-sheet.mjs";
 import AdvancementConfirmationDialog from "../../applications/advancement/advancement-confirmation-dialog.mjs";
 import AdvancementManager from "../../applications/advancement/advancement-manager.mjs";
 import Proficiency from "../../documents/proficiency.mjs";
@@ -35,7 +36,11 @@ export default class HeroData extends SystemDataModel.mixin(
 		type: "hero",
 		category: "person",
 		localization: "EH.Actor.Type.Hero",
-		image: "systems/everyday-heroes/artwork/svg/actors/hero.svg"
+		image: "systems/everyday-heroes/artwork/svg/actors/hero.svg",
+		sheet: {
+			application: HeroSheet,
+			label: "EH.Sheet.Hero"
+		}
 	};
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

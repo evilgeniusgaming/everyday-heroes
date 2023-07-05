@@ -33,7 +33,6 @@ Hooks.once("init", function() {
 
 	game.everydayHeroes = globalThis.EverydayHeroes;
 	CONFIG.EverydayHeroes = config;
-	applications.registerSheets();
 	CONFIG.ui.combat = applications.CombatTrackerEH;
 	canvas.registerCanvas();
 	data.registerDataModels("Actor", data.actor.config);
@@ -49,6 +48,8 @@ Hooks.once("init", function() {
 
 Hooks.once("setup", function() {
 	if ( game.release.generation > 10 ) applications.compendium.setupCompendiumApps();
+	applications.registerSheets(Actor, config.actorCategories);
+	applications.registerSheets(Item, config.itemCategories);
 	settings.applyReduceTransparency();
 });
 
@@ -60,8 +61,6 @@ Hooks.once("i18nInit", function() {
 Hooks.once("ready", function() {
 	if ( game.release.generation === 10 ) applications.compendium.setupLegacyCompendiumApps();
 	config.registration.registerItemTypes();
-
-	// Perform global migrations here if necessary
 });
 
 Hooks.on("getChatLogEntryContext", documents.ChatMessageEH.getContextOptions);

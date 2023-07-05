@@ -1,0 +1,79 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+	<header>
+		<div class="image">
+			<img src="{{item.img}}" data-edit="img">
+		</div>
+		<div class="fields">
+			<fieldset class="primary">
+				<label>{{localize "Name"}}</label>
+				<input type="text" name="name" value="{{item.name}}">
+			</fieldset>
+			<fieldset>
+				<label>{{localize "EH.Item.Type.Label"}}</label>
+				<input value="{{item.typeLabel}}" disabled>
+			</fieldset>
+			<fieldset>
+				<label>{{localize "EH.Equipment.Trait.PriceLevel.Label"}}</label>
+				<input type="number" name="system.price" value="{{system.price}}">
+			</fieldset>
+		</div>
+			<nav data-group="primary">
+				<a data-tab="description">{{localize "EH.Sheet.Section.Description"}}</a>
+				<a data-tab="details">{{localize "EH.Sheet.Section.Details"}}</a>
+			</nav>
+	</header>
+
+	<main>
+		<div class="tab" data-group="primary" data-tab="description">
+			{{> "everydayHeroes.item-description"}}
+		</div>
+		<div class="tab" data-group="primary" data-tab="details">
+			<section>
+
+				<h3 class="striped">
+					<span class="left stripes"></span>
+					<span class="center">{{localize "EH.Vehicle.Modifications.Label"}}</span>
+					<span class="right stripes"></span>
+				</h3>
+
+				<fieldset>
+					<label>{{localize "EH.Ability.Label[other]"}}</label>
+					<div class="fields">
+						{{#each abilities as |ability key|}}
+							<label>
+								<span>{{ability.label}}</span>
+								<input type="text" name="system.abilities.{{key}}" value="{{ability.mod}}">
+							</label>
+						{{/each}}
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<label>{{localize "EH.Equipment.Trait.ArmorValue.Label"}}</label>
+					<input type="number" name="system.armorValue" value="{{system.armorValue}}">
+				</fieldset>
+	
+				<h3 class="striped">
+					<span class="left stripes"></span>
+					<span class="center">{{localize "EH.Equipment.Property.Label[other]"}}</span>
+					<span class="right stripes"></span>
+				</h3>
+
+				<div class="properties {{#if propertyModification}}modification{{/if}}">
+					{{#each itemProperties as |property key|}}
+						<fieldset class="{{property.value}}"{{#if property.hint}} data-tooltip="{{property.hint}}"{{/if}}>
+							<label>
+								<input type="checkbox" {{checked property.value}}>
+								<input type="hidden" name="system.properties.{{key}}" value="{{property.value}}">
+								{{property.label}}
+							</label>
+						</fieldset>
+					{{/each}}
+				</div>
+
+			</section>
+		</div>
+	</main>
+
+</form>

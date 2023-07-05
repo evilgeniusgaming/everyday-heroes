@@ -129,19 +129,19 @@ async function _registerItemType(type, indexes) {
 		registrations[identifier].sources.push(`${uuidPrefix}.${item._id}`);
 	};
 
-	systemLog(`Everyday Heroes | Registering ${type} items`, {level: "groupCollapsed"});
+	systemLog(`Registering ${type} items`, {level: "groupCollapsed"});
 	const registrations = {};
 	for ( const [pack, index] of Object.entries(indexes) ) {
 		for ( const item of index ) {
 			const dataModel = CONFIG.Item[game.release.generation > 10 ? "dataModels" : "systemDataModels"][item.type];
 			if ( dataModel?.metadata.type !== type ) continue;
-			systemLog(`Everyday Heroes | Registering ${item.name} from ${pack}`);
+			systemLog(`Registering ${item.name} from ${pack}`);
 			registerItem(item, `Compendium.${pack}`);
 		}
 	}
 	for ( const item of game.items.values() ) {
 		if ( item.system.constructor.metadata?.type !== type ) continue;
-		systemLog(`Everyday Heroes | Registering ${item.name} in world`);
+		systemLog(`Registering ${item.name} in world`);
 		registerItem(item, "Item");
 	}
 	console.groupEnd();

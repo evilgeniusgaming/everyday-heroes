@@ -12,6 +12,9 @@
 	margin-block-start: 1em;
 	margin-inline: -0.5em;
 }
+.everyday-heroes.item.sheet [data-tab="details"] h3:first-child {
+	margin-block-start: -0.5em;
+}
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Fields                                   */
