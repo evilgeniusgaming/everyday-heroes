@@ -215,6 +215,12 @@ export default class VehicleData extends SystemDataModel {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	prepareEmbeddedModifications() {
+		this.parent.itemTypes.vehicleModification.forEach(m => m.system.applyModifications(this));
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	prepareDerivedAbilities() {
 		const rollData = this.details.driver?.getRollData({deterministic: true}) ?? {};
 		for ( const [key, ability] of Object.entries(this.abilities) ) {

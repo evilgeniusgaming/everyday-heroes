@@ -44,4 +44,20 @@ export default class VehicleModificationData extends ItemDataModel.mixin(Describ
 			})
 		});
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Helpers                                  */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Apply this item's modifications to the provided vehicle's data.
+	 * @param {VehicleData} target - System data to which to apply the modifications.
+	 */
+	applyModifications(target) {
+		for ( const [key, mod] of Object.entries(this.abilities) ) {
+			if ( !mod ) continue;
+			target.abilities[key].mod += mod;
+		}
+		target.attributes.armor.value = Math.max(target.attributes.armor.value, this.armorValue);
+	}
 }

@@ -476,6 +476,11 @@ export const sheetSections = {
 		},
 		{
 			tab: "contents",
+			types: [{type: "vehicleModification"}],
+			options: { autoHide: true }
+		},
+		{
+			tab: "contents",
 			types: [
 				{type: "vehicleWeapon", "system.equipped": false},
 				{type: "ammunition"}, {type: "explosive"},
