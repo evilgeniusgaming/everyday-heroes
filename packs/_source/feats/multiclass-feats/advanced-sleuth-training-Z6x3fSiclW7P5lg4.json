@@ -86,7 +86,8 @@
           "sourceId": "Compendium.everyday-heroes.feats.89n6BZEK8HJFr9Jf.ActiveEffect.IW9751pkJcSfp9KU"
         }
       },
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!Z6x3fSiclW7P5lg4.BpLdnTQZBSW6R1sS"
     }
   ],
   "ownership": {
@@ -103,5 +104,6 @@
   },
   "folder": null,
   "sort": 0,
-  "_id": "Z6x3fSiclW7P5lg4"
+  "_id": "Z6x3fSiclW7P5lg4",
+  "_key": "!items!Z6x3fSiclW7P5lg4"
 }

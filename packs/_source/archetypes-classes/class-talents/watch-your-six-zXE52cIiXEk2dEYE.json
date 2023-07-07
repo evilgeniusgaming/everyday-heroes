@@ -58,7 +58,8 @@
       "tint": null,
       "transfer": true,
       "flags": {},
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!zXE52cIiXEk2dEYE.LoyRtVHs2K4055lr"
     }
   ],
   "ownership": {
@@ -75,5 +76,6 @@
   },
   "folder": null,
   "sort": 0,
-  "_id": "zXE52cIiXEk2dEYE"
+  "_id": "zXE52cIiXEk2dEYE",
+  "_key": "!items!zXE52cIiXEk2dEYE"
 }

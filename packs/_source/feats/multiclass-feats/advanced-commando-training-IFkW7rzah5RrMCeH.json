@@ -77,7 +77,8 @@
       "tint": null,
       "transfer": true,
       "flags": {},
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!IFkW7rzah5RrMCeH.6CzYd0iy3KfYi0YJ"
     }
   ],
   "ownership": {
@@ -94,5 +95,6 @@
   },
   "folder": null,
   "sort": 0,
-  "_id": "IFkW7rzah5RrMCeH"
+  "_id": "IFkW7rzah5RrMCeH",
+  "_key": "!items!IFkW7rzah5RrMCeH"
 }

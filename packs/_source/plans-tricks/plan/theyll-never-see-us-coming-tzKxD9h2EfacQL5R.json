@@ -56,7 +56,8 @@
       "tint": null,
       "transfer": true,
       "flags": {},
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!tzKxD9h2EfacQL5R.W6FKTDH3Nbb6HNm4"
     },
     {
       "label": "They'll Never See Us Coming (level 5)",
@@ -84,7 +85,8 @@
       "tint": null,
       "transfer": true,
       "flags": {},
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!tzKxD9h2EfacQL5R.y6majYGMRBmQWnjB"
     },
     {
       "label": "They'll Never See Us Coming (level 9)",
@@ -111,7 +113,8 @@
       "tint": null,
       "transfer": true,
       "flags": {},
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!tzKxD9h2EfacQL5R.uihJkbaVKNzTeyPM"
     }
   ],
   "ownership": {
@@ -128,5 +131,6 @@
   },
   "folder": null,
   "sort": 0,
-  "_id": "tzKxD9h2EfacQL5R"
+  "_id": "tzKxD9h2EfacQL5R",
+  "_key": "!items!tzKxD9h2EfacQL5R"
 }

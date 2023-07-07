@@ -84,7 +84,8 @@
           "sourceId": "Compendium.everyday-heroes.archetypes-classes.1u27P7JnCXi51npj.ActiveEffect.LitSHe6bUR1iUyiv"
         }
       },
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!OfSRLXjSZ6K8uiY5.aDzdbHQIwCbx9sET"
     }
   ],
   "ownership": {
@@ -101,5 +102,6 @@
   },
   "folder": null,
   "sort": 0,
-  "_id": "OfSRLXjSZ6K8uiY5"
+  "_id": "OfSRLXjSZ6K8uiY5",
+  "_key": "!items!OfSRLXjSZ6K8uiY5"
 }

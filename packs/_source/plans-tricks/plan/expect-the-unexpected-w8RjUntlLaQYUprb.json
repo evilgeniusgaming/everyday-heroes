@@ -55,7 +55,8 @@
       "tint": null,
       "transfer": true,
       "flags": {},
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!w8RjUntlLaQYUprb.KAMCi3xKUNPAOISK"
     },
     {
       "label": "Expect the Unexpected (level 5)",
@@ -83,7 +84,8 @@
       "tint": null,
       "transfer": true,
       "flags": {},
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!w8RjUntlLaQYUprb.H9QDSoZIN2woS5cr"
     },
     {
       "label": "Expect the Unexpected (level 9)",
@@ -111,7 +113,8 @@
       "tint": null,
       "transfer": true,
       "flags": {},
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!w8RjUntlLaQYUprb.vGMMbfeW0M40wgrt"
     }
   ],
   "ownership": {
@@ -128,5 +131,6 @@
   },
   "folder": null,
   "sort": 0,
-  "_id": "w8RjUntlLaQYUprb"
+  "_id": "w8RjUntlLaQYUprb",
+  "_key": "!items!w8RjUntlLaQYUprb"
 }
