@@ -4,7 +4,7 @@
   "img": "icons/environment/settlement/scarecrow.webp",
   "system": {
     "description": {
-      "value": "<p>You grew up outside the cities and among straightforward, honest folk. You learned the value of hard work and gained practical skills.</p><p><strong>Ability Score Increase:</strong> Increase your Strength or Constitution score by 1, to a maximum of 20</p><p><strong>Skill Proficiencies:</strong> Mechanics and Survival Equipment</p><p><strong>Proficiencies:</strong> Basic Equipment</p><p><strong>Iconic Equipment:</strong> Your family's old pickup truck (\"she still runs great\")</p>",
+      "value": "<p>You grew up outside the cities and among straightforward, honest folk. You learned the value of hard work and gained practical skills.</p><p><strong>Ability Score Increase:</strong> Increase your Strength or Constitution score by 1, to a maximum of 20</p><p><strong>Skill Proficiencies:</strong> Mechanics and Survival</p><p><strong>Equipment Proficiencies:</strong> Basic Equipment</p><p><strong>Iconic Equipment:</strong> Your family's old pickup truck (\"she still runs great\")</p>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -55,10 +55,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
-    "coreVersion": "10.291",
+    "systemVersion": "0.3.0",
+    "coreVersion": "11.304",
     "createdTime": 1679369896454,
-    "modifiedTime": 1679791812258,
+    "modifiedTime": 1688749689224,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
