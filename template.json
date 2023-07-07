@@ -273,6 +273,7 @@
       "archetype",
       "armor",
       "background",
+      "clothes",
       "class",
       "explosive",
       "feat",
@@ -407,6 +408,9 @@
         "value": "",
         "archetype": ""
       }
+    },
+    "clothes": {
+      "templates": ["description", "physical"]
     },
     "explosive": {
       "templates": ["attack", "damage", "description", "physical"],

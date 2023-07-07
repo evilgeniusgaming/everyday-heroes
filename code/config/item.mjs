@@ -126,7 +126,7 @@ export const itemCategories = {
 	physical: {
 		label: "EH.Item.Category.Physical.Label",
 		types: [
-			"armor", "weapon", "ammunition", "explosive", "gear", "npcWeapon", "npcExplosive",
+			"armor", "weapon", "ammunition", "explosive", "gear", "clothes", "npcWeapon", "npcExplosive",
 			"vehicleModification", "vehicleWeapon"
 		],
 		sheet: {

@@ -424,11 +424,12 @@ export const sheetSections = {
 		},
 		{
 			tab: "inventory",
-			types: [{type: "ammunition"}, {type: "explosive"}]
+			types: [{type: "ammunition"}, {type: "explosive"}],
+			options: { autoHide: true }
 		},
 		{
 			tab: "inventory",
-			types: [{type: "gear"}]
+			types: [{type: "clothes"}, {type: "gear"}]
 		}
 	],
 	npc: [
@@ -444,11 +445,18 @@ export const sheetSections = {
 		},
 		{
 			tab: "inventory",
-			types: [{type: "ammunition"}, {type: "npcExplosive"}]
+			types: [{type: "ammunition"}, {type: "npcExplosive"}],
+			options: { autoHide: true }
 		},
 		{
 			tab: "inventory",
-			types: [{type: "gear"}]
+			types: [{type: "clothes"}],
+			options: { autoHide: true }
+		},
+		{
+			tab: "inventory",
+			types: [{type: "gear"}],
+			options: { autoHide: true }
 		},
 		{
 			tab: "inventory",
@@ -484,7 +492,7 @@ export const sheetSections = {
 			types: [
 				{type: "vehicleWeapon", "system.equipped": false},
 				{type: "ammunition"}, {type: "explosive"},
-				{type: "armor"}, {type: "gear"}
+				{type: "armor"}, {type: "clothes"}, {type: "gear"}
 			],
 			create: [],
 			label: "EH.Vehicle.Cargo",

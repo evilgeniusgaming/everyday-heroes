@@ -2,6 +2,7 @@ import AmmunitionData from "./ammunition-data.mjs";
 import ArchetypeData from "./archetype-data.mjs";
 import ArmorData from "./armor-data.mjs";
 import BackgroundData from "./background-data.mjs";
+import ClothesData from "./clothes-data.mjs";
 import ClassData from "./class-data.mjs";
 import ExplosiveData from "./explosive-data.mjs";
 import FeatData from "./feat-data.mjs";
@@ -23,6 +24,7 @@ export {
 	ArchetypeData,
 	ArmorData,
 	BackgroundData,
+	ClothesData,
 	ClassData,
 	ExplosiveData,
 	FeatData,
@@ -52,6 +54,7 @@ export const config = {
 	archetype: ArchetypeData,
 	armor: ArmorData,
 	background: BackgroundData,
+	clothes: ClothesData,
 	class: ClassData,
 	explosive: ExplosiveData,
 	feat: FeatData,

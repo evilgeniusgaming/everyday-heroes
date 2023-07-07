@@ -519,6 +519,8 @@
 "Item.Type.Armor[other]": "Armor",
 "Item.Type.Background[one]": "Background",
 "Item.Type.Background[other]": "Backgrounds",
+"Item.Type.Clothes[one]": "Clothes",
+"Item.Type.Clothes[other]": "Clothing",
 "Item.Type.Class[one]": "Class",
 "Item.Type.Class[other]": "Classes",
 "Item.Type.Explosive[one]": "Explosive",
