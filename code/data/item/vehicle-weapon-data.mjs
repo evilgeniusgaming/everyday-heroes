@@ -1,4 +1,3 @@
-import Proficiency from "../../documents/proficiency.mjs";
 import WeaponData from "./weapon-data.mjs";
 
 /**
@@ -53,6 +52,6 @@ export default class VehicleWeaponData extends WeaponData {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get user() {
-		return this.actor?.system.people?.get?.(this.actorContext?.crewMember)?.document ?? null;
+		return this.actorContext?.crewMember ?? null;
 	}
 }

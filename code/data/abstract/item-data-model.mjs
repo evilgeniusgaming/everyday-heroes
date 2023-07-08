@@ -40,7 +40,7 @@ export default class ItemDataModel extends SystemDataModel {
 	 * @type {object}
 	 */
 	get actorContext() {
-		return this.parent?.parent?.system.items[this.parent?.id] ?? {};
+		return this.actor?.system.items?.get(this.parent?.id) ?? {};
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -17,7 +17,7 @@ export default class PhysicalTemplate extends ItemDataModel {
 		return {
 			equipped: new DerivedField(model => {
 				const defaultEquipped = model.actor?.type === "npc";
-				return model.actorContext?.equipped ?? (model.isEquippable ? defaultEquipped : false);
+				return model.isEquippable ? (model.actorContext?.equipped ?? defaultEquipped) : false;
 			}, {label: "EH.Item.State.Equipped"}),
 			quantity: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.NumberField({

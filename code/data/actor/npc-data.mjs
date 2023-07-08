@@ -1,6 +1,8 @@
 import NPCSheet from "../../applications/actor/npc-sheet.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
+import DocumentContextField from "../fields/document-context-field.mjs";
 import FormulaField from "../fields/formula-field.mjs";
+import LocalDocumentField from "../fields/local-document-field.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import Proficiency from "../../documents/proficiency.mjs";
 import AbilitiesTemplate from "./templates/abilities-template.mjs";
@@ -70,11 +72,11 @@ export default class NPCData extends SystemDataModel.mixin(
 			details: new foundry.data.fields.SchemaField({
 				cr: new foundry.data.fields.NumberField({initial: 0, min: 0, label: "EH.ChallengeRating.Label"})
 			}, {label: "EH.Details.Label"}),
-			items: new MappingField(new foundry.data.fields.SchemaField({
-				ammunition: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, {idOnly: true, label: ""}),
+			items: new DocumentContextField(foundry.documents.BaseItem, {
+				ammunition: new LocalDocumentField(foundry.documents.BaseItem),
 				equipped: new foundry.data.fields.BooleanField({initial: true, label: "EH.Item.State.Equipped"}),
 				mode: new foundry.data.fields.StringField({label: "EH.Item.Mode"})
-			})),
+			}),
 			overrides: new foundry.data.fields.SchemaField({
 				critical: new foundry.data.fields.SchemaField({
 					multiplier: new foundry.data.fields.NumberField({

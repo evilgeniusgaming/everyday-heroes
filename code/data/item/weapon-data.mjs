@@ -158,9 +158,7 @@ export default class WeaponData extends ItemDataModel.mixin(
 	 * @type {ItemEH|null}
 	 */
 	get ammunition() {
-		const ammunitionId = this.actorContext?.ammunition;
-		const ammunition = this.actor?.items.get(ammunitionId);
-		return ammunition ?? null;
+		return this.actorContext?.ammunition ?? null;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

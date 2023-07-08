@@ -3,7 +3,9 @@ import AdvancementConfirmationDialog from "../../applications/advancement/advanc
 import AdvancementManager from "../../applications/advancement/advancement-manager.mjs";
 import Proficiency from "../../documents/proficiency.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
+import DocumentContextField from "../fields/document-context-field.mjs";
 import FormulaField from "../fields/formula-field.mjs";
+import LocalDocumentField from "../fields/local-document-field.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import { simplifyBonus } from "../../utils.mjs";
 import AbilitiesTemplate from "./templates/abilities-template.mjs";
@@ -143,11 +145,11 @@ export default class HeroData extends SystemDataModel.mixin(
 				}, {label: "EH.Details.Wealth.Label"})
 			}, {label: "EH.Details.Label"}),
 			inspiration: new foundry.data.fields.BooleanField({label: "EH.Resource.Inspiration"}),
-			items: new MappingField(new foundry.data.fields.SchemaField({
-				ammunition: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, {idOnly: true, label: ""}),
+			items: new DocumentContextField(foundry.documents.BaseItem, {
+				ammunition: new LocalDocumentField(foundry.documents.BaseItem),
 				equipped: new foundry.data.fields.BooleanField({label: "EH.Item.State.Equipped"}),
 				mode: new foundry.data.fields.StringField({label: "EH.Item.Mode"})
-			})),
+			}),
 			overrides: new foundry.data.fields.SchemaField({
 				ability: new foundry.data.fields.SchemaField({
 					hitPoints: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {

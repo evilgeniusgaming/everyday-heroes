@@ -4,6 +4,7 @@ import { numberFormat, simplifyBonus } from "../../utils.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import DocumentContextField from "../fields/document-context-field.mjs";
 import FormulaField from "../fields/formula-field.mjs";
+import LocalDocumentField from "../fields/local-document-field.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 
 /**
@@ -30,8 +31,8 @@ import MappingField from "../fields/mapping-field.mjs";
  * Data for people in the vehicle.
  *
  * @typedef {object} VehiclePersonData
- * @property {ActorEH} actor - A person in the vehicle.
  * @property {number} sort - Sorting value of the person.
+ * @property {ItemEH} weapon - Weapon this person is currently crewing.
  */
 
 /**
@@ -143,16 +144,12 @@ export default class VehicleData extends SystemDataModel {
 					label: "EH.Equipment.Trait.PriceLevel.Label", hint: "EH.Equipment.Trait.PriceLevel.Hint"
 				})
 			}, {label: "EH.Details.Label"}),
-			items: new MappingField(new foundry.data.fields.SchemaField({
-				ammunition: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, {
-					required: false, initial: undefined, idOnly: true
-				}),
-				crewMember: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseActor, {
-					required: false, initial: undefined, idOnly: true
-				}),
+			items: new DocumentContextField(foundry.documents.BaseItem, {
+				ammunition: new LocalDocumentField(foundry.documents.BaseItem),
+				crewMember: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseActor),
 				equipped: new foundry.data.fields.BooleanField({initial: true, label: "EH.Item.State.Equipped"}),
 				mode: new foundry.data.fields.StringField({required: false, initial: undefined, label: "EH.Item.Mode"})
-			})),
+			}),
 			people: new DocumentContextField(foundry.documents.BaseActor, {
 				sort: new foundry.data.fields.IntegerSortField()
 			}, {foreign: true}),
@@ -198,13 +195,12 @@ export default class VehicleData extends SystemDataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareBasePeople() {
-		for ( const person of this.people ) {
+		for ( const k of this.people.keys() ) {
+			const person = this.people.get(k);
 			if ( !person.document ) continue;
 			person.document.linked[this.parent.uuid] = this.parent;
 			Object.defineProperty(person, "weapon", {
-				get: () => this.parent.items.get(
-					Object.entries(this.items).find(([k, v]) => v.crewMember === person.document.id)[0]
-				),
+				get: () => this.items.find(v => v.crewMember === person.document)?.document,
 				configurable: true
 			});
 		}

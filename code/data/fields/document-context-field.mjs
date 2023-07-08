@@ -70,17 +70,14 @@ export default class DocumentContextField extends foundry.data.fields.ObjectFiel
 		if ( !value ) return new Collection();
 		const collection = new Collection();
 		for ( const [k, v] of Object.entries(value) ) {
-			const data = foundry.utils.deepClone(v);
+			const data = this.schema.initialize(v, model, options);
 			Object.defineProperty(data, "document", {
 				get: () => {
-					// TODO: Should work for when this field is at the SystemDataModel level, but will probably cause issues
-					// within EmbeddedDataFields. Broader support isn't needed at the moment, but should be investigated.
-					const base = this.options.foreign ? game : this.parent.parent;
-					const collection = base[this.model.metadata.collection];
+					const base = this.options.foreign ? game : model.parent;
+					const collection = base?.[this.model.metadata.collection];
 					return collection?.get(k);
 				},
-				configurable: false,
-				enumerable: true
+				configurable: true
 			});
 			collection.set(k, data);
 		}
