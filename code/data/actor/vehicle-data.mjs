@@ -150,12 +150,12 @@ export default class VehicleData extends SystemDataModel {
 				crewMember: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseActor, {
 					required: false, initial: undefined, idOnly: true
 				}),
-				equipped: new foundry.data.fields.BooleanField({label: ""}),
-				mode: new foundry.data.fields.StringField({required: false, initial: undefined, label: ""})
+				equipped: new foundry.data.fields.BooleanField({initial: true, label: "EH.Item.State.Equipped"}),
+				mode: new foundry.data.fields.StringField({required: false, initial: undefined, label: "EH.Item.Mode"})
 			})),
 			people: new DocumentContextField(foundry.documents.BaseActor, {
 				sort: new foundry.data.fields.IntegerSortField()
-			}, { foreign: true }),
+			}, {foreign: true}),
 			traits: new foundry.data.fields.SchemaField({
 				properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
 					label: "EH.Weapon.Property.Label"

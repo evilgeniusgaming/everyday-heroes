@@ -496,6 +496,7 @@
 
 "Item.Label[one]": "Item",
 "Item.Label[other]": "Items",
+"Item.Mode": "Mode",
 "Item.New": "New {type}",
 "Item.Action.Chat": "Display in Chat",
 "Item.Action.Create": "Create {type}",
@@ -509,6 +510,7 @@
 "Item.Category.Physical.Label": "Physical Items",
 "Item.Description.Label": "Description",
 "Item.Description.Chat": "Chat Text",
+"Item.State.Equipped": "Equipped",
 "Item.Type.Label": "Type",
 "Item.Type.DetailedLabel": "{category} {subtype} {type}",
 "Item.Type.Ammunition[one]": "Ammunition",

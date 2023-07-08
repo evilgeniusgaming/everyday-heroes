@@ -145,8 +145,8 @@ export default class HeroData extends SystemDataModel.mixin(
 			inspiration: new foundry.data.fields.BooleanField({label: "EH.Resource.Inspiration"}),
 			items: new MappingField(new foundry.data.fields.SchemaField({
 				ammunition: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, {idOnly: true, label: ""}),
-				equipped: new foundry.data.fields.BooleanField({label: ""}),
-				mode: new foundry.data.fields.StringField({label: ""})
+				equipped: new foundry.data.fields.BooleanField({label: "EH.Item.State.Equipped"}),
+				mode: new foundry.data.fields.StringField({label: "EH.Item.Mode"})
 			})),
 			overrides: new foundry.data.fields.SchemaField({
 				ability: new foundry.data.fields.SchemaField({

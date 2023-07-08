@@ -1,9 +1,11 @@
 import { numberFormat } from "../../../utils.mjs";
 import ItemDataModel from "../../abstract/item-data-model.mjs";
+import DerivedField from "../../fields/derived-field.mjs";
 
 /**
  * Data model template for physical items.
  *
+ * @property {boolean} equipped - Is this item currently equipped?
  * @property {object} quantity
  * @property {number} quantity.value - How many of this item are there?
  * @property {number} bulk - How heavy/unwieldy is this item?
@@ -13,6 +15,10 @@ import ItemDataModel from "../../abstract/item-data-model.mjs";
 export default class PhysicalTemplate extends ItemDataModel {
 	static defineSchema() {
 		return {
+			equipped: new DerivedField(model => {
+				const defaultEquipped = model.actor?.type === "npc";
+				return model.actorContext?.equipped ?? (model.isEquippable ? defaultEquipped : false);
+			}, {label: "EH.Item.State.Equipped"}),
 			quantity: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.NumberField({
 					required: true, nullable: false, initial: 1, min: 0, integer: true, label: "EH.Equipment.Trait.Quantity.Label"
@@ -81,18 +87,21 @@ export default class PhysicalTemplate extends ItemDataModel {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Data Preparation                         */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	prepareDerivedEquipped() {
-		this.equipped = this.actorContext?.equipped ?? ((this.actor?.type === "npc") && !this.isEquippable);
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Helpers                                  */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	getRollData(options) {
 		return super.getRollData({ ...options, actor: this.user });
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Socket Event Handlers                    */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_onCreate(data, options, userId) {
+		// This is fine for now, but if other templates add their own _onCreate method this might be overwritten
+		super._onCreate(data, options, userId);
+		if ( (userId !== game.user.id) || !this.actor ) return;
+		this.actor.update({[`system.items.${this.parent.id}`]: {}});
 	}
 }

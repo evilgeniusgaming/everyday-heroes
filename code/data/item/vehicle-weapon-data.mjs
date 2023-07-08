@@ -55,14 +55,4 @@ export default class VehicleWeaponData extends WeaponData {
 	get user() {
 		return this.actor?.system.people?.get?.(this.actorContext?.crewMember)?.document ?? null;
 	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Socket Event Handlers                    */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	_onCreate(data, options, userId) {
-		super._onCreate(data, options, userId);
-		if ( (userId !== game.user.id) || !this.actor ) return;
-		this.actor.update({[`system.items.${this.parent.id}.equipped`]: true});
-	}
 }
