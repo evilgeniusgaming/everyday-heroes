@@ -76,6 +76,7 @@ export default class VehicleData extends SystemDataModel {
 	static metadata = {
 		type: "vehicle",
 		localization: "EH.Actor.Type.Vehicle",
+		icon: "fa-solid fa-truck-pickup",
 		image: "systems/everyday-heroes/artwork/svg/actors/vehicle.svg",
 		sheet: {
 			application: VehicleSheet,
