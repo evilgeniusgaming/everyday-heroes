@@ -199,7 +199,7 @@ export default class HeroData extends SystemDataModel.mixin(
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	prepareDerivedDetails() {
+	prepareEmbeddedConcept() {
 		for ( const item of this.parent.items ) {
 			// TODO: Add actor warning if more than one archetype, class, background, or profession exist
 			switch (item.type) {
@@ -217,6 +217,12 @@ export default class HeroData extends SystemDataModel.mixin(
 					break;
 			}
 		}
+		this.attributes.hd.denomination = this.details.archetype?.system.hitDie;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedDetails() {
 		this.details.wealth.value = (this.details.profession?.system.wealth ?? 0)
 			+ simplifyBonus(this.details.wealth.bonus, this.parent.getRollData());
 	}
@@ -242,7 +248,6 @@ export default class HeroData extends SystemDataModel.mixin(
 	prepareDerivedHitDice() {
 		const hd = this.attributes.hd;
 		hd.available = Math.clamped(hd.max - hd.spent, 0, hd.max);
-		hd.denomination = this.details.archetype?.system.hitDie;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
