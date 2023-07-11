@@ -27,6 +27,21 @@ export default class ActiveEffectEH extends ActiveEffect {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_initialize(options) {
+		super._initialize(options);
+		if ( game.release.generation < 11 ) {
+			Object.defineProperty(this, "name", {
+				get() {
+					return this.label;
+				},
+				configurable: true,
+				enumerable: false
+			});
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  List Rendering                           */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -70,6 +85,7 @@ export default class ActiveEffectEH extends ActiveEffect {
 		};
 
 		for ( const effect of effects ) {
+			if ( game.release.generation < 11 ) effect._getSourceName();
 			if ( effect.disabled ) sections.inactive.effects.push(effect);
 			else if ( effect.isTemporary ) sections.temporary.effects.push(effect);
 			else sections.passive.effects.push(effect);
