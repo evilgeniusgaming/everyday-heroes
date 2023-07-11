@@ -18,6 +18,15 @@
 		</fieldset>
 	{{/if}}
 
+	{{#if activationCosts}}
+		<fieldset>
+			<label>{{localize "EH.Activation.Cost.Label"}}</label>
+			<select name="system.activation.type">
+				{{selectOptions activationCosts selected=system.activation.type}}
+			</select>
+		</fieldset>
+	{{/if}}
+
 	<h3 class="striped">
 		<span class="left stripes"></span>
 		<span class="center">{{localize "EH.Equipment.Property.Label[other]"}}</span>
@@ -75,7 +84,7 @@
 		</fieldset>
 	{{/if}}
 
-	{{#if (everydayHeroes-has item "system.target")}}
+	{{#if (everydayHeroes-has item "system.target.value")}}
 		<h3 class="striped">
 			<span class="left stripes"></span>
 			<span class="center">{{localize "EH.Target.Label[other]"}}</span>

@@ -51,6 +51,18 @@ export const actionTypesReload = {
 preLocalize("actionTypesReload");
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Weapon action types.
+ * @enum {string}
+ */
+export const actionTypesWeapon = {
+	attack: "EH.Action.Type.Attack",
+	bonus: "EH.Action.Type.Bonus"
+};
+preLocalize("actionTypesWeapon");
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Damage                                   */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

@@ -480,11 +480,14 @@
     },
     "npcWeapon": {
       "templates": ["attack", "damage", "description", "physical"],
+      "activation": {
+        "type": "attack"
+      },
       "description": {
         "npc": ""
       },
       "type": {
-        "value": "",
+        "value": "melee",
         "category": ""
       },
       "properties": [],

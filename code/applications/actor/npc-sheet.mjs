@@ -72,13 +72,12 @@ export default class NPCSheet extends BaseActorSheet {
 				context.ammunitionTypes[item.system.type.value] ??= {};
 				context.ammunitionTypes[item.system.type.value][item.id] = item;
 			}
-			if ( ["npcExplosive", "npcWeapon"].includes(item.type) ) {
-				context.actionSections.action.items.push(item);
-			}
-			if ( item.type === "npcFeature" ) {
+			if ( foundry.utils.hasProperty(item.system, "activation.type") ) {
 				if ( !item.system.activation.type ) context.actionSections.passive.items.push(item);
 				else if ( item.system.activation.type === "attack" ) context.actionSections.action.items.push(item);
 				else context.actionSections[item.system.activation.type]?.items.push(item);
+			} else if ( ["npcExplosive", "npcWeapon"].includes(item.type) ) {
+				context.actionSections.action.items.push(item);
 			}
 		};
 

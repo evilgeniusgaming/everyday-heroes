@@ -19,6 +19,10 @@ export default class PhysicalSheet extends BasePhysicalSheet {
 	async getData(options) {
 		const context = await super.getData(options);
 
+		if ( this.item.type === "npcWeapon" ) {
+			context.activationCosts = CONFIG.EverydayHeroes.actionTypesWeapon;
+		}
+
 		context.diceSteps = Object.fromEntries(CONFIG.EverydayHeroes.diceSteps.map(n => [n, `d${n}`]));
 
 		context.diceMod = { count: [], denomination: [] };

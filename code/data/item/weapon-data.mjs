@@ -100,6 +100,7 @@ export default class WeaponData extends ItemDataModel.mixin(
 				}),
 				type: new foundry.data.fields.StringField({label: "EH.Ammunition.Type.Label"})
 			}, {label: "EH.Equipment.Trait.Rounds.Label", hint: "EH.Equipment.Trait.Rounds.Hint"}),
+			activation: new foundry.data.fields.SchemaField({}, {required: false, initial: undefined}),
 			target: new foundry.data.fields.SchemaField({}, {required: false, initial: undefined}),
 			// TODO: Temporary fix for item conversion bug, find a better solution :)
 			bonuses: new foundry.data.fields.SchemaField({

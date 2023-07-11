@@ -26,6 +26,9 @@ export default class NPCWeaponData extends WeaponData {
 
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
+			activation: new foundry.data.fields.SchemaField({
+				type: new foundry.data.fields.StringField({initial: "attack", label: "EH.Activation.Cost.Label"})
+			}, {label: "EH.Activation.Label"}),
 			description: new foundry.data.fields.SchemaField({
 				npc: new foundry.data.fields.HTMLField({nullable: true, label: ""})
 			}),
@@ -295,6 +298,7 @@ export default class NPCWeaponData extends WeaponData {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async _preCreate(data, options, user) {
+		await super._preCreate(data, options, user);
 		const updates = this.titanicConversions(this.isTitanic);
 		if ( !foundry.utils.isEmpty(updates) ) this.parent.updateSource(updates);
 	}
