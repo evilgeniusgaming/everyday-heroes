@@ -131,11 +131,10 @@ export default class RestDialog extends Dialog {
 	 */
 	async _onRollMedicine(event) {
 		event.preventDefault();
-		// TODO: Ensure this can be rolled with advantage is assistance is provided
-		const roll = await this.actor.rollSkill("medi", {
-			ability: "int", options: { target: 10 }
+		const roll = await this.actor.roll("skill", {
+			skill: "medi", ability: "int", options: { target: 10 }
 		}, { data: { "flags.everyday-heroes.medicalAttention": true } });
-		this.result.medicalRoll = roll;
+		this.result.medicalRoll = roll[0];
 		this.render();
 	}
 }
