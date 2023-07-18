@@ -405,7 +405,7 @@ export default class WeaponData extends ItemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareBaseMode() {
-		const mode = this._modeOverride ?? this.actor?.system.items?.[this.parent?.id]?.mode;
+		const mode = this._modeOverride ?? this.actorContext?.mode;
 		this.mode = this.modes[mode] ? mode : Object.keys(this.modes)[0];
 	}
 
