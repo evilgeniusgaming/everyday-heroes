@@ -88,7 +88,7 @@ export default class ItemDataModel extends SystemDataModel {
 		actor ??= this.actor;
 		const rollData = {
 			...(actor?.getRollData(options) ?? {}),
-			item: this.toObject(false)
+			item: { ...this }
 		};
 		rollData.prof ??= this.proficiency;
 		return rollData;

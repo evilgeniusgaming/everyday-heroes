@@ -442,7 +442,7 @@ export default class ItemEH extends DocumentMixin(Item) {
 		}
 		const rollData = {
 			...(this.actor?.getRollData({ deterministic }) ?? {}),
-			item: this.toObject(false).system
+			item: { ...this.system }
 		};
 		rollData.prof ??= this.system.proficiency;
 		return rollData;

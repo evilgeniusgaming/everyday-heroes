@@ -63,7 +63,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 	 *                                            either a die term or a flat term.
 	 */
 	getRollData({ deterministic=false }={}) {
-		const data = this.system.toObject(false);
+		const data = { ...this.system };
 		data.prof = new Proficiency(this.system.attributes?.prof ?? 0, 1);
 		if ( deterministic ) data.prof = data.prof.flat;
 		return data;
