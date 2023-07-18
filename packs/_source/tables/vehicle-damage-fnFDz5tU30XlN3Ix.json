@@ -1,6 +1,6 @@
 {
   "name": "Vehicle Damage",
-  "img": "systems/everyday-heroes/artwork/svg/action/vehicle-damage-vehicle.svg",
+  "img": "systems/everyday-heroes/artwork/icons/tables/vehicle-damage.svg",
   "description": "",
   "results": [
     {
@@ -109,10 +109,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.2.5",
-    "coreVersion": "10.291",
+    "systemVersion": "0.3.1",
+    "coreVersion": "11.305",
     "createdTime": 1687148274625,
-    "modifiedTime": 1687148526072,
+    "modifiedTime": 1689702920683,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
