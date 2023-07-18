@@ -6,6 +6,7 @@ import DocumentContextField from "../fields/document-context-field.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import LocalDocumentField from "../fields/local-document-field.mjs";
 import MappingField from "../fields/mapping-field.mjs";
+import SizeTemplate from "./templates/size-template.mjs";
 
 /**
  * Data for a vehicle ability.
@@ -37,6 +38,7 @@ import MappingField from "../fields/mapping-field.mjs";
 
 /**
  * Data definition for Vehicle actors.
+ * @mixes {@link SizeTemplate}
  *
  * @property {Object<string, VehicleAbilityData>} abilities
  * @property {object} attributes
@@ -71,7 +73,7 @@ import MappingField from "../fields/mapping-field.mjs";
  * @property {object} traits.properties - Properties of this vehicle.
  * @property {string} traits.size - Size of the vehicle.
  */
-export default class VehicleData extends SystemDataModel {
+export default class VehicleData extends SystemDataModel.mixin(SizeTemplate) {
 
 	static metadata = {
 		type: "vehicle",
@@ -158,7 +160,7 @@ export default class VehicleData extends SystemDataModel {
 				properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
 					label: "EH.Weapon.Property.Label"
 				}),
-				size: new foundry.data.fields.StringField({initial: "medium", label: "EH.Size.Label"})
+				size: new foundry.data.fields.StringField({initial: "huge"})
 			}, {label: "EH.Traits.Label"})
 		});
 	}
@@ -691,20 +693,8 @@ export default class VehicleData extends SystemDataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async _preCreate(data, options, user) {
+		await super._preCreate(data, options, user);
 		if ( !data.prototypeToken ) this.parent.updateSource({prototypeToken: {actorLink: true, disposition: 0}});
 		if ( !options.keepEmbeddedId ) this.parent.updateSource({"system.details.driver": null, "system.people": {}});
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	async _preUpdate(changed, options, user) {
-		const newSize = foundry.utils.getProperty(changed, "system.traits.size");
-		if ( (newSize === this.traits.size)
-			|| foundry.utils.hasProperty(changed, "prototypeToken.width")
-			|| foundry.utils.hasProperty(changed, "prototypeToken.height") ) return;
-		const size = CONFIG.EverydayHeroes.sizes[newSize]?.token;
-		changed.prototypeToken ??= {};
-		changed.prototypeToken.width = size;
-		changed.prototypeToken.height = size;
 	}
 }
