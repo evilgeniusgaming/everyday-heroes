@@ -887,7 +887,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 
 		const rollOptions = foundry.utils.mergeObject({
 			minimum: buildMinimum([
-				ability?.minimums.check, this.system.overrides?.ability?.minimums.check
+				ability?.minimums?.check, this.system.overrides?.ability?.minimums.check
 			], data)
 		}, options);
 
