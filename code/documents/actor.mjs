@@ -1178,13 +1178,13 @@ export default class ActorEH extends DocumentMixin(Actor) {
 						this.system.overrides?.skill?.minimum, this.system.overrides?.ability?.minimums.check
 					], data)
 				}
-			});
+			}, { inplace: false });
 			rollConfig.parts = parts.concat(config.parts ?? []);
 
 			return rollConfig;
 		};
 
-		const rollConfig = prepareSkillConfig();
+		const rollConfig = prepareSkillConfig(config);
 
 		const type = game.i18n.format("EH.Skill.Action.CheckSpecific", {
 			skill: CONFIG.EverydayHeroes.skills[config.skill].label
