@@ -361,7 +361,7 @@ export default class VehicleData extends SystemDataModel.mixin(SizeTemplate) {
 		const updates = { [`system.people.${actor.id}`]: { sort } };
 		if ( driver ) updates["system.details.driver"] = actor.id;
 		await this.parent.update(updates);
-		await actor.update({"system.vehicle.actor": this.parent.id});
+		if ( actor.isOwner ) await actor.update({"system.vehicle.actor": this.parent.id});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -391,7 +391,9 @@ export default class VehicleData extends SystemDataModel.mixin(SizeTemplate) {
 		if ( this.details.driver === actor ) updates["system.details.driver"] = null;
 		await this.parent.update(updates);
 		delete actor.linked[this.parent.uuid];
-		if ( actor.system.vehicle?.actor === this.parent ) await actor.update({"system.vehicle.actor": null});
+		if ( (actor.system.vehicle?.actor === this.parent) && actor.isOwner ) {
+			await actor.update({"system.vehicle.actor": null});
+		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
