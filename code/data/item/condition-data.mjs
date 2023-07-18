@@ -33,6 +33,7 @@ export default class ConditionData extends SystemDataModel.mixin(DescribedTempla
 			localization: "EH.Item.Type.Condition",
 			icon: "fa-solid fa-explosion",
 			image: "systems/everyday-heroes/artwork/svg/items/condition.svg",
+			register: true,
 			sheet: {
 				application: ConditionSheet,
 				label: "EH.Sheet.Condition"

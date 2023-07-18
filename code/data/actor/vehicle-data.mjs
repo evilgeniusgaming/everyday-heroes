@@ -6,6 +6,7 @@ import DocumentContextField from "../fields/document-context-field.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import LocalDocumentField from "../fields/local-document-field.mjs";
 import MappingField from "../fields/mapping-field.mjs";
+import ConditionsTemplate from "./templates/conditions-template.mjs";
 import SizeTemplate from "./templates/size-template.mjs";
 
 /**
@@ -38,6 +39,7 @@ import SizeTemplate from "./templates/size-template.mjs";
 
 /**
  * Data definition for Vehicle actors.
+ * @mixes {@link ConditionsTemplate}
  * @mixes {@link SizeTemplate}
  *
  * @property {Object<string, VehicleAbilityData>} abilities
@@ -60,7 +62,6 @@ import SizeTemplate from "./templates/size-template.mjs";
  * @property {string} biography.notes - Additional notes.
  * @property {object} bonuses
  * @property {object} bonuses.roll - Roll-specific bonuses.
- * @property {object} conditions - Conditions affecting this vehicle.
  * @property {object} details
  * @property {ActorEH} details.driver - Driver of the vehicle.
  * @property {object} details.passengers
@@ -73,7 +74,7 @@ import SizeTemplate from "./templates/size-template.mjs";
  * @property {object} traits.properties - Properties of this vehicle.
  * @property {string} traits.size - Size of the vehicle.
  */
-export default class VehicleData extends SystemDataModel.mixin(SizeTemplate) {
+export default class VehicleData extends SystemDataModel.mixin(ConditionsTemplate, SizeTemplate) {
 
 	static metadata = {
 		type: "vehicle",
@@ -133,9 +134,6 @@ export default class VehicleData extends SystemDataModel.mixin(SizeTemplate) {
 					})
 				})
 			}, {label: "EH.Bonus.Global.Label[other]"}),
-			conditions: new MappingField(new foundry.data.fields.NumberField({
-				min: 0, integer: true
-			}), {label: "EH.Condition.Label[other]"}),
 			details: new foundry.data.fields.SchemaField({
 				driver: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseActor),
 				passengers: new foundry.data.fields.SchemaField({

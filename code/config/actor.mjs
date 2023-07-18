@@ -85,7 +85,7 @@ export const vehicleAbilities = new Set(["str", "dex", "con"]);
  * Configuration data for conditions.
  *
  * @typedef {LabeledConfiguration} ConditionConfiguration
- * @property {object} [levels]  Defines various levels of the condition if valid.
+ * @property {number} [levels] - If applicable, how many levels are represented by this condition.
  */
 
 /**
@@ -108,16 +108,9 @@ export const conditions = {
 	encumbered: {
 		label: "EH.Condition.Encumbered.Label"
 	},
-	exhaustion: {
-		label: "EH.Condition.Exhaustion.Label",
-		levels: {
-			1: {},
-			2: {},
-			3: {},
-			4: {},
-			5: {},
-			6: {}
-		}
+	exhausted: {
+		label: "EH.Condition.Exhausted.Label",
+		levels: 6
 	},
 	frightened: {
 		label: "EH.Condition.Frightened.Label"
@@ -128,14 +121,9 @@ export const conditions = {
 	incapacitated: {
 		label: "EH.Condition.Incapacitated.Label"
 	},
-	intoxication: {
-		label: "EH.Condition.Intoxication.Label",
-		levels: {
-			1: {},
-			2: {},
-			3: {},
-			4: {}
-		}
+	intoxicated: {
+		label: "EH.Condition.Intoxicated.Label",
+		levels: 4
 	},
 	paralyzed: {
 		label: "EH.Condition.Paralyzed.Label"

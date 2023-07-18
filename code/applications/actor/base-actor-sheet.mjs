@@ -1,5 +1,5 @@
 import ActiveEffectEH from "../../documents/active-effect.mjs";
-import { registerTagInputListeners } from "../../utils.mjs";
+import { numberFormat, registerTagInputListeners, sortObjectEntries, systemLog } from "../../utils.mjs";
 import AdvancementManager from "../advancement/advancement-manager.mjs";
 import AdvancementConfirmationDialog from "../advancement/advancement-confirmation-dialog.mjs";
 import AbilityConfig from "./dialogs/ability-config.mjs";
@@ -39,6 +39,14 @@ export default class BaseActorSheet extends ActorSheet {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Properties                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Is the sheet currently in a mode to add new conditions?
+	 * @type {boolean}
+	 */
+	conditionAddMode = false;
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
@@ -117,9 +125,11 @@ export default class BaseActorSheet extends ActorSheet {
 			}
 		}
 
+		await this.prepareConditions(context);
 		await this.prepareItems(context);
 		await this.prepareLists(context);
 
+		context.conditionAddMode = this.conditionAddMode;
 		context.editingMode = this.editingMode;
 
 		const enrichmentContext = {
@@ -132,6 +142,49 @@ export default class BaseActorSheet extends ActorSheet {
 		context.editorSelected = this.editorSelected;
 
 		return context;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Prepare conditions for display.
+	 * @param {object} context - Context object for rendering the sheet. **Will be mutated.**
+	 */
+	async prepareConditions(context) {
+		context.conditions = {};
+		if ( this.conditionAddMode ) {
+			for ( const [key, config] of Object.entries(CONFIG.EverydayHeroes.conditions) ) {
+				// TODO: Filter out non-applicable conditions
+				const registered = CONFIG.EverydayHeroes.registration.all.condition?.[key];
+				if ( context.system.conditions[key] || !registered ) continue;
+				const document = await fromUuid(registered?.sources[0]);
+				context.conditions[key] = {
+					label: registered?.name ?? config.label,
+					levels: null,
+					document,
+					value: 0
+				};
+			}
+		} else {
+			for ( const [key, value] of Object.entries(context.system.conditions) ) {
+				const config = CONFIG.EverydayHeroes.conditions[key];
+				const registered = CONFIG.EverydayHeroes.registration.all.condition?.[key];
+				if ( !config && !registered ) continue;
+				const document = await fromUuid(registered?.sources[0]);
+				const levels = document?.system.levels.length ?? config.levels ?? 1;
+				context.conditions[key] = {
+					label: registered?.name ?? config.label,
+					levels: (levels > 1) ? Array.fromRange(levels).map(idx => ({
+						number: numberFormat(idx + 1),
+						selected: value > idx,
+						description: document?.system.levels[idx]?.description ?? ""
+					})) : null,
+					document,
+					value
+				};
+			}
+		}
+		context.conditions = sortObjectEntries(context.conditions, "label");
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -298,6 +351,11 @@ export default class BaseActorSheet extends ActorSheet {
 		super.activateListeners(jQuery);
 		const html = jQuery[0];
 
+		// Condition Action Listeners
+		for ( const element of html.querySelectorAll('[data-action="condition"]') ) {
+			element.addEventListener("click", this._onConditionAction.bind(this));
+		}
+
 		// Config Action Listeners
 		for ( const element of html.querySelectorAll('[data-action="config"]') ) {
 			element.addEventListener("click", this._onConfig.bind(this));
@@ -408,6 +466,31 @@ export default class BaseActorSheet extends ActorSheet {
 			const ammoId = event.target.value ? event.target.value : null;
 			const weaponId = event.target.closest("[data-item-id]")?.dataset.itemId;
 			this.actor.update({[`system.items.${weaponId}.ammunition`]: ammoId});
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Handle actions relating to conditions.
+	 * @param {ClickEvent} event - Triggering click event.
+	 * @returns {Promise}
+	 */
+	_onConditionAction(event) {
+		event.preventDefault();
+		const { type, level } = event.currentTarget.dataset;
+		const condition = event.target.closest("[data-condition]")?.dataset.condition;
+		switch (type) {
+			case "add":
+				this.conditionAddMode = !this.conditionAddMode;
+				return this.render();
+			case "delete":
+				return this.actor.system.setConditionLevel(condition);
+			case "set-level":
+				this.conditionAddMode = false;
+				return this.actor.system.setConditionLevel(condition, level);
+			default:
+				return systemLog(`Invalid condition action type clicked ${type}`, { level: "warn" });
 		}
 	}
 

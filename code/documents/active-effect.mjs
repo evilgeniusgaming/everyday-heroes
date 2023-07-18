@@ -5,6 +5,27 @@ import ItemEH from "./item.mjs";
  */
 export default class ActiveEffectEH extends ActiveEffect {
 
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Properties                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Details for a condition effect.
+	 * @type {{id: string, level: number}|null}
+	 */
+	get conditionDetails() {
+		const type = foundry.utils.getProperty(this, "flags.everyday-heroes.type");
+		if ( type !== "condition" ) return null;
+		let id;
+		if ( game.release.generation < 11 ) id = foundry.utils.getProperty(this, "flags.core.statusId");
+		else if ( this.statuses.size === 1 ) id = this.statuses.first();
+		return { id, level: foundry.utils.getProperty(this, "flags.everyday-heroes.level") };
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Methods                                  */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	_applyAdd(actor, change, current, delta, changes) {
 		if ( current instanceof Set ) {
 			if ( Array.isArray(delta) ) delta.forEach(i => current.add(i));
@@ -24,21 +45,6 @@ export default class ActiveEffectEH extends ActiveEffect {
 			return;
 		}
 		return super._applyOverride(actor, change, current, delta, changes);
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	_initialize(options) {
-		super._initialize(options);
-		if ( game.release.generation < 11 ) {
-			Object.defineProperty(this, "name", {
-				get() {
-					return this.label;
-				},
-				configurable: true,
-				enumerable: false
-			});
-		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -126,6 +132,23 @@ export default class ActiveEffectEH extends ActiveEffect {
 				return effect.update({disabled: !effect.disabled});
 			default:
 				return console.warn(`Everyday Heroes | Invalid effect action type clicked ${type}.`);
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Deprecations and Compatibility           */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_initialize(options) {
+		super._initialize(options);
+		if ( game.release.generation < 11 ) {
+			Object.defineProperty(this, "name", {
+				get() {
+					return this.label;
+				},
+				configurable: true,
+				enumerable: false
+			});
 		}
 	}
 }

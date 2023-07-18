@@ -143,3 +143,39 @@
 	background-repeat: no-repeat;
 	background-position-x: center;
 }
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Conditions                               */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.conditions .levels {
+	display: flex;
+	gap: 1px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.conditions .levels li {
+	flex: 2em 0 0;
+	border: 1px solid var(--eh-border-color-weak);
+	border-radius: 2px;
+	font-weight: bold;
+	text-align: center;
+}
+.conditions .levels li:not(.selected) {
+	color: var(--eh-text-color-white);
+	background: linear-gradient(180deg, rgb(78, 85, 89) 0%, rgb(117, 133, 155) 100%);
+}
+.conditions .levels li.selected {
+	color: var(--eh-text-color-black);
+	background: linear-gradient(0deg, rgb(193, 192, 225) 0%, rgb(240, 247, 255) 100%);
+}
+.conditions .levels li[data-action] {
+	cursor: pointer;
+}
+.conditions .levels li[data-action]:not(.selected):hover {
+	box-shadow: inset 0 0 2px 1px rgba(255, 255, 255, 0.8);
+}
+.conditions .levels li[data-action].selected:hover {
+	box-shadow: inset 0 0 2px 1px rgba(144, 17, 249, 0.5);
+}

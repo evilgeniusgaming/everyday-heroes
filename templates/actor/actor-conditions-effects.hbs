@@ -1,0 +1,47 @@
+<section class="conditions">
+	<header>
+		<h2>{{localize "EH.Condition.Label[other]"}}</h2>
+		<fieldset>
+			{{#if conditionAddMode}}
+				<a data-action="condition" data-type="add">
+					<i class="fa-solid fa-xmark"></i> {{localize "Cancel"}}
+				</a>
+			{{else if editable}}
+				<a data-action="condition" data-type="add">
+					<i class="fa-solid fa-plus"></i> {{localize "EH.Action.AddGeneric"}}
+				</a>
+			{{/if}}
+		</fieldset>
+	</header>
+	<ol class="item-list">
+		{{#each conditions as |condition key|}}
+			<li class="item" data-condition="{{key}}">
+				<h4>
+					<figure style="background-image: url('{{condition.document.img}}')"></figure>
+					<span>{{condition.label}}</a>
+				</h4>
+				<div>
+					<ol class="levels">
+						{{#each condition.levels as |level|}}
+							<li class="{{#if level.selected}}selected{{/if}}" {{#if @root.editable}}data-action="condition"{{/if}}
+								data-type="set-level" data-level="{{level.number}}" data-tooltip="{{level.description}}">{{level.number}}</li>
+						{{/each}}
+					</ol>
+				</div>
+				<fieldset>
+					{{#if @root.conditionAddMode}}
+						<a data-action="condition" data-type="set-level" data-level="1">
+							<i class="fa-solid fa-square-plus"></i>
+						</a>
+					{{else if @root.editable}}
+						<a data-action="condition" data-type="delete">
+							<i class="fa-solid fa-square-minus"></i>
+						</a>
+					{{/if}}
+				</fieldset>
+			</li>
+		{{/each}}
+	</ol>
+</section>
+
+{{> "everydayHeroes.active-effects"}}

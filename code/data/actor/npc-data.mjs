@@ -6,6 +6,7 @@ import LocalDocumentField from "../fields/local-document-field.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import Proficiency from "../../documents/proficiency.mjs";
 import AbilitiesTemplate from "./templates/abilities-template.mjs";
+import ConditionsTemplate from "./templates/conditions-template.mjs";
 import DriverTemplate from "./templates/driver-template.mjs";
 import InitiativeTemplate from "./templates/initiative-template.mjs";
 import MovementTemplate from "./templates/movement-template.mjs";
@@ -15,6 +16,7 @@ import SkillsTemplate from "./templates/skills-template.mjs";
 /**
  * Data definition for NPC actors.
  * @mixes {@link AbilitiesTemplate}
+ * @mixes {@link ConditionsTemplate}
  * @mixes {@link DriverTemplate}
  * @mixes {@link InitiativeTemplate}
  * @mixes {@link MovementTemplate}
@@ -22,7 +24,8 @@ import SkillsTemplate from "./templates/skills-template.mjs";
  * @mixes {@link SkillsTemplate}
  */
 export default class NPCData extends SystemDataModel.mixin(
-	AbilitiesTemplate, DriverTemplate, InitiativeTemplate, MovementTemplate, SizeTemplate, SkillsTemplate
+	AbilitiesTemplate, ConditionsTemplate, DriverTemplate, InitiativeTemplate,
+	MovementTemplate, SizeTemplate, SkillsTemplate
 ) {
 
 	static metadata = {

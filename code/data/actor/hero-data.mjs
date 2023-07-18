@@ -9,6 +9,7 @@ import LocalDocumentField from "../fields/local-document-field.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import { simplifyBonus } from "../../utils.mjs";
 import AbilitiesTemplate from "./templates/abilities-template.mjs";
+import ConditionsTemplate from "./templates/conditions-template.mjs";
 import DriverTemplate from "./templates/driver-template.mjs";
 import InitiativeTemplate from "./templates/initiative-template.mjs";
 import MovementTemplate from "./templates/movement-template.mjs";
@@ -18,6 +19,7 @@ import SkillsTemplate from "./templates/skills-template.mjs";
 /**
  * Data definition for Character actors.
  * @mixes {@link AbilitiesTemplate}
+ * @mixes {@link ConditionsTemplate}
  * @mixes {@link DriverTemplate}
  * @mixes {@link InitiativeTemplate}
  * @mixes {@link MovementTemplate}
@@ -31,7 +33,8 @@ import SkillsTemplate from "./templates/skills-template.mjs";
  * @property {Set<string>} overrides.ability.ranged - Abilities to consider in place of `dex` for ranged attacks.
  */
 export default class HeroData extends SystemDataModel.mixin(
-	AbilitiesTemplate, DriverTemplate, InitiativeTemplate, MovementTemplate, ResourcesTemplate, SkillsTemplate
+	AbilitiesTemplate, ConditionsTemplate, DriverTemplate, InitiativeTemplate,
+	MovementTemplate, ResourcesTemplate, SkillsTemplate
 ) {
 
 	static metadata = {
@@ -132,9 +135,6 @@ export default class HeroData extends SystemDataModel.mixin(
 				attack: new MappingField(new FormulaField()),
 				damage: new MappingField(new FormulaField())
 			}, {label: "EH.Bonus.Global.Label[other]"}),
-			conditions: new MappingField(new foundry.data.fields.NumberField({
-				min: 0, integer: true
-			}), {label: "EH.Condition.Label[other]"}),
 			details: new foundry.data.fields.SchemaField({
 				level: new foundry.data.fields.NumberField({
 					nullable: false, initial: 1, min: 1, max: CONFIG.EverydayHeroes.maxLevel, integer: true, label: "EH.Level.Label[one]"
