@@ -8,3 +8,4 @@ export function registerCanvas() {
 }
 
 export {TokenEH};
+export {default as SuppressiveFireTemplate} from "./suppressive-fire-template.mjs";
