@@ -1,3 +1,4 @@
+import SuppressiveFireTemplate from "../canvas/suppressive-fire-template.mjs";
 import { buildMinimum, buildRoll } from "../dice/utils.mjs";
 import { slugify } from "../utils.mjs";
 import { DocumentMixin } from "./mixin.mjs";
@@ -668,7 +669,26 @@ export default class ItemEH extends DocumentMixin(Item) {
 		const updates = {
 			"system.rounds.spent": this.system.rounds.spent += suppressiveFireConfig.rounds
 		};
-		// TODO: Place measured template
+
+		let template;
+		let tokens = this.actor?.getActiveTokens() ?? [];
+		if ( tokens.length > 1 ) tokens = tokens.filter(t => canvas.tokens.controlled.includes(t));
+		if ( tokens.length === 1 ) {
+			try {
+				template = await SuppressiveFireTemplate.create(tokens[0].document, {
+					maxWidth: suppressiveFireConfig.size,
+					maxRange: this.system.range.long || this.system.range.short,
+					templateData: {
+						"flags.everyday-heroes": {
+							weapon: this.uuid
+						}
+					}
+				}).place(this.actor?.sheet);
+				template = template[0];
+			} catch(err) {
+				if ( !(err instanceof SuppressiveFireTemplate.PlacementCanceledError) ) throw err;
+			}
+		}
 
 		// Display chat message
 		if ( messageConfig.create !== false ) {
@@ -682,8 +702,9 @@ export default class ItemEH extends DocumentMixin(Item) {
 		 * @memberof hookEvents
 		 * @param {ItemEH} item - Weapon that performed the suppressive fire.
 		 * @param {object} updates - Changes to the weapon after the firing.
+		 * @param {MeasuredTemplate} [template] - Added template, if any.
 		 */
-		Hooks.callAll("everydayHeroes.suppressiveFire", this, updates);
+		Hooks.callAll("everydayHeroes.suppressiveFire", this, updates, template);
 
 		if ( !foundry.utils.isEmpty(updates) ) await this.update(updates);
 	}

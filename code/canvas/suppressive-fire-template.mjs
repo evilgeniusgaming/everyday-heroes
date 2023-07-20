@@ -1,3 +1,12 @@
+class PlacementCanceledError extends Error {
+	constructor(...args) {
+		super(...args);
+		this.name = "PlacementCanceledError";
+	}
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 /**
  * A version of MeasuredTemplate with helper methods for placing it in the world.
  */
@@ -8,6 +17,10 @@ export default class SuppressiveFireTemplate extends MeasuredTemplate {
 		this.maxWidth = maxWidth;
 		this.maxRange = maxRange;
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static PlacementCanceledError = PlacementCanceledError;
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -106,16 +119,18 @@ export default class SuppressiveFireTemplate extends MeasuredTemplate {
 
 	/**
 	 * Activate the template placement interface.
+	 * @param {Application} [sheet] - Sheet that will be hidden while placement is in progress.
 	 * @returns {Promise} - Resolves with the final template created, or rejects if the process was canceled.
 	 */
-	async place() {
+	async place(sheet) {
 		const initialLayer = canvas.activeLayer;
 
 		this.draw();
 		this.layer.activate();
 		this.layer.preview.addChild(this);
 
-		// TODO: Hide actor sheet that originated the placement
+		this.minimizedSheet = sheet;
+		this.minimizedSheet?.minimize();
 
 		return this._activatePlacementListeners(initialLayer);
 	}
@@ -154,7 +169,7 @@ export default class SuppressiveFireTemplate extends MeasuredTemplate {
 	 */
 	async _onCancelPlacement(event) {
 		await this._finishPlacement(event);
-		this.#events.reject();
+		this.#events.reject(new PlacementCanceledError());
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -175,11 +190,14 @@ export default class SuppressiveFireTemplate extends MeasuredTemplate {
 	 * @param {Event} event - Triggering event.
 	 */
 	async _finishPlacement(event) {
+		event.preventDefault();
+		event.stopPropagation();
 		this.layer._onDragLeftCancel(event);
 		canvas.stage.off("mousemove", this.#events.move);
 		canvas.stage.off("mousedown", this.#events.confirm);
 		canvas.app.view.oncontextmenu = null;
 		this.#initialLayer.activate();
+		await this.minimizedSheet?.maximize();
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
