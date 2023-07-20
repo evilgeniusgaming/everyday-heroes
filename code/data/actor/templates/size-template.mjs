@@ -23,6 +23,7 @@ export default class SizeTemplate extends foundry.abstract.DataModel {
 			get() {
 				return CONFIG.EverydayHeroes.sizes[this.size]?.titanic ?? false;
 			},
+			set() {}, // TODO: Fix to "mergeObject" not properly handling properties like this
 			configurable: true,
 			enumerable: true
 			// TODO: Maybe figure out a way to define this within the data model

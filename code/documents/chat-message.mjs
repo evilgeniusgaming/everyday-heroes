@@ -74,7 +74,8 @@ export default class ChatMessageEH extends ChatMessage {
 	static getContextOptions(html, options) {
 		const condition = li => {
 			const message = game.messages.get(li.data("messageId"));
-			return message?.isRoll && message?.isContentVisible && canvas.tokens?.controlled.length;
+			const tokens = canvas.tokens?.controlled.filter(t => t.actor?.system.attributes.hp);
+			return message?.isRoll && message?.isContentVisible && tokens?.length;
 		};
 		options.unshift(
 			{
@@ -102,11 +103,21 @@ export default class ChatMessageEH extends ChatMessage {
 				callback: li => ChatMessageEH.applyDamage(li, 0.5)
 			},
 			{
+				name: game.i18n.format("EH.Action.Roll", { type: game.i18n.localize("EH.Vehicle.Roll.DamageSave.Label") }),
+				icon: '<i class="fa-solid fa-car-burst"></i>',
+				condition: li => {
+					const message = game.messages.get(li.data("messageId"));
+					const tokens = canvas.tokens?.controlled.filter(t => t.actor?.type === "vehicle");
+					return message?.isRoll && message?.isContentVisible && tokens?.length;
+				},
+				callback: ChatMessageEH.rollVehicleDamageSave
+			},
+			{
 				name: game.i18n.localize("EH.Weapon.Action.SuppressiveFire.Place"),
 				icon: '<i class="fa-solid fa-less-than"></i>',
 				condition: li => {
 					const message = game.messages.get(li.data("messageId"));
-					return message?.flags["everyday-heroes"]?.suppressiveFire;
+					return message?.isContentVisible && message?.flags["everyday-heroes"]?.suppressiveFire;
 				},
 				callback: ChatMessageEH.placeSuppressiveFireTemplate
 			}
@@ -132,7 +143,10 @@ export default class ChatMessageEH extends ChatMessage {
 			pv: roll.options.pv === undefined ? basePV : roll.options.pv,
 			source
 		}));
-		return Promise.all(canvas.tokens.controlled.map(t => t.actor.applyDamage(damage, { multiplier })));
+		return Promise.all(canvas.tokens?.controlled
+			.filter(t => t.actor?.system.attributes?.hp?.value !== undefined)
+			.map(t => t.actor.applyDamage(damage, { multiplier }))
+		);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -145,7 +159,27 @@ export default class ChatMessageEH extends ChatMessage {
 	static applyTemp(li) {
 		const message = game.messages.get(li.data("messageId"));
 		const amount = message.rolls.reduce((a, r) => a + r.total, 0);
-		return Promise.all(canvas.tokens.controlled.map(t => t.actor.applyTempHP(amount)));
+		return Promise.all(canvas.tokens?.controlled
+			.filter(t => t.actor?.system.attributes?.hp?.temp !== undefined)
+			.map(t => t.actor.applyTempHP(amount))
+		);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Roll a damage save for any selected vehicles.
+	 * @param {HTMLElement} li - The chat message entry's HTML.
+	 */
+	static async rollVehicleDamageSave(li) {
+		const message = game.messages.get(li.data("messageId"));
+		const amount = message.rolls.reduce((a, r) => a + r.total, 0);
+		for ( const token of canvas.tokens?.controlled.filter(t => t.actor?.type === "vehicle") ?? [] ) {
+			await token.actor.roll("vehicle-save", {
+				ability: "con",
+				options: { target: Math.floor(amount / 2) }
+			});
+		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
