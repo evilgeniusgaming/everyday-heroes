@@ -915,6 +915,7 @@
 "Weapon.Action.Reload.Warning.Jammed": "Weapon cannot be reloaded while it is jammed.",
 "Weapon.Action.SuppressiveFire.Label": "Suppressive Fire",
 "Weapon.Action.SuppressiveFire.Message": "{actor} fills the battlefield with bullets from a {weapon}.",
+"Weapon.Action.SuppressiveFire.Place": "Place Suppressive Fire Template",
 "Weapon.Action.Thrown.Label": "Thrown",
 "Weapon.Action.ThrownExplosive.Label": "Thrown Explosive",
 "Weapon.Action.ClearJam.Label": "Clear Jam",

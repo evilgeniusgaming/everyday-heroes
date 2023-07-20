@@ -180,7 +180,11 @@ export default class SuppressiveFireTemplate extends MeasuredTemplate {
 	 */
 	async _onConfirmPlacement(event) {
 		await this._finishPlacement(event);
-		this.#events.resolve(canvas.scene.createEmbeddedDocuments("MeasuredTemplate", [this.document.toObject()]));
+		const created = await canvas.scene.createEmbeddedDocuments("MeasuredTemplate", [this.document.toObject()]);
+		// This is a fix to a bug with changing layers too quickly after creating a template
+		// if more than one template are created in a row.
+		await new Promise(resolve => { setTimeout(resolve, 100); });
+		this.#events.resolve(created);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

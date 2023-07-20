@@ -650,7 +650,9 @@ export default class ItemEH extends DocumentMixin(Item) {
 				speaker: ChatMessage.getSpeaker({ actor }),
 				"flags.everyday-heroes.suppressiveFire": {
 					origin: this.uuid,
-					ammunition: this.ammunition?.uuid
+					ammunition: this.ammunition?.uuid,
+					maxWidth: suppressiveFireConfig.size,
+					maxRange: this.system.range.long || this.system.range.short
 				}
 			}
 		}, message);

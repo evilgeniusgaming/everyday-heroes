@@ -1,5 +1,7 @@
+import SuppressiveFireTemplate from "../canvas/suppressive-fire-template.mjs";
+
 /**
- * Extended version of `ChatMessage` class to display crit highlighting and other system features.
+ * Extended version of `ChatMessage` class to display critical highlighting and other system features.
  */
 export default class ChatMessageEH extends ChatMessage {
 	async getHTML() {
@@ -98,6 +100,15 @@ export default class ChatMessageEH extends ChatMessage {
 				icon: '<i class="fa-solid fa-user-shield"></i>',
 				condition,
 				callback: li => ChatMessageEH.applyDamage(li, 0.5)
+			},
+			{
+				name: game.i18n.localize("EH.Weapon.Action.SuppressiveFire.Place"),
+				icon: '<i class="fa-solid fa-less-than"></i>',
+				condition: li => {
+					const message = game.messages.get(li.data("messageId"));
+					return message?.flags["everyday-heroes"]?.suppressiveFire;
+				},
+				callback: ChatMessageEH.placeSuppressiveFireTemplate
 			}
 		);
 	}
@@ -135,6 +146,32 @@ export default class ChatMessageEH extends ChatMessage {
 		const message = game.messages.get(li.data("messageId"));
 		const amount = message.rolls.reduce((a, r) => a + r.total, 0);
 		return Promise.all(canvas.tokens.controlled.map(t => t.actor.applyTempHP(amount)));
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Place a template for a suppressive fire action.
+	 * @param {HTMLElement} li - The chat message entry's HTML.
+	 * @returns {Promise}
+	 */
+	static async placeSuppressiveFireTemplate(li) {
+		const message = game.messages.get(li.data("messageId"));
+		const flags = message.flags["everyday-heroes"]?.suppressiveFire ?? {};
+		const { maxWidth, maxRange, origin: weapon } = flags;
+		if ( !maxWidth || !maxRange || !canvas.tokens.controlled.length ) return;
+		const templates = [];
+		for ( const token of canvas.tokens.controlled ) {
+			try {
+				const template = await SuppressiveFireTemplate.create(token.document, {
+					maxWidth, maxRange, templateData: { "flags.everyday-heroes": { weapon } }
+				}).place();
+				templates.push(template[0]);
+			} catch(err) {
+				if ( !(err instanceof SuppressiveFireTemplate.PlacementCanceledError) ) throw err;
+			}
+		}
+		return templates;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
