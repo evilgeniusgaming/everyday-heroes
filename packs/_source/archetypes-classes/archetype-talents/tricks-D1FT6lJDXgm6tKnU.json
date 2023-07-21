@@ -51,14 +51,13 @@
       "changes": [
         {
           "key": "system.details.limits.trick.formula",
-          "mode": 5,
+          "mode": 2,
           "value": "@scale.tricks"
         }
       ],
       "tint": null,
       "transfer": true,
       "flags": {},
-      "sort": 0,
       "_key": "!items.effects!D1FT6lJDXgm6tKnU.R0Vi3TFgAfhCgw83"
     }
   ],
@@ -68,10 +67,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.2.1",
-    "coreVersion": "10.291",
+    "systemVersion": "0.3.2",
+    "coreVersion": "10.303",
     "createdTime": 1679162613096,
-    "modifiedTime": 1685997849220,
+    "modifiedTime": 1689960238759,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
