@@ -25,32 +25,55 @@ export default class ActiveEffectEH extends ActiveEffect {
 	/*  Methods                                  */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	_applyAdd(actor, change, current, delta, changes) {
-		if ( current instanceof Set ) {
-			if ( Array.isArray(delta) ) delta.forEach(i => current.add(i));
-			else current.add(delta);
+	apply(document, change) {
+		// Grab DataField instance for target, if not found, fallback on default Foundry implementation
+		const keyPath = change.key.replace("system.", "");
+		const field = document.system.schema.getField(keyPath);
+		if ( !change.key.startsWith("system.") ) return super.apply(document, change);
+
+		// Get the current value of the target field
+		const current = foundry.utils.getProperty(document, change.key) ?? null;
+
+		// Convert input using field's _ehCastEffectValue if it exists
+		let delta;
+		try {
+			delta = field._ehCastDelta(this._parseOrString(change.value));
+			field._ehValidateDelta(delta);
+		} catch(err) {
+			console.warn(
+				`Actor ${document.name} [${document.id}] | Unable to parse active effect change `
+				+ `for %c${change.key}%c "${change.value}": %c${err.message}`,
+				"color: blue", "", "color: crimson"
+			);
 			return;
 		}
-		super._applyAdd(actor, change, current, delta, changes);
-	}
 
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	_applyUpgrade(actor, change, current, delta, changes) {
-		if ( current === null || current === undefined ) changes[change.key] = delta;
-		else super._applyUpgrade(actor, change, current, delta, changes);
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	_applyOverride(actor, change, current, delta, changes) {
-		if ( current instanceof Set ) {
-			current.clear();
-			if ( Array.isArray(delta) ) delta.forEach(item => current.add(item));
-			else current.add(delta);
-			return;
+		const MODES = CONST.ACTIVE_EFFECT_MODES;
+		const changes = {};
+		switch ( change.mode ) {
+			case MODES.ADD:
+				field._ehApplyAdd(document, change, current, delta, changes);
+				break;
+			case MODES.MULTIPLY:
+				field._ehApplyMultiply(document, change, current, delta, changes);
+				break;
+			case MODES.OVERRIDE:
+				field._ehApplyOverride(document, change, current, delta, changes);
+				break;
+			case MODES.UPGRADE:
+				field._ehApplyUpgrade(document, change, current, delta, changes);
+				break;
+			case MODES.DOWNGRADE:
+				field._ehApplyDowngrade(document, change, current, delta, changes);
+				break;
+			default:
+				this._applyCustom(document, change, current, delta, changes);
+				break;
 		}
-		return super._applyOverride(actor, change, current, delta, changes);
+
+		// Apply all changes to the Document data
+		foundry.utils.mergeObject(document, changes);
+		return changes;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -7,3 +7,5 @@ export {default as IdentifierField} from "./identifier-field.mjs";
 export {default as LocalDocumentField} from "./local-document-field.mjs";
 export {default as MappingField} from "./mapping-field.mjs";
 export {default as TypeField} from "./type-field.mjs";
+
+export {default as applyEffectApplicationPatches} from "./effect-patches.mjs";

@@ -37,6 +37,7 @@ Hooks.once("init", function() {
 	CONFIG.EverydayHeroes = config;
 	CONFIG.ui.combat = applications.CombatTrackerEH;
 	canvas.registerCanvas();
+	data.fields.applyEffectApplicationPatches();
 	data.registerDataModels("Actor", data.actor.config);
 	data.registerDataModels("Item", data.item.config);
 	dice.registerDice();

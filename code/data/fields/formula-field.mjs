@@ -21,6 +21,13 @@ export default class FormulaField extends foundry.data.fields.StringField {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	static _ehSupportedModes = [
+		CONST.ACTIVE_EFFECT_MODES.MULTIPLY, CONST.ACTIVE_EFFECT_MODES.ADD,
+		CONST.ACTIVE_EFFECT_MODES.DOWNGRADE, CONST.ACTIVE_EFFECT_MODES.UPGRADE
+	];
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	_validateType(value) {
 		if ( this.options.deterministic ) {
 			const roll = new Roll(value);
@@ -29,5 +36,68 @@ export default class FormulaField extends foundry.data.fields.StringField {
 		}
 		else Roll.validate(value);
 		super._validateType(value);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Active Effect Application                */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_ehCastDelta(value) {
+		return this._cast(value).trim();
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_ehApplyAdd(actor, change, current, delta, changes) {
+		if ( !current ) {
+			changes[change.key] = delta;
+			return;
+		}
+		let operator = "+";
+		if ( delta.startsWith("+") ) {
+			delta = delta.replace("+", "").trim();
+		} else if ( delta.startsWith("-") ) {
+			delta = delta.replace("-", "").trim();
+			operator = "-";
+		}
+		changes[change.key] = `${current} ${operator} ${delta}`;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_ehApplyMultiply(actor, change, current, delta, changes) {
+		if ( !current ) {
+			changes[change.key] = delta;
+			return;
+		}
+		const terms = (new Roll(current)).terms;
+		if ( terms.length > 1 ) changes[change.key] = `(${current}) * ${delta}`;
+		else changes[change.key] = `${current} * ${delta}`;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_ehApplyUpgrade(actor, change, current, delta, changes) {
+		if ( !current ) {
+			changes[change.key] = delta;
+			return;
+		}
+		const terms = (new Roll(current)).terms;
+		if ( (terms.length === 1) && (terms[0].fn === "max") ) {
+			changes[change.key] = current.replace(/\)$/, `, ${delta})`);
+		} else changes[change.key] = `max(${current}, ${delta})`;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_ehApplyDowngrade(actor, change, current, delta, changes) {
+		if ( !current ) {
+			changes[change.key] = delta;
+			return;
+		}
+		const terms = (new Roll(current)).terms;
+		if ( (terms.length === 1) && (terms[0].fn === "min") ) {
+			changes[change.key] = current.replace(/\)$/, `, ${delta})`);
+		} else changes[change.key] = `min(${current}, ${delta})`;
 	}
 }
