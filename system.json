@@ -4,7 +4,7 @@
   "description": "The core system for the Everyday Heroes role-playing game.",
   "version": "0.4.8",
   "compatibility": {
-    "minimum": "10.291",
+    "minimum": "11.306",
     "verified": "11"
   },
   "url": "https://github.com/evilgeniusgaming/everyday-heroes",
@@ -32,7 +32,7 @@
       "name": "archetypes-classes",
       "label": "Archetypes & Classes",
       "system": "everyday-heroes",
-      "path": "./packs/archetypes-classes.db",
+      "path": "./packs/archetypes-classes",
       "banner": "systems/everyday-heroes/artwork/interface/banners/archetypes-classes.webp",
       "type": "Item",
       "flags": {
@@ -45,7 +45,7 @@
       "name": "backgrounds-professions",
       "label": "Backgrounds & Professions",
       "system": "everyday-heroes",
-      "path": "./packs/backgrounds-professions.db",
+      "path": "./packs/backgrounds-professions",
       "banner": "systems/everyday-heroes/artwork/interface/banners/backgrounds-professions.webp",
       "type": "Item",
       "flags": {
@@ -58,7 +58,7 @@
       "name": "plans-tricks",
       "label": "Plans & Tricks",
       "system": "everyday-heroes",
-      "path": "./packs/plans-tricks.db",
+      "path": "./packs/plans-tricks",
       "banner": "systems/everyday-heroes/artwork/interface/banners/plans-tricks.webp",
       "type": "Item",
       "flags": {
@@ -71,7 +71,7 @@
       "name": "feats",
       "label": "Feats",
       "system": "everyday-heroes",
-      "path": "./packs/feats.db",
+      "path": "./packs/feats",
       "banner": "systems/everyday-heroes/artwork/interface/banners/feats.webp",
       "type": "Item",
       "flags": {
@@ -96,14 +96,14 @@
     {
       "name": "tables",
       "label": "Tables",
-      "path": "./packs/tables.db",
+      "path": "./packs/tables",
       "type": "RollTable",
       "flags": {}
     },
     {
       "name": "rules",
       "label": "Rules",
-      "path": "./packs/rules.db",
+      "path": "./packs/rules",
       "type": "JournalEntry",
       "flags": {
         "everyday-heroes": {

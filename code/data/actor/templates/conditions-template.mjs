@@ -49,9 +49,7 @@ export default class ConditionsTemplate {
 			const icon = CONFIG.EverydayHeroes.conditions[condition]?.icon;
 			await this.parent.createEmbeddedDocuments("ActiveEffect", toAdd.map(e => {
 				const obj = e.toObject();
-				if ( (game.release.generation > 10) && foundry.utils.hasProperty(obj, "flags.core.statusId") ) {
-					delete obj.flags.core.statusId;
-				}
+				if ( foundry.utils.hasProperty(obj, "flags.core.statusId") ) delete obj.flags.core.statusId;
 				if ( icon ) obj.icon = icon;
 				return obj;
 			}));

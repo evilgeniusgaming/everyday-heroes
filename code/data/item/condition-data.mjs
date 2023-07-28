@@ -103,7 +103,7 @@ export default class ConditionData extends SystemDataModel.mixin(DescribedTempla
 			if ( initialLength === 1 ) {
 				// Rename first level condition with level name
 				await this.levels[0].effect.update({
-					[game.release.generation < 11 ? "label" : "name"]: `${this.parent.name} (${this._levelLabel(1).toLowerCase()})`
+					name: `${this.parent.name} (${this._levelLabel(1).toLowerCase()})`
 				});
 			}
 		}
@@ -114,9 +114,7 @@ export default class ConditionData extends SystemDataModel.mixin(DescribedTempla
 			await this.parent.deleteEmbeddedDocuments("ActiveEffect", toDelete);
 			if ( count === 1 ) {
 				// Rename first level condition without level name
-				await this.levels[0].effect.update({
-					[game.release.generation < 11 ? "label" : "name"]: this.parent.name
-				});
+				await this.levels[0].effect.update({name: this.parent.name});
 			}
 		}
 		updates["system.levels"] = levels;
@@ -153,22 +151,15 @@ export default class ConditionData extends SystemDataModel.mixin(DescribedTempla
 	 * @internal
 	 */
 	_effectCreationData(number, appendLevel=false) {
-		const name = `${this.parent.name}${appendLevel ? ` (${this._levelLabel(number).toLowerCase()})` : ""}`;
-		const data = {
+		return {
+			name: `${this.parent.name}${appendLevel ? ` (${this._levelLabel(number).toLowerCase()})` : ""}`,
 			icon: this.parent.img,
 			"flags.everyday-heroes": {
 				type: "condition",
 				level: number
-			}
+			},
+			statuses: [this.identifier.value]
 		};
-		if ( game.release.generation < 11 ) {
-			data.label = name;
-			data["flags.core.statusId"] = this.identifier.value;
-		} else {
-			data.name = name;
-			data.statuses = [this.identifier.value];
-		}
-		return data;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

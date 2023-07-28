@@ -23,7 +23,7 @@ export function registerDataModels(documentType, models, module) {
 	config.typeLabelsPlural ??= {};
 	for ( let [type, model] of Object.entries(models) ) {
 		if ( model.metadata.module ) type = `${model.metadata.module}.${type}`;
-		config[game.release.generation > 10 ? "dataModels" : "systemDataModels"][type] = model;
+		config.dataModels[type] = model;
 		config.typeLabels[type] = `${model.metadata.localization}[one]`;
 		config.typeLabelsPlural[type] = `${model.metadata.localization}[other]`;
 		if ( model.metadata.icon ) config.typeIcons[type] = model.metadata.icon;

@@ -17,8 +17,7 @@ export default class ActiveEffectEH extends ActiveEffect {
 		const type = foundry.utils.getProperty(this, "flags.everyday-heroes.type");
 		if ( type !== "condition" ) return null;
 		let id;
-		if ( game.release.generation < 11 ) id = foundry.utils.getProperty(this, "flags.core.statusId");
-		else if ( this.statuses.size === 1 ) id = this.statuses.first();
+		if ( this.statuses.size === 1 ) id = this.statuses.first();
 		return { id, level: foundry.utils.getProperty(this, "flags.everyday-heroes.level") };
 	}
 
@@ -98,7 +97,6 @@ export default class ActiveEffectEH extends ActiveEffect {
 		};
 
 		for ( const effect of effects ) {
-			if ( game.release.generation < 11 ) effect._getSourceName();
 			if ( effect.disabled ) sections.inactive.effects.push(effect);
 			else if ( effect.isTemporary ) sections.temporary.effects.push(effect);
 			else sections.passive.effects.push(effect);
@@ -139,23 +137,6 @@ export default class ActiveEffectEH extends ActiveEffect {
 				return effect.update({disabled: !effect.disabled});
 			default:
 				return console.warn(`Everyday Heroes | Invalid effect action type clicked ${type}.`);
-		}
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Deprecations and Compatibility           */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	_initialize(options) {
-		super._initialize(options);
-		if ( game.release.generation < 11 ) {
-			Object.defineProperty(this, "name", {
-				get() {
-					return this.label;
-				},
-				configurable: true,
-				enumerable: false
-			});
 		}
 	}
 }

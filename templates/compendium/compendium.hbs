@@ -1,24 +1,22 @@
 <div class="compendium directory flexcol" data-pack="{{collection.collection}}">
 
 	<!-- Directory Header -->
-	<header class="directory-header {{#if isV10}}flexrow{{else}}flexcol{{/if}}">
-		{{#unless isV10}}
-			<div class="header-banner" style="background-image: url('{{collection.banner}}')">
-				<h3 class="entry-name compendium-name"><i class="{{sidebarIcon}}" ></i> {{name}}</h3>
-			</div>
-			<div class="header-actions action-buttons flexrow">
-				{{#if canCreateDocument}}
-					<button class="create-document create-entry">
-						<i class="{{sidebarIcon}}"></i> {{localize 'SIDEBAR.Create' type=label}}
-					</button>
-				{{/if}}
-				{{#if canCreateFolder }}
-					<button class="create-folder">
-						<i class="{{folderIcon}}"></i> {{localize 'FOLDER.Create'}}
-					</button>
-				{{/if}}
-			</div>
-		{{/unless}}
+	<header class="directory-header flexcol">
+		<div class="header-banner" style="background-image: url('{{collection.banner}}')">
+			<h3 class="entry-name compendium-name"><i class="{{sidebarIcon}}" ></i> {{name}}</h3>
+		</div>
+		<div class="header-actions action-buttons flexrow">
+			{{#if canCreateDocument}}
+				<button class="create-document">
+					<i class="{{sidebarIcon}}"></i> {{localize 'SIDEBAR.Create' type=label}}
+				</button>
+			{{/if}}
+			{{#if canCreateFolder }}
+				<button class="create-folder">
+					<i class="{{folderIcon}}"></i> {{localize 'FOLDER.Create'}}
+				</button>
+			{{/if}}
+		</div>
 		<div class="header-search flexrow">
 			<i class="fa-solid fa-search"></i>
 			<input type="search" name="search" value="" placeholder="{{localize 'FILES.Search'}}" autocomplete="off">

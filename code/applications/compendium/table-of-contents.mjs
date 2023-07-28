@@ -87,13 +87,6 @@ export default class TableOfContentsCompendium extends Compendium {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	_contextMenu(html) {
-		if ( game.release.generation > 10 ) return super._contextMenu(html);
-		ContextMenu.create(this, html, "[data-document-id]", this._getEntryContextOptions());
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
 	async _onClickLink(event) {
 		const entryId = event.currentTarget.closest("[data-entry-id]")?.dataset.entryId;
 		if ( !entryId ) return;
@@ -107,15 +100,8 @@ export default class TableOfContentsCompendium extends Compendium {
 
 	_onDragStart(event) {
 		let dragData;
-		if ( game.release.generation > 10 ) {
-			if ( ui.context ) ui.context.close({animate: false});
-			dragData = this._getEntryDragData(event.target.dataset.documentId);
-		} else {
-			dragData = {
-				type: this.collection.documentName,
-				uuid: `Compendium.${this.collection.collection}.${event.target.dataset.documentId}`
-			};
-		}
+		if ( ui.context ) ui.context.close({animate: false});
+		dragData = this._getEntryDragData(event.target.dataset.documentId);
 		if ( !dragData ) return;
 		event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
 	}

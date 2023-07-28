@@ -18,16 +18,13 @@ export default class CompendiumEH extends Compendium {
 
 	async getData(options={}) {
 		const context = await super.getData(options);
-		context.isV10 = game.release.generation === 10;
 		await this.collection.getIndex({
 			fields: ["system.type.value", "system.type.category", "flags.everyday-heroes.category"]
 		});
-		if ( !context.isV10 ) {
-			if ( !context.index ) context.index = this.collection.index.contents;
-			context.index = Array.from(context.index).sort((a, b) =>
-				(a.sort || 0) - (b.sort || 0) || a.name.localeCompare(b.name)
-			);
-		}
+		if ( !context.index ) context.index = this.collection.index.contents;
+		context.index = Array.from(context.index).sort((a, b) =>
+			(a.sort || 0) - (b.sort || 0) || a.name.localeCompare(b.name)
+		);
 		switch (this.collection.metadata.flags["everyday-heroes"].sorting) {
 			case "auto":
 				context.sections = this._createAutoSections(context);
@@ -51,8 +48,7 @@ export default class CompendiumEH extends Compendium {
 		const sections = {};
 		const sortValues = this._sortValues(CONFIG.EverydayHeroes.itemCompendiumSections);
 		for ( const item of context.index ) {
-			const Type = CONFIG[this.collection.metadata.type][
-				game.release.generation > 10 ? "dataModels" : "systemDataModels"][item.type];
+			const Type = CONFIG[this.collection.metadata.type].dataModels[item.type];
 			if ( !Type ) continue;
 			const [key, section] = Type.getCompendiumSection(item, sortValues);
 			sections[key] ??= section;
@@ -104,7 +100,7 @@ export default class CompendiumEH extends Compendium {
 
 	_onSearchFilter(event, query, rgx, html) {
 		for ( const li of html.querySelectorAll(".directory-item") ) {
-			const name = li.querySelector(".document-name").textContent;
+			const name = li.querySelector(".entry-name").textContent;
 			const match = rgx.test(SearchFilter.cleanQuery(name));
 			li.style.display = match ? "flex" : "none";
 		}

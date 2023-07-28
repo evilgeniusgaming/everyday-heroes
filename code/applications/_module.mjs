@@ -10,7 +10,7 @@ import * as journal from "./journal/_module.mjs";
  */
 export function registerSheets(documentType, categories) {
 	systemLog(`Registering ${documentType.name} sheets`, {level: "groupCollapsed"});
-	const models = CONFIG[documentType.name][game.release.generation > 10 ? "dataModels" : "systemDataModels"];
+	const models = CONFIG[documentType.name].dataModels;
 	const registered = new Set();
 	for ( const [key, category] of Object.entries(categories) ) {
 		if ( !category.sheet ) continue;

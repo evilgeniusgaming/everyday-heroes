@@ -49,7 +49,7 @@ Hooks.once("init", function() {
 });
 
 Hooks.once("setup", function() {
-	if ( game.release.generation > 10 ) applications.compendium.setupCompendiumApps();
+	applications.compendium.setupCompendiumApps();
 	applications.registerSheets(Actor, config.actorCategories);
 	applications.registerSheets(Item, config.itemCategories);
 	canvas.patchTokenHUD();
@@ -63,7 +63,6 @@ Hooks.once("i18nInit", function() {
 });
 
 Hooks.once("ready", function() {
-	if ( game.release.generation === 10 ) applications.compendium.setupLegacyCompendiumApps();
 	config.registration.registerItemTypes();
 	settings.enableTitanicSizes();
 });

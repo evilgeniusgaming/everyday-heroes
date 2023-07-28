@@ -100,7 +100,7 @@ export function registerItemTypes() {
 	systemLog("Preparing central item registrations");
 	const registrations = [];
 	for ( const type of Item.TYPES ) {
-		const dataModel = CONFIG.Item[game.release.generation > 10 ? "dataModels" : "systemDataModels"][type];
+		const dataModel = CONFIG.Item.dataModels[type];
 		if ( !dataModel?.metadata?.register ) continue;
 		registrations.push(_registerItemType(dataModel.metadata.type, indexes));
 	}
@@ -146,7 +146,7 @@ async function _registerItemType(type, indexes) {
 	const registrations = {};
 	for ( const [pack, index] of Object.entries(indexes) ) {
 		for ( const item of index ) {
-			const dataModel = CONFIG.Item[game.release.generation > 10 ? "dataModels" : "systemDataModels"][item.type];
+			const dataModel = CONFIG.Item.dataModels[item.type];
 			if ( dataModel?.metadata.type !== type ) continue;
 			systemLog(`Registering ${item.name} from ${pack}`);
 			registerItem(item, `Compendium.${pack}`);

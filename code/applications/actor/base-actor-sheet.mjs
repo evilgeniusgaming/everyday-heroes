@@ -245,7 +245,7 @@ export default class BaseActorSheet extends ActorSheet {
 	_buildSections() {
 		const sections = {};
 		const formatter = new Intl.ListFormat(game.i18n.lang, {style: "short", type: "conjunction"});
-		const typeModels = CONFIG.Item[game.release.generation > 10 ? "dataModels" : "systemDataModels"];
+		const typeModels = CONFIG.Item.dataModels;
 
 		const type = this.actor.system.constructor.metadata?.type ?? this.actor.type;
 		for ( const config of CONFIG.EverydayHeroes.sheetSections[type] ?? [] ) {
@@ -730,9 +730,7 @@ export default class BaseActorSheet extends ActorSheet {
 			const effect = condition.system.levels[existingLevel ?? 0]?.effect;
 			if ( !effect ) continue;
 			const obj = effect.toObject();
-			if ( (game.release.generation > 10) && foundry.utils.hasProperty(obj, "flags.core.statusId") ) {
-				delete obj.flags.core.statusId;
-			}
+			if ( foundry.utils.hasProperty(obj, "flags.core.statusId") ) delete obj.flags.core.statusId;
 			toAdd.push(obj);
 		}
 		return this.actor.createEmbeddedDocuments("ActiveEffect", toAdd);

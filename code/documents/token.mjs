@@ -81,10 +81,7 @@ export default class TokenDocumentEH extends TokenDocument {
 
 		// Remove an existing effect
 		const existing = this.actor.effects.reduce((arr, e) => {
-			if ( ((game.release.generation < 11) && (e.getFlag("core", "statusId") === effectData.id))
-				|| ((game.release.generation > 10) && (e.statuses.size === 1) && e.statuses.has(effectData.id)) ) {
-				arr.push(e.id);
-			}
+			if ( (e.statuses.size === 1) && e.statuses.has(effectData.id) ) arr.push(e.id);
 			return arr;
 		}, []);
 		const state = active ?? !existing.length;
@@ -103,20 +100,14 @@ export default class TokenDocumentEH extends TokenDocument {
 				createData.icon = effectData.icon;
 			} else {
 				createData = foundry.utils.deepClone(effectData);
-				if ( game.release.generation < 11 ) createData.label = game.i18n.localize(effectData.label);
-				else createData.name = game.i18n.localize(effectData.name);
+				createData.name = game.i18n.localize(effectData.name);
 			}
-			if ( game.release.generation < 11 ) createData["flags.core.statusId"] = effectData.id;
-			else {
-				createData.statuses = [effectData.id];
-				if ( createData.flags?.core?.statusId ) delete createData.flags.core.statusId;
-			}
+			createData.statuses = [effectData.id];
+			if ( createData.flags?.core?.statusId ) delete createData.flags.core.statusId;
 			if ( overlay ) createData["flags.core.overlay"] = true;
 			delete createData.id;
-			if ( game.release.generation > 10 ) {
-				cls.migrateDataSafe(createData);
-				cls.cleanData(createData);
-			}
+			cls.migrateDataSafe(createData);
+			cls.cleanData(createData);
 			await cls.create(createData, {parent: this.actor});
 		}
 		return state;
