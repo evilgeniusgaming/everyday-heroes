@@ -133,6 +133,10 @@ export const itemCategories = {
 			application: itemSheet.PhysicalSheet,
 			label: "EH.Sheet.Physical"
 		}
+	},
+	meta: {
+		label: "EH.Item.Category.Meta.Label",
+		types: []
 	}
 };
 preLocalize("itemCategories", { key: "label" });

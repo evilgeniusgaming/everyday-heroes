@@ -234,6 +234,10 @@
 "Bonus.Global.Label[one]": "Global Bonus",
 "Bonus.Global.Label[other]": "Global Bonuses",
 
+"Bulk.Label": "Bulk",
+"Bulk.Bonus.Label": "Bulk Bonus",
+"Bulk.Max.Label": "Max Bulk",
+
 "ChallengeRating.Label": "Challenge Rating",
 "ChallengeRating.Abbreviation": "CR",
 "ChallengeRating.Action": "DC {dc} {action}",
@@ -507,6 +511,7 @@
 "Item.Action.View": "View {type}",
 "Item.Category.Concept.Label": "Hero Concept",
 "Item.Category.Feature.Label": "Character Features",
+"Item.Category.Meta.Label": "Meta",
 "Item.Category.Physical.Label": "Physical Items",
 "Item.Description.Label": "Description",
 "Item.Description.Chat": "Chat Text",
@@ -588,6 +593,7 @@
 "Measurement.Units": "Units",
 
 "Movement.Base.Label": "Base Movement",
+"Movement.Bonus.Label": "Speed Bonus",
 "Movement.Special.Label": "Special Movement",
 "Movement.Tags.Label": "Movement Tags",
 "Movement.Tag.Hover.Label": "Hover",
