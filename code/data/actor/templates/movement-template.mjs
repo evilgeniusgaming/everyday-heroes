@@ -18,9 +18,11 @@ export default class MovementTemplate extends foundry.abstract.DataModel {
 						label: "EH.Speed.Special.Label"
 					}),
 					units: new foundry.data.fields.StringField({initial: "foot", label: "EH.Measurement.Units"}),
-					// TODO: Set default based on default units setting
 					tags: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField(), {
 						label: "EH.Speed.Tags.Label"
+					}),
+					multiplier: new foundry.data.fields.NumberField({
+						min: 0, label: "EH.Movement.Multiplier.Label", hint: "EH.Movement.Multiplier.Hint"
 					})
 				}, {label: "EH.Speed.Label"})
 			})
@@ -29,6 +31,16 @@ export default class MovementTemplate extends foundry.abstract.DataModel {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedMovementMultiplier() {
+		const multiplier = this.attributes.movement.multiplier ?? 1;
+		this.attributes.movement.value = Math.floor(this.attributes.movement.value * multiplier);
+		for ( const key of Object.keys(this.attributes.movement.special) ) {
+			this.attributes.movement.special[key] *= multiplier;
+		}
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedMovementReduction() {

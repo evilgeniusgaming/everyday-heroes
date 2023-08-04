@@ -596,6 +596,8 @@
 
 "Movement.Base.Label": "Base Movement",
 "Movement.Bonus.Label": "Speed Bonus",
+"Movement.Multiplier.Label": "Speed Multiplier",
+"Movement.Multiplier.Hint": "All movement types will be multiplied by this value and fractional results will be rounded down.",
 "Movement.Special.Label": "Special Movement",
 "Movement.Tags.Label": "Movement Tags",
 "Movement.Tag.Hover.Label": "Hover",
