@@ -86,10 +86,12 @@ export default class HeroData extends SystemDataModel.mixin(
 					temp: new foundry.data.fields.NumberField({
 						initial: null, min: 0, integer: true, label: "EH.HitPoints.Temp"
 					}),
-					// TODO: Does Everyday Heroes need temp max support?
 					bonuses: new foundry.data.fields.SchemaField({
 						level: new FormulaField({deterministic: true, label: "EH.HitPoints.Bonus.Level"}),
 						overall: new FormulaField({deterministic: true, label: "EH.HitPoints.Bonus.Overall"})
+					}),
+					multiplier: new foundry.data.fields.NumberField({
+						min: 0, label: "EH.HitPoints.Multiplier.Label", hint: "EH.HitPoints.Multiplier.Hint"
 					})
 				}, {label: "EH.HitPoints.Label[other]"})
 			}, {label: "EH.Attributes.Label"}),
@@ -285,7 +287,7 @@ export default class HeroData extends SystemDataModel.mixin(
 		const levelBonus = simplifyBonus(hp.bonuses.level, rollData) * this.details.level;
 		const overallBonus = simplifyBonus(hp.bonuses.overall, rollData);
 
-		hp.max = base + levelBonus + overallBonus;
+		hp.max = Math.floor((base + levelBonus + overallBonus) * (hp.multiplier ?? 1));
 		hp.value = Math.clamped(hp.value, 0, hp.max);
 		hp.damage = hp.max - hp.value;
 	}

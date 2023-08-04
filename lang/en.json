@@ -481,6 +481,8 @@
 "HitPoints.Formula": "Formula",
 "HitPoints.Current": "Current HP",
 "HitPoints.Max": "Max HP",
+"HitPoints.Multiplier.Label": "Max HP Multiplier",
+"HitPoints.Multiplier.Hint": "Max hit points will be multiplied by this value and fractional results will be rounded down.",
 "HitPoints.Temp": "Temp HP",
 "HitPoints.Bonus.Level": "Per Level Bonus",
 "HitPoints.Bonus.Overall": "Overall Bonus",
