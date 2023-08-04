@@ -17,8 +17,7 @@ export default class NPCWeaponData extends WeaponData {
 		return foundry.utils.mergeObject(super.metadata, {
 			type: "npcWeapon",
 			localization: "EH.Item.Type.NPCWeapon",
-			sheetLocalization: "EH.Item.Type.Weapon",
-			variant: "weapon"
+			sheetLocalization: "EH.Item.Type.Weapon"
 		});
 	}
 
@@ -64,12 +63,6 @@ export default class NPCWeaponData extends WeaponData {
 		const modes = this.modes;
 		["offhand", "suppressiveFire", "thrown"].forEach(m => delete modes[m]);
 		return modes;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	get types() {
-		return CONFIG.EverydayHeroes.weaponTypes;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

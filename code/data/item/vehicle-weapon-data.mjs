@@ -9,8 +9,7 @@ export default class VehicleWeaponData extends WeaponData {
 	static get metadata() {
 		return foundry.utils.mergeObject(super.metadata, {
 			type: "vehicleWeapon",
-			localization: "EH.Item.Type.VehicleWeapon",
-			variant: "weapon"
+			localization: "EH.Item.Type.VehicleWeapon"
 		});
 	}
 
@@ -31,12 +30,6 @@ export default class VehicleWeaponData extends WeaponData {
 
 	get actions() {
 		return this.usable ? super.actions : [];
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	get types() {
-		return CONFIG.EverydayHeroes.weaponTypes;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

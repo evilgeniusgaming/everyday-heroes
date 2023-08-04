@@ -12,7 +12,9 @@ export default class BasePhysicalSheet extends BaseItemSheet {
 	async getData(options) {
 		const context = await super.getData(options);
 
-		const applicableProperties = CONFIG.EverydayHeroes.applicableProperties[context.item.type];
+		const applicableProperties = CONFIG.EverydayHeroes.applicableProperties[
+			context.item.system?.constructor.metadata.type ?? context.item.type
+		];
 		if ( applicableProperties ) {
 			const prop = context.source.properties;
 			const isObj = context.propertyModification = foundry.utils.getType(prop) === "Object";

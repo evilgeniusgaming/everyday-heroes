@@ -10,7 +10,7 @@ export default class TypedTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
 			type: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.StringField({label: "EH.Item.Type.Label"})
+				value: new foundry.data.fields.StringField({initial: "", label: "EH.Item.Type.Label"})
 			}, {label: "EH.Item.Type.Label"})
 		};
 	}
@@ -24,6 +24,8 @@ export default class TypedTemplate extends foundry.abstract.DataModel {
 	 * @type {Object<string, LabeledConfiguration>|null}
 	 */
 	get types() {
-		return foundry.utils.getProperty(CONFIG.EverydayHeroes, `${this.parent?.type}Types`);
+		return foundry.utils.getProperty(
+			CONFIG.EverydayHeroes, `${this.constructor.metadata.variant ?? this.constructor.metadata.type}Types`
+		);
 	}
 }

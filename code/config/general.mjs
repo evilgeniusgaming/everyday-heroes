@@ -41,7 +41,7 @@ preLocalize("actionTypesStandard");
 
 /**
  * Action types that can be used when reloading a weapon.
- * 2
+ * @enum {string}
  */
 export const actionTypesReload = {
 	action: "EH.Action.Reload.Action",

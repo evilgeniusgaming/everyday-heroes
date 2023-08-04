@@ -67,7 +67,7 @@ export default class WeaponData extends ItemDataModel.mixin(
 		return this.mergeSchema(super.defineSchema(), {
 			_modeOverride: new foundry.data.fields.StringField({required: false, initial: undefined}),
 			type: new foundry.data.fields.SchemaField({
-				category: new foundry.data.fields.StringField({label: "EH.Equipment.Category.Label[one]"})
+				category: new foundry.data.fields.StringField({initial: "", label: "EH.Equipment.Category.Label[one]"})
 			}, {label: "EH.Item.Type.Label"}),
 			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
 				label: "EH.Weapon.Property.Label"
@@ -436,7 +436,7 @@ export default class WeaponData extends ItemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedProperties() {
-		this.properties = new Set(CONFIG.EverydayHeroes.applicableProperties[this.parent?.type ?? "weapon"].filter(p => {
+		this.properties = new Set(CONFIG.EverydayHeroes.applicableProperties[this.constructor.metadata.type ?? "weapon"].filter(p => {
 			if ( this.ammunition?.system.properties[p] === 1 ) return true;
 			else if ( this.ammunition?.system.properties[p] === -1 ) return false;
 			else if ( this.ammunition?.system.properties.has?.(p) ) return true;
