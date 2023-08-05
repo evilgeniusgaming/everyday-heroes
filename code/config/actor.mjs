@@ -85,6 +85,8 @@ export const vehicleAbilities = new Set(["str", "dex", "con"]);
  * Configuration data for conditions.
  *
  * @typedef {LabeledConfiguration} ConditionConfiguration
+ * @property {string} icon - Icon used to represent this condition on the token overlay.
+ * @property {string} [coreEffect] - Special status effect value used for this condition.
  * @property {number} [levels] - If applicable, how many levels are represented by this condition.
  */
 
@@ -94,57 +96,111 @@ export const vehicleAbilities = new Set(["str", "dex", "con"]);
  */
 export const conditions = {
 	blinded: {
-		label: "EH.Condition.Blinded.Label"
+		label: "EH.Condition.Blinded.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/blinded.svg",
+		coreEffect: "BLIND"
+	},
+	"blown-tires": {
+		label: "EH.Condition.BlownTires.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/blown-tires.svg"
+	},
+	"body-damage": {
+		label: "EH.Condition.BodyDamage.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/body-damage.svg"
 	},
 	burning: {
-		label: "EH.Condition.Burning.Label"
+		label: "EH.Condition.Burning.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/burning.svg"
 	},
 	deafened: {
-		label: "EH.Condition.Deafened.Label"
+		label: "EH.Condition.Deafened.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/deafened.svg"
 	},
 	distracted: {
-		label: "EH.Condition.Distracted.Label"
+		label: "EH.Condition.Distracted.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/distracted.svg"
 	},
 	encumbered: {
-		label: "EH.Condition.Encumbered.Label"
+		label: "EH.Condition.Encumbered.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/encumbered.svg"
 	},
 	exhausted: {
 		label: "EH.Condition.Exhausted.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/exhausted.svg",
 		levels: 6
 	},
 	frightened: {
-		label: "EH.Condition.Frightened.Label"
+		label: "EH.Condition.Frightened.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/frightened.svg"
 	},
 	grappled: {
-		label: "EH.Condition.Grappled.Label"
+		label: "EH.Condition.Grappled.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/grappled.svg"
 	},
 	incapacitated: {
-		label: "EH.Condition.Incapacitated.Label"
+		label: "EH.Condition.Incapacitated.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/incapacitated.svg"
 	},
 	intoxicated: {
 		label: "EH.Condition.Intoxicated.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/intoxicated.svg",
 		levels: 4
 	},
+	"loss-of-control": {
+		label: "EH.Condition.LossOfControl.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/loss-of-control.svg"
+	},
+	"loss-of-power": {
+		label: "EH.Condition.LossOfPower.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/loss-of-power.svg"
+	},
 	paralyzed: {
-		label: "EH.Condition.Paralyzed.Label"
+		label: "EH.Condition.Paralyzed.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/paralyzed.svg"
 	},
 	prone: {
-		label: "EH.Condition.Prone.Label"
+		label: "EH.Condition.Prone.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/prone.svg"
 	},
 	restrained: {
-		label: "EH.Condition.Restrained.Label"
+		label: "EH.Condition.Restrained.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/restrained.svg"
 	},
 	sickened: {
-		label: "EH.Condition.Sickened.Label"
+		label: "EH.Condition.Sickened.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/sickened.svg"
 	},
 	stunned: {
-		label: "EH.Condition.Stunned.Label"
+		label: "EH.Condition.Stunned.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/stunned.svg"
+	},
+	totaled: {
+		label: "EH.Condition.Totaled.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/totaled.svg"
 	},
 	unconcious: {
-		label: "EH.Condition.Unconcious.Label"
+		label: "EH.Condition.Unconcious.Label",
+		icon: "systems/everyday-heroes/artwork/svg/conditions/unconcious.svg"
 	}
 };
 preLocalize("conditions", { key: "label", sort: true });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Conditions that can be applied to various Actor types.
+ * @enum {string[]}
+ */
+export const applicableConditions = {
+	hero: [
+		"blinded", "burning", "deafened", "distracted", "encumbered", "exhausted", "frightened", "grappled",
+		"incapacitated", "intoxicated", "paralyzed", "prone", "restrained", "sickened", "stunned", "unconcious"
+	],
+	vehicle: [
+		"blown-tires", "body-damage", "loss-of-control", "loss-of-power", "totaled"
+	]
+};
+applicableConditions.npc = applicableConditions.hero;
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

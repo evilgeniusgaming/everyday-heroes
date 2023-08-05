@@ -153,8 +153,10 @@ export default class BaseActorSheet extends ActorSheet {
 	async prepareConditions(context) {
 		context.conditions = {};
 		if ( this.conditionAddMode ) {
-			for ( const [key, config] of Object.entries(CONFIG.EverydayHeroes.conditions) ) {
-				// TODO: Filter out non-applicable conditions
+			for ( const key of CONFIG.EverydayHeroes.applicableConditions[
+				this.actor.system.constructor.metadata?.type ?? this.actor.type
+			] ) {
+				const config = CONFIG.EverydayHeroes.conditions[key];
 				const registered = CONFIG.EverydayHeroes.registration.all.condition?.[key];
 				if ( context.system.conditions[key] || !registered ) continue;
 				const document = await fromUuid(registered?.sources[0]);
