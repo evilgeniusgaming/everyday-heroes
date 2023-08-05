@@ -653,4 +653,79 @@ export default class BaseActorSheet extends ActorSheet {
 		config.event = event;
 		return this.actor.roll(type, config);
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Drag & Drop                              */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _onDropItem(event, data) {
+		if ( !this.actor.isOwner ) return false;
+		const item = await Item.implementation.fromDropData(data);
+		const itemData = item.toObject();
+
+		// Handle item sorting within the same Actor
+		if ( this.actor.uuid === item.parent?.uuid ) return this._onSortItem(event, itemData);
+
+		// Handle dropping condition items specifically
+		if ( item.type === "condition" ) return this._onDropCondition(event, item);
+
+		// Create the owned item
+		return this._onDropItemCreate(event, itemData);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _onDropFolder(event, data) {
+		if ( !this.actor.isOwner ) return [];
+		const folder = await Folder.implementation.fromDropData(data);
+		if ( folder.type !== "Item" ) return [];
+		const droppedItems = await Promise.all(folder.contents.map(async item => {
+			if ( !(document instanceof Item) ) item = await fromUuid(item.uuid);
+			return item;
+		}));
+
+		// Handle dropping condition items specifically
+		const conditions = droppedItems.filter(i => i.type === "condition");
+		await this._onDropCondition(event, conditions);
+
+		// Create the owned items
+		return this._onDropItemCreate(event, droppedItems.map(i => i.toObject()).filter(i => i.type !== "condition"));
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Handle the final creation of dropped Item data on the Actor.
+	 * @param {DragEvent} event - The concluding DragEvent which contains drop target.
+	 * @param {object[]|object} itemData - The item data requested for creation.
+	 * @returns {Promise<Item[]>}
+	 */
+	async _onDropItemCreate(event, itemData) {
+		itemData = itemData instanceof Array ? itemData : [itemData];
+		return this.actor.createEmbeddedDocuments("Item", itemData);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Handle setting or increasing a condition that is dropped onto the actor.
+	 * @param {DragEvent} event - The concluding DragEvent which contains drop target.
+	 * @param {ItemEH[]|ItemEH} items - The item requested for creation.
+	 * @returns {Promise<ActorEH>}
+	 */
+	async _onDropCondition(event, items) {
+		items = items instanceof Array ? items : [items];
+		const toAdd = [];
+		for ( const condition of items ) {
+			const existingLevel = this.actor.system.conditions[condition.identifier];
+			const effect = condition.system.levels[existingLevel ?? 0]?.effect;
+			if ( !effect ) continue;
+			const obj = effect.toObject();
+			if ( (game.release.generation > 10) && foundry.utils.hasProperty(obj, "flags.core.statusId") ) {
+				delete obj.flags.core.statusId;
+			}
+			toAdd.push(obj);
+		}
+		return this.actor.createEmbeddedDocuments("ActiveEffect", toAdd);
+	}
 }

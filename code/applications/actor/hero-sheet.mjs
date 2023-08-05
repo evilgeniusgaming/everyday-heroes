@@ -130,7 +130,7 @@ export default class HeroSheet extends BaseActorSheet {
 	/*  Drag & Drop                              */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	async _onDropItemCreate(itemData) {
+	async _onDropItemCreate(event, itemData) {
 		const items = itemData instanceof Array ? itemData : [itemData];
 
 		const toCreate = [];
