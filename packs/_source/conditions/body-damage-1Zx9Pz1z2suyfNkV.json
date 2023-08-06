@@ -33,8 +33,12 @@
   "effects": [
     {
       "name": "Body Damage (level one)",
+      "label": "Body Damage (level one)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/body-damage.svg",
       "flags": {
+        "core": {
+          "statusId": "body-damage"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 1
@@ -61,13 +65,17 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["body-damage"],
       "_key": "!items.effects!1Zx9Pz1z2suyfNkV.oezPQfi2iOnxwKzI"
     },
     {
       "name": "Body Damage (level two)",
+      "label": "Body Damage (level two)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/body-damage.svg",
       "flags": {
+        "core": {
+          "statusId": "body-damage"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 2
@@ -88,13 +96,17 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["body-damage"],
       "_key": "!items.effects!1Zx9Pz1z2suyfNkV.wyHZpeatKcB14CSe"
     },
     {
       "name": "Body Damage (level three)",
+      "label": "Body Damage (level three)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/body-damage.svg",
       "flags": {
+        "core": {
+          "statusId": "body-damage"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 3
@@ -121,7 +133,7 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["body-damage"],
       "_key": "!items.effects!1Zx9Pz1z2suyfNkV.RfBXsEpfse4ggYJd"
     }
   ],

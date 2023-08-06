@@ -24,8 +24,12 @@
   "effects": [
     {
       "name": "Blinded",
+      "label": "Blinded",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/blinded.svg",
       "flags": {
+        "core": {
+          "statusId": "blinded"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 1
@@ -46,7 +50,7 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["blinded"],
       "_key": "!items.effects!cBIm6fL1nsT1vHcJ.vDsir9AdSL9pDQR8"
     }
   ],

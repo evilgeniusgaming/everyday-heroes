@@ -24,8 +24,12 @@
   "effects": [
     {
       "name": "Encumbered",
+      "label": "Encumbered",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/encumbered.svg",
       "flags": {
+        "core": {
+          "statusId": "encumbered"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 1
@@ -46,7 +50,7 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["encumbered"],
       "_key": "!items.effects!DEI87ArlxCvEIaf6.adydmQ85GGlVtL6A"
     }
   ],

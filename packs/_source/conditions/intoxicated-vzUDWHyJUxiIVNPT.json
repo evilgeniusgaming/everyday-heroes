@@ -37,8 +37,12 @@
   "effects": [
     {
       "name": "Intoxicated (level one)",
+      "label": "Intoxicated (level one)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
       "flags": {
+        "core": {
+          "statusId": "intoxicated"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 1
@@ -59,13 +63,17 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["intoxicated"],
       "_key": "!items.effects!vzUDWHyJUxiIVNPT.GrOJuhLJtbAP8Apq"
     },
     {
       "name": "Intoxicated (level two)",
+      "label": "Intoxicated (level two)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
       "flags": {
+        "core": {
+          "statusId": "intoxicated"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 2
@@ -92,13 +100,17 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["intoxicated"],
       "_key": "!items.effects!vzUDWHyJUxiIVNPT.CskTVEMpmVyEzQDR"
     },
     {
       "name": "Intoxicated (level three)",
+      "label": "Intoxicated (level three)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
       "flags": {
+        "core": {
+          "statusId": "intoxicated"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 3
@@ -125,13 +137,17 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["intoxicated"],
       "_key": "!items.effects!vzUDWHyJUxiIVNPT.SbRWej0UI2K33RBL"
     },
     {
       "name": "Intoxicated (level four)",
+      "label": "Intoxicated (level four)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
       "flags": {
+        "core": {
+          "statusId": "intoxicated"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 4
@@ -152,7 +168,7 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["intoxicated"],
       "_key": "!items.effects!vzUDWHyJUxiIVNPT.TdNX9QU2Mvmmzd6w"
     }
   ],

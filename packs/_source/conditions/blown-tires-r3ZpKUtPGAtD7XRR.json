@@ -24,8 +24,12 @@
   "effects": [
     {
       "name": "Blown Tires",
+      "label": "Blown Tires",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/blown-tires.svg",
       "flags": {
+        "core": {
+          "statusId": "blown-tires"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 1
@@ -57,7 +61,7 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["blown-tires"],
       "_key": "!items.effects!r3ZpKUtPGAtD7XRR.HgcTXONy8VkJ5Pta"
     }
   ],

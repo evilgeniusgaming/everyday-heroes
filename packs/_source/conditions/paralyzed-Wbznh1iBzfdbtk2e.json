@@ -24,8 +24,12 @@
   "effects": [
     {
       "name": "Paralyzed",
+      "label": "Paralyzed",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/paralyzed.svg",
       "flags": {
+        "core": {
+          "statusId": "paralyzed"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 1
@@ -46,7 +50,7 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["paralyzed"],
       "_key": "!items.effects!Wbznh1iBzfdbtk2e.oXmHLCbdyRWh4zh4"
     }
   ],

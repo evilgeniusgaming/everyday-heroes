@@ -24,8 +24,12 @@
   "effects": [
     {
       "name": "Totaled",
+      "label": "Totaled",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/totaled.svg",
       "flags": {
+        "core": {
+          "statusId": "totaled"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 1
@@ -46,7 +50,7 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["totaled"],
       "_key": "!items.effects!PPajnFe8vsVCIF3a.3g8oMeCVh52SIddo"
     }
   ],

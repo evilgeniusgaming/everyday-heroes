@@ -50,6 +50,7 @@ Hooks.once("setup", function() {
 	if ( game.release.generation > 10 ) applications.compendium.setupCompendiumApps();
 	applications.registerSheets(Actor, config.actorCategories);
 	applications.registerSheets(Item, config.itemCategories);
+	config.utils.configureStatusEffects();
 	settings.applyReduceTransparency();
 });
 

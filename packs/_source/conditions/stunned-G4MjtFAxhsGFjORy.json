@@ -24,8 +24,12 @@
   "effects": [
     {
       "name": "Stunned",
+      "label": "Stunned",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/stunned.svg",
       "flags": {
+        "core": {
+          "statusId": "stunned"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 1
@@ -46,7 +50,7 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["stunned"],
       "_key": "!items.effects!G4MjtFAxhsGFjORy.5k5nMliTDIwA75DK"
     }
   ],

@@ -24,8 +24,12 @@
   "effects": [
     {
       "name": "Incapacitated",
+      "label": "Incapacitated",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/incapacitated.svg",
       "flags": {
+        "core": {
+          "statusId": "incapacitated"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 1
@@ -46,7 +50,7 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["incapacitated"],
       "_key": "!items.effects!o3t3COK7jyF7aayL.NqL1JqHv0k7tZ8Jx"
     }
   ],

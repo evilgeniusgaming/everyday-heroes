@@ -24,8 +24,12 @@
   "effects": [
     {
       "name": "Distracted",
+      "label": "Distracted",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/distracted.svg",
       "flags": {
+        "core": {
+          "statusId": "distracted"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 1
@@ -46,7 +50,7 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["distracted"],
       "_key": "!items.effects!F9dXA7LTouFAwnIv.QbmwM9WjyWTBZile"
     }
   ],

@@ -24,8 +24,12 @@
   "effects": [
     {
       "name": "Burning",
+      "label": "Burning",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/burning.svg",
       "flags": {
+        "core": {
+          "statusId": "burning"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 1
@@ -46,7 +50,7 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["burning"],
       "_key": "!items.effects!ULpz1inWBjNkUyjW.t5mgkfFOLTWuyMxz"
     }
   ],

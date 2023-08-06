@@ -24,8 +24,12 @@
   "effects": [
     {
       "name": "Frightened",
+      "label": "Frightened",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/frightened.svg",
       "flags": {
+        "core": {
+          "statusId": "frightened"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 1
@@ -46,7 +50,7 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["frightened"],
       "_key": "!items.effects!gDFIIFClFsQD8ek9.NYCjsCHYX9vx8yLI"
     }
   ],

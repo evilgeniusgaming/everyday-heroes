@@ -46,11 +46,13 @@ export default class ConditionsTemplate {
 			if ( !conditionData ) console.warning(`Condition ${condition} not registered.`);
 			const conditionItem = await fromUuid(conditionData.sources[0]);
 			const toAdd = conditionItem.system.levels.slice(this.conditions[condition] ?? 0, level).map(e => e.effect);
+			const icon = CONFIG.EverydayHeroes.conditions[condition]?.icon;
 			await this.parent.createEmbeddedDocuments("ActiveEffect", toAdd.map(e => {
 				const obj = e.toObject();
 				if ( (game.release.generation > 10) && foundry.utils.hasProperty(obj, "flags.core.statusId") ) {
 					delete obj.flags.core.statusId;
 				}
+				if ( icon ) obj.icon = icon;
 				return obj;
 			}));
 		}

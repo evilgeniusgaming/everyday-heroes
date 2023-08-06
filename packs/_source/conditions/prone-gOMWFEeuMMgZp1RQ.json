@@ -24,8 +24,12 @@
   "effects": [
     {
       "name": "Prone",
+      "label": "Prone",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/prone.svg",
       "flags": {
+        "core": {
+          "statusId": "prone"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 1
@@ -46,7 +50,7 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["prone"],
       "_key": "!items.effects!gOMWFEeuMMgZp1RQ.1WNWecKTl9kmwb2L"
     }
   ],

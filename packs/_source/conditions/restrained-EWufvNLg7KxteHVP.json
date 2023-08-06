@@ -24,8 +24,12 @@
   "effects": [
     {
       "name": "Restrained",
+      "label": "Restrained",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/restrained.svg",
       "flags": {
+        "core": {
+          "statusId": "restrained"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 1
@@ -46,7 +50,7 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["restrained"],
       "_key": "!items.effects!EWufvNLg7KxteHVP.QsZvKBs556tdMaJy"
     }
   ],

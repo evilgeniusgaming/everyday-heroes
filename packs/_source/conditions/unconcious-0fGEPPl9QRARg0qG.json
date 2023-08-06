@@ -24,8 +24,12 @@
   "effects": [
     {
       "name": "Unconcious",
+      "label": "Unconcious",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/unconcious.svg",
       "flags": {
+        "core": {
+          "statusId": "unconcious"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 1
@@ -46,7 +50,7 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["unconcious"],
       "_key": "!items.effects!0fGEPPl9QRARg0qG.JDMNbNFE9uMK9PWR"
     }
   ],

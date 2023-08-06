@@ -1,4 +1,8 @@
-import { sortObjectEntries } from "../utils.mjs";
+import { sortObjectEntries, systemLog } from "../utils.mjs";
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Localization                             */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
  * Storage for pre-localization configuration.
@@ -33,6 +37,7 @@ export function preLocalize(configKeyPath, { key, keys=[], sort=false, registrat
  *                                   store will be used.
  */
 export function performPreLocalization(config, registrations) {
+	systemLog("Localizing configuration");
 	registrations ??= _preLocalizationRegistrations;
 	for ( const [keyPath, settings] of Object.entries(registrations) ) {
 		const target = foundry.utils.getProperty(config, keyPath);
@@ -74,4 +79,21 @@ export function localizeObject(obj, keys) {
 			v[key] = game.i18n.localize(v[key]);
 		}
 	}
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Status Effects                           */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Replace core status effects with system-specific ones.
+ */
+export function configureStatusEffects() {
+	systemLog("Configuring status effects");
+	CONFIG.statusEffects = CONFIG.statusEffects.filter(e => CONFIG.EverydayHeroes.retainedStatusEffects.includes(e.id));
+	for ( const [id, {label: name, icon, coreEffect}] of Object.entries(CONFIG.EverydayHeroes.conditions) ) {
+		CONFIG.statusEffects.push({ id, name, icon });
+		if ( coreEffect ) CONFIG.specialStatusEffects[coreEffect] = id;
+	}
+	console.log(CONFIG.statusEffects, CONFIG.specialStatusEffects);
 }

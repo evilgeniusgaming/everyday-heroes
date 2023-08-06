@@ -24,8 +24,12 @@
   "effects": [
     {
       "name": "Grappled",
+      "label": "Grappled",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/grappled.svg",
       "flags": {
+        "core": {
+          "statusId": "grappled"
+        },
         "everyday-heroes": {
           "type": "condition",
           "level": 1
@@ -46,7 +50,7 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": [],
+      "statuses": ["grappled"],
       "_key": "!items.effects!YI6DLnBsoZJeWVev.4mZ4AZ49I2QWRRj8"
     }
   ],
