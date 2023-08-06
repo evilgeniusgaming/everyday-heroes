@@ -37,6 +37,13 @@ export default class ActiveEffectEH extends ActiveEffect {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	_applyUpgrade(actor, change, current, delta, changes) {
+		if ( current === null || current === undefined ) changes[change.key] = delta;
+		else super._applyUpgrade(actor, change, current, delta, changes);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	_applyOverride(actor, change, current, delta, changes) {
 		if ( current instanceof Set ) {
 			current.clear();

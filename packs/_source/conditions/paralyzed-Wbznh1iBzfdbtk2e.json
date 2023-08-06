@@ -50,7 +50,9 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["paralyzed"],
+      "statuses": [
+        "paralyzed"
+      ],
       "_key": "!items.effects!Wbznh1iBzfdbtk2e.oXmHLCbdyRWh4zh4"
     }
   ],

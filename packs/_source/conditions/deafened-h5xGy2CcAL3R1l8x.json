@@ -50,7 +50,9 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["deafened"],
+      "statuses": [
+        "deafened"
+      ],
       "_key": "!items.effects!h5xGy2CcAL3R1l8x.3erUfyNK0Y0AqgO8"
     }
   ],

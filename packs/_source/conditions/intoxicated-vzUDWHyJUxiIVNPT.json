@@ -36,7 +36,6 @@
   },
   "effects": [
     {
-      "name": "Intoxicated (level one)",
       "label": "Intoxicated (level one)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
       "flags": {
@@ -60,14 +59,12 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["intoxicated"],
+      "tint": null,
       "_key": "!items.effects!vzUDWHyJUxiIVNPT.GrOJuhLJtbAP8Apq"
     },
     {
-      "name": "Intoxicated (level two)",
       "label": "Intoxicated (level two)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
       "flags": {
@@ -82,9 +79,10 @@
       "_id": "CskTVEMpmVyEzQDR",
       "changes": [
         {
-          "key": "system.conditions.sickened",
-          "mode": 5,
-          "value": "1"
+          "key": "system.attributes.movement.multiplier",
+          "mode": 3,
+          "value": "0.5",
+          "priority": null
         }
       ],
       "disabled": false,
@@ -97,14 +95,12 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["intoxicated"],
+      "tint": null,
       "_key": "!items.effects!vzUDWHyJUxiIVNPT.CskTVEMpmVyEzQDR"
     },
     {
-      "name": "Intoxicated (level three)",
       "label": "Intoxicated (level three)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
       "flags": {
@@ -117,13 +113,7 @@
         }
       },
       "_id": "SbRWej0UI2K33RBL",
-      "changes": [
-        {
-          "key": "system.conditions.unconcious",
-          "mode": 5,
-          "value": "1"
-        }
-      ],
+      "changes": [],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -134,14 +124,12 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["intoxicated"],
+      "tint": null,
       "_key": "!items.effects!vzUDWHyJUxiIVNPT.SbRWej0UI2K33RBL"
     },
     {
-      "name": "Intoxicated (level four)",
       "label": "Intoxicated (level four)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
       "flags": {
@@ -165,10 +153,9 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["intoxicated"],
+      "tint": null,
       "_key": "!items.effects!vzUDWHyJUxiIVNPT.TdNX9QU2Mvmmzd6w"
     }
   ],
@@ -178,10 +165,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.4.0",
-    "coreVersion": "11.305",
+    "systemVersion": "0.3.2",
+    "coreVersion": "10.303",
     "createdTime": 1686607191448,
-    "modifiedTime": 1689360886632,
+    "modifiedTime": 1691344984583,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

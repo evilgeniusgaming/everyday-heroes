@@ -44,7 +44,6 @@
   },
   "effects": [
     {
-      "name": "Exhausted (level one)",
       "label": "Exhausted (level one)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/exhausted.svg",
       "flags": {
@@ -68,14 +67,12 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["exhausted"],
+      "tint": null,
       "_key": "!items.effects!yerZRUn3plrzv4Mo.GsyOOyKe2Dyc9vnY"
     },
     {
-      "name": "Exhausted (level two)",
       "label": "Exhausted (level two)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/exhausted.svg",
       "flags": {
@@ -88,7 +85,14 @@
         }
       },
       "_id": "dj4N4G6nrLt2TByK",
-      "changes": [],
+      "changes": [
+        {
+          "key": "system.attributes.movement.multiplier",
+          "mode": 3,
+          "value": "0.5",
+          "priority": null
+        }
+      ],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -99,14 +103,12 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["exhausted"],
+      "tint": null,
       "_key": "!items.effects!yerZRUn3plrzv4Mo.dj4N4G6nrLt2TByK"
     },
     {
-      "name": "Exhausted (level three)",
       "label": "Exhausted (level three)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/exhausted.svg",
       "flags": {
@@ -130,14 +132,12 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["exhausted"],
+      "tint": null,
       "_key": "!items.effects!yerZRUn3plrzv4Mo.4n9zKNIYapnLLNrj"
     },
     {
-      "name": "Exhausted (level four)",
       "label": "Exhausted (level four)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/exhausted.svg",
       "flags": {
@@ -150,7 +150,14 @@
         }
       },
       "_id": "q3cfq0fKOOMMePbS",
-      "changes": [],
+      "changes": [
+        {
+          "key": "system.attributes.hp.multiplier",
+          "mode": 3,
+          "value": "0.5",
+          "priority": null
+        }
+      ],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -161,14 +168,12 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["exhausted"],
+      "tint": null,
       "_key": "!items.effects!yerZRUn3plrzv4Mo.q3cfq0fKOOMMePbS"
     },
     {
-      "name": "Exhausted (level five)",
       "label": "Exhausted (level five)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/exhausted.svg",
       "flags": {
@@ -181,7 +186,14 @@
         }
       },
       "_id": "rXVL7KPdr9mfNpuO",
-      "changes": [],
+      "changes": [
+        {
+          "key": "system.attributes.movement.multiplier",
+          "mode": 3,
+          "value": "0",
+          "priority": null
+        }
+      ],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -192,14 +204,12 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["exhausted"],
+      "tint": null,
       "_key": "!items.effects!yerZRUn3plrzv4Mo.rXVL7KPdr9mfNpuO"
     },
     {
-      "name": "Exhausted (level six)",
       "label": "Exhausted (level six)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/exhausted.svg",
       "flags": {
@@ -212,7 +222,18 @@
         }
       },
       "_id": "B7YDTMqxJBrG8oRd",
-      "changes": [],
+      "changes": [
+        {
+          "key": "system.attributes.hp.multiplier",
+          "mode": 3,
+          "value": "0"
+        },
+        {
+          "key": "system.attributes.death.status",
+          "mode": 5,
+          "value": "dead"
+        }
+      ],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -223,10 +244,9 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["exhausted"],
+      "tint": null,
       "_key": "!items.effects!yerZRUn3plrzv4Mo.B7YDTMqxJBrG8oRd"
     }
   ],
@@ -236,10 +256,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.4.0",
-    "coreVersion": "11.305",
+    "systemVersion": "0.3.2",
+    "coreVersion": "10.303",
     "createdTime": 1686594337925,
-    "modifiedTime": 1689360501265,
+    "modifiedTime": 1691344916671,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

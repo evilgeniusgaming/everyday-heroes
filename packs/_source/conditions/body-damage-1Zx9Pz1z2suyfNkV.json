@@ -32,7 +32,6 @@
   },
   "effects": [
     {
-      "name": "Body Damage (level one)",
       "label": "Body Damage (level one)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/body-damage.svg",
       "flags": {
@@ -62,14 +61,12 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["body-damage"],
+      "tint": null,
       "_key": "!items.effects!1Zx9Pz1z2suyfNkV.oezPQfi2iOnxwKzI"
     },
     {
-      "name": "Body Damage (level two)",
       "label": "Body Damage (level two)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/body-damage.svg",
       "flags": {
@@ -93,14 +90,12 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["body-damage"],
+      "tint": null,
       "_key": "!items.effects!1Zx9Pz1z2suyfNkV.wyHZpeatKcB14CSe"
     },
     {
-      "name": "Body Damage (level three)",
       "label": "Body Damage (level three)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/body-damage.svg",
       "flags": {
@@ -113,13 +108,7 @@
         }
       },
       "_id": "RfBXsEpfse4ggYJd",
-      "changes": [
-        {
-          "key": "system.conditions.totaled",
-          "mode": 5,
-          "value": "1"
-        }
-      ],
+      "changes": [],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -130,10 +119,9 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["body-damage"],
+      "tint": null,
       "_key": "!items.effects!1Zx9Pz1z2suyfNkV.RfBXsEpfse4ggYJd"
     }
   ],
@@ -143,10 +131,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.4.0",
-    "coreVersion": "11.305",
+    "systemVersion": "0.3.2",
+    "coreVersion": "10.303",
     "createdTime": 1686607564955,
-    "modifiedTime": 1689361040763,
+    "modifiedTime": 1691345050189,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

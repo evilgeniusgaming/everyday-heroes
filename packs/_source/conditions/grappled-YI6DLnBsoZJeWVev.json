@@ -50,7 +50,9 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["grappled"],
+      "statuses": [
+        "grappled"
+      ],
       "_key": "!items.effects!YI6DLnBsoZJeWVev.4mZ4AZ49I2QWRRj8"
     }
   ],

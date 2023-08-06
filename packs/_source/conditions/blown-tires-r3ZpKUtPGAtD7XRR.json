@@ -23,7 +23,6 @@
   },
   "effects": [
     {
-      "name": "Blown Tires",
       "label": "Blown Tires",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/blown-tires.svg",
       "flags": {
@@ -36,18 +35,7 @@
         }
       },
       "_id": "HgcTXONy8VkJ5Pta",
-      "changes": [
-        {
-          "key": "system.conditions.loss-of-control",
-          "mode": 4,
-          "value": "2"
-        },
-        {
-          "key": "system.conditions.loss-of-power",
-          "mode": 4,
-          "value": "2"
-        }
-      ],
+      "changes": [],
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -58,10 +46,9 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["blown-tires"],
+      "tint": null,
       "_key": "!items.effects!r3ZpKUtPGAtD7XRR.HgcTXONy8VkJ5Pta"
     }
   ],
@@ -71,10 +58,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.4.0",
-    "coreVersion": "11.305",
+    "systemVersion": "0.3.2",
+    "coreVersion": "10.303",
     "createdTime": 1686607555776,
-    "modifiedTime": 1689360982024,
+    "modifiedTime": 1691345072965,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

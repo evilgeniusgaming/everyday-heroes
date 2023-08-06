@@ -23,7 +23,6 @@
   },
   "effects": [
     {
-      "name": "Unconcious",
       "label": "Unconcious",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/unconcious.svg",
       "flags": {
@@ -47,10 +46,9 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["unconcious"],
+      "tint": null,
       "_key": "!items.effects!0fGEPPl9QRARg0qG.JDMNbNFE9uMK9PWR"
     }
   ],
@@ -60,10 +58,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.4.0",
-    "coreVersion": "11.305",
+    "systemVersion": "0.3.2",
+    "coreVersion": "10.303",
     "createdTime": 1686607099876,
-    "modifiedTime": 1689360935137,
+    "modifiedTime": 1691345030003,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

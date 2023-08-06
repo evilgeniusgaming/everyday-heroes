@@ -50,7 +50,9 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["frightened"],
+      "statuses": [
+        "frightened"
+      ],
       "_key": "!items.effects!gDFIIFClFsQD8ek9.NYCjsCHYX9vx8yLI"
     }
   ],

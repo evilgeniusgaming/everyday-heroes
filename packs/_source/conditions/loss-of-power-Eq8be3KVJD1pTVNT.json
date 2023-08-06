@@ -32,7 +32,6 @@
   },
   "effects": [
     {
-      "name": "Loss of Power (level one)",
       "label": "Loss of Power (level one)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/loss-of-power.svg",
       "flags": {
@@ -67,14 +66,12 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["loss-of-power"],
+      "tint": null,
       "_key": "!items.effects!Eq8be3KVJD1pTVNT.fxnWa87GR4UIzKGK"
     },
     {
-      "name": "Loss of Power (level two)",
       "label": "Loss of Power (level two)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/loss-of-power.svg",
       "flags": {
@@ -98,14 +95,12 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["loss-of-power"],
+      "tint": null,
       "_key": "!items.effects!Eq8be3KVJD1pTVNT.i2HQr6svUbuqY5gW"
     },
     {
-      "name": "Loss of Power (level three)",
       "label": "Loss of Power (level three)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/loss-of-power.svg",
       "flags": {
@@ -129,10 +124,9 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["loss-of-power"],
+      "tint": null,
       "_key": "!items.effects!Eq8be3KVJD1pTVNT.WB3E4u0lz7RJTrLg"
     }
   ],
@@ -142,10 +136,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.4.0",
-    "coreVersion": "11.305",
+    "systemVersion": "0.3.2",
+    "coreVersion": "10.303",
     "createdTime": 1686607586417,
-    "modifiedTime": 1689361165853,
+    "modifiedTime": 1691345059673,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

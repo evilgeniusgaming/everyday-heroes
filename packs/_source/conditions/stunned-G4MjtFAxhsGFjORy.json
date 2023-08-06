@@ -50,7 +50,9 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["stunned"],
+      "statuses": [
+        "stunned"
+      ],
       "_key": "!items.effects!G4MjtFAxhsGFjORy.5k5nMliTDIwA75DK"
     }
   ],

@@ -50,7 +50,9 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["distracted"],
+      "statuses": [
+        "distracted"
+      ],
       "_key": "!items.effects!F9dXA7LTouFAwnIv.QbmwM9WjyWTBZile"
     }
   ],

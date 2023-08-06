@@ -50,7 +50,9 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["restrained"],
+      "statuses": [
+        "restrained"
+      ],
       "_key": "!items.effects!EWufvNLg7KxteHVP.QsZvKBs556tdMaJy"
     }
   ],

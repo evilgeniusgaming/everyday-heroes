@@ -50,7 +50,9 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["prone"],
+      "statuses": [
+        "prone"
+      ],
       "_key": "!items.effects!gOMWFEeuMMgZp1RQ.1WNWecKTl9kmwb2L"
     }
   ],

@@ -50,7 +50,9 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["burning"],
+      "statuses": [
+        "burning"
+      ],
       "_key": "!items.effects!ULpz1inWBjNkUyjW.t5mgkfFOLTWuyMxz"
     }
   ],

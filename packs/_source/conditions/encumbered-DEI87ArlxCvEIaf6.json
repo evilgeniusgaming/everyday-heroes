@@ -50,7 +50,9 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["encumbered"],
+      "statuses": [
+        "encumbered"
+      ],
       "_key": "!items.effects!DEI87ArlxCvEIaf6.adydmQ85GGlVtL6A"
     }
   ],

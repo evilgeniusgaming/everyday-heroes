@@ -23,7 +23,6 @@
   },
   "effects": [
     {
-      "name": "Totaled",
       "label": "Totaled",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/totaled.svg",
       "flags": {
@@ -47,10 +46,9 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["totaled"],
+      "tint": null,
       "_key": "!items.effects!PPajnFe8vsVCIF3a.3g8oMeCVh52SIddo"
     }
   ],
@@ -60,10 +58,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.4.0",
-    "coreVersion": "11.305",
+    "systemVersion": "0.3.2",
+    "coreVersion": "10.303",
     "createdTime": 1686607598935,
-    "modifiedTime": 1689361198913,
+    "modifiedTime": 1691345063738,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

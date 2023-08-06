@@ -50,7 +50,9 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["incapacitated"],
+      "statuses": [
+        "incapacitated"
+      ],
       "_key": "!items.effects!o3t3COK7jyF7aayL.NqL1JqHv0k7tZ8Jx"
     }
   ],

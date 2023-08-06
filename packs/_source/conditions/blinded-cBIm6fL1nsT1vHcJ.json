@@ -50,7 +50,9 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["blinded"],
+      "statuses": [
+        "blinded"
+      ],
       "_key": "!items.effects!cBIm6fL1nsT1vHcJ.vDsir9AdSL9pDQR8"
     }
   ],

@@ -50,7 +50,9 @@
       "description": "",
       "origin": null,
       "transfer": true,
-      "statuses": ["sickened"],
+      "statuses": [
+        "sickened"
+      ],
       "_key": "!items.effects!avJtRWaoFn7y3n1D.g65PERkwdhuip5Fy"
     }
   ],
