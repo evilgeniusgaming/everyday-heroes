@@ -208,7 +208,7 @@ applicableConditions.npc = applicableConditions.hero;
  * Core status effects that don't correspond to specific conditions but should still be retained.
  * @type {string[]}
  */
-export const retainedStatusEffects = ["dead", "fly"];
+export const retainedStatusEffects = ["dead"];
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
