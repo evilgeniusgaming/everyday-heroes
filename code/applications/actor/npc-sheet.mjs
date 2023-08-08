@@ -45,25 +45,54 @@ export default class NPCSheet extends BaseActorSheet {
 
 	async prepareItems(context) {
 		const cinematicActions = context.actor.system.details.cinematicActions;
+		const makeLabel = action => game.i18n.format("EH.Feature.Type.LabelSpecific", {action: game.i18n.localize(action)});
 		context.actionSections = {
 			passive: {
 				label: "EH.Action.Passive",
-				items: []
+				items: [],
+				create: [
+					{
+						label: makeLabel("EH.Action.Passive"),
+						dataset: { type: "npcFeature" }
+					}
+				]
 			},
 			action: {
 				label: cinematicActions.max
 					? `${game.i18n.localize("EH.Action.Type.CinematicAction[other]")} (${cinematicActions.label})`
 					: "EH.Action.Type.Action[other]",
 				items: [],
-				config: "action"
+				config: "action",
+				create: [
+					{
+						label: makeLabel("EH.Action.Type.Action[one]"),
+						dataset: { type: "npcFeature", "system.activation.type": "action" }
+					},
+					{
+						label: game.i18n.localize("EH.Item.Type.Weapon[one]"),
+						dataset: { type: "npcWeapon" }
+					}
+				]
 			},
 			bonus: {
 				label: "EH.Action.Type.Bonus[other]",
-				items: []
+				items: [],
+				create: [
+					{
+						label: makeLabel("EH.Action.Type.Bonus[one]"),
+						dataset: { type: "npcFeature", "system.activation.type": "bonus" }
+					}
+				]
 			},
 			reaction: {
 				label: "EH.Action.Type.Reaction[other]",
-				items: []
+				items: [],
+				create: [
+					{
+						label: makeLabel("EH.Action.Type.Reaction[one]"),
+						dataset: { type: "npcFeature", "system.activation.type": "reaction" }
+					}
+				]
 			}
 		};
 		context.ammunitionTypes = {};

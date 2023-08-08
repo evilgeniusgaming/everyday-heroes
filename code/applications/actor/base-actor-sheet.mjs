@@ -567,7 +567,8 @@ export default class BaseActorSheet extends ActorSheet {
 					data = foundry.utils.mergeObject({
 						name: game.i18n.format("EH.Item.New", {type: game.i18n.localize(CONFIG.Item.typeLabels[data.type])})
 					}, data);
-					return this.actor.createEmbeddedDocuments("Item", [data]);
+					const document = await this.actor.createEmbeddedDocuments("Item", [data]);
+					return document[0].sheet.render(true);
 				} catch(err) { return; }
 			case "armor-damage":
 				return item?.update({"system.damaged": true});

@@ -486,6 +486,8 @@
 "Feat.Type.Major.Label": "Major",
 "Feat.Type.Minor.Label": "Minor",
 
+"Feature.Type.LabelSpecific": "{action} Feature",
+
 "Gear.Type.EverydayStuff.Label": "Everyday Stuff",
 "Gear.Type.EquipmentPack.Label": "Equipment Pack",
 "Gear.Type.SpecializedKit.Label": "Specialized Kit",

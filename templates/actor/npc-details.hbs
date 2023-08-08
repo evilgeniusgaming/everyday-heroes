@@ -209,11 +209,24 @@
 			{{#each section.items as |item|}}
 			{{#everydayHeroes-context item as |ctx|}}
 				<fieldset data-item-id="{{item.id}}">
+					{{#if @root.editingMode}}
+						<a data-action="item" data-type="edit"><i class="fa-solid fa-edit"></i></a>
+					{{/if}}
 					<label>{{{ctx.label}}}</label>
 					{{{ctx.description}}}
 				</fieldset>
 			{{/everydayHeroes-context}}
 			{{/each}}
+			{{#if @root.editingMode}}
+				{{#each section.create}}
+					<fieldset>
+						<a data-action="item" data-type="add" data-data="{{everydayHeroes-jsonStringify this.dataset}}">
+							<i class="fa-solid fa-plus"></i>
+							{{this.label}}
+						</a>
+					</fieldset>
+				{{/each}}
+			{{/if}}
 		</section>
 	{{/if}}
 {{/each}}
