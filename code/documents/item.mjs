@@ -224,7 +224,7 @@ export default class ItemEH extends DocumentMixin(Item) {
 			consume: {
 				recharge: item.system.consumesRecharge ?? false,
 				resource: item.system.consumesResource ?? false,
-				use: item.system.consumesUses ?? false
+				use: item.system.shouldConsumeUse ?? false
 			},
 			roll: {
 				resource: item.system.resource?.type === "resource"
@@ -375,8 +375,7 @@ export default class ItemEH extends DocumentMixin(Item) {
 		if ( config.consume.use ) {
 			const uses = this.system.uses;
 			if ( uses.available < 1 ) throw new Error(game.i18n.localize("EH.Uses.Warning.Insufficient"));
-			// TODO: Per-turn abilities should only consume uses while in an active combat
-			if ( uses.period !== "turn" ) updates.item["system.uses.spent"] = uses.spent + 1;
+			updates.item["system.uses.spent"] = uses.spent + 1;
 		}
 
 		return updates;

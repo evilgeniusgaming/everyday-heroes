@@ -111,6 +111,17 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Should an activation of this item consume a use?
+	 * @type {boolean}
+	 */
+	get shouldConsumeUse() {
+		const config = CONFIG.EverydayHeroes.recoveryPeriods[this.uses.period];
+		return this.consumesUses && (!config?.combatOnly || this.actor?.inCombat);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

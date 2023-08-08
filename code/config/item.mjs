@@ -79,13 +79,31 @@ preLocalize("consumptionTypes", { key: "label" });
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Configuration data for item usage recovery periods.
+ *
+ * @typedef {LabeledConfiguration} RecoveryPeriodConfiguration
+ * @property {boolean} [combatOnly=false] - Is this period only consumed during a combat encounter?
+ */
+
+/**
  * At what point are an item's resources recovered?
  * @enum {LabeledConfiguration}
  */
 export const recoveryPeriods = {
 	turn: {
 		label: "EH.Uses.Recovery.Period.Turn.Label",
-		abbreviation: "EH.Uses.Recovery.Period.Turn.Label"
+		abbreviation: "EH.Uses.Recovery.Period.Turn.Label",
+		combatOnly: true
+	},
+	round: {
+		label: "EH.Uses.Recovery.Period.Round.Label",
+		abbreviation: "EH.Uses.Recovery.Period.Round.Label",
+		combatOnly: true
+	},
+	encounter: {
+		label: "EH.Uses.Recovery.Period.Encounter.Label",
+		abbreviation: "EH.Uses.Recovery.Period.Encounter.Label",
+		combatOnly: true
 	},
 	sr: {
 		label: "EH.Rest.Type.Short.Label",

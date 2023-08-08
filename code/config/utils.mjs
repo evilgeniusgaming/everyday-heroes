@@ -95,5 +95,4 @@ export function configureStatusEffects() {
 		CONFIG.statusEffects.push({ id, name, icon });
 		if ( coreEffect ) CONFIG.specialStatusEffects[coreEffect] = id;
 	}
-	console.log(CONFIG.statusEffects, CONFIG.specialStatusEffects);
 }

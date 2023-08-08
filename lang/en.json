@@ -833,6 +833,8 @@
 "Uses.Spent.Label": "Spent Uses",
 "Uses.Recovery.Formula.Label": "Amount Recovered",
 "Uses.Recovery.Period.Label": "Recovery Period",
+"Uses.Recovery.Period.Encounter.Label": "Encounter",
+"Uses.Recovery.Period.Round.Label": "Round",
 "Uses.Recovery.Period.Turn.Label": "Turn",
 "Uses.Warning.Insufficient": "No uses of this item remaining.",
 
