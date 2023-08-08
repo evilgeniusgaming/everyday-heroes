@@ -4,6 +4,9 @@ import WeaponData from "./weapon-data.mjs";
 /**
  * Data definition for NPC Weapon items.
  *
+ * @property {object} activation
+ * @property {number} activation.amount - Number associated with activation, if applicable (e.g. 2 cinematic actions).
+ * @property {string} activation.type - The action type, if any, that is needed to activated this item.
  * @property {object} description
  * @property {string} description.npc - Description that appears for weapon on NPC details tab.
  * @property {object} target
@@ -26,6 +29,7 @@ export default class NPCWeaponData extends WeaponData {
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			activation: new foundry.data.fields.SchemaField({
+				amount: new foundry.data.fields.NumberField({label: "EH.Activation.Amount.Label"}),
 				type: new foundry.data.fields.StringField({initial: "attack", label: "EH.Activation.Cost.Label"})
 			}, {label: "EH.Activation.Label"}),
 			description: new foundry.data.fields.SchemaField({
@@ -43,6 +47,16 @@ export default class NPCWeaponData extends WeaponData {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Properties                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Are action points relevant to this item?
+	 * @type {boolean}
+	 */
+	get hasActionPoints() {
+		return ["action", "attack"].includes(this.activation.type) && !!this.actor?.system.details?.cinematicActions?.max;
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
@@ -255,14 +269,24 @@ export default class NPCWeaponData extends WeaponData {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async npcLabel() {
-		let label = `<a data-action="roll-item" data-type="activate">${this.parent.name}</a>`;
+		let label = await super.npcLabel();
+		const actions = [];
+		const listFormatter = new Intl.ListFormat(game.i18n.lang, { type: "unit" });
+
+		if ( this.hasActionPoints && (this.activation.amount > 1) ) actions.push(
+			`${numberFormat(this.activation.amount)} ${game.i18n.format("EH.Activation.Amount.ActionPoints.Abbreviation")}`
+		);
+
 		if ( this.rounds.capacity ) {
-			label += ` <span>(${this.reload ? '<a data-action="item" data-type="reload">' : ""}`;
-			label += `${numberFormat(this.rounds.available)}/${numberFormat(this.rounds.capacity)} ${
+			let rounds = "";
+			if ( this.reload ) rounds += '<a data-action="item" data-type="reload">';
+			rounds += `${numberFormat(this.rounds.available)}/${numberFormat(this.rounds.capacity)} ${
 				game.i18n.format("EH.Ammunition.Rounds.Label[other]")}`;
-			if ( this.reload ) label += `; ${CONFIG.EverydayHeroes.actionTypesReload[this.reload].toLowerCase()}`;
-			label += `${this.reload ? "</a>" : ""})</span>`;
+			if ( this.reload ) rounds += `; ${CONFIG.EverydayHeroes.actionTypesReload[this.reload].toLowerCase()}</a>`;
+			actions.push(rounds);
 		}
+
+		if ( actions.length ) label += ` <span>(${listFormatter.format(actions)})</span>`;
 		return label;
 	}
 

@@ -190,12 +190,20 @@
 	</fieldset>
 </section>
 
-{{#each actionSections as |section|}}
-	{{#if section.items.length}}
+{{#each actionSections as |section type|}}
+	{{#if (or section.items.length @root.editingMode)}}
 		<section class="actions">
 			<h3 class="striped">
 				<span class="left stripes"></span>
-				<span class="center">{{localize section.label}}</span>
+				<span class="center">
+					{{localize section.label}}
+					{{#if (and section.config @root.editingMode)}}
+						<a data-action="config" data-type="{{section.config}}"
+							data-tooltip="{{localize 'EH.Action.Configure' type=section.label}}">
+							<i class="fa-solid fa-cog"></i>
+						</a>
+					{{/if}}
+				</span>
 				<span class="right stripes"></span>
 			</h3>
 			{{#each section.items as |item|}}

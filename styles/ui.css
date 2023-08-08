@@ -80,6 +80,9 @@ a.roll-link i {
 	flex-grow: 1;
 }
 .everyday-heroes .striped:is(h1, h2, h3, h4) .center {
+	display: flex;
+	align-items: first baseline;
+	gap: 0.2em;
 	padding-inline: 0.5em;
 	background-color: black;
 }

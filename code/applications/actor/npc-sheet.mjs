@@ -44,21 +44,25 @@ export default class NPCSheet extends BaseActorSheet {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async prepareItems(context) {
+		const cinematicActions = context.actor.system.details.cinematicActions;
 		context.actionSections = {
 			passive: {
 				label: "EH.Action.Passive",
 				items: []
 			},
 			action: {
-				label: "EH.Action.Type.Action",
-				items: []
+				label: cinematicActions.max
+					? `${game.i18n.localize("EH.Action.Type.CinematicAction[other]")} (${cinematicActions.label})`
+					: "EH.Action.Type.Action[other]",
+				items: [],
+				config: "action"
 			},
 			bonus: {
-				label: "EH.Action.Type.Bonus",
+				label: "EH.Action.Type.Bonus[other]",
 				items: []
 			},
 			reaction: {
-				label: "EH.Action.Type.Reaction",
+				label: "EH.Action.Type.Reaction[other]",
 				items: []
 			}
 		};

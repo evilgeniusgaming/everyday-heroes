@@ -30,10 +30,10 @@ import { preLocalize } from "./utils.mjs";
  * @enum {string}
  */
 export const actionTypesStandard = {
-	action: "EH.Action.Type.Action",
-	bonus: "EH.Action.Type.Bonus",
-	reaction: "EH.Action.Type.Reaction",
-	attack: "EH.Action.Type.Attack"
+	action: "EH.Action.Type.Action[one]",
+	bonus: "EH.Action.Type.Bonus[one]",
+	reaction: "EH.Action.Type.Reaction[one]",
+	attack: "EH.Action.Type.Attack[one]"
 };
 preLocalize("actionTypesStandard");
 
@@ -57,8 +57,8 @@ preLocalize("actionTypesReload");
  * @enum {string}
  */
 export const actionTypesWeapon = {
-	attack: "EH.Action.Type.Attack",
-	bonus: "EH.Action.Type.Bonus"
+	attack: "EH.Action.Type.Attack[one]",
+	bonus: "EH.Action.Type.Bonus[one]"
 };
 preLocalize("actionTypesWeapon");
 

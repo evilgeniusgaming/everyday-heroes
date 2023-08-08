@@ -6,7 +6,7 @@ export default class CombatEH extends Combat {
 	async startCombat() {
 		await super.startCombat();
 		// Reset all combat related uses at start of combat
-		this._resetUses({encounter: true, round: true, turn: true});
+		this._resetUses({encounter: true, round: true, turn: true}, {start: true});
 		return this;
 	}
 
@@ -37,14 +37,16 @@ export default class CombatEH extends Combat {
 	 * @param {boolean|CombatantEH} [types.encounter=false]
 	 * @param {boolean|CombatantEH} [types.round=false]
 	 * @param {boolean|CombatantEH} [types.turn=false]
+	 * @param {object} [options={}]
+	 * @param {boolean} [options.start=false] - Is this the beginning of an encounter?
 	 */
-	async _resetUses({encounter=false, round=false, turn=false}) {
+	async _resetUses({encounter=false, round=false, turn=false}, {start=false}={}) {
 		for ( const combatant of this.combatants ) {
 			const types = [];
 			if ( encounter === true || encounter === combatant ) types.push("encounter");
 			if ( round === true || round === combatant ) types.push("round");
 			if ( turn === true || turn === combatant ) types.push("turn");
-			await combatant.resetCombatUses(types);
+			if ( types.length ) await combatant.resetCombatUses(types, { start });
 		}
 	}
 }

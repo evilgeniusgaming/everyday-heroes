@@ -5,6 +5,7 @@ import FormulaField from "../../fields/formula-field.mjs";
  * Data model template for an item that can be activated.
  *
  * @property {object} activation
+ * @property {number} activation.amount - Number associated with activation, if applicable (e.g. 2 cinematic actions).
  * @property {string} activation.type - The action type, if any, that is needed to activated this item.
  * @property {string} activation.condition - Conditions that must be met to activate this item.
  * @property {object} resource
@@ -22,6 +23,7 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
 			activation: new foundry.data.fields.SchemaField({
+				amount: new foundry.data.fields.NumberField({label: "EH.Activation.Amount.Label"}),
 				type: new foundry.data.fields.StringField({label: "EH.Activation.Cost.Label"}),
 				condition: new foundry.data.fields.StringField({label: "EH.Activation.Condition.Label"})
 			}, {label: "EH.Activation.Label"}),
@@ -73,6 +75,17 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Is this item configured to consume cinematic actions and on an actor with them?
+	 * @type {boolean}
+	 */
+	get consumesCinematicActions() {
+		return ["action", "attack"].includes(this.activation.type)
+			&& !!this.actor?.system.details?.cinematicActions?.max;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Does this item consume some sort of resource?
 	 * @type {boolean}
 	 */
@@ -93,6 +106,16 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Are action points relevant to this item?
+	 * @type {boolean}
+	 */
+	get hasActionPoints() {
+		return ["action", "attack"].includes(this.activation.type) && !!this.actor?.system.details?.cinematicActions?.max;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Can this Item be activated?
 	 * @type {boolean}
 	 */
@@ -108,6 +131,16 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 	 */
 	get hasEffects() {
 		return true;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Should an activation of this item consume one or more cinematic actions?
+	 * @type {boolean}
+	 */
+	get shouldConsumeCinematicAction() {
+		return this.consumesCinematicActions && this.actor?.inCombat;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

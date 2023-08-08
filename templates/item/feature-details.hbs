@@ -28,6 +28,12 @@
 		<label>{{localize "EH.Activation.Condition.Label"}}</label>
 		<input type="text" name="system.activation.condition" value="{{system.activation.condition}}">
 	</fieldset>
+	{{#if system.hasActionPoints}}
+		<fieldset>
+			<label>{{localize "EH.Activation.Amount.ActionPoints.Label"}}</label>
+			<input type="number" name="system.activation.amount" value="{{source.activation.amount}}" placeholder="1">
+		</fieldset>
+	{{/if}}
 
 	<fieldset>
 		<label>{{localize "EH.Consumption.Label"}}</label>

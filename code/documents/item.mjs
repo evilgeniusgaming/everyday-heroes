@@ -1,6 +1,6 @@
 import SuppressiveFireTemplate from "../canvas/suppressive-fire-template.mjs";
 import { buildMinimum, buildRoll } from "../dice/utils.mjs";
-import { slugify } from "../utils.mjs";
+import { numberFormat, slugify } from "../utils.mjs";
 import { DocumentMixin } from "./mixin.mjs";
 
 /**
@@ -195,6 +195,7 @@ export default class ItemEH extends DocumentMixin(Item) {
 	 * @typedef {object} ActivationConfiguration
 	 * @property {boolean} configure - Should the configuration dialog be displayed?
 	 * @property {object} consume
+	 * @property {boolean} consume.cinematicAction - Should this item consume an actor's cinematic action?
 	 * @property {boolean} consume.recharge - Should the item's charge be spent?
 	 * @property {boolean} consume.resource - Should the item's linked resource be consumed?
 	 * @property {boolean} consume.use - Should one of the item's uses be consumed?
@@ -222,6 +223,7 @@ export default class ItemEH extends DocumentMixin(Item) {
 
 		const activationConfig = foundry.utils.mergeObject({
 			consume: {
+				cinematicAction: item.system.shouldConsumeCinematicAction ?? false,
 				recharge: item.system.consumesRecharge ?? false,
 				resource: item.system.consumesResource ?? false,
 				use: item.system.shouldConsumeUse ?? false
@@ -335,6 +337,19 @@ export default class ItemEH extends DocumentMixin(Item) {
 			item: {},
 			resource: {}
 		};
+
+		if ( config.consume.cinematicAction ) {
+			const amount = this.system.activation.amount ?? 1;
+			const cinematicActions = this.actor?.system.details?.cinematicActions;
+			if ( !cinematicActions?.max ) throw new Error(game.i18n.localize("EH.CinematicAction.Warning.NotFound"));
+			if ( amount > cinematicActions.available ) {
+				const type = cinematicActions.available ? "Some" : "None";
+				throw new Error(game.i18n.format(`EH.CinematicAction.Warning.Insufficient${type}`, {
+					available: numberFormat(cinematicActions.available), required: numberFormat(amount)
+				}));
+			}
+			updates.actor["system.details.cinematicActions.spent"] = cinematicActions.spent + amount;
+		}
 
 		if ( config.consume.recharge ) {
 			const recharge = this.system.recharge;

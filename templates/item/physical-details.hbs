@@ -25,6 +25,12 @@
 				{{selectOptions activationCosts selected=system.activation.type}}
 			</select>
 		</fieldset>
+		{{#if system.hasActionPoints}}
+			<fieldset>
+				<label>{{localize "EH.Activation.Amount.ActionPoints.Label"}}</label>
+				<input type="number" name="system.activation.amount" value="{{source.activation.amount}}" placeholder="1">
+			</fieldset>
+		{{/if}}
 	{{/if}}
 
 	<h3 class="striped">

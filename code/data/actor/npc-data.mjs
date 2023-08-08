@@ -1,4 +1,5 @@
 import NPCSheet from "../../applications/actor/npc-sheet.mjs";
+import { numberFormat } from "../../utils.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import DocumentContextField from "../fields/document-context-field.mjs";
 import FormulaField from "../fields/formula-field.mjs";
@@ -73,7 +74,11 @@ export default class NPCData extends SystemDataModel.mixin(
 				roles: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField(), {label: "EH.Role.Label[other]"})
 			}, {label: "EH.Biography.Label"}),
 			details: new foundry.data.fields.SchemaField({
-				cr: new foundry.data.fields.NumberField({initial: 0, min: 0, label: "EH.ChallengeRating.Label"})
+				cr: new foundry.data.fields.NumberField({initial: 0, min: 0, label: "EH.ChallengeRating.Label"}),
+				cinematicActions: new foundry.data.fields.SchemaField({
+					spent: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.CinematicAction.Spent.Label"}),
+					max: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.CinematicAction.Max.Label"})
+				}, {label: "EH.CinematicAction.Label"})
 			}, {label: "EH.Details.Label"}),
 			items: new DocumentContextField(foundry.documents.BaseItem, {
 				ammunition: new LocalDocumentField(foundry.documents.BaseItem),
@@ -123,6 +128,22 @@ export default class NPCData extends SystemDataModel.mixin(
 
 	prepareBaseDetails() {
 		this.attributes.prof = Proficiency.calculateMod(Math.max(this.details.cr, 1));
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedCinematicActions() {
+		const cinematicActions = this.details.cinematicActions;
+		cinematicActions.available = (cinematicActions.max ?? 0) - (cinematicActions.spent ?? 0);
+		Object.defineProperty(this.details.cinematicActions, "label", {
+			get: () => {
+				if ( !cinematicActions.max ) return "";
+				if ( !this.parent?.inCombat ) return numberFormat(cinematicActions.max);
+				return `${numberFormat(cinematicActions.available)}/${numberFormat(cinematicActions.max)}`;
+			},
+			configurable: true,
+			enumerable: false
+		});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
