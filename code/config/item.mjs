@@ -72,6 +72,9 @@ export const consumptionTypes = {
 	hitDice: {
 		label: "EH.HitDice.Label[other]",
 		target: false
+	},
+	uses: {
+		label: "EH.Uses.Label"
 	}
 };
 preLocalize("consumptionTypes", { key: "label" });

@@ -227,7 +227,7 @@ export default class ItemEH extends DocumentMixin(Item) {
 			consume: {
 				cinematicAction: item.system.shouldConsumeCinematicAction ?? false,
 				recharge: item.system.consumesRecharge ?? false,
-				resource: item.system.consumesResource ?? false,
+				resource: item.system.shouldConsumeResource ?? false,
 				use: item.system.shouldConsumeUse ?? false
 			},
 			deferConsumption: false,
@@ -335,7 +335,7 @@ export default class ItemEH extends DocumentMixin(Item) {
 		const updates = {
 			actor: {},
 			item: {},
-			resource: {}
+			resource: []
 		};
 
 		if ( config.consume.cinematicAction ) {
@@ -355,6 +355,12 @@ export default class ItemEH extends DocumentMixin(Item) {
 			const recharge = this.system.recharge;
 			if ( !recharge.charged ) throw new Error(game.i18n.localize("EH.Recharge.Warning.NotCharged"));
 			updates.item["system.recharge.charged"] = false;
+		}
+
+		if ( config.consume.use ) {
+			const uses = this.system.uses;
+			if ( uses.available < 1 ) throw new Error(game.i18n.localize("EH.Uses.Warning.Insufficient"));
+			updates.item["system.uses.spent"] = uses.spent + 1;
 		}
 
 		if ( config.consume.resource ) {
@@ -382,15 +388,21 @@ export default class ItemEH extends DocumentMixin(Item) {
 					}
 					updates.actor["system.attributes.hd.spent"] = Math.clamped(newSpent, 0, hd.max);
 					break;
+				case "uses":
+					const otherItem = this.actor.items.get(res.target);
+					if ( !otherItem ) throw new Error(game.i18n.format("EH.Consumption.Warning.NotFound", { target: res.target }));
+					const uses = otherItem.system.uses;
+					if ( uses.available < res.amount ) {
+						const type = uses.available ? "Some" : "None";
+						throw new Error(game.i18n.format(`EH.Consumption.Warning.Insufficient${type}`, {
+							available: uses.available, resource: otherItem.name, required: res.amount
+						}));
+					}
+					updates.resource.push({ _id: otherItem.id, "system.uses.spent": uses.spent + res.amount });
+					break;
 				default:
 					throw new Error(game.i18n.format("EH.Consumption.Warning.InvalidType", { type: res.type }));
 			}
-		}
-
-		if ( config.consume.use ) {
-			const uses = this.system.uses;
-			if ( uses.available < 1 ) throw new Error(game.i18n.localize("EH.Uses.Warning.Insufficient"));
-			updates.item["system.uses.spent"] = uses.spent + 1;
 		}
 
 		return updates;

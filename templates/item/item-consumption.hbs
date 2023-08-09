@@ -15,13 +15,13 @@
 			{{#unless (eq (lookup (lookup CONFIG.consumptionTypes system.resource.type) "target") false)}}
 				<label>
 					<span>{{localize "EH.Consumption.Target.Label"}}</span>
-					{{#if item.isEmbedded}}
+					{{#with system.consumptionTargets as |targets|}}
 						<select name="system.resource.target">
-							{{selectOptions resources selected=system.resource.target blank=""}}
+							{{selectOptions targets selected=@root.system.resource.target blank=""}}
 						</select>
 					{{else}}
 						<input type="text" name="system.resource.target" value="{{source.resource.target}}">
-					{{/if}}
+					{{/with}}
 				</label>
 			{{/unless}}
 		{{/if}}

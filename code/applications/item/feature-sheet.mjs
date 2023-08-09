@@ -26,11 +26,6 @@ export default class FeatureSheet extends AdvancementItemSheet {
 		context.itemSubTypes = (context.item.type !== "feat" || context.system.type.category === "advanced")
 			? foundry.utils.getProperty(CONFIG.EverydayHeroes, `${context.item.type}Types`) : null;
 
-		context.resources = Object.entries(context.item.actor?.system.resources ?? {}).reduce((obj, [key, resource]) => {
-			if ( !resource.disabled ) obj[key] = resource.label;
-			return obj;
-		}, {});
-
 		context.registeredFields = [];
 		for ( const field of context.item.system.constructor.registeredFields ?? [] ) {
 			field.options = await CONFIG.EverydayHeroes.registration.filter(field.type, field.filterCallback);

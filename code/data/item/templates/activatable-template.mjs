@@ -106,6 +106,30 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * List of consumption targets based on the current resource type.
+	 * @type {object|null}
+	 */
+	get consumptionTargets() {
+		const config = CONFIG.EverydayHeroes.consumptionTypes[this.resource.type];
+		if ( !this.actor || !config || config.target === false ) return null;
+		switch (this.resource.type) {
+			case "resource":
+				return Object.entries(this.actor.system.resources ?? {}).reduce((obj, [key, resource]) => {
+					if ( !resource.disabled ) obj[key] = resource.label;
+					return obj;
+				}, {});
+			case "uses":
+				return this.actor.items.reduce((obj, item) => {
+					if ( item !== this.parent && item.system.consumesUses ) obj[item.id] = item.name;
+					return obj;
+				}, {});
+		}
+		return null;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Are action points relevant to this item?
 	 * @type {boolean}
 	 */
@@ -141,6 +165,19 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 	 */
 	get shouldConsumeCinematicAction() {
 		return this.consumesCinematicActions && this.actor?.inCombat;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Should an activation of this item consume a linked resource?
+	 * @type {boolean}
+	 */
+	get shouldConsumeResource() {
+		if ( !this.consumesResource ) return false;
+		if ( this.resource.type !== "uses" ) return false;
+		const otherItem = this.actor?.items.get(this.resource.target);
+		return otherItem?.system.shouldConsumeUse ?? false;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
