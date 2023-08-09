@@ -69,13 +69,17 @@ export default class ExplosiveData extends ItemDataModel.mixin(
 					initial: () => CONFIG.EverydayHeroes.defaultUnits.length, label: "EH.Measurement.Units"
 				})
 			}),
-			// TODO: Temp workaround until a solution for a but with adding top-level fields to the schema
-			// in subclasses is found (this fixes a bug with NPCExplosive)
-			range: new foundry.data.fields.SchemaField({}, {required: false, initial: undefined}),
 			bonuses: new foundry.data.fields.SchemaField({
 				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label"}),
 				dc: new FormulaField({label: "EH.Weapon.Bonus.DC.Label"})
-			}, {label: "EH.Bonus.Label"})
+			}, {label: "EH.Bonus.Label"}),
+
+			// TODO: Temp workaround until a solution for a bug with adding top-level fields to the schema
+			// in subclasses is found (this fixes a bug with NPCExplosive)
+			activation: new foundry.data.fields.SchemaField({}, {required: false, initial: undefined}),
+			range: new foundry.data.fields.SchemaField({}, {required: false, initial: undefined}),
+			resource: new foundry.data.fields.SchemaField({}, {required: false, initial: undefined}),
+			uses: new foundry.data.fields.SchemaField({}, {required: false, initial: undefined})
 		});
 	}
 

@@ -19,7 +19,7 @@ export default class PhysicalSheet extends BasePhysicalSheet {
 	async getData(options) {
 		const context = await super.getData(options);
 
-		if ( this.item.type === "npcWeapon" ) {
+		if ( ["npcExplosive", "npcWeapon"].includes(this.item.type) ) {
 			context.activationCosts = CONFIG.EverydayHeroes.actionTypesWeapon;
 		}
 

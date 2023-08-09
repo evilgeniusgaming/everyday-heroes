@@ -1,19 +1,18 @@
 import { numberFormat } from "../../utils.mjs";
 import ExplosiveData from "./explosive-data.mjs";
+import ActivatableTemplate from "./templates/activatable-template.mjs";
 
 /**
  * Data definition for NPC Explosive items.
+ * @mixes {ActivatableTemplate}
  *
- * @property {object} quantity
- * @property {number} quantity.max - Maximum uses of this explosive.
- * @property {string} quantity.period - Recovery period for this item's uses.
  * @property {object} range
  * @property {number} range.short - Normal range for ranged or thrown weapons.
  * @property {number} range.long - Long range for ranged or thrown weapons.
  * @property {number} range.reach - Reach for melee weapons with the "Reach" property.
  * @property {string} range.units - Units represented by the range values.
  */
-export default class NPCExplosiveData extends ExplosiveData {
+export default class NPCExplosiveData extends ExplosiveData.mixin(ActivatableTemplate) {
 
 	static get metadata() {
 		return foundry.utils.mergeObject(super.metadata, {
@@ -27,10 +26,12 @@ export default class NPCExplosiveData extends ExplosiveData {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	static defineSchema() {
-		return this.mergeSchema(super.defineSchema(), {
-			quantity: new foundry.data.fields.SchemaField({
-				max: new foundry.data.fields.NumberField({initial: 1, min: 1, integer: true, label: "EH.Uses.Spent.Label"}),
-				period: new foundry.data.fields.StringField({initial: "lr", label: "EH.Uses.Recovery.Period.Label"})
+		// TODO: Consider switching to using a "Weapon" template to define shared core functionality
+		// Alternatively find a way for this to properly merge without this extra consideration.
+		const parentSchema = this.mergeSchema(super.defineSchema(), ActivatableTemplate.defineSchema());
+		return this.mergeSchema(parentSchema, {
+			activation: new foundry.data.fields.SchemaField({
+				type: new foundry.data.fields.StringField({initial: "attack"})
 			}),
 			range: new foundry.data.fields.SchemaField({
 				short: new foundry.data.fields.NumberField({
@@ -38,9 +39,20 @@ export default class NPCExplosiveData extends ExplosiveData {
 				}),
 				long: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Long"}),
 				units: new foundry.data.fields.StringField({label: "EH.Measurement.Units"})
-				// TODO: Set default based on default units setting
 			}, {label: "EH.Equipment.Trait.Range.Label", hint: "EH.Equipment.Trait.Range.Hint"})
 		});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Migrations                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	static migrateUses(source) {
+		if ( source.uses || !source.quantity?.period || !source.quantity?.max ) return;
+		source.uses = {
+			max: source.quantity.max,
+			period: source.quantity.period
+		};
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -122,16 +134,11 @@ export default class NPCExplosiveData extends ExplosiveData {
 
 	async npcLabel() {
 		let label = await super.npcLabel();
-		const actions = [];
-		const listFormatter = new Intl.ListFormat(game.i18n.lang, { type: "unit" });
-
-		if ( this.quantity.max ) {
-			if ( this.quantity.period ) actions.push(`${numberFormat(this.quantity.value)}/${
-				CONFIG.EverydayHeroes.recoveryPeriods[this.quantity.period]?.label}`);
-			else actions.push(`${numberFormat(this.quantity.value)}/${numberFormat(this.quantity.max)}`);
+		const actions = this.npcConsumptionLabels();
+		if ( actions.length ) {
+			const listFormatter = new Intl.ListFormat(game.i18n.lang, { type: "unit" });
+			label += ` <span>(${listFormatter.format(actions)})</span>`;
 		}
-
-		if ( actions.length ) label += ` (${listFormatter.format(actions)})`;
 		return label;
 	}
 
