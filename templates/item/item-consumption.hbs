@@ -1,0 +1,80 @@
+<fieldset>
+	<label>{{localize "EH.Consumption.Label"}}</label>
+	<div class="fields">
+		<label>
+			<span>{{localize "EH.Consumption.Type.Label"}}</span>
+			<select name="system.resource.type">
+				{{selectOptions CONFIG.consumptionTypes selected=system.resource.type labelAttr="label" blank=""}}
+			</select>
+		</label>
+		{{#if system.resource.type}}
+			<label>
+				<span>{{localize "EH.Consumption.Amount.Label"}}</span>
+				<input type="number" name="system.resource.amount" value="{{system.resource.amount}}">
+			</label>
+			{{#unless (eq (lookup (lookup CONFIG.consumptionTypes system.resource.type) "target") false)}}
+				<label>
+					<span>{{localize "EH.Consumption.Target.Label"}}</span>
+					{{#if item.isEmbedded}}
+						<select name="system.resource.target">
+							{{selectOptions resources selected=system.resource.target blank=""}}
+						</select>
+					{{else}}
+						<input type="text" name="system.resource.target" value="{{source.resource.target}}">
+					{{/if}}
+				</label>
+			{{/unless}}
+		{{/if}}
+	</div>
+</fieldset>
+
+{{#if (and (everydayHeroes-has item "system.resource.dice") (eq system.resource.type "resource"))}}
+	<fieldset>
+		<label>{{localize "EH.Consumption.ResourceRolls.Label"}}</label>
+		<div class="fields">
+			<label>
+				<span>{{localize "EH.Consumption.Dice.Label"}}</span>
+				<input type="number" name="system.resource.dice" value="{{source.resource.dice}}"
+					placeholder="{{system.resource.amount}}">
+			</label>
+			<label class="double">
+				<span>{{localize "EH.Bonus.Label[one]"}}</span>
+				<input type="text" name="system.resource.bonus" value="{{source.resource.bonus}}">
+			</label>
+		</div>
+	</fieldset>
+{{/if}}
+
+<fieldset class="triple">
+	<label>{{localize "EH.Uses.Label"}}</label>
+	<div class="fields">
+		<label>
+			<span>{{localize "EH.Uses.Max.Label"}}</span>
+			<input type="text" name="system.uses.max" value="{{source.uses.max}}">
+		</label>
+		<label>
+			<span>{{localize "EH.Uses.Recovery.Period.Label"}}</span>
+			<select name="system.uses.period">
+				{{selectOptions CONFIG.recoveryPeriods selected=system.uses.period labelAttr="label" blank=""}}
+			</select>
+		</label>
+		{{!-- TODO: Implement uses recovery formulas
+		<label>
+			<span>{{localize "EH.Uses.Recovery.Formula.Label"}}</span>
+			<input type="text" name="system.uses.recovery" value="{{system.uses.recovery}}" placeholder="All">
+		</label>
+		--}}
+</fieldset>
+
+{{#if (everydayHeroes-has item "system.recharge")}}
+	<fieldset class="triple">
+		<label>{{localize "EH.Recharge.Label"}}</label>
+		<div class="fields">
+			<label>
+				<span>{{localize "EH.Recharge.Target.Label"}}</span>
+				<input type="number" name="system.recharge.target" value="{{system.recharge.target}}">
+			</label>
+		</div>
+		<p class="hint">{{localize "EH.Recharge.Target.Hint"}}</p>
+	</fieldset>
+{{/if}}

@@ -26,18 +26,18 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 				amount: new foundry.data.fields.NumberField({label: "EH.Activation.Amount.Label"}),
 				type: new foundry.data.fields.StringField({label: "EH.Activation.Cost.Label"}),
 				condition: new foundry.data.fields.StringField({label: "EH.Activation.Condition.Label"})
-			}, {label: "EH.Activation.Label"}),
+			}, {required: true, initial: {}, label: "EH.Activation.Label"}),
 			resource: new foundry.data.fields.SchemaField({
 				amount: new foundry.data.fields.NumberField({label: "EH.Consumption.Amount.Label"}),
 				target: new foundry.data.fields.StringField({label: "EH.Consumption.Target.Label"}),
 				type: new foundry.data.fields.StringField({label: "EH.Consumption.Type.Label"})
-			}, {label: "EH.Consumption.Label"}),
+			}, {required: true, initial: {}, label: "EH.Consumption.Label"}),
 			uses: new foundry.data.fields.SchemaField({
 				spent: new foundry.data.fields.NumberField({initial: 0, min: 0, integer: true, label: "EH.Uses.Spent.Label"}),
 				max: new FormulaField({deterministic: true, label: "EH.Uses.Max.Label"}),
 				period: new foundry.data.fields.StringField({label: "EH.Uses.Recovery.Period.Label"}),
 				formula: new FormulaField({label: "EH.Uses.Recovery.Formula.Label"})
-			}, {label: "EH.Uses.Label"})
+			}, {required: true, initial: {}, label: "EH.Uses.Label"})
 		};
 	}
 
@@ -190,5 +190,35 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 			available: numberFormat(this.uses.available), max: numberFormat(this.uses.max),
 			period: period?.label.toLowerCase()
 		});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Helpers                                  */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Labels displayed after an item's name indicating how many action points it consumes, how many uses it has left,
+	 * and whether it is charged.
+	 * @returns {string[]}
+	 */
+	npcConsumptionLabels() {
+		const actions = [];
+
+		if ( this.hasActionPoints && (this.activation.amount > 1) ) actions.push(
+			`${numberFormat(this.activation.amount)} ${game.i18n.format("EH.Activation.Amount.ActionPoints.Abbreviation")}`
+		);
+
+		if ( this.uses.max ) {
+			if ( this.uses.period ) actions.push(`${numberFormat(this.uses.available)}/${
+				CONFIG.EverydayHeroes.recoveryPeriods[this.uses.period]?.label}`);
+			else actions.push(`${numberFormat(this.uses.available)}/${numberFormat(this.uses.max)}`);
+		}
+
+		if ( this.recharge?.target ) actions.push(`${
+			!this.recharge.charged ? '<a data-action="roll-item" data-type="recharge">' : ""}${
+			this.recharge.label}${!this.recharge.charged ? "</a>" : ""
+		}`);
+
+		return actions;
 	}
 }

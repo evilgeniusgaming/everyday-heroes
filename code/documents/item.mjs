@@ -199,6 +199,8 @@ export default class ItemEH extends DocumentMixin(Item) {
 	 * @property {boolean} consume.recharge - Should the item's charge be spent?
 	 * @property {boolean} consume.resource - Should the item's linked resource be consumed?
 	 * @property {boolean} consume.use - Should one of the item's uses be consumed?
+	 * @property {boolean} deferConsumption - Should consumption updates be returned rather than acted upon?
+	 *                                        This will also prevent message creation.
 	 * @property {object} roll
 	 * @property {boolean} roll.resource - Should a dice resource be automatically rolled if it is consumed?
 	 */
@@ -228,6 +230,7 @@ export default class ItemEH extends DocumentMixin(Item) {
 				resource: item.system.consumesResource ?? false,
 				use: item.system.shouldConsumeUse ?? false
 			},
+			deferConsumption: false,
 			roll: {
 				resource: item.system.resource?.type === "resource"
 			}
@@ -247,11 +250,6 @@ export default class ItemEH extends DocumentMixin(Item) {
 		 */
 		if ( Hooks.call("everydayHeroes.preActivateItem", item, activationConfig, message) === false ) return;
 
-		// TODO: Display configuration dialog
-		// if ( activationConfig.configure ) {
-		//   console.log("Configuration Dialog!");
-		// }
-
 		/**
 		 * A hook event that fires before an item's resource consumption has been calculated.
 		 * @function everydayHeroes.preItemActivationConsumption
@@ -269,7 +267,6 @@ export default class ItemEH extends DocumentMixin(Item) {
 			updates = item.prepareActivationUpdates(activationConfig);
 		} catch(err) {
 			ui.notifications.warn(err.message);
-			// TODO: Display usage issues
 			return;
 		}
 
@@ -301,6 +298,9 @@ export default class ItemEH extends DocumentMixin(Item) {
 			}
 		}
 
+		// End early if defer consumption is true
+		if ( activationConfig.deferConsumption ) return updates;
+
 		// Apply usage & resource updates
 		if ( !foundry.utils.isEmpty(updates.actor) ) await this.actor.update(updates.actor);
 		if ( !foundry.utils.isEmpty(updates.item) ) await this.update(updates.item);
@@ -310,7 +310,7 @@ export default class ItemEH extends DocumentMixin(Item) {
 		const messageData = await this.displayInChat(message, { chatDescription: true });
 
 		/**
-		 * A hook event that fires when an item is used, after the measured template has been created if one is needed.
+		 * A hook event that fires when an item is used.
 		 * @function everydayHeroes.activateItem
 		 * @memberof hookEvents
 		 * @param {ItemEH} item - Item being activated.
@@ -909,16 +909,19 @@ export default class ItemEH extends DocumentMixin(Item) {
 		 */
 		if ( Hooks.call("everydayHeroes.preRollAttack", this, rollConfig, messageConfig, dialogConfig) === false ) return;
 
+		// Activate the weapon to consume any uses, if relevant
+		const updates = await this.activate({deferConsumption: true});
+		if ( !updates ) return;
+
 		const rolls = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
 		if ( !rolls?.length ) return;
 		const roll = rolls[0];
 
-		const updates = {};
 		if ( this.system.roundsToSpend ) {
-			updates["system.rounds.spent"] = this.system.rounds.spent += this.system.roundsToSpend;
+			updates.item["system.rounds.spent"] = this.system.rounds.spent += this.system.roundsToSpend;
 		}
 		if ( this.system.properties.has("unreliable") && roll.isCriticalFailure ) {
-			updates["system.jammed"] = true;
+			updates.item["system.jammed"] = true;
 		}
 
 		/**
@@ -927,11 +930,13 @@ export default class ItemEH extends DocumentMixin(Item) {
 		 * @memberof hookEvents
 		 * @param {ItemEH} item - Item that attacked.
 		 * @param {ChallengeRoll[]} rolls - The resulting rolls.
-		 * @param {object} updates - Updates that will be applied to the weapon.
+		 * @param {ActivationUpdates} updates - Updates that will be applied to the actor & weapon.
 		 */
 		Hooks.callAll("everydayHeroes.rollAttack", this, rolls, updates);
 
-		if ( !foundry.utils.isEmpty(updates) ) await this.update(updates);
+		if ( !foundry.utils.isEmpty(updates.actor) ) await this.actor.update(updates.actor);
+		if ( !foundry.utils.isEmpty(updates.item) ) await this.update(updates.item);
+		if ( !foundry.utils.isEmpty(updates.resource) ) await this.actor.updateEmbeddedDocuments("Item", updates.resource);
 
 		return roll;
 	}

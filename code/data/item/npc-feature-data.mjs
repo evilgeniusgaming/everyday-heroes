@@ -74,25 +74,11 @@ export default class NPCFeatureData extends ItemDataModel.mixin(DescribedTemplat
 
 	async npcLabel() {
 		let label = await super.npcLabel();
-		const actions = [];
-		const listFormatter = new Intl.ListFormat(game.i18n.lang, { type: "unit" });
-
-		if ( this.hasActionPoints && (this.activation.amount > 1) ) actions.push(
-			`${numberFormat(this.activation.amount)} ${game.i18n.format("EH.Activation.Amount.ActionPoints.Abbreviation")}`
-		);
-
-		if ( this.uses.max ) {
-			if ( this.uses.period ) actions.push(`${numberFormat(this.uses.available)}/${
-				CONFIG.EverydayHeroes.recoveryPeriods[this.uses.period]?.label}`);
-			else actions.push(`${numberFormat(this.uses.available)}/${numberFormat(this.uses.max)}`);
+		const actions = this.npcConsumptionLabels();
+		if ( actions.length ) {
+			const listFormatter = new Intl.ListFormat(game.i18n.lang, { type: "unit" });
+			label += ` <span>(${listFormatter.format(actions)})</span>`;
 		}
-
-		if ( this.recharge.target ) actions.push(`${
-			!this.recharge.charged ? '<a data-action="roll-item" data-type="recharge">' : ""}${
-			this.recharge.label}${!this.recharge.charged ? "</a>" : ""
-		}`);
-
-		if ( actions.length ) label += ` <span>(${listFormatter.format(actions)})</span>`;
 		return label;
 	}
 }

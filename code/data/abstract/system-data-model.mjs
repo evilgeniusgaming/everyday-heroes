@@ -48,14 +48,6 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
-	 * System type that this system data model represents (e.g. "hero", "npc", "vehicle").
-	 * @type {string}
-	 */
-	static _systemType;
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
 	 * Base templates used for construction.
 	 * @type {*[]}
 	 * @private

@@ -480,6 +480,7 @@ export async function registerHandlebarsPartials() {
 		"advancement/parts/advancement-scale-value.hbs",
 		"item/feature-details.hbs",
 		"item/item-advancement.hbs",
+		"item/item-consumption.hbs",
 		"item/item-description.hbs",
 		"item/item-summary.hbs",
 		"item/physical-damage.hbs",

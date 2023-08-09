@@ -100,9 +100,6 @@ export default class WeaponData extends ItemDataModel.mixin(
 				}),
 				type: new foundry.data.fields.StringField({label: "EH.Ammunition.Type.Label"})
 			}, {label: "EH.Equipment.Trait.Rounds.Label", hint: "EH.Equipment.Trait.Rounds.Hint"}),
-			activation: new foundry.data.fields.SchemaField({}, {required: false, initial: undefined}),
-			target: new foundry.data.fields.SchemaField({}, {required: false, initial: undefined}),
-			// TODO: Temporary fix for item conversion bug, find a better solution :)
 			bonuses: new foundry.data.fields.SchemaField({
 				attack: new FormulaField({label: "EH.Weapon.Bonus.Attack.Label"}),
 				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label"}),
@@ -119,7 +116,13 @@ export default class WeaponData extends ItemDataModel.mixin(
 				critical: new foundry.data.fields.SchemaField({
 					threshold: new foundry.data.fields.NumberField({label: "EH.Weapon.Overrides.Critical.Threshold.Label"})
 				})
-			}, {label: "EH.Override.Label"})
+			}, {label: "EH.Override.Label"}),
+
+			// TODO: Temporary fix for item conversion bug, find a better solution :)
+			activation: new foundry.data.fields.SchemaField({}, {required: false, initial: undefined}),
+			resource: new foundry.data.fields.SchemaField({}, {required: false, initial: undefined}),
+			target: new foundry.data.fields.SchemaField({}, {required: false, initial: undefined}),
+			uses: new foundry.data.fields.SchemaField({}, {required: false, initial: undefined})
 		});
 	}
 

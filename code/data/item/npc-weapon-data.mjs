@@ -1,12 +1,11 @@
 import { numberFormat } from "../../utils.mjs";
 import WeaponData from "./weapon-data.mjs";
+import ActivatableTemplate from "./templates/activatable-template.mjs";
 
 /**
  * Data definition for NPC Weapon items.
+ * @mixes {ActivatableTemplate}
  *
- * @property {object} activation
- * @property {number} activation.amount - Number associated with activation, if applicable (e.g. 2 cinematic actions).
- * @property {string} activation.type - The action type, if any, that is needed to activated this item.
  * @property {object} description
  * @property {string} description.npc - Description that appears for weapon on NPC details tab.
  * @property {object} target
@@ -14,7 +13,7 @@ import WeaponData from "./weapon-data.mjs";
  * @property {string[]} target.conditions - Conditions required on the target to make the attack.
  * @property {string} target.custom - Custom target text that replaces automatically generated version.
  */
-export default class NPCWeaponData extends WeaponData {
+export default class NPCWeaponData extends WeaponData.mixin(ActivatableTemplate) {
 
 	static get metadata() {
 		return foundry.utils.mergeObject(super.metadata, {
@@ -27,11 +26,13 @@ export default class NPCWeaponData extends WeaponData {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	static defineSchema() {
-		return this.mergeSchema(super.defineSchema(), {
+		// TODO: Consider switching to using a "Weapon" template to define shared core functionality
+		// Alternatively find a way for this to properly merge without this extra consideration.
+		const parentSchema = this.mergeSchema(super.defineSchema(), ActivatableTemplate.defineSchema());
+		return this.mergeSchema(parentSchema, {
 			activation: new foundry.data.fields.SchemaField({
-				amount: new foundry.data.fields.NumberField({label: "EH.Activation.Amount.Label"}),
-				type: new foundry.data.fields.StringField({initial: "attack", label: "EH.Activation.Cost.Label"})
-			}, {label: "EH.Activation.Label"}),
+				type: new foundry.data.fields.StringField({initial: "attack"})
+			}),
 			description: new foundry.data.fields.SchemaField({
 				npc: new foundry.data.fields.HTMLField({nullable: true, label: ""})
 			}),
@@ -47,16 +48,6 @@ export default class NPCWeaponData extends WeaponData {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Properties                               */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Are action points relevant to this item?
-	 * @type {boolean}
-	 */
-	get hasActionPoints() {
-		return ["action", "attack"].includes(this.activation.type) && !!this.actor?.system.details?.cinematicActions?.max;
-	}
-
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
@@ -270,12 +261,7 @@ export default class NPCWeaponData extends WeaponData {
 
 	async npcLabel() {
 		let label = await super.npcLabel();
-		const actions = [];
-		const listFormatter = new Intl.ListFormat(game.i18n.lang, { type: "unit" });
-
-		if ( this.hasActionPoints && (this.activation.amount > 1) ) actions.push(
-			`${numberFormat(this.activation.amount)} ${game.i18n.format("EH.Activation.Amount.ActionPoints.Abbreviation")}`
-		);
+		const actions = this.npcConsumptionLabels();
 
 		if ( this.rounds.capacity ) {
 			let rounds = "";
@@ -286,7 +272,11 @@ export default class NPCWeaponData extends WeaponData {
 			actions.push(rounds);
 		}
 
-		if ( actions.length ) label += ` <span>(${listFormatter.format(actions)})</span>`;
+		if ( actions.length ) {
+			const listFormatter = new Intl.ListFormat(game.i18n.lang, { type: "unit" });
+			label += ` <span>(${listFormatter.format(actions)})</span>`;
+		}
+
 		return label;
 	}
 
