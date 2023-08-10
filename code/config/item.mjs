@@ -1,3 +1,4 @@
+import { filterObject } from "../utils.mjs";
 import * as advancement from "../documents/advancement/_module.mjs";
 import * as itemSheet from "../applications/item/_module.mjs";
 import { preLocalize } from "./utils.mjs";
@@ -90,7 +91,7 @@ preLocalize("consumptionTypes", { key: "label" });
 
 /**
  * At what point are an item's resources recovered?
- * @enum {LabeledConfiguration}
+ * @enum {RecoveryPeriodConfiguration}
  */
 export const recoveryPeriods = {
 	turn: {
@@ -118,6 +119,14 @@ export const recoveryPeriods = {
 	}
 };
 preLocalize("recoveryPeriods", { keys: ["label", "abbreviation"] });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Subset of recovery periods that are recoverable outside of combat.
+ * @returns {Object<RecoveryPeriodConfiguration>}
+ */
+export const resourceRecoveryPeriods = filterObject(recoveryPeriods, p => !p.combatOnly);
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Items                                    */

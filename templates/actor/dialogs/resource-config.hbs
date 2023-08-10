@@ -37,7 +37,7 @@
 			<fieldset>
 				<label>{{localize "EH.Uses.Recovery.Period.Label"}}</label>
 				<select name="system.resources.{{resourceId}}.recovery.period">
-					{{selectOptions CONFIG.recoveryPeriods selected=resource.recovery.period blank="" labelAttr="label"}}
+					{{selectOptions CONFIG.resourceRecoveryPeriods selected=resource.recovery.period blank="" labelAttr="label"}}
 				</select>
 			</fieldset>
 		{{else}}
@@ -79,7 +79,7 @@
 			<fieldset>
 				<label>{{localize "EH.Uses.Recovery.Period.Label"}}</label>
 				<select name="custom.recovery.period">
-					{{selectOptions CONFIG.recoveryPeriods blank="" labelAttr="label"}}
+					{{selectOptions CONFIG.resourceRecoveryPeriods blank="" labelAttr="label"}}
 				</select>
 			</fieldset>
 			<fieldset>
