@@ -329,6 +329,16 @@ export default class WeaponData extends ItemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Is this weapon on a titanic creature?
+	 * @type {boolean|void}
+	 */
+	get isTitanic() {
+		return this.actor?.system.traits?.isTitanic ?? false;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Subset of `CONFIG.EverydayHeroes.weaponModes` that can be used by this weapon.
 	 * @type {WeaponModeConfiguration[]}
 	 */
@@ -476,5 +486,38 @@ export default class WeaponData extends ItemDataModel.mixin(
 
 	prepareFinalDC() {
 		this.dc = this.ammunition?.system.dc || 8 + this.attackMod;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Helpers                                  */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Update operations required to convert to and from titanic scale.
+	 * @param {boolean} isTitanic - After update, will this parent actor be titanic?
+	 * @returns {object}
+	 */
+	titanicConversions(isTitanic) {
+		if ( (isTitanic && (this.range.units === "space")) || (!isTitanic && (this.range.units !== "space")) ) return {};
+		const updates = {};
+		const adjustValue = keyPath => {
+			const value = foundry.utils.getProperty(this.parent, keyPath);
+			if ( value ) updates[keyPath] = Math.floor(value * (isTitanic ? 0.2 : 5));
+		};
+		adjustValue("system.range.short");
+		adjustValue("system.range.long");
+		adjustValue("system.range.reach");
+		updates["system.range.units"] = isTitanic ? "space" : "foot";
+		return updates;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Socket Event Handlers                    */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _preCreate(data, options, user) {
+		await super._preCreate(data, options, user);
+		const updates = this.titanicConversions(this.isTitanic);
+		if ( !foundry.utils.isEmpty(updates) ) this.parent.updateSource(updates);
 	}
 }
