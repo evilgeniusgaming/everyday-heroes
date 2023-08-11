@@ -98,8 +98,7 @@ export default class ItemDataModel extends SystemDataModel {
 	/*  Socket Event Handlers                    */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	async _preCreate(data, options, user) {
-		await super._preCreate(data, options, user);
+	async _preCreateVariantConversion(data, options, user) {
 		const variant = CONFIG.EverydayHeroes.itemVariants[this.constructor.metadata.variant];
 		if ( !variant || !this.parent.isEmbedded ) return;
 		const type = variant[this.parent.parent.type] ?? this.constructor.metadata.variant;

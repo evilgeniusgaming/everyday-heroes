@@ -1,10 +1,23 @@
 import { numberFormat } from "../../utils.mjs";
-import ExplosiveData from "./explosive-data.mjs";
+import ItemDataModel from "../abstract/item-data-model.mjs";
 import ActivatableTemplate from "./templates/activatable-template.mjs";
+import AttackTemplate from "./templates/attack-template.mjs";
+import BaseExplosiveTemplate from "./templates/base-explosive-template.mjs";
+import DamageTemplate from "./templates/damage-template.mjs";
+import DescribedTemplate from "./templates/described-template.mjs";
+import EquipmentTemplate from "./templates/equipment-template.mjs";
+import PhysicalTemplate from "./templates/physical-template.mjs";
+import TypedTemplate from "./templates/typed-template.mjs";
 
 /**
  * Data definition for NPC Explosive items.
- * @mixes {ActivatableTemplate}
+ * @mixes {@link ActivatableTemplate}
+ * @mixes {@link BaseExplosiveTemplate}
+ * @mixes {@link DamageTemplate}
+ * @mixes {@link DescribedTemplate}
+ * @mixes {@link EquipmentTemplate}
+ * @mixes {@link PhysicalTemplate}
+ * @mixes {@link TypedTemplate}
  *
  * @property {object} range
  * @property {number} range.short - Normal range for ranged or thrown weapons.
@@ -12,24 +25,30 @@ import ActivatableTemplate from "./templates/activatable-template.mjs";
  * @property {number} range.reach - Reach for melee weapons with the "Reach" property.
  * @property {string} range.units - Units represented by the range values.
  */
-export default class NPCExplosiveData extends ExplosiveData.mixin(ActivatableTemplate) {
+export default class NPCExplosiveData extends ItemDataModel.mixin(
+	ActivatableTemplate, AttackTemplate, DamageTemplate, DescribedTemplate,
+	EquipmentTemplate, PhysicalTemplate, TypedTemplate, BaseExplosiveTemplate
+) {
 
 	static get metadata() {
-		return foundry.utils.mergeObject(super.metadata, {
+		return {
 			type: "npcExplosive",
+			category: "physical",
 			localization: "EH.Item.Type.NPCExplosive",
 			sheetLocalization: "EH.Item.Type.Explosive",
+			icon: "fa-solid fa-burst",
+			image: "systems/everyday-heroes/artwork/svg/items/explosive.svg",
+			advancement: {
+				grantable: true
+			},
 			variant: "explosive"
-		});
+		};
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	static defineSchema() {
-		// TODO: Consider switching to using a "Weapon" template to define shared core functionality
-		// Alternatively find a way for this to properly merge without this extra consideration.
-		const parentSchema = this.mergeSchema(super.defineSchema(), ActivatableTemplate.defineSchema());
-		return this.mergeSchema(parentSchema, {
+		return this.mergeSchema(super.defineSchema(), {
 			activation: new foundry.data.fields.SchemaField({
 				type: new foundry.data.fields.StringField({initial: "attack"})
 			}),
@@ -140,35 +159,5 @@ export default class NPCExplosiveData extends ExplosiveData.mixin(ActivatableTem
 			label += ` <span>(${listFormatter.format(actions)})</span>`;
 		}
 		return label;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Update operations required to convert to and from titanic scale.
-	 * @param {boolean} isTitanic - After update, will this parent actor be titanic?
-	 * @returns {object}
-	 */
-	titanicConversions(isTitanic) {
-		if ( (isTitanic && (this.radius.units === "space")) || (!isTitanic && (this.radius.units !== "space")) ) return {};
-		const updates = {};
-		const adjustValue = keyPath => {
-			updates[keyPath] = Math.floor(foundry.utils.getProperty(this.parent, keyPath) * (isTitanic ? 0.2 : 5));
-		};
-		adjustValue("system.radius.value");
-		updates["system.radius.units"] = isTitanic ? "space" : "foot";
-		adjustValue("system.range.short");
-		adjustValue("system.range.long");
-		updates["system.range.units"] = isTitanic ? "space" : "foot";
-		return updates;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Socket Event Handlers                    */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	async _preCreate(data, options, user) {
-		const updates = this.titanicConversions(this.isTitanic);
-		if ( !foundry.utils.isEmpty(updates) ) this.parent.updateSource(updates);
 	}
 }

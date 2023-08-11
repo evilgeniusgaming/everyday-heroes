@@ -260,7 +260,11 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 * @param {User} user - The User requesting the document creation.
 	 * @protected
 	 */
-	async _preCreate(data, options, user) {}
+	async _preCreate(data, options, user) {
+		for ( const name of this.constructor._getMethods({ startingWith: "_preCreate" }) ) {
+			await this[name](data, options, user);
+		}
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -271,7 +275,11 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 * @param {User} user - The User requesting the document update.
 	 * @protected
 	 */
-	async _preUpdate(changed, options, user) {}
+	async _preUpdate(changed, options, user) {
+		for ( const name of this.constructor._getMethods({ startingWith: "_preUpdate" }) ) {
+			await this[name](changed, options, user);
+		}
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -281,7 +289,11 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 * @param {User} user - The User requesting the document deletion.
 	 * @protected
 	 */
-	async _preDelete(options, user) {}
+	async _preDelete(options, user) {
+		for ( const name of this.constructor._getMethods({ startingWith: "_preDelete" }) ) {
+			await this[name](options, user);
+		}
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -292,7 +304,9 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 * @param {string} userId - The id of the User requesting the document update.
 	 * @protected
 	 */
-	_onCreate(data, options, userId) {}
+	_onCreate(data, options, userId) {
+		this.constructor._getMethods({ startingWith: "_onCreate" }).forEach(k => this[k](data, options, userId));
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -303,7 +317,9 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 * @param {string} userId - The id of the User requesting the document update.
 	 * @protected
 	 */
-	_onUpdate(changed, options, userId) {}
+	_onUpdate(changed, options, userId) {
+		this.constructor._getMethods({ startingWith: "_onUpdate" }).forEach(k => this[k](changed, options, userId));
+	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -313,6 +329,8 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 	 * @param {string} userId - The id of the User requesting the document update
 	 * @protected
 	 */
-	_onDelete(options, userId) {}
+	_onDelete(options, userId) {
+		this.constructor._getMethods({ startingWith: "_onDelete" }).forEach(k => this[k](options, userId));
+	}
 
 }

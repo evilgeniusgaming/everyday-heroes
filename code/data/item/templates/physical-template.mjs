@@ -98,9 +98,7 @@ export default class PhysicalTemplate extends ItemDataModel {
 	/*  Socket Event Handlers                    */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	_onCreate(data, options, userId) {
-		// This is fine for now, but if other templates add their own _onCreate method this might be overwritten
-		super._onCreate(data, options, userId);
+	_onCreateContext(data, options, userId) {
 		if ( (userId !== game.user.id) || !this.actor ) return;
 		this.actor.update({[`system.items.${this.parent.id}`]: {}});
 	}

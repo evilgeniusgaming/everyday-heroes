@@ -1,10 +1,24 @@
 import { numberFormat } from "../../utils.mjs";
-import WeaponData from "./weapon-data.mjs";
+import ItemDataModel from "../abstract/item-data-model.mjs";
 import ActivatableTemplate from "./templates/activatable-template.mjs";
+import AttackTemplate from "./templates/attack-template.mjs";
+import BaseWeaponTemplate from "./templates/base-weapon-template.mjs";
+import DamageTemplate from "./templates/damage-template.mjs";
+import DescribedTemplate from "./templates/described-template.mjs";
+import EquipmentTemplate from "./templates/equipment-template.mjs";
+import PhysicalTemplate from "./templates/physical-template.mjs";
+import TypedTemplate from "./templates/typed-template.mjs";
 
 /**
  * Data definition for NPC Weapon items.
- * @mixes {ActivatableTemplate}
+ * @mixes {@link ActivatableTemplate}
+ * @mixes {@link AttackTemplate}
+ * @mixes {@link BaseWeaponTemplate}
+ * @mixes {@link DamageTemplate}
+ * @mixes {@link DescribedTemplate}
+ * @mixes {@link EquipmentTemplate}
+ * @mixes {@link PhysicalTemplate}
+ * @mixes {@link TypedTemplate}
  *
  * @property {object} description
  * @property {string} description.npc - Description that appears for weapon on NPC details tab.
@@ -13,23 +27,30 @@ import ActivatableTemplate from "./templates/activatable-template.mjs";
  * @property {string[]} target.conditions - Conditions required on the target to make the attack.
  * @property {string} target.custom - Custom target text that replaces automatically generated version.
  */
-export default class NPCWeaponData extends WeaponData.mixin(ActivatableTemplate) {
+export default class NPCWeaponData extends ItemDataModel.mixin(
+	ActivatableTemplate, AttackTemplate, DamageTemplate, DescribedTemplate,
+	EquipmentTemplate, PhysicalTemplate, TypedTemplate, BaseWeaponTemplate
+) {
 
 	static get metadata() {
-		return foundry.utils.mergeObject(super.metadata, {
+		return {
 			type: "npcWeapon",
+			category: "physical",
 			localization: "EH.Item.Type.NPCWeapon",
-			sheetLocalization: "EH.Item.Type.Weapon"
-		});
+			sheetLocalization: "EH.Item.Type.Weapon",
+			icon: "fa-solid fa-gun",
+			image: "systems/everyday-heroes/artwork/svg/items/weapon.svg",
+			advancement: {
+				grantable: true
+			},
+			variant: "weapon"
+		};
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	static defineSchema() {
-		// TODO: Consider switching to using a "Weapon" template to define shared core functionality
-		// Alternatively find a way for this to properly merge without this extra consideration.
-		const parentSchema = this.mergeSchema(super.defineSchema(), ActivatableTemplate.defineSchema());
-		return this.mergeSchema(parentSchema, {
+		return this.mergeSchema(super.defineSchema(), {
 			activation: new foundry.data.fields.SchemaField({
 				type: new foundry.data.fields.StringField({initial: "attack"})
 			}),

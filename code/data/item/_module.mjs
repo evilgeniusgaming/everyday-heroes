@@ -46,10 +46,13 @@ export {
 export {default as ActivatableTemplate} from "./templates/activatable-template.mjs";
 export {default as AdvancementTemplate} from "./templates/advancement-template.mjs";
 export {default as AttackTemplate} from "./templates/attack-template.mjs";
+export {default as BaseExplosiveTemplate} from "./templates/base-explosive-template.mjs";
+export {default as BaseWeaponTemplate} from "./templates/base-weapon-template.mjs";
 export {default as DamageTemplate} from "./templates/damage-template.mjs";
 export {default as DescribedTemplate} from "./templates/described-template.mjs";
 export {default as EquipmentTemplate} from "./templates/equipment-template.mjs";
 export {default as PhysicalTemplate} from "./templates/physical-template.mjs";
+export {default as TypedTemplate} from "./templates/typed-template.mjs";
 
 export const config = {
 	ammunition: AmmunitionData,

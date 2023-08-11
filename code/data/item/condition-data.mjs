@@ -156,9 +156,4 @@ export default class ConditionData extends SystemDataModel.mixin(DescribedTempla
 			number: game.i18n.has(key) ? game.i18n.localize(key).capitalize() : numberFormat(number)
 		});
 	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Socket Event Handlers                    */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
 }
