@@ -10,12 +10,6 @@
 				<input type="text" name="name" value="{{item.name}}">
 			</fieldset>
 			<fieldset>
-				<label>{{localize "EH.Condition.Target.Label"}}</label>
-				<select name="system.type.target">
-					{{selectOptions CONFIG.conditionTargets selected=system.type.target}}
-				</select>
-			</fieldset>
-			<fieldset>
 				<label>{{localize "EH.Condition.Type.Label"}}</label>
 				<select name="system.type.value">
 					{{selectOptions CONFIG.conditionTypes selected=system.type.value}}

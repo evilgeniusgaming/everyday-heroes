@@ -615,9 +615,9 @@ export default class ItemEH extends DocumentMixin(Item) {
 		await this.update({"system.rounds.spent": Math.clamped(
 			this.system.rounds.spent - reloadConfig.roundsToReload, 0, this.system.rounds.capacity
 		)});
-		if ( reloadConfig.ammunition ) {
-			console.log("Adjust ammunition quantity as necessary");
-		}
+		// if ( reloadConfig.ammunition ) {
+		// 	console.log("Adjust ammunition quantity as necessary");
+		// }
 
 		// Display chat message
 		if ( messageConfig.create !== false ) {

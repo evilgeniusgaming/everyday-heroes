@@ -9,8 +9,7 @@
       "source": "Core Rulebook"
     },
     "type": {
-      "value": "cumulative",
-      "target": "vehicles"
+      "value": "cumulative"
     },
     "identifier": {
       "value": "loss-of-power"
@@ -32,6 +31,7 @@
   },
   "effects": [
     {
+      "name": "Loss of Power (level one)",
       "label": "Loss of Power (level one)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/loss-of-power.svg",
       "flags": {
@@ -48,12 +48,14 @@
         {
           "key": "system.abilities.str.bonuses.check",
           "mode": 2,
-          "value": "-2"
+          "value": "-2",
+          "priority": null
         },
         {
           "key": "system.abilities.str.bonuses.save",
           "mode": 2,
-          "value": "-2"
+          "value": "-2",
+          "priority": null
         }
       ],
       "disabled": false,
@@ -69,9 +71,13 @@
       "origin": null,
       "transfer": true,
       "tint": null,
+      "statuses": [
+        "loss-of-power"
+      ],
       "_key": "!items.effects!Eq8be3KVJD1pTVNT.fxnWa87GR4UIzKGK"
     },
     {
+      "name": "Loss of Power (level two)",
       "label": "Loss of Power (level two)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/loss-of-power.svg",
       "flags": {
@@ -98,9 +104,13 @@
       "origin": null,
       "transfer": true,
       "tint": null,
+      "statuses": [
+        "loss-of-power"
+      ],
       "_key": "!items.effects!Eq8be3KVJD1pTVNT.i2HQr6svUbuqY5gW"
     },
     {
+      "name": "Loss of Power (level three)",
       "label": "Loss of Power (level three)",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/loss-of-power.svg",
       "flags": {
@@ -127,6 +137,9 @@
       "origin": null,
       "transfer": true,
       "tint": null,
+      "statuses": [
+        "loss-of-power"
+      ],
       "_key": "!items.effects!Eq8be3KVJD1pTVNT.WB3E4u0lz7RJTrLg"
     }
   ],
@@ -136,10 +149,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.3.2",
+    "systemVersion": "0.4.0",
     "coreVersion": "10.303",
     "createdTime": 1686607586417,
-    "modifiedTime": 1691345059673,
+    "modifiedTime": 1691861691545,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

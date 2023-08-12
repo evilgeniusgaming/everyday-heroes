@@ -9,15 +9,15 @@
       "source": "Core Rulebook"
     },
     "type": {
-      "value": "single",
-      "target": "people"
+      "value": "single"
     },
     "identifier": {
       "value": "restrained"
     },
     "levels": [
       {
-        "effect": "QsZvKBs556tdMaJy"
+        "effect": "QsZvKBs556tdMaJy",
+        "description": ""
       }
     ]
   },
@@ -63,9 +63,9 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.0",
-    "coreVersion": "11.305",
+    "coreVersion": "10.303",
     "createdTime": 1686607084519,
-    "modifiedTime": 1689360914201,
+    "modifiedTime": 1691861691537,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

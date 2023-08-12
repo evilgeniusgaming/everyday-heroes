@@ -9,15 +9,15 @@
       "source": "Core Rulebook"
     },
     "type": {
-      "value": "single",
-      "target": "people"
+      "value": "single"
     },
     "identifier": {
       "value": "prone"
     },
     "levels": [
       {
-        "effect": "1WNWecKTl9kmwb2L"
+        "effect": "1WNWecKTl9kmwb2L",
+        "description": ""
       }
     ]
   },
@@ -63,9 +63,9 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.0",
-    "coreVersion": "11.305",
+    "coreVersion": "10.303",
     "createdTime": 1686607078672,
-    "modifiedTime": 1689360910479,
+    "modifiedTime": 1691861691583,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

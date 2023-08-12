@@ -9,15 +9,15 @@
       "source": "Core Rulebook"
     },
     "type": {
-      "value": "single",
-      "target": "people"
+      "value": "single"
     },
     "identifier": {
       "value": "stunned"
     },
     "levels": [
       {
-        "effect": "5k5nMliTDIwA75DK"
+        "effect": "5k5nMliTDIwA75DK",
+        "description": ""
       }
     ]
   },
@@ -63,9 +63,9 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.0",
-    "coreVersion": "11.305",
+    "coreVersion": "10.303",
     "createdTime": 1686607094408,
-    "modifiedTime": 1689360922809,
+    "modifiedTime": 1691861691555,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

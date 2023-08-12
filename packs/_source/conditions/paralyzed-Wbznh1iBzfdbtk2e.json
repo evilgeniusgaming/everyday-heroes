@@ -9,15 +9,15 @@
       "source": "Core Rulebook"
     },
     "type": {
-      "value": "single",
-      "target": "people"
+      "value": "single"
     },
     "identifier": {
       "value": "paralyzed"
     },
     "levels": [
       {
-        "effect": "oXmHLCbdyRWh4zh4"
+        "effect": "oXmHLCbdyRWh4zh4",
+        "description": ""
       }
     ]
   },
@@ -63,9 +63,9 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.0",
-    "coreVersion": "11.305",
+    "coreVersion": "10.303",
     "createdTime": 1686607074660,
-    "modifiedTime": 1689360906201,
+    "modifiedTime": 1691861691565,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

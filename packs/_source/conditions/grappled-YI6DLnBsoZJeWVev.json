@@ -9,15 +9,15 @@
       "source": "Core Rulebook"
     },
     "type": {
-      "value": "single",
-      "target": "people"
+      "value": "single"
     },
     "identifier": {
       "value": "grappled"
     },
     "levels": [
       {
-        "effect": "4mZ4AZ49I2QWRRj8"
+        "effect": "4mZ4AZ49I2QWRRj8",
+        "description": ""
       }
     ]
   },
@@ -63,9 +63,9 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.0",
-    "coreVersion": "11.305",
+    "coreVersion": "10.303",
     "createdTime": 1686607056426,
-    "modifiedTime": 1689360760867,
+    "modifiedTime": 1691861691570,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

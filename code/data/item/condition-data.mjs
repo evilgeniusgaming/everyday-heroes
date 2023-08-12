@@ -22,7 +22,6 @@ import TypedTemplate from "./templates/typed-template.mjs";
  * @property {object} identifier
  * @property {string} identifier.value - Identifier of this condition.
  * @property {LevelData[]} levels - Various levels of this condition.
- * @property {string} target - Whether this applies to "people" or "vehicles".
  */
 export default class ConditionData extends SystemDataModel.mixin(DescribedTemplate, TypedTemplate) {
 
@@ -46,8 +45,7 @@ export default class ConditionData extends SystemDataModel.mixin(DescribedTempla
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.StringField({initial: "single"}),
-				target: new foundry.data.fields.StringField({initial: "people", label: "EH.Condition.Target.Label"})
+				value: new foundry.data.fields.StringField({initial: "single", suggestions: CONFIG.EverydayHeroes.conditionTypes})
 			}),
 			identifier: new foundry.data.fields.SchemaField({
 				value: new IdentifierField({label: "EH.Identifier.Label"})
@@ -79,7 +77,6 @@ export default class ConditionData extends SystemDataModel.mixin(DescribedTempla
 	 * @param {number} count - Number of levels after adjustment.
 	 */
 	async changeLevels(count) {
-		console.log(this.parent.name, "changeLevels", count);
 		const initialLength = this.levels.length;
 		const delta = count - initialLength;
 		if ( !delta || !Number.isNumeric(count) ) return;
@@ -100,7 +97,6 @@ export default class ConditionData extends SystemDataModel.mixin(DescribedTempla
 		}
 		updates["system.levels"] = levels;
 
-		console.log(updates);
 		await this.parent.update(updates);
 	}
 

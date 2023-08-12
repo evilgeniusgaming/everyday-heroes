@@ -9,20 +9,21 @@
       "source": "Core Rulebook"
     },
     "type": {
-      "value": "single",
-      "target": "people"
+      "value": "single"
     },
     "identifier": {
       "value": "unconcious"
     },
     "levels": [
       {
-        "effect": "JDMNbNFE9uMK9PWR"
+        "effect": "JDMNbNFE9uMK9PWR",
+        "description": ""
       }
     ]
   },
   "effects": [
     {
+      "name": "Unconcious",
       "label": "Unconcious",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/unconcious.svg",
       "flags": {
@@ -49,6 +50,9 @@
       "origin": null,
       "transfer": true,
       "tint": null,
+      "statuses": [
+        "unconcious"
+      ],
       "_key": "!items.effects!0fGEPPl9QRARg0qG.JDMNbNFE9uMK9PWR"
     }
   ],
@@ -58,10 +62,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.3.2",
+    "systemVersion": "0.4.0",
     "coreVersion": "10.303",
     "createdTime": 1686607099876,
-    "modifiedTime": 1691345030003,
+    "modifiedTime": 1691861691504,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

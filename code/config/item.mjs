@@ -464,18 +464,6 @@ preLocalize("armorTypes", { key: "label" });
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
- * Types of actors to which a condition can be applied.
- * @enum {string}
- */
-export const conditionTargets = {
-	people: "EH.Condition.Target.People",
-	vehicles: "EH.Condition.Target.Vehicles"
-};
-preLocalize("conditionTargets");
-
-/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-/**
  * General condition types.
  * @enum {string}
  */

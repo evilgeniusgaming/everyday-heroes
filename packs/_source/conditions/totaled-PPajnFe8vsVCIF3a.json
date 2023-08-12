@@ -9,20 +9,21 @@
       "source": "Core Rulebook"
     },
     "type": {
-      "value": "single",
-      "target": "vehicles"
+      "value": "single"
     },
     "identifier": {
       "value": "totaled"
     },
     "levels": [
       {
-        "effect": "3g8oMeCVh52SIddo"
+        "effect": "3g8oMeCVh52SIddo",
+        "description": ""
       }
     ]
   },
   "effects": [
     {
+      "name": "Totaled",
       "label": "Totaled",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/totaled.svg",
       "flags": {
@@ -49,6 +50,9 @@
       "origin": null,
       "transfer": true,
       "tint": null,
+      "statuses": [
+        "totaled"
+      ],
       "_key": "!items.effects!PPajnFe8vsVCIF3a.3g8oMeCVh52SIddo"
     }
   ],
@@ -58,10 +62,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.3.2",
+    "systemVersion": "0.4.0",
     "coreVersion": "10.303",
     "createdTime": 1686607598935,
-    "modifiedTime": 1691345063738,
+    "modifiedTime": 1691861691558,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

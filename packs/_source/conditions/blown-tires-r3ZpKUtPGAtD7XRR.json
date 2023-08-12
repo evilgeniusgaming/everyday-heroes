@@ -9,20 +9,21 @@
       "source": "Core Rulebook"
     },
     "type": {
-      "value": "single",
-      "target": "vehicles"
+      "value": "single"
     },
     "identifier": {
       "value": "blown-tires"
     },
     "levels": [
       {
-        "effect": "HgcTXONy8VkJ5Pta"
+        "effect": "HgcTXONy8VkJ5Pta",
+        "description": ""
       }
     ]
   },
   "effects": [
     {
+      "name": "Blown Tires",
       "label": "Blown Tires",
       "icon": "systems/everyday-heroes/artwork/icons/conditions/blown-tires.svg",
       "flags": {
@@ -49,6 +50,9 @@
       "origin": null,
       "transfer": true,
       "tint": null,
+      "statuses": [
+        "blown-tires"
+      ],
       "_key": "!items.effects!r3ZpKUtPGAtD7XRR.HgcTXONy8VkJ5Pta"
     }
   ],
@@ -58,10 +62,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.3.2",
+    "systemVersion": "0.4.0",
     "coreVersion": "10.303",
     "createdTime": 1686607555776,
-    "modifiedTime": 1691345072965,
+    "modifiedTime": 1691861691596,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

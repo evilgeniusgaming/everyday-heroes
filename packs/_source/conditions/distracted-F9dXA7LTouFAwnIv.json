@@ -9,15 +9,15 @@
       "source": "Core Rulebook"
     },
     "type": {
-      "value": "single",
-      "target": "people"
+      "value": "single"
     },
     "identifier": {
       "value": "distracted"
     },
     "levels": [
       {
-        "effect": "QbmwM9WjyWTBZile"
+        "effect": "QbmwM9WjyWTBZile",
+        "description": ""
       }
     ]
   },
@@ -63,9 +63,9 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.0",
-    "coreVersion": "11.305",
+    "coreVersion": "10.303",
     "createdTime": 1686607034250,
-    "modifiedTime": 1689360489278,
+    "modifiedTime": 1691861691552,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,

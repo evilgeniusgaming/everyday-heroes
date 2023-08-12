@@ -9,15 +9,15 @@
       "source": "Core Rulebook"
     },
     "type": {
-      "value": "single",
-      "target": "people"
+      "value": "single"
     },
     "identifier": {
       "value": "burning"
     },
     "levels": [
       {
-        "effect": "t5mgkfFOLTWuyMxz"
+        "effect": "t5mgkfFOLTWuyMxz",
+        "description": ""
       }
     ]
   },
@@ -63,9 +63,9 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.0",
-    "coreVersion": "11.305",
+    "coreVersion": "10.303",
     "createdTime": 1686607027939,
-    "modifiedTime": 1689360478883,
+    "modifiedTime": 1691861691561,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": null,
