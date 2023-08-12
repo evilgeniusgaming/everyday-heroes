@@ -15,7 +15,7 @@ export default class DriverTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
 			vehicle: new foundry.data.fields.SchemaField({
-				actor: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseActor),
+				actor: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseActor, {label: ""}),
 				bonuses: new foundry.data.fields.SchemaField({
 					ability: new MappingField(new FormulaField({deterministic: true}), {
 						label: game.i18n.format("EH.Vehicle.Bonus.LabelSpecific[other]", {
@@ -27,7 +27,7 @@ export default class DriverTemplate extends foundry.abstract.DataModel {
 							type: game.i18n.localize("EH.Dice.Action.Roll")
 						})
 					})
-				}, {label: "EH.Bonus.Label[other]"})
+				}, {label: "EH.Bonus.Label[other]", hint: "EH.Vehicle.Bonus.Hint"})
 			})
 		};
 	}

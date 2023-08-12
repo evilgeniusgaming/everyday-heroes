@@ -31,10 +31,11 @@ export default class ProfessionData extends ItemDataModel.mixin(DescribedTemplat
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({
-				value: new IdentifierField({label: "EH.Identifier.Label"})
+				value: new IdentifierField({label: "EH.Identifier.Label", hint: "EH.Identifier.Hint"})
 			}),
 			wealth: new foundry.data.fields.NumberField({
-				nullable: false, initial: 0, min: 0, integer: true, label: "EH.Details.Wealth.Label"
+				nullable: false, initial: 0, min: 0, integer: true,
+				label: "EH.Details.Wealth.Label", hint: "EH.Details.Wealth.Profession.Hint"
 			})
 		});
 	}

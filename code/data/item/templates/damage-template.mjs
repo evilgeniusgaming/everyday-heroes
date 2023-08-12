@@ -36,7 +36,9 @@ export default class Damage extends foundry.abstract.DataModel {
 			),
 			overrides: new foundry.data.fields.SchemaField({
 				ability: new foundry.data.fields.SchemaField({
-					damage: new foundry.data.fields.StringField({label: "EH.Weapon.Overrides.Ability.Damage.Label"})
+					damage: new foundry.data.fields.StringField({
+						label: "EH.Weapon.Overrides.Ability.Damage.Label", hint: "EH.Weapon.Overrides.Ability.Damage.Hint"
+					})
 				})
 			}, {label: "EH.Override.Label"})
 		};

@@ -29,7 +29,7 @@ export default class ArchetypeData extends ItemDataModel.mixin(DescribedTemplate
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({
-				value: new IdentifierField({label: "EH.Identifier.Label"})
+				value: new IdentifierField({label: "EH.Identifier.Label", hint: "EH.Identifier.Hint"})
 			})
 		});
 	}

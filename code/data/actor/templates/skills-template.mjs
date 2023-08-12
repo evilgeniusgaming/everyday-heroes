@@ -36,13 +36,17 @@ export default class SkillsTemplate extends foundry.abstract.DataModel {
 		return {
 			bonuses: new foundry.data.fields.SchemaField({
 				skill: new foundry.data.fields.SchemaField({
-					check: new FormulaField({label: "EH.Skill.Bonus.Check"}),
-					passive: new FormulaField({deterministic: true, label: "EH.Skill.Bonus.Passive"})
+					check: new FormulaField({label: "EH.Skill.Bonus.Check.Label", hint: "EH.Skill.Bonus.Check.GlobalHint"}),
+					passive: new FormulaField({
+						deterministic: true, label: "EH.Skill.Bonus.Passive.Label", hint: "EH.Skill.Bonus.Passive.GlobalHint"
+					})
 				})
 			}, {label: "EH.Bonus.Global.Label[other]"}),
 			overrides: new foundry.data.fields.SchemaField({
 				skill: new foundry.data.fields.SchemaField({
-					minimum: new FormulaField({determinstic: true, label: "EH.Skill.Orverride.Min"}),
+					minimum: new FormulaField({
+						determinstic: true, label: "EH.Skill.Override.Minimum.Label", hint: "EH.Skill.Override.Minimum.GlobalHint"
+					}),
 					proficiency: new foundry.data.fields.SchemaField({
 						multiplier: new foundry.data.fields.NumberField({
 							nullable: true, initial: null, min: 0.5, max: 2, step: 0.5, label: "EH.Proficiency.Multiplier"
@@ -50,23 +54,29 @@ export default class SkillsTemplate extends foundry.abstract.DataModel {
 						rounding: new foundry.data.fields.StringField({
 							nullable: true, initial: null, choices: ["down", "up"], label: "EH.Proficiency.Rounding"
 						})
-					})
-				})
+					}, {label: "EH.Skill.Override.Minimum.Proficiency.Label", hint: "EH.Skill.Override.Minimum.Proficiency.Hint"})
+				}, {label: "EH.Skill.Label[other]"})
 			}, {label: "EH.Override.Label"}),
 			skills: new MappingField(new foundry.data.fields.SchemaField({
-				abilities: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+				abilities: new foundry.data.fields.SetField(new foundry.data.fields.StringField({
+					suggestions: CONFIG.EverydayHeroes.abilities
+				}), {
 					label: "EH.Skill.Abilities.Label", hint: "EH.Skill.Abilities.Hint"
 				}),
 				proficiency: new foundry.data.fields.SchemaField({
 					multiplier: new foundry.data.fields.NumberField({
 						nullable: false, initial: 0, min: 0, max: 2, step: 0.5, label: "EH.Proficiency.Multiplier"
 					})
-				}, {label: "EH.Proficiency.Label[one]"}),
+				}, {label: "EH.Skill.Proficiency.Label[one]"}),
 				bonuses: new foundry.data.fields.SchemaField({
-					check: new FormulaField({label: "EH.Skill.Bonus.Check"}),
-					passive: new FormulaField({deterministic: true, label: "EH.Skill.Bonus.Passive"})
+					check: new FormulaField({label: "EH.Skill.Bonus.Check.Label", hint: "EH.Skill.Bonus.Check.SpecificHint"}),
+					passive: new FormulaField({
+						deterministic: true, label: "EH.Skill.Bonus.Passive.Label", hint: "EH.Skill.Bonus.Passive.SpecificHint"
+					})
 				}),
-				minimum: new FormulaField({determinstic: true, label: "EH.Skill.Orverride.Minimum"})
+				minimum: new FormulaField({
+					determinstic: true, label: "EH.Skill.Override.Minimum.Label", hint: "EH.Skill.Override.Minimum.SpecificHint"
+				})
 			}), {
 				initialKeys: CONFIG.EverydayHeroes.skills, prepareKeys: true, label: "EH.Skill.Label[other]"
 			})

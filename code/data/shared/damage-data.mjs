@@ -10,12 +10,18 @@ export default class DamageData extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
 			number: new foundry.data.fields.NumberField({
-				initial: null, min: 0, integer: true, label: "EH.Equipment.Trait.Damage.Count.Label"
+				initial: null, min: 0, integer: true,
+				label: "EH.Equipment.Trait.Damage.Count.Label", hint: "EH.Equipment.Trait.Damage.Count.Hint"
 			}),
 			denomination: new foundry.data.fields.NumberField({
-				initial: null, min: 0, integer: true, label: "EH.Equipment.Trait.Damage.Denomination.Label"
+				initial: null, min: 0, integer: true,
+				label: "EH.Equipment.Trait.Damage.Denomination.Label", hint: "EH.Equipment.Trait.Damage.Denomination.Hint",
+				suggestions: CONFIG.EverydayHeroes.diceSteps
 			}),
-			type: new foundry.data.fields.StringField({label: "EH.Equipment.Trait.Damage.Type.Label"})
+			type: new foundry.data.fields.StringField({
+				label: "EH.Equipment.Trait.Damage.Type.Label", hint: "EH.Equipment.Trait.Damage.Type.Hint",
+				suggestions: CONFIG.EverydayHeroes.damageTypes
+			})
 		};
 	}
 

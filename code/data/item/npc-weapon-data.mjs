@@ -52,17 +52,25 @@ export default class NPCWeaponData extends ItemDataModel.mixin(
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			activation: new foundry.data.fields.SchemaField({
-				type: new foundry.data.fields.StringField({initial: "attack"})
+				type: new foundry.data.fields.StringField({
+					initial: "attack", suggestions: CONFIG.EverydayHeroes.actionTypesWeapon
+				})
 			}),
 			description: new foundry.data.fields.SchemaField({
-				npc: new foundry.data.fields.HTMLField({nullable: true, label: ""})
+				npc: new foundry.data.fields.HTMLField({nullable: true, unused: true})
 			}),
 			target: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.NumberField({initial: 1, min: 0, integer: true, label: "EH.Target.Count.Label"}),
-				conditions: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField(), {
+				value: new foundry.data.fields.NumberField({
+					initial: 1, min: 0, integer: true, label: "EH.Target.Count.Label", hint: "EH.Target.Count.Hint"
+				}),
+				conditions: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField({
+					suggestions: CONFIG.EverydayHeroes.conditions
+				}), {
 					label: "EH.Target.Conditions.Label", hint: "EH.Target.Conditions.Hint"
 				}),
-				custom: new foundry.data.fields.StringField({label: "EH.Target.Custom.Label"})
+				custom: new foundry.data.fields.StringField({
+					label: "EH.Target.Custom.Label", hint: "EH.Target.Custom.Hint"
+				})
 			}, {label: "EH.Target.Label[other]"})
 		});
 	}
@@ -219,7 +227,7 @@ export default class NPCWeaponData extends ItemDataModel.mixin(
 
 		// Reach
 		if ( this.type.value === "melee" ) elements.push(`${
-			game.i18n.localize("EH.Equipment.Trait.Range.Reach").toLowerCase()} ${
+			game.i18n.localize("EH.Equipment.Trait.Range.Reach.Label").toLowerCase()} ${
 			numberFormat(this.range.reach ?? (this.isTitanic ? 1 : 5), {unit: this.range.units})}`
 		);
 

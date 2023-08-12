@@ -36,15 +36,17 @@ export default class TrickData extends ItemDataModel.mixin(DescribedTemplate, Ac
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({
-				value: new IdentifierField({label: "EH.Identifier.Label"}),
-				class: new IdentifierField({label: "EH.Item.Type.Class[one]"})
+				value: new IdentifierField({label: "EH.Identifier.Label", hint: "EH.Identifier.Hint"}),
+				class: new IdentifierField({label: "EH.Item.Type.Class[one]", hint: "EH.Identifier.TrickClass.Hint"})
 			}),
 			resource: new foundry.data.fields.SchemaField({
 				amount: new foundry.data.fields.NumberField({initial: 1}),
 				target: new foundry.data.fields.StringField({initial: "influence"}),
 				type: new foundry.data.fields.StringField({initial: "resource"}),
-				dice: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.Consumption.Dice.Label"}),
-				bonus: new FormulaField({label: "EH.Bonus.Label[one]"})
+				dice: new foundry.data.fields.NumberField({
+					min: 0, integer: true, label: "EH.Consumption.Dice.Label", hint: "EH.Consumption.Dice.Hint"
+				}),
+				bonus: new FormulaField({label: "EH.Bonus.Label[one]", hint: "EH.Consumption.Dice.Bonus.Hint"})
 			})
 		});
 	}

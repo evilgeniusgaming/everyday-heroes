@@ -52,16 +52,19 @@ export default class AmmunitionData extends ItemDataModel.mixin(
 
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
+			type: new foundry.data.fields.SchemaField({
+				value: new foundry.data.fields.StringField({suggestions: CONFIG.EverydayHeroes.ammunitionTypes})
+			}),
 			properties: new MappingField(new foundry.data.fields.NumberField({min: -1, max: 1, integer: true}), {
-				label: "EH.Weapon.Property.Label"
+				label: "EH.Weapon.Property.Label", hint: "EH.Ammunition.Properties.Hint"
 			}),
 			penetrationValue: new foundry.data.fields.NumberField({
 				integer: true,
-				label: "EH.Equipment.Trait.PenetrationValue.Label", hint: ""
+				label: "EH.Equipment.Trait.PenetrationValue.Label", hint: "EH.Equipment.Trait.PenetrationValue.Hint"
 			}),
 			bonuses: new foundry.data.fields.SchemaField({
-				attack: new FormulaField({label: "EH.Weapon.Bonus.Attack.Label"}),
-				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label"}),
+				attack: new FormulaField({label: "EH.Weapon.Bonus.Attack.Label", hint: "EH.Weapon.Bonus.Attack.Hint"}),
+				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label", hint: "EH.Weapon.Bonus.Damage.Hint"}),
 				critical: new foundry.data.fields.SchemaField({
 					damage: new FormulaField({
 						label: "EH.Weapon.Bonus.Critical.Damage.Label", hint: "EH.Weapon.Bonus.Critical.Damage.Hint"
@@ -73,7 +76,10 @@ export default class AmmunitionData extends ItemDataModel.mixin(
 			}),
 			overrides: new foundry.data.fields.SchemaField({
 				critical: new foundry.data.fields.SchemaField({
-					threshold: new foundry.data.fields.NumberField({label: "EH.Weapon.Overrides.Critical.Threshold.Label"})
+					threshold: new foundry.data.fields.NumberField({
+						label: "EH.Weapon.Overrides.Critical.Threshold.Label",
+						hint: "EH.Weapon.Overrides.Critical.Threshold.SpecificHint"
+					})
 				})
 			})
 		});

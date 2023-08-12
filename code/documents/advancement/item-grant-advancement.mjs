@@ -4,8 +4,7 @@ import { ItemGrantConfigurationData, ItemGrantValueData } from "../../data/advan
 import Advancement from "./advancement.mjs";
 
 /**
- * Advancement that automatically grants one or more items to the player. Presents the player with the option of
- * skipping any or all of the items.
+ * Advancement that automatically grants one or more items to the player.
  */
 export default class ItemGrantAdvancement extends Advancement {
 

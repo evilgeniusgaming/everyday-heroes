@@ -23,20 +23,38 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
 			activation: new foundry.data.fields.SchemaField({
-				amount: new foundry.data.fields.NumberField({label: "EH.Activation.Amount.Label"}),
-				type: new foundry.data.fields.StringField({label: "EH.Activation.Cost.Label"}),
-				condition: new foundry.data.fields.StringField({label: "EH.Activation.Condition.Label"})
+				amount: new foundry.data.fields.NumberField({
+					label: "EH.Activation.Amount.Label", hint: "EH.Activation.Amount.Hint"
+				}),
+				type: new foundry.data.fields.StringField({
+					label: "EH.Activation.Cost.Label", hint: "EH.Activation.Cost.Hint",
+					suggestions: CONFIG.EverydayHeroes.actionTypesStandard
+				}),
+				condition: new foundry.data.fields.StringField({
+					label: "EH.Activation.Condition.Label", hint: "EH.Activation.Condition.Hint"
+				})
 			}, {required: true, initial: {}, label: "EH.Activation.Label"}),
 			resource: new foundry.data.fields.SchemaField({
-				amount: new foundry.data.fields.NumberField({label: "EH.Consumption.Amount.Label"}),
-				target: new foundry.data.fields.StringField({label: "EH.Consumption.Target.Label"}),
-				type: new foundry.data.fields.StringField({label: "EH.Consumption.Type.Label"})
+				amount: new foundry.data.fields.NumberField({
+					label: "EH.Consumption.Amount.Label", hint: "EH.Consumption.Amount.Hint"
+				}),
+				target: new foundry.data.fields.StringField({
+					label: "EH.Consumption.Target.Label", hint: "EH.Consumption.Target.Hint"
+				}),
+				type: new foundry.data.fields.StringField({
+					label: "EH.Consumption.Type.Label", hint: "EH.Consumption.Type.Hint"
+				})
 			}, {required: true, initial: {}, label: "EH.Consumption.Label"}),
 			uses: new foundry.data.fields.SchemaField({
 				spent: new foundry.data.fields.NumberField({initial: 0, min: 0, integer: true, label: "EH.Uses.Spent.Label"}),
-				max: new FormulaField({deterministic: true, label: "EH.Uses.Max.Label"}),
-				period: new foundry.data.fields.StringField({label: "EH.Uses.Recovery.Period.Label"}),
-				formula: new FormulaField({label: "EH.Uses.Recovery.Formula.Label"})
+				max: new FormulaField({
+					deterministic: true, label: "EH.Uses.Max.Label", hint: "EH.Uses.Max.Hint"
+				}),
+				period: new foundry.data.fields.StringField({
+					label: "EH.Uses.Recovery.Period.Label", hint: "EH.Uses.Recovery.Period.Hint",
+					suggestions: CONFIG.EverydayHeroes.recoveryPeriods
+				}),
+				formula: new FormulaField({label: "EH.Uses.Recovery.Formula.Label", unused: true})
 			}, {required: true, initial: {}, label: "EH.Uses.Label"})
 		};
 	}

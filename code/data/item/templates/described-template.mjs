@@ -12,9 +12,13 @@ export default class DescribedTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
 			description: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.HTMLField({nullable: true, label: ""}),
-				chat: new foundry.data.fields.HTMLField({nullable: true, label: ""}),
-				source: new foundry.data.fields.StringField({label: ""})
+				value: new foundry.data.fields.HTMLField({
+					nullable: true, label: "EH.Item.Description.Label", hint: "EH.Item.Description.Hint"
+				}),
+				chat: new foundry.data.fields.HTMLField({
+					nullable: true, label: "EH.Item.Description.Chat.Label", hint: "EH.Item.Description.Chat.Hint"
+				}),
+				source: new foundry.data.fields.StringField({label: "EH.Item.Source.Label", hint: "EH.Item.Source.Hint"})
 			})
 		};
 	}

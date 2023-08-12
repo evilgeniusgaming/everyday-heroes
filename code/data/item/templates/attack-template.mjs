@@ -15,8 +15,7 @@ export default class AttackTemplate extends foundry.abstract.DataModel {
 			overrides: new foundry.data.fields.SchemaField({
 				ability: new foundry.data.fields.SchemaField({
 					attack: new foundry.data.fields.StringField({
-						label: "EH.Weapon.Overrides.Ability.Attack.Label",
-						hint: "EH.Weapon.Overrides.Ability.Attack.Hint"
+						label: "EH.Weapon.Overrides.Ability.Attack.Label", hint: "EH.Weapon.Overrides.Ability.Attack.Hint"
 					})
 				})
 			}, {label: "EH.Override.Label"})

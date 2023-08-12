@@ -4,6 +4,14 @@ import MappingField from "../../fields/mapping-field.mjs";
 /**
  * Data model template for actors that have movement.
  * @mixin
+ *
+ * @property {object} attributes
+ * @property {object} attributes.movement
+ * @property {number} attributes.movement.value - Base walking speed.
+ * @property {Object<number>} attributes.movement.special - Other movement types.
+ * @property {string} attributes.movement.units - Units used to measure movements speeds.
+ * @property {Set<string>} attributes.movement.tags - Tags that describe additional movement properties.
+ * @property {number} attributes.movement.multiplier - Value by which all speeds will be multiplied.
  */
 export default class MovementTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {
@@ -12,14 +20,18 @@ export default class MovementTemplate extends foundry.abstract.DataModel {
 			attributes: new foundry.data.fields.SchemaField({
 				movement: new foundry.data.fields.SchemaField({
 					value: new foundry.data.fields.NumberField({
-						...speedConfig, label: "EH.Speed.Base.Label"
+						...speedConfig, label: "EH.Movement.Base.Label", hint: "EH.Movement.Base.Hint"
 					}),
 					special: new MappingField(new foundry.data.fields.NumberField({ ...speedConfig }), {
-						label: "EH.Speed.Special.Label"
+						label: "EH.Movement.Special.Label", hint: "EH.Movement.Special.Hint"
 					}),
-					units: new foundry.data.fields.StringField({initial: "foot", label: "EH.Measurement.Units"}),
+					units: new foundry.data.fields.StringField({
+						initial: "foot", label: "EH.Measurement.Units",
+						suggestions: [...Object.keys(CONFIG.EverydayHeroes.lengthUnits), "spaces"]
+					}),
 					tags: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField(), {
-						label: "EH.Speed.Tags.Label"
+						label: "EH.Movement.Tags.Label", hint: "EH.Movement.Tags.Hint",
+						suggestions: CONFIG.EverydayHeroes.movementTags
 					}),
 					multiplier: new foundry.data.fields.NumberField({
 						min: 0, label: "EH.Movement.Multiplier.Label", hint: "EH.Movement.Multiplier.Hint"

@@ -18,13 +18,14 @@ export default class InitiativeTemplate extends foundry.abstract.DataModel {
 		return {
 			attributes: new foundry.data.fields.SchemaField({
 				initiative: new foundry.data.fields.SchemaField({
-					bonus: new FormulaField({label: "EH.Initiative.Bonus.Label"})
+					bonus: new FormulaField({label: "EH.Initiative.Bonus.Label", hint: "EH.Initiative.Bonus.Hint"})
 				}, {label: "EH.Initiative.Label"})
 			}),
 			overrides: new foundry.data.fields.SchemaField({
 				ability: new foundry.data.fields.SchemaField({
 					initiative: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-						label: "EH.Override.Ability.Initiative.Label"
+						label: "EH.Override.Ability.Initiative.Label", hint: "EH.Override.Ability.Initiative.Hint",
+						suggestions: CONFIG.EverydayHeroes.abilities
 					})
 				}, {label: "EH.Override.Ability.Label", hint: "EH.Override.Ability.Hint"})
 			}, {label: "EH.Override.Label"})

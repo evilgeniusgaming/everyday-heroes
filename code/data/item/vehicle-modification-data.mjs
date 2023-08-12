@@ -35,12 +35,16 @@ export default class VehicleModificationData extends ItemDataModel.mixin(Describ
 		return this.mergeSchema(super.defineSchema(), {
 			abilities: new MappingField(new foundry.data.fields.NumberField({
 				nullable: false, initial: 0, integer: true, label: "EH.Ability.Modifier"
-			}), {initialKeys: CONFIG.EverydayHeroes.vehicleAbilities, prepareKeys: true, label: "EH.Ability.Label[other]"}),
+			}), {
+				initialKeys: CONFIG.EverydayHeroes.vehicleAbilities, prepareKeys: true,
+				label: "EH.VehicleModification.Ability.Label", hint: "EH.VehicleModification.Ability.Hint"
+			}),
 			armorValue: new foundry.data.fields.NumberField({
-				initial: 0, min: 0, integer: true, label: "EH.Vehicle.Trait.ArmorValue.Body.Label"
+				initial: 0, min: 0, integer: true,
+				label: "EH.VehicleModification.ArmorValue.Label", hint: "EH.VehicleModification.ArmorValue.Hint"
 			}),
 			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-				label: "EH.Weapon.Property.Label"
+				label: "EH.Equipment.Property.Label[other]", suggestions: CONFIG.EverydayHeroes.applicableProperties.vehicleModification
 			})
 		});
 	}

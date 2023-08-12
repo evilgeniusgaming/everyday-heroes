@@ -96,8 +96,8 @@ export default class VehicleData extends SystemDataModel.mixin(ConditionsTemplat
 					nullable: false, initial: 0, integer: true, label: "EH.Ability.Modifier"
 				}),
 				bonuses: new foundry.data.fields.SchemaField({
-					check: new FormulaField({label: "EH.Ability.Bonus.Check"}),
-					save: new FormulaField({label: "EH.Ability.Bonus.Save"})
+					check: new FormulaField({label: "EH.Ability.Bonus.Check.Label", hint: "EH.Ability.Bonus.Check.SpecificHint"}),
+					save: new FormulaField({label: "EH.Ability.Bonus.Save.Label", hint: "EH.Ability.Bonus.Save.SpecificHint"})
 				})
 			}), {initialKeys: CONFIG.EverydayHeroes.vehicleAbilities, prepareKeys: true, label: "EH.Ability.Label[other]"}),
 			attributes: new foundry.data.fields.SchemaField({
@@ -107,23 +107,30 @@ export default class VehicleData extends SystemDataModel.mixin(ConditionsTemplat
 					})
 				}, {label: "EH.Equipment.Trait.ArmorValue.Label", hint: "EH.Vehicle.Trait.ArmorValue.Hint"}),
 				defense: new foundry.data.fields.SchemaField({
-					bonus: new FormulaField({deterministic: true, label: "EH.Defense.Bonus.Label"})
+					bonus: new FormulaField({deterministic: true, label: "EH.Defense.Bonus.Label", hint: "EH.Defense.Bonus.Hint"})
 				}, {label: "EH.Defense.Label"}),
 				speed: new foundry.data.fields.SchemaField({
 					category: new foundry.data.fields.StringField({
-						initial: "stopped", label: "EH.Vehicle.Trait.SpeedCategory.Label"
+						initial: "stopped", label: "EH.Vehicle.Trait.SpeedCategory.Label", hint: "EH.Vehicle.Trait.SpeedCategory.Hint",
+						suggestions: CONFIG.EverydayHeroes.vehicleSpeedCategories
 					}),
 					min: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.Range.Min"}),
 					max: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.Range.Max"}),
-					units: new foundry.data.fields.StringField({initial: "miles-per-hour", label: "EH.Measurement.Units"})
+					units: new foundry.data.fields.StringField({
+						initial: "miles-per-hour", label: "EH.Measurement.Units", suggestions: CONFIG.EverydayHeroes.speedUnits
+					})
 				}, {label: "EH.Vehicle.Trait.TopSpeed.Label"}),
 				type: new foundry.data.fields.SchemaField({
-					value: new foundry.data.fields.StringField({label: "EH.Vehicle.Type.Label"}),
-					category: new foundry.data.fields.StringField({label: "EH.Vehicle.Category.Label"})
+					value: new foundry.data.fields.StringField({
+						label: "EH.Vehicle.Type.Label", suggestions: CONFIG.EverydayHeroes.vehicleTypes
+					}),
+					category: new foundry.data.fields.StringField({
+						label: "EH.Vehicle.Category.Label", suggestions: CONFIG.EverydayHeroes.vehicleCategories
+					})
 				})
 			}, {label: "EH.Attributes.Label"}),
 			biography: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.HTMLField({label: "EH.Biography.Label"}),
+				value: new foundry.data.fields.HTMLField({label: "EH.Biography.Full"}),
 				public: new foundry.data.fields.HTMLField({label: "EH.Biography.Public"}),
 				notes: new foundry.data.fields.HTMLField({label: "EH.Biography.Notes"})
 			}, {label: "EH.Biography.Label"}),
@@ -131,7 +138,7 @@ export default class VehicleData extends SystemDataModel.mixin(ConditionsTemplat
 				roll: new MappingField(new FormulaField(), {
 					label: game.i18n.format("EH.Vehicle.Bonus.LabelSpecific[other]", {
 						type: game.i18n.localize("EH.Dice.Action.Roll")
-					})
+					}), suggestions: CONFIG.EverydayHeroes.vehicleRolls
 				})
 			}, {label: "EH.Bonus.Global.Label[other]"}),
 			details: new foundry.data.fields.SchemaField({
@@ -149,16 +156,23 @@ export default class VehicleData extends SystemDataModel.mixin(ConditionsTemplat
 				ammunition: new LocalDocumentField(foundry.documents.BaseItem),
 				crewMember: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseActor),
 				equipped: new foundry.data.fields.BooleanField({initial: true, label: "EH.Item.State.Equipped"}),
-				mode: new foundry.data.fields.StringField({required: false, initial: undefined, label: "EH.Item.Mode"})
-			}),
+				mode: new foundry.data.fields.StringField({
+					required: false, initial: undefined, label: "EH.Item.Mode.Label", hint: "EH.Item.Mode.Hint",
+					suggestions: CONFIG.EverydayHeroes.weaponModes
+				})
+			}, {label: "EH.Item.Context.Label", hint: "EH.Item.Context.Hint"}),
 			people: new DocumentContextField(foundry.documents.BaseActor, {
 				sort: new foundry.data.fields.IntegerSortField()
-			}, {foreign: true}),
+			}, {foreign: true, label: "EH.Vehicle.People.Label[other]", hint: "EH.Vehicle.People.Hint"}),
 			traits: new foundry.data.fields.SchemaField({
-				properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-					label: "EH.Weapon.Property.Label"
+				properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField({
+					suggestions: CONFIG.EverydayHeroes.vehicleProperties
+				}), {
+					label: "EH.Vehicle.Property.Label"
 				}),
-				size: new foundry.data.fields.StringField({initial: "huge"})
+				size: new foundry.data.fields.StringField({
+					initial: "huge", label: "EH.Vehicle.Size.Label", suggestions: CONFIG.EverydayHeroes.vehicleSizes
+				})
 			}, {label: "EH.Traits.Label"})
 		});
 	}

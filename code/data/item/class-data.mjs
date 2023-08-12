@@ -30,8 +30,8 @@ export default class ClassData extends ItemDataModel.mixin(DescribedTemplate, Ad
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({
-				value: new IdentifierField({label: "EH.Identifier.Label"}),
-				archetype: new IdentifierField({label: "EH.Item.Type.Archetype[one]"})
+				value: new IdentifierField({label: "EH.Identifier.Label", hint: "EH.Identifier.Hint"}),
+				archetype: new IdentifierField({label: "EH.Item.Type.Archetype[one]", hint: "EH.Identifier.ClassArchetype.Hint"})
 			})
 		});
 	}

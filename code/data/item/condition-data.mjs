@@ -45,14 +45,19 @@ export default class ConditionData extends SystemDataModel.mixin(DescribedTempla
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.StringField({initial: "single", suggestions: CONFIG.EverydayHeroes.conditionTypes})
+				value: new foundry.data.fields.StringField({
+					initial: "single", label: "EH.Condition.Type.Label", hint: "EH.Condition.Type.Hint",
+					suggestions: CONFIG.EverydayHeroes.conditionTypes
+				})
 			}),
 			identifier: new foundry.data.fields.SchemaField({
-				value: new IdentifierField({label: "EH.Identifier.Label"})
+				value: new IdentifierField({label: "EH.Identifier.Label", hint: "EH.Identifier.Hint"})
 			}),
 			levels: new foundry.data.fields.ArrayField(new foundry.data.fields.SchemaField({
 				description: new foundry.data.fields.HTMLField(),
-				effect: new LocalDocumentField(foundry.documents.BaseActiveEffect)
+				effect: new LocalDocumentField(foundry.documents.BaseActiveEffect, {
+					label: "EH.Condition.Level.Effect.Label", hint: "EH.Condition.Level.Effect.Hint"
+				})
 			}), {label: "EH.Condition.Level.Label[other]"})
 		});
 	}

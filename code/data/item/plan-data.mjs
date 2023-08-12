@@ -32,8 +32,8 @@ export default class PlanData extends ItemDataModel.mixin(DescribedTemplate, Act
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({
-				value: new IdentifierField({label: "EH.Identifier.Label"}),
-				class: new IdentifierField({label: "EH.Item.Type.Class[one]"})
+				value: new IdentifierField({label: "EH.Identifier.Label", hint: "EH.Identifier.Hint"}),
+				class: new IdentifierField({label: "EH.Item.Type.Class[one]", hint: "EH.Identifier.PlanClass.Hint"})
 			}),
 			resource: new foundry.data.fields.SchemaField({
 				amount: new foundry.data.fields.NumberField({initial: 1}),

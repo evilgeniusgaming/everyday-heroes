@@ -102,7 +102,7 @@ export default class SystemDataModel extends foundry.abstract.DataModel {
 				a[key] = b[key];
 				continue;
 			}
-			const mergedOptions = foundry.utils.mergeObject(a[key].options, b[key].options);
+			const mergedOptions = { ...a[key].options, ...b[key].options };
 			switch (b[key].constructor) {
 				case foundry.data.fields.SchemaField:
 					const fields = this.mergeSchema(a[key].fields, b[key].fields);

@@ -5,7 +5,7 @@ import { numberFormat } from "../../utils.mjs";
 import Advancement from "./advancement.mjs";
 
 /**
- * Advancement that presents the player with the option of improving ability scores or gaining proficiency or expertise.
+ * Advancement that presents the player with the option of gaining proficiency or expertise.
  */
 export default class TraitAdvancement extends Advancement {
 

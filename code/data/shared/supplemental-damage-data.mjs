@@ -15,13 +15,14 @@ export default class SupplementalDamageData extends DamageData {
 	static defineSchema() {
 		return {
 			...super.defineSchema(),
-			bonus: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label"}),
+			bonus: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label", hint: "EH.Weapon.Bonus.Damage.Hint"}),
 			penetrationValue: new foundry.data.fields.NumberField({
 				required: false, min: 0, integer: true,
 				label: "EH.Equipment.Trait.PenetrationValue.Label", hint: "EH.Equipment.Trait.PenetrationValue.Hint"
 			}),
 			customPV: new foundry.data.fields.BooleanField({
-				required: false, label: "EH.Equipment.Trait.SupplementalDamage.CustomPV"
+				required: false, label: "EH.Equipment.Trait.SupplementalDamage.CustomPV.Label",
+				hint: "EH.Equipment.Trait.SupplementalDamage.CustomPV.Hint"
 			})
 		};
 	}

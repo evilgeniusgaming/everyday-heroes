@@ -54,10 +54,15 @@ export default class NPCExplosiveData extends ItemDataModel.mixin(
 			}),
 			range: new foundry.data.fields.SchemaField({
 				short: new foundry.data.fields.NumberField({
-					initial: 80, min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Short"
+					initial: 80, min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Short.Label",
+					hint: "EH.Equipment.Trait.Range.Short.Hint"
 				}),
-				long: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Long"}),
-				units: new foundry.data.fields.StringField({label: "EH.Measurement.Units"})
+				long: new foundry.data.fields.NumberField({
+					min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Long.Label", hint: "EH.Equipment.Trait.Range.Long.Hint"
+				}),
+				units: new foundry.data.fields.StringField({
+					label: "EH.Measurement.Units", suggestions: [...Object.keys(CONFIG.EverydayHeroes.lengthUnits), "spaces"]
+				})
 			}, {label: "EH.Equipment.Trait.Range.Label", hint: "EH.Equipment.Trait.Range.Hint"})
 		});
 	}

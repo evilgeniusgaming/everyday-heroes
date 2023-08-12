@@ -45,19 +45,25 @@ export default class ArmorData extends ItemDataModel.mixin(
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			type: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.StringField({intial: "armor", label: "EH.Armor.Type.Label"}),
-				category: new foundry.data.fields.StringField({intial: "basic", label: "EH.Equipment.Category.Label[one]"})
+				value: new foundry.data.fields.StringField({
+					intial: "armor", label: "EH.Armor.Type.Label", suggestions: CONFIG.EverydayHeroes.armorTypes
+				}),
+				category: new foundry.data.fields.StringField({
+					intial: "basic", label: "EH.Equipment.Category.Label[one]", suggestions: CONFIG.EverydayHeroes.equipmentCategories
+				})
 			}, {label: "EH.Item.Type.Label"}),
-			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField({
+				suggestions: CONFIG.EverydayHeroes.applicableProperties.armor
+			}), {
 				label: "EH.Weapon.Property.Label"
 			}),
 			armorValue: new foundry.data.fields.NumberField({
 				initial: 0, min: 0, integer: true,
 				label: "EH.Equipment.Trait.ArmorValue.Label", hint: "EH.Equipment.Trait.ArmorValue.Hint"
 			}),
-			damaged: new foundry.data.fields.BooleanField({label: "EH.Armor.Damage"}),
+			damaged: new foundry.data.fields.BooleanField({label: "EH.Armor.Damage.Label", hint: "EH.Armor.Damage.Hint"}),
 			bonuses: new foundry.data.fields.SchemaField({
-				save: new FormulaField({label: "EH.Armor.Bonuses.Save.Label"})
+				save: new FormulaField({label: "EH.Armor.Bonuses.Save.Label", hint: "EH.Armor.Bonuses.Save.Hint"})
 			})
 		});
 	}

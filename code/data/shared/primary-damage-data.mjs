@@ -10,8 +10,10 @@ export default class PrimaryDamageData extends DamageData {
 	static defineSchema() {
 		return {
 			...super.defineSchema(),
-			alternateTypes: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-				label: ""
+			alternateTypes: new foundry.data.fields.SetField(new foundry.data.fields.StringField({
+				suggestions: CONFIG.EverydayHeroes.damageTypes
+			}), {
+				label: "EH.Equipment.Trait.Damage.Types.Label", hint: "EH.Equipment.Trait.Damage.Types.Hint"
 			})
 		};
 	}

@@ -48,7 +48,7 @@ export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 					nullable: false, initial: 10, min: 0, integer: true, label: "EH.Ability.Score[one]"
 				}),
 				max: new foundry.data.fields.NumberField({
-					integer: true, min: 0, initial: 20, label: "EH.Ability.Max.Label"
+					integer: true, min: 0, initial: 20, label: "EH.Ability.Max.Label", hint: "EH.Ability.Max.Hint"
 				}),
 				saveProficiency: new foundry.data.fields.SchemaField({
 					multiplier: new foundry.data.fields.NumberField({
@@ -56,37 +56,53 @@ export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 					})
 				}, {label: "EH.Proficiency.Label[one]"}),
 				alternates: new foundry.data.fields.SchemaField({
-					all: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+					all: new foundry.data.fields.SetField(new foundry.data.fields.StringField({
+						suggestions: CONFIG.EverydayHeroes.abilities
+					}), {
 						label: "EH.Ability.Alternate.All.Label", hint: "EH.Ability.Alternate.All.Hint"
 					}),
-					proficient: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+					proficient: new foundry.data.fields.SetField(new foundry.data.fields.StringField({
+						suggestions: CONFIG.EverydayHeroes.abilities
+					}), {
 						label: "EH.Ability.Alternate.Proficient.Label", hint: "EH.Ability.Alternate.Proficient.Hint"
 					})
 				}, {label: "EH.Ability.Alternate.Label"}),
 				bonuses: new foundry.data.fields.SchemaField({
-					check: new FormulaField({label: "EH.Ability.Bonus.Check"}),
-					dc: new FormulaField({label: "EH.Ability.Bonus.DC"}),
-					save: new FormulaField({label: "EH.Ability.Bonus.Save"})
+					check: new FormulaField({label: "EH.Ability.Bonus.Check.Label", hint: "EH.Ability.Bonus.Check.SpecificHint"}),
+					dc: new FormulaField({label: "EH.Ability.Bonus.DC.Label", hint: "EH.Ability.Bonus.DC.SpecificHint"}),
+					save: new FormulaField({label: "EH.Ability.Bonus.Save.Label", hint: "EH.Ability.Bonus.Save.SpecificHint"})
 				}),
 				minimums: new foundry.data.fields.SchemaField({
-					check: new FormulaField({deterministic: true, label: "EH.Ability.Orverride.MinimumCheck"}),
-					save: new FormulaField({deterministic: true, label: "EH.Ability.Orverride.MinimumSave"})
+					check: new FormulaField({
+						deterministic: true, label: "EH.Ability.Override.Minimum.Check.Label",
+						hint: "EH.Ability.Override.Minimum.Check.SpecificHint"
+					}),
+					save: new FormulaField({
+						deterministic: true, label: "EH.Ability.Override.Minimum.Save.Label",
+						hint: "EH.Ability.Override.Minimum.Save.SpecificHint"
+					})
 				})
 			}), {
 				initialKeys: CONFIG.EverydayHeroes.abilities, prepareKeys: true, label: "EH.Ability.Label[other]"
 			}),
 			bonuses: new foundry.data.fields.SchemaField({
 				ability: new foundry.data.fields.SchemaField({
-					check: new FormulaField({label: "EH.Ability.Bonus.Check"}),
-					dc: new FormulaField({label: "EH.Ability.Bonus.DC"}),
-					save: new FormulaField({label: "EH.Ability.Bonus.Save"})
+					check: new FormulaField({label: "EH.Ability.Bonus.Check.Label", hint: "EH.Ability.Bonus.Check.GlobalHint"}),
+					dc: new FormulaField({label: "EH.Ability.Bonus.DC.Label", hint: "EH.Ability.Bonus.DC.GlobalHint"}),
+					save: new FormulaField({label: "EH.Ability.Bonus.Save.Label", hint: "EH.Ability.Bonus.Save.GlobalHint"})
 				})
 			}, {label: "EH.Bonus.Global.Label[other]"}),
 			overrides: new foundry.data.fields.SchemaField({
 				ability: new foundry.data.fields.SchemaField({
 					minimums: new foundry.data.fields.SchemaField({
-						check: new FormulaField({determinstic: true, label: "EH.Ability.Orverride.MinimumCheck"}),
-						save: new FormulaField({determinstic: true, label: "EH.Ability.Orverride.MinimumSave"})
+						check: new FormulaField({
+							determinstic: true, label: "EH.Ability.Override.Minimum.Check.Label",
+							hint: "EH.Ability.Override.Minimum.Check.GlobalHint"
+						}),
+						save: new FormulaField({
+							determinstic: true, label: "EH.Ability.Override.Minimum.Save.Label",
+							hint: "EH.Ability.Override.Minimum.Save.GlobalHint"
+						})
 					}),
 					checkProficiency: new foundry.data.fields.SchemaField({
 						multiplier: new foundry.data.fields.NumberField({
@@ -95,6 +111,9 @@ export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 						rounding: new foundry.data.fields.StringField({
 							nullable: true, initial: null, choices: ["down", "up"], label: "EH.Proficiency.Rounding"
 						})
+					}, {
+						label: "EH.Ability.Override.Minimum.CheckProficiency.Label",
+						hint: "EH.Ability.Override.Minimum.CheckProficiency.Hint"
 					}),
 					saveProficiency: new foundry.data.fields.SchemaField({
 						multiplier: new foundry.data.fields.NumberField({
@@ -103,6 +122,9 @@ export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 						rounding: new foundry.data.fields.StringField({
 							nullable: true, initial: null, choices: ["down", "up"], label: "EH.Proficiency.Rounding"
 						})
+					}, {
+						label: "EH.Ability.Override.Minimum.SaveProficiency.Label",
+						hint: "EH.Ability.Override.Minimum.SaveProficiency.Hint"
 					})
 				})
 			}, {label: "EH.Override.Label"})

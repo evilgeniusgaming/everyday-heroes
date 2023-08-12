@@ -32,7 +32,10 @@ export default class SpecialFeatureData extends ItemDataModel.mixin(
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({
-				value: new IdentifierField({label: "Identifier.Label"})
+				value: new IdentifierField({label: "EH.Identifier.Label", hint: "EH.Identifier.Hint"})
+			}),
+			type: new foundry.data.fields.SchemaField({
+				value: new foundry.data.fields.StringField({suggestions: CONFIG.EverydayHeroes.specialFeatureTypes})
 			})
 		});
 	}

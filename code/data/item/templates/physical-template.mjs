@@ -21,7 +21,8 @@ export default class PhysicalTemplate extends ItemDataModel {
 			}, {label: "EH.Item.State.Equipped"}),
 			quantity: new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.NumberField({
-					required: true, nullable: false, initial: 1, min: 0, integer: true, label: "EH.Equipment.Trait.Quantity.Label"
+					required: true, nullable: false, initial: 1, min: 0, integer: true,
+					label: "EH.Equipment.Trait.Quantity.Label", hint: "EH.Equipment.Trait.Quantity.Hint"
 				})
 			}),
 			bulk: new foundry.data.fields.NumberField({

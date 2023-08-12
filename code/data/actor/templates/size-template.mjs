@@ -9,7 +9,9 @@ export default class SizeTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
 			traits: new foundry.data.fields.SchemaField({
-				size: new foundry.data.fields.StringField({initial: "medium", label: "EH.Size.Label"})
+				size: new foundry.data.fields.StringField({
+					initial: "medium", label: "EH.Size.Label", suggestions: CONFIG.EverydayHeroes.sizes
+				})
 			}, {label: "EH.Traits.Label"})
 		};
 	}

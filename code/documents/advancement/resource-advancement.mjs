@@ -3,7 +3,7 @@ import { ResourceConfigurationData } from "../../data/advancement/resource-data.
 import ScaleValueAdvancement from "./scale-value-advancement.mjs";
 
 /**
- * Advancement that represents a character's defense bonus.
+ * Advancement that gives the character a resource to spend.
  */
 export default class ResourceAdvancement extends ScaleValueAdvancement {
 	static get metadata() {

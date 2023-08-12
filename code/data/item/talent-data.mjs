@@ -33,10 +33,11 @@ export default class TalentData extends ItemDataModel.mixin(DescribedTemplate, A
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			identifier: new foundry.data.fields.SchemaField({
-				value: new IdentifierField({label: "Identifier.Label"})
+				value: new IdentifierField({label: "EH.Identifier.Label", hint: "EH.Identifier.Hint"})
 			}),
 			type: new foundry.data.fields.SchemaField({
-				level: new foundry.data.fields.NumberField({label: "EH.Level.Label[one]"})
+				value: new foundry.data.fields.StringField({suggestions: CONFIG.EverydayHeroes.talentTypes}),
+				level: new foundry.data.fields.NumberField({label: "EH.Level.Label[one]", hint: "EH.Level.Talent.Hint"})
 			})
 		});
 	}

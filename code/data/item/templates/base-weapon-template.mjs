@@ -36,24 +36,39 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 		return {
 			_modeOverride: new foundry.data.fields.StringField({nullable: true, required: false, initial: undefined}),
 			type: new foundry.data.fields.SchemaField({
-				category: new foundry.data.fields.StringField({initial: "", label: "EH.Equipment.Category.Label[one]"})
+				value: new foundry.data.fields.StringField({suggestions: CONFIG.EverydayHeroes.weaponTypes}),
+				category: new foundry.data.fields.StringField({
+					initial: "", label: "EH.Equipment.Category.Label[one]",
+					suggestions: CONFIG.EverydayHeroes.equipmentCategories
+				})
 			}, {label: "EH.Item.Type.Label"}),
-			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField({
+				suggestions: CONFIG.EverydayHeroes.applicableProperties[this.metadata.type ?? this.metadata.variant]
+			}), {
 				label: "EH.Weapon.Property.Label"
 			}),
 			penetrationValue: new foundry.data.fields.NumberField({
 				min: 0, integer: true,
 				label: "EH.Equipment.Trait.PenetrationValue.Label", hint: "EH.Equipment.Trait.PenetrationValue.Hint"
 			}),
-			jammed: new foundry.data.fields.BooleanField({label: "Weapon.Jammed.Label"}),
+			jammed: new foundry.data.fields.BooleanField({label: "EH.Weapon.Jammed.Label", hint: "EH.Weapon.Jammed.Hint"}),
 			range: new foundry.data.fields.SchemaField({
-				short: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Short"}),
-				long: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Long"}),
-				reach: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Reach"}),
-				units: new foundry.data.fields.StringField({initial: "foot", label: "EH.Measurement.Units"})
+				short: new foundry.data.fields.NumberField({
+					min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Short.Label", hint: "EH.Equipment.Trait.Range.Short.Hint"
+				}),
+				long: new foundry.data.fields.NumberField({
+					min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Long.Label", hint: "EH.Equipment.Trait.Range.Long.Hint"
+				}),
+				reach: new foundry.data.fields.NumberField({
+					min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Reach.Label", hint: "EH.Equipment.Trait.Range.Reach.Hint"
+				}),
+				units: new foundry.data.fields.StringField({
+					label: "EH.Measurement.Units", suggestions: [...Object.keys(CONFIG.EverydayHeroes.lengthUnits), "spaces"]
+				})
 			}, {label: "EH.Equipment.Trait.Range.Label", hint: "EH.Equipment.Trait.Range.Hint"}),
 			reload: new foundry.data.fields.StringField({
-				label: "EH.Equipment.Trait.Reload.Label", hint: "EH.Equipment.Trait.Reload.Hint"
+				label: "EH.Equipment.Trait.Reload.Label", hint: "EH.Equipment.Trait.Reload.Hint",
+				suggestions: CONFIG.EverydayHeroes.actionTypesReload
 			}),
 			rounds: new foundry.data.fields.SchemaField({
 				spent: new foundry.data.fields.NumberField({
@@ -66,11 +81,13 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 					min: 0, integer: true,
 					label: "EH.Equipment.Trait.Rounds.Burst.Label", hint: "EH.Equipment.Trait.Rounds.Burst.Hint"
 				}),
-				type: new foundry.data.fields.StringField({label: "EH.Ammunition.Type.Label"})
+				type: new foundry.data.fields.StringField({
+					label: "EH.Ammunition.Type.Label", suggestions: CONFIG.EverydayHeroes.ammunitionTypes
+				})
 			}, {label: "EH.Equipment.Trait.Rounds.Label", hint: "EH.Equipment.Trait.Rounds.Hint"}),
 			bonuses: new foundry.data.fields.SchemaField({
-				attack: new FormulaField({label: "EH.Weapon.Bonus.Attack.Label"}),
-				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label"}),
+				attack: new FormulaField({label: "EH.Weapon.Bonus.Attack.Label", hint: "EH.Weapon.Bonus.Attack.Hint"}),
+				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label", hint: "EH.Weapon.Bonus.Damage.Hint"}),
 				critical: new foundry.data.fields.SchemaField({
 					damage: new FormulaField({
 						label: "EH.Weapon.Bonus.Critical.Damage.Label", hint: "EH.Weapon.Bonus.Critical.Damage.Hint"
@@ -78,11 +95,14 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 					dice: new foundry.data.fields.NumberField({
 						label: "EH.Weapon.Bonus.Critical.Dice.Label", hint: "EH.Weapon.Bonus.Critical.Dice.Hint"
 					})
-				})
-			}, {label: "EH.Bonus.Label"}),
+				}, {label: "EH.Weapon.Bonus.Critical.Label", hint: "EH.Weapon.Bonus.Critical.Hint"})
+			}, {label: "EH.Bonus.Label[other]"}),
 			overrides: new foundry.data.fields.SchemaField({
 				critical: new foundry.data.fields.SchemaField({
-					threshold: new foundry.data.fields.NumberField({label: "EH.Weapon.Overrides.Critical.Threshold.Label"})
+					threshold: new foundry.data.fields.NumberField({
+						label: "EH.Weapon.Overrides.Critical.Threshold.Label",
+						hint: "EH.Weapon.Overrides.Critical.Threshold.SpecificHint"
+					})
 				})
 			}, {label: "EH.Override.Label"})
 		};

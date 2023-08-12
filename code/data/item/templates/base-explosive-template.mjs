@@ -38,26 +38,36 @@ export default class BaseExplosiveTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
 			type: new foundry.data.fields.SchemaField({
-				category: new foundry.data.fields.StringField({intial: "basic", label: "EH.Equipment.Category.Label[one]"})
+				value: new foundry.data.fields.StringField({suggestions: CONFIG.EverydayHeroes.explosiveTypes}),
+				category: new foundry.data.fields.StringField({
+					intial: "basic", label: "EH.Equipment.Category.Label[one]", suggestions: CONFIG.EverydayHeroes.equipmentCategories
+				})
 			}, {label: "EH.Item.Type.Label"}),
-			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField({
+				suggestions: CONFIG.EverydayHeroes.applicableProperties[this.metadata.type ?? this.metadata.variant]
+			}), {
 				label: "EH.Weapon.Property.Label"
 			}),
 			penetrationValue: new foundry.data.fields.NumberField({
 				min: 0, integer: true,
 				label: "EH.Equipment.Trait.PenetrationValue.Label", hint: "EH.Equipment.Trait.PenetrationValue.Hint"
 			}),
-			dc: new foundry.data.fields.NumberField({min: 0, integer: true, label: "EH.Explosive.DC.Label"}),
+			dc: new foundry.data.fields.NumberField({
+				min: 0, integer: true, label: "EH.Explosive.DC.Label", hint: "EH.Explosive.DC.Hint"
+			}),
 			radius: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: ""}),
+				value: new foundry.data.fields.NumberField({
+					min: 0, step: 0.1, label: "EH.Equipment.Trait.Radius.Label", hint: "EH.Equipment.Trait.Radius.Hint"
+				}),
 				units: new foundry.data.fields.StringField({
-					initial: () => CONFIG.EverydayHeroes.defaultUnits.length, label: "EH.Measurement.Units"
+					initial: () => CONFIG.EverydayHeroes.defaultUnits.length, label: "EH.Measurement.Units",
+					suggestions: [...Object.keys(CONFIG.EverydayHeroes.lengthUnits), "spaces"]
 				})
 			}),
 			bonuses: new foundry.data.fields.SchemaField({
-				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label"}),
-				dc: new FormulaField({label: "EH.Weapon.Bonus.DC.Label"})
-			}, {label: "EH.Bonus.Label"})
+				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label", hint: "EH.Weapon.Bonus.Damage.Hint"}),
+				dc: new FormulaField({label: "EH.Weapon.Bonus.DC.Label", hint: "EH.Weapon.Bonus.DC.Hint"})
+			}, {label: "EH.Bonus.Label[other]"})
 		};
 	}
 

@@ -54,33 +54,42 @@ export default class HeroData extends SystemDataModel.mixin(
 		return this.mergeSchema(super.defineSchema(), {
 			attributes: new foundry.data.fields.SchemaField({
 				death: new foundry.data.fields.SchemaField({
-					status: new foundry.data.fields.StringField({initial: "alive", blank: false, label: "EH.Death.Status.Label"}),
+					status: new foundry.data.fields.StringField({
+						initial: "alive", blank: false, label: "EH.Death.Status.Label",
+						suggestions: CONFIG.EverydayHeroes.deathStatus
+					}),
 					success: new foundry.data.fields.NumberField({
-						nullable: false, initial: 0, min: 0, integer: true, label: "EH.Death.Success"
+						nullable: false, initial: 0, min: 0, integer: true,
+						label: "EH.Death.Success.Label", hint: "EH.Death.Success.Hint"
 					}),
 					failure: new foundry.data.fields.NumberField({
-						nullable: false, initial: 0, min: 0, integer: true, label: "EH.Death.Failure"
+						nullable: false, initial: 0, min: 0, integer: true,
+						label: "EH.Death.Failure.Label", hint: "EH.Death.Failure.Hint"
 					}),
-					bonus: new FormulaField({label: "EH.Death.Bonus.Label"}),
+					bonus: new FormulaField({label: "EH.Death.Bonus.Label", hint: "EH.Death.Bonus.Hint"}),
 					overrides: new foundry.data.fields.SchemaField({
 						success: new foundry.data.fields.NumberField({
-							label: "EH.Death.Override.Success.Label", hint: "EH.Death.Override.Success.hint"
+							min: 0, integer: true, label: "EH.Death.Override.Success.Label", hint: "EH.Death.Override.Success.Hint"
 						}),
 						failure: new foundry.data.fields.NumberField({
-							label: "EH.Death.Override.Failure.Label", hint: "EH.Death.Override.Failure.hint"
+							min: 0, integer: true, label: "EH.Death.Override.Failure.Label", hint: "EH.Death.Override.Failure.Hint"
 						}),
 						target: new foundry.data.fields.NumberField({
-							label: "EH.Death.Override.Target.Label", hint: "EH.Death.Override.Target.hint"
+							min: 0, integer: true, label: "EH.Death.Override.Target.Label", hint: "EH.Death.Override.Target.Hint"
 						})
 					})
 				}, {label: "EH.Death.Label[other]"}),
 				defense: new foundry.data.fields.SchemaField({
-					bonus: new FormulaField({deterministic: true, label: "EH.Defense.Bonus.Label"})
+					bonus: new FormulaField({deterministic: true, label: "EH.Defense.Bonus.Label", hint: "EH.Defense.Bonus.Hint"})
 				}, {label: "EH.Defense.Label"}),
 				hd: new foundry.data.fields.SchemaField({
 					spent: new foundry.data.fields.NumberField({initial: 0, min: 0, integer: true, label: "EH.HitDice.Spent"}),
-					minimum: new FormulaField({deterministic: true, label: "EH.HitDice.Minimum.Label"}),
-					recovery: new foundry.data.fields.NumberField({initial: 0.5, min: -1, max: 1, label: "EH.HitDice.Recovery.Label"})
+					minimum: new FormulaField({
+						deterministic: true, label: "EH.HitDice.Minimum.Label", hint: "EH.HitDice.Minimum.Hint"
+					}),
+					recovery: new foundry.data.fields.NumberField({
+						initial: 0.5, min: -1, max: 1, label: "EH.HitDice.Recovery.Label", hint: "EH.HitDice.Recovery.Hint"
+					})
 				}, {label: "EH.HitDice.Label[other]"}),
 				hp: new foundry.data.fields.SchemaField({
 					value: new foundry.data.fields.NumberField({
@@ -90,8 +99,12 @@ export default class HeroData extends SystemDataModel.mixin(
 						initial: null, min: 0, integer: true, label: "EH.HitPoints.Temp"
 					}),
 					bonuses: new foundry.data.fields.SchemaField({
-						level: new FormulaField({deterministic: true, label: "EH.HitPoints.Bonus.Level"}),
-						overall: new FormulaField({deterministic: true, label: "EH.HitPoints.Bonus.Overall"})
+						level: new FormulaField({
+							deterministic: true, label: "EH.HitPoints.Bonus.Level.Label", hint: "EH.HitPoints.Bonus.Level.Hint"
+						}),
+						overall: new FormulaField({
+							deterministic: true, label: "EH.HitPoints.Bonus.Overall.Label", hint: "EH.HitPoints.Bonus.Overall.Hint"
+						})
 					}),
 					multiplier: new foundry.data.fields.NumberField({
 						min: 0, label: "EH.HitPoints.Multiplier.Label", hint: "EH.HitPoints.Multiplier.Hint"
@@ -99,26 +112,26 @@ export default class HeroData extends SystemDataModel.mixin(
 				}, {label: "EH.HitPoints.Label[other]"})
 			}, {label: "EH.Attributes.Label"}),
 			biography: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.HTMLField({label: "EH.Biography.Label"}),
+				value: new foundry.data.fields.HTMLField({label: "EH.Biography.Full"}),
 				public: new foundry.data.fields.HTMLField({label: "EH.Biography.Public"}),
 				notes: new foundry.data.fields.HTMLField({label: "EH.Biography.Notes"}),
 				attachments: new foundry.data.fields.ArrayField(
-					new foundry.data.fields.StringField(), {label: "EH.Biography.Attachments"}
+					new foundry.data.fields.StringField(), {label: "EH.Biography.Attachment[other]"}
 				),
 				beliefs: new foundry.data.fields.ArrayField(
-					new foundry.data.fields.StringField(), {label: "EH.Biography.Beliefs"}
+					new foundry.data.fields.StringField(), {label: "EH.Biography.Belief[other]"}
 				),
 				flaws: new foundry.data.fields.ArrayField(
-					new foundry.data.fields.StringField(), {label: "EH.Biography.Flaws"}
+					new foundry.data.fields.StringField(), {label: "EH.Biography.Flaw[other]"}
 				),
 				motivations: new foundry.data.fields.ArrayField(
-					new foundry.data.fields.StringField(), {label: "EH.Biography.Motivations"}
+					new foundry.data.fields.StringField(), {label: "EH.Biography.Motivation[other]"}
 				),
 				quirks: new foundry.data.fields.ArrayField(
-					new foundry.data.fields.StringField(), {label: "EH.Biography.Quirks"}
+					new foundry.data.fields.StringField(), {label: "EH.Biography.Quirk[other]"}
 				),
 				virtues: new foundry.data.fields.ArrayField(
-					new foundry.data.fields.StringField(), {label: "EH.Biography.Virtues"}
+					new foundry.data.fields.StringField(), {label: "EH.Biography.Virtue[other]"}
 				),
 				age: new foundry.data.fields.StringField({label: "EH.Biography.Age"}),
 				ancestry: new foundry.data.fields.StringField({label: "EH.Biography.Ancestry"}),
@@ -132,59 +145,76 @@ export default class HeroData extends SystemDataModel.mixin(
 				weight: new foundry.data.fields.StringField({label: "EH.Biography.Weight"})
 			}, {label: "EH.Biography.Label"}),
 			bonuses: new foundry.data.fields.SchemaField({
-				attack: new MappingField(new FormulaField()),
-				damage: new MappingField(new FormulaField())
+				attack: new MappingField(new FormulaField(), {
+					label: "EH.Bonus.Global.Attack.Label", hint: "EH.Bonus.Global.Attack.Hint"
+				}),
+				damage: new MappingField(new FormulaField(), {
+					label: "EH.Bonus.Global.Damage.Label", hint: "EH.Bonus.Global.Damage.Hint"
+				})
 			}, {label: "EH.Bonus.Global.Label[other]"}),
 			details: new foundry.data.fields.SchemaField({
 				level: new foundry.data.fields.NumberField({
-					nullable: false, initial: 1, min: 1, max: CONFIG.EverydayHeroes.maxLevel, integer: true, label: "EH.Level.Label[one]"
+					nullable: false, initial: 1, min: 1, max: CONFIG.EverydayHeroes.maxLevel, integer: true,
+					label: "EH.Level.Label[one]", hint: "EH.Level.Hint"
 				}),
 				limits: new MappingField(new foundry.data.fields.SchemaField({
 					formula: new FormulaField({label: "EH.Feature.Limit.Formula"})
-				}), {label: "EH.Feature.Limit.Label"}),
+				}), {label: "EH.Feature.Limit.Label", hint: "EH.Feature.Limit.Hint"}),
 				wealth: new foundry.data.fields.SchemaField({
-					bonus: new FormulaField({deterministic: true, label: "EH.Details.Wealth.Bonus.Label"})
+					bonus: new FormulaField({
+						deterministic: true, label: "EH.Details.Wealth.Bonus.Label", hint: "EH.Details.Wealth.Bonus.Hint"
+					})
 				}, {label: "EH.Details.Wealth.Label"})
 			}, {label: "EH.Details.Label"}),
 			inspiration: new foundry.data.fields.BooleanField({label: "EH.Resource.Inspiration"}),
 			items: new DocumentContextField(foundry.documents.BaseItem, {
 				ammunition: new LocalDocumentField(foundry.documents.BaseItem),
 				equipped: new foundry.data.fields.BooleanField({label: "EH.Item.State.Equipped"}),
-				mode: new foundry.data.fields.StringField({label: "EH.Item.Mode"})
-			}),
+				mode: new foundry.data.fields.StringField({
+					label: "EH.Item.Mode.Label", hint: "EH.Item.Mode.Hint", suggestions: CONFIG.EverydayHeroes.weaponModes
+				})
+			}, {label: "EH.Item.Context.Label", hint: "EH.Item.Context.Hint"}),
 			overrides: new foundry.data.fields.SchemaField({
 				ability: new foundry.data.fields.SchemaField({
 					hitPoints: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-						label: "EH.Override.Ability.HitPoints.Label"
+						label: "EH.Override.Ability.HitPoints.Label", hint: "EH.Override.Ability.HitPoints.Hint",
+						suggestions: CONFIG.EverydayHeroes.abilities
 					}),
 					melee: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-						label: "EH.Override.Ability.Melee.Label"
+						label: "EH.Override.Ability.Melee.Label", hint: "EH.Override.Ability.Melee.Hint",
+						suggestions: CONFIG.EverydayHeroes.abilities
 					}),
 					ranged: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-						label: "EH.Override.Ability.Ranged.Label"
+						label: "EH.Override.Ability.Ranged.Label", hint: "EH.Override.Ability.Ranged.Hint",
+						suggestions: CONFIG.EverydayHeroes.abilities
 					})
 				}, {label: "EH.Override.Ability.Label", hint: "EH.Override.Ability.Hint"}),
 				critical: new foundry.data.fields.SchemaField({
 					multiplier: new foundry.data.fields.NumberField({
-						min: 1, integer: true, label: "EH.Action.Override.Critical.Multiplier.Label"
+						min: 1, integer: true, label: "EH.Action.Override.Critical.Multiplier.Label",
+						hint: "EH.Action.Override.Critical.Multiplier.Hint"
 					}),
 					threshold: new MappingField(new foundry.data.fields.NumberField({initial: 20, min: 1, integer: true}), {
-						label: "EH.Weapon.Overrides.Critical.Threshold.Label"
+						label: "EH.Weapon.Overrides.Critical.Threshold.Label", hint: "EH.Weapon.Overrides.Critical.Threshold.GlobalHint"
 					})
 				})
 			}, {label: "EH.Override.Label"}),
 			traits: new foundry.data.fields.SchemaField({
 				damage: new foundry.data.fields.SchemaField({
-					immunity: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-						label: "EH.Damage.Immunity.Label"
+					immunity: new foundry.data.fields.SetField(new foundry.data.fields.StringField({
+						suggestions: CONFIG.EverydayHeroes.damageTypes
+					}), {
+						label: "EH.Damage.Immunity.Label", hint: "EH.Damage.Immunity.Hint"
 					}),
-					reduction: new MappingField(new FormulaField({deterministic: true}), {label: "EH.Damage.Reduction.Label"})
+					reduction: new MappingField(new FormulaField({deterministic: true}), {
+						label: "EH.Damage.Reduction.Label", hint: "EH.Damage.Reduction.Hint"
+					})
 				}),
 				languages: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField(), {
 					label: "EH.Language.Label[other]"
 				}),
 				equipment: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-					label: "EH.Proficiency.Label[other]"
+					label: "EH.Equipment.Proficiency.Label[other]", hint: "EH.Equipment.Proficiency.Hint"
 				})
 			}, {label: "EH.Traits.Label"})
 		});
