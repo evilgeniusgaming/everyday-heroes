@@ -47,31 +47,10 @@ export default class Damage extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
-	 * Can critical damage be rolled with this item?
-	 * @type {boolean}
-	 */
-	get canCritical() {
-		return true;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Key for the ability that adds to damage rolls for this item, taking mode into account if it has one.
-	 * @type {string|null}
-	 */
-	get damageAbility() {
-		if ( (this.overrides.ability.damage === "none") || !this.damage.denomination ) return null;
-		return this.overrides.ability.damage || null;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
 	 * Actions that should be displayed in the damage chat card.
 	 * @type {object[]}
 	 */
-	get damageChatActions() {
+	get baseDamageChatActions() {
 		const actions = [];
 		const dc = this.dc ?? 8 + (this.attackMod ?? 0);
 
@@ -132,6 +111,52 @@ export default class Damage extends foundry.abstract.DataModel {
 		});
 
 		return actions;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Can critical damage be rolled with this item?
+	 * @type {boolean}
+	 */
+	get canCritical() {
+		return true;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Key for the ability that adds to damage rolls for this item, taking mode into account if it has one.
+	 * @type {string|null}
+	 */
+	get damageAbility() {
+		if ( (this.overrides.ability.damage === "none") || !this.damage.denomination ) return null;
+		return this.overrides.ability.damage || null;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Action that will be presented with this item on the actor sheet.
+	 * @type {object}
+	 */
+	get damageAction() {
+		return {
+			label: this.damageFormula,
+			icon: this.damageIcon,
+			tooltip: this.damageTooltip,
+			data: { type: "damage" }
+		};
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Actions that should be displayed in the damage chat card.
+	 * @type {object[]}
+	 */
+	get damageChatActions() {
+		return this.baseDamageChatActions;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

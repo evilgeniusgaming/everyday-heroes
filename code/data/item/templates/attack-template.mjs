@@ -36,6 +36,22 @@ export default class AttackTemplate extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Action that will be presented with this item on the actor sheet.
+	 * @type {object}
+	 */
+	get attackAction() {
+		return {
+			label: EverydayHeroes.utils.numberFormat(this.attackMod, { sign: true }),
+			icon: this.attackIcon,
+			tooltip: this.attackTooltip,
+			disabled: !this.canAttack,
+			data: { type: "attack" }
+		};
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Icon display on the attack button.
 	 * @type {string}
 	 */
@@ -50,10 +66,7 @@ export default class AttackTemplate extends foundry.abstract.DataModel {
 	 * @type {number}
 	 */
 	get attackMod() {
-		const rollData = this.getRollData();
-		return (rollData.abilities?.[this.attackAbility]?.mod ?? 0)
-			+ simplifyBonus(this.proficiency?.term, rollData)
-			+ simplifyBonus(this.user?.system.bonuses?.attack?.all, rollData);
+		return this.baseAttackMod;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -64,6 +77,19 @@ export default class AttackTemplate extends foundry.abstract.DataModel {
 	 */
 	get attackTooltip() {
 		return game.i18n.format("EH.Action.Roll", { type: game.i18n.localize("EH.Weapon.Action.AttackGeneric") });
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * The simplified attack modifier for this Item, taking mode into account if it has one.
+	 * @type {number}
+	 */
+	get baseAttackMod() {
+		const rollData = this.getRollData();
+		return (rollData.abilities?.[this.attackAbility]?.mod ?? 0)
+			+ simplifyBonus(this.proficiency?.term, rollData)
+			+ simplifyBonus(this.user?.system.bonuses?.attack?.all, rollData);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

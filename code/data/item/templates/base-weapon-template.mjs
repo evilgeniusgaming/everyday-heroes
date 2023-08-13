@@ -34,7 +34,7 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 
 	static defineSchema() {
 		return {
-			_modeOverride: new foundry.data.fields.StringField({required: false, initial: undefined}),
+			_modeOverride: new foundry.data.fields.StringField({nullable: true, required: false, initial: undefined}),
 			type: new foundry.data.fields.SchemaField({
 				category: new foundry.data.fields.StringField({initial: "", label: "EH.Equipment.Category.Label[one]"})
 			}, {label: "EH.Item.Type.Label"}),
@@ -101,12 +101,12 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 				data: { type: "clear-jam" }
 			}];
 		}
-		const actions = super.actions;
+		const actions = [];
 		if ( this.mode === "suppressiveFire" ) {
 			const fireConfig = CONFIG.EverydayHeroes.weaponSuppressiveFire[
 				this.properties.has("fullAuto") ? "fullAuto" : "semiAuto"
 			];
-			actions.unshift({
+			actions.push({
 				label: numberFormat(fireConfig.size, { unit: "foot" }),
 				icon: "systems/everyday-heroes/artwork/svg/action/attack-suppressive-fire.svg",
 				tooltip: game.i18n.localize("EH.Weapon.Action.SuppressiveFire.Label"),
@@ -114,6 +114,8 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 				data: { type: "suppressive-fire" }
 			});
 		}
+		if ( this.hasAttack ) actions.push(this.attackAction);
+		if ( this.hasDamage ) actions.push(this.damageAction);
 		return actions;
 	}
 
@@ -158,7 +160,7 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 
 	get attackMod() {
 		const rollData = this.getRollData();
-		return super.attackMod
+		return this.baseAttackMod
 			+ simplifyBonus(this.bonuses.attack, rollData)
 			+ simplifyBonus(this.ammunition?.system.bonuses.attack, rollData)
 			+ simplifyBonus(this.user?.system.bonuses?.attack?.all, rollData)
@@ -168,7 +170,9 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get attackTooltip() {
-		if ( !this.mode ) return super.attackTooltip;
+		if ( !this.mode ) return game.i18n.format("EH.Action.Roll", {
+			type: game.i18n.localize("EH.Weapon.Action.AttackGeneric")
+		});
 		const type = game.i18n.format("EH.Weapon.Action.AttackSpecific", {
 			type: CONFIG.EverydayHeroes.weaponModes[this.mode].label
 		});
@@ -260,7 +264,7 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get damageChatActions() {
-		return this.ammunition?.damageChatActions ?? super.damageChatActions;
+		return this.ammunition?.damageChatActions ?? this.baseDamageChatActions;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

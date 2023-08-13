@@ -66,7 +66,8 @@ export default class BaseExplosiveTemplate extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get attackAbility() {
-		return super.attackAbility || this.rangedAbility;
+		if ( this.overrides.ability.attack === "none" ) return null;
+		return this.overrides.ability.attack ?? this.rangedAbility;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

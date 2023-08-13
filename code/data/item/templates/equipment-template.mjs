@@ -19,19 +19,8 @@ export default class EquipmentTemplate {
 	 */
 	get actions() {
 		const actions = [];
-		if ( this.hasAttack ) actions.push({
-			label: EverydayHeroes.utils.numberFormat(this.attackMod, { sign: true }),
-			icon: this.attackIcon,
-			tooltip: this.attackTooltip,
-			disabled: !this.canAttack,
-			data: { type: "attack" }
-		});
-		if ( this.hasDamage ) actions.push({
-			label: this.damageFormula,
-			icon: this.damageIcon,
-			tooltip: this.damageTooltip,
-			data: { type: "damage" }
-		});
+		if ( this.hasAttack ) actions.push(this.attackAction);
+		if ( this.hasDamage ) actions.push(this.damageAction);
 		return actions;
 	}
 
