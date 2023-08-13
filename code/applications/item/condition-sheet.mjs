@@ -39,24 +39,26 @@ export default class ConditionSheet extends BaseItemSheet {
 		for ( const element of html.querySelectorAll('[data-action="effect"]') ) {
 			element.addEventListener("click", this._onEffectAction.bind(this));
 		}
+
+		html.querySelector('[name="levels"]')?.addEventListener("change", this._onChangeLevels.bind(this));
+		html.querySelector('[name="system.type.value"]').addEventListener("change", this._onChangeLevels.bind(this));
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	_onChangeInput(event) {
-		super._onChangeInput(event);
+	/**
+	 * Handle changes to the mode and levels.
+	 * @param {Event} event - Triggering change event.
+	 */
+	async _onChangeLevels(event) {
+		event.preventDefault();
+		event.stopPropagation();
 
 		if ( event.target.name === "levels" ) {
-			event.stopPropagation();
-			this.item.system.changeLevels(Number(event.target.value));
+			await this.item.system.changeLevels(Number(event.target.value));
 		} else if ( event.target.name === "system.type.value" ) {
-			if ( event.target.value === "single" ) {
-				event.stopPropagation();
-				this.item.system.changeLevels(1);
-			} else if ( this.item.system.levels.length < 2 ) {
-				event.stopPropagation();
-				this.item.system.changeLevels(2);
-			}
+			if ( event.target.value === "single" ) await this.item.system.changeLevels(1, event.target.value);
+			else if ( this.item.system.levels.length < 2 ) await this.item.system.changeLevels(2, event.target.value);
 		}
 	}
 

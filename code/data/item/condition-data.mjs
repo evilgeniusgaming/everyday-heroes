@@ -75,8 +75,9 @@ export default class ConditionData extends SystemDataModel.mixin(DescribedTempla
 	/**
 	 * Adjust the number of levels to the provided number.
 	 * @param {number} count - Number of levels after adjustment.
+	 * @param {string} [mode] - New condition propagation mode to set.
 	 */
-	async changeLevels(count) {
+	async changeLevels(count, mode) {
 		const initialLength = this.levels.length;
 		const delta = count - initialLength;
 		if ( !delta || !Number.isNumeric(count) ) return;
@@ -85,15 +86,33 @@ export default class ConditionData extends SystemDataModel.mixin(DescribedTempla
 
 		// If count is 1, change type to "Single"
 		if ( count === 1 ) updates["system.type.value"] = "single";
+		else if ( mode ) updates["system.type.value"] = mode;
 
 		let levels = this.toObject().levels;
 		if ( delta > 0 ) {
-			const effectData = Array.fromRange(delta).map(i => this._effectCreationData(this.levels.length + i + 1));
+			const effectData = Array.fromRange(delta).map(i =>
+				this._effectCreationData(this.levels.length + i + 1, count > 1)
+			);
 			const createdEffects = await this.parent.createEmbeddedDocuments("ActiveEffect", effectData);
 			createdEffects.forEach(e => levels.push({effect: e.id}));
-		} else {
+			if ( initialLength === 1 ) {
+				// Rename first level condition with level name
+				await this.levels[0].effect.update({
+					[game.release.generation < 11 ? "label" : "name"]: `${this.parent.name} (${this._levelLabel(1).toLowerCase()})`
+				});
+			}
+		}
+
+		else {
+			const toDelete = levels.slice(count, levels.length).map(l => l.effect);
 			levels = levels.slice(0, count);
-			// TODO: Delete effects
+			await this.parent.deleteEmbeddedDocuments("ActiveEffect", toDelete);
+			if ( count === 1 ) {
+				// Rename first level condition without level name
+				await this.levels[0].effect.update({
+					[game.release.generation < 11 ? "label" : "name"]: this.parent.name
+				});
+			}
 		}
 		updates["system.levels"] = levels;
 
@@ -111,7 +130,7 @@ export default class ConditionData extends SystemDataModel.mixin(DescribedTempla
 		const level = this.levels[levelIndex];
 		if ( !level ) throw new Error(`No level exists at index ${levelIndex}, cannot create an effect.`);
 		if ( level.effect ) throw new Error(`Level at index ${levelIndex} already has an associated effect.`);
-		const data = this._effectCreationData(levelIndex + 1);
+		const data = this._effectCreationData(levelIndex + 1, this.type.value !== "single");
 		const effect = (await this.parent.createEmbeddedDocuments("ActiveEffect", [data]))[0];
 		const levelsCollection = this.toObject().levels;
 		levelsCollection[levelIndex].effect = effect.id;
@@ -124,18 +143,27 @@ export default class ConditionData extends SystemDataModel.mixin(DescribedTempla
 	/**
 	 * Build the initial data used to construct an Active Effect for a specific level.
 	 * @param {number} number - Number of the level for which the effect should be created.
+	 * @param {boolean} [appendLevel=false] - Should the level be appended to the name?
 	 * @returns {object}
 	 * @internal
 	 */
-	_effectCreationData(number) {
-		return {
-			name: `${this.parent.name}${this.type.value !== "single" ? ` (${this._levelLabel(number).toLowerCase()})` : ""}`,
+	_effectCreationData(number, appendLevel=false) {
+		const name = `${this.parent.name}${appendLevel ? ` (${this._levelLabel(number).toLowerCase()})` : ""}`;
+		const data = {
 			icon: this.parent.img,
 			"flags.everyday-heroes": {
 				type: "condition",
 				level: number
 			}
 		};
+		if ( game.release.generation < 11 ) {
+			data.label = name;
+			data["flags.core.statusId"] = this.identifier.value;
+		} else {
+			data.name = name;
+			data.statuses = [this.identifier.value];
+		}
+		return data;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -151,5 +179,17 @@ export default class ConditionData extends SystemDataModel.mixin(DescribedTempla
 		return game.i18n.format("EH.Condition.Level.LabelSpecific", {
 			number: game.i18n.has(key) ? game.i18n.localize(key).capitalize() : numberFormat(number)
 		});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Socket Event Handlers                    */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _onCreateEffects(data, options, userId) {
+		if ( userId !== game.user.id ) return;
+		if ( this.levels.length === 0 ) {
+			const effect = await this.parent.createEmbeddedDocuments("ActiveEffect", [this._effectCreationData(1)]);
+			this.parent.update({"system.levels": [{effect: effect[0].id}]});
+		}
 	}
 }
