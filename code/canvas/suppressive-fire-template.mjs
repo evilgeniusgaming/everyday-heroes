@@ -194,7 +194,7 @@ export default class SuppressiveFireTemplate extends MeasuredTemplate {
 	 * @param {Event} event - Triggering event.
 	 */
 	async _finishPlacement(event) {
-		event.preventDefault();
+		event.preventDefault?.();
 		event.stopPropagation();
 		this.layer._onDragLeftCancel(event);
 		canvas.stage.off("mousemove", this.#events.move);
@@ -214,9 +214,12 @@ export default class SuppressiveFireTemplate extends MeasuredTemplate {
 		event.stopPropagation();
 		if ( Date.now() - this.#lastMove <= this.constructor.THROTTLE_MS ) return;
 		const position = event.data.getLocalPosition(this.layer);
+		const distancePixels = game.release.generation < 11
+			? canvas.scene.dimensions.size / canvas.scene.dimensions.distance
+			: canvas.scene.dimensions.distancePixels;
 		this.document.updateSource(this.constructor.#positionUpdates(
 			position, this.origin, { min: canvas.scene.dimensions.distance, max: this.maxRange},
-			this.maxWidth, canvas.scene.dimensions.distancePixels
+			this.maxWidth, distancePixels
 		));
 		this.refresh();
 		this.#lastMove = Date.now();
