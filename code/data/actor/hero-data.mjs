@@ -243,6 +243,8 @@ export default class HeroData extends SystemDataModel.mixin(
 		if ( Number.isNumeric(defense.override) ) defense.bonus = Number(defense.override);
 		else defense.bonus = simplifyBonus(defense.bonus, rollData) + (archetype?.bonus ?? 0);
 		defense.value = 10 + (ability?.mod ?? 0) + defense.bonus;
+
+		defense.toString = () => defense.value;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
