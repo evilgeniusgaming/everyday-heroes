@@ -298,13 +298,13 @@ export default class HeroData extends SystemDataModel.mixin(
 	/*  Socket Event Handlers                    */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	async _preCreate(data, options, user) {
+	async _preCreateToken(data, options, user) {
 		if ( !data.prototypeToken ) this.parent.updateSource({prototypeToken: {actorLink: true, disposition: 1}});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	async _preUpdate(changed, options, user) {
+	async _preUpdateHP(changed, options, user) {
 		const changedHP = foundry.utils.getProperty(changed, "system.attributes.hp.value");
 		if ( changedHP !== undefined ) {
 			if ( (changedHP > 0) || (this.attributes.hp.max === 0) ) {
@@ -315,7 +315,11 @@ export default class HeroData extends SystemDataModel.mixin(
 				foundry.utils.setProperty(changed, "system.attributes.death.status", "dying");
 			}
 		}
+	}
 
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _preUpdateAdvancement(changed, options, user) {
 		if ( options.isAdvancement || options.noHook ) return;
 		const changedLevel = foundry.utils.getProperty(changed, "system.details.level");
 		const delta = changedLevel - this.details.level;
@@ -331,5 +335,14 @@ export default class HeroData extends SystemDataModel.mixin(
 				} catch(err) { }
 			}
 		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _onUpdateDeathStatus(changed, options, userId) {
+		if ( game.user.id !== userId ) return;
+
+		const deathStatus = foundry.utils.getProperty(changed, "system.attributes.death.status");
+		if ( deathStatus ) await this.parent.setDefeatedStatus(deathStatus === "dead");
 	}
 }

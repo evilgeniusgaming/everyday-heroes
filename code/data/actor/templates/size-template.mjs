@@ -34,7 +34,7 @@ export default class SizeTemplate extends foundry.abstract.DataModel {
 	/*  Socket Event Handlers                    */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	async _preCreate(data, options, user) {
+	async _preCreateSize(data, options, user) {
 		if ( !foundry.utils.hasProperty(data, "prototypeToken.width")
 			&& !foundry.utils.hasProperty(data, "prototypeToken.height")) {
 			const size = CONFIG.EverydayHeroes.sizes[this.traits.size]?.token;
@@ -44,7 +44,7 @@ export default class SizeTemplate extends foundry.abstract.DataModel {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	async _preUpdate(changed, options, user) {
+	async _preUpdateScale(changed, options, user) {
 		const newSize = foundry.utils.getProperty(changed, "system.traits.size");
 		if ( !newSize || (newSize === this.traits.size) ) return;
 

@@ -1353,6 +1353,20 @@ export default class ActorEH extends DocumentMixin(Actor) {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Set the defeated status and add status icon to token, if possible.
+	 * @param {boolean} defeated - Should combatant be defeated?
+	 */
+	async setDefeatedStatus(defeated) {
+		const combatants = game.combat?.combatants.filter(c => c.actor === this) ?? [];
+		for ( const combatant of combatants ) {
+			if ( combatant.isDefeated === defeated ) continue;
+			await ui.combat._onToggleDefeatedStatus(combatant);
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Socket Event Handlers                    */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

@@ -176,4 +176,15 @@ export default class NPCData extends SystemDataModel.mixin(
 			CONFIG.EverydayHeroes.creatureTypes[this.traits.type.value]?.label ?? ""}`;
 		if ( this.traits.type.tags.length ) this.traits.type.label += ` (${this.traits.type.tagList})`;
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Socket Event Handlers                    */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _onUpdateHP(changed, options, userId) {
+		if ( game.user.id !== userId ) return;
+
+		const hp = foundry.utils.getProperty(changed, "system.attributes.hp.value");
+		if ( hp !== undefined ) await this.parent.setDefeatedStatus(!hp);
+	}
 }

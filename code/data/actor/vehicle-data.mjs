@@ -692,8 +692,7 @@ export default class VehicleData extends SystemDataModel.mixin(ConditionsTemplat
 	/*  Socket Event Handlers                    */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	async _preCreate(data, options, user) {
-		await super._preCreate(data, options, user);
+	async _preCreateToken(data, options, user) {
 		if ( !data.prototypeToken ) this.parent.updateSource({prototypeToken: {actorLink: true, disposition: 0}});
 		if ( !options.keepEmbeddedId ) this.parent.updateSource({"system.details.driver": null, "system.people": {}});
 	}
