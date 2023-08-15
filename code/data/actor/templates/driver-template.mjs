@@ -39,4 +39,12 @@ export default class DriverTemplate extends foundry.abstract.DataModel {
 	prepareBaseVehicle() {
 		this.vehicle.isDriver = this.vehicle.actor?.system.details.driver === this.parent;
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Socket Event Handlers                    */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	_preCreate(data, options, user) {
+		if ( !options.keepEmbeddedId ) this.parent.updateSource({"system.vehicle.actor": null});
+	}
 }
