@@ -185,6 +185,18 @@ export default class ConditionData extends SystemDataModel.mixin(DescribedTempla
 	/*  Socket Event Handlers                    */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	async _onUpdateIcon(changed, options, userId) {
+		if ( userId !== game.user.id ) return;
+		const newIcon = foundry.utils.getProperty(changed, "img");
+		if ( newIcon ) {
+			await this.parent.updateEmbeddedDocuments("ActiveEffect", this.parent.effects.contents.map(e => {
+				return {_id: e.id, icon: newIcon};
+			}));
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	async _onCreateEffects(data, options, userId) {
 		if ( userId !== game.user.id ) return;
 		if ( this.levels.length === 0 ) {
