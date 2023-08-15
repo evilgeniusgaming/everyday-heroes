@@ -615,7 +615,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 
 		const rolls = await CONFIG.Dice.ChallengeRoll.build(rollConfig, messageConfig, dialogConfig);
 		if ( !rolls?.length ) return;
-		const roll = roll[0];
+		const roll = rolls[0];
 
 		const details = {};
 
