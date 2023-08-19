@@ -33,6 +33,17 @@ export default class HitPointsAdvancement extends Advancement {
 	/*  Instance Properties                      */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/**
+	 * Current hit dice denomination. This fetches from the actor first to take any changes
+	 * through active effects into account.
+	 * @type {number}
+	 */
+	get denomination() {
+		return this.actor?.system.attributes.hd.denomination ?? this.configuration.denomination;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	get levels() {
 		return Array.fromRange(CONFIG.EverydayHeroes.maxLevel + 1).slice(1);
 	}
@@ -61,7 +72,7 @@ export default class HitPointsAdvancement extends Advancement {
 	 * @returns {number|null} - Hit points for level or null if none have been taken.
 	 */
 	valueForLevel(level) {
-		return this.constructor.valueForLevel(this.value.granted ?? {}, this.configuration.denomination, level);
+		return this.constructor.valueForLevel(this.value.granted ?? {}, this.denomination, level);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -132,7 +143,7 @@ export default class HitPointsAdvancement extends Advancement {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	apply(level, data) {
-		let value = this.constructor.valueForLevel(data, this.configuration.denomination, level);
+		let value = this.constructor.valueForLevel(data, this.denomination, level);
 		if ( value === undefined ) return;
 		this.actor.updateSource({
 			"system.attributes.hp.value": this.actor.system.attributes.hp.value + this.#getApplicableValue(value)

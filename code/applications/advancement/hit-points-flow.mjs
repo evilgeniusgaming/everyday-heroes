@@ -26,7 +26,7 @@ export default class HitPointsFlow extends AdvancementFlow {
 
 		return foundry.utils.mergeObject(super.getData(), {
 			isFirstLevel: this.level === 1,
-			denomination: this.advancement.configuration.denomination,
+			denomination: this.advancement.denomination,
 			data: {
 				value: Number.isInteger(value) ? value : "",
 				useAverage
@@ -57,7 +57,7 @@ export default class HitPointsFlow extends AdvancementFlow {
 	 */
 	_updateRollResult() {
 		if ( !this.form.elements.useAverage?.checked ) return;
-		this.form.elements.value.value = (this.advancement.configuration.denomination / 2) + 1;
+		this.form.elements.value.value = (this.advancement.denomination / 2) + 1;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
