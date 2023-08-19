@@ -17,7 +17,7 @@ export default function applyEffectApplicationPatches() {
 	field.prototype._ehApplyUpgrade = function(document, change, current, delta, changes) {};
 	field.prototype._ehApplyDowngrade = function(document, change, current, delta, changes) {};
 	field.prototype._ehApplyOverride = function(document, change, current, delta, changes) {
-		current[change.key] = delta;
+		changes[change.key] = delta;
 	};
 	field.prototype._ehCastDelta = function(value) {
 		return this._cast(value);

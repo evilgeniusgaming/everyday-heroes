@@ -189,6 +189,25 @@
 		<label>{{localize "EH.Proficiency.Label[one]"}}</label>
 		<span>{{everydayHeroes-number system.attributes.prof sign=true}}</span>
 	</fieldset>
+
+	<fieldset>
+		<label>
+			<a data-action="roll" data-type="initiative"
+				data-tooltip="{{localize 'EH.Action.Roll' type=(localize 'EH.Initiative.Label')}}">
+				{{localize "EH.Initiative.Label"}}
+			</a>
+			{{#if editingMode}}
+				<a data-action="config" data-type="initiative"
+					data-tooltip="{{localize 'EH.Action.Configure' type=(localize 'EH.Initiative.Label')}}">
+					<i class="fa-solid fa-cog"></i>
+				</a>
+			{{/if}}
+		</label>
+		<span>
+			{{everydayHeroes-number system.attributes.initiative.mod sign=true}}
+			{{~#if (gt system.attributes.initiative.turns 1)}}, {{system.attributes.initiative.turnsLabel}}{{/if}}
+		</span>
+	</fieldset>
 </section>
 
 {{#each actionSections as |section type|}}

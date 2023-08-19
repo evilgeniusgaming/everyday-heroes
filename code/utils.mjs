@@ -301,6 +301,7 @@ function jsonStringify(context, options) {
  * @param {number} [options.decimals] - Number of decimal digits to display.
  * @param {number} [options.digits] - Number of digits before the decimal point to display.
  * @param {boolean} [options.sign] - Should the sign always be displayed?
+ * @param {boolean} [options.spelledOut] - For smaller numbers, should this be spelled out in words?
  * @param {string} [options.unit] - What unit should be displayed?
  * @param {string} [options.unitDisplay] - Unit display style.
  * @param {boolean} [options.unitFallback=false] - If unit is not a properly defined in the list of Javascript units,
@@ -309,6 +310,9 @@ function jsonStringify(context, options) {
  */
 export function numberFormat(value, options={}) {
 	const formatterOptions = {};
+	if ( options.spelledOut && game.i18n.has(`EH.Number[${value}]`) ) {
+		return game.i18n.localize(`EH.Number[${value}]`);
+	}
 	if ( options.sign ) formatterOptions.signDisplay = "always";
 	if ( options.decimals !== undefined ) {
 		formatterOptions.minimumFractionDigits = options.decimals;

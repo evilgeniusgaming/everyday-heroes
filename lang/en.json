@@ -598,6 +598,10 @@
 "Initiative.Label": "Initiative",
 "Initiative.Bonus.Label": "Initiative Bonus",
 "Initiative.Bonus.Hint": "Bonus formula added to all initiative rolls.",
+"Initiative.Turns.Label": "Turns per Round",
+"Initiative.Turns.Hint": "Number of turns this actor gets in a round, with a seperate initiative roll for each.",
+"Initiative.Turns.Count[one]": "{count} turn per round",
+"Initiative.Turns.Count[other]": "{count} turns per round",
 
 "Inline.DC": "DC {dc} {check}",
 "Inline.Check": "{ability} check",

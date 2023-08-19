@@ -1,0 +1,18 @@
+<form autocomplete="off">
+	<section>
+		<h2 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Initiative.Label"}}</span>
+			<span class="right stripes"></span>
+		</h2>
+		<fieldset>
+			<label>{{localize "EH.Initiative.Bonus.Label"}}</label>
+			<input type="text" name="system.attributes.initiative.bonus" value="{{source.attributes.initiative.bonus}}">
+		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Initiative.Turns.Label"}}</label>
+			<input type="number" name="system.attributes.initiative.turns" value="{{source.attributes.initiative.turns}}">
+			<p class="hint">{{localize "EH.Initiative.Turns.Hint"}}</p>
+		</fieldset>
+	</section>
+</form>

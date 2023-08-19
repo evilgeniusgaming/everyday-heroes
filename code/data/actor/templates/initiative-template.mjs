@@ -1,5 +1,5 @@
 import FormulaField from "../../fields/formula-field.mjs";
-import { simplifyBonus } from "../../../utils.mjs";
+import { numberFormat, simplifyBonus } from "../../../utils.mjs";
 import Proficiency from "../../../documents/proficiency.mjs";
 
 /**
@@ -9,6 +9,7 @@ import Proficiency from "../../../documents/proficiency.mjs";
  * @property {object} attributes
  * @property {object} attributes.initiative
  * @property {string} attributes.initiative.bonus - Bonus added to initiative rolls.
+ * @property {number} attributes.initiative.turns - Number of turns this actor gets in a round.
  * @property {object} overrides
  * @property {object} overrides.ability
  * @property {Set<string>} overrides.ability.initiative - Abilities to consider in place of `dex` for initiative.
@@ -18,7 +19,10 @@ export default class InitiativeTemplate extends foundry.abstract.DataModel {
 		return {
 			attributes: new foundry.data.fields.SchemaField({
 				initiative: new foundry.data.fields.SchemaField({
-					bonus: new FormulaField({label: "EH.Initiative.Bonus.Label", hint: "EH.Initiative.Bonus.Hint"})
+					bonus: new FormulaField({label: "EH.Initiative.Bonus.Label", hint: "EH.Initiative.Bonus.Hint"}),
+					turns: new foundry.data.fields.NumberField({
+						min: 1, integer: true, label: "EH.Initiative.Turns.Label", hint: "EH.Initiative.Turns.Hint"
+					})
 				}, {label: "EH.Initiative.Label"})
 			}),
 			overrides: new foundry.data.fields.SchemaField({
@@ -51,5 +55,10 @@ export default class InitiativeTemplate extends foundry.abstract.DataModel {
 		const abilityBonus = simplifyBonus(ability.bonuses?.check, rollData);
 		const globalBonus = simplifyBonus(this.bonuses?.ability?.check, rollData);
 		init.mod = (ability.mod ?? 0) + initBonus + abilityBonus + globalBonus;
+
+		const pluralRules = new Intl.PluralRules({lang: game.i18n.lang});
+		init.turnsLabel = game.i18n.format(`EH.Initiative.Turns.Count[${pluralRules.select(init.turns ?? 1)}]`, {
+			count: numberFormat(init.turns ?? 1, {spelledOut: true})
+		});
 	}
 }
