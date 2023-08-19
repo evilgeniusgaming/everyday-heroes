@@ -946,6 +946,7 @@
 "Vehicle.Type.Space.Label": "Spacecraft",
 "Vehicle.Type.Water.Label": "Boat",
 
+"Weapon.Hit": "Hit",
 "Weapon.ToHit": "{mod} To Hit",
 "Weapon.Jammed.Label": "Jammed",
 "Weapon.Action.AttackGeneric": "Attack",

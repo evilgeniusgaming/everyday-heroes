@@ -182,8 +182,10 @@ export default class NPCWeaponData extends ItemDataModel.mixin(
 			if ( config?.npcHint ) description += config.npcHint;
 		}
 
-		if ( this.description.chat ) description += this.description.chat.replace(/^<p>/, " ");
-		else description += "</p>";
+		if ( this.description.chat ) {
+			if ( !this.hasDamage ) description += `<em>${game.i18n.localize("EH.Weapon.Hit")}:</em>`;
+			description += this.description.chat.replace(/^<p>/, " ");
+		} else description += "</p>";
 
 		return await TextEditor.enrichHTML(description, {
 			secrets: this.parent.isOwner, rollData: this.getRollData(), async: true, relativeTo: this.parent
@@ -265,7 +267,7 @@ export default class NPCWeaponData extends ItemDataModel.mixin(
 			damages.push(string);
 		}
 
-		return `<em>Hit:</em> ${listFormatter.format(damages)}.`; // TODO: Localize
+		return `<em>${game.i18n.localize("EH.Weapon.Hit")}:</em> ${listFormatter.format(damages)}.`;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
