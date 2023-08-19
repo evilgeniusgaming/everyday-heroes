@@ -46,6 +46,8 @@
 	margin: 0.5em;
 }
 .everyday-heroes ol.advancement-list > li {
+	display: flex;
+	flex-wrap: wrap;
 	margin-inline: -0.5em;
 	padding: 0.25em 0.5em;
 }
@@ -72,6 +74,7 @@
 	justify-content: flex-start;
 }
 .everyday-heroes ol.advancement > li .advancement-name {
+	flex-grow: 1;
 	display: flex;
 	align-items: center;
 	gap: 0.5em;
@@ -88,9 +91,12 @@
 	margin: 0;
 }
 .everyday-heroes ol.advancement > li .summary {
-	grid-column: 1 / -1;
+	flex: 1 0 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
 	margin: 0.25em;
-	padding-inline-start: 2em;
+	padding-inline: 2em;
 }
 
 @supports not (grid-template-columns: subgrid) {
