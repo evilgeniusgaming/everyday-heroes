@@ -414,9 +414,9 @@ export function registerTagInputListeners(sheet, html) {
  * @returns {Promise}
  */
 export async function handleTagInputAction(type, event) {
-	event.preventDefault();
 	const tagInput = event.target.closest(".tag-input");
 	if ( !tagInput ) return;
+	event.stopImmediatePropagation();
 	const name = tagInput.dataset.target;
 	const shouldValidate = tagInput.dataset.validate;
 	const collection = foundry.utils.getProperty(this.document.toObject(), name);
@@ -434,7 +434,7 @@ export async function handleTagInputAction(type, event) {
 		default:
 			return console.warn(`Invalid tag action type ${type}`);
 	}
-	this.document.update({[name]: Array.from(collection)});
+	await this.document.update({[name]: Array.from(collection)});
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
