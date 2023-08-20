@@ -906,7 +906,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 			], data)
 		}, options);
 
-		const rollConfig = { data, parts, options: rollOptions };
+		const rollConfig = { data, parts, count: init.turns, options: rollOptions };
 
 		/**
 		 * A hook event that fires when initiative roll configuration is being prepared.
@@ -943,39 +943,74 @@ export default class ActorEH extends DocumentMixin(Actor) {
 		const Roll = CONFIG.Dice.ChallengeRoll;
 		Roll.applyKeybindings(rollConfig, dialogConfig);
 
-		let roll;
+		let rolls;
 		if ( dialogConfig.configure ) {
 			try {
-				roll = (await Roll.ConfigurationDialog.configure(rollConfig, dialogConfig))?.[0];
+				rolls = await Roll.ConfigurationDialog.configure(rollConfig, dialogConfig);
 			} catch(err) {
 				if ( !err ) return;
 				throw err;
 			}
 		} else {
-			roll = Roll.create(rollConfig)[0];
+			rolls = Roll.create(rollConfig);
 		}
 
-		this._cachedInitiativeRoll = roll;
+		this._cachedInitiativeRolls = rolls;
 		await this.rollInitiative({createCombatants: true});
-		delete this._cachedInitiativeRoll;
+		delete this._cachedInitiativeRolls;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	async rollInitiative(options={}) {
+	async rollInitiative({createCombatants=false, rerollInitiative=false, initiativeOptions={}}={}) {
 		/**
 		 * A hook event that fires before initiative is rolled for an Actor.
 		 * @function everydayHeroes.preRollInitiative
 		 * @memberof hookEvents
 		 * @param {ActorEH} actor - Actor for which the initiative is being rolled.
-		 * @param {ChallengeRoll} roll - The initiative roll.
+		 * @param {ChallengeRoll[]} rolls - The initiative rolls.
 		 * @returns {boolean} - Explicitly return `false` to prevent initiative from being rolled.
 		 */
-		if ( Hooks.call("everydayHeroes.preRollInitiative", this, this._cachedInitiativeRoll) === false ) return;
+		if ( Hooks.call("everydayHeroes.preRollInitiative", this, this._cachedInitiativeRolls) === false ) return;
 
-		const combat = await super.rollInitiative(options);
-		const combatants = this.isToken ? this.getActiveTokens(false, true)
-			.filter(t => game.combat.getCombatantByToken(t.id)) : [game.combat.getCombatantByActor(this.id)];
+		let combat = game.combat;
+		if ( !combat ) {
+			if ( game.user.isGM && canvas.scene ) {
+				const cls = getDocumentClass("Combat");
+				combat = await cls.create({scene: canvas.scene.id, active: true});
+			} else {
+				ui.notifications.warn("COMBAT.NoneActive", {localize: true});
+				return null;
+			}
+		}
+
+		if ( createCombatants ) {
+			const tokens = this.getActiveTokens();
+			const toCreate = [];
+			if ( tokens.length ) {
+				for ( const t of tokens ) {
+					if ( t.inCombat ) continue;
+					const turns = this.system.attributes?.initiative?.turns ?? 1;
+					for ( const turn of Array.fromRange(turns) ) {
+						toCreate.push({
+							tokenId: t.id, sceneId: t.scene.id, actorId: this.id, hidden: t.document.hidden,
+							"flags.everyday-heroes.turnNumber": turn
+						});
+					}
+				}
+			} else toCreate.push({actorId: this.id, hidden: false});
+			await combat.createEmbeddedDocuments("Combatant", toCreate);
+		}
+
+		const combatants = combat.combatants.reduce((arr, c) => {
+			if ( this.isToken && (c.token !== this.token) ) return arr;
+			if ( !this.isToken && (c.actor !== this) ) return arr;
+			if ( !rerollInitiative && (c.initiative !== null) ) return arr;
+			arr.push(c.id);
+			return arr;
+		}, []);
+
+		await combat.rollInitiative(combatants, initiativeOptions);
 
 		/**
 		 * A hook event that fires after an Actor has rolled for initiative.

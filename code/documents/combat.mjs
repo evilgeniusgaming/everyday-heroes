@@ -49,4 +49,10 @@ export default class CombatEH extends Combat {
 			if ( types.length ) await combatant.resetCombatUses(types, { start });
 		}
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	// async rollInitiative(ids, {formula=null, updateTurn=true, messageOptions={}}={}) {
+	// 	
+	// }
 }

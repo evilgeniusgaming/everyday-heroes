@@ -7,6 +7,7 @@ import BaseConfigurationDialog from "../applications/dice/base-configuration-dia
  * @property {string[]} [parts=[]] - Parts used to construct the roll formula.
  * @property {object} [data={}] - The roll data used to resolve the formula.
  * @property {Event} [event] - Event that triggered the roll.
+ * @property {number} [count] - If specified, multiple copies of the roll will be rolled and returned.
  * @property {BaseRollOptions} [options] - Options passed through to the roll.
  */
 
@@ -95,7 +96,7 @@ export default class BaseRoll extends Roll {
 	 */
 	static create(config) {
 		const formula = (config.parts ?? []).join(" + ");
-		return [new this(formula, config.data, config.options)];
+		return Array.fromRange(config.count ?? 1).map(c => new this(formula, config.data, config.options));
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

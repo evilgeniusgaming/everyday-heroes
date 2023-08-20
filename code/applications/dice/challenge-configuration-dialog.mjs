@@ -28,19 +28,22 @@ export default class ChallengeConfigurationDialog extends BaseConfigurationDialo
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	finalizeRolls(action) {
-		const roll = this.rolls[0];
-		switch (action) {
-			case "advantage":
-				roll.options.advantageMode = CONFIG.Dice.ChallengeDie.MODES.ADVANTAGE;
-				break;
-			case "disadvantage":
-				roll.options.advantageMode = CONFIG.Dice.ChallengeDie.MODES.DISADVANTAGE;
-				break;
-			case "normal":
-				roll.options.advantageMode = CONFIG.Dice.ChallengeDie.MODES.NORMAL;
-				break;
+		const rolls = [];
+		for ( const roll of this.rolls ) {
+			switch (action) {
+				case "advantage":
+					roll.options.advantageMode = CONFIG.Dice.ChallengeDie.MODES.ADVANTAGE;
+					break;
+				case "disadvantage":
+					roll.options.advantageMode = CONFIG.Dice.ChallengeDie.MODES.DISADVANTAGE;
+					break;
+				case "normal":
+					roll.options.advantageMode = CONFIG.Dice.ChallengeDie.MODES.NORMAL;
+					break;
+			}
+			roll.configureRoll();
+			rolls.push(roll);
 		}
-		roll.configureRoll();
-		return [roll];
+		return rolls;
 	}
 }

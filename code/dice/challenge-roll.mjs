@@ -59,7 +59,7 @@ export default class ChallengeRoll extends BaseRoll {
 	 */
 	static create(config) {
 		const formula = [(new CONFIG.Dice.ChallengeDie()).formula].concat(config.parts ?? []).join(" + ");
-		return [new this(formula, config.data, config.options)];
+		return Array.fromRange(config.count ?? 1).map(c => new this(formula, config.data, config.options));
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
