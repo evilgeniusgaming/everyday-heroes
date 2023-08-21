@@ -1418,7 +1418,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 
 		if ( !data.img || data.img === this.constructor.DEFAULT_ICON ) {
 			const img = this.system.constructor.metadata.image;
-			if ( img ) this.updateSource({img});
+			if ( img ) this.updateSource({img, "prototypeToken.texture.src": img});
 		}
 	}
 
