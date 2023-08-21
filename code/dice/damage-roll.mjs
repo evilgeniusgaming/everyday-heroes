@@ -6,7 +6,6 @@ import { areKeysPressed } from "./utils.mjs";
  * Damage roll configuration data.
  *
  * @typedef {BaseRollConfiguration} DamageRollConfiguration
- * @property {DamageRollConfiguration[]} [supplementalDamage] - Additional damage parts to roll.
  * @property {DamageRollOptions} [options] - Options passed through to the roll.
  */
 
@@ -67,16 +66,6 @@ export default class DamageRoll extends BaseRoll {
 		// Determine critical mode
 		config.options ??= {};
 		config.options.critical = config.options.critical || keys.critical;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	static create(config) {
-		let rolls = super.create(config);
-		for ( const supplementalConfig of config.supplementalDamage ?? [] ) {
-			rolls = rolls.concat(super.create(supplementalConfig));
-		}
-		return rolls;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

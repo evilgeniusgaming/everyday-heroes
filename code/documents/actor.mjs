@@ -906,7 +906,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 			], data)
 		}, options);
 
-		const rollConfig = { data, parts, count: init.turns, options: rollOptions };
+		const rollConfig = { data, parts, options: rollOptions };
 
 		/**
 		 * A hook event that fires when initiative roll configuration is being prepared.
@@ -942,17 +942,18 @@ export default class ActorEH extends DocumentMixin(Actor) {
 
 		const Roll = CONFIG.Dice.ChallengeRoll;
 		Roll.applyKeybindings(rollConfig, dialogConfig);
+		const configs = Array.fromRange(this.system.attributes?.initiative?.turns ?? 1).map(c => rollConfig);
 
 		let rolls;
 		if ( dialogConfig.configure ) {
 			try {
-				rolls = await Roll.ConfigurationDialog.configure(rollConfig, dialogConfig);
+				rolls = await Roll.ConfigurationDialog.configure(configs, dialogConfig);
 			} catch(err) {
 				if ( !err ) return;
 				throw err;
 			}
 		} else {
-			rolls = Roll.create(rollConfig);
+			rolls = configs.map(c => Roll.create(c));
 		}
 
 		this._cachedInitiativeRolls = rolls;

@@ -1012,11 +1012,13 @@ export default class ItemEH extends DocumentMixin(Item) {
 		}, config);
 		rollConfig.parts = [item.system.damage.dice].concat(parts).concat(config.parts ?? []);
 
+		const configs = [rollConfig];
 		for ( const damage of item.system.supplementalDamage ) {
 			const { parts, data } = buildRoll({ bonus: damage.bonus }, this.getRollData());
-			rollConfig.supplementalDamage.push({
+			configs.push({
 				data,
 				parts: [damage.dice].concat(parts),
+				extraTerms: false,
 				options: {
 					mode: "supplemental",
 					allowCritical: rollConfig.options.allowCritical,
@@ -1058,14 +1060,14 @@ export default class ItemEH extends DocumentMixin(Item) {
 		 * @function everydayHeroes.preRollDamage
 		 * @memberof hookEvents
 		 * @param {ItemEH} item - Item for which the roll is being performed.
-		 * @param {DamageRollConfiguration} config - Configuration data for the pending roll.
+		 * @param {DamageRollConfiguration[]} configs - Configuration data for the pending roll.
 		 * @param {BaseMessageConfiguration} message - Configuration data for the roll's message.
 		 * @param {BaseDialogConfiguration} dialog - Presentation data for the roll configuration dialog.
 		 * @returns {boolean} - Explicitly return false to prevent the roll from being performed.
 		 */
-		if ( Hooks.call("everydayHeroes.preRollDamage", this, rollConfig, messageConfig, dialogConfig) === false ) return;
+		if ( Hooks.call("everydayHeroes.preRollDamage", this, configs, messageConfig, dialogConfig) === false ) return;
 
-		const rolls = await CONFIG.Dice.DamageRoll.build(rollConfig, messageConfig, dialogConfig);
+		const rolls = await CONFIG.Dice.DamageRoll.build(configs, messageConfig, dialogConfig);
 		if ( !rolls ) return;
 
 		/**

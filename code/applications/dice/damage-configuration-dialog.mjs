@@ -18,7 +18,7 @@ export default class DamageConfigurationDialog extends BaseConfigurationDialog {
 
 	getButtons() {
 		const buttons = {};
-		if ( this.rollConfig.options.allowCritical !== false ) {
+		if ( this.rollConfig.some(c => c.options?.allowCritical !== false) ) {
 			buttons.critical = { label: game.i18n.localize("EH.Dice.Action.Critical") };
 		}
 		buttons.normal = { label: game.i18n.localize("EH.Dice.Action.Normal") };
@@ -43,7 +43,7 @@ export default class DamageConfigurationDialog extends BaseConfigurationDialog {
 	finalizeRolls(action) {
 		const rolls = this.rolls;
 		for ( const roll of rolls ) {
-			roll.options.critical = action === "critical";
+			if ( roll.options.allowCritical ) roll.options.critical = action === "critical";
 			roll.configureRoll();
 		}
 		return rolls;
@@ -51,9 +51,9 @@ export default class DamageConfigurationDialog extends BaseConfigurationDialog {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	_buildRolls(config, formData={}) {
-		config = foundry.utils.mergeObject({parts: [], data: {}, options: {}}, config);
+	_prepareConfig(config, formData) {
+		config = super._prepareConfig(config, formData);
 		if ( formData.damageType ) config.options.type = formData.damageType;
-		return super._buildRolls(config, formData);
+		return config;
 	}
 }

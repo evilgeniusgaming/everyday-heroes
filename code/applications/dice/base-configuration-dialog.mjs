@@ -16,8 +16,8 @@ export default class BaseConfigurationDialog extends FormApplication {
 		Object.defineProperty(this, "buildConfig", { value: buildConfig, writable: false, enumerable: true });
 
 		/**
-		 * Roll configuration.
-		 * @type {BaseRollConfiguration}
+		 * Roll configurations.
+		 * @type {BaseRollConfiguration[]}
 		 */
 		Object.defineProperty(this, "rollConfig", { value: rollConfig, writable: false, enumerable: true });
 
@@ -60,7 +60,7 @@ export default class BaseConfigurationDialog extends FormApplication {
 
 	/**
 	 * A helper constructor that displays the roll configuration dialog.
-	 * @param {BaseRollConfiguration} [rollConfig] - Initial roll configuration.
+	 * @param {BaseRollConfiguration[]} [rollConfig] - Initial roll configuration.
 	 * @param {BaseDialogConfiguration} [options] - Configuration information for the dialog.
 	 * @returns {Promise}
 	 */
@@ -144,16 +144,16 @@ export default class BaseConfigurationDialog extends FormApplication {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
-	 * Build a roll from the provided config.
+	 * Prepare individual config in order to build rolls.
 	 * @param {BaseRollConfiguration} config - Roll configuration data.
 	 * @param {object} formData - Data provided by the configuration form.
-	 * @returns {BaseRoll[]}
+	 * @returns {BaseRollConfiguration}
 	 */
-	_buildRolls(config, formData={}) {
+	_prepareConfig(config, formData) {
 		config = foundry.utils.mergeObject({parts: [], data: {}, options: {}}, config);
 		if ( this.buildConfig ) config = this.buildConfig(config, formData);
 
-		if ( formData.bonus ) {
+		if ( formData.bonus && (config.extraTerms !== false) ) {
 			config.parts.push("@bonus");
 			config.data.bonus = formData.bonus;
 		}
@@ -162,8 +162,20 @@ export default class BaseConfigurationDialog extends FormApplication {
 			config.options.rollMode = formData.rollMode;
 		}
 
+		return config;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Build a roll from the provided config.
+	 * @param {BaseRollConfiguration[]} configs - Roll configuration data.
+	 * @param {object} formData - Data provided by the configuration form.
+	 * @returns {BaseRoll[]}
+	 */
+	_buildRolls(configs, formData={}) {
 		const RollType = this.options.rollType ?? Roll;
-		return RollType.create(config);
+		return configs.map(c => RollType.create(this._prepareConfig(c, formData)));
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

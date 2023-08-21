@@ -7,7 +7,8 @@ import BaseConfigurationDialog from "../applications/dice/base-configuration-dia
  * @property {string[]} [parts=[]] - Parts used to construct the roll formula.
  * @property {object} [data={}] - The roll data used to resolve the formula.
  * @property {Event} [event] - Event that triggered the roll.
- * @property {number} [count] - If specified, multiple copies of the roll will be rolled and returned.
+ * @property {boolean} [extraTerms=true] - Whether extra terms added in the configuration dialog should be
+ *                                         added to this roll.
  * @property {BaseRollOptions} [options] - Options passed through to the roll.
  */
 
@@ -92,36 +93,38 @@ export default class BaseRoll extends Roll {
 	/**
 	 * Create a roll instance from the provided config.
 	 * @param {BaseRollConfiguration} config - Roll configuration data.
-	 * @returns {BaseRoll[]}
+	 * @returns {BaseRoll}
 	 */
 	static create(config) {
 		const formula = (config.parts ?? []).join(" + ");
-		return Array.fromRange(config.count ?? 1).map(c => new this(formula, config.data, config.options));
+		return new this(formula, config.data, config.options);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
 	 * Construct and perform a Base Roll through the standard workflow.
-	 * @param {BaseRollConfiguration} [config={}] - Roll configuration data.
+	 * @param {BaseRollConfiguration|BaseRollConfiguration[]} [configs={}] - Roll configuration data.
 	 * @param {BaseMessageConfiguration} [message={}] - Configuration data that guides roll message creation.
 	 * @param {BaseDialogConfiguration} [options={}] - Data for the roll configuration dialog.
 	 * @returns {BaseRoll[]} - Any rolls created.
 	 */
-	static async build(config={}, message={}, options={}) {
-		this.applyKeybindings(config, options);
+	static async build(configs={}, message={}, options={}) {
+		if ( foundry.utils.getType(configs) === "Object" ) configs = [configs];
+
+		configs.forEach(c => this.applyKeybindings(c, options));
 
 		let rolls;
 		if ( options.configure !== false ) {
 			const DialogClass = options.applicationClass ?? this.DefaultConfigurationDialog;
 			try {
-				rolls = await DialogClass.configure(config, options);
+				rolls = await DialogClass.configure(configs, options);
 			} catch(err) {
 				if ( !err ) return;
 				throw err;
 			}
 		} else {
-			rolls = this.create(config);
+			rolls = configs.map(config => this.create(config));
 		}
 
 		for ( const roll of rolls ) {

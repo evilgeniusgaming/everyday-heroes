@@ -59,22 +59,25 @@ export default class ChallengeRoll extends BaseRoll {
 	 */
 	static create(config) {
 		const formula = [(new CONFIG.Dice.ChallengeDie()).formula].concat(config.parts ?? []).join(" + ");
-		return Array.fromRange(config.count ?? 1).map(c => new this(formula, config.data, config.options));
+		return new this(formula, config.data, config.options);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
 	 * Construct and perform a Challenge Roll through the standard workflow.
-	 * @param {ChallengeRollConfiguration} [config={}] - Roll configuration data.
+	 * @param {ChallengeRollConfiguration|ChallengeRollConfiguration[]} [configs={}] - Roll configuration data.
 	 * @param {BaseMessageConfiguration} [message={}] - Configuration data that guides roll message creation.
 	 * @param {ChallengeDialogConfiguration} [options={}] - Data for the roll configuration dialog.
 	 */
-	static async build(config={}, message={}, options={}) {
-		config.options ??= {};
-		config.options.criticalSuccess ??= CONFIG.Dice.ChallengeDie.CRITICAL_SUCCESS_TOTAL;
-		config.options.criticalFailure ??= CONFIG.Dice.ChallengeDie.CRITICAL_FAILURE_TOTAL;
-		return super.build(config, message, options);
+	static async build(configs={}, message={}, options={}) {
+		if ( foundry.utils.getType(configs) === "Object" ) configs = [configs];
+		for ( const config of configs ) {
+			config.options ??= {};
+			config.options.criticalSuccess ??= CONFIG.Dice.ChallengeDie.CRITICAL_SUCCESS_TOTAL;
+			config.options.criticalFailure ??= CONFIG.Dice.ChallengeDie.CRITICAL_FAILURE_TOTAL;
+		}
+		return super.build(configs, message, options);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

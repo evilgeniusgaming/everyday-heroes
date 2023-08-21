@@ -8,9 +8,10 @@ export default class CombatantEH extends Combatant {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	getInitiativeRoll(formula) {
+		if ( formula ) return super.getInitiativeRoll(formula);
 		const turnIdx = (this.getFlag("everyday-heroes", "turnOrder") ?? 1) - 1;
 		return this.actor?._cachedInitiativeRolls?.[turnIdx].clone()
-			?? CONFIG.Dice.ChallengeRoll.create(this.actor?.getInitiativeRollConfig() ?? {})[turnIdx];
+			?? CONFIG.Dice.ChallengeRoll.create(this.actor?.getInitiativeRollConfig() ?? {});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
