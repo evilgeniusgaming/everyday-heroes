@@ -91,18 +91,6 @@
 .everyday-heroes.vehicle.sheet .vehicle-id > div.details > fieldset :is(input, select) {
 	margin-block: -2px;
 }
-.everyday-heroes.vehicle.sheet .vehicle-id > div.details .range {
-	flex: 0 1 8em;
-	display: flex;
-	align-items: center;
-}
-.everyday-heroes.vehicle.sheet .vehicle-id > div.details .range input:not(:disabled) {
-	flex: 0 1 3em;
-	text-align: end;
-}
-.everyday-heroes.vehicle.sheet .vehicle-id > div.details .range .seperator + input:not(:disabled) {
-	text-align: start;
-}
 .everyday-heroes.vehicle.sheet .vehicle-id > div.details > .ability {
 	flex: 1 0 30%;
 }

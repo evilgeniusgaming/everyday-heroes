@@ -32,3 +32,16 @@
 	display: flex;
 	gap: 0.25em;
 }
+
+.everyday-heroes fieldset .range {
+	flex: 0 1 8em;
+	display: flex;
+	align-items: center;
+}
+.everyday-heroes fieldset .range input:not(:disabled) {
+	flex: 0 1 3em;
+	text-align: end;
+}
+.everyday-heroes fieldset .range .seperator + input:not(:disabled) {
+	text-align: start;
+}

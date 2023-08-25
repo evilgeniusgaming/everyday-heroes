@@ -21,7 +21,9 @@ export default class BaseActorSheet extends ActorSheet {
 			options.height = "auto";
 		}
 		options.classes = Array.from(new Set([
-			"everyday-heroes", "sheet", "actor", limited ? "limited" : actor.type, ...(options.classes ?? [])
+			"everyday-heroes", "sheet", "actor",
+			limited ? "limited" : actor.system?.constructor.metadata?.type ?? actor.type,
+			...(options.classes ?? [])
 		]));
 
 		super(actor, options);
