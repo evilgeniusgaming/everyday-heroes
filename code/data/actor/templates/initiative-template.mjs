@@ -50,11 +50,16 @@ export default class InitiativeTemplate extends foundry.abstract.DataModel {
 		])) ?? CONFIG.EverydayHeroes.defaultAbilities.initiative;
 		const ability = this.abilities?.[init.ability] ?? {};
 
-		init.prof = new Proficiency(this.attributes?.prof ?? 0, 0);
+		init.prof = new Proficiency(
+			this.attributes?.prof ?? 0,
+			this.overrides?.ability?.checkProficiency?.multiplier ?? 0,
+			this.overrides?.ability?.checkProficiency?.rounding
+		);
 		const initBonus = simplifyBonus(init.bonus, rollData);
 		const abilityBonus = simplifyBonus(ability.bonuses?.check, rollData);
 		const globalBonus = simplifyBonus(this.bonuses?.ability?.check, rollData);
 		init.mod = (ability.mod ?? 0) + initBonus + abilityBonus + globalBonus;
+		init.total = init.mod + init.prof.flat;
 
 		const pluralRules = new Intl.PluralRules({lang: game.i18n.lang});
 		init.turnsLabel = game.i18n.format(`EH.Initiative.Turns.Count[${pluralRules.select(init.turns ?? 1)}]`, {
