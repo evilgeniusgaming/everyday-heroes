@@ -1,0 +1,891 @@
+{
+  "name": "Beat Cop",
+  "type": "npc",
+  "img": "systems/everyday-heroes/artwork/npcs/portraits/beat-cop.webp",
+  "system": {
+    "abilities": {
+      "str": {
+        "value": 14,
+        "max": 20,
+        "saveProficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "dc": "",
+          "save": ""
+        },
+        "minimums": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "dex": {
+        "value": 13,
+        "max": 20,
+        "saveProficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "dc": "",
+          "save": ""
+        },
+        "minimums": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "con": {
+        "value": 12,
+        "max": 20,
+        "saveProficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "dc": "",
+          "save": ""
+        },
+        "minimums": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "int": {
+        "value": 10,
+        "max": 20,
+        "saveProficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "dc": "",
+          "save": ""
+        },
+        "minimums": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "wis": {
+        "value": 11,
+        "max": 20,
+        "saveProficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "dc": "",
+          "save": ""
+        },
+        "minimums": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "cha": {
+        "value": 11,
+        "max": 20,
+        "saveProficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "dc": "",
+          "save": ""
+        },
+        "minimums": {
+          "check": "",
+          "save": ""
+        }
+      }
+    },
+    "bonuses": {
+      "ability": {
+        "check": "",
+        "save": "",
+        "dc": ""
+      },
+      "skill": {
+        "check": "",
+        "passive": ""
+      }
+    },
+    "overrides": {
+      "ability": {
+        "minimums": {
+          "check": "",
+          "save": ""
+        },
+        "checkProficiency": {
+          "multiplier": null,
+          "rounding": null
+        },
+        "saveProficiency": {
+          "multiplier": null,
+          "rounding": null
+        },
+        "initiative": []
+      },
+      "skill": {
+        "minimum": "",
+        "proficiency": {
+          "multiplier": null,
+          "rounding": null
+        }
+      },
+      "critical": {
+        "multiplier": null,
+        "threshold": {}
+      }
+    },
+    "attributes": {
+      "initiative": {
+        "bonus": ""
+      },
+      "movement": {
+        "value": 30,
+        "special": {},
+        "units": "foot"
+      },
+      "defense": 13,
+      "hd": {
+        "count": null,
+        "denomination": null,
+        "spent": 0
+      },
+      "hp": {
+        "value": 6,
+        "max": 6,
+        "temp": 0,
+        "formula": "1d8 + 2"
+      },
+      "senses": []
+    },
+    "skills": {
+      "acro": {
+        "ability": "dex",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "arts": {
+        "ability": "wis",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "athl": {
+        "ability": "str",
+        "proficiency": {
+          "multiplier": 1
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "comp": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "dece": {
+        "ability": "cha",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "endu": {
+        "ability": "con",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "inst": {
+        "ability": "wis",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "inti": {
+        "ability": "cha",
+        "proficiency": {
+          "multiplier": 1
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "inve": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "mech": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "medi": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "nats": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "perc": {
+        "ability": "wis",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "perf": {
+        "ability": "cha",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "pers": {
+        "ability": "cha",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "secu": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "slgt": {
+        "ability": "dex",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "socs": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "slth": {
+        "ability": "dex",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "strt": {
+        "ability": "wis",
+        "proficiency": {
+          "multiplier": 1
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "surv": {
+        "ability": "wis",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "vehi": {
+        "ability": "dex",
+        "proficiency": {
+          "multiplier": 1
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      }
+    },
+    "biography": {
+      "value": "<p>Police, FBI, or private bounty hunters, law enforcement is in charge of dealing with criminals. Law-abiding heroes might work alongside them or fight against corruption, while more criminal-leaning heroes might come into conflict with them. Maybe it’s all a big misunderstanding. Or maybe not.</p><hr /><p>Rookie cops, traffic cops, or any other lower-ranking member of law enforcement, beat cops take on the jobs no one else in their department wants.</p>",
+      "public": "",
+      "roles": [
+        "fodder",
+        "support"
+      ]
+    },
+    "conditions": {},
+    "details": {
+      "cr": 0.25
+    },
+    "items": {
+      "VgA5G5pPXJgEBFJi": {
+        "equipped": false,
+        "ammunition": null,
+        "mode": ""
+      }
+    },
+    "resources": {},
+    "traits": {
+      "damage": {
+        "immunity": [],
+        "reduction": {}
+      },
+      "size": "medium",
+      "type": {
+        "value": "person",
+        "tags": [
+          "human"
+        ]
+      }
+    }
+  },
+  "prototypeToken": {
+    "name": "Beat Cop",
+    "displayName": 0,
+    "actorLink": false,
+    "texture": {
+      "src": "systems/everyday-heroes/artwork/npcs/tokens/beat-cop.webp",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "tint": null
+    },
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "light": {
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": [],
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "items": [
+    {
+      "name": "Light Ballistic Vest",
+      "type": "armor",
+      "img": "systems/everyday-heroes/artwork/svg/items/armor.svg",
+      "system": {
+        "description": {
+          "value": "<p>These vests are made entirely of flexible ballistic fabric and padding. They can be worn under a jacket without drawing attention. They effectively block light caliber pistol rounds and other conventional projectiles.</p>",
+          "chat": "",
+          "source": "Core Rulebook"
+        },
+        "quantity": {
+          "value": 1
+        },
+        "bulk": 0,
+        "price": 2,
+        "type": {
+          "value": "armor",
+          "category": "advanced"
+        },
+        "properties": [
+          "ballistic",
+          "concealable"
+        ],
+        "armorValue": 2,
+        "damaged": false,
+        "bonuses": {
+          "save": ""
+        }
+      },
+      "effects": [],
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.eh-core-rulebook.weapon-armor.uO7kSaMcKfY218lJ"
+        }
+      },
+      "_stats": {
+        "systemId": "everyday-heroes",
+        "systemVersion": "0.1.0",
+        "coreVersion": "10.291",
+        "createdTime": 1679549440145,
+        "modifiedTime": 1680558053885,
+        "lastModifiedBy": "everyday00heroes"
+      },
+      "folder": null,
+      "sort": 0,
+      "_id": "h0oO1GYGom0WWE4r",
+      "_key": "!actors.items!O99p9PV4ozvJTrbe.h0oO1GYGom0WWE4r"
+    },
+    {
+      "name": "Cuff 'Em",
+      "type": "npcFeature",
+      "_id": "mfwEKIeZFJ4Bv60v",
+      "img": "systems/everyday-heroes/artwork/svg/items/feature.svg",
+      "system": {
+        "description": {
+          "value": "<p>The cop tries to cuff a combatant they have Grappled. The target must succeed at a DC 12 Strength saving throw or be cuffed. The cop decides whether the target is cuffed to an object, to the cop, or to itself. A combatant cuffed to an object or the cop cannot move further than 5 feet from what it is cuffed to and has disadvantage on any attack rolls made with the cuffed hand. A combatant cuffed to itself has disadvantage on any attack roll or ability check that uses its hands.</p>",
+          "chat": "<p>The cop tries to cuff a combatant they have Grappled. The target must succeed at a @Save[str|dc:12] or be cuffed. The cop decides whether the target is cuffed to an object, to the cop, or to itself. A combatant cuffed to an object or the cop cannot move further than 5 feet from what it is cuffed to and has disadvantage on any attack rolls made with the cuffed hand. A combatant cuffed to itself has disadvantage on any attack roll or ability check that uses its hands.</p>",
+          "source": "Core Rulebook"
+        },
+        "activation": {
+          "type": "action",
+          "condition": ""
+        },
+        "resource": {
+          "amount": 0,
+          "target": "",
+          "type": ""
+        },
+        "uses": {
+          "spent": 0,
+          "max": "",
+          "period": "",
+          "recovery": "",
+          "formula": ""
+        },
+        "recharge": {
+          "charged": true,
+          "target": null
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "core": {
+          "sourceId": "Actor.CKnfgbcCTGuzW6Os.Item.mfwEKIeZFJ4Bv60v"
+        }
+      },
+      "_stats": {
+        "systemId": "everyday-heroes",
+        "systemVersion": "0.1.0",
+        "coreVersion": "10.291",
+        "createdTime": 1680559033901,
+        "modifiedTime": 1680559078493,
+        "lastModifiedBy": "everyday00heroes"
+      },
+      "_key": "!actors.items!O99p9PV4ozvJTrbe.mfwEKIeZFJ4Bv60v"
+    },
+    {
+      "name": "Nightstick",
+      "type": "npcWeapon",
+      "img": "systems/everyday-heroes/artwork/svg/items/weapon.svg",
+      "system": {
+        "damage": {
+          "number": 1,
+          "die": null,
+          "type": "bludgeoning",
+          "denomination": 4
+        },
+        "description": {
+          "value": "<p>When all else fails, there is always a trusty club at hand. From a carefully crafted police baton to an awkward but effective pipe wrench, clubs come in varying shapes and sizes.</p><p><strong>\u0017Small Wooden Club:</strong> baton, nightstick</p>",
+          "chat": "",
+          "source": "Core Rulebook",
+          "npc": ""
+        },
+        "quantity": {
+          "value": 1
+        },
+        "bulk": 1,
+        "price": 1,
+        "type": {
+          "value": "melee",
+          "category": "basic"
+        },
+        "properties": [
+          "light"
+        ],
+        "penetrationValue": 1,
+        "jammed": false,
+        "ammunition": {
+          "type": "",
+          "loaded": ""
+        },
+        "range": {
+          "short": null,
+          "long": null,
+          "reach": null,
+          "units": "foot"
+        },
+        "reload": "",
+        "rounds": {
+          "spent": 0,
+          "capacity": null,
+          "burst": null,
+          "type": ""
+        },
+        "bonuses": {
+          "attack": "",
+          "damage": "",
+          "critical": {
+            "damage": "",
+            "dice": 0
+          }
+        },
+        "overrides": {
+          "ability": "",
+          "critical": {
+            "threshold": null
+          }
+        }
+      },
+      "effects": [],
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.eh-core-rulebook.weapon-armor.OAs52Pja98Hu3f7f"
+        }
+      },
+      "_stats": {
+        "systemId": "everyday-heroes",
+        "systemVersion": "0.1.0",
+        "coreVersion": "10.291",
+        "createdTime": 1679547575798,
+        "modifiedTime": 1680559112328,
+        "lastModifiedBy": "everyday00heroes"
+      },
+      "folder": null,
+      "sort": 0,
+      "_id": "VgA5G5pPXJgEBFJi",
+      "_key": "!actors.items!O99p9PV4ozvJTrbe.VgA5G5pPXJgEBFJi"
+    },
+    {
+      "name": "9mm Semi-Auto Pistol",
+      "type": "npcWeapon",
+      "img": "systems/everyday-heroes/artwork/svg/items/weapon.svg",
+      "system": {
+        "damage": {
+          "number": 1,
+          "die": null,
+          "type": "ballistic",
+          "denomination": 10
+        },
+        "description": {
+          "value": "<p>These standard sidearms are used by the armed forces and police and exceedingly popular on the civilian market. They balance stopping power with ammunition capacity and use inexpensive cartridges.</p>",
+          "chat": "",
+          "source": "Core Rulebook",
+          "npc": ""
+        },
+        "quantity": {
+          "value": 1
+        },
+        "bulk": 1,
+        "price": 2,
+        "type": {
+          "value": "ranged",
+          "category": "advanced"
+        },
+        "properties": [
+          "loud",
+          "semiAuto"
+        ],
+        "penetrationValue": 2,
+        "jammed": false,
+        "ammunition": {
+          "type": "",
+          "loaded": ""
+        },
+        "range": {
+          "short": 100,
+          "long": 200,
+          "reach": null,
+          "units": "foot"
+        },
+        "reload": "bonus",
+        "rounds": {
+          "spent": 0,
+          "capacity": 21,
+          "burst": null,
+          "type": "pistol"
+        },
+        "bonuses": {
+          "attack": "",
+          "damage": "",
+          "critical": {
+            "damage": "",
+            "dice": 0
+          }
+        },
+        "overrides": {
+          "ability": "",
+          "critical": {
+            "threshold": null
+          }
+        }
+      },
+      "effects": [],
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.eh-core-rulebook.weapon-armor.uua9V0JEpMVcBW7L"
+        }
+      },
+      "_stats": {
+        "systemId": "everyday-heroes",
+        "systemVersion": "0.1.0",
+        "coreVersion": "10.291",
+        "createdTime": 1679627690071,
+        "modifiedTime": 1680559107921,
+        "lastModifiedBy": "everyday00heroes"
+      },
+      "folder": null,
+      "sort": 0,
+      "_id": "AOCM8iaemc1JdsWV",
+      "_key": "!actors.items!O99p9PV4ozvJTrbe.AOCM8iaemc1JdsWV"
+    },
+    {
+      "name": "Police Kit",
+      "type": "gear",
+      "img": "systems/everyday-heroes/artwork/svg/items/gear.svg",
+      "system": {
+        "description": {
+          "value": "<p>The police kit contains the items a typical U.S. law enforcement officer might carry with them when on duty outside the station. The centerpiece is a duty belt that holds most of the items. The kit includes uniform, body camera, watch, set of handcuffs, zip ties, two weapon magazines, pepper spray, flashlight, latex gloves, mini-first aid kit, utility knife, and radio.</p>",
+          "chat": "",
+          "source": "Core Rulebook"
+        },
+        "quantity": {
+          "value": 1
+        },
+        "bulk": 2,
+        "price": 3,
+        "type": {
+          "value": "specializedKit"
+        }
+      },
+      "effects": [],
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.eh-core-rulebook.other-equipment.FDx6c3gtWfoPCzFR"
+        }
+      },
+      "_stats": {
+        "systemId": "everyday-heroes",
+        "systemVersion": "0.1.0",
+        "coreVersion": "10.291",
+        "createdTime": 1679630335973,
+        "modifiedTime": 1680559367017,
+        "lastModifiedBy": "everyday00heroes"
+      },
+      "folder": null,
+      "sort": 0,
+      "_id": "ljMdJ9MEqw7bW5Xs",
+      "_key": "!actors.items!O99p9PV4ozvJTrbe.ljMdJ9MEqw7bW5Xs"
+    },
+    {
+      "name": "Pocket Stuff",
+      "type": "gear",
+      "img": "systems/everyday-heroes/artwork/svg/items/gear.svg",
+      "system": {
+        "description": {
+          "value": "<p>Pockets don't hold much, but they might contain a smartphone, wallet, credit cards, cash, ID cards, keys, a pocketknife/tool, and lip balm.</p>",
+          "chat": "",
+          "source": "Core Rulebook"
+        },
+        "quantity": {
+          "value": 1
+        },
+        "bulk": 0,
+        "price": 1,
+        "type": {
+          "value": "everydayStuff"
+        }
+      },
+      "effects": [],
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.eh-core-rulebook.other-equipment.uo0eYfOK6gk7RoRP"
+        }
+      },
+      "_stats": {
+        "systemId": "everyday-heroes",
+        "systemVersion": "0.1.0",
+        "coreVersion": "10.291",
+        "createdTime": 1679627478786,
+        "modifiedTime": 1680559369817,
+        "lastModifiedBy": "everyday00heroes"
+      },
+      "folder": null,
+      "sort": 0,
+      "_id": "mtPvyg3rV887EoJx",
+      "_key": "!actors.items!O99p9PV4ozvJTrbe.mtPvyg3rV887EoJx"
+    }
+  ],
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "everyday-heroes": {
+      "source": "core-rulebook",
+      "category": "law-enforcement"
+    }
+  },
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.4",
+    "coreVersion": "11.308",
+    "createdTime": 1680557912562,
+    "modifiedTime": 1693000748830,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "O99p9PV4ozvJTrbe",
+  "_key": "!actors!O99p9PV4ozvJTrbe"
+}

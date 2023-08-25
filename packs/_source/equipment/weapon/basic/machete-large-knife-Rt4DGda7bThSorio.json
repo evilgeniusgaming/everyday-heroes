@@ -1,0 +1,80 @@
+{
+  "name": "Machete/Large Knife",
+  "type": "weapon",
+  "img": "systems/everyday-heroes/artwork/icons/weapons/knife-bowie.svg",
+  "system": {
+    "overrides": {
+      "ability": "",
+      "critical": {
+        "threshold": null
+      }
+    },
+    "damage": {
+      "number": 1,
+      "denomination": 6,
+      "type": "slashing",
+      "alternateTypes": [],
+      "die": null
+    },
+    "supplementalDamage": [],
+    "description": {
+      "value": "<p>These single-edged blades are a lesson in simplicity. Little more than a sharpened piece of metal with a handle, they can help navigate a dense jungle or cut through an opponent. Large combat knives perform a similar role in combat.</p>",
+      "chat": "",
+      "source": "Quickstart Guide"
+    },
+    "quantity": {
+      "value": 1
+    },
+    "bulk": 2,
+    "price": 1,
+    "type": {
+      "value": "melee",
+      "category": "basic"
+    },
+    "properties": [],
+    "penetrationValue": 1,
+    "jammed": false,
+    "ammunition": {
+      "type": "",
+      "loaded": ""
+    },
+    "range": {
+      "short": null,
+      "long": null,
+      "reach": null,
+      "units": "foot"
+    },
+    "reload": "",
+    "rounds": {
+      "spent": 0,
+      "capacity": null,
+      "burst": null,
+      "type": ""
+    },
+    "bonuses": {
+      "attack": "",
+      "damage": "",
+      "critical": {
+        "damage": "",
+        "dice": 0
+      }
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.4",
+    "coreVersion": "11.308",
+    "createdTime": 1679547725018,
+    "modifiedTime": 1693001567871,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "Rt4DGda7bThSorio",
+  "_key": "!items!Rt4DGda7bThSorio"
+}

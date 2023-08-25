@@ -1,0 +1,34 @@
+{
+  "name": "Pocket Stuff",
+  "type": "gear",
+  "img": "systems/everyday-heroes/artwork/svg/items/gear.svg",
+  "system": {
+    "description": {
+      "value": "<p>Pockets don't hold much, but they might contain a smartphone, wallet, credit cards, cash, ID cards, keys, a pocketknife/tool, and lip balm.</p>",
+      "chat": "",
+      "source": "Quickstart Guide"
+    },
+    "bulk": 0,
+    "price": 1,
+    "type": {
+      "value": "everydayStuff"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.4",
+    "coreVersion": "11.308",
+    "createdTime": 1679627478786,
+    "modifiedTime": 1693001593086,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "uo0eYfOK6gk7RoRP",
+  "_key": "!items!uo0eYfOK6gk7RoRP"
+}

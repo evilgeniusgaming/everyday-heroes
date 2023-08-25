@@ -1,0 +1,933 @@
+{
+  "name": "Goon",
+  "type": "npc",
+  "img": "systems/everyday-heroes/artwork/npcs/portraits/punk.webp",
+  "system": {
+    "abilities": {
+      "str": {
+        "value": 15,
+        "max": 20,
+        "saveProficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "dc": "",
+          "save": ""
+        },
+        "minimums": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "dex": {
+        "value": 11,
+        "max": 20,
+        "saveProficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "dc": "",
+          "save": ""
+        },
+        "minimums": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "con": {
+        "value": 14,
+        "max": 20,
+        "saveProficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "dc": "",
+          "save": ""
+        },
+        "minimums": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "int": {
+        "value": 8,
+        "max": 20,
+        "saveProficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "dc": "",
+          "save": ""
+        },
+        "minimums": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "wis": {
+        "value": 9,
+        "max": 20,
+        "saveProficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "dc": "",
+          "save": ""
+        },
+        "minimums": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "cha": {
+        "value": 10,
+        "max": 20,
+        "saveProficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "dc": "",
+          "save": ""
+        },
+        "minimums": {
+          "check": "",
+          "save": ""
+        }
+      }
+    },
+    "bonuses": {
+      "ability": {
+        "check": "",
+        "save": "",
+        "dc": ""
+      },
+      "skill": {
+        "check": "",
+        "passive": ""
+      }
+    },
+    "overrides": {
+      "ability": {
+        "minimums": {
+          "check": "",
+          "save": ""
+        },
+        "checkProficiency": {
+          "multiplier": null,
+          "rounding": null
+        },
+        "saveProficiency": {
+          "multiplier": null,
+          "rounding": null
+        },
+        "initiative": []
+      },
+      "skill": {
+        "minimum": "",
+        "proficiency": {
+          "multiplier": null,
+          "rounding": null
+        }
+      },
+      "critical": {
+        "multiplier": null,
+        "threshold": {}
+      }
+    },
+    "attributes": {
+      "initiative": {
+        "bonus": ""
+      },
+      "movement": {
+        "value": 30,
+        "special": {},
+        "units": "foot"
+      },
+      "defense": 11,
+      "hd": {
+        "count": null,
+        "denomination": null,
+        "spent": 0
+      },
+      "hp": {
+        "value": 26,
+        "max": 26,
+        "temp": 0,
+        "formula": "4d8 + 8"
+      },
+      "senses": []
+    },
+    "skills": {
+      "acro": {
+        "ability": "dex",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "arts": {
+        "ability": "wis",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "athl": {
+        "ability": "str",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "comp": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "dece": {
+        "ability": "cha",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "endu": {
+        "ability": "con",
+        "proficiency": {
+          "multiplier": 1
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "inst": {
+        "ability": "wis",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "inti": {
+        "ability": "cha",
+        "proficiency": {
+          "multiplier": 1
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "inve": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "mech": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "medi": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "nats": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "perc": {
+        "ability": "wis",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "perf": {
+        "ability": "cha",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "pers": {
+        "ability": "cha",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "secu": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "slgt": {
+        "ability": "dex",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "socs": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "slth": {
+        "ability": "dex",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "strt": {
+        "ability": "wis",
+        "proficiency": {
+          "multiplier": 2
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "surv": {
+        "ability": "wis",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "vehi": {
+        "ability": "dex",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      }
+    },
+    "biography": {
+      "value": "<p>Either on the wrong side of the law, or keeping the law in their pocket, criminals are a common enemy for heroes, even if the heroes are criminals themselves. They range from simple ruffians to masterminds running multinational crime empires.</p><hr /><p>Goons are experienced street toughs. They might be working for the mob, leading lesser punks, or providing a gang some extra muscle.</p>",
+      "public": "",
+      "roles": [
+        "hulk",
+        "melee"
+      ]
+    },
+    "conditions": {},
+    "details": {
+      "cr": 0.5
+    },
+    "items": {
+      "w79cEeySgK0tj0mO": {
+        "equipped": false
+      }
+    },
+    "resources": {},
+    "traits": {
+      "damage": {
+        "immunity": [],
+        "reduction": {}
+      },
+      "size": "medium",
+      "type": {
+        "value": "person",
+        "tags": [
+          "human"
+        ]
+      }
+    }
+  },
+  "prototypeToken": {
+    "name": "Goon",
+    "displayName": 0,
+    "actorLink": false,
+    "texture": {
+      "src": "systems/everyday-heroes/artwork/npcs/tokens/punk.webp",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "tint": null
+    },
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "light": {
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": [],
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "items": [
+    {
+      "name": "Dogpile",
+      "type": "npcFeature",
+      "_id": "liPPeV5fvnTQKcEi",
+      "img": "systems/everyday-heroes/artwork/svg/items/feature.svg",
+      "system": {
+        "description": {
+          "value": "<p>The goon has advantage on an attack roll against an enemy if at least one of the goon's allies is within 5 feet of that enemy and the ally isn't Incapacitated.</p>",
+          "chat": "",
+          "source": "Core Rulebook"
+        },
+        "activation": {
+          "type": "",
+          "condition": ""
+        },
+        "resource": {
+          "amount": 0,
+          "target": "",
+          "type": ""
+        },
+        "uses": {
+          "spent": 0,
+          "max": "",
+          "period": "",
+          "recovery": "",
+          "formula": ""
+        },
+        "recharge": {
+          "charged": true,
+          "target": null
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.eh-core-rulebook.npcs.HUL2pqjXUt6Aop6r.Item.HLaje0ozTyTjsGcu"
+        }
+      },
+      "_stats": {
+        "systemId": "everyday-heroes",
+        "systemVersion": "0.1.0",
+        "coreVersion": "10.291",
+        "createdTime": 1680391023624,
+        "modifiedTime": 1680392671452,
+        "lastModifiedBy": "everyday00heroes"
+      },
+      "_key": "!actors.items!9gNH283Yf7Q84MIc.liPPeV5fvnTQKcEi"
+    },
+    {
+      "name": "Multiattack",
+      "type": "npcFeature",
+      "_id": "2QSjejzqjcFrf8ny",
+      "img": "systems/everyday-heroes/artwork/svg/items/feature.svg",
+      "system": {
+        "description": {
+          "value": "<p>The goon makes two attacks: one with their improvised weapon, then one with their unarmed strike as a bonus action.</p>",
+          "chat": "",
+          "source": "Core Rulebook"
+        },
+        "activation": {
+          "type": "action",
+          "condition": ""
+        },
+        "resource": {
+          "amount": 0,
+          "target": "",
+          "type": ""
+        },
+        "uses": {
+          "spent": 0,
+          "max": "",
+          "period": "",
+          "recovery": "",
+          "formula": ""
+        },
+        "recharge": {
+          "charged": true,
+          "target": null
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "everyday-heroes",
+        "systemVersion": "0.1.0",
+        "coreVersion": "10.291",
+        "createdTime": 1680392677084,
+        "modifiedTime": 1680392691823,
+        "lastModifiedBy": "everyday00heroes"
+      },
+      "_key": "!actors.items!9gNH283Yf7Q84MIc.2QSjejzqjcFrf8ny"
+    },
+    {
+      "name": "Medium Hurtful Thing (baseball bat, chair)",
+      "type": "npcWeapon",
+      "img": "systems/everyday-heroes/artwork/svg/items/weapon.svg",
+      "system": {
+        "damage": {
+          "number": 1,
+          "die": null,
+          "type": "bludgeoning",
+          "denomination": 8
+        },
+        "description": {
+          "value": "<p>Things are objects you pick up and turn into weapons. You and the GM decide on the size and if it deals bludgeoning, piercing, or slashing damage. None of these things are fun to get hit with!</p><p><strong>Medium hurtful things:</strong> stabbing with a fireplace poker (piercing), slamming with a printer (bludgeoning), or slicing with a sod cutter (slashing)</p>",
+          "chat": "",
+          "source": "Core Rulebook",
+          "npc": ""
+        },
+        "quantity": {
+          "value": 1
+        },
+        "bulk": 2,
+        "price": 0,
+        "type": {
+          "value": "melee",
+          "category": "improvised"
+        },
+        "properties": [
+          "improvised",
+          "versatile"
+        ],
+        "penetrationValue": 1,
+        "jammed": false,
+        "ammunition": {
+          "type": "",
+          "loaded": ""
+        },
+        "range": {
+          "short": 50,
+          "long": 100,
+          "reach": null,
+          "units": "foot"
+        },
+        "reload": "",
+        "rounds": {
+          "spent": 0,
+          "capacity": null,
+          "burst": null,
+          "type": ""
+        },
+        "bonuses": {
+          "attack": "",
+          "damage": "",
+          "critical": {
+            "damage": "",
+            "dice": 0
+          }
+        },
+        "overrides": {
+          "ability": "",
+          "critical": {
+            "threshold": null
+          }
+        }
+      },
+      "effects": [],
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.eh-core-rulebook.weapon-armor.GobWt7ok071gW0L0"
+        }
+      },
+      "_stats": {
+        "systemId": "everyday-heroes",
+        "systemVersion": "0.1.0",
+        "coreVersion": "10.291",
+        "createdTime": 1679623712970,
+        "modifiedTime": 1680392787308,
+        "lastModifiedBy": "everyday00heroes"
+      },
+      "folder": null,
+      "sort": 0,
+      "_id": "zECXspevC5T2reeh",
+      "_key": "!actors.items!9gNH283Yf7Q84MIc.zECXspevC5T2reeh"
+    },
+    {
+      "name": "Street Clothes",
+      "type": "clothes",
+      "_id": "FdkHUohAINrUCbow",
+      "img": "systems/everyday-heroes/artwork/svg/items/clothes.svg",
+      "system": {
+        "description": {
+          "value": "",
+          "chat": "",
+          "source": "Core Rulebook"
+        },
+        "quantity": {
+          "value": 1
+        },
+        "bulk": 0,
+        "price": 0,
+        "type": {
+          "value": "everydayStuff"
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "everyday-heroes",
+        "systemVersion": "0.1.0",
+        "coreVersion": "10.291",
+        "createdTime": 1680392727241,
+        "modifiedTime": 1680392740588,
+        "lastModifiedBy": "everyday00heroes"
+      },
+      "_key": "!actors.items!9gNH283Yf7Q84MIc.FdkHUohAINrUCbow"
+    },
+    {
+      "name": "Pocket Stuff",
+      "type": "gear",
+      "img": "systems/everyday-heroes/artwork/svg/items/gear.svg",
+      "system": {
+        "description": {
+          "value": "<p>Pockets don't hold much, but they might contain a smartphone, wallet, credit cards, cash, ID cards, keys, a pocketknife/tool, and lip balm.</p>",
+          "chat": "",
+          "source": "Core Rulebook"
+        },
+        "quantity": {
+          "value": 1
+        },
+        "bulk": 0,
+        "price": 1,
+        "type": {
+          "value": "everydayStuff"
+        }
+      },
+      "effects": [],
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.eh-core-rulebook.other-equipment.uo0eYfOK6gk7RoRP"
+        }
+      },
+      "_stats": {
+        "systemId": "everyday-heroes",
+        "systemVersion": "0.1.0",
+        "coreVersion": "10.291",
+        "createdTime": 1679627478786,
+        "modifiedTime": 1680392743705,
+        "lastModifiedBy": "everyday00heroes"
+      },
+      "folder": null,
+      "sort": 0,
+      "_id": "GRjLXXfymMKEhTqH",
+      "_key": "!actors.items!9gNH283Yf7Q84MIc.GRjLXXfymMKEhTqH"
+    },
+    {
+      "name": "Unarmed Strike",
+      "type": "npcWeapon",
+      "img": "systems/everyday-heroes/artwork/svg/items/weapon.svg",
+      "system": {
+        "damage": {
+          "number": 1,
+          "die": null,
+          "type": "bludgeoning",
+          "denomination": 4
+        },
+        "description": {
+          "value": "<p>Unarmed strikes are most commonly punches, but they include any move that has the potential to deliver a punishing blow whether via kicks, headbutts, knees to the groin, or elbows to the face. It's one of the few attacks you don't need a hand to perform and you are always armed with it.</p>",
+          "chat": "",
+          "source": "Core Rulebook",
+          "npc": ""
+        },
+        "quantity": {
+          "value": 1
+        },
+        "bulk": 0,
+        "price": 0,
+        "type": {
+          "value": "melee",
+          "category": "basic"
+        },
+        "properties": [
+          "finesse",
+          "light",
+          "special"
+        ],
+        "penetrationValue": 1,
+        "jammed": false,
+        "ammunition": {
+          "type": "",
+          "loaded": ""
+        },
+        "range": {
+          "short": null,
+          "long": null,
+          "reach": null,
+          "units": "foot"
+        },
+        "reload": "",
+        "rounds": {
+          "spent": 0,
+          "capacity": null,
+          "burst": null,
+          "type": ""
+        },
+        "bonuses": {
+          "attack": "",
+          "damage": "",
+          "critical": {
+            "damage": "",
+            "dice": 0
+          }
+        },
+        "overrides": {
+          "ability": "",
+          "critical": {
+            "threshold": null
+          }
+        }
+      },
+      "effects": [],
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.eh-core-rulebook.weapon-armor.FrkzzZrHeCSqCp17"
+        }
+      },
+      "_stats": {
+        "systemId": "everyday-heroes",
+        "systemVersion": "0.1.0",
+        "coreVersion": "10.291",
+        "createdTime": 1679547781179,
+        "modifiedTime": 1680392767981,
+        "lastModifiedBy": "everyday00heroes"
+      },
+      "folder": null,
+      "sort": 0,
+      "_id": "w79cEeySgK0tj0mO",
+      "_key": "!actors.items!9gNH283Yf7Q84MIc.w79cEeySgK0tj0mO"
+    },
+    {
+      "name": "Leather Jacket",
+      "type": "armor",
+      "img": "systems/everyday-heroes/artwork/svg/items/armor.svg",
+      "system": {
+        "description": {
+          "value": "<p>This category includes heavy leather jackets, padded vests, chain shirts, or other partial armor made of non-ballistic materials. It offers slim protection against melee weapons but does nothing against bullets and other projectiles. A favorite of street punks and biker gangs.</p>",
+          "chat": "",
+          "source": "Core Rulebook"
+        },
+        "quantity": {
+          "value": 1
+        },
+        "bulk": 1,
+        "price": 1,
+        "type": {
+          "value": "armor",
+          "category": "basic"
+        },
+        "properties": [],
+        "armorValue": 1,
+        "damaged": false,
+        "bonuses": {
+          "save": ""
+        }
+      },
+      "effects": [],
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.eh-core-rulebook.weapon-armor.r06uhOXEFXq4qm6V"
+        }
+      },
+      "_stats": {
+        "systemId": "everyday-heroes",
+        "systemVersion": "0.1.0",
+        "coreVersion": "10.291",
+        "createdTime": 1679548215865,
+        "modifiedTime": 1680392825325,
+        "lastModifiedBy": "everyday00heroes"
+      },
+      "folder": null,
+      "sort": 0,
+      "_id": "dObMRAavlAmJglsd",
+      "_key": "!actors.items!9gNH283Yf7Q84MIc.dObMRAavlAmJglsd"
+    }
+  ],
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "everyday-heroes": {
+      "source": "core-rulebook",
+      "category": "criminals"
+    }
+  },
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.4",
+    "coreVersion": "11.308",
+    "createdTime": 1680389871581,
+    "modifiedTime": 1693000805363,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "9gNH283Yf7Q84MIc",
+  "_key": "!actors!9gNH283Yf7Q84MIc"
+}

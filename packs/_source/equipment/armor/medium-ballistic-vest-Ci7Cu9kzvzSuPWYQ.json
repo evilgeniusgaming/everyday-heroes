@@ -1,0 +1,46 @@
+{
+  "name": "Medium Ballistic Vest",
+  "type": "armor",
+  "img": "systems/everyday-heroes/artwork/icons/armor/armor-kevlar.svg",
+  "system": {
+    "description": {
+      "value": "<p>Thicker than a light ballistic vest, these vests have more layers of thick ballistic fabric as well as light armored plates. They can block most pistol rounds as well as low caliber rifle rounds.</p>",
+      "chat": "",
+      "source": "Quickstart Guide"
+    },
+    "quantity": {
+      "value": 1
+    },
+    "bulk": 1,
+    "price": 2,
+    "type": {
+      "value": "armor",
+      "category": "advanced"
+    },
+    "properties": [
+      "ballistic"
+    ],
+    "armorValue": 3,
+    "damaged": false,
+    "bonuses": {
+      "save": ""
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.4",
+    "coreVersion": "11.308",
+    "createdTime": 1679549461387,
+    "modifiedTime": 1693001579397,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "Ci7Cu9kzvzSuPWYQ",
+  "_key": "!items!Ci7Cu9kzvzSuPWYQ"
+}

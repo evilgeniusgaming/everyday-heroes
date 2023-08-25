@@ -1,0 +1,34 @@
+{
+  "name": "Utility Knife/Multitool",
+  "type": "gear",
+  "img": "systems/everyday-heroes/artwork/svg/items/gear.svg",
+  "system": {
+    "description": {
+      "value": "<p>This pocket-sized, foldable knife includes a range of other handy tools incorporated into the design. They can deal with a number of simple jobs. They are not intended for fighting but could be used as a weapon in a pinch.</p>",
+      "chat": "",
+      "source": "Quickstart Guide"
+    },
+    "bulk": 0,
+    "price": 1,
+    "type": {
+      "value": "hardware"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.4",
+    "coreVersion": "11.308",
+    "createdTime": 1679698355752,
+    "modifiedTime": 1693001604210,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "4QSFafn4aXxNv89D",
+  "_key": "!items!4QSFafn4aXxNv89D"
+}

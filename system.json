@@ -81,6 +81,19 @@
       }
     },
     {
+      "name": "equipment",
+      "label": "Equipment",
+      "system": "everyday-heroes",
+      "path": "./packs/equipment.db",
+      "banner": "systems/everyday-heroes/artwork/interface/banners/weapon-armor.webp",
+      "type": "Item",
+      "flags": {
+        "everyday-heroes": {
+          "sorting": "auto"
+        }
+      }
+    },
+    {
       "name": "conditions",
       "label": "Conditions",
       "system": "everyday-heroes",
@@ -92,6 +105,20 @@
           "autoHide": false
         }
       }
+    },
+    {
+      "name": "npcs",
+      "label": "Opponents & Allies",
+      "system": "everyday-heroes",
+      "path": "./packs/npcs.db",
+      "banner": "systems/everyday-heroes/artwork/interface/banners/npcs.webp",
+      "type": "Actor",
+      "private": true,
+      "ownership": {
+        "PLAYER": "LIMITED",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
     },
     {
       "name": "tables",

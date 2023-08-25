@@ -1,0 +1,37 @@
+{
+  "name": "Sleuth Military Pack",
+  "type": "gear",
+  "img": "systems/everyday-heroes/artwork/svg/items/gear.svg",
+  "system": {
+    "description": {
+      "value": "<p><strong>Clothes:</strong> Military fatigues, Combat boots</p><p><strong>Mundane:</strong> @UUID[Compendium.everyday-heroes.equipment.Item.UVWMYY2PTHQ6GwuB]{Soldier’s kit}, Range-finding Binoculars, Night Vision Goggles, Harmonica</p><p><strong>Weapons:</strong> @UUID[Compendium.everyday-heroes.equipment.Item.KZiqkE0V7j4XrUzp]{Assault Carbine Rifle}, 2 @UUID[Compendium.everyday-heroes.equipment.Item.OQiNURXHIdGVMBGc]{Flashbang Grenades}</p><p><strong>Armor:</strong> @UUID[Compendium.everyday-heroes.equipment.Item.Ci7Cu9kzvzSuPWYQ]{Ballistic Vest, Medium}</p>",
+      "chat": "",
+      "source": "Quickstart Guide"
+    },
+    "quantity": {
+      "value": 1
+    },
+    "bulk": 0,
+    "price": 0,
+    "type": {
+      "value": "equipmentPack"
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.4",
+    "coreVersion": "11.308",
+    "createdTime": 1693001032978,
+    "modifiedTime": 1693001470236,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "_id": "xlF7NgCaGEGJt8HU",
+  "sort": 0,
+  "_key": "!items!xlF7NgCaGEGJt8HU"
+}

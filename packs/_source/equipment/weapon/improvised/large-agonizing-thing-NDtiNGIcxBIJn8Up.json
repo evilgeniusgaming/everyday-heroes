@@ -1,0 +1,85 @@
+{
+  "name": "Large Agonizing Thing",
+  "type": "weapon",
+  "img": "systems/everyday-heroes/artwork/icons/weapons/improvised-scythe.svg",
+  "system": {
+    "overrides": {
+      "ability": "",
+      "critical": {
+        "threshold": null
+      }
+    },
+    "damage": {
+      "number": 1,
+      "denomination": 12,
+      "type": "bludgeoning",
+      "alternateTypes": [],
+      "die": null
+    },
+    "supplementalDamage": [],
+    "description": {
+      "value": "<p>Things are objects you pick up and turn into weapons. You and the GM decide on the size and if it deals bludgeoning, piercing, or slashing damage. None of these things are fun to get hit with!</p><p><strong>A large agonizing thing:</strong> slashing with a scythe (slashing), stabbing with a flagpole (piercing), or beating some poor fool with an exercise bicycle (bludgeoning)</p>",
+      "chat": "",
+      "source": "Quickstart Guide"
+    },
+    "quantity": {
+      "value": 1
+    },
+    "bulk": 3,
+    "price": 0,
+    "type": {
+      "value": "melee",
+      "category": "improvised"
+    },
+    "properties": [
+      "heavy",
+      "improvised",
+      "thrown",
+      "twoHanded"
+    ],
+    "penetrationValue": 2,
+    "jammed": false,
+    "ammunition": {
+      "type": "",
+      "loaded": ""
+    },
+    "range": {
+      "short": 20,
+      "long": 40,
+      "reach": null,
+      "units": "foot"
+    },
+    "reload": "",
+    "rounds": {
+      "spent": 0,
+      "capacity": null,
+      "burst": null,
+      "type": ""
+    },
+    "bonuses": {
+      "attack": "",
+      "damage": "",
+      "critical": {
+        "damage": "",
+        "dice": 0
+      }
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.4",
+    "coreVersion": "11.308",
+    "createdTime": 1679623750579,
+    "modifiedTime": 1693001565792,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "NDtiNGIcxBIJn8Up",
+  "_key": "!items!NDtiNGIcxBIJn8Up"
+}

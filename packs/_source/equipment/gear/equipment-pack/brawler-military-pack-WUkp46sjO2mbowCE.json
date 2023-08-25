@@ -1,0 +1,37 @@
+{
+  "name": "Brawler Military Pack",
+  "type": "gear",
+  "img": "systems/everyday-heroes/artwork/svg/items/gear.svg",
+  "system": {
+    "description": {
+      "value": "<p><strong>Clothes:</strong> Military fatigues, Combat boots</p><p><strong>Mundane:</strong> @UUID[Compendium.everyday-heroes.equipment.Item.UVWMYY2PTHQ6GwuB]{Soldier’s kit}, @UUID[Compendium.everyday-heroes.equipment.Item.sBYMoCdoviCGrS7n]{Night Vision Goggles}, Bubble Gum</p><p><strong>Weapons:</strong> @UUID[Compendium.everyday-heroes.equipment.Item.yiZQZEBMZw6PmrCk]{Pump Action Shotgun}, 2 @UUID[Compendium.everyday-heroes.equipment.Item.SzjZtP2ivOgW9kwV]{Smoke Grenades}, @UUID[Compendium.everyday-heroes.equipment.Item.Rt4DGda7bThSorio]{Machete}</p><p><strong>Armor:</strong> @UUID[Compendium.everyday-heroes.equipment.Item.Ci7Cu9kzvzSuPWYQ]{Ballistic Vest, Medium}</p>",
+      "chat": "",
+      "source": "Quickstart Guide"
+    },
+    "quantity": {
+      "value": 1
+    },
+    "bulk": 0,
+    "price": 0,
+    "type": {
+      "value": "equipmentPack"
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.4",
+    "coreVersion": "11.308",
+    "createdTime": 1693001020206,
+    "modifiedTime": 1693001533445,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "_id": "WUkp46sjO2mbowCE",
+  "sort": 0,
+  "_key": "!items!WUkp46sjO2mbowCE"
+}

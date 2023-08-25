@@ -1,0 +1,34 @@
+{
+  "name": "Disguise Kit",
+  "type": "gear",
+  "img": "systems/everyday-heroes/artwork/svg/items/gear.svg",
+  "system": {
+    "description": {
+      "value": "<p>This extended collection of makeup goes beyond beauty products, allowing you to create a range of appearances. It is often accompanied by a wardrobe of common clothing styles and uniforms.</p><blockquote><p>Having both makeup and costumes offers advantage on Charisma checks made to hide your identity. Both are required for Charisma checks to impersonate another person.</p></blockquote>",
+      "chat": "",
+      "source": "Quickstart Guide"
+    },
+    "bulk": 4,
+    "price": 2,
+    "type": {
+      "value": "specializedKit"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.4",
+    "coreVersion": "11.308",
+    "createdTime": 1679630242492,
+    "modifiedTime": 1693001597754,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "kKQdsVYLgaVC2mTQ",
+  "_key": "!items!kKQdsVYLgaVC2mTQ"
+}

@@ -1,0 +1,884 @@
+{
+  "name": "Gang Leader",
+  "type": "npc",
+  "img": "systems/everyday-heroes/artwork/npcs/portraits/gang-leader.webp",
+  "system": {
+    "abilities": {
+      "str": {
+        "value": 18,
+        "max": 20,
+        "saveProficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "dc": "",
+          "save": ""
+        },
+        "minimums": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "dex": {
+        "value": 18,
+        "max": 20,
+        "saveProficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "dc": "",
+          "save": ""
+        },
+        "minimums": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "con": {
+        "value": 16,
+        "max": 20,
+        "saveProficiency": {
+          "multiplier": 1
+        },
+        "bonuses": {
+          "check": "",
+          "dc": "",
+          "save": ""
+        },
+        "minimums": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "int": {
+        "value": 14,
+        "max": 20,
+        "saveProficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "dc": "",
+          "save": ""
+        },
+        "minimums": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "wis": {
+        "value": 15,
+        "max": 20,
+        "saveProficiency": {
+          "multiplier": 1
+        },
+        "bonuses": {
+          "check": "",
+          "dc": "",
+          "save": ""
+        },
+        "minimums": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "cha": {
+        "value": 14,
+        "max": 20,
+        "saveProficiency": {
+          "multiplier": 1
+        },
+        "bonuses": {
+          "check": "",
+          "dc": "",
+          "save": ""
+        },
+        "minimums": {
+          "check": "",
+          "save": ""
+        }
+      }
+    },
+    "bonuses": {
+      "ability": {
+        "check": "",
+        "save": "",
+        "dc": ""
+      },
+      "skill": {
+        "check": "",
+        "passive": ""
+      }
+    },
+    "overrides": {
+      "ability": {
+        "minimums": {
+          "check": "",
+          "save": ""
+        },
+        "checkProficiency": {
+          "multiplier": null,
+          "rounding": null
+        },
+        "saveProficiency": {
+          "multiplier": null,
+          "rounding": null
+        },
+        "initiative": []
+      },
+      "skill": {
+        "minimum": "",
+        "proficiency": {
+          "multiplier": null,
+          "rounding": null
+        }
+      },
+      "critical": {
+        "multiplier": null,
+        "threshold": {}
+      }
+    },
+    "attributes": {
+      "initiative": {
+        "bonus": ""
+      },
+      "movement": {
+        "value": 30,
+        "special": {},
+        "units": "foot"
+      },
+      "defense": 16,
+      "hd": {
+        "count": null,
+        "denomination": null,
+        "spent": 0
+      },
+      "hp": {
+        "value": 75,
+        "max": 75,
+        "temp": 0,
+        "formula": "10d8 + 30"
+      },
+      "senses": []
+    },
+    "skills": {
+      "acro": {
+        "ability": "dex",
+        "proficiency": {
+          "multiplier": 1
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "arts": {
+        "ability": "wis",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "athl": {
+        "ability": "str",
+        "proficiency": {
+          "multiplier": 1
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "comp": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "dece": {
+        "ability": "cha",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "endu": {
+        "ability": "con",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "inst": {
+        "ability": "wis",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "inti": {
+        "ability": "cha",
+        "proficiency": {
+          "multiplier": 1
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "inve": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "mech": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "medi": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "nats": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "perc": {
+        "ability": "wis",
+        "proficiency": {
+          "multiplier": 1
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "perf": {
+        "ability": "cha",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "pers": {
+        "ability": "cha",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "secu": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 1
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "slgt": {
+        "ability": "dex",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "socs": {
+        "ability": "int",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "slth": {
+        "ability": "dex",
+        "proficiency": {
+          "multiplier": 1
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "strt": {
+        "ability": "wis",
+        "proficiency": {
+          "multiplier": 2
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "surv": {
+        "ability": "wis",
+        "proficiency": {
+          "multiplier": 0
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      },
+      "vehi": {
+        "ability": "dex",
+        "proficiency": {
+          "multiplier": 1
+        },
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "minimum": ""
+      }
+    },
+    "biography": {
+      "value": "<p>Either on the wrong side of the law, or keeping the law in their pocket, criminals are a common enemy for heroes, even if the heroes are criminals themselves. They range from simple ruffians to masterminds running multinational crime empires.</p><hr /><p>Leading a street gang requires an iron will and an iron fist. A gang leader is usually the most dangerous criminal in the group.</p>",
+      "public": "",
+      "roles": [
+        "leader"
+      ]
+    },
+    "conditions": {},
+    "details": {
+      "cr": 5
+    },
+    "items": {
+      "ZVIZ7XaRGC9eRoNo": {
+        "equipped": false
+      }
+    },
+    "resources": {},
+    "traits": {
+      "damage": {
+        "immunity": [],
+        "reduction": {}
+      },
+      "size": "medium",
+      "type": {
+        "value": "person",
+        "tags": [
+          "human"
+        ]
+      }
+    }
+  },
+  "prototypeToken": {
+    "name": "Gang Leader",
+    "displayName": 0,
+    "actorLink": false,
+    "texture": {
+      "src": "systems/everyday-heroes/artwork/npcs/tokens/gang-leader.webp",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "tint": null
+    },
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "light": {
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": [],
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "items": [
+    {
+      "name": "Light Ballistic Vest",
+      "type": "armor",
+      "img": "systems/everyday-heroes/artwork/svg/items/armor.svg",
+      "system": {
+        "description": {
+          "value": "<p>These vests are made entirely of flexible ballistic fabric and padding. They can be worn under a jacket without drawing attention. They effectively block light caliber pistol rounds and other conventional projectiles.</p>",
+          "chat": "",
+          "source": "Core Rulebook"
+        },
+        "quantity": {
+          "value": 1
+        },
+        "bulk": 0,
+        "price": 2,
+        "type": {
+          "value": "armor",
+          "category": "advanced"
+        },
+        "properties": [
+          "ballistic",
+          "concealable"
+        ],
+        "armorValue": 2,
+        "damaged": false,
+        "bonuses": {
+          "save": ""
+        }
+      },
+      "effects": [],
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.eh-core-rulebook.weapon-armor.uO7kSaMcKfY218lJ"
+        }
+      },
+      "_stats": {
+        "systemId": "everyday-heroes",
+        "systemVersion": "0.1.0",
+        "coreVersion": "10.291",
+        "createdTime": 1679549440145,
+        "modifiedTime": 1680498331782,
+        "lastModifiedBy": "everyday00heroes"
+      },
+      "folder": null,
+      "sort": 0,
+      "_id": "HM77r1tc4uzSMu66",
+      "_key": "!actors.items!DTQIN5XDrQCoURvn.HM77r1tc4uzSMu66"
+    },
+    {
+      "name": "SMG",
+      "type": "npcWeapon",
+      "img": "systems/everyday-heroes/artwork/svg/items/weapon.svg",
+      "system": {
+        "damage": {
+          "number": 1,
+          "die": null,
+          "type": "ballistic",
+          "denomination": 10
+        },
+        "description": {
+          "value": "<p>Submachine guns are fully automatic, short-barreled firearms designed for relatively short ranges. They offer considerable stopping power for a small weapon but are not effective against military body armor. The MAC 10 is a famous SMG that packs serious firepower but with questionable accuracy. It was designed for use with an attached suppressor that acted as a forward grip.</p>",
+          "chat": "",
+          "source": "Core Rulebook",
+          "npc": ""
+        },
+        "quantity": {
+          "value": 1
+        },
+        "bulk": 1,
+        "price": 3,
+        "type": {
+          "value": "ranged",
+          "category": "military"
+        },
+        "properties": [
+          "burst",
+          "fullAuto",
+          "loud",
+          "restricted"
+        ],
+        "penetrationValue": 2,
+        "jammed": false,
+        "ammunition": {
+          "type": "",
+          "loaded": ""
+        },
+        "range": {
+          "short": 100,
+          "long": 200,
+          "reach": null,
+          "units": "foot"
+        },
+        "reload": "bonus",
+        "rounds": {
+          "spent": 0,
+          "capacity": 30,
+          "burst": 3,
+          "type": "pistol"
+        },
+        "bonuses": {
+          "attack": "",
+          "damage": "",
+          "critical": {
+            "damage": "",
+            "dice": 0
+          }
+        },
+        "overrides": {
+          "ability": "",
+          "critical": {
+            "threshold": null
+          }
+        }
+      },
+      "effects": [],
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.eh-core-rulebook.weapon-armor.LDomK7GPOw9lLlqh"
+        }
+      },
+      "_stats": {
+        "systemId": "everyday-heroes",
+        "systemVersion": "0.1.0",
+        "coreVersion": "10.291",
+        "createdTime": 1679624671397,
+        "modifiedTime": 1680498440375,
+        "lastModifiedBy": "everyday00heroes"
+      },
+      "folder": null,
+      "sort": 200000,
+      "_id": "0E7ewD4TX3sRebYS",
+      "_key": "!actors.items!DTQIN5XDrQCoURvn.0E7ewD4TX3sRebYS"
+    },
+    {
+      "name": "Street Clothes",
+      "type": "clothes",
+      "_id": "s7Nc4NHSXrWhy0Ds",
+      "img": "systems/everyday-heroes/artwork/svg/items/clothes.svg",
+      "system": {
+        "description": {
+          "value": "",
+          "chat": "",
+          "source": "Core Rulebook"
+        },
+        "quantity": {
+          "value": 1
+        },
+        "bulk": 0,
+        "price": 0,
+        "type": {
+          "value": "everydayStuff"
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "everyday-heroes",
+        "systemVersion": "0.1.0",
+        "coreVersion": "10.291",
+        "createdTime": 1680498378464,
+        "modifiedTime": 1680498389592,
+        "lastModifiedBy": "everyday00heroes"
+      },
+      "_key": "!actors.items!DTQIN5XDrQCoURvn.s7Nc4NHSXrWhy0Ds"
+    },
+    {
+      "name": "Pocket Stuff",
+      "type": "gear",
+      "img": "systems/everyday-heroes/artwork/svg/items/gear.svg",
+      "system": {
+        "description": {
+          "value": "<p>Pockets don't hold much, but they might contain a smartphone, wallet, credit cards, cash, ID cards, keys, a pocketknife/tool, and lip balm.</p>",
+          "chat": "",
+          "source": "Core Rulebook"
+        },
+        "quantity": {
+          "value": 1
+        },
+        "bulk": 0,
+        "price": 1,
+        "type": {
+          "value": "everydayStuff"
+        }
+      },
+      "effects": [],
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.eh-core-rulebook.other-equipment.uo0eYfOK6gk7RoRP"
+        }
+      },
+      "_stats": {
+        "systemId": "everyday-heroes",
+        "systemVersion": "0.1.0",
+        "coreVersion": "10.291",
+        "createdTime": 1679627478786,
+        "modifiedTime": 1680498393243,
+        "lastModifiedBy": "everyday00heroes"
+      },
+      "folder": null,
+      "sort": 0,
+      "_id": "mYNKHadWYwv2wfzo",
+      "_key": "!actors.items!DTQIN5XDrQCoURvn.mYNKHadWYwv2wfzo"
+    },
+    {
+      "name": "Unarmed Strike",
+      "type": "npcWeapon",
+      "img": "systems/everyday-heroes/artwork/svg/items/weapon.svg",
+      "system": {
+        "damage": {
+          "number": 1,
+          "die": null,
+          "type": "bludgeoning",
+          "denomination": 4
+        },
+        "description": {
+          "value": "<p>Unarmed strikes are most commonly punches, but they include any move that has the potential to deliver a punishing blow whether via kicks, headbutts, knees to the groin, or elbows to the face. It's one of the few attacks you don't need a hand to perform and you are always armed with it.</p>",
+          "chat": "",
+          "source": "Core Rulebook",
+          "npc": ""
+        },
+        "quantity": {
+          "value": 1
+        },
+        "bulk": 0,
+        "price": 0,
+        "type": {
+          "value": "melee",
+          "category": "basic"
+        },
+        "properties": [
+          "finesse",
+          "light",
+          "special"
+        ],
+        "penetrationValue": 1,
+        "jammed": false,
+        "ammunition": {
+          "type": "",
+          "loaded": ""
+        },
+        "range": {
+          "short": null,
+          "long": null,
+          "reach": null,
+          "units": "foot"
+        },
+        "reload": "",
+        "rounds": {
+          "spent": 0,
+          "capacity": null,
+          "burst": null,
+          "type": ""
+        },
+        "bonuses": {
+          "attack": "",
+          "damage": "",
+          "critical": {
+            "damage": "",
+            "dice": 0
+          }
+        },
+        "overrides": {
+          "ability": "",
+          "critical": {
+            "threshold": null
+          }
+        }
+      },
+      "effects": [],
+      "ownership": {
+        "default": 0
+      },
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.eh-core-rulebook.weapon-armor.FrkzzZrHeCSqCp17"
+        }
+      },
+      "_stats": {
+        "systemId": "everyday-heroes",
+        "systemVersion": "0.1.0",
+        "coreVersion": "10.291",
+        "createdTime": 1679547781179,
+        "modifiedTime": 1680498445287,
+        "lastModifiedBy": "everyday00heroes"
+      },
+      "folder": null,
+      "sort": 100000,
+      "_id": "ZVIZ7XaRGC9eRoNo",
+      "_key": "!actors.items!DTQIN5XDrQCoURvn.ZVIZ7XaRGC9eRoNo"
+    },
+    {
+      "name": "Get 'Em!",
+      "type": "npcFeature",
+      "_id": "51FwbtFePLwo27Ez",
+      "img": "systems/everyday-heroes/artwork/svg/items/feature.svg",
+      "system": {
+        "description": {
+          "value": "<p>The gang leader makes two unarmed strikes or one ranged attack, then up to two allies that can hear the gang leader can make an attack as a reaction.</p>",
+          "chat": "",
+          "source": "Core Rulebook"
+        },
+        "activation": {
+          "type": "action",
+          "condition": ""
+        },
+        "resource": {
+          "amount": 0,
+          "target": "",
+          "type": ""
+        },
+        "uses": {
+          "spent": 0,
+          "max": "",
+          "period": "",
+          "recovery": "",
+          "formula": ""
+        },
+        "recharge": {
+          "charged": true,
+          "target": null
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "everyday-heroes",
+        "systemVersion": "0.1.0",
+        "coreVersion": "10.291",
+        "createdTime": 1680498413843,
+        "modifiedTime": 1680498458596,
+        "lastModifiedBy": "everyday00heroes"
+      },
+      "_key": "!actors.items!DTQIN5XDrQCoURvn.51FwbtFePLwo27Ez"
+    }
+  ],
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "everyday-heroes": {
+      "source": "core-rulebook",
+      "category": "criminals"
+    }
+  },
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.4",
+    "coreVersion": "11.308",
+    "createdTime": 1680390675798,
+    "modifiedTime": 1693000824003,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "DTQIN5XDrQCoURvn",
+  "_key": "!actors!DTQIN5XDrQCoURvn"
+}

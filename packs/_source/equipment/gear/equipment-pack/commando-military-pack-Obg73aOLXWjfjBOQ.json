@@ -1,0 +1,37 @@
+{
+  "name": "Commando Military Pack",
+  "type": "gear",
+  "img": "systems/everyday-heroes/artwork/svg/items/gear.svg",
+  "system": {
+    "description": {
+      "value": "<p><strong>Clothes:</strong> Military fatigues, Combat boots</p><p><strong>Mundane:</strong> @UUID[Compendium.everyday-heroes.equipment.Item.UVWMYY2PTHQ6GwuB]{Soldier’s kit}, @UUID[Compendium.everyday-heroes.equipment.Item.sBYMoCdoviCGrS7n]{Night Vision Goggles}, Ginger Snaps</p><p><strong>Weapons:</strong> @UUID[Compendium.everyday-heroes.equipment.Item.KZiqkE0V7j4XrUzp]{Assault Carbine Rifle}, 2 @UUID[Compendium.everyday-heroes.equipment.Item.oRhivkZpwEA02kBI]{Fragmentation Grenades}, @UUID[Compendium.everyday-heroes.equipment.Item.Rt4DGda7bThSorio]{Machete}</p><p><strong>Armor:</strong> @UUID[Compendium.everyday-heroes.equipment.Item.Ci7Cu9kzvzSuPWYQ]{Ballistic Vest, Medium}</p>",
+      "chat": "",
+      "source": "Quickstart Guide"
+    },
+    "quantity": {
+      "value": 1
+    },
+    "bulk": 0,
+    "price": 0,
+    "type": {
+      "value": "equipmentPack"
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.4",
+    "coreVersion": "11.308",
+    "createdTime": 1693001024586,
+    "modifiedTime": 1693001501487,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "_id": "Obg73aOLXWjfjBOQ",
+  "sort": 0,
+  "_key": "!items!Obg73aOLXWjfjBOQ"
+}

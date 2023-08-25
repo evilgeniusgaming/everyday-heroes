@@ -1,0 +1,37 @@
+{
+  "name": "Mastermind Civilian Pack",
+  "type": "gear",
+  "img": "systems/everyday-heroes/artwork/svg/items/gear.svg",
+  "system": {
+    "description": {
+      "value": "<p><strong>Clothes:</strong> Designer 3-piece suit or designer business dress, Dress shoes or Sensible heels</p><p><strong>Vehicle:</strong> Luxury Car, @UUID[Compendium.everyday-heroes.equipment.Item.DESRhcAby7aFutWU]{Car stuff}</p><p><strong>Mundane:</strong> @UUID[Compendium.everyday-heroes.equipment.Item.uo0eYfOK6gk7RoRP]{Pocket stuff}/@UUID[Compendium.everyday-heroes.equipment.Item.EweBpBx3WiFjNIrr]{Bag stuff}, Expensive watch</p><p><strong>Weapons:</strong> @UUID[Compendium.everyday-heroes.equipment.Item.ejIzwEgz41BURZGP]{Pocket .38 Pistol}</p>",
+      "chat": "",
+      "source": "Quickstart Guide"
+    },
+    "quantity": {
+      "value": 1
+    },
+    "bulk": 0,
+    "price": 0,
+    "type": {
+      "value": "equipmentPack"
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.4",
+    "coreVersion": "11.308",
+    "createdTime": 1693001057993,
+    "modifiedTime": 1693001393808,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "_id": "5GGCtl7VlSkYmNir",
+  "sort": 0,
+  "_key": "!items!5GGCtl7VlSkYmNir"
+}

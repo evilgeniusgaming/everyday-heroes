@@ -1,0 +1,34 @@
+{
+  "name": "Car Stuff",
+  "type": "gear",
+  "img": "systems/everyday-heroes/artwork/svg/items/gear.svg",
+  "system": {
+    "description": {
+      "value": "<p>Cars naturally become repositories for useful items: paper, pens, spare change, a spare tire, a tire iron, a small toolkit, a radio, extra fuses, road flares, a first aid kit, snacks, tissues, a bottle of water, hand soap, a utility knife, batteries, random bags, sunglasses, and a map of the local area.</p>",
+      "chat": "",
+      "source": "Quickstart Guide"
+    },
+    "bulk": 10,
+    "price": 2,
+    "type": {
+      "value": "everydayStuff"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.4",
+    "coreVersion": "11.308",
+    "createdTime": 1679627459355,
+    "modifiedTime": 1693001589691,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "DESRhcAby7aFutWU",
+  "_key": "!items!DESRhcAby7aFutWU"
+}
