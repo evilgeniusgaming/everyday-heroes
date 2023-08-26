@@ -64,4 +64,12 @@ export default class TrickData extends ItemDataModel.mixin(DescribedTemplate, Ac
 			filterCallback: e => e.system.identifier.archetype === "charming"
 		}];
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Properties                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get npcDisplay() {
+		return false;
+	}
 }

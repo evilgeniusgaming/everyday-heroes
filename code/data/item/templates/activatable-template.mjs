@@ -160,6 +160,16 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Should this be displayed on the details tab of an NPC sheet?
+	 * @type {boolean}
+	 */
+	get npcDisplay() {
+		return true;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Should an activation of this item consume one or more cinematic actions?
 	 * @type {boolean}
 	 */

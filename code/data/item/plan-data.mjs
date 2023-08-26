@@ -58,4 +58,12 @@ export default class PlanData extends ItemDataModel.mixin(DescribedTemplate, Act
 			filterCallback: e => e.system.identifier.archetype === "smart"
 		}];
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Properties                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	get npcDisplay() {
+		return false;
+	}
 }
