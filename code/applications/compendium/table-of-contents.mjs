@@ -64,7 +64,7 @@ export default class TableOfContentsCompendium extends Compendium {
 			chapters.push({
 				entryId: entry.id,
 				pageId: page.id,
-				name: page.name,
+				name: page.getFlag("everyday-heroes", "toc-name") ?? page.name,
 				level: (foundry.utils.getType(toc) === "number" ? Number(toc) : page.title.level) + 2,
 				style: page.getFlag("everyday-heroes", "toc-style")
 			});

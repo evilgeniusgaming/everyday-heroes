@@ -14,11 +14,11 @@ figure.company-logo img {
 /*  Journals                                 */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) :is(h1, h2, h3, h4) {
+:is(.journal-entry-page, .everyday-heroes.sheet .editor) :is(h1, h2, h3, h4:not(.window-title)) {
 	font-weight: bold;
 	text-transform: uppercase;
 }
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) :is(h1, h2, h3, h4, h5):not(:first-child) {
+:is(.journal-entry-page, .everyday-heroes.sheet .editor) :is(h1, h2, h3, h4:not(.window-title), h5):not(:first-child) {
 	margin-block-start: 1rem;
 }
 :is(.journal-entry-page, .everyday-heroes.sheet .editor) :is(h1, h2) {
@@ -36,14 +36,14 @@ figure.company-logo img {
 	border-block-end: 4px solid var(--eh-border-color-strong);
 	font-size: var(--font-size-24);
 }
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) h4 {
+:is(.journal-entry-page, .everyday-heroes.sheet .editor) h4:not(.window-title) {
 	font-size: var(--font-size-18);
 }
 :is(.journal-entry-page, .everyday-heroes.sheet .editor) h5 {
 	margin-block-end: 0;
 	text-transform: uppercase;
 }
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) :is(h1, h2, h3, h4) strong {
+:is(.journal-entry-page, .everyday-heroes.sheet .editor) :is(h1, h2, h3, h4:not(.window-title)) strong {
 	color: var(--eh-text-color-red);
 	font-weight: bolder;
 }
