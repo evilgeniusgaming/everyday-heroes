@@ -97,7 +97,7 @@ export default class HitPointsAdvancement extends Advancement {
 
 	/**
 	 * Total hit points provided by this advancement.
-	 * @returns {number}  Hit points currently selected.
+	 * @returns {number} - Hit points currently selected.
 	 */
 	total() {
 		return Object.keys(this.value.granted ?? {}).reduce((t, l) => t + this.valueForLevel(parseInt(l)), 0);

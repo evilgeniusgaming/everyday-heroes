@@ -1,6 +1,6 @@
 import RestDialog from "../applications/actor/dialogs/rest-dialog.mjs";
 import { buildMinimum, buildRoll } from "../dice/utils.mjs";
-import { numberFormat, simplifyBonus } from "../utils.mjs";
+import { numberFormat, simplifyBonus, systemLog } from "../utils.mjs";
 import { DocumentMixin } from "./mixin.mjs";
 import Proficiency from "./proficiency.mjs";
 
@@ -357,29 +357,43 @@ export default class ActorEH extends DocumentMixin(Actor) {
 	 * @returns {Promise}
 	 */
 	async roll(type, config={}, message={}, dialog={}) {
+		let method;
 		switch (type) {
 			case "ability-check":
-				return this.rollAbilityCheck(config, message, dialog);
+				method = "rollAbilityCheck";
+				break;
 			case "ability-save":
-				return this.rollAbilitySave(config, message, dialog);
+				method = "rollAbilitySave";
+				break;
 			case "death-save":
-				return this.rollDeathSave(config, message, dialog);
+				method = "rollDeathSave";
+				break;
 			case "hit-die":
-				return this.rollHitDie(config, message, dialog);
+				method = "rollHitDie";
+				break;
 			case "initiative":
-				return this.configureInitiativeRoll(config, message, dialog);
+				method = "configureInitiativeRoll";
+				break;
 			case "luck":
-				return this.rollLuckSave(config, message, dialog);
+				method = "rollLuckSave";
+				break;
 			case "resource":
-				return this.rollResource(config, message, dialog);
+				method = "rollResource";
+				break;
 			case "skill":
-				return this.rollSkill(config, message, dialog);
+				method = "rollSkill";
+				break;
 			default:
 				if ( foundry.utils.getType(this.system.roll) === "function" ) {
 					return this.system.roll(type, config, message, dialog);
 				} else {
-					return console.warn(`Everyday Heroes | Invalid roll type clicked ${type}.`);
+					return systemLog(`Invalid roll type clicked ${type}.`);
 				}
+		}
+		if ( foundry.utils.getType(this.system[method]) === "function" ) {
+			return this.system[method](config, message, dialog);
+		} else {
+			return this[method](config, message, dialog);
 		}
 	}
 

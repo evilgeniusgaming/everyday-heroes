@@ -1,6 +1,6 @@
 import SuppressiveFireTemplate from "../canvas/suppressive-fire-template.mjs";
 import { buildMinimum, buildRoll } from "../dice/utils.mjs";
-import { numberFormat, slugify } from "../utils.mjs";
+import { numberFormat, slugify, systemLog } from "../utils.mjs";
 import { DocumentMixin } from "./mixin.mjs";
 
 /**
@@ -750,19 +750,34 @@ export default class ItemEH extends DocumentMixin(Item) {
 	 * @returns {Promise}
 	 */
 	async roll(type, config={}, message={}, dialog={}) {
+		let method;
 		switch (type) {
 			case "activate":
-				return this.activate(config, message, dialog);
+				method = "activate";
+				break;
 			case "armor-save":
-				return this.rollArmorSave(config, message, dialog);
+				method = "rollArmorSave";
+				break;
 			case "attack":
-				return this.rollAttack(config, message, dialog);
+				method = "rollAttack";
+				break;
 			case "damage":
-				return this.rollDamage(config, message, dialog);
+				method = "rollDamage";
+				break;
 			case "recharge":
-				return this.rollRecharge(config, message, dialog);
+				method = "rollRecharge";
+				break;
 			default:
-				return console.warn(`Everyday Heroes | Invalid item roll type clicked ${type}.`);
+				if ( foundry.utils.getType(this.system.roll) === "function" ) {
+					return this.system.roll(type, config, message, dialog);
+				} else {
+					return systemLog(`Invalid roll type clicked ${type}.`);
+				}
+		}
+		if ( foundry.utils.getType(this.system[method]) === "function" ) {
+			return this.system[method](config, message, dialog);
+		} else {
+			return this[method](config, message, dialog);
 		}
 	}
 
