@@ -101,28 +101,34 @@
 			{{/each}}
 		</div>
 		<div class="skills">
-			{{#each skills as |skill key|}}
-				<div class="skill" data-key="{{key}}">
-					<label>
-						<a data-action="roll" data-type="skill" data-skill="{{key}}" data-tooltip="{{localize 'EH.Action.Roll'
-							type=(localize 'EH.Skill.Action.CheckSpecific' skill=skill.label)}}">{{skill.label}}</a>
-						{{#if @root.editingMode}}
-							<a data-action="config" data-type="skill" data-key="{{key}}"
-								data-tooltip="{{localize 'EH.Action.Configure' type=skill.label}}">
-								<i class="fa-solid fa-cog"></i>
-							</a>
-						{{/if}}
-					</label>
-					<span class="abbreviation">
-						{{skill.abilityAbbreviation}}
-						<input type="hidden" name="system.skills.{{key}}.ability" value="{{skill.ability}}">
-					</span>
-					{{> "everydayHeroes.actor-proficiency-selector" type="double"
-						name=(concat "system.skills." key ".proficiency")
-						value=skill.proficiency source=skill._source.proficiency}}
-					<span class="modifier">{{skill.mod}}</span>
-				</div>
-			{{/each}}
+			<table>
+				{{#each skills as |skill key|}}
+					<tr class="skill" data-key="{{key}}">
+						<td class="label">
+							<a data-action="roll" data-type="skill" data-skill="{{key}}" data-tooltip="{{localize 'EH.Action.Roll'
+								type=(localize 'EH.Skill.Action.CheckSpecific' skill=skill.label)}}">{{skill.label}}</a>
+							{{#if @root.editingMode}}
+								<a data-action="config" data-type="skill" data-key="{{key}}"
+									data-tooltip="{{localize 'EH.Action.Configure' type=skill.label}}">
+									<i class="fa-solid fa-cog"></i>
+								</a>
+							{{/if}}
+						</td>
+						<td class="abbreviation">
+							{{skill.abilityAbbreviation}}
+							<input type="hidden" name="system.skills.{{key}}.ability" value="{{skill.ability}}">
+						</td>
+						<td class="proficiency">
+							{{> "everydayHeroes.actor-proficiency-selector" type="double"
+								name=(concat "system.skills." key ".proficiency")
+								value=skill.proficiency source=skill._source.proficiency}}
+						</td>
+						<td class="modifier">
+							{{skill.mod}}
+						</td>
+					</tr>
+				{{/each}}
+			</table>
 		</div>
 	</section>
 	

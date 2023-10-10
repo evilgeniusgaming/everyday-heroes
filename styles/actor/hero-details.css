@@ -206,67 +206,62 @@
 
 .hero.sheet [data-tab="details"] .skills {
 	grid-area: skills;
-	display: grid;
 	z-index: 2;
-	grid-template-columns: auto max-content max-content max-content;
 	border: 8px solid var(--eh-border-color-strong);
 	border-radius: 1em;
 	background-color: var(--eh-background-color-white);
-}
-.hero.sheet [data-tab="details"] .skills .skill {
-	grid-column: 1 / 5;
-	display: grid;
-	grid-template-columns: subgrid;
-	align-items: first baseline;
-	padding-inline: 0.5em;
-}
-.hero.sheet [data-tab="details"] .skills .skill:not(:last-of-type) {
-	border-bottom: 1px solid var(--eh-border-color-weak);
-}
-.hero.sheet [data-tab="details"] .skills .skill label {
-	grid-column: 1;
-	display: flex;
-	justify-content: space-between;
-	height: 100%;
-	border-inline-end: 1px solid var(--eh-border-color-weak);
-	padding-inline-end: 0.25em;
-}
-.hero.sheet [data-tab="details"] .skills .skill label [data-action] {
-	text-decoration: none;
-}
-.hero.sheet [data-tab="details"] .skills .skill:first-of-type > * {
-	padding-block-start: 0.25em;
-}
-.hero.sheet [data-tab="details"] .skills .skill:last-of-type > * {
-	padding-block-end: 0.25em;
-}
-.hero.sheet [data-tab="details"] .skills .skill .abbreviation {
-	grid-column: 2;
-	padding-inline: 0.25em;
-	font-size: var(--font-size-11);
-	text-transform: uppercase;
-}
-.hero.sheet [data-tab="details"] .skills .skill [data-action="cycle-proficiency"] {
-	grid-column: 3;
-	height: 1rem;
-}
-.hero.sheet [data-tab="details"] .skills .skill .modifier {
-	grid-column: 4;
-	text-align: right;
+
+	table {
+		margin: 0;
+		border: none;
+
+		td {
+			padding-block: 1px;
+			padding-inline: 0;
+		}
+	}
+
+	.skill {
+		padding-inline: 0.5em;
+
+		&:not(:last-of-type) {
+			border-bottom: 1px solid var(--eh-border-color-weak);
+		}
+		&:first-of-type > * {
+			padding-block-start: 0.25em;
+		}
+		&:last-of-type > * {
+			padding-block-end: 0.25em;
+		}
+
+		.label {
+			display: flex;
+			justify-content: space-between;
+			border-inline-end: 1px solid var(--eh-border-color-weak);
+			padding-inline: 0.5em 0.25em;
+
+			[data-action] {
+				text-decoration: none;
+			}
+		}
+		.abbreviation {
+			padding-inline: 0.25em;
+			font-size: var(--font-size-11);
+			text-transform: uppercase;
+		}
+		[data-action="cycle-proficiency"] {
+			height: 1rem;
+		}
+		.modifier {
+			text-align: right;
+			padding-inline-end: 0.5em;
+		}
+	}
 }
 
 @supports not (grid-template-columns: subgrid) {
 	.hero.sheet [data-tab="details"] .abilities .ability {
 		grid-template-columns: 1.5em max-content auto max-content;
-	}
-	.hero.sheet [data-tab="details"] .skills .skill {
-		grid-template-columns: auto 1.75em 1.5em 1.5em;
-	}
-	.hero.sheet [data-tab="details"] .skills .skill label {
-		border-inline-end: none;
-	}
-	.hero.sheet [data-tab="details"] .skills .skill [data-action="cycle-proficiency"] {
-		padding-block-start: 0.175em;
 	}
 }
 
