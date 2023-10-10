@@ -156,7 +156,7 @@ export default class BaseActorSheet extends ActorSheet {
 		if ( this.conditionAddMode ) {
 			for ( const key of CONFIG.EverydayHeroes.applicableConditions[
 				this.actor.system.constructor.metadata?.type ?? this.actor.type
-			] ) {
+			] ?? [] ) {
 				const config = CONFIG.EverydayHeroes.conditions[key];
 				const registered = CONFIG.EverydayHeroes.registration.all.condition?.[key];
 				if ( context.system.conditions[key] || !registered ) continue;
@@ -212,7 +212,7 @@ export default class BaseActorSheet extends ActorSheet {
 		for ( const item of Array.from(context.actor.items).sort((a, b) => a.sort - b.sort) ) {
 			const section = this._organizeItem(item, sections);
 			const ctx = context.itemContext[item.id] ??= {};
-			await callback(item, section, ctx);
+			if ( foundry.utils.getType(callback) === "function" ) await callback(item, section, ctx);
 
 			// Prepare expanded data
 			if ( this.itemsExpanded.has(item.id) ) {
@@ -245,11 +245,12 @@ export default class BaseActorSheet extends ActorSheet {
 		const formatter = new Intl.ListFormat(game.i18n.lang, {style: "short", type: "conjunction"});
 		const typeModels = CONFIG.Item[game.release.generation > 10 ? "dataModels" : "systemDataModels"];
 
-		for ( const config of CONFIG.EverydayHeroes.sheetSections[this.actor.type] ?? {} ) {
+		const type = this.actor.system.constructor.metadata?.type ?? this.actor.type;
+		for ( const config of CONFIG.EverydayHeroes.sheetSections[type] ?? [] ) {
 			const tab = sections[config.tab] ??= {};
 			const primaryType = typeModels[config.primaryType?.type];
 			const types = config.types.map(t => ({ dataset: t, model: typeModels[t.type] })).filter(t => t.model);
-			const id = primaryType ? primaryType.metadata.type : types.map(t => t.model.metadata.type).join("-");
+			const id = config.id ?? (primaryType ? primaryType.metadata.type : types.map(t => t.model.metadata.type).join("-"));
 			const section = tab[id] = { config, items: [], options: config.options };
 
 			// Use custom label, singular for primary items, or plural list for others

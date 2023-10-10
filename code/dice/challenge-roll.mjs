@@ -14,7 +14,7 @@ import { areKeysPressed } from "./utils.mjs";
  * Options that describe a challenge roll.
  *
  * @typedef {BaseRollOptions} ChallengeRollOptions
- * @property {boolean} [advantage] - Is the roll is granted advantage?
+ * @property {boolean} [advantage] - Is the roll granted advantage?
  * @property {boolean} [disadvantage] - Is the roll granted disadvantage?
  * @property {number} [criticalSuccess] - The value of the challenge die to be considered a critical success.
  * @property {number} [criticalFailure] - The value of the challenge die to be considered a critical failure.

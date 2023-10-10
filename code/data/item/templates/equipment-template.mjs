@@ -101,6 +101,6 @@ export default class EquipmentTemplate {
 	prepareDerivedProficiency() {
 		const hasProf = this.user?.system.traits?.equipment
 			? this.user.system.traits.equipment.has(this.type.category) : true;
-		this.proficiency = new Proficiency(this.user?.system.attributes.prof, hasProf ? 1 : 0);
+		this.proficiency = new Proficiency(this.user?.system.attributes?.prof, hasProf ? 1 : 0);
 	}
 }

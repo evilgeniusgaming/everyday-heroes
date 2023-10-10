@@ -65,6 +65,14 @@
 	font-weight: bold;
 	text-transform: uppercase;
 }
+.item.sheet form > header div.fields {
+	flex-grow: 1;
+}
+.item.sheet form > header div.fields > label {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
 .item.sheet form > header > div.fields fieldset :is(input, select) {
 	flex-grow: 1;
 	border: none;

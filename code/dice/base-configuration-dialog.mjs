@@ -2,11 +2,11 @@
  * Roll configuration dialog.
  *
  * @param {BaseRollBuilder} [buildConfig] - Roll config builder.
- * @param {BaseRollConfiguration} [rollConfig={}] - Initial roll configuration.
+ * @param {BaseRollConfiguration[]} [rollConfig=[]] - Initial roll configurations.
  * @param {BaseConfigurationDialogOptions} [options={}] - Dialog rendering options.
  */
 export default class BaseConfigurationDialog extends FormApplication {
-	constructor(buildConfig, rollConfig={}, options={}) {
+	constructor(buildConfig, rollConfig=[], options={}) {
 		super(null, options);
 
 		/**
