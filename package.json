@@ -1,17 +1,26 @@
 {
 	"scripts": {
 		"cli": "node ./node_modules/@evilgeniusgaming/everyday-heroes-cli/code/cli.mjs",
-		"build": "node ./node_modules/@evilgeniusgaming/everyday-heroes-cli/code/cli.mjs build"
+		"build": "npm run build:code && npm run build:db",
+		"build:code": "rollup --config",
+		"build:db": "node ./node_modules/@evilgeniusgaming/everyday-heroes-cli/code/cli.mjs package pack",
+		"build:styles": "postcss styles/_module.css -o everyday-heroes.css -m",
+		"build:json": "node ./node_modules/@evilgeniusgaming/everyday-heroes-cli/code/cli.mjs package unpack",
+		"lint": "eslint --ext .mjs ./code",
+		"lint:fix": "eslint --ext .mjs ./code --fix",
+		"watch": "rollup --config --watch"
 	},
 	"devDependencies": {
 		"@babel/eslint-parser": "^7.19.1",
 		"@evilgeniusgaming/everyday-heroes-cli": "^0.0.3",
 		"eslint": "^8.41.0",
 		"eslint-plugin-jsdoc": "^40.0.0",
-		"gulp": "^4.0.2",
-		"gulp-eslint7": "^0.3.2",
-		"gulp-if": "^3.0.0",
-		"merge-stream": "^2.0.0",
+		"postcss": "^8.4.31",
+		"postcss-cli": "^10.1.0",
+		"postcss-import": "^15.1.0",
+		"postcss-preset-env": "^9.2.0",
+		"rollup": "^4.0.2",
+		"rollup-plugin-postcss": "^4.0.2",
 		"yargs": "^17.7.1"
 	}
 }

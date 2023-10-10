@@ -1,6 +1,5 @@
 # Build Artifacts
-everyday-heroes-compiled*
-everyday-heroes.lock
+/everyday-heroes.*
 packs/*
 !packs/_source/
 

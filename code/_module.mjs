@@ -5,15 +5,17 @@
  * Issue Tracker: https://github.com/evilgeniusgaming/everyday-heroes/issues
  */
 
-import * as applications from "./code/applications/_module.mjs";
-import * as canvas from "./code/canvas/_module.mjs";
-import config from "./code/config/_module.mjs";
-import * as data from "./code/data/_module.mjs";
-import * as dice from "./code/dice/_module.mjs";
-import * as documents from "./code/documents/_module.mjs";
-import * as enrichers from "./code/enrichers.mjs";
-import * as settings from "./code/settings.mjs";
-import * as utils from "./code/utils.mjs";
+import "../styles/_module.css";
+
+import * as applications from "./applications/_module.mjs";
+import * as canvas from "./canvas/_module.mjs";
+import config from "./config/_module.mjs";
+import * as data from "./data/_module.mjs";
+import * as dice from "./dice/_module.mjs";
+import * as documents from "./documents/_module.mjs";
+import * as enrichers from "./enrichers.mjs";
+import * as settings from "./settings.mjs";
+import * as utils from "./utils.mjs";
 
 globalThis.EverydayHeroes = {
 	applications,
