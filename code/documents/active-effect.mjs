@@ -29,7 +29,7 @@ export default class ActiveEffectEH extends ActiveEffect {
 		// Grab DataField instance for target, if not found, fallback on default Foundry implementation
 		const keyPath = change.key.replace("system.", "");
 		const field = document.system.schema.getField(keyPath);
-		if ( !change.key.startsWith("system.") ) return super.apply(document, change);
+		if ( !change.key.startsWith("system.") || !field ) return super.apply(document, change);
 
 		// Get the current value of the target field
 		const current = foundry.utils.getProperty(document, change.key) ?? null;
