@@ -444,7 +444,7 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 		this.type.label = game.i18n.format("EH.Item.Type.DetailedLabel", {
 			category: CONFIG.EverydayHeroes.equipmentCategories[this.type.category]?.label ?? "",
 			type: game.i18n.localize("EH.Item.Type.Weapon[one]"),
-			subtype: CONFIG.EverydayHeroes.weaponTypes[this.type.value]?.label ?? ""
+			subtype: (this.types ?? CONFIG.EverydayHeroes.weaponTypes)[this.type.value]?.label ?? ""
 		}).trim().replace("  ", " ");
 	}
 

@@ -90,6 +90,12 @@ export default class BasePhysicalSheet extends BaseItemSheet {
 			}
 		}
 
+		// Alternate damage types
+		// Not sure why this is needed, but without it alternate types disappear whenever another property is updated
+		if ( this.item.system.damage?.alternateTypes && !formData.system?.damage?.alternateTypes ) {
+			foundry.utils.setProperty(formData, "system.damage.alternateTypes", Array.from(this.item.system.damage.alternateTypes));
+		}
+
 		// Return the flattened submission data
 		return foundry.utils.flattenObject(formData);
 	}
