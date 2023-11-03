@@ -43,7 +43,7 @@
 							placeholder="{{localize 'EH.Condition.Effects.LabelGeneric'}}">
 					{{/unless}}
 					{{#if level.effect}}
-					<input type="hidden" name="system.levels.{{@index}}.effect" value="{{level.effect.id}}">
+						<input type="hidden" name="system.levels.{{@index}}.effect" value="{{level.effect.id}}">
 						<div class="active-effect-changes">
 							<header>
 								<div class="key">{{ localize "EFFECT.ChangeKey" }}</div>

@@ -43,7 +43,7 @@ export default class ConditionsTemplate {
 		// Higher level, add any required effects
 		else {
 			const conditionData = CONFIG.EverydayHeroes.registration.get("condition", condition);
-			if ( !conditionData ) console.warning(`Condition ${condition} not registered.`);
+			if ( !conditionData ) console.warn(`Condition ${condition} not registered.`);
 			const conditionItem = await fromUuid(conditionData.sources[0]);
 			const toAdd = conditionItem.system.levels.slice(this.conditions[condition] ?? 0, level).map(e => e.effect);
 			const icon = CONFIG.EverydayHeroes.conditions[condition]?.icon;

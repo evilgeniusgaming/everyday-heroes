@@ -254,7 +254,7 @@ function groupedSelectOptions(choices, options) {
  * @returns {boolean}
  */
 function has(context, options) {
-	return foundry.utils.getProperty(context, options) !== undefined;
+	return foundry.utils.hasProperty(context, options);
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
