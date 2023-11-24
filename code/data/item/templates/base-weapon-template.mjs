@@ -50,7 +50,7 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 				short: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Short"}),
 				long: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Long"}),
 				reach: new foundry.data.fields.NumberField({min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Reach"}),
-				units: new foundry.data.fields.StringField({label: "EH.Measurement.Units"})
+				units: new foundry.data.fields.StringField({initial: "foot", label: "EH.Measurement.Units"})
 			}, {label: "EH.Equipment.Trait.Range.Label", hint: "EH.Equipment.Trait.Range.Hint"}),
 			reload: new foundry.data.fields.StringField({
 				label: "EH.Equipment.Trait.Reload.Label", hint: "EH.Equipment.Trait.Reload.Hint"
