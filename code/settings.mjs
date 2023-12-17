@@ -1,5 +1,11 @@
 import { systemLog } from "./utils.mjs";
 
+const requireTitanicScale = () => game.modules.map(m =>
+	m.flags?.["everyday-heroes"]?.requireTitanicScale ?? false
+).some(b => b);
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 /**
  * Register custom keybindings offered by Everyday Heroes.
  */
@@ -80,12 +86,13 @@ export function registerSettings() {
 	});
 
 	// Enable titanic sizes
+	const required = requireTitanicScale();
 	game.settings.register("everyday-heroes", "titanicSizes", {
 		name: "EH.Settings.TitanicSizes.Label",
 		hint: "EH.Settings.TitanicSizes.Hint",
 		scope: "world",
-		config: true,
-		default: false,
+		config: !required,
+		default: required,
 		type: Boolean,
 		requiresReload: true
 	});
@@ -127,4 +134,16 @@ export function applyReduceTransparency(reduceTransparency) {
 	const body = document.querySelector("body");
 	if ( reduceTransparency ) body.classList.add("reduce-transparency");
 	else body.classList.remove("reduce-transparency");
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Ensure titanic sizes are enabled if required.
+ */
+export async function enableTitanicSizes() {
+	if ( !game.user.isGM || !requireTitanicScale() || game.settings.get("everyday-heroes", "titanicSizes") ) return;
+	await game.settings.set("everyday-heroes", "titanicSizes", true);
+	game.socket.emit("reload");
+	foundry.utils.debouncedReload();
 }

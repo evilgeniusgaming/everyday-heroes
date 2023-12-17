@@ -8,7 +8,6 @@
 	text-transform: uppercase;
 }
 .everyday-heroes fieldset :is(input:not([type="checkbox"]), select, .tag-input) {
-	flex: 1 0;
 	border: none;
 	border-radius: 5px;
 	padding-inline: 0.5em;

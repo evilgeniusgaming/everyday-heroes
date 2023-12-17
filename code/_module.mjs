@@ -65,6 +65,7 @@ Hooks.once("i18nInit", function() {
 Hooks.once("ready", function() {
 	if ( game.release.generation === 10 ) applications.compendium.setupLegacyCompendiumApps();
 	config.registration.registerItemTypes();
+	settings.enableTitanicSizes();
 });
 
 Hooks.on("getChatLogEntryContext", documents.ChatMessageEH.getContextOptions);
