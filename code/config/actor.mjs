@@ -811,6 +811,10 @@ export const vehicleProperties = {
 		label: "EH.Weapon.Property.Restricted.Label",
 		hint: "EH.Weapon.Property.Restricted.Hint"
 	},
+	special: {
+		label: "EH.Weapon.Property.Special.Label",
+		hint: "EH.Weapon.Property.Special.Hint"
+	},
 	stable: {
 		label: "EH.Vehicle.Property.Stable.Label",
 		hint: "EH.Vehicle.Property.Stable.Hint"

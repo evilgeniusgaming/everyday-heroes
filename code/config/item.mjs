@@ -397,7 +397,7 @@ preLocalize("equipmentProperties", { keys: ["label", "npcHint"], sort: true });
  */
 export const applicableProperties = {
 	armor: [
-		"awkward", "ballistic", "concealable", "small", "stabProof"
+		"awkward", "ballistic", "concealable", "restricted", "small", "stabProof"
 	],
 	explosive: [
 		"blinding", "deafening", "disguised", "grenade", "heavy", "illuminating", "improvised", "indirect", "loud", "restricted",

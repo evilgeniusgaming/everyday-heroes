@@ -909,6 +909,8 @@
 "Vehicle.Property.Railed.Hint": "Railed vehicles such as trains travel using steel wheels on steel rails. They cannot suffer the Blown Tires condition.",
 "Vehicle.Property.Stable.Label": "Stable",
 "Vehicle.Property.Stable.Hint": "Attacks made while this vehicle is in motion do not suffer disadvantage due to that movement.",
+"Vehicle.Property.Special.Label": "Special",
+"Vehicle.Property.Special.Hint": "This vehicle has additional detailed rules listed in its description.",
 "Vehicle.Property.Tracked.Label": "Tracked",
 "Vehicle.Property.Tracked.Hint": "Tracked vehicles drive on large metal belts sitting on metal wheels. They cannot suffer the Blown Tires condition.",
 "Vehicle.Roll.CrashCheck.Label": "Crash Check",
