@@ -1,5 +1,5 @@
+import ChallengeConfigurationDialog from "../applications/dice/challenge-configuration-dialog.mjs";
 import BaseRoll from "./base-roll.mjs";
-import ChallengeConfigurationDialog from "./challenge-configuration-dialog.mjs";
 import { areKeysPressed } from "./utils.mjs";
 
 /**
@@ -46,7 +46,7 @@ export default class ChallengeRoll extends BaseRoll {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	static ConfigurationDialog = ChallengeConfigurationDialog;
+	static DefaultConfigurationDialog = ChallengeConfigurationDialog;
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Static Constructor                       */

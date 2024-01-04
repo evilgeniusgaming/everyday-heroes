@@ -1,4 +1,4 @@
-import BaseConfigurationDialog from "./base-configuration-dialog.mjs";
+import BaseConfigurationDialog from "../applications/dice/base-configuration-dialog.mjs";
 
 /**
  * Base roll configuration data.
@@ -40,6 +40,7 @@ import BaseConfigurationDialog from "./base-configuration-dialog.mjs";
  *
  * @typedef {object} BaseDialogConfiguration
  * @property {boolean} [configure=true] - Should the roll configuration dialog be displayed?
+ * @property {typeof BaseConfigurationDialog} [applicationClass] - Alternate configuration dialog to use.
  * @property {BaseRollBuilder} [rollBuilder] - Method for constructing a roll from roll configuration.
  * @property {BaseConfigurationDialogOptions} [options] - Additional options passed through to the configuration dialog.
  */
@@ -81,7 +82,7 @@ export default class BaseRoll extends Roll {
 	 * Application to use for configuring this roll.
 	 * @type {typeof BaseConfigurationDialog}
 	 */
-	static ConfigurationDialog = BaseConfigurationDialog;
+	static DefaultConfigurationDialog = BaseConfigurationDialog;
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Static Constructor                       */
@@ -111,8 +112,9 @@ export default class BaseRoll extends Roll {
 
 		let rolls;
 		if ( options.configure !== false ) {
+			const DialogClass = options.applicationClass ?? this.DefaultConfigurationDialog;
 			try {
-				rolls = await this.ConfigurationDialog.configure(config, options);
+				rolls = await DialogClass.configure(config, options);
 			} catch(err) {
 				if ( !err ) return;
 				throw err;

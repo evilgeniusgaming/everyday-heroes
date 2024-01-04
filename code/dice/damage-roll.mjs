@@ -1,5 +1,5 @@
+import DamageConfigurationDialog from "../applications/dice/damage-configuration-dialog.mjs";
 import BaseRoll from "./base-roll.mjs";
-import DamageConfigurationDialog from "./damage-configuration-dialog.mjs";
 import { areKeysPressed } from "./utils.mjs";
 
 /**
@@ -40,7 +40,7 @@ export default class DamageRoll extends BaseRoll {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	static ConfigurationDialog = DamageConfigurationDialog;
+	static DefaultConfigurationDialog = DamageConfigurationDialog;
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

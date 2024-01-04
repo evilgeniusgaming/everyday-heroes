@@ -1,4 +1,5 @@
 import RestDialog from "../applications/actor/dialogs/rest-dialog.mjs";
+import SkillConfigurationDialog from "../applications/dice/skill-configuration-dialog.mjs";
 import { buildMinimum, buildRoll } from "../dice/utils.mjs";
 import { numberFormat, simplifyBonus, systemLog } from "../utils.mjs";
 import { DocumentMixin } from "./mixin.mjs";
@@ -1226,6 +1227,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 		}, message);
 
 		const dialogConfig = foundry.utils.mergeObject({
+			applicationClass: SkillConfigurationDialog,
 			buildConfig: prepareSkillConfig,
 			options: {
 				chooseAbility: true,

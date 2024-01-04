@@ -7,7 +7,6 @@ export default class ChallengeConfigurationDialog extends BaseConfigurationDialo
 
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			template: "systems/everyday-heroes/templates/dice/challenge-roll-dialog.hbs",
 			rollType: CONFIG.Dice.ChallengeRoll
 		});
 	}
@@ -22,14 +21,6 @@ export default class ChallengeConfigurationDialog extends BaseConfigurationDialo
 			normal: { label: game.i18n.localize("EH.Dice.Action.Normal") },
 			disadvantage: { label: game.i18n.localize("EH.Dice.Action.Disadvantage") }
 		};
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	getData(options={}) {
-		return foundry.utils.mergeObject({
-			selectedAbility: this.rolls[0].data.abilityId
-		}, super.getData(options));
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
