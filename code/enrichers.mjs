@@ -278,6 +278,7 @@ async function enrichSkill(config, label, options) {
 
 /**
  * Parse the enriched embed and provide the appropriate content.
+ * Backported version from v12, to be removed when v11 support is dropped.
  * @param {object} config - Configuration data.
  * @param {string} [label] - Optional label to replace default caption/text.
  * @param {EnrichmentOptions} options - Options provided to customize text enrichment.
@@ -292,6 +293,8 @@ async function enrichEmbed(config, label, options) {
 		return null;
 	}
 
+	config = foundry.utils.mergeObject({ cite: true, caption: true, inline: false }, config);
+
 	for ( const value of config.values ) {
 		if ( config.uuid ) break;
 		try {
@@ -301,12 +304,21 @@ async function enrichEmbed(config, label, options) {
 	}
 
 	config.doc = await fromUuid(config.uuid, { relative: options.relativeTo });
+	// Special backported handling of journal pages
 	if ( config.doc instanceof JournalEntryPage ) {
 		switch ( config.doc.type ) {
 			case "image": return embedImagePage(config, label, options);
 			case "text": return embedTextPage(config, label, options);
 		}
 	}
+
+	// Forward everything else to documents
+	else if ( foundry.utils.getType(config.doc.toEmbed) === "function" ) {
+		const doc = config.doc;
+		delete config.doc;
+		return doc.toEmbed({ ...config, label }, options);
+	}
+
 	return null;
 }
 

@@ -19,7 +19,7 @@ import MappingField from "../fields/mapping-field.mjs";
  *
  * @copyright Adapted from the [dnd5e system]{@link https://github.com/foundryvtt/dnd5e}
  */
-export default class SystemDataModel extends foundry.abstract.DataModel {
+export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 
 	/**
 	 * Metadata that describes a system data type.
