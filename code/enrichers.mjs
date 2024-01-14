@@ -1,19 +1,28 @@
 import { simplifyBonus, systemLog } from "./utils.mjs";
 
+const MAX_EMBED_DEPTH = 5;
+
 /**
  * Set up the custom text enricher.
  */
 export function registerCustomEnrichers() {
-	CONFIG.TextEditor.enrichers.push({
-		pattern: /@FallbackUUID\[(?<uuid>[^\]]+)\]{(?<label>[^}]+)}/g,
-		enricher: enrichFallbackContentLink
-	});
-	CONFIG.TextEditor.enrichers.push({
-		pattern: /@(?<type>Check|Save|Skill)\[(?<config>[^\]]+)\](?:{(?<label>[^}]+)})?/g,
-		enricher: enrichString
-	});
+	CONFIG.TextEditor.enrichers.push(
+		{
+			pattern: /@FallbackUUID\[(?<uuid>[^\]]+)\]{(?<label>[^}]+)}/g,
+			enricher: enrichFallbackContentLink
+		},
+		{
+			pattern: /@(?<type>Check|Save|Skill)\[(?<config>[^\]]+)\](?:{(?<label>[^}]+)})?/gi,
+			enricher: enrichLegacyString
+		},
+		{
+			// TODO: Remove when v11 support is dropped
+			pattern: /@(?<type>Embed)\[(?<config>[^\]]+)](?:{(?<label>[^}]+)})?/gi,
+			enricher: enrichString
+		}
+	);
 
-	document.querySelector("body").addEventListener("click", rollAction);
+	document.body.addEventListener("click", rollAction);
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -26,7 +35,7 @@ export function registerCustomEnrichers() {
  * @returns {Promise<HTMLElement|null>} - An HTML element to insert in place of the matched text or null to
  *                                        indicate that no replacement should be made.
  */
-export async function enrichFallbackContentLink(match, options) {
+async function enrichFallbackContentLink(match, options) {
 	const { uuid, label } = match.groups;
 	if ( fromUuidSync(uuid) ) return await TextEditor._createContentLink([null, "UUID", uuid, null, label], options);
 	const span = document.createElement("span");
@@ -44,13 +53,13 @@ export async function enrichFallbackContentLink(match, options) {
  * @returns {Promise<HTMLElement|null>} - An HTML element to insert in place of the matched text or null to
  *                                        indicate that no replacement should be made.
  */
-export async function enrichString(match, options) {
+async function enrichLegacyString(match, options) {
 	let { type, config, label } = match.groups;
-	config = prepareConfig(config);
-	switch (type) {
-		case "Check": return enrichCheck(config, label, options);
-		case "Save": return enrichSave(config, label, options);
-		case "Skill": return enrichSkill(config, label, options);
+	config = prepareLegacyConfig(config);
+	switch ( type.toLowerCase() ) {
+		case "check": return enrichCheck(config, label, options);
+		case "save": return enrichSave(config, label, options);
+		case "skill": return enrichSkill(config, label, options);
 	}
 	return null;
 }
@@ -58,11 +67,32 @@ export async function enrichString(match, options) {
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
- * Format the provided configuration string into a configuration object.
+ * Parse the enriched string and provide the appropriate content.
+ * @param {RegExpMatchArray} match - The regular expression match result.
+ * @param {EnrichmentOptions} options - Options provided to customize text enrichment.
+ * @returns {Promise<HTMLElement|null>} - An HTML element to insert in place of the matched text or null to
+ *                                        indicate that no replacement should be made.
+ */
+async function enrichString(match, options) {
+	let { type, config, label } = match.groups;
+	config = prepareConfig(config);
+	switch ( type.toLowerCase() ) {
+		case "check": return enrichCheck(config, label, options);
+		case "save": return enrichSave(config, label, options);
+		case "skill": return enrichSkill(config, label, options);
+		case "embed": return enrichEmbed(config, label, options);
+	}
+	return null;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Format legacy configuration strings into a configuration object.
  * @param {string} raw - Raw configuration string.
  * @returns {object} - Configuration options formatted into an object.
  */
-function prepareConfig(raw) {
+function prepareLegacyConfig(raw) {
 	if ( !raw ) return {};
 	const split = raw.split("|");
 	const config = {};
@@ -76,7 +106,52 @@ function prepareConfig(raw) {
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-/*  Enrichers                                */
+
+/**
+ * Format the provided configuration string into a configuration object.
+ * @param {string} raw - Matched configuration string.
+ * @returns {object} - Configuration options formatted into an object.
+ */
+function prepareConfig(match) {
+	const config = { _config: match, values: [] };
+	for ( const part of match.match(/(?:[^\s"]+|"[^"]*")+/g) ) {
+		if ( !part ) continue;
+		const [key, value] = part.split("=");
+		const valueLower = value?.toLowerCase();
+		if ( value === undefined ) config.values.push(key.replace(/(^"|"$)/g, ""));
+		else if ( ["true", "false"].includes(valueLower) ) config[key] = valueLower === "true";
+		else if ( Number.isNumeric(value) ) config[key] = Number(value);
+		else config[key] = value.replace(/(^"|"$)/g, "");
+	}
+	return config;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Element Creation                         */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Create a rollable link.
+ * @param {string} label - Label to display.
+ * @param {object} dataset
+ * @param {string} dataset.type - Type of rolling action to perform (e.g. `check`, `save`, `skill`).
+ * @param {string} dataset.ability - Ability key to roll (e.g. `dex`, `str`).
+ * @param {string} dataset.skill - Skill key to roll (e.g. `acro`, `dece`).
+ * @param {number} dataset.dc - DC of the roll.
+ * @returns {HTMLElement}
+ */
+function createRollLink(label, dataset) {
+	const link = document.createElement("a");
+	link.classList.add("roll-link");
+	for ( const [key, value] of Object.entries(dataset) ) {
+		if ( value ) link.dataset[key] = value;
+	}
+	link.innerHTML = `<i class="fa-solid fa-dice-d20"></i> ${label}`;
+	return link;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Check & Save Enrichers                   */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
@@ -95,7 +170,7 @@ function prepareConfig(raw) {
  *
  * TODO: Add some examples
  */
-export async function enrichCheck(config, label, options) {
+async function enrichCheck(config, label, options) {
 	let { _: ability, skill, dc } = config;
 	dc = simplifyBonus(dc, options.rollData ?? {});
 
@@ -149,7 +224,7 @@ export async function enrichCheck(config, label, options) {
  * </a>
  * ```
  */
-export async function enrichSave(config, label, options) {
+async function enrichSave(config, label, options) {
 	let { _: ability, dc } = config;
 	dc = simplifyBonus(dc, options.rollData ?? {});
 
@@ -182,7 +257,7 @@ export async function enrichSave(config, label, options) {
  *
  * TODO: Add some examples
  */
-export async function enrichSkill(config, label, options) {
+async function enrichSkill(config, label, options) {
 	let { _: skill, dc } = config;
 	dc = simplifyBonus(dc, options.rollData ?? {});
 
@@ -198,25 +273,111 @@ export async function enrichSkill(config, label, options) {
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Embed Enricher                           */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
- * Create a rollable link.
- * @param {string} label - Label to display.
- * @param {object} dataset
- * @param {string} dataset.type - Type of rolling action to perform (e.g. `check`, `save`, `skill`).
- * @param {string} dataset.ability - Ability key to roll (e.g. `dex`, `str`).
- * @param {string} dataset.skill - Skill key to roll (e.g. `acro`, `dece`).
- * @param {number} dataset.dc - DC of the roll.
- * @returns {HTMLElement}
+ * Parse the enriched embed and provide the appropriate content.
+ * @param {object} config - Configuration data.
+ * @param {string} [label] - Optional label to replace default caption/text.
+ * @param {EnrichmentOptions} options - Options provided to customize text enrichment.
+ * @returns {HTMLElement|null} - An HTML link if the check could be built, otherwise null.
  */
-export function createRollLink(label, dataset) {
-	const link = document.createElement("a");
-	link.classList.add("roll-link");
-	for ( const [key, value] of Object.entries(dataset) ) {
-		if ( value ) link.dataset[key] = value;
+async function enrichEmbed(config, label, options) {
+	options._embedDepth ??= 0;
+	if ( options._embedDepth > MAX_EMBED_DEPTH ) {
+		console.warn(
+			`Embed enrichers are restricted to ${MAX_EMBED_DEPTH} levels deep. ${config._input} cannot be enriched fully.`
+		);
+		return null;
 	}
-	link.innerHTML = `<i class="fa-solid fa-dice-d20"></i> ${label}`;
-	return link;
+
+	for ( const value of config.values ) {
+		if ( config.uuid ) break;
+		try {
+			const parsed = foundry.utils.parseUuid(value);
+			if ( parsed.documentId ) config.uuid = value;
+		} catch(err) {}
+	}
+
+	config.doc = await fromUuid(config.uuid, { relative: options.relativeTo });
+	if ( config.doc instanceof JournalEntryPage ) {
+		switch ( config.doc.type ) {
+			case "image": return embedImagePage(config, label, options);
+			case "text": return embedTextPage(config, label, options);
+		}
+	}
+	return null;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Embed an image page.
+ * @param {object} config - Configuration data.
+ * @param {string} [label] - Optional label to replace the default caption.
+ * @param {EnrichmentOptions} options - Options provided to customize text enrichment.
+ * @returns {HTMLElement|null} - An HTML figure containing the image, caption from the image page or a custom
+ *                               caption, and a link to the source if it could be built, otherwise null.
+ */
+function embedImagePage(config, label, options) {
+	const showCaption = config.caption !== false;
+	const showCite = config.cite !== false;
+	const caption = label || config.doc.image.caption || config.doc.name;
+
+	const figure = document.createElement("figure");
+	if ( config.classes ) figure.className = config.classes;
+	figure.classList.add("content-embed");
+	figure.innerHTML = `<img src="${config.doc.src}" alt="${config.alt || caption}">`;
+
+	if ( showCaption || showCite ) {
+		const figcaption = document.createElement("figcaption");
+		if ( showCaption ) figcaption.innerHTML += `<strong class="embed-caption">${caption}</strong>`;
+		if ( showCite ) figcaption.innerHTML += `<cite>${config.doc.toAnchor().outerHTML}</cite>`;
+		figure.insertAdjacentElement("beforeend", figcaption);
+	}
+	return figure;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Embed a text page.
+ * @param {object} config - Configuration data.
+ * @param {string} [label] - Optional label to replace default text.
+ * @param {EnrichmentOptions} options - Options provided to customize text enrichment.
+ * @returns {HTMLElement|null} - An HTML element containing the content from the given page and a link to the
+ *                               source if it could be built, otherwise null.
+ */
+async function embedTextPage(config, label, options) {
+	options = { ...options, _embedDepth: options._embedDepth + 1, relativeTo: config.doc };
+	config.inline ??= config.values.includes("inline");
+
+	const enrichedPage = await TextEditor.enrichHTML(config.doc.text.content, options);
+	if ( config.inline ) {
+		const section = document.createElement("section");
+		if ( config.classes ) section.className = config.classes;
+		section.classList.add("content-embed");
+		section.innerHTML = enrichedPage;
+		return section;
+	}
+
+	const showCaption = config.caption !== false;
+	const showCite = config.cite !== false;
+	const caption = label || config.doc.name;
+	const figure = document.createElement("figure");
+	figure.innerHTML = enrichedPage;
+
+	if ( config.classes ) figure.className = config.classes;
+	figure.classList.add("content-embed");
+	if ( showCaption || showCite ) {
+		const figcaption = document.createElement("figcaption");
+		if ( showCaption ) figcaption.innerHTML += `<strong class="embed-caption">${caption}</strong>`;
+		if ( showCite ) figcaption.innerHTML += `<cite>${config.doc.toAnchor().outerHTML}</cite>`;
+		figure.insertAdjacentElement("beforeend", figcaption);
+	}
+
+	return figure;
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -228,7 +389,7 @@ export function createRollLink(label, dataset) {
  * @param {Event} event - The click event triggering the action.
  * @returns {Promise|void}
  */
-export function rollAction(event) {
+function rollAction(event) {
 	let target = event.target;
 	if ( !target.classList.contains("roll-link") ) target = target.closest(".roll-link");
 	if ( !target ) return;

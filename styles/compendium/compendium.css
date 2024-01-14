@@ -14,42 +14,290 @@ figure.company-logo img {
 /*  Journals                                 */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) :is(h1, h2, h3, h4:not(.window-title)) {
-	font-weight: bold;
-	text-transform: uppercase;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) :is(h1, h2, h3, h4:not(.window-title), h5):not(:first-child) {
-	margin-block-start: 1rem;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) :is(h1, h2) {
-	border: none;
-	color: var(--eh-text-color-red);
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) h1 {
-	font-size: var(--font-size-48);
-	text-align: center;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) h2 {
-	font-size: var(--font-size-32);
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) h3 {
-	border-block-end: 4px solid var(--eh-border-color-strong);
-	font-size: var(--font-size-24);
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) h4:not(.window-title) {
-	font-size: var(--font-size-18);
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) h5 {
-	margin-block-end: 0;
-	text-transform: uppercase;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) :is(h1, h2, h3, h4:not(.window-title)) strong {
-	color: var(--eh-text-color-red);
-	font-weight: bolder;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) strong.ability {
-	color: var(--eh-text-color-red);
-	text-transform: uppercase;
+:is(.journal-entry-page, .everyday-heroes.sheet .editor) {
+	h1, h2, h3, h4:not(.window-title) {
+		font-weight: bold;
+		text-transform: uppercase;
+
+		strong {
+			color: var(--eh-text-color-red);
+			font-weight: bolder;
+		}
+	}
+	:is(h1, h2, h3, h4:not(.window-title), h5):not(:first-child) {
+		margin-block-start: 1rem;
+	}
+	h1, h2 {
+		border: none;
+		color: var(--eh-text-color-red);
+	}
+	h1 {
+		font-size: var(--font-size-48);
+		text-align: center;
+	}
+	h2 {
+		font-size: var(--font-size-32);
+	}
+	h3 {
+		border-block-end: 4px solid var(--eh-border-color-strong);
+		font-size: var(--font-size-24);
+	}
+	h4:not(.window-title) {
+		font-size: var(--font-size-18);
+	}
+	h5 {
+		margin-block-end: 0;
+		text-transform: uppercase;
+	}
+	strong.ability {
+		color: var(--eh-text-color-red);
+		text-transform: uppercase;
+	}
+
+	p:empty:has(+ .content-embed), .content-embed + p:empty {
+		display: none;
+	}
+
+	ol li::marker {
+		font-size: 1.1em;
+		font-weight: bold;
+		color: var(--eh-text-color-red);
+	}
+	ol.alphabetic {
+		list-style-type: upper-alpha;
+	}
+
+	.callout {
+		margin: 1em 2em;
+		border: 3px solid var(--eh-border-color-strong);
+		border-radius: 40px;
+		padding: 2em;
+
+		h5 {
+			margin-block: 0.25em;
+			font-size: var(--font-size-16);
+			text-align: center;
+			text-transform: uppercase;
+		}
+	}
+
+	.read-aloud {
+		margin: 0;
+		border: 4px double var(--eh-border-color-read-aloud);
+		padding: 0.5em;
+		background-color: var(--eh-background-color-read-aloud);
+		font-style: normal;
+
+		& + .read-aloud {
+			margin-block-start: 0.5em;
+		}
+		h5 {
+			margin-block-start: 0;
+			margin-inline: -0.5em;
+			border-block-end: 4px double var(--eh-border-color-read-aloud);
+			padding-inline: 0.5em;
+			font-size: unset;
+		}
+		p:first-child {
+			margin-block-start: 0;
+		}
+		p:last-child {
+			margin-block-end: 0;
+		}
+	}
+
+	.journal-sheet strong.archetype {
+		color: var(--eh-text-color-red);
+		text-transform: uppercase;
+	}
+
+	q.character {
+		color: var(--eh-text-color-character-quote);
+		font-style: italic;
+	}
+
+	p.header q, q.header {
+		font-family: serif;
+		font-size: var(--font-size-16);
+		font-style: italic;
+		font-weight: 400;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Special Headers                          */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	h3.arrowed {
+		border: none;
+	}
+	h3.arrowed::before {
+		content: "◀︎";
+		display: inline-block;
+		position: relative;
+		top: -0.4em;
+		padding-inline-end: 0.65em;
+		font-size: 0.5em;
+	}
+	h3.arrowed::after {
+		content: "▶︎";
+		display: inline-block;
+		position: relative;
+		top: -0.15em;
+		padding-inline-start: 0.5em;
+		font-size: 0.65em;
+	}
+
+	:is(h3, h4).rounded {
+		margin-block-start: 0.5em;
+		border: none;
+		border-top-left-radius: 1em;
+		border-top-right-radius: 1em;
+		color: var(--eh-text-color-white);
+		background-color: var(--eh-background-color-blue);
+		line-height: 1.5em;
+		text-align: center;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Table                                    */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	table {
+		caption {
+			margin-block-end: 0.5em;
+			color: var(--eh-text-color-red);
+			font-size: var(--font-size-20);
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+		thead {
+			background: none;
+		}
+		th {
+			color: var(--eh-text-color-black);
+			font-weight: bold;
+			text-align: center;
+			text-shadow: none;
+			text-transform: uppercase;
+		}
+	}
+	table.full {
+		border: none;
+		background: none;
+
+		td, th {
+			padding: 0.5em;
+		}
+		tr:not(:last-of-type) {
+			border-block-end: 1px solid var(--eh-border-color-strong);
+		}
+		tbody {
+			tr.dark, tr:not(.dark, .light):nth-of-type(odd) {
+				background-color: rgba(214, 228, 229, 0.5);
+			}
+			tr.light, tr:not(.dark, .light):nth-of-type(even) {
+				background-color: rgba(255, 255, 255, 0.5);
+			}
+			th[colspan] {
+				padding-block: 1em;
+				background-color: rgba(247, 241, 193, 0.5);
+			}
+		}
+	}
+
+	table.full.internal-borders thead {
+		border: none;
+	}
+	table.full.internal-borders tr:not(:last-of-type) {
+		border-block: none;
+	}
+	table.full.internal-borders :is(th, td):not(:last-child) {
+		border-inline-end: 4px double var(--eh-border-color-weak);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Callout Tables                           */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	table:is(.yellow, .blue, .red) {
+		width: calc(100% - 6em);
+		overflow: clip;
+		margin: 3em;
+		border: none;
+		border-collapse: separate;
+		border-radius: 40px;
+		border-spacing: 0;
+		background: none;
+	
+		.narrow {
+			width: calc(100% - 16em);
+			margin-inline: 8em;
+		}
+		.wide {
+			width: calc(100% - 2em);
+			margin-inline: 1em;
+		}
+	
+		thead {
+			background: none;
+		}
+		:is(td, th) {
+			border: none;
+		}
+		:is(thead, tbody) tr:first-child :is(td, th) {
+			border-block-start: 4px solid var(--eh-border-color-strong);
+			padding-block-start: 1em;
+		}
+		thead ~ tbody tr:first-child :is(td, th) {
+			border-block-start: none;
+			padding-block-start: 0;
+		}
+		:is(thead, tbody) tr :is(td, th):first-child {
+			border-inline-start: 4px solid var(--eh-border-color-strong);
+			padding-inline-start: 2em;
+		}
+		:is(thead, tbody) tr :is(td, th):last-child {
+			border-inline-end: 4px solid var(--eh-border-color-strong);
+			padding-inline-end: 2em;
+		}
+		:is(thead, tbody) tr:first-child :is(td, th):first-child {
+			border-top-left-radius: 40px;
+		}
+		thead ~ tbody tr:first-child :is(td, th):first-child {
+			border-top-left-radius: 0;
+		}
+		:is(thead, tbody) tr:first-child :is(td, th):last-child {
+			border-top-right-radius: 40px;
+		}
+		thead ~ tbody tr:first-child :is(td, th):last-child {
+			border-top-right-radius: 0;
+		}
+		tbody tr:last-child :is(td, th) {
+			border-block-end: 4px solid var(--eh-border-color-strong);
+			padding-block-end: 1em;
+		}
+		tbody tr :is(td, th):first-child {
+			border-inline-start: 4px solid var(--eh-border-color-strong);
+			padding-inline-start: 2em;
+		}
+		tbody tr :is(td, th):last-child {
+			border-inline-end: 4px solid var(--eh-border-color-strong);
+			padding-inline-end: 2em;
+		}
+		tbody tr:last-child :is(td, th):first-child {
+			border-bottom-left-radius: 40px;
+		}
+		tbody tr:last-child :is(td, th):last-child {
+			border-bottom-right-radius: 40px;
+		}
+		th, td {
+			padding-inline: 0.5em;
+			&:not(:last-child) { border-inline-end: 4px double var(--eh-border-color-weak); }
+		}
+		table:is(.yellow, .blue, .red).narrow td {
+			text-align: center;
+		}
+	}
 }
 
 ul {
@@ -62,242 +310,4 @@ ul {
 .everyday-heroes.sheet ul.multi-column-list {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-}
-
-ol li::marker {
-	font-size: 1.1em;
-	font-weight: bold;
-	color: var(--eh-text-color-red);
-}
-ol.alphabetic {
-	list-style-type: upper-alpha;
-}
-
-.callout {
-	margin: 1em 2em;
-	border: 3px solid var(--eh-border-color-strong);
-	border-radius: 40px;
-	padding: 2em;
-}
-.callout h5 {
-	margin-block: 0.25em;
-	font-size: var(--font-size-16);
-	text-align: center;
-	text-transform: uppercase;
-}
-
-.read-aloud {
-	margin: 0;
-	border: 4px double var(--eh-border-color-read-aloud);
-	padding: 0.5em;
-	background-color: var(--eh-background-color-read-aloud);
-	font-style: normal;
-}
-.read-aloud + .read-aloud {
-	margin-block-start: 0.5em;
-}
-.read-aloud h5 {
-	margin-block-start: 0;
-	margin-inline: -0.5em;
-	border-block-end: 4px double var(--eh-border-color-read-aloud);
-	padding-inline: 0.5em;
-	font-size: unset;
-}
-.read-aloud p:first-child {
-	margin-block-start: 0;
-}
-.read-aloud p:last-child {
-	margin-block-end: 0;
-}
-
-.journal-sheet strong.archetype {
-	color: var(--eh-text-color-red);
-	text-transform: uppercase;
-}
-
-q.character {
-	color: var(--eh-text-color-character-quote);
-	font-style: italic;
-}
-
-p.header q, q.header {
-	font-family: serif;
-	font-size: var(--font-size-16);
-	font-style: italic;
-	font-weight: 400;
-}
-
-/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-/*  Special Headers                          */
-/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-h3.arrowed {
-	border: none;
-}
-h3.arrowed::before {
-	content: "◀︎";
-	display: inline-block;
-	position: relative;
-	top: -0.4em;
-	padding-inline-end: 0.65em;
-	font-size: 0.5em;
-}
-h3.arrowed::after {
-	content: "▶︎";
-	display: inline-block;
-	position: relative;
-	top: -0.15em;
-	padding-inline-start: 0.5em;
-	font-size: 0.65em;
-}
-
-:is(h3, h4).rounded {
-	margin-block-start: 0.5em;
-	border: none;
-	border-top-left-radius: 1em;
-	border-top-right-radius: 1em;
-	color: var(--eh-text-color-white);
-	background-color: var(--eh-background-color-blue);
-	line-height: 1.5em;
-	text-align: center;
-}
-
-/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-/*  Table                                    */
-/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table caption {
-	margin-block-end: 0.5em;
-	color: var(--eh-text-color-red);
-	font-size: var(--font-size-20);
-	font-weight: bold;
-	text-transform: uppercase;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table thead {
-	background: none;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table th {
-	color: var(--eh-text-color-black);
-	font-weight: bold;
-	text-align: center;
-	text-shadow: none;
-	text-transform: uppercase;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table.full {
-	border: none;
-	background: none;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table.full :is(td, th) {
-	padding: 0.5em;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table.full tr:not(:last-of-type) {
-	border-block-end: 1px solid var(--eh-border-color-strong);
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table.full tbody :is(tr.dark, tr:not(.dark, .light):nth-of-type(odd)) {
-	background-color: rgba(214, 228, 229, 0.5);
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table.full tbody :is(tr.light, tr:not(.dark, .light):nth-of-type(even)) {
-	background-color: rgba(255, 255, 255, 0.5);
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table.full tbody th[colspan] {
-	padding-block: 1em;
-	background-color: rgba(247, 241, 193, 0.5);
-}
-
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table.full.internal-borders thead {
-	border: none;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table.full.internal-borders tr:not(:last-of-type) {
-	border-block: none;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table.full.internal-borders :is(th, td):not(:last-child) {
-	border-inline-end: 4px double var(--eh-border-color-weak);
-}
-
-/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-/*  Callout Tables                           */
-/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red) {
-	width: calc(100% - 6em);
-	overflow: clip;
-	margin: 3em;
-	border: none;
-	border-collapse: separate;
-	border-radius: 40px;
-	border-spacing: 0;
-	background: none;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red).narrow {
-	width: calc(100% - 16em);
-	margin-inline: 8em;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red).wide {
-	width: calc(100% - 2em);
-	margin-inline: 1em;
-}
-
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red) thead {
-	background: none;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red) :is(td, th) {
-	border: none;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red) :is(thead, tbody) tr:first-child :is(td, th) {
-	border-block-start: 4px solid var(--eh-border-color-strong);
-	padding-block-start: 1em;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red) thead ~ tbody tr:first-child :is(td, th) {
-	border-block-start: none;
-	padding-block-start: 0;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red) :is(thead, tbody) tr :is(td, th):first-child {
-	border-inline-start: 4px solid var(--eh-border-color-strong);
-	padding-inline-start: 2em;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red) :is(thead, tbody) tr :is(td, th):last-child {
-	border-inline-end: 4px solid var(--eh-border-color-strong);
-	padding-inline-end: 2em;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red) :is(thead, tbody) tr:first-child :is(td, th):first-child {
-	border-top-left-radius: 40px;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red) thead ~ tbody tr:first-child :is(td, th):first-child {
-	border-top-left-radius: 0;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red) :is(thead, tbody) tr:first-child :is(td, th):last-child {
-	border-top-right-radius: 40px;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red) thead ~ tbody tr:first-child :is(td, th):last-child {
-	border-top-right-radius: 0;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red) tbody tr:last-child :is(td, th) {
-	border-block-end: 4px solid var(--eh-border-color-strong);
-	padding-block-end: 1em;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red) tbody tr :is(td, th):first-child {
-	border-inline-start: 4px solid var(--eh-border-color-strong);
-	padding-inline-start: 2em;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red) tbody tr :is(td, th):last-child {
-	border-inline-end: 4px solid var(--eh-border-color-strong);
-	padding-inline-end: 2em;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red) tbody tr:last-child :is(td, th):first-child {
-	border-bottom-left-radius: 40px;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red) tbody tr:last-child :is(td, th):last-child {
-	border-bottom-right-radius: 40px;
-}
-
-
-
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red) :is(th, td) {
-	padding-inline: 0.5em;
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red) :is(th, td):not(:last-child) {
-	border-inline-end: 4px double var(--eh-border-color-weak);
-}
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) table:is(.yellow, .blue, .red).narrow td {
-	text-align: center;
 }
