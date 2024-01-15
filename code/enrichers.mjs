@@ -109,7 +109,7 @@ function prepareLegacyConfig(raw) {
 
 /**
  * Format the provided configuration string into a configuration object.
- * @param {string} raw - Matched configuration string.
+ * @param {string} match - Matched configuration string.
  * @returns {object} - Configuration options formatted into an object.
  */
 function prepareConfig(match) {
@@ -293,7 +293,7 @@ async function enrichEmbed(config, label, options) {
 		return null;
 	}
 
-	config = foundry.utils.mergeObject({ cite: true, caption: true, inline: false }, config);
+	config = foundry.utils.mergeObject({ cite: true, caption: true, inline: config.values.includes("inline") }, config);
 
 	for ( const value of config.values ) {
 		if ( config.uuid ) break;

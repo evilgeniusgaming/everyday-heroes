@@ -1,7 +1,7 @@
 import VehicleSheet from "../../applications/actor/vehicle-sheet.mjs";
 import { buildRoll } from "../../dice/utils.mjs";
 import { numberFormat, simplifyBonus } from "../../utils.mjs";
-import SystemDataModel from "../abstract/system-data-model.mjs";
+import ActorDataModel from "../abstract/actor-data-model.mjs";
 import DocumentContextField from "../fields/document-context-field.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import LocalDocumentField from "../fields/local-document-field.mjs";
@@ -74,7 +74,7 @@ import SizeTemplate from "./templates/size-template.mjs";
  * @property {object} traits.properties - Properties of this vehicle.
  * @property {string} traits.size - Size of the vehicle.
  */
-export default class VehicleData extends SystemDataModel.mixin(ConditionsTemplate, SizeTemplate) {
+export default class VehicleData extends ActorDataModel.mixin(ConditionsTemplate, SizeTemplate) {
 
 	static metadata = {
 		type: "vehicle",

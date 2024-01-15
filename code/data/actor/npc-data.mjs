@@ -1,6 +1,6 @@
 import NPCSheet from "../../applications/actor/npc-sheet.mjs";
 import { numberFormat } from "../../utils.mjs";
-import SystemDataModel from "../abstract/system-data-model.mjs";
+import ActorDataModel from "../abstract/actor-data-model.mjs";
 import DocumentContextField from "../fields/document-context-field.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import LocalDocumentField from "../fields/local-document-field.mjs";
@@ -24,7 +24,7 @@ import SkillsTemplate from "./templates/skills-template.mjs";
  * @mixes {@link SizeTemplate}
  * @mixes {@link SkillsTemplate}
  */
-export default class NPCData extends SystemDataModel.mixin(
+export default class NPCData extends ActorDataModel.mixin(
 	AbilitiesTemplate, ConditionsTemplate, DriverTemplate, InitiativeTemplate,
 	MovementTemplate, SizeTemplate, SkillsTemplate
 ) {

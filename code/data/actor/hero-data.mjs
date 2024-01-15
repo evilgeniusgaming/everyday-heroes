@@ -2,7 +2,7 @@ import HeroSheet from "../../applications/actor/hero-sheet.mjs";
 import AdvancementConfirmationDialog from "../../applications/advancement/advancement-confirmation-dialog.mjs";
 import AdvancementManager from "../../applications/advancement/advancement-manager.mjs";
 import Proficiency from "../../documents/proficiency.mjs";
-import SystemDataModel from "../abstract/system-data-model.mjs";
+import ActorDataModel from "../abstract/actor-data-model.mjs";
 import DocumentContextField from "../fields/document-context-field.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import LocalDocumentField from "../fields/local-document-field.mjs";
@@ -32,7 +32,7 @@ import SkillsTemplate from "./templates/skills-template.mjs";
  * @property {Set<string>} overrides.ability.melee - Abilities to consider in place of `str` for melee attacks.
  * @property {Set<string>} overrides.ability.ranged - Abilities to consider in place of `dex` for ranged attacks.
  */
-export default class HeroData extends SystemDataModel.mixin(
+export default class HeroData extends ActorDataModel.mixin(
 	AbilitiesTemplate, ConditionsTemplate, DriverTemplate, InitiativeTemplate,
 	MovementTemplate, ResourcesTemplate, SkillsTemplate
 ) {
