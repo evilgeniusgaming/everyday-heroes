@@ -9,7 +9,7 @@
   },
   "url": "https://github.com/evilgeniusgaming/everyday-heroes",
   "manifest": "https://raw.githubusercontent.com/evilgeniusgaming/everyday-heroes/main/system.json",
-  "download": "https://github.com/evilgeniusgaming/everyday-heroes/releases/download/release-0.4.8/everyday-heroes-release-0.4.8.zip",
+  "download": "",
   "authors": [
     {
       "name": "Jeff ‘Arbron’ Hitchcock",
@@ -113,7 +113,7 @@
     },
     {
       "name": "rules",
-      "label": "Rules",
+      "label": "Quickstart Guide",
       "path": "./packs/rules",
       "type": "JournalEntry",
       "flags": {
@@ -168,6 +168,15 @@
   "gridUnits": "foot",
   "primaryTokenAttribute": "attributes.hp",
   "flags": {
+    "build": {
+      "includes": [
+        "artwork",
+        "LICENSE",
+        "README.md",
+        "OGL.md",
+        "templates"
+      ]
+    },
 		"hotReload": {
 			"extensions": ["css", "hbs", "json"],
 			"paths": ["everyday-heroes.css", "templates", "lang"]
