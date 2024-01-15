@@ -1,10 +1,10 @@
 {
-  "name": "That's Need to Know",
+  "name": "Handy",
   "type": "specialFeature",
-  "img": "systems/everyday-heroes/artwork/icons/professions/thats-need-to-know.svg",
+  "img": "systems/everyday-heroes/artwork/icons/professions/handy.svg",
   "system": {
     "description": {
-      "value": "<p>Your extensive access to classified government data gives you advantage on Intelligence (Investigation) checks made to gather information about people and organizations.</p>",
+      "value": "<p>Choose a specific trade you focus on. You gain advantage on Intelligence checks for activities performed in the practice of that trade.</p>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -25,7 +25,7 @@
       "recovery": ""
     },
     "identifier": {
-      "value": "thats-need-to-know"
+      "value": "handy"
     },
     "type": {
       "value": "profession"
@@ -38,14 +38,14 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.2.0",
-    "coreVersion": "10.291",
-    "createdTime": 1679451438210,
-    "modifiedTime": 1685307919886,
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1679451024776,
+    "modifiedTime": 1705284044214,
     "lastModifiedBy": "everyday00heroes"
   },
-  "folder": null,
-  "sort": 0,
-  "_id": "b7oggLuw3KfVPK6f",
-  "_key": "!items!b7oggLuw3KfVPK6f"
+  "folder": "MYxj2M3iykW5yESz",
+  "sort": 200000,
+  "_id": "pRPrwBpwdsB1Un1E",
+  "_key": "!items!pRPrwBpwdsB1Un1E"
 }

@@ -1,0 +1,19 @@
+{
+  "name": "Professions",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "i4sKktkVWycTNl0V",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1705283967207,
+    "modifiedTime": 1705283967207,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "_key": "!folders!i4sKktkVWycTNl0V"
+}

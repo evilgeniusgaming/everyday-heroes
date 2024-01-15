@@ -1,10 +1,10 @@
 {
-  "name": "De-escalation",
+  "name": "I'm with the Press",
   "type": "specialFeature",
-  "img": "systems/everyday-heroes/artwork/icons/professions/de-escalation.svg",
+  "img": "systems/everyday-heroes/artwork/icons/professions/im-with-the-press.svg",
   "system": {
     "description": {
-      "value": "<p>You gain advantage on Charisma checks to calm angry people or to persuade someone to show you mercy.</p>",
+      "value": "<p>You gain advantage on Charisma (Persuasion) checks made to convince people to talk with you and answer basic questions. At the GM's discretion, your credentials may allow you to access off-limit areas.</p>",
       "chat": "",
       "source": "Core Rulebook"
     },
@@ -25,7 +25,7 @@
       "recovery": ""
     },
     "identifier": {
-      "value": "de-escalation"
+      "value": "im-with-the-press"
     },
     "type": {
       "value": "profession"
@@ -38,14 +38,14 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.2.0",
-    "coreVersion": "10.291",
-    "createdTime": 1679451748816,
-    "modifiedTime": 1685307906411,
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1679451298861,
+    "modifiedTime": 1705284045289,
     "lastModifiedBy": "everyday00heroes"
   },
-  "folder": null,
-  "sort": 0,
-  "_id": "mzu8T4JWNWtueArm",
-  "_key": "!items!mzu8T4JWNWtueArm"
+  "folder": "MYxj2M3iykW5yESz",
+  "sort": 150000,
+  "_id": "fNJiDLzMvU7qkj8V",
+  "_key": "!items!fNJiDLzMvU7qkj8V"
 }

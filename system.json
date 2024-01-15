@@ -44,11 +44,7 @@
       "path": "./packs/backgrounds-professions",
       "banner": "systems/everyday-heroes/artwork/interface/banners/backgrounds-professions.webp",
       "type": "Item",
-      "flags": {
-        "everyday-heroes": {
-          "sorting": "auto"
-        }
-      }
+      "flags": {}
     },
     {
       "name": "plans-tricks",

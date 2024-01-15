@@ -1,0 +1,19 @@
+{
+  "name": "Backgrounds",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "rsYR6Jqko6mp9CEM",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1705283964004,
+    "modifiedTime": 1705283964004,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "_key": "!folders!rsYR6Jqko6mp9CEM"
+}
