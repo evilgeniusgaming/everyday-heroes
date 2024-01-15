@@ -1,0 +1,19 @@
+{
+  "name": "Plans",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "iZ944EL04M6pfkod",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1705284149748,
+    "modifiedTime": 1705284149748,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "_key": "!folders!iZ944EL04M6pfkod"
+}
