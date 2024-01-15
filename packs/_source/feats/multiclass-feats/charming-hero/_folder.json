@@ -1,0 +1,19 @@
+{
+  "name": "Charming Hero",
+  "sorting": "a",
+  "folder": "pi2bnKX5yq5Dd7ID",
+  "type": "Item",
+  "_id": "XTbev5prBidOvuaG",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": null,
+    "modifiedTime": 1705284348246,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "_key": "!folders!XTbev5prBidOvuaG"
+}

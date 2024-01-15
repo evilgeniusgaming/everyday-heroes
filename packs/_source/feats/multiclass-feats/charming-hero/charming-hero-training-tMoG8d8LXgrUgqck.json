@@ -102,14 +102,14 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.1.0",
-    "coreVersion": "10.291",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
     "createdTime": 1680041343158,
-    "modifiedTime": 1680044312018,
+    "modifiedTime": 1705284358804,
     "lastModifiedBy": "everyday00heroes"
   },
-  "folder": null,
-  "sort": 0,
+  "folder": "XTbev5prBidOvuaG",
+  "sort": 100000,
   "_id": "tMoG8d8LXgrUgqck",
   "_key": "!items!tMoG8d8LXgrUgqck"
 }
