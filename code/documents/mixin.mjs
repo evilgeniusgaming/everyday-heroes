@@ -64,9 +64,9 @@ export const DocumentMixin = Base => class extends Base {
 		const section = document.createElement("section");
 		if ( content instanceof HTMLCollection ) section.append(...content);
 		else section.append(content);
-		if ( foundry.utils.getType(caption) === "string" ) {
+		if ( label && section.children[0] ) {
 			const firstElement = section.children[0];
-			firstElement.innerHTML = `<strong>${caption}.</strong> ${firstElement.innerHTML}`;
+			firstElement.innerHTML = `<strong>${label}.</strong> ${firstElement.innerHTML}`;
 		}
 		return section;
 	}
