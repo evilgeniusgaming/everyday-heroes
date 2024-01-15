@@ -4,7 +4,7 @@
   "description": "The core system for the Everyday Heroes role-playing game.",
   "version": "0.4.8",
   "compatibility": {
-    "minimum": "11.306",
+    "minimum": "11.315",
     "verified": "11"
   },
   "url": "https://github.com/evilgeniusgaming/everyday-heroes",
@@ -137,6 +137,32 @@
           "sorting": "table-of-contents"
         }
       }
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "Everyday Heroes Quickstart",
+      "sorting": "m",
+      "color": "#c7373d",
+      "packs": [
+        "rules",
+        "conditions",
+        "tables",
+        "npcs"
+      ],
+      "folders": [
+        {
+          "name": "Hero Options",
+          "sorting": "m",
+          "packs": [
+            "archetypes-classes",
+            "backgrounds-professions",
+            "plans-tricks",
+            "feats",
+            "equipment"
+          ]
+        }
+      ]
     }
   ],
   "languages": [
