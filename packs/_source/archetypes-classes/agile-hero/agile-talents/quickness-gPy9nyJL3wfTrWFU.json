@@ -1,0 +1,52 @@
+{
+  "name": "Quickness",
+  "type": "talent",
+  "img": "systems/everyday-heroes/artwork/icons/archetypes/quickness.svg",
+  "system": {
+    "description": {
+      "value": "<p>You can take the Dash or Disengage action as a bonus action.</p><p>In addition, during a foot chase, you have advantage on Strength (Athletics) checks made as part of a Gain Ground action.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "bonus",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "formula": "",
+      "recovery": ""
+    },
+    "identifier": {
+      "value": "quickness"
+    },
+    "type": {
+      "value": "archetype",
+      "level": 2
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1679161095715,
+    "modifiedTime": 1705283357777,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "WVoP6AXftn9lN0RF",
+  "sort": 200000,
+  "_id": "gPy9nyJL3wfTrWFU",
+  "_key": "!items!gPy9nyJL3wfTrWFU"
+}

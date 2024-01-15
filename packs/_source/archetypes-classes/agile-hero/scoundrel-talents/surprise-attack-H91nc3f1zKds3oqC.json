@@ -1,0 +1,52 @@
+{
+  "name": "Surprise Attack",
+  "type": "talent",
+  "img": "systems/everyday-heroes/artwork/icons/classes/surprise-attack.svg",
+  "system": {
+    "description": {
+      "value": "<p>You have advantage on attack rolls against any opponent that has not yet taken a turn during this combat.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "formula": "",
+      "recovery": ""
+    },
+    "identifier": {
+      "value": "surprise-attack"
+    },
+    "type": {
+      "value": "class",
+      "level": 3
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1679458778104,
+    "modifiedTime": 1705283634822,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "0WnOR1PFvZvvNy6Z",
+  "sort": 150000,
+  "_id": "H91nc3f1zKds3oqC",
+  "_key": "!items!H91nc3f1zKds3oqC"
+}

@@ -1,0 +1,52 @@
+{
+  "name": "You're Doing It Wrong",
+  "type": "talent",
+  "img": "systems/everyday-heroes/artwork/icons/classes/youre-doing-it-wrong.svg",
+  "system": {
+    "description": {
+      "value": "<p>When an ally that can see and hear you misses with an attack, you can use your reaction to instruct them on the proper technique, allowing them to reroll the attack.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "reaction",
+      "condition": "When an ally that can see and hear you misses with an attack."
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "formula": "",
+      "recovery": ""
+    },
+    "identifier": {
+      "value": "youre-doing-it-wrong"
+    },
+    "type": {
+      "value": "class",
+      "level": 1
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1679516713618,
+    "modifiedTime": 1705283595527,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "LBKDf2g26NDVUvaZ",
+  "sort": 200000,
+  "_id": "jNyWa8AMKVXhc0Zz",
+  "_key": "!items!jNyWa8AMKVXhc0Zz"
+}

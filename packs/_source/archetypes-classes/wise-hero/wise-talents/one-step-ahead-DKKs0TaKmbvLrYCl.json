@@ -1,0 +1,52 @@
+{
+  "name": "One Step Ahead",
+  "type": "talent",
+  "img": "systems/everyday-heroes/artwork/icons/archetypes/one-step-ahead.svg",
+  "system": {
+    "description": {
+      "value": "<p>You can choose not to fall Prone when you take the Dive for Cover reaction.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "formula": "",
+      "recovery": ""
+    },
+    "identifier": {
+      "value": "one-step-ahead"
+    },
+    "type": {
+      "value": "archetype",
+      "level": 2
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1679162464108,
+    "modifiedTime": 1705283455259,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "f3Ajt1sUbkbDlJuK",
+  "sort": 150000,
+  "_id": "DKKs0TaKmbvLrYCl",
+  "_key": "!items!DKKs0TaKmbvLrYCl"
+}

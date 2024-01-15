@@ -1,0 +1,81 @@
+{
+  "name": "Watch Your Six",
+  "type": "talent",
+  "img": "systems/everyday-heroes/artwork/icons/classes/watch-your-six.svg",
+  "system": {
+    "description": {
+      "value": "<p>You gain a +1 bonus to your Defense.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "formula": "",
+      "recovery": ""
+    },
+    "identifier": {
+      "value": "watch-your-six"
+    },
+    "type": {
+      "value": "class",
+      "level": 1
+    }
+  },
+  "effects": [
+    {
+      "label": "Watch Your Six",
+      "icon": "systems/everyday-heroes/artwork/icons/classes/watch-your-six.svg",
+      "origin": "Item.7DhLR4tn559VRset",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "_id": "LoyRtVHs2K4055lr",
+      "changes": [
+        {
+          "key": "system.attributes.defense.bonus",
+          "mode": 2,
+          "value": "+1"
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "sort": 0,
+      "_key": "!items.effects!zXE52cIiXEk2dEYE.LoyRtVHs2K4055lr"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1679515434790,
+    "modifiedTime": 1705283530526,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "lQlKckVIpypK1Dk4",
+  "sort": 200000,
+  "_id": "zXE52cIiXEk2dEYE",
+  "_key": "!items!zXE52cIiXEk2dEYE"
+}

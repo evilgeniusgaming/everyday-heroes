@@ -1,0 +1,140 @@
+{
+  "name": "Wise",
+  "type": "archetype",
+  "img": "systems/everyday-heroes/artwork/icons/archetypes/wise.webp",
+  "system": {
+    "description": {
+      "value": "<p><em><q>Yes, violence can put an end to violence, but peace can only be created through love.</q> <strong>—Zhang Wei</strong></em></p><p>You are known as a person who thinks before you act. You observe the world around you and move with its rhythms instead of struggling against the tide. By first knowing yourself, you can reach out and make the world a better place.</p><p>Wise Heroes are thematically diverse, but they all have a Focus mechanic that can be spent to activate special actions and abilities.</p><p><strong>Hit Dice:</strong> 1d10 per hero level</p><p><strong>Starting Hit Points:</strong> 10 + Constitution modifier</p><p><strong>Hit Points at Higher Levels:</strong> 1d10 (or 6) + Constitution modifier per hero level after 1st</p><p><strong>Defense (Know Your Enemy):</strong> 10 + (Wisdom or Dexterity) modifier + Wise Hero Defense bonus</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "advancement": [
+      {
+        "_id": "DE2sVBWPKZ89GiHl",
+        "_type": "HitPoints",
+        "identifier": "",
+        "configuration": {
+          "denomination": 10
+        },
+        "flags": {},
+        "title": "",
+        "value": {}
+      },
+      {
+        "_id": "qWaQ89QEWGJjJH8U",
+        "_type": "Defense",
+        "identifier": "",
+        "configuration": {
+          "abilities": [
+            "dex",
+            "wis"
+          ],
+          "scale": {
+            "1": {
+              "value": 2
+            },
+            "5": {
+              "value": 3
+            },
+            "9": {
+              "value": 4
+            }
+          }
+        },
+        "value": {},
+        "flags": {},
+        "title": "Know Your Enemy"
+      },
+      {
+        "_id": "4vqZpZqhAd6gcSMX",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.aDG4Bb72P8OReWJp",
+            "Compendium.everyday-heroes.archetypes-classes.iuNFaP8IRHayGtuu"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": "Talents",
+        "value": {}
+      },
+      {
+        "_id": "uMhx8tmP8F6QMyrI",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.DKKs0TaKmbvLrYCl"
+          ]
+        },
+        "level": 2,
+        "flags": {},
+        "title": "Talents",
+        "value": {}
+      },
+      {
+        "_id": "SAxFN0NnZDJuenFd",
+        "_type": "Resource",
+        "identifier": "focus",
+        "configuration": {
+          "recovery": {
+            "period": "sr",
+            "formula": ""
+          },
+          "type": "number",
+          "scale": {
+            "1": {
+              "value": 2
+            },
+            "2": {
+              "value": 3
+            },
+            "3": {
+              "value": 4
+            },
+            "4": {
+              "value": 5
+            },
+            "6": {
+              "value": 6
+            },
+            "7": {
+              "value": 7
+            },
+            "8": {
+              "value": 8
+            },
+            "10": {
+              "value": 9
+            }
+          }
+        },
+        "value": {},
+        "flags": {},
+        "title": "Focus"
+      }
+    ],
+    "identifier": {
+      "value": "wise"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1679162391938,
+    "modifiedTime": 1705283417934,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "KCGqmbSGd0YXJsWG",
+  "sort": 100000,
+  "_id": "hdXk8RrABBGHEeTR",
+  "_key": "!items!hdXk8RrABBGHEeTR"
+}

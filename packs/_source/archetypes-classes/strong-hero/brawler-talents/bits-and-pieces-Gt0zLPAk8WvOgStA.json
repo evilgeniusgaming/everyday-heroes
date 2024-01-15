@@ -1,0 +1,52 @@
+{
+  "name": "Bits and Pieces",
+  "type": "talent",
+  "img": "systems/everyday-heroes/artwork/icons/classes/bits-and-pieces.svg",
+  "system": {
+    "description": {
+      "value": "<p>Immediately after you use your Smash talent with a melee attack that is not an unarmed strike and break the weapon, you can use a bonus action to make an additional attack using the destroyed pieces of the weapon. The pieces are an improvised weapon that deal 1d4 damage and are destroyed after the attack.</p>",
+      "chat": "<p>The pieces of the improvised weapon dealds [[1d4[piercing]]] damage and are destroyed after the attack.</p>",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "bonus",
+      "condition": "Immediately after you use your Smash talent with a melee attack that is not an unarmed strike and break the weapon."
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "formula": "",
+      "recovery": ""
+    },
+    "identifier": {
+      "value": "bits-and-pieces"
+    },
+    "type": {
+      "value": "class",
+      "level": 5
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1679455628096,
+    "modifiedTime": 1705283572823,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "124rGDyG2m0ATrsZ",
+  "sort": 112500,
+  "_id": "Gt0zLPAk8WvOgStA",
+  "_key": "!items!Gt0zLPAk8WvOgStA"
+}

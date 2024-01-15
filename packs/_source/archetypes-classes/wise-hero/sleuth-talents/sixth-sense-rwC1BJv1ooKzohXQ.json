@@ -1,0 +1,81 @@
+{
+  "name": "Sixth Sense",
+  "type": "talent",
+  "img": "systems/everyday-heroes/artwork/icons/classes/sixth-sense.svg",
+  "system": {
+    "description": {
+      "value": "<p>You gain the following benefits:</p><ul><li><p>You can use Wisdom instead of Dexterity for any attack or damage roll you make with weapons that don't have the heavy property.</p></li><li><p>You can use Wisdom instead of Dexterity when you roll for initiative.</p></li><li><p>You can take the Search action as a bonus action.</p></li></ul>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "formula": "",
+      "recovery": ""
+    },
+    "identifier": {
+      "value": "sixth-sense"
+    },
+    "type": {
+      "value": "class",
+      "level": 1
+    }
+  },
+  "effects": [
+    {
+      "label": "Sixth Sense",
+      "icon": "systems/everyday-heroes/artwork/icons/classes/sixth-sense.svg",
+      "origin": "Compendium.everyday-heroes.archetypes-classes.rwC1BJv1ooKzohXQ",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "_id": "oEzkemLgrydj8MwQ",
+      "changes": [
+        {
+          "key": "system.overrides.ability.initiative",
+          "mode": 2,
+          "value": "wis"
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "sort": 0,
+      "_key": "!items.effects!rwC1BJv1ooKzohXQ.oEzkemLgrydj8MwQ"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1679516807537,
+    "modifiedTime": 1705283503924,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "FGoB1mIEIJ5EeCuy",
+  "sort": 200000,
+  "_id": "rwC1BJv1ooKzohXQ",
+  "_key": "!items!rwC1BJv1ooKzohXQ"
+}

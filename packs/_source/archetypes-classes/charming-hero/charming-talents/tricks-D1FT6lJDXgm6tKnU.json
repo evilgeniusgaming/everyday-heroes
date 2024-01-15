@@ -1,0 +1,80 @@
+{
+  "name": "Tricks",
+  "type": "talent",
+  "img": "systems/everyday-heroes/artwork/icons/archetypes/tricks.svg",
+  "system": {
+    "description": {
+      "value": "<p>You learn two tricks, chosen from your class's list of tricks. You learn additional tricks as you gain levels, as shown on the Charming Hero table. Whenever you gain a level in Charming Hero, you can replace one trick you know with another from your class list.</p><p>You can use only one trick during a single attack, saving throw, or ability check.</p><p>The effect of each trick, as well as the action you must take to enact it, is included in the trick's individual description. If a trick calls for a saving throw, the save DC is 8 + your Charisma modifier + your proficiency bonus. This is your trick DC.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "formula": "",
+      "recovery": ""
+    },
+    "identifier": {
+      "value": "tricks"
+    },
+    "type": {
+      "value": "archetype",
+      "level": 1
+    }
+  },
+  "effects": [
+    {
+      "label": "Trick Limit",
+      "icon": "systems/everyday-heroes/artwork/icons/archetypes/tricks.svg",
+      "origin": "Compendium.everyday-heroes.archetypes-classes.D1FT6lJDXgm6tKnU",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "_id": "R0Vi3TFgAfhCgw83",
+      "changes": [
+        {
+          "key": "system.details.limits.trick.formula",
+          "mode": 2,
+          "value": "@scale.tricks"
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "_key": "!items.effects!D1FT6lJDXgm6tKnU.R0Vi3TFgAfhCgw83"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1679162613096,
+    "modifiedTime": 1705283384236,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "4qRchXxyL1wcnpWc",
+  "sort": 200000,
+  "_id": "D1FT6lJDXgm6tKnU",
+  "_key": "!items!D1FT6lJDXgm6tKnU"
+}

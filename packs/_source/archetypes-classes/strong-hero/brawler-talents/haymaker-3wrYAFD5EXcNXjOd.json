@@ -1,0 +1,52 @@
+{
+  "name": "Haymaker",
+  "type": "talent",
+  "img": "systems/everyday-heroes/artwork/icons/classes/haymaker.svg",
+  "system": {
+    "description": {
+      "value": "<p>When making an unarmed strike and using Reckless Attack, you can also use Power Attack. (Normally, you cannot use Power Attack when using Reckless Attack.)</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "formula": "",
+      "recovery": ""
+    },
+    "identifier": {
+      "value": "haymaker"
+    },
+    "type": {
+      "value": "class",
+      "level": 5
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1679455696741,
+    "modifiedTime": 1705283574119,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "124rGDyG2m0ATrsZ",
+  "sort": 106250,
+  "_id": "3wrYAFD5EXcNXjOd",
+  "_key": "!items!3wrYAFD5EXcNXjOd"
+}

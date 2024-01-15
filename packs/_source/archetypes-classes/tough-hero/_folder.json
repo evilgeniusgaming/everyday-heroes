@@ -1,0 +1,19 @@
+{
+  "name": "Tough Hero",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "YiFIAkyb20Gcp3Y3",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1705283319044,
+    "modifiedTime": 1705283319044,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "_key": "!folders!YiFIAkyb20Gcp3Y3"
+}

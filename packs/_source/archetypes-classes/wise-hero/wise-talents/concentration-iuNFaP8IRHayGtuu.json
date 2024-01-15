@@ -1,0 +1,52 @@
+{
+  "name": "Concentration",
+  "type": "talent",
+  "img": "systems/everyday-heroes/artwork/icons/archetypes/concentration.svg",
+  "system": {
+    "description": {
+      "value": "<p>When you fail a Wisdom ability check, you can spend 1 Focus to reroll that check. This can be used only once per ability check.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": "When you fail a Wisdom ability check."
+    },
+    "resource": {
+      "amount": 1,
+      "target": "focus",
+      "type": "resource"
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "formula": "",
+      "recovery": ""
+    },
+    "identifier": {
+      "value": "concentration"
+    },
+    "type": {
+      "value": "archetype",
+      "level": 1
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1679162425932,
+    "modifiedTime": 1705283453966,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "f3Ajt1sUbkbDlJuK",
+  "sort": 200000,
+  "_id": "iuNFaP8IRHayGtuu",
+  "_key": "!items!iuNFaP8IRHayGtuu"
+}

@@ -1,0 +1,52 @@
+{
+  "name": "Grenadier",
+  "type": "talent",
+  "img": "systems/everyday-heroes/artwork/icons/classes/grenadier.svg",
+  "system": {
+    "description": {
+      "value": "<p>You can draw, arm, and throw a grenade as a bonus action. You must have a free hand or already be holding the grenade to do this.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "bonus",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "formula": "",
+      "recovery": ""
+    },
+    "identifier": {
+      "value": "grenadier"
+    },
+    "type": {
+      "value": "class",
+      "level": 3
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1679515497300,
+    "modifiedTime": 1705283533022,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "lQlKckVIpypK1Dk4",
+  "sort": 125000,
+  "_id": "sKI4c9zss7NrBlMG",
+  "_key": "!items!sKI4c9zss7NrBlMG"
+}

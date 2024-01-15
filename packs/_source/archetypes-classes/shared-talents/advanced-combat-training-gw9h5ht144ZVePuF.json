@@ -1,0 +1,52 @@
+{
+  "name": "Advanced Combat Training",
+  "type": "talent",
+  "img": "systems/everyday-heroes/artwork/icons/classes/advanced-combat-training.svg",
+  "system": {
+    "description": {
+      "value": "<p>Once during your turn, when you take the Attack action, you can make two attacks as part of that action.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "formula": "",
+      "recovery": ""
+    },
+    "identifier": {
+      "value": "advanced-combat-training"
+    },
+    "type": {
+      "value": "class",
+      "level": 5
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1679515515757,
+    "modifiedTime": 1705283547158,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "qi5WO9tipb0jieWA",
+  "sort": 100000,
+  "_id": "gw9h5ht144ZVePuF",
+  "_key": "!items!gw9h5ht144ZVePuF"
+}

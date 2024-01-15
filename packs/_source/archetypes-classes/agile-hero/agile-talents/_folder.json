@@ -1,0 +1,19 @@
+{
+  "name": "Agile Talents",
+  "sorting": "a",
+  "folder": "IKZrnPIln80v380G",
+  "type": "Item",
+  "_id": "WVoP6AXftn9lN0RF",
+  "sort": 100000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1705283348531,
+    "modifiedTime": 1705283350868,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "_key": "!folders!WVoP6AXftn9lN0RF"
+}

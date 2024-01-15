@@ -1,0 +1,52 @@
+{
+  "name": "Banter",
+  "type": "talent",
+  "img": "systems/everyday-heroes/artwork/icons/classes/banter.svg",
+  "system": {
+    "description": {
+      "value": "<p>As a bonus action, you can give your allies an opening by drawing the attention of an opponent you are aware of who can hear you within 60 feet. The next attack one of your allies makes against that target before the start of your next turn has advantage.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "reaction",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "formula": "",
+      "recovery": ""
+    },
+    "identifier": {
+      "value": "banter"
+    },
+    "type": {
+      "value": "class",
+      "level": 1
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1679517608180,
+    "modifiedTime": 1705283613954,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "ke7qJMGQbD6Ua6e5",
+  "sort": 100000,
+  "_id": "JGiJlml2g2LLBZ2P",
+  "_key": "!items!JGiJlml2g2LLBZ2P"
+}

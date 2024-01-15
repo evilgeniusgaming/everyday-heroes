@@ -1,0 +1,52 @@
+{
+  "name": "Master of Arms",
+  "type": "talent",
+  "img": "systems/everyday-heroes/artwork/icons/classes/master-of-arms.svg",
+  "system": {
+    "description": {
+      "value": "<p>You add one die to the damage of all weapons you wield. (See \"Dice Rules\" in chapter 8 for details on extra dice.)</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "formula": "",
+      "recovery": ""
+    },
+    "identifier": {
+      "value": "master-of-arms"
+    },
+    "type": {
+      "value": "class",
+      "level": 9
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1679515614308,
+    "modifiedTime": 1705283540131,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "lQlKckVIpypK1Dk4",
+  "sort": 101563,
+  "_id": "hs2TmHUaHCo05pcS",
+  "_key": "!items!hs2TmHUaHCo05pcS"
+}

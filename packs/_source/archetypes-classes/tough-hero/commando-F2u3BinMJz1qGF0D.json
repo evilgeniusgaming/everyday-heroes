@@ -1,0 +1,182 @@
+{
+  "name": "Commando",
+  "type": "class",
+  "img": "systems/everyday-heroes/artwork/icons/classes/commando.webp",
+  "system": {
+    "description": {
+      "value": "<p class=\"header\"><q>The wise recruit hopes for peace but prepares for war. For the veteran, peace is like a fallen comrade, something you never get back.</q> <em><strong>—Sue Fairfield</strong></em></p><p>You are the consummate warrior, dangerous with any weapon and trained to survive every circumstance. You are ready for whatever the enemy has to throw at you. The only thing you might be unprepared for is peace.</p><p>The commando is an all-around combat class that offers a great blend of defense and offense. Unlike the other tough heroes, they can't directly protect their allies, but they are versatile and can use nearly any weapon. You might consider investing in Dexterity if you want to lean into offensive strategies.</p><div class=\"callout\"><h5>Proficiencies</h5><ul><li><p><strong>Saving Throws:</strong> Strength and Constitution</p></li><li><p><strong>Skills:</strong> Choose two from Athletics, Endurance, Mechanics, Persuasion, Streetwise, Survival, and Vehicles</p></li><li><p><strong>Equipment:</strong> Basic Equipment, Advanced Equipment, and Military Equipment</p></li></ul><h5>Equipment Recommendations</h5><ul><li><p><strong>Equipment Pack:</strong> Soldier Pack</p></li><li><p><strong>Weapons:</strong> Assault carbine rifle, 9mm semi-auto pistol, combat knife</p></li></ul></div>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "advancement": [
+      {
+        "_id": "DTI6z96LFwkjRpkm",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "save",
+          "expertise": false,
+          "fixed": [
+            "str",
+            "con"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "eAUkdCGlcmC2c7gb",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "skill",
+          "expertise": false,
+          "fixed": [],
+          "points": 2,
+          "choices": [
+            "athl",
+            "endu",
+            "mech",
+            "pers",
+            "strt",
+            "surv",
+            "vehi"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "ogSsH646XcPkgOBd",
+        "_type": "Trait",
+        "identifier": "",
+        "configuration": {
+          "type": "equipment",
+          "expertise": false,
+          "fixed": [
+            "basic",
+            "advanced",
+            "military"
+          ],
+          "points": 0,
+          "choices": []
+        },
+        "level": 1,
+        "flags": {},
+        "title": ""
+      },
+      {
+        "_id": "vJs8OaWbiOA8SSH7",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.M6AJFh7Sk4Dw76pa",
+            "Compendium.everyday-heroes.archetypes-classes.zXE52cIiXEk2dEYE"
+          ]
+        },
+        "level": 1,
+        "flags": {},
+        "title": "Talents"
+      },
+      {
+        "_id": "UFjPOSpzAfjtQLJj",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.QfjHV7NcUdyLlbCS",
+            "Compendium.everyday-heroes.archetypes-classes.sKI4c9zss7NrBlMG"
+          ]
+        },
+        "level": 3,
+        "flags": {},
+        "title": "Talents"
+      },
+      {
+        "_id": "6ob5UsuLIdNSd69J",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.gw9h5ht144ZVePuF"
+          ]
+        },
+        "level": 5,
+        "flags": {},
+        "title": "Talents"
+      },
+      {
+        "_id": "oDcz4xuruH06EeCi",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.6wuHBGbJjauECnlz",
+            "Compendium.everyday-heroes.archetypes-classes.VYo0sdicAyp4HN8R"
+          ]
+        },
+        "level": 7,
+        "flags": {},
+        "title": "Talents"
+      },
+      {
+        "_id": "Zp7GpXPKWmJPRK7g",
+        "_type": "ItemGrant",
+        "identifier": "",
+        "configuration": {
+          "pool": [
+            "Compendium.everyday-heroes.archetypes-classes.hs2TmHUaHCo05pcS"
+          ]
+        },
+        "level": 9,
+        "flags": {},
+        "title": "Talents"
+      },
+      {
+        "_id": "HNo3m8CvMsIpCUji",
+        "_type": "ScaleValue",
+        "identifier": "extra-effort",
+        "configuration": {
+          "type": "number",
+          "scale": {
+            "3": {
+              "value": 1
+            },
+            "7": {
+              "value": 2
+            }
+          }
+        },
+        "value": {},
+        "flags": {},
+        "title": "Extra Effort Uses"
+      }
+    ],
+    "identifier": {
+      "value": "commando",
+      "archetype": "tough"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1679454534354,
+    "modifiedTime": 1705283468467,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "YiFIAkyb20Gcp3Y3",
+  "sort": 200000,
+  "_id": "F2u3BinMJz1qGF0D",
+  "_key": "!items!F2u3BinMJz1qGF0D"
+}

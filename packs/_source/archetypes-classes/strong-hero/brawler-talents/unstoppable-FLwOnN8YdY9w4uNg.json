@@ -1,0 +1,52 @@
+{
+  "name": "Unstoppable",
+  "type": "talent",
+  "img": "systems/everyday-heroes/artwork/icons/classes/unstoppable.svg",
+  "system": {
+    "description": {
+      "value": "<p>You have advantage on ability checks and saving throws to avoid or escape being Grappled, Restrained, Paralyzed, Stunned, or knocked Unconscious.</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "activation": {
+      "type": "",
+      "condition": ""
+    },
+    "resource": {
+      "amount": 0,
+      "target": "",
+      "type": ""
+    },
+    "uses": {
+      "spent": 0,
+      "max": "",
+      "period": "",
+      "formula": "",
+      "recovery": ""
+    },
+    "identifier": {
+      "value": "unstoppable"
+    },
+    "type": {
+      "value": "class",
+      "level": 7
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.4.8",
+    "coreVersion": "11.315",
+    "createdTime": 1679455726367,
+    "modifiedTime": 1705283575223,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "124rGDyG2m0ATrsZ",
+  "sort": 118750,
+  "_id": "FLwOnN8YdY9w4uNg",
+  "_key": "!items!FLwOnN8YdY9w4uNg"
+}
