@@ -158,6 +158,16 @@ figure.company-logo img {
 		text-align: center;
 	}
 
+	h4.alt {
+		border-block-end: 1px solid currentcolor;
+		color: var(--eh-background-color-blue);
+		
+		strong {
+			float: right;
+			color: inherit;
+		}
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Table                                    */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
