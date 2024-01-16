@@ -54,7 +54,6 @@
   },
   "effects": [
     {
-      "label": "Advanced Mastermind Training",
       "icon": "systems/everyday-heroes/artwork/icons/classes/mastermind.webp",
       "origin": "Compendium.everyday-heroes.feats.vV5PUVd5FJ0wp3ap",
       "duration": {
@@ -70,16 +69,14 @@
       "_id": "uAm0nhawiHEC2ldq",
       "changes": [
         {
-          "key": "system.scale.genius.number",
+          "key": "system.scale.genius.value",
           "mode": 2,
-          "value": "+1",
-          "priority": null
+          "value": "+1"
         },
         {
           "key": "system.details.limits.plan.formula",
           "mode": 2,
-          "value": "+2",
-          "priority": null
+          "value": "+2"
         }
       ],
       "tint": null,
@@ -89,7 +86,9 @@
           "sourceId": "Compendium.everyday-heroes.feats.89n6BZEK8HJFr9Jf.ActiveEffect.IW9751pkJcSfp9KU"
         }
       },
-      "sort": 0,
+      "name": "Advanced Mastermind Training",
+      "description": "",
+      "statuses": [],
       "_key": "!items.effects!vV5PUVd5FJ0wp3ap.uAm0nhawiHEC2ldq"
     }
   ],
@@ -99,10 +98,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.4.8",
+    "systemVersion": "0.5.0",
     "coreVersion": "11.315",
     "createdTime": 1680041483160,
-    "modifiedTime": 1705284411887,
+    "modifiedTime": 1705442301415,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": "kPmDsCMMdrZbWPUN",

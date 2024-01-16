@@ -57,7 +57,6 @@
   },
   "effects": [
     {
-      "label": "Advanced Sleuth Training",
       "icon": "systems/everyday-heroes/artwork/icons/classes/sleuth.webp",
       "origin": "Compendium.everyday-heroes.feats.Z6x3fSiclW7P5lg4",
       "duration": {
@@ -73,10 +72,9 @@
       "_id": "BpLdnTQZBSW6R1sS",
       "changes": [
         {
-          "key": "system.scale.focus.number",
+          "key": "system.scale.focus.value",
           "mode": 2,
-          "value": "+1",
-          "priority": null
+          "value": "+1"
         }
       ],
       "tint": null,
@@ -86,7 +84,9 @@
           "sourceId": "Compendium.everyday-heroes.feats.89n6BZEK8HJFr9Jf.ActiveEffect.IW9751pkJcSfp9KU"
         }
       },
-      "sort": 0,
+      "name": "Advanced Sleuth Training",
+      "description": "",
+      "statuses": [],
       "_key": "!items.effects!Z6x3fSiclW7P5lg4.BpLdnTQZBSW6R1sS"
     }
   ],
@@ -96,10 +96,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.4.8",
+    "systemVersion": "0.5.0",
     "coreVersion": "11.315",
     "createdTime": 1680041503913,
-    "modifiedTime": 1705284402814,
+    "modifiedTime": 1705442215926,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": "WUjQvIJr7gmCIJwL",
