@@ -37,7 +37,9 @@ export function registerCustomEnrichers() {
  */
 async function enrichFallbackContentLink(match, options) {
 	const { uuid, label } = match.groups;
-	if ( fromUuidSync(uuid) ) return await TextEditor._createContentLink([null, "UUID", uuid, null, label], options);
+	const content = await fromUuid(uuid);
+	if ( content ) return content.toAnchor({ name: label });
+
 	const span = document.createElement("span");
 	span.innerText = label;
 	span.classList.add("missing-link");
