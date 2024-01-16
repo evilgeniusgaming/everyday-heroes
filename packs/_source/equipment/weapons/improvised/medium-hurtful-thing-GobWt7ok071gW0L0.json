@@ -1,0 +1,84 @@
+{
+  "name": "Medium Hurtful Thing",
+  "type": "weapon",
+  "img": "systems/everyday-heroes/artwork/icons/weapons/improvised-monitor.svg",
+  "system": {
+    "overrides": {
+      "ability": "",
+      "critical": {
+        "threshold": null
+      }
+    },
+    "damage": {
+      "number": 1,
+      "denomination": 8,
+      "type": "bludgeoning",
+      "alternateTypes": [],
+      "die": null
+    },
+    "supplementalDamage": [],
+    "description": {
+      "value": "<p>Things are objects you pick up and turn into weapons. You and the GM decide on the size and if it deals bludgeoning, piercing, or slashing damage. None of these things are fun to get hit with!</p><p><strong>Medium hurtful things:</strong> stabbing with a fireplace poker (piercing), slamming with a printer (bludgeoning), or slicing with a sod cutter (slashing)</p>",
+      "chat": "",
+      "source": "Quickstart Guide"
+    },
+    "quantity": {
+      "value": 1
+    },
+    "bulk": 2,
+    "price": 0,
+    "type": {
+      "value": "melee",
+      "category": "improvised"
+    },
+    "properties": [
+      "improvised",
+      "thrown",
+      "versatile"
+    ],
+    "penetrationValue": 1,
+    "jammed": false,
+    "ammunition": {
+      "type": "",
+      "loaded": ""
+    },
+    "range": {
+      "short": 50,
+      "long": 100,
+      "reach": null,
+      "units": "foot"
+    },
+    "reload": "",
+    "rounds": {
+      "spent": 0,
+      "capacity": null,
+      "burst": null,
+      "type": ""
+    },
+    "bonuses": {
+      "attack": "",
+      "damage": "",
+      "critical": {
+        "damage": "",
+        "dice": 0
+      }
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.5.0",
+    "coreVersion": "11.315",
+    "createdTime": 1679623712970,
+    "modifiedTime": 1705442703457,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "ryC6owzwFeJZhgqF",
+  "sort": 200000,
+  "_id": "GobWt7ok071gW0L0",
+  "_key": "!items!GobWt7ok071gW0L0"
+}

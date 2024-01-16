@@ -1,0 +1,82 @@
+{
+  "name": "Thrown Explosive",
+  "type": "weapon",
+  "img": "systems/everyday-heroes/artwork/icons/weapons/thrown-explosive.svg",
+  "system": {
+    "overrides": {
+      "ability": "",
+      "critical": {
+        "threshold": null
+      }
+    },
+    "damage": {
+      "number": null,
+      "denomination": null,
+      "type": "",
+      "alternateTypes": [],
+      "die": null
+    },
+    "supplementalDamage": [],
+    "description": {
+      "value": "<p>Thrown explosives cover any kind of grenade or grenade like object such as smoke and flare grenades.</p>",
+      "chat": "",
+      "source": "Quickstart Guide"
+    },
+    "quantity": {
+      "value": 1
+    },
+    "bulk": 0,
+    "price": 0,
+    "type": {
+      "value": "ranged",
+      "category": "advanced"
+    },
+    "properties": [
+      "indirect"
+    ],
+    "penetrationValue": 0,
+    "jammed": false,
+    "ammunition": {
+      "type": "",
+      "loaded": ""
+    },
+    "range": {
+      "short": 40,
+      "long": 80,
+      "reach": null,
+      "units": "foot"
+    },
+    "reload": "",
+    "rounds": {
+      "spent": 0,
+      "capacity": null,
+      "burst": null,
+      "type": "grenade"
+    },
+    "bonuses": {
+      "attack": "",
+      "damage": "",
+      "critical": {
+        "damage": "",
+        "dice": 0
+      }
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.5.0",
+    "coreVersion": "11.315",
+    "createdTime": 1679549837383,
+    "modifiedTime": 1705442691810,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "Fe7fuwdmhptriZsg",
+  "sort": 250000,
+  "_id": "uqoGLEhBBTP4pEvp",
+  "_key": "!items!uqoGLEhBBTP4pEvp"
+}

@@ -1,0 +1,69 @@
+{
+  "name": "Flashbang Grenade",
+  "type": "explosive",
+  "img": "systems/everyday-heroes/artwork/icons/explosives/grenade-flash.svg",
+  "system": {
+    "overrides": {
+      "ability": {
+        "attack": "",
+        "damage": ""
+      }
+    },
+    "damage": {
+      "number": 1,
+      "denomination": 4,
+      "type": "explosive",
+      "alternateTypes": [],
+      "die": null
+    },
+    "supplementalDamage": [],
+    "description": {
+      "value": "<p>Flashbangs are incredibly useful tactical weapons. They both stun and deafen enemies for a short time, creating the perfect opportunity for an assault or to force a surrender. Targets make one saving throw to resist both effects.</p>",
+      "chat": "<p>Each combatant within 30 feet of the explosion takes [[/r 1d4[explosive]]] damage and must succeed at a @Save[con|dc:@item.dc] or be Deafened and Stunned until the end of its next turn.</p>",
+      "source": "Quickstart Guide"
+    },
+    "quantity": {
+      "value": 1
+    },
+    "bulk": 1,
+    "price": 1,
+    "type": {
+      "category": "military",
+      "value": "grenade"
+    },
+    "properties": [
+      "deafening",
+      "grenade",
+      "loud",
+      "restricted",
+      "stunning"
+    ],
+    "penetrationValue": 1,
+    "dc": null,
+    "radius": {
+      "value": 30,
+      "units": "foot"
+    },
+    "bonuses": {
+      "damage": "",
+      "dc": ""
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.5.0",
+    "coreVersion": "11.315",
+    "createdTime": 1679624875584,
+    "modifiedTime": 1705442575855,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "d53dp0zYjktwAeZw",
+  "sort": 200000,
+  "_id": "OQiNURXHIdGVMBGc",
+  "_key": "!items!OQiNURXHIdGVMBGc"
+}

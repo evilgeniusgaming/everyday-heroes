@@ -1,0 +1,67 @@
+{
+  "name": "Smoke Grenade",
+  "type": "explosive",
+  "img": "systems/everyday-heroes/artwork/icons/explosives/grenade-smoke.svg",
+  "system": {
+    "overrides": {
+      "ability": {
+        "attack": "",
+        "damage": ""
+      }
+    },
+    "damage": {
+      "number": null,
+      "denomination": null,
+      "type": "",
+      "alternateTypes": [],
+      "die": null
+    },
+    "supplementalDamage": [],
+    "description": {
+      "value": "<p>These grenades create a cloud of smoke in a 15-foot radius, useful both as a signaling device for aircraft and to reduce enemy sight. The area covered by the smoke has no visibility. The smoke lasts for 1 minute. Strong winds can blow the smoke in the direction of the wind, reducing the duration by half.</p>",
+      "chat": "<p>The grenade creates a cloud of smoke with a 15-foot radius from the explosion. The area covered by the smoke has no visibility for 1 minute.</p>",
+      "source": "Quickstart Guide"
+    },
+    "quantity": {
+      "value": 1
+    },
+    "bulk": 1,
+    "price": 1,
+    "type": {
+      "category": "advanced",
+      "value": "grenade"
+    },
+    "properties": [
+      "grenade",
+      "special",
+      "thrown"
+    ],
+    "penetrationValue": 0,
+    "dc": null,
+    "radius": {
+      "value": 15,
+      "units": "foot"
+    },
+    "bonuses": {
+      "damage": "",
+      "dc": ""
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.5.0",
+    "coreVersion": "11.315",
+    "createdTime": 1679549412294,
+    "modifiedTime": 1705442581809,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "d53dp0zYjktwAeZw",
+  "sort": 125000,
+  "_id": "SzjZtP2ivOgW9kwV",
+  "_key": "!items!SzjZtP2ivOgW9kwV"
+}

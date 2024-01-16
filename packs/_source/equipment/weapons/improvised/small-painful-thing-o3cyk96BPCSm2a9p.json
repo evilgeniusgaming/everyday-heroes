@@ -1,0 +1,83 @@
+{
+  "name": "Small Painful Thing",
+  "type": "weapon",
+  "img": "systems/everyday-heroes/artwork/icons/weapons/improvised-knitting-needles.svg",
+  "system": {
+    "overrides": {
+      "ability": "",
+      "critical": {
+        "threshold": null
+      }
+    },
+    "damage": {
+      "number": 1,
+      "denomination": 6,
+      "type": "bludgeoning",
+      "alternateTypes": [],
+      "die": null
+    },
+    "supplementalDamage": [],
+    "description": {
+      "value": "<p>Things are objects you pick up and turn into weapons. You and the GM decide on the size and if it deals bludgeoning, piercing, or slashing damage. None of these things are fun to get hit with!</p><p><strong>Small painful things:</strong> pistol whipping someone (bludgeoning), stabbing with a knitting needle (piercing), or cutting with a bread knife (slashing)</p>",
+      "chat": "",
+      "source": "Quickstart Guide"
+    },
+    "quantity": {
+      "value": 1
+    },
+    "bulk": 1,
+    "price": 0,
+    "type": {
+      "value": "melee",
+      "category": "improvised"
+    },
+    "properties": [
+      "improvised",
+      "thrown"
+    ],
+    "penetrationValue": 1,
+    "jammed": false,
+    "ammunition": {
+      "type": "",
+      "loaded": ""
+    },
+    "range": {
+      "short": 70,
+      "long": 140,
+      "reach": null,
+      "units": "foot"
+    },
+    "reload": "",
+    "rounds": {
+      "spent": 0,
+      "capacity": null,
+      "burst": null,
+      "type": ""
+    },
+    "bonuses": {
+      "attack": "",
+      "damage": "",
+      "critical": {
+        "damage": "",
+        "dice": 0
+      }
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.5.0",
+    "coreVersion": "11.315",
+    "createdTime": 1679623681863,
+    "modifiedTime": 1705442704420,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "ryC6owzwFeJZhgqF",
+  "sort": 150000,
+  "_id": "o3cyk96BPCSm2a9p",
+  "_key": "!items!o3cyk96BPCSm2a9p"
+}

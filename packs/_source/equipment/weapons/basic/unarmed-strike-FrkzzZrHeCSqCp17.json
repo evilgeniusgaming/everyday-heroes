@@ -1,0 +1,84 @@
+{
+  "name": "Unarmed Strike",
+  "type": "weapon",
+  "img": "systems/everyday-heroes/artwork/icons/weapons/unarmed-strike.svg",
+  "system": {
+    "overrides": {
+      "ability": "",
+      "critical": {
+        "threshold": null
+      }
+    },
+    "damage": {
+      "number": 1,
+      "denomination": 4,
+      "type": "bludgeoning",
+      "alternateTypes": [],
+      "die": null
+    },
+    "supplementalDamage": [],
+    "description": {
+      "value": "<p>Unarmed strikes are most commonly punches, but they include any move that has the potential to deliver a punishing blow whether via kicks, headbutts, knees to the groin, or elbows to the face. It's one of the few attacks you don't need a hand to perform and you are always armed with it.</p>",
+      "chat": "",
+      "source": "Quickstart Guide"
+    },
+    "quantity": {
+      "value": 1
+    },
+    "bulk": 0,
+    "price": 0,
+    "type": {
+      "value": "melee",
+      "category": "basic"
+    },
+    "properties": [
+      "finesse",
+      "light",
+      "special"
+    ],
+    "penetrationValue": 1,
+    "jammed": false,
+    "ammunition": {
+      "type": "",
+      "loaded": ""
+    },
+    "range": {
+      "short": null,
+      "long": null,
+      "reach": null,
+      "units": "foot"
+    },
+    "reload": "",
+    "rounds": {
+      "spent": 0,
+      "capacity": null,
+      "burst": null,
+      "type": ""
+    },
+    "bonuses": {
+      "attack": "",
+      "damage": "",
+      "critical": {
+        "damage": "",
+        "dice": 0
+      }
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.5.0",
+    "coreVersion": "11.315",
+    "createdTime": 1679547781179,
+    "modifiedTime": 1705442700342,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "AMxHUogIdub14K0Q",
+  "sort": 150000,
+  "_id": "FrkzzZrHeCSqCp17",
+  "_key": "!items!FrkzzZrHeCSqCp17"
+}

@@ -1,0 +1,34 @@
+{
+  "name": "Night Vision Devices",
+  "type": "gear",
+  "img": "systems/everyday-heroes/artwork/svg/items/gear.svg",
+  "system": {
+    "description": {
+      "value": "<p>These devices date back to WWII and allow the wearer to see reasonably well in low light conditions. Night vision scopes allow you to ignore the combat penalties from low light and darkness. Night vision goggles remove all penalties from low light and darkness.</p>",
+      "chat": "",
+      "source": "Quickstart Guide"
+    },
+    "bulk": 1,
+    "price": 3,
+    "type": {
+      "value": "sportingGoods"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.5.0",
+    "coreVersion": "11.315",
+    "createdTime": 1679698919723,
+    "modifiedTime": 1705442602858,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "mrvPEeCvYT7l2UOe",
+  "sort": 100000,
+  "_id": "sBYMoCdoviCGrS7n",
+  "_key": "!items!sBYMoCdoviCGrS7n"
+}

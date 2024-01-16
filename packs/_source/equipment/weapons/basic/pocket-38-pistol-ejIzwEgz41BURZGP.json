@@ -1,0 +1,84 @@
+{
+  "name": "Pocket .38 Pistol",
+  "type": "weapon",
+  "img": "systems/everyday-heroes/artwork/icons/weapons/pistol-snub-nose.svg",
+  "system": {
+    "overrides": {
+      "ability": "",
+      "critical": {
+        "threshold": null
+      }
+    },
+    "damage": {
+      "number": 1,
+      "denomination": 6,
+      "type": "ballistic",
+      "alternateTypes": [],
+      "die": null
+    },
+    "supplementalDamage": [],
+    "description": {
+      "value": "<p>These small .38 revolvers can be carried in a jacket pocket. They are designed with smooth lines so they can be pulled out quickly with no snags. Due to a snub nose barrel, they are not accurate, but they do pack a punch.</p>",
+      "chat": "",
+      "source": "Quickstart Guide"
+    },
+    "quantity": {
+      "value": 1
+    },
+    "bulk": 1,
+    "price": 2,
+    "type": {
+      "value": "ranged",
+      "category": "basic"
+    },
+    "properties": [
+      "light",
+      "loud",
+      "versatile"
+    ],
+    "penetrationValue": 2,
+    "jammed": false,
+    "ammunition": {
+      "type": "",
+      "loaded": ""
+    },
+    "range": {
+      "short": 50,
+      "long": 100,
+      "reach": null,
+      "units": "foot"
+    },
+    "reload": "action",
+    "rounds": {
+      "spent": 0,
+      "capacity": 5,
+      "burst": null,
+      "type": "pistol"
+    },
+    "bonuses": {
+      "attack": "",
+      "damage": "",
+      "critical": {
+        "damage": "",
+        "dice": 0
+      }
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.5.0",
+    "coreVersion": "11.315",
+    "createdTime": 1679548021139,
+    "modifiedTime": 1705442699125,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "AMxHUogIdub14K0Q",
+  "sort": 200000,
+  "_id": "ejIzwEgz41BURZGP",
+  "_key": "!items!ejIzwEgz41BURZGP"
+}

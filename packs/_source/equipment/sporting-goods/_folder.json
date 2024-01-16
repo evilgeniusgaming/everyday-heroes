@@ -1,0 +1,19 @@
+{
+  "name": "Sporting Goods",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "mrvPEeCvYT7l2UOe",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.5.0",
+    "coreVersion": "11.315",
+    "createdTime": 1705442552383,
+    "modifiedTime": 1705442552383,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "_key": "!folders!mrvPEeCvYT7l2UOe"
+}

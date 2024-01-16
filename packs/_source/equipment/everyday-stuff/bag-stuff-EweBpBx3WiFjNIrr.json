@@ -1,0 +1,34 @@
+{
+  "name": "Bag Stuff",
+  "type": "gear",
+  "img": "systems/everyday-heroes/artwork/svg/items/gear.svg",
+  "system": {
+    "description": {
+      "value": "<p>A purse, messenger bag, satchel, or small backpack lets you prepare for life's adventures with items slightly too big for pockets, such as a book, a small electronic tablet, ring of keys, makeup, emergency toiletries, tissues, a pen, mini notebook, medication, lotion or sunscreen bottle, energy bar, and sunglasses.</p>",
+      "chat": "",
+      "source": "Quickstart Guide"
+    },
+    "bulk": 1,
+    "price": 1,
+    "type": {
+      "value": "everydayStuff"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.5.0",
+    "coreVersion": "11.315",
+    "createdTime": 1679627433912,
+    "modifiedTime": 1705442641928,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "PtNXsxC7FBWg32mR",
+  "sort": 100000,
+  "_id": "EweBpBx3WiFjNIrr",
+  "_key": "!items!EweBpBx3WiFjNIrr"
+}

@@ -1,0 +1,34 @@
+{
+  "name": "Lockpicks",
+  "type": "gear",
+  "img": "systems/everyday-heroes/artwork/svg/items/gear.svg",
+  "system": {
+    "description": {
+      "value": "<p>A set of lockpicks includes a number of tools useful for picking locks. The two essentials are a tension bar and a pick which, when used together, can open most locks. Lockpicks are necessary to pick locks, but you can improvise a pick using stiff wire.</p>",
+      "chat": "",
+      "source": "Quickstart Guide"
+    },
+    "bulk": 0,
+    "price": 1,
+    "type": {
+      "value": "specialtyGoods"
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.5.0",
+    "coreVersion": "11.315",
+    "createdTime": 1679698738006,
+    "modifiedTime": 1705442590796,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "folder": "3xa4jimJ9g8bArHA",
+  "sort": 100000,
+  "_id": "2y6EIHDsxFcGsGk7",
+  "_key": "!items!2y6EIHDsxFcGsGk7"
+}
