@@ -1,4 +1,4 @@
-import { simplifyBonus, systemLog } from "./utils.mjs";
+import { numberFormat, simplifyBonus, systemLog } from "./utils.mjs";
 
 const MAX_EMBED_DEPTH = 5;
 
@@ -91,7 +91,9 @@ async function enrichLegacyString(match, options) {
 async function enrichString(match, options) {
 	let { type, config, label } = match.groups;
 	config = prepareConfig(config);
+	config._input = match[0];
 	switch ( type.toLowerCase() ) {
+		case "damage": return enrichDamage(config, label, options);
 		case "check":
 		case "skill": return enrichCheck(config, label, options);
 		case "save": return enrichSave(config, label, options);
@@ -153,7 +155,9 @@ function prepareConfig(match) {
  */
 function _addDataset(element, dataset) {
 	for ( const [key, value] of Object.entries(dataset) ) {
-		if ( !["_config", "_input", "values"].includes(key) && value ) element.dataset[key] = value;
+		if ( !["_config", "_input", "values"].includes(key) && ![null, undefined].includes(value) ) {
+			element.dataset[key] = value;
+		}
 	}
 }
 
@@ -329,6 +333,67 @@ async function enrichSave(config, label, options) {
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Damage Enricher                          */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Enrich a damage link.
+ * @param {object} config - Configuration data.
+ * @param {string} [label] - Optional label to replace default text.
+ * @param {EnrichmentOptions} options - Options provided to customize text enrichment.
+ * @returns {HTMLElement|null} - An HTML link if the save could be built, otherwise null.
+ */
+async function enrichDamage(config, label, options) {
+	const formulaParts = [];
+	if ( config.formula ) formulaParts.push(config.formula);
+	for ( const value of config.values ) {
+		if ( value in CONFIG.EverydayHeroes.damageTypes ) config.type = value;
+		else if ( value === "average" ) config.average = true;
+		else formulaParts.push(value);
+	}
+	config.formula = Roll.defaultImplementation.replaceFormulaData(formulaParts.join(" "), options.rollData ?? {});
+	if ( !config.formula ) return null;
+	config.damageType = config.type;
+	config.type = "damage";
+	if ( (foundry.utils.getType(config.pv) === "string") && ["na", "n/a"].includes(config.pv?.toLowerCase()) ) {
+		config.pv = false;
+	}
+
+	let pvLabel;
+	if ( (config.pv === 0) || (config.pv > 0) ) pvLabel = "EH.Inline.DamagePV";
+	else {
+		if ( config.pv === false ) pvLabel = "EH.Inline.DamageIgnoringArmor";
+		config.pv = null;
+	}
+
+	if ( label ) return createRollLink(label, config);
+
+	const localizationData = {
+		formula: createRollLink(config.formula, config).outerHTML,
+		type: game.i18n.localize(CONFIG.EverydayHeroes.damageTypes[config.damageType]?.label ?? "").toLowerCase()
+	};
+
+	let localizationType = "Short";
+	if ( config.average ) {
+		localizationType = "Long";
+		if ( config.average === true ) {
+			const minRoll = Roll.create(config.formula).evaluate({ minimize: true, async: true });
+			const maxRoll = Roll.create(config.formula).evaluate({ maximize: true, async: true });
+			localizationData.average = Math.floor((await minRoll.total + await maxRoll.total) / 2);
+		} else if ( Number.isNumeric(config.average) ) {
+			localizationData.average = config.average;
+		}
+	}
+
+	const span = document.createElement("span");
+	span.classList.add("inline-damage");
+	span.innerHTML = game.i18n.format(`EH.Inline.Damage${localizationType}`, localizationData);
+	if ( pvLabel ) span.innerHTML = game.i18n.format(pvLabel, { damage: span.innerHTML, pv: numberFormat(config.pv) });
+
+	return span;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Embed Enricher                           */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -474,7 +539,56 @@ function rollAction(event) {
 	const speaker = ChatMessage.getSpeaker();
 	if ( speaker.token ) actor = game.actors.tokens[speaker.token];
 	actor ??= game.actors.get(speaker.actor);
-	if ( !actor ) return ui.notifications.warn(game.i18n.localize("EH.Inline.NoActorWarning"));
 
+	if ( type === "damage" ) return rollDamage(event, speaker);
+	if ( !actor ) return ui.notifications.warn(game.i18n.localize("EH.Inline.NoActorWarning"));
 	return actor.roll(type, config);
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Perform a damage roll.
+ * @param {Event} event - The click event triggering the action.
+ * @param {TokenDocument} [speaker] - Currently selected token, if one exists.
+ * @returns {Promise|void}
+ */
+async function rollDamage(event, speaker) {
+	const target = event.target.closest(".roll-link");
+	const { formula, damageType: type, pv } = target.dataset;
+
+	const rollConfigs = [{
+		parts: [formula],
+		data: {},
+		event,
+		options: { type, pv: pv ?? null }
+	}];
+
+	const flavor = game.i18n.format("EH.Action.Roll", {
+		type: game.i18n.localize("EH.Weapon.Action.DamageGeneric.Label")
+	});
+	const messageConfig = {
+		data: {
+			title: flavor,
+			flavor,
+			speaker,
+			"flags.everyday-heroes.roll.type": "damage"
+		}
+	};
+
+	const dialogConfig = {
+		options: {
+			title: game.i18n.format("EH.Roll.Configuration.LabelSpecific", {
+				type: game.i18n.format("EH.Weapon.Action.DamageGeneric.Label")
+			})
+		}
+	};
+
+	if ( Hooks.call("everydayHeroes.preRollDamage", undefined, rollConfigs, messageConfig,
+		dialogConfig) === false ) return;
+
+	const rolls = await CONFIG.Dice.DamageRoll.build(rollConfigs, messageConfig, dialogConfig);
+	if ( !rolls ) return;
+
+	Hooks.callAll("everydayHeroes.rollDamage", undefined, rolls);
 }
