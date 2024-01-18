@@ -243,15 +243,15 @@ function createRollLink(label, dataset) {
 async function enrichCheck(config, label, options) {
 	for ( let value of config.values ) {
 		value = foundry.utils.getType(value) === "string" ? slugify(value) : value;
-		if ( value in CONFIG.EverydayHeroes.abilities ) config.ability = value;
-		else if ( value in CONFIG.EverydayHeroes.skills ) config.skill = value;
+		if ( value in CONFIG.EverydayHeroes.enrichmentLookup.abilities ) config.ability = value;
+		else if ( value in CONFIG.EverydayHeroes.enrichmentLookup.skills ) config.skill = value;
 		else if ( Number.isNumeric(value) ) config.dc = Number(value);
 		else config[value] = true;
 	}
 
 	let invalid = false;
 
-	const skillConfig = CONFIG.EverydayHeroes.skills[slugify(config.skill)];
+	const skillConfig = CONFIG.EverydayHeroes.enrichmentLookup.skills[slugify(config.skill)];
 	if ( config.skill && !skillConfig ) {
 		systemLog(`Skill ${config.skill} not found while enriching ${config._input}.`, { level: "warn" });
 		invalid = true;
@@ -260,7 +260,7 @@ async function enrichCheck(config, label, options) {
 	}
 	if ( skillConfig?.key ) config.skill = skillConfig.key;
 
-	let abilityConfig = CONFIG.EverydayHeroes.abilities[slugify(config.ability)];
+	let abilityConfig = CONFIG.EverydayHeroes.enrichmentLookup.abilities[slugify(config.ability)];
 	if ( config.ability && !abilityConfig ) {
 		systemLog(`Ability ${config.ability} not found while enriching ${config._input}.`, { level: "warn" });
 		invalid = true;
@@ -309,12 +309,12 @@ async function enrichCheck(config, label, options) {
  */
 async function enrichSave(config, label, options) {
 	for ( const value of config.values ) {
-		if ( value in CONFIG.EverydayHeroes.abilities ) config.ability = value;
+		if ( value in CONFIG.EverydayHeroes.enrichmentLookup.abilities ) config.ability = value;
 		else if ( Number.isNumeric(value) ) config.dc = Number(value);
 		else config[value] = true;
 	}
 
-	const abilityConfig = CONFIG.EverydayHeroes.abilities[config.ability];
+	const abilityConfig = CONFIG.EverydayHeroes.enrichmentLookup.abilities[config.ability];
 	if ( !abilityConfig ) {
 		systemLog(`Ability ${config.ability} not found while enriching ${config._input}.`, {level: "warn"});
 		return null;

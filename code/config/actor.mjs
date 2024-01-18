@@ -27,6 +27,7 @@ preLocalize("actorCategories", { key: "label" });
  *
  * @typedef {LabeledConfiguration} AbilityConfiguration
  * @property {string} abbreviation  Localized abbreviation.
+ * @property {string} fullKey - Non-abbreviated key used for enricher lookup. Should not be translated.
  */
 
 /**
@@ -36,27 +37,33 @@ preLocalize("actorCategories", { key: "label" });
 export const abilities = {
 	str: {
 		label: "EH.Ability.Strength.Label",
-		abbreviation: "EH.Ability.Strength.Abbreviation"
+		abbreviation: "EH.Ability.Strength.Abbreviation",
+		fullKey: "strength"
 	},
 	dex: {
 		label: "EH.Ability.Dexterity.Label",
-		abbreviation: "EH.Ability.Dexterity.Abbreviation"
+		abbreviation: "EH.Ability.Dexterity.Abbreviation",
+		fullKey: "dexterity"
 	},
 	con: {
 		label: "EH.Ability.Constitution.Label",
-		abbreviation: "EH.Ability.Constitution.Abbreviation"
+		abbreviation: "EH.Ability.Constitution.Abbreviation",
+		fullKey: "constitution"
 	},
 	int: {
 		label: "EH.Ability.Intelligence.Label",
-		abbreviation: "EH.Ability.Intelligence.Abbreviation"
+		abbreviation: "EH.Ability.Intelligence.Abbreviation",
+		fullKey: "intelligence"
 	},
 	wis: {
 		label: "EH.Ability.Wisdom.Label",
-		abbreviation: "EH.Ability.Wisdom.Abbreviation"
+		abbreviation: "EH.Ability.Wisdom.Abbreviation",
+		fullKey: "wisdom"
 	},
 	cha: {
 		label: "EH.Ability.Charisma.Label",
-		abbreviation: "EH.Ability.Charisma.Abbreviation"
+		abbreviation: "EH.Ability.Charisma.Abbreviation",
+		fullKey: "charisma"
 	}
 };
 preLocalize("abilities", { keys: ["label", "abbreviation"] });
@@ -628,6 +635,7 @@ export function prepareTitanicSizes() {
  *
  * @typedef {LabeledConfiguration} SkillConfiguration
  * @property {string} ability - Default ability used by this skill.
+ * @property {string} fullKey - Non-abbreviated key used for enricher lookup. Should not be translated.
  */
 
 /**
@@ -637,91 +645,113 @@ export function prepareTitanicSizes() {
 export const skills = {
 	acro: {
 		label: "EH.Skill.Acrobatics.Label",
-		ability: "dex"
+		ability: "dex",
+		fullKey: "Acrobatics"
 	},
 	arts: {
 		label: "EH.Skill.ArtsAndCrafts.Label",
-		ability: "wis"
+		ability: "wis",
+		fullKey: "ArtsAndCrafts"
 	},
 	athl: {
 		label: "EH.Skill.Athletics.Label",
-		ability: "str"
+		ability: "str",
+		fullKey: "Athletics"
 	},
 	comp: {
 		label: "EH.Skill.Computers.Label",
-		ability: "int"
+		ability: "int",
+		fullKey: "Computers"
 	},
 	dece: {
 		label: "EH.Skill.Deception.Label",
-		ability: "cha"
+		ability: "cha",
+		fullKey: "Deception"
 	},
 	endu: {
 		label: "EH.Skill.Endurance.Label",
-		ability: "con"
+		ability: "con",
+		fullKey: "Endurance"
 	},
 	inst: {
 		label: "EH.Skill.Insight.Label",
-		ability: "wis"
+		ability: "wis",
+		fullKey: "Insight"
 	},
 	inti: {
 		label: "EH.Skill.Intimidation.Label",
-		ability: "cha"
+		ability: "cha",
+		fullKey: "Intimidation"
 	},
 	inve: {
 		label: "EH.Skill.Investigation.Label",
-		ability: "int"
+		ability: "int",
+		fullKey: "Investigation"
 	},
 	mech: {
 		label: "EH.Skill.Mechanics.Label",
-		ability: "int"
+		ability: "int",
+		fullKey: "Mechanics"
 	},
 	medi: {
 		label: "EH.Skill.Medicine.Label",
-		ability: "int"
+		ability: "int",
+		fullKey: "Medicine"
 	},
 	nats: {
 		label: "EH.Skill.NaturalSciences.Label",
-		ability: "int"
+		ability: "int",
+		fullKey: "NaturalSciences"
 	},
 	perc: {
 		label: "EH.Skill.Perception.Label",
-		ability: "wis"
+		ability: "wis",
+		fullKey: "Perception"
 	},
 	perf: {
 		label: "EH.Skill.Performance.Label",
-		ability: "cha"
+		ability: "cha",
+		fullKey: "Performance"
 	},
 	pers: {
 		label: "EH.Skill.Persuasion.Label",
-		ability: "cha"
+		ability: "cha",
+		fullKey: "Persuasion"
 	},
 	secu: {
 		label: "EH.Skill.Security.Label",
-		ability: "int"
+		ability: "int",
+		fullKey: "Security"
 	},
 	slgt: {
 		label: "EH.Skill.SleightOfHand.Label",
-		ability: "dex"
+		ability: "dex",
+		fullKey: "SleightOfHand"
 	},
 	socs: {
 		label: "EH.Skill.SocialSciences.Label",
-		ability: "int"
+		ability: "int",
+		fullKey: "SocialSciences"
 	},
 	slth: {
 		label: "EH.Skill.Stealth.Label",
-		ability: "dex"
+		ability: "dex",
+		fullKey: "Stealth"
 	},
 	strt: {
 		label: "EH.Skill.Streetwise.Label",
-		ability: "wis"
+		ability: "wis",
+		fullKey: "Streetwise"
 	},
 	surv: {
 		label: "EH.Skill.Survival.Label",
-		ability: "wis"
+		ability: "wis",
+		fullKey: "Survival"
 	},
 	vehi: {
 		label: "EH.Skill.Vehicles.Label",
-		ability: "dex"
+		ability: "dex",
+		fullKey: "Vehicles"
 	}
 };
 preLocalize("skills", { key: "label", sort: true });

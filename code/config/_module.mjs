@@ -15,7 +15,7 @@ const ASCII = ""
 + "        / __  /  __/ /  / /_/ /  __(__  )         \n"
 + "       /_/ /_/\\___/_/   \\____/\\___/____/          \n";
 
-export default {
+const config = {
 	ASCII,
 	...actor,
 	...general,
@@ -23,3 +23,28 @@ export default {
 	registration,
 	utils
 };
+export default config;
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Enrichment                               */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+let _enrichmentLookup;
+Object.defineProperty(config, "enrichmentLookup", {
+	get() {
+		const slugify = value => value?.slugify().replaceAll("-", "");
+		if ( !_enrichmentLookup ) {
+			_enrichmentLookup = {
+				abilities: foundry.utils.deepClone(this.abilities),
+				skills: foundry.utils.deepClone(this.skills)
+			};
+			const addFullKeys = key => Object.entries(this[key]).forEach(([k, v]) =>
+				_enrichmentLookup[key][slugify(v.fullKey)] = { ...v, key: k }
+			);
+			addFullKeys("abilities");
+			addFullKeys("skills");
+		}
+		return _enrichmentLookup;
+	},
+	enumerable: true
+});
