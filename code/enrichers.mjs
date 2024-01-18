@@ -2,6 +2,8 @@ import { simplifyBonus, systemLog } from "./utils.mjs";
 
 const MAX_EMBED_DEPTH = 5;
 
+const slugify = value => value?.slugify().replaceAll("-", "");
+
 /**
  * Set up the custom text enricher.
  */
@@ -10,6 +12,10 @@ export function registerCustomEnrichers() {
 		{
 			pattern: /@FallbackUUID\[(?<uuid>[^\]]+)\]{(?<label>[^}]+)}/g,
 			enricher: enrichFallbackContentLink
+		},
+		{
+			pattern: /\[\[\/(?<type>check|damage|save|skill) (?<config>[^\]]+)]](?:{(?<label>[^}]+)})?/gi,
+			enricher: enrichString
 		},
 		{
 			pattern: /@(?<type>Check|Save|Skill)\[(?<config>[^\]]+)\](?:{(?<label>[^}]+)})?/gi,
@@ -58,10 +64,17 @@ async function enrichFallbackContentLink(match, options) {
 async function enrichLegacyString(match, options) {
 	let { type, config, label } = match.groups;
 	config = prepareLegacyConfig(config);
+	config.format ??= "long";
 	switch ( type.toLowerCase() ) {
-		case "check": return enrichCheck(config, label, options);
-		case "save": return enrichSave(config, label, options);
-		case "skill": return enrichSkill(config, label, options);
+		case "check":
+			config.ability ??= config._;
+			return enrichCheck(config, label, options);
+		case "save":
+			config.ability ??= config._;
+			return enrichSave(config, label, options);
+		case "skill":
+			config.skill ??= config._;
+			return enrichCheck(config, label, options);
 	}
 	return null;
 }
@@ -79,9 +92,9 @@ async function enrichString(match, options) {
 	let { type, config, label } = match.groups;
 	config = prepareConfig(config);
 	switch ( type.toLowerCase() ) {
-		case "check": return enrichCheck(config, label, options);
+		case "check":
+		case "skill": return enrichCheck(config, label, options);
 		case "save": return enrichSave(config, label, options);
-		case "skill": return enrichSkill(config, label, options);
 		case "embed": return enrichEmbed(config, label, options);
 	}
 	return null;
@@ -95,9 +108,9 @@ async function enrichString(match, options) {
  * @returns {object} - Configuration options formatted into an object.
  */
 function prepareLegacyConfig(raw) {
-	if ( !raw ) return {};
+	const config = { _config: raw, values: [] };
+	if ( !raw ) return config;
 	const split = raw.split("|");
-	const config = {};
 	if ( !split[0].includes(":") ) config._ = split.shift();
 	for ( const option of split ) {
 		let [key, value] = option.split(":");
@@ -133,21 +146,85 @@ function prepareConfig(match) {
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Add a dataset object to the provided element.
+ * @param {HTMLElement} element - Element to modify.
+ * @param {object} dataset - Data properties to add.
+ * @private
+ */
+function _addDataset(element, dataset) {
+	for ( const [key, value] of Object.entries(dataset) ) {
+		if ( !["_config", "_input", "values"].includes(key) && value ) element.dataset[key] = value;
+	}
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Create a passive skill tag.
+ * @param {string} label - Label to display.
+ * @param {object} dataset - Data that will be added to the tag.
+ * @returns {HTMLElement}
+ */
+function createPassiveTag(label, dataset) {
+	const span = document.createElement("span");
+	span.classList.add("passive-check");
+	_addDataset(span, dataset);
+	span.innerText = label;
+	return span;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Create a label for a roll message.
+ * @param {object} config - Enrichment configuration data.
+ * @returns {string}
+ */
+function createRollLabel(config) {
+	const ability = CONFIG.EverydayHeroes.abilities[config.ability]?.label;
+	const skill = CONFIG.EverydayHeroes.skills[config.skill]?.label;
+	const longSuffix = config.format === "long" ? "Long" : "Short";
+
+	let label;
+	switch ( config.type ) {
+		case "ability-check":
+		case "skill":
+			if ( ability && skill ) {
+				label = game.i18n.format("EH.Inline.SpecificCheck", { ability, type: skill });
+			} else {
+				label = ability;
+			}
+			if ( config.passive ) {
+				label = game.i18n.format(`EH.Inline.DCPassive${longSuffix}`, { dc: config.dc, check: label });
+			} else {
+				if ( config.dc ) label = game.i18n.format("EH.Inline.DC", { dc: config.dc, check: label });
+				label = game.i18n.format(`EH.Inline.Check${longSuffix}`, { check: label });
+			}
+			break;
+		case "ability-save":
+			label = ability;
+			if ( config.dc ) label = game.i18n.format("EH.Inline.DC", { dc: config.dc, check: label });
+			label = game.i18n.format(`EH.Inline.Save${longSuffix}`, { save: label });
+			break;
+		default:
+			return "";
+	}
+
+	return label;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Create a rollable link.
  * @param {string} label - Label to display.
- * @param {object} dataset
- * @param {string} dataset.type - Type of rolling action to perform (e.g. `check`, `save`, `skill`).
- * @param {string} dataset.ability - Ability key to roll (e.g. `dex`, `str`).
- * @param {string} dataset.skill - Skill key to roll (e.g. `acro`, `dece`).
- * @param {number} dataset.dc - DC of the roll.
+ * @param {object} dataset - Data that will be added to the link for the rolling method.
  * @returns {HTMLElement}
  */
 function createRollLink(label, dataset) {
 	const link = document.createElement("a");
 	link.classList.add("roll-link");
-	for ( const [key, value] of Object.entries(dataset) ) {
-		if ( value ) link.dataset[key] = value;
-	}
+	_addDataset(link, dataset);
 	link.innerHTML = `<i class="fa-solid fa-dice-d20"></i> ${label}`;
 	return link;
 }
@@ -157,53 +234,57 @@ function createRollLink(label, dataset) {
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
- * @typedef {object} EnrichCheckConfig
- * @property {string} _ - Check to be performed (e.g. `con`, `dex`).
- * @property {string} [skill] - Skill to use for the check (e.g. `acro`, `dece`).
- * @property {string} [dc] - Target DC for the check.
- */
-
-/**
  * Enrich a ability check link to perform a specific ability or skill check.
- * @param {EnrichCheckConfig} config - Configuration data.
+ * @param {object} config - Configuration data.
  * @param {string} label - Optional label to replace default text.
  * @param {EnrichmentOptions} options - Options provided to customize text enrichment.
  * @returns {HTMLElement|null} - A HTML link if the check could be built, otherwise null.
- *
- * TODO: Add some examples
  */
 async function enrichCheck(config, label, options) {
-	let { _: ability, skill, dc } = config;
-	dc = simplifyBonus(dc, options.rollData ?? {});
-
-	const abilityConfig = CONFIG.EverydayHeroes.abilities[ability];
-	if ( !abilityConfig ) return console.warn(`Everyday Heroes | Ability ${ability} not found`);
-
-	const skillConfig = CONFIG.EverydayHeroes.skills[skill];
-	if ( (skill !== undefined) && !skillConfig ) return console.warn(`Everyday Heroes | Skill ${skill} not found`);
-
-	// Insert the icon and label into the link
-	if ( !label ) {
-		if ( skill ) label = game.i18n.format("EH.Inline.Skill", { ability: abilityConfig.label, skill: skillConfig.label });
-		else label = game.i18n.format("EH.Inline.Check", { ability: abilityConfig.label });
-		if ( dc ) label = game.i18n.format("EH.Inline.DC", { dc, check: label });
+	for ( let value of config.values ) {
+		value = foundry.utils.getType(value) === "string" ? slugify(value) : value;
+		if ( value in CONFIG.EverydayHeroes.abilities ) config.ability = value;
+		else if ( value in CONFIG.EverydayHeroes.skills ) config.skill = value;
+		else if ( Number.isNumeric(value) ) config.dc = Number(value);
+		else config[value] = true;
 	}
 
-	const type = skillConfig ? "skill" : "ability-check";
-	return createRollLink(label, { type, ability, skill, dc });
+	let invalid = false;
+
+	const skillConfig = CONFIG.EverydayHeroes.skills[slugify(config.skill)];
+	if ( config.skill && !skillConfig ) {
+		systemLog(`Skill ${config.skill} not found while enriching ${config._input}.`, { level: "warn" });
+		invalid = true;
+	} else if ( config.skill && !config.ability ) {
+		config.ability = skillConfig.ability;
+	}
+	if ( skillConfig?.key ) config.skill = skillConfig.key;
+
+	let abilityConfig = CONFIG.EverydayHeroes.abilities[slugify(config.ability)];
+	if ( config.ability && !abilityConfig ) {
+		systemLog(`Ability ${config.ability} not found while enriching ${config._input}.`, { level: "warn" });
+		invalid = true;
+	} else if ( !abilityConfig ) {
+		systemLog(`No ability provided while enriching check ${config._input}.`, { level: "warn" });
+		invalid = true;
+	}
+	if ( abilityConfig?.key ) config.ability = abilityConfig.key;
+
+	if ( config.dc && !Number.isNumeric(config.dc) ) config.dc = simplifyBonus(config.dc, options.rollData ?? {});
+
+	if ( invalid ) return null;
+
+	const type = config.skill ? "skill" : "ability-check";
+	config = { type, ...config };
+	if ( !label ) label = createRollLabel(config);
+	return config.passive ? createPassiveTag(label, config) : createRollLink(label, config);
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
- * @typedef {object} EnrichSaveConfig
- * @property {string} _ - Save to be performed (e.g. `con`, `dex`).
- * @property {string} [dc] - Target DC for the save.
- */
-
-/**
  * Enrich a ability save link.
- * @param {EnrichSaveConfig} config - Configuration data.
+ * @param {object} config - Configuration data.
  * @param {string} label - Optional label to replace default text.
  * @param {EnrichmentOptions} options - Options provided to customize text enrichment.
  * @returns {HTMLElement|null} - A HTML link if the save could be built, otherwise null.
@@ -227,51 +308,24 @@ async function enrichCheck(config, label, options) {
  * ```
  */
 async function enrichSave(config, label, options) {
-	let { _: ability, dc } = config;
-	dc = simplifyBonus(dc, options.rollData ?? {});
-
-	const abilityConfig = CONFIG.EverydayHeroes.abilities[ability];
-	if ( !abilityConfig ) return systemLog(`Ability ${ability} not found`, {color: "FireBrick"});
-
-	if ( !label ) {
-		label = game.i18n.format("EH.Inline.Save", { ability: abilityConfig.label });
-		if ( dc ) label = game.i18n.format("EH.Inline.DC", { dc, check: label });
+	for ( const value of config.values ) {
+		if ( value in CONFIG.EverydayHeroes.abilities ) config.ability = value;
+		else if ( Number.isNumeric(value) ) config.dc = Number(value);
+		else config[value] = true;
 	}
 
-	return createRollLink(label, { type: "ability-save", ability, dc });
-}
-
-/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-/**
- * @typedef {object} EnrichSkillConfig
- * @property {string} _ - Skill check to be performed (e.g. `acro`, `dece`).
- * @property {string} [dc] - Target DC for the skill check.
- */
-
-/**
- * Enrich a skill check link. Unlike the `@Check` enricher, this will use the player's default ability
- * or allow for selecting any associated ability to perform the skill check.
- * @param {EnrichSkillConfig} config - Configuration data.
- * @param {string} label - Optional label to replace default text.
- * @param {EnrichmentOptions} options - Options provided to customize text enrichment.
- * @returns {HTMLElement|null} - A HTML link if the save could be built, otherwise null.
- *
- * TODO: Add some examples
- */
-async function enrichSkill(config, label, options) {
-	let { _: skill, dc } = config;
-	dc = simplifyBonus(dc, options.rollData ?? {});
-
-	const skillConfig = CONFIG.EverydayHeroes.skills[skill];
-	if ( !skillConfig ) return systemLog(`Skill ${skill} not found`, {color: "FireBrick"});
-
-	if ( !label ) {
-		label = game.i18n.format("EH.Inline.Check", { ability: skillConfig.label });
-		if ( dc ) label = game.i18n.format("EH.Inline.DC", { dc, check: label });
+	const abilityConfig = CONFIG.EverydayHeroes.abilities[config.ability];
+	if ( !abilityConfig ) {
+		systemLog(`Ability ${config.ability} not found while enriching ${config._input}.`, {level: "warn"});
+		return null;
 	}
+	if ( abilityConfig?.key ) config.ability = abilityConfig.key;
 
-	return createRollLink(label, { type: "skill", skill, dc });
+	if ( config.dc && !Number.isNumeric(config.dc) ) config.dc = simplifyBonus(config.dc, options.rollData ?? {});
+
+	config = { type: "ability-save", ...config };
+	if ( !label ) label = createRollLabel(config);
+	return createRollLink(label, config);
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

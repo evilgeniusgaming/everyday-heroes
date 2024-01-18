@@ -603,11 +603,15 @@
 "Initiative.Turns.Count[one]": "{count} turn per round",
 "Initiative.Turns.Count[other]": "{count} turns per round",
 
+"Inline.CheckShort": "{check}",
+"Inline.CheckLong": "{check} check",
 "Inline.DC": "DC {dc} {check}",
-"Inline.Check": "{ability} check",
+"Inline.DCPassiveShort": "DC {dc} passive {check}",
+"Inline.DCPassiveLong": "passive {check} score of {dc} or higher",
 "Inline.NoActorWarning": "No selected or assigned actor could be found to execute this roll.",
-"Inline.Save": "{ability} saving throw",
-"Inline.Skill": "{ability} ({skill}) check",
+"Inline.SaveShort": "{save}",
+"Inline.SaveLong": "{save} saving throw",
+"Inline.SpecificCheck": "{ability} ({type})",
 
 "Item.Label[one]": "Item",
 "Item.Label[other]": "Items",
