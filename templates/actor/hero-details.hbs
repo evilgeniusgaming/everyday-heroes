@@ -87,8 +87,12 @@
 							type=(localize 'EH.Ability.Action.CheckSpecific' ability=ability.label)}}">{{ability.mod}}</a>
 					</aside>
 					<div class="contents">
-						<input class="value" type="number" name="system.abilities.{{key}}.value"
-							value="{{ability.value}}" step="1" min="1" {{disabled (not @root.editingMode)}}>
+						{{#if @root.editingMode}}
+							<input class="value" type="number" name="system.abilities.{{key}}.value"
+								value="{{ability._source.value}}" step="1" min="1">
+						{{else}}
+							<input class="value" type="number" value="{{ability.value}}" disabled>
+						{{/if}}
 						<div class="save">
 							{{> "everydayHeroes.actor-proficiency-selector" type="single"
 							  name=(concat "system.abilities." key ".saveProficiency")
