@@ -41,6 +41,10 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 	 */
 	static metadata = {};
 
+	get metadata() {
+		return this.constructor.metadata;
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	static _enableV10Validation = true;

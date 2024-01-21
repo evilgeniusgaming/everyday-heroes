@@ -22,9 +22,8 @@ export default class FeatureSheet extends AdvancementItemSheet {
 
 		context.effects = ActiveEffectEH.prepareActiveEffectSections(context.item.effects);
 
-		context.itemCategories = foundry.utils.getProperty(CONFIG.EverydayHeroes, `${context.item.type}Categories`);
-		context.itemSubTypes = (context.item.type !== "feat" || context.system.type.category === "advanced")
-			? foundry.utils.getProperty(CONFIG.EverydayHeroes, `${context.item.type}Types`) : null;
+		const type = context.item.system.metadata?.type ?? context.item.type;
+		context.itemCategories = foundry.utils.getProperty(CONFIG.EverydayHeroes, `${type}Categories`);
 
 		context.registeredFields = [];
 		for ( const field of context.item.system.constructor.registeredFields ?? [] ) {
