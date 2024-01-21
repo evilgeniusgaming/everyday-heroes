@@ -955,7 +955,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 		let roll;
 		if ( dialogConfig.configure ) {
 			try {
-				roll = (await Roll.ConfigurationDialog.configure(rollConfig, dialogConfig))?.[0];
+				roll = (await Roll.DefaultConfigurationDialog.configure(rollConfig, dialogConfig))?.[0];
 			} catch(err) {
 				if ( !err ) return;
 				throw err;
