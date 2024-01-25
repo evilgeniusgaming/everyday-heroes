@@ -5,7 +5,7 @@
   "system": {
     "description": {
       "value": "<p>You can enact this plan as a reaction when an opponent within 30 feet of you and that you are aware of moves closer to you, causing the opponent to stumble into a cleaning cart, trip over a mop, get their foot stuck in a loose floorboard, and so on. That opponent must make a Dexterity saving throw against your plan DC, taking 2d6 bludgeoning damage (PV 1) on a failed save, or half as much on a successful one. In addition, on a failed save, the target falls Prone and their movement speed is reduced to 0 until the end of the current turn, ending their movement.</p><p><strong>Level 3:</strong> The damage becomes 3d6.</p><p><strong>Level 5:</strong> The damage becomes 5d6. You can affect an opponent up to 60 feet away.</p><p><strong>Level 7:</strong> The damage becomes 6d6.</p><p><strong>Level 9:</strong> The damage becomes 8d6. You can affect an opponent up to 120 feet away.</p>",
-      "chat": "<p>The opponent must make a @Save[dex|dc:@abilities.int.dc] against your plan DC, taking [[/r 2d6]] at <strong>level 1</strong>, [[/r 3d6]] at <strong>level 3</strong>, [[/r 5d6]] at <strong>level 5</strong>, [[/r 6d6]] at <strong>level 7</strong>, or [[/r 8d6]] at <strong>level 9</strong> bludgeoning damage (PV 1) on a failed save, or half as much on a successful one. In addition, on a failed save, the target falls Prone and their movement speed is reduced to 0 until the end of the current turn, ending their movement.</p>",
+      "chat": "<p>The opponent must make a @Save[dex|dc:@abilities.int.dc] against your plan DC, taking [[/damage 2d6 bludgeoning pv=1]]{2d6} at <strong>level 1</strong>, [[/damage 3d6 bludgeoning pv=1]]{3d6} at <strong>level 3</strong>, [[/damage 5d6 bludgeoning pv=1]]{5d6} at <strong>level 5</strong>, [[/damage 6d6 bludgeoning pv=1]]{6d6} at <strong>level 7</strong>, or [[/damage 8d6 bludgeoning pv=1]]{8d6} at <strong>level 9</strong> bludgeoning damage (PV 1) on a failed save, or half as much on a successful one. In addition, on a failed save, the target falls Prone and their movement speed is reduced to 0 until the end of the current turn, ending their movement.</p>",
       "source": "Core Rulebook"
     },
     "activation": {
@@ -36,10 +36,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.4.8",
+    "systemVersion": "0.5.0",
     "coreVersion": "11.315",
     "createdTime": 1679521688773,
-    "modifiedTime": 1705284161229,
+    "modifiedTime": 1706223177381,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": "iZ944EL04M6pfkod",

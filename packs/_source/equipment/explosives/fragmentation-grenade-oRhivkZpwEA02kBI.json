@@ -19,7 +19,7 @@
     "supplementalDamage": [],
     "description": {
       "value": "<p>Frag grenades are the standard anti-personnel grenade used by militaries the world over. They are lethal and cheap to make. The biggest limitation on grenades is their short range, which explains the creation of grenade launchers.</p>",
-      "chat": "<p>Each combatant within 20 feet of the explosion must attempt a @Save[dex|dc:@item.dc], taking [[/r 4d8[explosive]]] damage (PV 3) on a failed save, or half as much on a successful one.</p>",
+      "chat": "<p>Each combatant within 20 feet of the explosion must attempt a @Save[dex|dc:@item.dc], taking [[/damage 4d8 explosive pv=3]] on a failed save, or half as much on a successful one.</p>",
       "source": "Quickstart Guide"
     },
     "quantity": {
@@ -57,7 +57,7 @@
     "systemVersion": "0.5.0",
     "coreVersion": "11.315",
     "createdTime": 1679624912022,
-    "modifiedTime": 1705442578746,
+    "modifiedTime": 1706223539637,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": "d53dp0zYjktwAeZw",

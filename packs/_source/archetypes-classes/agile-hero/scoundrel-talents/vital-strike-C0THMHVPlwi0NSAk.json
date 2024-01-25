@@ -5,7 +5,7 @@
   "system": {
     "description": {
       "value": "<p>Once during your turn when you hit a target with an attack, if you had advantage on that attack or an ally is within 5 feet of that target, you can deal an additional 1d6 damage.</p><p>The amount of extra damage increases as you gain levels in this class, as shown in the Vital Strike column of the Scoundrel table.</p>",
-      "chat": "<p>You deal an additional [[@scale.vital-strike]] damage.</p>",
+      "chat": "<p>You deal an additional [[/damage @scale.vital-strike]] damage.</p>",
       "source": "Core Rulebook"
     },
     "activation": {
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.4.8",
+    "systemVersion": "0.5.0",
     "coreVersion": "11.315",
     "createdTime": 1679458723035,
-    "modifiedTime": 1705283632226,
+    "modifiedTime": 1706222781252,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": "0WnOR1PFvZvvNy6Z",

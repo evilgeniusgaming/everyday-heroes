@@ -5,7 +5,7 @@
   "system": {
     "description": {
       "value": "<p><strong>Prerequisite:</strong> Not a sleuth (class), @UUID[Compendium.everyday-heroes.feats.gkzRMTwhfRyiILhF]{Sleuth Training} feat, Level 8+</p><p>Your intuition has given you the ability to get the drop on your enemies and hit them where it hurts.</p><ul><li><p>Choose one from Insight, Investigation, Perception, Security, and Streetwise. You gain expertise in the chosen skill.</p></li><li><p>You gain 1 additional Focus point.</p></li><li><p>As a bonus action, you can spend 1 Focus point to gain advantage on your next attack roll. If the attack hits, you deal an additional 2d6 damage to the target.</p></li><li><p>When you make a Dexterity saving throw to take half damage from an effect, you take no damage on a successful save, and half damage on a failed one.</p></li></ul>",
-      "chat": "<p>You gain advantage on your next attack roll. If the attack hits, you deal an additional [[2d6]] damage to the target.</p>",
+      "chat": "<p>You gain advantage on your next attack roll. If the attack hits, you deal an additional [[/damage 2d6]] to the target.</p>",
       "source": "Core Rulebook"
     },
     "activation": {
@@ -99,7 +99,7 @@
     "systemVersion": "0.5.0",
     "coreVersion": "11.315",
     "createdTime": 1680041503913,
-    "modifiedTime": 1705442215926,
+    "modifiedTime": 1706223385266,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": "WUjQvIJr7gmCIJwL",

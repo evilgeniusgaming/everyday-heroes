@@ -19,7 +19,7 @@
     "supplementalDamage": [],
     "description": {
       "value": "<p>Flashbangs are incredibly useful tactical weapons. They both stun and deafen enemies for a short time, creating the perfect opportunity for an assault or to force a surrender. Targets make one saving throw to resist both effects.</p>",
-      "chat": "<p>Each combatant within 30 feet of the explosion takes [[/r 1d4[explosive]]] damage and must succeed at a @Save[con|dc:@item.dc] or be Deafened and Stunned until the end of its next turn.</p>",
+      "chat": "<p>Each combatant within 30 feet of the explosion takes [[/damage 1d4 explosive pv=1]] and must succeed at a @Save[con|dc:@item.dc] or be Deafened and Stunned until the end of its next turn.</p>",
       "source": "Quickstart Guide"
     },
     "quantity": {
@@ -59,7 +59,7 @@
     "systemVersion": "0.5.0",
     "coreVersion": "11.315",
     "createdTime": 1679624875584,
-    "modifiedTime": 1705442575855,
+    "modifiedTime": 1706223581989,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": "d53dp0zYjktwAeZw",

@@ -5,7 +5,7 @@
   "system": {
     "description": {
       "value": "<p>Once during your turn, when you hit an opponent with a melee weapon (including weapons with the thrown property), you can choose to deal an additional 1d6 damage, or an additional 1d12 damage if you used the Power Attack talent as part of the attack. If you did not attack with an unarmed strike, the weapon you used to make the attack is destroyed. You can't use this talent with thrown explosives, such as grenades.</p><p>The amount of extra damage increases as you gain levels in this class, as shown on the Smash Damage column of the Brawler table.</p>",
-      "chat": "<p>You deal an additional [[(@scale.smash-dice)d6]] damage, or and additional [[(@scale.smash-dice)d12]] damage if you used the Power Attack talent as part of an attack.",
+      "chat": "<p>You deal an additional [[/damage (@scale.smash-dice)d6]] damage, or and additional [[/damage (@scale.smash-dice)d12]] damage if you used the Power Attack talent as part of an attack.</p>",
       "source": "Core Rulebook"
     },
     "activation": {
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.4.8",
+    "systemVersion": "0.5.0",
     "coreVersion": "11.315",
     "createdTime": 1679455541060,
-    "modifiedTime": 1705283567763,
+    "modifiedTime": 1706222720473,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": "124rGDyG2m0ATrsZ",

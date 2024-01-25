@@ -5,7 +5,7 @@
   "system": {
     "description": {
       "value": "<p>As a bonus action, you can spend 1 Focus to gain advantage on your next attack roll against one opponent you can see. If that attack hits, you deal an additional 1d6 damage.</p><p>The amount of extra damage increases as you gain levels in this class, as shown in the Weak Spot column of the Sleuth table.</p>",
-      "chat": "<p>You gain advantage on your next attack roll against one opponent you can see. If that attack hits, you deal an additional [[@scale.weak-spot]] damage.</p>",
+      "chat": "<p>You gain advantage on your next attack roll against one opponent you can see. If that attack hits, you deal an additional [[/damage @scale.weak-spot]] damage.</p>",
       "source": "Core Rulebook"
     },
     "activation": {
@@ -39,10 +39,10 @@
   "flags": {},
   "_stats": {
     "systemId": "everyday-heroes",
-    "systemVersion": "0.4.8",
+    "systemVersion": "0.5.0",
     "coreVersion": "11.315",
     "createdTime": 1679516812672,
-    "modifiedTime": 1705283707556,
+    "modifiedTime": 1706222614343,
     "lastModifiedBy": "everyday00heroes"
   },
   "folder": "FGoB1mIEIJ5EeCuy",
