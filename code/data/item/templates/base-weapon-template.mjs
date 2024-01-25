@@ -171,9 +171,8 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 
 	get attackIcon() {
 		const config = CONFIG.EverydayHeroes.weaponModes[this.mode];
-		if ( !config ) return "systems/everyday-heroes/artwork/svg/action/attack-melee-one-handed.svg";
-		if ( !config.icons ) return config.icon;
-		return config.icons[this.type.value];
+		return (config?.icons ? config.icons[this.type.value] : config?.icon)
+			?? "systems/everyday-heroes/artwork/svg/action/attack-melee-one-handed.svg";
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -333,7 +332,7 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 		for ( const [mode, config] of Object.entries(CONFIG.EverydayHeroes.weaponModes) ) {
 			if ( !config.available(this) ) continue;
 			modes[mode] = foundry.utils.deepClone(config);
-			const icon = modes[mode].icons?.[this.type.value];
+			const icon = modes[mode].icons?.[this.type.value || "melee"];
 			if ( icon ) modes[mode].icon = icon;
 		}
 		return modes;
