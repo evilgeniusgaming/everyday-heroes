@@ -1,6 +1,6 @@
 import SuppressiveFireTemplate from "../canvas/suppressive-fire-template.mjs";
 import { buildMinimum, buildRoll } from "../dice/utils.mjs";
-import { numberFormat, slugify, systemLog } from "../utils.mjs";
+import { numberFormat, simplifyBonus, slugify, systemLog } from "../utils.mjs";
 import { DocumentMixin } from "./mixin.mjs";
 
 /**
@@ -289,12 +289,12 @@ export default class ItemEH extends DocumentMixin(Item) {
 			const roll = await this.actor.rollResource({
 				resource: item.system.resource.target,
 				consumed: 0,
-				diceNumber: item.system.resource.dice,
+				diceNumber: simplifyBonus(item.system.resource.dice, this.getRollData({ deterministic: true })),
 				parts: item.system.resource.bonus ? [item.system.resource.bonus] : undefined
 			}, { create: false });
 			if ( roll ) {
 				message.data ??= {};
-				message.data.rolls = [roll].concat(message.data.rolls ?? []);
+				message.data.rolls = roll.concat(message.data.rolls ?? []);
 			}
 		}
 

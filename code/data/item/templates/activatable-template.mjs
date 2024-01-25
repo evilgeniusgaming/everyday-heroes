@@ -203,7 +203,7 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 	 */
 	get shouldConsumeResource() {
 		if ( !this.consumesResource ) return false;
-		if ( this.resource.type !== "uses" ) return false;
+		if ( this.resource.type !== "uses" ) return true;
 		const otherItem = this.actor?.items.get(this.resource.target);
 		return otherItem?.system.shouldConsumeUse ?? false;
 	}

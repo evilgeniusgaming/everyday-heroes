@@ -43,8 +43,8 @@ export default class TrickData extends ItemDataModel.mixin(DescribedTemplate, Ac
 				amount: new foundry.data.fields.NumberField({initial: 1}),
 				target: new foundry.data.fields.StringField({initial: "influence"}),
 				type: new foundry.data.fields.StringField({initial: "resource"}),
-				dice: new foundry.data.fields.NumberField({
-					min: 0, integer: true, label: "EH.Consumption.Dice.Label", hint: "EH.Consumption.Dice.Hint"
+				dice: new FormulaField({
+					deterministic: true, label: "EH.Consumption.Dice.Label", hint: "EH.Consumption.Dice.Hint"
 				}),
 				bonus: new FormulaField({label: "EH.Bonus.Label[one]", hint: "EH.Consumption.Dice.Bonus.Hint"})
 			})
