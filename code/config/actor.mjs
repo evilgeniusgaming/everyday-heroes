@@ -9,10 +9,6 @@ export const actorCategories = {
 		label: "EH.Actor.Category.People.Label",
 		types: ["hero", "npc"]
 	},
-	// places: {
-	// 	label: "EH.Actor.Category.Places.Label",
-	// 	types: []
-	// },
 	things: {
 		label: "EH.Actor.Category.Things.Label",
 		types: ["vehicle"]
