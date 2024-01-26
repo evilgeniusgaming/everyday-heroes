@@ -71,6 +71,7 @@
 	flex: 1 0 25%;
 }
 .hero.sheet [data-tab="details"] .hero-id fieldset > label {
+	display: flex;
 	font-weight: bold;
 	text-transform: uppercase;
 }
