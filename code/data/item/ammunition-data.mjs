@@ -7,6 +7,8 @@ import EquipmentTemplate from "./templates/equipment-template.mjs";
 import PhysicalTemplate from "./templates/physical-template.mjs";
 import TypedTemplate from "./templates/typed-template.mjs";
 
+const { NumberField, SchemaField, StringField } = foundry.data.fields;
+
 /**
  * Data definition for Ammunition items.
  * @mixes {@link DamageTemplate}
@@ -52,31 +54,32 @@ export default class AmmunitionData extends ItemDataModel.mixin(
 
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
-			type: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.StringField({suggestions: CONFIG.EverydayHeroes.ammunitionTypes})
+			type: new SchemaField({
+				value: new StringField({suggestions: CONFIG.EverydayHeroes.ammunitionTypes})
 			}),
-			properties: new MappingField(new foundry.data.fields.NumberField({min: -1, max: 1, integer: true}), {
+			properties: new MappingField(new NumberField({min: -1, max: 1, integer: true}), {
 				label: "EH.Weapon.Property.Label", hint: "EH.Ammunition.Properties.Hint"
 			}),
-			penetrationValue: new foundry.data.fields.NumberField({
+			penetrationValue: new NumberField({
 				integer: true,
 				label: "EH.Equipment.Trait.PenetrationValue.Label", hint: "EH.Equipment.Trait.PenetrationValue.Hint"
 			}),
-			bonuses: new foundry.data.fields.SchemaField({
+			bonuses: new SchemaField({
 				attack: new FormulaField({label: "EH.Weapon.Bonus.Attack.Label", hint: "EH.Weapon.Bonus.Attack.Hint"}),
 				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label", hint: "EH.Weapon.Bonus.Damage.Hint"}),
-				critical: new foundry.data.fields.SchemaField({
+				critical: new SchemaField({
 					damage: new FormulaField({
 						label: "EH.Weapon.Bonus.Critical.Damage.Label", hint: "EH.Weapon.Bonus.Critical.Damage.Hint"
 					}),
-					dice: new foundry.data.fields.NumberField({
+					dice: new NumberField({
 						label: "EH.Weapon.Bonus.Critical.Dice.Label", hint: "EH.Weapon.Bonus.Critical.Dice.Hint"
 					})
 				})
 			}),
-			overrides: new foundry.data.fields.SchemaField({
-				critical: new foundry.data.fields.SchemaField({
-					threshold: new foundry.data.fields.NumberField({
+			overrides: new SchemaField({
+				critical: new SchemaField({
+					threshold: new FormulaField({
+						deterministic: true,
 						label: "EH.Weapon.Overrides.Critical.Threshold.Label",
 						hint: "EH.Weapon.Overrides.Critical.Threshold.SpecificHint"
 					})

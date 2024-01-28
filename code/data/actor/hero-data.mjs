@@ -200,7 +200,7 @@ export default class HeroData extends ActorDataModel.mixin(
 						min: 1, integer: true, label: "EH.Action.Override.Critical.Multiplier.Label",
 						hint: "EH.Action.Override.Critical.Multiplier.Hint"
 					}),
-					threshold: new MappingField(new NumberField({initial: 20, min: 1, integer: true}), {
+					threshold: new MappingField(new FormulaField({initial: "20", deterministic: true}), {
 						label: "EH.Weapon.Overrides.Critical.Threshold.Label", hint: "EH.Weapon.Overrides.Critical.Threshold.GlobalHint"
 					})
 				})

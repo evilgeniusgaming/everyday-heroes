@@ -1,6 +1,8 @@
 import { numberFormat, simplifyBonus } from "../../../utils.mjs";
 import FormulaField from "../../fields/formula-field.mjs";
 
+const { BooleanField, NumberField, SchemaField, SetField, StringField } = foundry.data.fields;
+
 /**
  * Data model template shared across various weapon types.
  *
@@ -34,72 +36,73 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 
 	static defineSchema() {
 		return {
-			_modeOverride: new foundry.data.fields.StringField({nullable: true, required: false, initial: undefined}),
-			type: new foundry.data.fields.SchemaField({
-				value: new foundry.data.fields.StringField({suggestions: CONFIG.EverydayHeroes.weaponTypes}),
-				category: new foundry.data.fields.StringField({
+			_modeOverride: new StringField({nullable: true, required: false, initial: undefined}),
+			type: new SchemaField({
+				value: new StringField({suggestions: CONFIG.EverydayHeroes.weaponTypes}),
+				category: new StringField({
 					initial: "", label: "EH.Equipment.Category.Label[one]",
 					suggestions: CONFIG.EverydayHeroes.equipmentCategories
 				})
 			}, {label: "EH.Item.Type.Label"}),
-			properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField({
+			properties: new SetField(new StringField({
 				suggestions: CONFIG.EverydayHeroes.applicableProperties[this.metadata.type ?? this.metadata.variant]
 			}), {
 				label: "EH.Weapon.Property.Label"
 			}),
-			penetrationValue: new foundry.data.fields.NumberField({
+			penetrationValue: new NumberField({
 				min: 0, integer: true,
 				label: "EH.Equipment.Trait.PenetrationValue.Label", hint: "EH.Equipment.Trait.PenetrationValue.Hint"
 			}),
-			jammed: new foundry.data.fields.BooleanField({label: "EH.Weapon.Jammed.Label", hint: "EH.Weapon.Jammed.Hint"}),
-			range: new foundry.data.fields.SchemaField({
-				short: new foundry.data.fields.NumberField({
+			jammed: new BooleanField({label: "EH.Weapon.Jammed.Label", hint: "EH.Weapon.Jammed.Hint"}),
+			range: new SchemaField({
+				short: new NumberField({
 					min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Short.Label", hint: "EH.Equipment.Trait.Range.Short.Hint"
 				}),
-				long: new foundry.data.fields.NumberField({
+				long: new NumberField({
 					min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Long.Label", hint: "EH.Equipment.Trait.Range.Long.Hint"
 				}),
-				reach: new foundry.data.fields.NumberField({
+				reach: new NumberField({
 					min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Reach.Label", hint: "EH.Equipment.Trait.Range.Reach.Hint"
 				}),
-				units: new foundry.data.fields.StringField({
+				units: new StringField({
 					label: "EH.Measurement.Units", suggestions: [...Object.keys(CONFIG.EverydayHeroes.lengthUnits), "spaces"]
 				})
 			}, {label: "EH.Equipment.Trait.Range.Label", hint: "EH.Equipment.Trait.Range.Hint"}),
-			reload: new foundry.data.fields.StringField({
+			reload: new StringField({
 				label: "EH.Equipment.Trait.Reload.Label", hint: "EH.Equipment.Trait.Reload.Hint",
 				suggestions: CONFIG.EverydayHeroes.actionTypesReload
 			}),
-			rounds: new foundry.data.fields.SchemaField({
-				spent: new foundry.data.fields.NumberField({
+			rounds: new SchemaField({
+				spent: new NumberField({
 					initial: 0, min: 0, integer: true, label: "EH.Equipment.Trait.Rounds.Spent"
 				}),
-				capacity: new foundry.data.fields.NumberField({
+				capacity: new NumberField({
 					min: 0, integer: true, label: "EH.Equipment.Trait.Rounds.Capacity"
 				}),
-				burst: new foundry.data.fields.NumberField({
+				burst: new NumberField({
 					min: 0, integer: true,
 					label: "EH.Equipment.Trait.Rounds.Burst.Label", hint: "EH.Equipment.Trait.Rounds.Burst.Hint"
 				}),
-				type: new foundry.data.fields.StringField({
+				type: new StringField({
 					label: "EH.Ammunition.Type.Label", suggestions: CONFIG.EverydayHeroes.ammunitionTypes
 				})
 			}, {label: "EH.Equipment.Trait.Rounds.Label", hint: "EH.Equipment.Trait.Rounds.Hint"}),
-			bonuses: new foundry.data.fields.SchemaField({
+			bonuses: new SchemaField({
 				attack: new FormulaField({label: "EH.Weapon.Bonus.Attack.Label", hint: "EH.Weapon.Bonus.Attack.Hint"}),
 				damage: new FormulaField({label: "EH.Weapon.Bonus.Damage.Label", hint: "EH.Weapon.Bonus.Damage.Hint"}),
-				critical: new foundry.data.fields.SchemaField({
+				critical: new SchemaField({
 					damage: new FormulaField({
 						label: "EH.Weapon.Bonus.Critical.Damage.Label", hint: "EH.Weapon.Bonus.Critical.Damage.Hint"
 					}),
-					dice: new foundry.data.fields.NumberField({
+					dice: new NumberField({
 						label: "EH.Weapon.Bonus.Critical.Dice.Label", hint: "EH.Weapon.Bonus.Critical.Dice.Hint"
 					})
 				}, {label: "EH.Weapon.Bonus.Critical.Label", hint: "EH.Weapon.Bonus.Critical.Hint"})
 			}, {label: "EH.Bonus.Label[other]"}),
-			overrides: new foundry.data.fields.SchemaField({
-				critical: new foundry.data.fields.SchemaField({
-					threshold: new foundry.data.fields.NumberField({
+			overrides: new SchemaField({
+				critical: new SchemaField({
+					threshold: new FormulaField({
+						deterministic: true,
 						label: "EH.Weapon.Overrides.Critical.Threshold.Label",
 						hint: "EH.Weapon.Overrides.Critical.Threshold.SpecificHint"
 					})
@@ -260,11 +263,12 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 
 	get criticalThreshold() {
 		// TODO: Replace actor threshold with a more customizable system
+		const rollData = this.user.getRollData({ deterministic: true });
 		const threshold = Math.min(
-			this.user?.system.overrides?.critical?.threshold.all ?? Infinity,
-			this.user?.system.overrides?.critical?.threshold[this.type.value] ?? Infinity,
-			this.ammunition?.system.overrides?.critical?.threshold ?? Infinity,
-			this.overrides.critical.threshold ?? Infinity
+			simplifyBonus(this.user?.system.overrides?.critical?.threshold.all ?? Infinity, rollData),
+			simplifyBonus(this.user?.system.overrides?.critical?.threshold[this.type.value] ?? Infinity, rollData),
+			simplifyBonus(this.ammunition?.system.overrides?.critical?.threshold ?? Infinity, rollData),
+			simplifyBonus(this.overrides.critical.threshold || Infinity, rollData)
 		);
 		return threshold < Infinity ? threshold : 20;
 	}
