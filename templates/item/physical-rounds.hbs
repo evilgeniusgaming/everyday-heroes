@@ -32,8 +32,11 @@
 {{#if (or system.rounds.capacity system.beltFed)}}
 	<fieldset>
 		<label>{{localize "EH.Equipment.Trait.Reload.Label"}}</label>
-		<select name="system.reload">
-			{{selectOptions CONFIG.actionTypesReload selected=source.reload blank=(localize "EH.Action.Reload.None")}}
+		{{#if system.reload.hasCount}}
+			<input class="single" type="number" name="system.reload.value" value="{{system.reload.value}}">
+		{{/if}}
+		<select class="{{#if system.reload.hasCount}}double{{else}}triple{{/if}}" name="system.reload.type">
+			{{selectOptions CONFIG.actionTypesReload selected=source.reload.type blank=(localize "EH.Action.Reload.None")}}
 		</select>
 	</fieldset>
 {{/if}}

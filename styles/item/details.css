@@ -26,52 +26,61 @@
 	grid-template-columns: subgrid;
 	gap: 0.25em;
 	margin-block: 0.5em;
-}
-.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > :is(label, legend) {
-	grid-column: 1 / span 2;
-	align-self: center;
-	font-weight: bold;
-	text-transform: uppercase;
-}
-.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > :is(input, select, .tag-input) {
-	grid-column: 3 / -1;
-	width: unset;
-}
-.everyday-heroes.item.sheet [data-tab="details"] section > fieldset.triple > :is(input, select, .tag-input) {
-	grid-column: unset;
-}
-.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields {
-	grid-column: 3 / -1;
-	display: grid;
-	grid-template-columns: subgrid;
-}
-.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label {
-	display: flex;
-	flex-direction: column;
-}
-.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label.double {
-	grid-column: span 2;
-}
-.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label.triple {
-	grid-column: span 3;
-}
-.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label > :is(input, select) {
-	flex: 1 0 calc(var(--form-field-height) + 1px);
-}
-.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label > span {
-	font-size: var(--font-size-12);
-	font-variant: small-caps;
-	font-weight: bold;
-}
-.everyday-heroes.item.sheet [data-tab="details"] section > fieldset > .fields > label > span > input[type="checkbox"] {
-	float: right;
-	width: 1em;
-	height: 1em;
-	margin: 0;
-}
-.everyday-heroes.item.sheet [data-tab="details"] section > fieldset .hint {
-	grid-column: 1 / -1;
-	flex: 1 0 100%;
+
+	> :is(label, legend) {
+		grid-column: 1 / span 2;
+		align-self: center;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+
+	> :is(input, select, .tag-input) {
+		grid-column: 3 / -1;
+		width: unset;
+	}
+
+	&.triple > :is(input, select, .tag-input) {
+		grid-column: unset;
+	}
+
+	> .fields {
+		grid-column: 3 / -1;
+		display: grid;
+		grid-template-columns: subgrid;
+	}
+
+	> * {
+		&.single { grid-column: span 1; }
+		&.double { grid-column: span 2; }
+		&.triple { grid-column: span 3; }
+	}
+
+	> label {
+		display: flex;
+		flex-direction: column;
+
+		> :is(input, select) {
+			flex: 1 0 calc(var(--form-field-height) + 1px);
+		}
+
+		> span {
+			font-size: var(--font-size-12);
+			font-variant: small-caps;
+			font-weight: bold;
+		}
+
+		> span > input[type="checkbox"] {
+			float: right;
+			width: 1em;
+			height: 1em;
+			margin: 0;
+		}
+	}
+
+	.hint {
+		grid-column: 1 / -1;
+		flex: 1 0 100%;
+	}
 }
 
 @supports not (grid-template-columns: subgrid) {

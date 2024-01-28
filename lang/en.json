@@ -518,6 +518,8 @@
 "Equipment.Trait.Range.Short.Hint": "Range within which the weapon can fire without any penalty.",
 "Equipment.Trait.Reload.Label": "Reload",
 "Equipment.Trait.Reload.Hint": "Reload tells you what type of action you need to reload a weapon: an action, bonus action, or free action.",
+"Equipment.Trait.Reload.Actions.Label": "Reload Actions",
+"Equipment.Trait.Reload.Actions.Hint": "Number of subsequent actions required to reload this weapon.",
 "Equipment.Trait.Rounds.Label": "Rounds",
 "Equipment.Trait.Rounds.Hint": "This value shows how many rounds of ammunition you can fire before you must reload. Each time you fire the weapon, you use a number of rounds. Normally each attack uses a single round, but certain special attacks use more.",
 "Equipment.Trait.Rounds.Burst.Label": "Burst Rounds",

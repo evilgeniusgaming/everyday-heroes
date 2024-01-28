@@ -100,9 +100,7 @@
 									<div class="ammunition">
 										{{#if item.system.rounds.capacity}}
 											<div class="reload action" {{#if @root.editable}}data-action="item" data-type="reload"{{/if}}
-												data-tooltip="{{#if item.system.reload}}
-													{{~lookup @root.CONFIG.actionTypesReload item.system.reload}}
-													{{~else}}{{localize 'EH.Action.Reload.None'}}{{/if}}">
+												data-tooltip="{{item.system.reload.label}}">
 												<figure style="background-image: url('{{item.system.reloadIcon}}');"></figure>
 												<span>{{item.system.rounds.label}}</span>
 											</div>

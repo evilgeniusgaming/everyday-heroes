@@ -16,7 +16,9 @@ const { BooleanField, NumberField, SchemaField, SetField, StringField } = foundr
  * @property {number} range.long - Long range for ranged or thrown weapons.
  * @property {number} range.reach - Reach for melee weapons with the "Reach" property.
  * @property {string} range.units - Units represented by the range values.
- * @property {string} reload - Action type required to reload this weapon.
+ * @property {object} reload
+ * @property {number} reload.value - Number of actions required to reload this weapon.
+ * @property {string} reload.type - Action type required to reload this weapon.
  * @property {object} rounds
  * @property {number} rounds.spent - Number of rounds that have been spent from the current magazine.
  * @property {number} rounds.capacity - Capacity of this weapon's magazine.
@@ -68,9 +70,15 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 					label: "EH.Measurement.Units", suggestions: [...Object.keys(CONFIG.EverydayHeroes.lengthUnits), "spaces"]
 				})
 			}, {label: "EH.Equipment.Trait.Range.Label", hint: "EH.Equipment.Trait.Range.Hint"}),
-			reload: new StringField({
-				label: "EH.Equipment.Trait.Reload.Label", hint: "EH.Equipment.Trait.Reload.Hint",
-				suggestions: CONFIG.EverydayHeroes.actionTypesReload
+			reload: new SchemaField({
+				value: new NumberField({
+					initial: 1, integer: true, label: "Equipment.Trait.Reload.Actions.Label",
+					hint: "Equipment.Trait.Reload.Actions.Hint"
+				}),
+				type: new StringField({
+					label: "EH.Equipment.Trait.Reload.Label", hint: "EH.Equipment.Trait.Reload.Hint",
+					suggestions: CONFIG.EverydayHeroes.actionTypesReload
+				})
 			}),
 			rounds: new SchemaField({
 				spent: new NumberField({
@@ -253,8 +261,9 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 			const label = game.i18n.localize(`EH.Ammunition.Rounds.Label[${pluralRule.select(this.rounds.capacity)}]`);
 			tags.splice(2, 0, { label: `${numberFormat(this.rounds.capacity)} ${label}`, class: "detail" });
 		}
-		if ( this.reload ) {
-			tags.splice(3, 0, { label: CONFIG.EverydayHeroes.actionTypesReload[this.reload], class: "detail" });
+		if ( this.reload.type ) {
+			// TODO: Add reload count
+			tags.splice(3, 0, { label: CONFIG.EverydayHeroes.actionTypesReload[this.reload.type], class: "detail" });
 		}
 		return tags;
 	}
@@ -403,6 +412,16 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Migration reload into an object. Introduced in v0.5.0.
+	 * @param {object} source - Candidate source data being prepared.
+	 */
+	static migrateReload(source) {
+		if ( foundry.utils.getType(source.reload) === "string" ) source.reload = { type: source.reload };
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -450,6 +469,19 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 
 	prepareDerivedRange() {
 		if ( this.mode === "burst" ) this.range.long = null;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	prepareDerivedReload() {
+		this.reload.hasCount = this.reload.type === "action";
+		if ( this.reload.type ) {
+			this.reload.label = CONFIG.EverydayHeroes.actionTypesReload[this.reload.type];
+			if ( this.reload.hasCount && (this.reload.value > 1) ) {
+				this.reload.label += ` (${numberFormat(this.reload.value)})`;
+			}
+		}
+		else this.reload.label = game.i18n.localize("EH.Action.Reload.None");
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
