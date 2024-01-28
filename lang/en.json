@@ -753,6 +753,8 @@
 "Override.Label": "Overrides",
 "Override.Ability.Label": "Alternative Abilities",
 "Override.Ability.Hint": "Alternative abilities will be considered against the default ability for this calculation and the one with the highest modifier will be chosen.",
+"Override.Ability.Defense.Label": "Alternative Defense Abilities",
+"Override.Ability.Defense.Hint": "Alternate abilities that can be used to calculate defense bonus in addition to those provided by your archetype. The ability with the highest modifier will be automatically chosen.",
 "Override.Ability.HitPoints.Label": "Alternative Hit Points Abilities",
 "Override.Ability.HitPoints.Hint": "Alternate abilities that can be used to calculate total hit points in addition to constitution. The ability with the highest modifier will be automatically chosen.",
 "Override.Ability.Initiative.Label": "Alternative Initiative Abilities",
