@@ -77,6 +77,7 @@ export default class ItemGrantAdvancement extends Advancement {
 				if ( !source ) continue;
 				itemData = source.clone({
 					_id: foundry.utils.randomID(),
+					sort: null,
 					"flags.everyday-heroes.sourceId": uuid,
 					"flags.everyday-heroes.advancementOrigin": `${this.item.id}.${this.id}`
 				}, {keepId: true}).toObject();
