@@ -2,7 +2,7 @@
   "id": "everyday-heroes",
   "title": "Everyday Heroes",
   "description": "The core system for the Everyday Heroes role-playing game.",
-  "version": "0.4.9",
+  "version": "0.5.0",
   "compatibility": {
     "minimum": "11.315",
     "verified": "11"
