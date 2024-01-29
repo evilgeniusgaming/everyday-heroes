@@ -25,6 +25,7 @@ jobs:
         VERSION=${GITHUB_REF/refs\/tags\//}
         SYSTEM_ID=${{steps.manifest.outputs.id}}
         echo "VERSION=$VERSION" >> $GITHUB_ENV
+        echo "SHORT_VERSION=${VERSION:8}" >> $GITHUB_ENV
         echo "SYSTEM_ID=$SYSTEM_ID" >> $GITHUB_ENV
         echo "ZIP_NAME=$SYSTEM_ID-$VERSION.zip" >> $GITHUB_ENV
         echo "RELEASE_DOWNLOAD_URL=https://github.com/${{github.repository}}/releases/download/$VERSION/$SYSTEM_ID-$VERSION.zip" >> $GITHUB_ENV
@@ -37,7 +38,7 @@ jobs:
         files: "system.json"
       env:
         download: ${{env.RELEASE_DOWNLOAD_URL}}
-        version: ${{env.VERSION}}
+        version: ${{env.SHORT_VERSION}}
         flags.hotReload: false
 
 
