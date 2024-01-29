@@ -70,7 +70,8 @@ export default class FeatData extends ItemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	get types() {
-		return this.type.category === "advanced" ? CONFIG.EverydayHeroes.featTypes : null;
+		const showTypes = this.type.category && !CONFIG.EverydayHeroes.featCategories[this.type.category]?.type;
+		return showTypes ? CONFIG.EverydayHeroes.featTypes : null;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -78,6 +79,8 @@ export default class FeatData extends ItemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedTypeLabel() {
+		const config = CONFIG.EverydayHeroes.featCategories[this.type.category];
+		if ( config?.type ) this.type.value = config.type;
 		this.type.label = this.constructor.typeLabel(this.type);
 		// TODO: Multiclass feats should display like "Strong Hero Multiclass Feat"
 	}
@@ -85,10 +88,11 @@ export default class FeatData extends ItemDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	static typeLabel(type, plural=false) {
+		const config = CONFIG.EverydayHeroes.featCategories[type.category];
 		return game.i18n.format("EH.Item.Type.DetailedLabel", {
-			category: CONFIG.EverydayHeroes.featCategories[type.category]?.label ?? "",
+			category: config?.label ?? "",
 			type: game.i18n.localize(`EH.Item.Type.Feat[${plural ? "other" : "one"}]`),
-			subtype: type.category === "advanced" ? CONFIG.EverydayHeroes.featTypes[type.value]?.label ?? "" : ""
+			subtype: !config?.type ? CONFIG.EverydayHeroes.featTypes[type.value]?.label ?? "" : ""
 		}).trim().replace("  ", " ");
 	}
 }

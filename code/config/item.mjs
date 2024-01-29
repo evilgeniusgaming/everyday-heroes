@@ -499,18 +499,27 @@ preLocalize("explosiveTypes", { key: "label" });
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Configuration information for feat categories.
+ *
+ * @typedef {LabeledConfiguration} FeatCategoryConfiguration
+ * @property {string} [type] - Force feats in this category to have a specific type, otherwise it is can be chosen.
+ */
+
+/**
  * General feat categories.
- * @enum {LabeledConfiguration}
+ * @enum {FeatCategoryConfiguration}
  */
 export const featCategories = {
 	basic: {
-		label: "EH.Feat.Category.Basic.Label"
+		label: "EH.Feat.Category.Basic.Label",
+		type: "minor"
 	},
 	advanced: {
 		label: "EH.Feat.Category.Advanced.Label"
 	},
 	multiclass: {
-		label: "EH.Feat.Category.Multiclass.Label"
+		label: "EH.Feat.Category.Multiclass.Label",
+		type: "major"
 	}
 };
 preLocalize("featCategories", { key: "label" });
