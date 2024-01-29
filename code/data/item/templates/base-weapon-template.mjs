@@ -193,7 +193,6 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 		return this.baseAttackMod
 			+ simplifyBonus(this.bonuses.attack, rollData)
 			+ simplifyBonus(this.ammunition?.system.bonuses.attack, rollData)
-			+ simplifyBonus(this.user?.system.bonuses?.attack?.all, rollData)
 			+ simplifyBonus(this.user?.system.bonuses?.attack?.[this.type.value], rollData);
 	}
 
