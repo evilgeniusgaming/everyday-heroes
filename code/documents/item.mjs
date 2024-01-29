@@ -365,16 +365,28 @@ export default class ItemEH extends DocumentMixin(Item) {
 
 		if ( config.consume.resource ) {
 			const res = this.system.resource;
-			switch (res.type) {
+			switch ( res.type ) {
 				case "resource":
 					const resource = this.actor?.system.resources?.[res.target];
 					if ( !resource ) throw new Error(game.i18n.format("EH.Consumption.Warning.NotFound", { target: res.target }));
-					if ( resource.available < res.amount ) {
-						const type = resource.available ? "Some" : "None";
-						throw new Error(game.i18n.format(`EH.Consumption.Warning.Insufficient${type}`, {
-							available: resource.available, resource: resource.label, required: res.amount
+
+					let errorType;
+					if ( res.amount < 0 ) {
+						if ( resource._inverted && (resource.available < Math.abs(res.amount)) ) errorType = "available";
+						else if ( !resource._inverted && (resource.spent === 0) ) errorType = "max";
+					} else if ( res.amount > 0 ) {
+						if ( resource._inverted && (resource.available >= resource.max) ) errorType = "max";
+						else if ( !resource._inverted && (resource.available < res.amount) ) errorType = "available";
+					}
+
+					if ( errorType ) {
+						const size = resource.available ? "Some" : "None";
+						const type = errorType === "min" ? "Min" : errorType === "max" ? "Max" : `Insufficient${size}`;
+						throw new Error(game.i18n.format(`EH.Consumption.Warning.${type}`, {
+							available: resource.available, resource: resource.label, required: Math.abs(res.amount)
 						}));
 					}
+
 					updates.actor[`system.resources.${res.target}.spent`] = resource.spent + res.amount;
 					break;
 				case "hitDice":

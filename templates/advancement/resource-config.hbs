@@ -14,8 +14,16 @@
 		<fieldset>
 			<label>{{localize "EH.Uses.Recovery.Period.Label"}}</label>
 			<select name="configuration.recovery.period">
-				{{selectOptions CONFIG.resourceRecoveryPeriods selected=configuration.recovery.period blank="" labelAttr="label"}}
+				{{selectOptions CONFIG.resourceRecoveryPeriods selected=configuration.recovery.period blank=""
+					labelAttr="label"}}
 			</select>
+		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Uses.Recovery.Mode.Label"}}</label>
+			<select name="configuration.recovery.mode">
+				{{selectOptions CONFIG.recoveryModes selected=configuration.recovery.mode labelAttr="label"}}
+			</select>
+			<p class="hint">{{lookup (lookup CONFIG.recoveryModes configuration.recovery.mode) "hint"}}</p>
 		</fieldset>
 		{{!-- TODO: Implement recovery formulas
 		<fieldset>

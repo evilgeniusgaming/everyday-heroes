@@ -1124,11 +1124,13 @@ export default class ActorEH extends DocumentMixin(Actor) {
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
 		// Verify there is a enough remaining uses to spent this resource
-		if ( resource.available < rollConfig.consumed ) {
+		const available = resource._inverted ? resource.max - resource.available : resource.available;
+		if ( available < rollConfig.consumed ) {
 			const type = resource.available ? "Some" : "None";
-			return ui.notifications.warn(game.i18n.format(`EH.Consumption.Warning.Insufficient${type}`, {
-				resource: resource.label, available: resource.available, required: rollConfig.consumed
-			}));
+			return ui.notifications.warn(game.i18n.format(
+				resource._inverted ? "EH.Consumption.Warning.Max" : `EH.Consumption.Warning.Insufficient${type}`,
+				{ resource: resource.label, available, required: rollConfig.consumed }
+			));
 		}
 
 		const type = resource.label;

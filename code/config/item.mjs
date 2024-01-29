@@ -83,6 +83,24 @@ preLocalize("consumptionTypes", { key: "label" });
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * How does the resource value change during its recovery period?
+ * @enum {HintedConfiguration}
+ */
+export const recoveryModes = {
+	recover: {
+		label: "EH.Uses.Recovery.Mode.Recover.Label",
+		hint: "EH.Uses.Recovery.Mode.Recover.Hint"
+	},
+	reset: {
+		label: "EH.Uses.Recovery.Mode.Reset.Label",
+		hint: "EH.Uses.Recovery.Mode.Reset.Hint"
+	}
+};
+preLocalize("recoveryModes", { keys: ["label", "hint"] });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Configuration data for item usage recovery periods.
  *
  * @typedef {LabeledConfiguration} RecoveryPeriodConfiguration

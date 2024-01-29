@@ -37,6 +37,7 @@ export default class ResourcesTemplate extends foundry.abstract.DataModel {
 				if ( !resource.label ) resource.label = adv.title;
 				if ( !resource.backdrop ) resource.backdrop = adv.configuration.backdrop;
 				resource.recovery ??= {};
+				if ( !resource.recovery.mode ) resource.recovery.mode = adv.configuration.recovery.mode;
 				if ( !resource.recovery.period ) resource.recovery.period = adv.configuration.recovery.period;
 				if ( !resource.recovery.formula ) resource.recovery.formula = adv.configuration.recovery.formula;
 			}
@@ -62,7 +63,9 @@ export default class ResourcesTemplate extends foundry.abstract.DataModel {
 			if ( resource.bonus ) resource.max += resource.bonus;
 
 			resource.spent ??= 0;
-			resource.available = Math.clamped(resource.max - resource.spent, 0, resource.max);
+			resource._inverted = resource.recovery?.mode === "reset";
+			const available = resource._inverted ? resource.spent : resource.max - resource.spent;
+			resource.available = Math.clamped(available, 0, resource.max);
 		}
 	}
 }
