@@ -289,7 +289,9 @@ export default class NPCWeaponData extends ItemDataModel.mixin(
 			if ( this.reload ) rounds += '<a data-action="item" data-type="reload">';
 			rounds += `${numberFormat(this.rounds.available)}/${numberFormat(this.rounds.capacity)} ${
 				game.i18n.format("EH.Ammunition.Rounds.Label[other]")}`;
-			if ( this.reload ) rounds += `; ${CONFIG.EverydayHeroes.actionTypesReload[this.reload].toLowerCase()}</a>`;
+			if ( this.reload?.type ) {
+				rounds += `; ${CONFIG.EverydayHeroes.actionTypesReload[this.reload.type].toLowerCase()}</a>`;
+			}
 			actions.push(rounds);
 		}
 
