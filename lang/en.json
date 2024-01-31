@@ -606,19 +606,23 @@
 "Initiative.Turns.Count[one]": "{count} turn per round",
 "Initiative.Turns.Count[other]": "{count} turns per round",
 
-"Inline.CheckShort": "{check}",
-"Inline.CheckLong": "{check} check",
-"Inline.DC": "DC {dc} {check}",
-"Inline.DCPassiveShort": "DC {dc} passive {check}",
-"Inline.DCPassiveLong": "passive {check} score of {dc} or higher",
-"Inline.DamageShort": "{formula} {type} damage",
-"Inline.DamageLong": "{average} ({formula}) {type} damage",
-"Inline.DamageIgnoringArmor": "{damage} (ignoring armor)",
-"Inline.DamagePV": "{damage} (PV {pv})",
-"Inline.NoActorWarning": "No selected or assigned actor could be found to execute this roll.",
-"Inline.SaveShort": "{save}",
-"Inline.SaveLong": "{save} saving throw",
-"Inline.SpecificCheck": "{ability} ({type})",
+"Inline": {
+	"CheckShort": "{check}",
+	"CheckLong": "{check} check",
+	"DC": "DC {dc} {check}",
+	"DCPassiveShort": "DC {dc} passive {check}",
+	"DCPassiveLong": "passive {check} score of {dc} or higher",
+	"DamageShort": "{formula} {type} damage",
+	"DamageLong": "{average} ({formula}) {type} damage",
+	"DamageIgnoringArmor": "{damage} (ignoring armor)",
+	"DamagePV": "{damage} (PV {pv})",
+	"NoActorWarning": "No selected or assigned actor could be found to execute this roll.",
+	"RequestRoll": "Request Roll",
+	"RollRequest": "Roll Request",
+	"SaveShort": "{save}",
+	"SaveLong": "{save} saving throw",
+	"SpecificCheck": "{ability} ({type})"
+},
 
 "Item.Label[one]": "Item",
 "Item.Label[other]": "Items",
@@ -854,12 +858,27 @@
 "Sense.PassivePerception": "passive Perception {number}",
 "Sense.Nightvision.Label": "Nightvision",
 
-"Settings.InitiativeTiebreaker.Label": "Initiative Tiebreaker",
-"Settings.InitiativeTiebreaker.Hint": "Add initiative ability score as decimal to help break ties in initiatives.",
-"Settings.ReduceTransparency.Label": "Reduce Transparency",
-"Settings.ReduceTransparency.Hint": "Remove the transparency from behind sheets to reduce visual distraction.",
-"Settings.TitanicSizes.Label": "Titanic Sizes",
-"Settings.TitanicSizes.Hint": "Allow the use of titanic sizes on NPCs.",
+"Settings": {
+	"ChallengeVisibility": {
+		"Name": "Challenge Visibility",
+		"Hint": "Control what roll DCs are visible to the players and whether successess/failures are highlighted.",
+		"All": "Show all",
+		"None": "Hide all",
+		"Player": "Show only from other players"
+	},
+	"InitiativeTiebreaker": {
+		"Label": "Initiative Tiebreaker",
+		"Hint": "Add initiative ability score as decimal to help break ties in initiatives."
+	},
+	"ReduceTransparency": {
+		"Label": "Reduce Transparency",
+		"Hint": "Remove the transparency from behind sheets to reduce visual distraction."
+	},
+	"TitanicSizes": {
+		"Label": "Titanic Sizes",
+		"Hint": "Allow the use of titanic sizes on NPCs."
+	}
+},
 
 "Shared": "Shared",
 

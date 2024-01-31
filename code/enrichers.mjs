@@ -188,6 +188,7 @@ function createRollLabel(config) {
 	const ability = CONFIG.EverydayHeroes.abilities[config.ability]?.label;
 	const skill = CONFIG.EverydayHeroes.skills[config.skill]?.label;
 	const longSuffix = config.format === "long" ? "Long" : "Short";
+	const showDC = config.dc && !config.hideDC;
 
 	let label;
 	switch ( config.type ) {
@@ -201,13 +202,13 @@ function createRollLabel(config) {
 			if ( config.passive ) {
 				label = game.i18n.format(`EH.Inline.DCPassive${longSuffix}`, { dc: config.dc, check: label });
 			} else {
-				if ( config.dc ) label = game.i18n.format("EH.Inline.DC", { dc: config.dc, check: label });
+				if ( showDC ) label = game.i18n.format("EH.Inline.DC", { dc: config.dc, check: label });
 				label = game.i18n.format(`EH.Inline.Check${longSuffix}`, { check: label });
 			}
 			break;
 		case "ability-save":
 			label = ability;
-			if ( config.dc ) label = game.i18n.format("EH.Inline.DC", { dc: config.dc, check: label });
+			if ( showDC ) label = game.i18n.format("EH.Inline.DC", { dc: config.dc, check: label });
 			label = game.i18n.format(`EH.Inline.Save${longSuffix}`, { save: label });
 			break;
 		default:
@@ -226,11 +227,27 @@ function createRollLabel(config) {
  * @returns {HTMLElement}
  */
 function createRollLink(label, dataset) {
+	const span = document.createElement("span");
+	span.classList.add("roll-link");
+	_addDataset(span, dataset);
+
+	// Add main link
 	const link = document.createElement("a");
-	link.classList.add("roll-link");
-	_addDataset(link, dataset);
+	link.dataset.action = "roll";
 	link.innerHTML = `<i class="fa-solid fa-dice-d20"></i> ${label}`;
-	return link;
+	span.insertAdjacentElement("afterbegin", link);
+
+	// Add chat request link for GMs
+	if ( game.user.isGM && (dataset.type !== "damage") ) {
+		const gmLink = document.createElement("a");
+		gmLink.dataset.action = "request";
+		gmLink.dataset.tooltip = "EH.Inline.RequestRoll";
+		gmLink.setAttribute("aria-label", game.i18n.localize(gmLink.dataset.tooltip));
+		gmLink.innerHTML = '<i class="fa-solid fa-comment-dots"></i>';
+		span.insertAdjacentElement("beforeend", gmLink);
+	}
+
+	return span;
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -522,27 +539,53 @@ async function embedTextPage(config, label, options) {
  * @param {Event} event - The click event triggering the action.
  * @returns {Promise|void}
  */
-function rollAction(event) {
-	let target = event.target;
-	if ( !target.classList.contains("roll-link") ) target = target.closest(".roll-link");
+async function rollAction(event) {
+	const target = event.target.closest('.roll-link, [data-action="rollRequest"]');
 	if ( !target ) return;
 	event.stopPropagation();
 
 	const { type, ability, skill, dc } = target.dataset;
-	const config = {};
+	const config = { event };
 	if ( ability ) config.ability = ability;
 	if ( skill ) config.skill = skill;
 	if ( dc ) config.options = { target: Number(dc) };
 
-	// Fetch the actor that should perform the roll
-	let actor;
-	const speaker = ChatMessage.getSpeaker();
-	if ( speaker.token ) actor = game.actors.tokens[speaker.token];
-	actor ??= game.actors.get(speaker.actor);
+	const action = event.target.closest("a")?.dataset.action ?? "roll";
 
-	if ( type === "damage" ) return rollDamage(event, speaker);
-	if ( !actor ) return ui.notifications.warn(game.i18n.localize("EH.Inline.NoActorWarning"));
-	return actor.roll(type, config);
+	// Direct roll
+	if ( (action === "roll") || !game.user.isGM ) {
+		target.disabled = true;
+		try {
+			// Fetch the actor that should perform the roll
+			let actor;
+			const speaker = ChatMessage.implementation.getSpeaker();
+			if ( speaker.token ) actor = game.actors.tokens[speaker.token];
+			actor ??= game.actors.get(speaker.actor);
+
+			if ( type === "damage" ) return rollDamage(event, speaker);
+			if ( !actor ) return ui.notifications.warn(game.i18n.localize("EH.Inline.NoActorWarning"));
+			return actor.roll(type, config);
+		} finally {
+			target.disabled = false;
+		}
+	}
+
+	// Roll request
+	else {
+		const MessageClass = getDocumentClass("ChatMessage");
+		const chatData = {
+			user: game.user.id,
+			type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+			content: await renderTemplate("systems/everyday-heroes/templates/chat/request-card.hbs", {
+				buttonLabel: createRollLabel({ ...target.dataset, format: "short", icon: true }),
+				hiddenLabel: createRollLabel({ ...target.dataset, format: "short", icon: true, hideDC: true }),
+				dataset: { ...target.dataset, action: "rollRequest" }
+			}),
+			flavor: game.i18n.localize("EH.Inline.RollRequest"),
+			speaker: MessageClass.getSpeaker({ user: game.user })
+		};
+		return MessageClass.create(chatData);
+	}
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

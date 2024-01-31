@@ -133,7 +133,10 @@ export default class BaseRoll extends Roll {
 
 		if ( rolls?.length && (message.create !== false) ) {
 			if ( foundry.utils.getType(message.preCreate) === "function" ) message.preCreate(rolls, message);
-			await this.toMessage(rolls, message.data, { rollMode: rolls[0].options.rollMode ?? message.rollMode });
+			const messageData = foundry.utils.expandObject(message?.data ?? {});
+			const messageId = configs[0]?.event?.target.closest("[data-message-id]")?.dataset.messageId;
+			if ( messageId ) foundry.utils.setProperty(messageData, "flags.everyday-heroes.originatingMessage", messageId);
+			await this.toMessage(rolls, messageData, { rollMode: rolls[0].options.rollMode ?? message.rollMode });
 		}
 		return rolls;
 	}

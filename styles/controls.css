@@ -119,6 +119,34 @@
 	text-shadow: none;
 }
 
+button.skewed {
+	position: relative;
+	isolation: isolate;
+	width: calc(100% - 0.5em);
+	border: none;
+	background: none;
+	margin-inline: 0.25em;
+	padding: 0.25em;
+	color: var(--eh-text-color-black);
+
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		border: 2px solid var(--eh-border-color-strong);
+		background-color: var(--eh-background-color-white);
+		transform: skew(-16deg);
+	}
+}
+
+.hidden-dc { display: contents; }
+.visible-dc { display: none; }
+[data-display-challenge] {
+	.hidden-dc { display: none; }
+	.visible-dc { display: contents; }
+}
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Tag Input                                */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

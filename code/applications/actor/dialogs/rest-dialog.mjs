@@ -133,7 +133,7 @@ export default class RestDialog extends Dialog {
 		event.preventDefault();
 		try {
 			const roll = await this.actor.roll("skill", {
-				skill: "medi", ability: "int", options: { target: 10 }
+				skill: "medi", ability: "int", options: { target: 10 }, event
 			}, { data: { "flags.everyday-heroes.medicalAttention": true } });
 			this.result.medicalRoll = roll[0];
 			this.render();

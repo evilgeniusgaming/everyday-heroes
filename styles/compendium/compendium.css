@@ -123,6 +123,38 @@ figure.company-logo img {
 		font-weight: 400;
 	}
 
+	a:is(.content-link, .inline-roll), .roll-link a {
+		background: transparent;
+		border: none;
+		text-decoration: underline currentcolor;
+		text-underline-offset: 2px;
+
+		> i {
+			color: currentcolor;
+			opacity: 75%;
+			transition: opacity 250ms ease;
+		}
+
+		&:hover {
+			text-shadow: none;
+			> i { opacity: 1; }
+		}
+	}
+
+	.roll-link a[data-action="request"] {
+		margin-inline-start: 10px;
+		text-decoration: none;
+
+		&::before {
+			content: "\f105";
+			font-family: var(--font-awesome);
+			font-weight: bold;
+			margin: 0 4px 0 -6px;
+			font-size: var(--font-size-10);
+			color: var(--color-text-light-6);
+		}
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Special Headers                          */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

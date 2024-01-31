@@ -4,6 +4,28 @@ import SuppressiveFireTemplate from "../canvas/suppressive-fire-template.mjs";
  * Extended version of `ChatMessage` class to display critical highlighting and other system features.
  */
 export default class ChatMessageEH extends ChatMessage {
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Properties                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Should roll DCs and other challenge details be displayed on this card?
+	 * @type {boolean}
+	 */
+	get shouldDisplayChallenge() {
+		if ( game.user.isGM || (this.user === game.user) ) return true;
+		switch ( game.settings.get("everyday-heroes", "challengeVisibility") ) {
+			case "all": return true;
+			case "player": return !this.user.isGM;
+			default: return false;
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Rendering                                */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	async getHTML() {
 		const jQuery = await super.getHTML();
 		if ( !this.isContentVisible ) return jQuery;
@@ -38,12 +60,16 @@ export default class ChatMessageEH extends ChatMessage {
 	 * @param {HTMLElement} html - Chat message HTML.
 	 */
 	async _displayActions(html) {
-		const actions = this.getFlag("everyday-heroes", "actions");
-		if ( !actions?.length ) return;
-		const actionHTML = await renderTemplate("systems/everyday-heroes/templates/chat/card-actions.hbs", {
-			message: this, actions
-		});
-		html.querySelector(".message-content")?.insertAdjacentHTML("beforeend", actionHTML);
+		const chatCard = html.querySelector(".chat-card");
+		if ( chatCard ) {
+			if ( this.shouldDisplayChallenge ) chatCard.dataset.displayChallenge = "";
+			const actions = this.getFlag("everyday-heroes", "actions");
+			if ( !actions?.length ) return;
+			const actionHTML = await renderTemplate("systems/everyday-heroes/templates/chat/card-actions.hbs", {
+				message: this, actions
+			});
+			html.querySelector(".message-content")?.insertAdjacentHTML("beforeend", actionHTML);
+		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -54,13 +80,17 @@ export default class ChatMessageEH extends ChatMessage {
 	 */
 	_highlightRollResults(html) {
 		const rollResults = html.querySelectorAll(".dice-roll");
+		const originatingMessage = game.messages.get(this.getFlag("everyday-heroes", "originatingMessage"));
+		const displayChallenge = originatingMessage?.shouldDisplayChallenge;
 		for ( const [index, roll] of this.rolls.entries() ) {
 			const result = rollResults[index];
 			if ( !result ) continue;
 			if ( roll.isCriticalSuccess ) result.classList.add("critical-success");
 			else if ( roll.isCriticalFailure ) result.classList.add("critical-failure");
-			if ( roll.isSuccess ) result.classList.add("success");
-			else if ( roll.isFailure ) result.classList.add("failure");
+			if ( roll.options.target && displayChallenge ) {
+				if ( roll.isSuccess ) result.classList.add("success");
+				else if ( roll.isFailure ) result.classList.add("failure");
+			}
 		}
 	}
 
@@ -242,7 +272,8 @@ export default class ChatMessageEH extends ChatMessage {
 					await token.actor.roll(type, config, {
 						data: {
 							speaker: ChatMessage.getSpeaker({scene: canvas.scene, token: token.document})
-						}
+						},
+						event
 					});
 				}
 				return;

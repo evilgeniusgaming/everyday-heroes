@@ -1,19 +1,17 @@
 @import "./damage-card.css";
 @import "./item-card.css";
 
-.dice-roll.critical-success .dice-total {
-	color: var(--eh-dice-color-critical-success);
-}
-.dice-roll.critical-failure .dice-total {
-	color: var(--eh-dice-color-critical-failure);
-}
-.dice-roll.success .dice-total {
-	background: var(--eh-background-color-success);
-	border-color: var(--eh-dice-color-success);
-}
-.dice-roll.failure .dice-total {
-	background: var(--eh-background-color-failure);
-	border-color: var(--eh-dice-color-failure);
+.dice-roll {
+	&.critical-success .dice-total { color: var(--eh-dice-color-critical-success); }
+	&.critical-failure .dice-total { color: var(--eh-dice-color-critical-failure); }
+	&.success .dice-total {
+		background: var(--eh-background-color-success);
+		border-color: var(--eh-dice-color-success);
+	}
+	&.failure .dice-total {
+		background: var(--eh-background-color-failure);
+		border-color: var(--eh-dice-color-failure);
+	}
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

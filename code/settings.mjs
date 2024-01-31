@@ -75,6 +75,21 @@ export function registerSettings() {
 		default: ""
 	});
 
+	// Challenge visibility
+	game.settings.register("everyday-heroes", "challengeVisibility", {
+		name: "EH.Settings.ChallengeVisibility.Name",
+		hint: "EH.Settings.ChallengeVisibility.Hint",
+		scope: "world",
+		config: true,
+		default: "player",
+		type: String,
+		choices: {
+			all: "EH.Settings.ChallengeVisibility.All",
+			player: "EH.Settings.ChallengeVisibility.Player",
+			none: "EH.Settings.ChallengeVisibility.None"
+		}
+	});
+
 	// Add tiebreaker to initiative rolls
 	game.settings.register("everyday-heroes", "initiativeTiebreaker", {
 		name: "EH.Settings.InitiativeTiebreaker.Label",
