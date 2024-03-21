@@ -455,6 +455,9 @@ export const ammunitionTypes = {
 	},
 	machineGun: {
 		label: "EH.Ammunition.Type.MachineGun.Label"
+	},
+	cannon: {
+		label: "EH.Ammunition.Type.Cannon.Label"
 	}
 };
 preLocalize("ammunitionTypes", { key: "label" });
@@ -508,6 +511,9 @@ export const explosiveTypes = {
 	},
 	mine: {
 		label: "EH.Explosive.Type.Mine.Label"
+	},
+	mortar: {
+		label: "EH.Explosive.Type.Mortar.Label"
 	}
 };
 preLocalize("explosiveTypes", { key: "label" });

@@ -201,6 +201,7 @@
 "Ammunition.Rounds.Label[one]": "round",
 "Ammunition.Rounds.Label[other]": "rounds",
 "Ammunition.Type.Label": "Ammunition Type",
+"Ammunition.Type.Cannon.Label": "Cannon",
 "Ammunition.Type.MachineGun.Label": "Machine Gun",
 "Ammunition.Type.Pistol.Label": "Pistol",
 "Ammunition.Type.Rifle.Label": "Rifle",
@@ -540,6 +541,7 @@
 "Explosive.Type.Grenade.Label": "Grenade",
 "Explosive.Type.Rocket.Label": "Rocket",
 "Explosive.Type.Mine.Label": "Mine",
+"Explosive.Type.Mortar.Label": "Mortar",
 
 "Feat.Category.Label": "Feat Category",
 "Feat.Category.Advanced.Label": "Advanced",
