@@ -221,7 +221,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 	_getRestHitDiceRecovery(config={}, result={}) {
 		if ( config.type !== "long" ) return;
 		const hd = this.system.attributes.hd;
-		const final = Math.clamped(hd.spent - Math.ceil(hd.max * hd.recovery), 0, hd.max);
+		const final = Math.clamp(hd.spent - Math.ceil(hd.max * hd.recovery), 0, hd.max);
 		foundry.utils.mergeObject(result, {
 			deltas: {
 				hitDice: (result.deltas?.hitDice ?? 0) + hd.spent - final
@@ -653,7 +653,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 
 			// Increment successes
 			else details.updates = {
-				"system.attributes.death.success": Math.clamped(successes, 0, rollConfig.successThreshold)
+				"system.attributes.death.success": Math.clamp(successes, 0, rollConfig.successThreshold)
 			};
 		}
 
@@ -661,7 +661,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 		else {
 			let failures = (death.failure || 0) + (roll.isCriticalFailure ? 2 : 1);
 			details.updates = {
-				"system.attributes.death.failure": Math.clamped(failures, 0, rollConfig.failureThreshold)
+				"system.attributes.death.failure": Math.clamp(failures, 0, rollConfig.failureThreshold)
 			};
 			// Three failures, you're dead
 			if ( failures >= rollConfig.failureThreshold ) {
@@ -1368,7 +1368,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 
 		// Subtract from temp HP first & then from normal HP
 		const deltaTemp = amount > 0 ? Math.min(hp.temp, amount) : 0;
-		const deltaHP = Math.clamped(amount - deltaTemp, -(hp.damage ?? Infinity), hp.value);
+		const deltaHP = Math.clamp(amount - deltaTemp, -(hp.damage ?? Infinity), hp.value);
 		const updates = {
 			"system.attributes.hp.temp": hp.temp - deltaTemp,
 			"system.attributes.hp.value": hp.value - deltaHP

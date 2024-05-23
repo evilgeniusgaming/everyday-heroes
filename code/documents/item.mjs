@@ -398,7 +398,7 @@ export default class ItemEH extends DocumentMixin(Item) {
 							available: hd.available, resource: game.i18n.localize("EH.HitDice.Label[other]"), required: res.amount
 						}));
 					}
-					updates.actor["system.attributes.hd.spent"] = Math.clamped(newSpent, 0, hd.max);
+					updates.actor["system.attributes.hd.spent"] = Math.clamp(newSpent, 0, hd.max);
 					break;
 				case "uses":
 					const otherItem = this.actor.items.get(res.target);
@@ -624,7 +624,7 @@ export default class ItemEH extends DocumentMixin(Item) {
 		if ( Hooks.call("everydayHeroes.preReload", this, reloadConfig, messageConfig) === false ) return;
 
 		// Update the item & ammunition if necessary
-		await this.update({"system.rounds.spent": Math.clamped(
+		await this.update({"system.rounds.spent": Math.clamp(
 			this.system.rounds.spent - reloadConfig.roundsToReload, 0, this.system.rounds.capacity
 		)});
 

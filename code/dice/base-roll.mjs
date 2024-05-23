@@ -128,7 +128,7 @@ export default class BaseRoll extends Roll {
 		}
 
 		for ( const roll of rolls ) {
-			await roll.evaluate({async: true});
+			await roll.evaluate();
 		}
 
 		if ( rolls?.length && (message.create !== false) ) {

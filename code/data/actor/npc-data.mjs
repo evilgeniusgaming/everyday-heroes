@@ -163,7 +163,7 @@ export default class NPCData extends ActorDataModel.mixin(
 
 	prepareDerivedHitPoints() {
 		const hp = this.attributes.hp;
-		hp.value = Math.clamped(hp.value, 0, hp.max);
+		hp.value = Math.clamp(hp.value, 0, hp.max);
 		hp.damage = hp.max - hp.value;
 	}
 
@@ -171,7 +171,7 @@ export default class NPCData extends ActorDataModel.mixin(
 
 	prepareDerivedResources() {
 		for ( const resource of Object.values(this.resources) ) {
-			resource.available = Math.clamped(resource.max - resource.spent, 0, resource.max);
+			resource.available = Math.clamp(resource.max - resource.spent, 0, resource.max);
 		}
 	}
 

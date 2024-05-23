@@ -211,6 +211,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 		}
 		if ( startingWith ) keys = keys.filter(key => key.startsWith(startingWith));
 		if ( notEndingWith ) keys = keys.filter(key => !key.endsWith(notEndingWith));
+		else if ( startingWith ) keys = keys.filter(key => !key.endsWith(startingWith));
 		return keys;
 	}
 
@@ -266,7 +267,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 	 */
 	async _preCreate(data, options, user) {
 		for ( const name of this.constructor._getMethods({ startingWith: "_preCreate" }) ) {
-			await this[name](data, options, user);
+			if ((await this[name](data, options, user)) === false) return false;
 		}
 	}
 
@@ -281,7 +282,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 	 */
 	async _preUpdate(changed, options, user) {
 		for ( const name of this.constructor._getMethods({ startingWith: "_preUpdate" }) ) {
-			await this[name](changed, options, user);
+			if ((await this[name](changed, options, user)) === false) return false;
 		}
 	}
 
@@ -295,7 +296,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 	 */
 	async _preDelete(options, user) {
 		for ( const name of this.constructor._getMethods({ startingWith: "_preDelete" }) ) {
-			await this[name](options, user);
+			if ((await this[name](options, user)) === false) return false;
 		}
 	}
 

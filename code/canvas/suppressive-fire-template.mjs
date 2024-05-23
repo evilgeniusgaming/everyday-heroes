@@ -252,7 +252,7 @@ export default class SuppressiveFireTemplate extends MeasuredTemplate {
 		));
 
 		// Calculate distance between origin corner and mouse position, clamped by min & max range
-		const distance = Math.clamped(
+		const distance = Math.clamp(
 			Math.hypot(position.y - origin.y, position.x - origin.x) / distancePixels, range.min, range.max
 		);
 

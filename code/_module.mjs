@@ -33,6 +33,15 @@ globalThis.EverydayHeroes = {
 Hooks.once("init", function() {
 	utils.systemLog(`Initializing the Everyday Heroes Game System - Version ${game.system.version}\n${config.ASCII}`);
 
+	CONFIG.compatibility.excludePatterns.push(/core\.sourceId/);
+	CONFIG.compatibility.excludePatterns.push(/filePicker/);
+	CONFIG.compatibility.excludePatterns.push(/select/);
+	CONFIG.compatibility.excludePatterns.push(/hallengeDie/);
+	CONFIG.compatibility.excludePatterns.push(/configureRoll/);
+	CONFIG.compatibility.excludePatterns.push(/preprocessFormula/);
+	CONFIG.compatibility.excludePatterns.push(/toMessage/);
+	if (game.release.generation < 12) Math.clamp = Math.clamped;
+
 	game.everydayHeroes = globalThis.EverydayHeroes;
 	CONFIG.EverydayHeroes = config;
 	CONFIG.ui.combat = applications.CombatTrackerEH;

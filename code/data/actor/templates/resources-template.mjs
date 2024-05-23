@@ -65,7 +65,7 @@ export default class ResourcesTemplate extends foundry.abstract.DataModel {
 			resource.spent ??= 0;
 			resource._inverted = resource.recovery?.mode === "reset";
 			const available = resource._inverted ? resource.spent : resource.max - resource.spent;
-			resource.available = Math.clamped(available, 0, resource.max);
+			resource.available = Math.clamp(available, 0, resource.max);
 		}
 	}
 }
