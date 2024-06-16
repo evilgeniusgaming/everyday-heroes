@@ -1102,6 +1102,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 	 * @property {string} resource - The resource to be rolled.
 	 * @property {number} [diceNumber=1] - Number of dice rolled.
 	 * @property {number} [consumed=1] - Number of this resource consumed.
+	 * @property {number} [minimum] - Minimum the resource can roll.
 	 */
 
 	/**
@@ -1118,9 +1119,12 @@ export default class ActorEH extends DocumentMixin(Actor) {
 		const rollConfig = foundry.utils.mergeObject({
 			diceNumber: 1,
 			consumed: 1,
+			minimum: simplifyBonus(resource.minimum, this.getRollData({ deterministic: true })),
 			data: this.getRollData()
 		}, config);
-		const parts = resource.denomination ? [`${rollConfig.diceNumber ?? 1}d${resource.denomination}`] : [];
+		let formula = resource.denomination ? `${rollConfig.diceNumber ?? 1}d${resource.denomination}` : null;
+		if ( rollConfig.minimum ) formula = `${formula}min${rollConfig.minimum}`;
+		const parts = formula ? [formula] : [];
 		rollConfig.parts = parts.concat(config.parts ?? []);
 
 		// Verify there is a enough remaining uses to spent this resource

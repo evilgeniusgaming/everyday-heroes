@@ -813,26 +813,48 @@
 "Rest.Type.Short.Abbreviation": "SR",
 "Rest.Type.Short.Hint": "At the end of a short rest, a character can spend one or more Hit Dice, up to their maximum number of Hit Dice, to recover lost hit points.",
 
-"Resource.Label[one]": "Resource",
-"Resource.Label[other]": "Resources",
-"Resource.Bonus.Label": "Resource Cap Bonus",
-"Resource.Bonus.Hint": "Bonus formula applied to the cap of this resource.",
-"Resource.Label.Label": "Resource Label",
-"Resource.Max.Label": "Max Available",
-"Resource.Max.Hint": "Maximum of this resource available at any given time.",
-"Resource.Spent.Label": "Spent Resource Uses",
-"Resource.Focus.Label": "Focus",
-"Resource.Genius.Label": "Genius",
-"Resource.Influence.Label": "Influence",
-"Resource.Inspiration": "Inspiration",
-"Resource.Consumption": "{number} {resource}",
-"Resource.Config.Manage": "Manage Resources",
-"Resource.Config.NoDice": "No Dice",
-"Resource.Config.Uses.Label": "Resource Uses",
-"Resource.Config.Label.Label": "Resource Label",
-"Resource.Config.Custom.Label": "Custom Resource",
-"Resource.Config.Custom.Create": "Create Custom",
-"Resource.Config.Warning.NoLabel": "Resources must be provided a label.",
+"Resource": {
+	"Label[one]": "Resource",
+	"Label[other]": "Resources",
+	"Bonus": {
+		"Label": "Resource Cap Bonus",
+		"Hint": "Bonus formula applied to the cap of this resource."
+	},
+	"Label": {
+		"Label": "Resource Label"
+	},
+	"Max": {
+		"Label": "Max Available",
+		"Hint": "Maximum of this resource available at any given time."
+	},
+	"Minimum": {
+		"Label": "Minimum Roll",
+		"Hint": "Minimum roll result for this resource."
+	},
+	"Spent": {
+		"Label": "Spent Resource Uses"
+	},
+	"Focus": {
+		"Label": "Focus"
+	},
+	"Genius": {
+		"Label": "Genius"
+	},
+	"Influence": {
+		"Label": "Influence"
+	},
+	"Inspiration": "Inspiration",
+	"Consumption": "{number} {resource}",
+	"Config": {
+		"Manage": "Manage Resources",
+		"NoDice": "No Dice",
+		"Uses.Label": "Resource Uses",
+		"Label.Label": "Resource Label",
+		"Custom.Label": "Custom Resource",
+		"Custom.Create": "Create Custom",
+		"Warning.NoLabel": "Resources must be provided a label."
+	}
+},
 
 "Role.Label[one]": "Role",
 "Role.Label[other]": "Roles",

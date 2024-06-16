@@ -3,6 +3,8 @@ import { TYPES as ScaleValueType } from "../../advancement/scale-value-data.mjs"
 import FormulaField from "../../fields/formula-field.mjs";
 import MappingField from "../../fields/mapping-field.mjs";
 
+const { SchemaField, NumberField } = foundry.data.fields;
+
 /**
  * @typedef {ResourceConfiguration} ResourceData
  * @property {number} spent - How many uses of this resource have been spent?
@@ -18,8 +20,11 @@ import MappingField from "../../fields/mapping-field.mjs";
 export default class ResourcesTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
-			resources: new MappingField(new foundry.data.fields.SchemaField({
-				spent: new foundry.data.fields.NumberField({initial: 0, min: 0, label: "EH.Resource.Spent.Label"}),
+			resources: new MappingField(new SchemaField({
+				spent: new NumberField({initial: 0, min: 0, label: "EH.Resource.Spent.Label"}),
+				minimum: new FormulaField({
+					determinstic: true, label: "EH.Resource.Minimum.Label", hint: "EH.Resource.Minimum.Label"
+				}),
 				bonus: new FormulaField({deterministic: true, label: "EH.Resource.Bonus.Label", hint: "EH.Resource.Bonus.Hint"})
 			}), {label: "EH.Resource.Label[other]", initialKeys: CONFIG.EverydayHeroes.resources})
 		};
