@@ -44,7 +44,7 @@ export default class HitPointsFlow extends AdvancementFlow {
 		});
 		this.form.querySelector(".rollButton")?.addEventListener("click", async () => {
 			const roll = await this.advancement.actor.rollHitPoints();
-			this.form.querySelector(".rollResult").value = roll?.total ?? 0;
+			this.form.querySelector(".rollResult").value = roll?.[0]?.total ?? 0;
 		});
 		this._updateRollResult();
 	}
