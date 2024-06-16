@@ -59,7 +59,8 @@ export default class MovementTemplate extends foundry.abstract.DataModel {
 		let hasAwkwardArmor = false;
 		let hasAwkwardShield = false;
 		for ( const item of this.parent?.items ?? [] ) {
-			if ( (item.type !== "armor") || !item.system.equipped || !item.system.properties.has("awkward") ) continue;
+			const equipped = !item.system.isEquippable || item.system.equipped;
+			if ( (item.type !== "armor") || !equipped || !item.system.properties.has("awkward") ) continue;
 			if ( item.system.type.value === "armor" ) hasAwkwardArmor = true;
 			else if ( item.system.type.value === "shield" ) hasAwkwardShield = true;
 		}
