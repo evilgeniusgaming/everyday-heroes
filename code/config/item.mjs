@@ -35,7 +35,7 @@ export const advancementTypes = {
 	},
 	ItemGrant: {
 		type: advancement.ItemGrantAdvancement,
-		validItemTypes: new Set(["archetype", "class", "background", "profession"])
+		validItemTypes: new Set(["origin", "archetype", "class", "background", "profession"])
 	},
 	Resource: {
 		type: advancement.ResourceAdvancement,
@@ -43,11 +43,11 @@ export const advancementTypes = {
 	},
 	ScaleValue: {
 		type: advancement.ScaleValueAdvancement,
-		validItemTypes: new Set(["archetype", "class", "background", "profession", "feat"])
+		validItemTypes: new Set(["origin", "archetype", "class", "background", "profession", "feat"])
 	},
 	Trait: {
 		type: advancement.TraitAdvancement,
-		validItemTypes: new Set(["background", "profession", "class", "feat"])
+		validItemTypes: new Set(["origin", "background", "profession", "class", "feat"])
 	}
 };
 
@@ -178,7 +178,7 @@ export const resourceRecoveryPeriods = filterObject(recoveryPeriods, p => !p.com
 export const itemCategories = {
 	concept: {
 		label: "EH.Item.Category.Concept.Label",
-		types: ["archetype", "class", "background", "profession"],
+		types: ["origin", "archetype", "class", "background", "profession"],
 		sheet: {
 			application: itemSheet.ConceptSheet,
 			label: "EH.Sheet.Concept"
@@ -608,15 +608,25 @@ preLocalize("specialFeatureTypes", { key: "label" });
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * @typedef {LabeledConfiguration} TalentTypeConfiguration
+ * @property {boolean} leveled - Can a level be set for this talent?
+ */
+
+/**
  * General talent types.
- * @enum {LabeledConfiguration}
+ * @enum {TalentTypeConfiguration}
  */
 export const talentTypes = {
+	origin: {
+		label: "EH.Item.Type.Origin[one]"
+	},
 	archetype: {
-		label: "EH.Item.Type.Archetype[one]"
+		label: "EH.Item.Type.Archetype[one]",
+		leveled: true
 	},
 	class: {
-		label: "EH.Item.Type.Class[one]"
+		label: "EH.Item.Type.Class[one]",
+		leveled: true
 	}
 };
 preLocalize("talentTypes", { key: "label" });

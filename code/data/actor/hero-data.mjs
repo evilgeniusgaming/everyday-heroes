@@ -241,6 +241,9 @@ export default class HeroData extends ActorDataModel.mixin(
 		for ( const item of this.parent.items ) {
 			// TODO: Add actor warning if more than one archetype, class, background, or profession exist
 			switch (item.type) {
+				case "origin":
+					this.details.origin = item;
+					break;
 				case "archetype":
 					this.details.archetype = item;
 					break;

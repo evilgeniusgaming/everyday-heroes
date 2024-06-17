@@ -13,7 +13,7 @@
 				<label>{{localize "EH.Item.Type.Label"}}</label>
 				<input value="{{#if item.system.type.label}}{{item.system.type.label}}{{else}}{{item.typeLabel}}{{/if}}" disabled>
 			</fieldset>
-			{{#if (everydayHeroes-has item "system.type.level")}}
+			{{#if showLevel}}
 				<fieldset>
 					<label>{{localize "EH.Level.Label[one]"}}</label>
 					<input type="number" name="system.type.level" value="{{system.type.level}}">

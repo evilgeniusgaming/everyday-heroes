@@ -24,6 +24,9 @@ export default class FeatureSheet extends AdvancementItemSheet {
 
 		const type = context.item.system.metadata?.type ?? context.item.type;
 		context.itemCategories = foundry.utils.getProperty(CONFIG.EverydayHeroes, `${type}Categories`);
+		context.itemTypes = foundry.utils.getProperty(CONFIG.EverydayHeroes, `${type}Types`);
+		const itemtype = context.itemTypes?.[context.system.type?.value];
+		context.showLevel = ((type !== "talent") && ("level" in (context.system.type ?? {}))) || itemtype?.leveled;
 
 		context.registeredFields = [];
 		for ( const field of context.item.system.constructor.registeredFields ?? [] ) {

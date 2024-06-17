@@ -435,6 +435,11 @@ export const sheetSections = {
 	hero: [
 		{
 			tab: "features",
+			types: [{type: "origin", "system.type.value": "origin"}],
+			primaryType: {type: "origin"}
+		},
+		{
+			tab: "features",
 			types: [{type: "talent", "system.type.value": "archetype"}],
 			primaryType: {type: "archetype"}
 		},
