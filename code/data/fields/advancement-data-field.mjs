@@ -63,4 +63,11 @@ export default class AdvancementDataField extends foundry.data.fields.ObjectFiel
 	toObject(value) {
 		return value.toObject instanceof Function ? value.toObject(false) : foundry.utils.deepClone(value);
 	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	migrateSource(sourceData, fieldData) {
+		const cls = this.getModel();
+		if ( cls ) cls.migrateDataSafe(fieldData);
+	}
 }

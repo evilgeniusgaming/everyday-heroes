@@ -52,6 +52,27 @@ export const advancementTypes = {
 };
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Modes used within a trait advancement.
+ * @enum {HintedConfiguration}
+ */
+export const traitModes = {
+	default: {
+		label: "EH.Advancement.Trait.Mode.Default.Label",
+		hint: "EH.Advancement.Trait.Mode.Default.Hint"
+	},
+	expertise: {
+		label: "EH.Advancement.Trait.Mode.Expertise.Label",
+		hint: "EH.Advancement.Trait.Mode.Expertise.Hint"
+	},
+	upgrade: {
+		label: "EH.Advancement.Trait.Mode.Upgrade.Label",
+		hint: "EH.Advancement.Trait.Mode.Upgrade.Hint"
+	}
+};
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Consumption & Uses                       */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

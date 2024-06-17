@@ -181,18 +181,41 @@
 "Advancement.ScaleValue.Type.Number.Label": "Numeric",
 "Advancement.ScaleValue.Type.Number.Hint": "Use this for purely numerical values like flat damage bonuses.",
 
-"Advancement.Trait.Title": "Proficiency",
-"Advancement.Trait.Hint": "Grant the player proficiency in saves, skills, or equipment.",
-"Advancement.Trait.Choices.Label": "Choices",
-"Advancement.Trait.Choices.Hint": "The player will be able to choose from among these {type}, limited by the number of selections allowed. If nothing is checked, they will be able to select from any available.",
-"Advancement.Trait.Choices.Summary.Any": "Choose {number} {type}",
-"Advancement.Trait.Choices.Summary.Limited": "Choose {number} from {list}",
-"Advancement.Trait.Fixed.Label": "Fixed",
-"Advancement.Trait.Fixed.Hint": "These {type} will automatically get {improvement}.",
-"Advancement.Trait.Points.Label": "Count",
-"Advancement.Trait.Points.Remaining[one]": "{points} Selection Remaining",
-"Advancement.Trait.Points.Remaining[other]": "{points} Selections Remaining",
-"Advancement.Trait.Type.Label": "Trait",
+"Advancement.Trait": {
+	"Title": "Proficiency",
+	"Hint": "Grant the player proficiency in saves, skills, or equipment.",
+	"Choices": {
+		"Label": "Choices",
+		"Hint": "The player will be able to choose from among these {type}, limited by the number of selections allowed. If nothing is checked, they will be able to select from any available.",
+		"Summary": {
+			"Any": "Choose {number} {type}",
+			"Limited": "Choose {number} from {list}"
+		}
+	},
+	"Fixed": {
+		"Label": "Fixed",
+		"Hint": "These {type} will automatically get {improvement}."
+	},
+	"Mode": {
+		"Label": "Mode",
+		"Default": {
+			"Label": "Default",
+			"Hint": "Gain a proficiency."
+		},
+		"Expertise": {
+			"Label": "Expertise",
+			"Hint": "Gain expertise in something with which you already have proficiency."
+		},
+		"Upgrade": {
+			"Label": "Upgrade",
+			"Hint": "Gain proficiency unless you already have it, otherwise gain expertise."
+		}
+	},
+	"Points.Label": "Count",
+	"Points.Remaining[one]": "{points} Selection Remaining",
+	"Points.Remaining[other]": "{points} Selections Remaining",
+	"Type.Label": "Trait"
+},
 
 "Ammunition.Loaded": "Loaded Ammunition",
 "Ammunition.Empty.Label": "No Ammunition Chosen",

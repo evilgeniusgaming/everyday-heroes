@@ -9,8 +9,13 @@
 			</fieldset>
 			{{#if (eq configuration.type "skill")}}
 				<fieldset>
-					<label>{{localize "EH.Proficiency.Level.Expertise"}}</label>
-					<input type="checkbox" name="configuration.expertise" {{checked configuration.expertise}}>
+					<label>{{localize "EH.Advancement.Trait.Mode.Label"}}</label>
+					<select name="configuration.mode">
+						{{selectOptions CONFIG.traitModes selected=configuration.mode labelAttr="label" localize="true"}}
+					</select>
+					<p class="hint">
+						{{localize (lookup (lookup CONFIG.traitModes configuration.mode) "hint")}}
+					</p>
 				</fieldset>
 			{{/if}}
 			<hr>
