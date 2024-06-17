@@ -4,44 +4,44 @@
 			<img src="{{actor.img}}" data-edit="img">
 		</div>
 		<div>
-			<fieldset class="name">
+			<fieldset class="name hero-id__100">
 				<label>{{localize "Name"}}</label>
 				<input type="text" name="name" value="{{actor.name}}" {{disabled (not editingMode)}}>
 			</fieldset>
-			<fieldset class="class">
+			<fieldset class="class hero-id__50">
 				<label>{{localize "EH.Item.Type.Class[one]"}}</label>
 				<a data-action="item" data-type="edit" data-item-id="{{system.details.class.id}}">
 					{{system.details.class.name}}
 				</a>
 			</fieldset>
-			<fieldset class="archetype">
+			<fieldset class="archetype hero-id__50">
 				<label>{{localize "EH.Item.Type.Archetype[one]"}}</label>
 				<a data-action="item" data-type="edit" data-item-id="{{system.details.archetype.id}}">
 					{{system.details.archetype.name}}
 				</a>
 			</fieldset>
-			<fieldset class="background">
+			<fieldset class="background hero-id__50">
 				<label>{{localize "EH.Item.Type.Background[one]"}}</label>
 				<a data-action="item" data-type="edit" data-item-id="{{system.details.background.id}}">
 					{{system.details.background.name}}
 				</a>
 			</fieldset>
-			<fieldset class="profession">
+			<fieldset class="profession hero-id__50">
 				<label>{{localize "EH.Item.Type.Profession[one]"}}</label>
 				<a data-action="item" data-type="edit" data-item-id="{{system.details.profession.id}}">
 					{{system.details.profession.name}}
 				</a>
 			</fieldset>
-			<fieldset class="level">
+			<fieldset class="level hero-id__25">
 				<label>{{localize "EH.Level.Label[one]"}}</label>
 				<input type="number" name="system.details.level" value="{{system.details.level}}"
 						 	step="1" min="1" max="10" {{disabled (not editingMode)}}>
 			</fieldset>
-			<fieldset class="wealth">
+			<fieldset class="wealth hero-id__25">
 				<label>{{localize "EH.Details.Wealth.Label"}}</label>
 				<span>{{system.details.wealth.value}}</span>
 			</fieldset>
-			<fieldset class="speed">
+			<fieldset class="speed hero-id__50">
 				<label>
 					{{localize "EH.Speed.Label"}}
 					{{#if editingMode}}
@@ -58,7 +58,7 @@
 					<span>{{system.attributes.movement.label}}</span>
 				{{/if}}
 			</fieldset>
-			<fieldset class="languages">
+			<fieldset class="languages hero-id__100">
 				<label>{{localize "EH.Language.Label[other]"}}</label>
 				{{#if editingMode}}
 					{{everydayHeroes-tagInput system.traits.languages name="system.traits.languages"}}
