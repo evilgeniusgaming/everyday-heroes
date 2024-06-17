@@ -17,6 +17,11 @@ export default class TypeField extends foundry.data.fields.ObjectField {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @override */
+	static recursive = true;
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	/**
 	 * Get the DataModel definition for the specified type.
 	 * @param {object} value - Data being prepared for this field.
@@ -45,5 +50,12 @@ export default class TypeField extends foundry.data.fields.ObjectField {
 		const cls = this.getModel(value, model);
 		if ( cls ) return new cls(value, {parent: model, ...options});
 		return foundry.utils.deepClone(value);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	migrateSource(sourceData, fieldData) {
+		const cls = this.getModel(fieldData, sourceData);
+		if ( cls ) cls.migrateDataSafe(fieldData);
 	}
 }

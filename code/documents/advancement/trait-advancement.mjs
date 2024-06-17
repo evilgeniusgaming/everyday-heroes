@@ -84,7 +84,7 @@ export default class TraitAdvancement extends Advancement {
 	 */
 	prepareData() {
 		const traitConfig = this.constructor.traits[this.configuration.type];
-		const isExpertise = (this.configuration.type === "skill") && this.configuration.expertise;
+		const isExpertise = (this.configuration.type === "skill") && (this.configuration.mode === "expertise");
 		this.title = this.title
 			|| game.i18n.localize(traitConfig?.[isExpertise ? "titleExpertise" : "title"])
 			|| this.constructor.metadata.title;
@@ -100,7 +100,7 @@ export default class TraitAdvancement extends Advancement {
 
 	sortingValueForLevel(level) {
 		let traitOrder = Object.keys(this.constructor.traits).findIndex(k => k === this.configuration.type);
-		if ( this.configuration.expertise ) traitOrder += Object.keys(this.constructor.traits).length;
+		if ( this.configuration.mode === "expertise" ) traitOrder += Object.keys(this.constructor.traits).length;
 		return `${this.constructor.metadata.order.paddedString(4)} ${
 			traitOrder.paddedString(2)} ${this.titleForLevel(level)}`;
 	}
@@ -123,7 +123,9 @@ export default class TraitAdvancement extends Advancement {
 			else if ( conf.points === 1 ) tags.push(listFormatter.format(choices));
 			if ( localizationType ) tags.push(game.i18n.format(`EH.Advancement.Trait.Choices.Summary.${localizationType}`, {
 				number: numberFormat(conf.points), list: listFormatter.format(choices),
-				type: game.i18n.localize(`${this.constructor.traits[conf.type].localization}[${pluralRules.select(conf.points)}]`)
+				type: game.i18n.localize(
+					`${this.constructor.traits[conf.type].localization}[${pluralRules.select(conf.points)}]`
+				)
 			}));
 		}
 
@@ -146,8 +148,11 @@ export default class TraitAdvancement extends Advancement {
 			case "save": return system.abilities[key]?.saveProficiency.multiplier < 1;
 			case "skill":
 				const skill = system.skills[key]?.proficiency.multiplier;
-				if ( this.configuration.expertise ) return skill === 1;
-				else return skill < 1;
+				switch (this.configuration.mode) {
+					case "default": return skill < 1;
+					case "upgrade": return skill < 2;
+					case "expertise": return skill === 1;
+				}
 			case "equipment": return !system.traits.equipment.has(key);
 		}
 	}
@@ -156,6 +161,7 @@ export default class TraitAdvancement extends Advancement {
 
 	async apply(level, data) {
 		data.assignments = new Set([...this.configuration.fixed, ...data.assignments]);
+		const source = this.actor.system.toObject();
 		const system = this.actor.system;
 		const updates = {};
 
@@ -166,17 +172,22 @@ export default class TraitAdvancement extends Advancement {
 			}
 			switch (this.configuration.type) {
 				case "asi":
-					const sourceValue = this.actor.system.toObject().abilities?.[key]?.value;
-					updates[`system.abilities.${key}.value`] = (sourceValue ?? this.actor.system.abilities[key].value) + 1;
+					updates[`system.abilities.${key}.value`] =
+						(source.abilities?.[key]?.value ?? this.actor.system.abilities[key].value) + 1;
 					break;
 				case "save":
 					updates[`system.abilities.${key}.saveProficiency.multiplier`] = 1;
 					break;
 				case "skill":
-					updates[`system.skills.${key}.proficiency.multiplier`] = this.configuration.expertise ? 2 : 1;
+					let value;
+					switch (this.configuration.mode) {
+						case "default": value = 1; break;
+						case "upgrade": value = system.skills[key].proficiency.multiplier + 1; break;
+						case "expertise": value = 2; break;
+					}
+					updates[`system.skills.${key}.proficiency.multiplier`] = value;
 					break;
 				case "equipment":
-					// TODO: No need to coerce into an array in V11
 					updates["system.traits.equipment"] = Array.from(system.traits.equipment.add(key));
 					break;
 				default:
@@ -184,7 +195,6 @@ export default class TraitAdvancement extends Advancement {
 			}
 		}
 
-		// TODO: No need to coerce into array in v11
 		data.assignments = Array.from(data.assignments);
 		this.actor.updateSource(updates);
 		this.updateSource({value: data});
@@ -208,7 +218,13 @@ export default class TraitAdvancement extends Advancement {
 		switch (this.configuration.type) {
 			case "asi": return system.abilities[key]?.value > 0;
 			case "save": return system.abilities[key]?.saveProficiency.multiplier >= 1;
-			case "skill": return system.skills[key]?.proficiency.multiplier >= (this.configuration.expertise ? 1 : 0);
+			case "skill":
+				const skill = system.skills[key]?.proficiency.multiplier;
+				switch (this.configuration.mode) {
+					case "default":
+					case "upgrade": return skill >= 0;
+					case "expertise": return skill >= 1;
+				}
 			case "equipment": return system.traits.equipment.has(key);
 		}
 	}
@@ -231,10 +247,15 @@ export default class TraitAdvancement extends Advancement {
 					updates[`system.abilities.${key}.saveProficiency.multiplier`] = 0;
 					break;
 				case "skill":
-					updates[`system.skills.${key}.proficiency.multiplier`] = this.configuration.expertise ? 1 : 0;
+					let value;
+					switch (this.configuration.mode) {
+						case "default": value = 0; break;
+						case "upgrade": value = system.skills[key].proficiency.multiplier - 1; break;
+						case "expertise": value = 1; break;
+					}
+					updates[`system.skills.${key}.proficiency.multiplier`] = value;
 					break;
 				case "equipment":
-					// TODO: No need to coerce into an array in V11
 					updates["system.traits.equipment"] = Array.from(system.traits.equipment.delete(key));
 					break;
 			}
