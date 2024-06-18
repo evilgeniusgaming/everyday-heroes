@@ -24,6 +24,7 @@ preLocalize("actorCategories", { key: "label" });
  * @typedef {LabeledConfiguration} AbilityConfiguration
  * @property {string} abbreviation  Localized abbreviation.
  * @property {string} fullKey - Non-abbreviated key used for enricher lookup. Should not be translated.
+ * @property {boolean} [assignment] - Is this ability assigned during ability assignment?
  */
 
 /**
@@ -34,32 +35,38 @@ export const abilities = {
 	str: {
 		label: "EH.Ability.Strength.Label",
 		abbreviation: "EH.Ability.Strength.Abbreviation",
-		fullKey: "strength"
+		fullKey: "strength",
+		assignment: true
 	},
 	dex: {
 		label: "EH.Ability.Dexterity.Label",
 		abbreviation: "EH.Ability.Dexterity.Abbreviation",
-		fullKey: "dexterity"
+		fullKey: "dexterity",
+		assignment: true
 	},
 	con: {
 		label: "EH.Ability.Constitution.Label",
 		abbreviation: "EH.Ability.Constitution.Abbreviation",
-		fullKey: "constitution"
+		fullKey: "constitution",
+		assignment: true
 	},
 	int: {
 		label: "EH.Ability.Intelligence.Label",
 		abbreviation: "EH.Ability.Intelligence.Abbreviation",
-		fullKey: "intelligence"
+		fullKey: "intelligence",
+		assignment: true
 	},
 	wis: {
 		label: "EH.Ability.Wisdom.Label",
 		abbreviation: "EH.Ability.Wisdom.Abbreviation",
-		fullKey: "wisdom"
+		fullKey: "wisdom",
+		assignment: true
 	},
 	cha: {
 		label: "EH.Ability.Charisma.Label",
 		abbreviation: "EH.Ability.Charisma.Abbreviation",
-		fullKey: "charisma"
+		fullKey: "charisma",
+		assignment: true
 	}
 };
 preLocalize("abilities", { keys: ["label", "abbreviation"] });

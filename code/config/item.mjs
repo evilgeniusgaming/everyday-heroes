@@ -21,6 +21,10 @@ import { preLocalize } from "./utils.mjs";
  * @enum {AdvancementTypeConfig}
  */
 export const advancementTypes = {
+	AbilityScores: {
+		type: advancement.AbilityScoresAdvancement,
+		validItemTypes: new Set(["origin"])
+	},
 	ASI: {
 		type: advancement.ASIAdvancement,
 		validItemTypes: new Set(["background", "profession", "feat"])
@@ -48,6 +52,45 @@ export const advancementTypes = {
 	Trait: {
 		type: advancement.TraitAdvancement,
 		validItemTypes: new Set(["origin", "background", "profession", "class", "feat"])
+	}
+};
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Configuration data for ability score assignment.
+ * @type {{
+ *   pointBuy: {Record<number, number>}
+ *   rollingFormulas: {Record<string, { label: string, formula: string }>}
+ * }}
+ */
+export const abilityScoreAssignment = {
+	pointBuyCosts: {
+		8: 0,
+		9: 1,
+		10: 2,
+		11: 3,
+		12: 4,
+		13: 5,
+		14: 7,
+		15: 9,
+		16: 11,
+		17: 13,
+		18: 16
+	},
+	rollingFormulas: {
+		dropLowest: {
+			label: "EH.Advancement.AbilityScores.Rolling.Formula.DropLowest",
+			formula: "4d6dl"
+		},
+		flat: {
+			label: "EH.Advancement.AbilityScores.Rolling.Formula.Flat",
+			formula: "3d6"
+		},
+		dropHighest: {
+			label: "EH.Advancement.AbilityScores.Rolling.Formula.DropHighest",
+			formula: "4d6dh"
+		}
 	}
 };
 

@@ -1,5 +1,6 @@
 export {default as Advancement} from "./advancement.mjs";
 
+export {default as AbilityScoresAdvancement} from "./ability-scores-advancement.mjs";
 export {default as ASIAdvancement} from "./asi-advancement.mjs";
 export {default as DefenseAdvancement} from "./defense-advancement.mjs";
 export {default as HitPointsAdvancement} from "./hit-points-advancement.mjs";

@@ -300,6 +300,7 @@ function jsonStringify(context, options) {
  * @param {object} [options={}]
  * @param {number} [options.decimals] - Number of decimal digits to display.
  * @param {number} [options.digits] - Number of digits before the decimal point to display.
+ * @param {boolean} [options.ordinal] - Produce an ordinal version of the number.
  * @param {boolean} [options.sign] - Should the sign always be displayed?
  * @param {boolean} [options.spelledOut] - For smaller numbers, should this be spelled out in words?
  * @param {string} [options.unit] - What unit should be displayed?
@@ -331,6 +332,12 @@ export function numberFormat(value, options={}) {
 
 	const formatter = new Intl.NumberFormat(game.i18n.lang, formatterOptions);
 	let formatted = formatter.format(value);
+
+	if ( options.ordinal ) {
+		const pluralRules = new Intl.PluralRules(game.i18n.lang, { type: "ordinal" });
+		const key = `EH.Number.Ordinal[${pluralRules.select(value)}]`;
+		if ( game.i18n.has(key) ) formatted = game.i18n.format(key, { number: formatted });
+	}
 
 	if ( options.unit && (options.unitFallback !== false) ) {
 		const pluralRules = new Intl.PluralRules(game.i18n.lang);

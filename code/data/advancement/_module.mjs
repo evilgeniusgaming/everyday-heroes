@@ -1,5 +1,6 @@
 export {default as BaseAdvancement} from "./base-advancement.mjs";
 
+export * from "./ability-scores-data.mjs";
 export * from "./asi-data.mjs";
 export * from "./defense-data.mjs";
 export * from "./hit-points-data.mjs";

@@ -1,0 +1,71 @@
+<form autocomplete="off">
+	<section>
+		{{> "everydayHeroes.advancement-controls"}}
+	</section>
+
+	<section class="maximums">
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Ability.Max.Label"}}</span>
+			<span class="right stripes"></span>
+		</h3>
+		{{#each maximums}}
+			<fieldset>
+				<label>{{label}}</label>
+				<input type="number" name="configuration.maximums.{{@key}}" value="{{value}}" step="1" min="0">
+			</fieldset>
+		{{/each}}
+	</section>
+
+	<section class="starting-array">
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Advancement.AbilityScores.StartingArray.Label"}}</span>
+			<span class="right stripes"></span>
+		</h3>
+		<fieldset>
+			<label>{{localize "EH.Advancement.AbilityScores.StartingArray.Scores"}}</label>
+			<div class="fields">
+				{{#each startingArray}}
+					<input type="number" name="configuration.startingArray.{{ @index }}" value="{{ this }}" step="1" min="0">
+				{{/each}}
+			</div>
+	</section>
+
+	<section class="point-buy">
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Advancement.AbilityScores.PointBuy.Label"}}</span>
+			<span class="right stripes"></span>
+		</h3>
+		<fieldset>
+			<label>{{localize "EH.Advancement.AbilityScores.PointBuy.Points.Label"}}</label>
+			<input type="number" name="configuration.pointBuy.points" value="{{pointBuy.points}}" step="1" min="0">
+		</fieldset>
+		<fieldset>
+			<label>{{localize "EH.Advancement.AbilityScores.PointBuy.Maximum.Label"}}</label>
+			<input type="number" name="configuration.pointBuy.maximum" value="{{pointBuy.maximum}}" step="1" min="0">
+		</fieldset>
+	</section>
+
+	<section class="rolling">
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Advancement.AbilityScores.Rolling.Label"}}</span>
+			<span class="right stripes"></span>
+		</h3>
+		{{#each rolls}}
+		<fieldset>
+			<label>{{label}}</label>
+			<div class="fields">
+				<select name="configuration.rolling.{{@index}}.formula">
+					{{selectOptions @root.CONFIG.abilityScoreAssignment.rollingFormulas selected=formula
+					                labelAttr="label" localize=true}}
+				</select>
+				<span class="plus">+</span>
+				<input type="number" name="configuration.rolling.{{@index}}.bonus" value="{{bonus}}" step="1" min="0">
+			</div>
+		</fieldset>
+		{{/each}}
+	</section>
+</form>

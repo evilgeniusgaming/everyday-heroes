@@ -105,116 +105,201 @@
 "Actor.Type.Vehicle[one]": "Vehicle",
 "Actor.Type.Vehicle[other]": "Vehicles",
 
-"Advancement.Title[one]": "Advancement",
-"Advancement.Title[other]": "Advancements",
-"Advancement.Core.Title": "Custom Title",
-"Advancement.Core.Icon": "Custom Icon",
-"Advancement.Core.Action.Create": "Create Advancement",
-"Advancement.Core.Action.Delete": "Delete Advancement",
-"Advancement.Core.Action.Disable": "Disable Configuration",
-"Advancement.Core.Action.Duplicate": "Duplicate Advancement",
-"Advancement.Core.Action.Edit": "Edit Advancement",
-"Advancement.Core.Action.Enable": "Enable Configuration",
-"Advancement.Core.Action.Modify": "Modify Choices",
-"Advancement.Core.Level.None": "No Level",
-"Advancement.Core.Level.Specific": "Level {level}",
-"Advancement.Core.State.Enabled": "Configuration Enabled",
-"Advancement.Core.State.Disabled": "Configuration Disabled",
-"Advancement.Confirmation.Label": "Remove advancement changes",
-"Advancement.Confirmation.Title.Delete": "Confirm Deletion",
-"Advancement.Confirmation.Title.LevelDown": "Confirm Leveling Down",
-"Advancement.Confirmation.Message.Delete": "Deleting this item will also delete all advancement choices made for it. These changes will be removed from your Hero as long as the checkbox below is checked.",
-"Advancement.Confirmation.Message.LevelDown": "Leveling this Hero down will also undo all advancement choices made for it. These changes will be removed from your Hero as long as the checkbox below is checked.",
-"Advancement.Config.Title": "Configure {item} Advancement",
-"Advancement.Config.DropHint": "Drop Items here to add them to this advancement.",
-"Advancement.Config.Warning.Duplicate": "That item already exists on this advancement.",
-"Advancement.Config.Warning.Invalid": "{type} items cannot be added with this advancement type.",
-"Advancement.Config.Warning.Recursive": "You cannot grant an item in its own advancement.",
-"Advancement.Manager.Title": "Advancement Manager",
-"Advancement.Manager.Steps": "Step {current} of {total}",
-"Advancement.Manager.Action.Complete": "Complete",
-"Advancement.Manager.Action.Continue": "Continue",
-"Advancement.Manager.Action.Restart": "Restart",
-"Advancement.Manager.Action.Next": "Next",
-"Advancement.Manager.Action.Previous": "Previous",
-"Advancement.Manager.Action.Stop": "Stop Advancement",
-"Advancement.Manager.Close.Title": "Stop Advancement",
-"Advancement.Manager.Close.Message": "If the advancement process is cancelled, choices made so far will be discarded and no changes will be made to the hero.",
-"Advancement.Manager.Restart.Title": "Restart Advancement Choices",
-"Advancement.Manager.Restart.Message": "Are you sure you wish to undo all choices so far?",
-"Advancement.Selection.Title": "Select Advancement Type",
-
-"Advancement.Migration.Title": "Migrate Advancement",
-"Advancement.Migration.Hint": "Select which of the following advancements will be added to {name}.",
-"Advancement.Migration.Action.Confirm": "Apply Migrations",
-
-"Advancement.ASI.Title": "Ability Score Increase",
-"Advancement.ASI.Hint": "Allow the player to increase one or more ability scores.",
-
-"Advancement.Defense.Title": "Defense",
-"Advancement.Defense.Hint": "Set an archetype's defense ability and its bonus at various levels.",
-"Advancement.Defense.Abilities.Label": "Defense Abilities",
-"Advancement.Defense.Abilities.Hint": "Ability that will be used to calculate defense score. If multiple are selected, the highest will be used.",
-
-"Advancement.HitPoints.Title": "Hit Points",
-"Advancement.HitPoints.Hint": "Set an archetype's hit die size and track a player's hit points as they gain levels.",
-"Advancement.HitPoints.Fixed": "Take Fixed",
-"Advancement.HitPoints.MaxAtFirstLevel": "Max at 1st Level: <strong>{max}</strong>",
-"Advancement.HitPoints.Error.Empty": "Hit points must be rolled or the fixed value must be taken.",
-"Advancement.HitPoints.Error.Invalid": "Hit points must be a valid whole number.",
-
-"Advancement.ItemGrant.Title": "Grant Features",
-"Advancement.ItemGrant.Hint": "Grant the character features when they reach a certain level.",
-
-"Advancement.Resource.Title": "Resource",
-"Advancement.Resource.Hint": "Set up a resource that is displayed on the sheet (such as Influence or Genius).",
-
-"Advancement.ScaleValue.Title": "Scale Value",
-"Advancement.ScaleValue.Hint": "A single value that changes as a Hero increases in level and is made available in roll formulas.",
-"Advancement.ScaleValue.IdentifierHint": "This scale value for the current level will be available using <strong data-copyable>@scale.{identifier}</strong> in a formula.",
-"Advancement.ScaleValue.Values.Label": "Scale Values",
-"Advancement.ScaleValue.Type.Label": "Scale Type",
-"Advancement.ScaleValue.Type.Dice.Label": "Dice",
-"Advancement.ScaleValue.Type.Dice.Hint": "Use this for dice values like Influence, Smash Damage, or Weak Spot.",
-"Advancement.ScaleValue.Type.Generic.Label": "Generic",
-"Advancement.ScaleValue.Type.Generic.Hint": "Use this for scale values that don't fit into any other category.",
-"Advancement.ScaleValue.Type.Number.Label": "Numeric",
-"Advancement.ScaleValue.Type.Number.Hint": "Use this for purely numerical values like flat damage bonuses.",
-
-"Advancement.Trait": {
-	"Title": "Proficiency",
-	"Hint": "Grant the player proficiency in saves, skills, or equipment.",
-	"Choices": {
-		"Label": "Choices",
-		"Hint": "The player will be able to choose from among these {type}, limited by the number of selections allowed. If nothing is checked, they will be able to select from any available.",
-		"Summary": {
-			"Any": "Choose {number} {type}",
-			"Limited": "Choose {number} from {list}"
+"Advancement": {
+	"Title[one]": "Advancement",
+	"Title[other]": "Advancements",
+	"Core": {
+		"Title": "Custom Title",
+		"Icon": "Custom Icon",
+		"Action": {
+			"Create": "Create Advancement",
+			"Delete": "Delete Advancement",
+			"Disable": "Disable Configuration",
+			"Duplicate": "Duplicate Advancement",
+			"Edit": "Edit Advancement",
+			"Enable": "Enable Configuration",
+			"Modify": "Modify Choices"
+		},
+		"Level": {
+			"None": "No Level",
+			"Specific": "Level {level}"
+		},
+		"State": {
+			"Enabled": "Configuration Enabled",
+			"Disabled": "Configuration Disabled"
 		}
 	},
-	"Fixed": {
-		"Label": "Fixed",
-		"Hint": "These {type} will automatically get {improvement}."
-	},
-	"Mode": {
-		"Label": "Mode",
-		"Default": {
-			"Label": "Default",
-			"Hint": "Gain a proficiency."
+	"Confirmation": {
+		"Label": "Remove advancement changes",
+		"Title": {
+			"Delete": "Confirm Deletion",
+			"LevelDown": "Confirm Leveling Down"
 		},
-		"Expertise": {
-			"Label": "Expertise",
-			"Hint": "Gain expertise in something with which you already have proficiency."
-		},
-		"Upgrade": {
-			"Label": "Upgrade",
-			"Hint": "Gain proficiency unless you already have it, otherwise gain expertise."
+		"Message": {
+			"Delete": "Deleting this item will also delete all advancement choices made for it. These changes will be removed from your Hero as long as the checkbox below is checked.",
+			"LevelDown": "Leveling this Hero down will also undo all advancement choices made for it. These changes will be removed from your Hero as long as the checkbox below is checked."
 		}
 	},
-	"Points.Label": "Count",
-	"Points.Remaining[one]": "{points} Selection Remaining",
-	"Points.Remaining[other]": "{points} Selections Remaining",
-	"Type.Label": "Trait"
+	"Config": {
+		"Title": "Configure {item} Advancement",
+		"DropHint": "Drop Items here to add them to this advancement.",
+		"Warning": {
+			"Duplicate": "That item already exists on this advancement.",
+			"Invalid": "{type} items cannot be added with this advancement type.",
+			"Recursive": "You cannot grant an item in its own advancement."
+		}
+	},
+	"Manager": {
+		"Title": "Advancement Manager",
+		"Steps": "Step {current} of {total}",
+		"Action": {
+			"Complete": "Complete",
+			"Continue": "Continue",
+			"Restart": "Restart",
+			"Next": "Next",
+			"Previous": "Previous",
+			"Stop": "Stop Advancement"
+		},
+		"Close": {
+			"Title": "Stop Advancement",
+			"Message": "If the advancement process is cancelled, choices made so far will be discarded and no changes will be made to the hero."
+		},
+		"Restart": {
+			"Title": "Restart Advancement Choices",
+			"Message": "Are you sure you wish to undo all choices so far?"
+		}
+	},
+	"Migration": {
+		"Title": "Migrate Advancement",
+		"Hint": "Select which of the following advancements will be added to {name}.",
+		"Action.Confirm": "Apply Migrations"
+	},
+	"Selection": {
+		"Title": "Select Advancement Type"
+	},
+
+	"AbilityScores": {
+		"Title": "Ability Score Assignment",
+		"Hint": "Provide player options for assigning initial ability scores.",
+		"PointBuy": {
+			"Label": "Point Buy",
+			"Maximum": {
+				"Label": "Maximum"
+			},
+			"Points": {
+				"Label": "Points"
+			}
+		},
+		"Rolling": {
+			"Label": "Rolling",
+			"Roll": "{ordinal} Roll",
+			"Bonus": {
+				"Label": "Bonus"
+			},
+			"Formula": {
+				"Label": "Formula",
+				"DropHighest": "4d6 (drop the highest)",
+				"DropLowest": "4d6 (drop the lowest)",
+				"Flat": "3d6"
+			}
+		},
+		"StartingArray": {
+			"Label": "Starting Array",
+			"Scores": "Scores"
+		}
+	},
+	"ASI": {
+		"Title": "Ability Score Increase",
+		"Hint": "Allow the player to increase one or more ability scores."
+	},
+	"Defense": {
+		"Title": "Defense",
+		"Hint": "Set an archetype's defense ability and its bonus at various levels.",
+		"Abilities": {
+			"Label": "Defense Abilities",
+			"Hint": "Ability that will be used to calculate defense score. If multiple are selected, the highest will be used."
+		}
+	},
+	"HitPoints": {
+		"Title": "Hit Points",
+		"Hint": "Set an archetype's hit die size and track a player's hit points as they gain levels.",
+		"Fixed": "Take Fixed",
+		"MaxAtFirstLevel": "Max at 1st Level: <strong>{max}</strong>",
+		"Error": {
+			"Empty": "Hit points must be rolled or the fixed value must be taken.",
+			"Invalid": "Hit points must be a valid whole number."
+		}
+	},
+	"ItemGrant": {
+		"Title": "Grant Features",
+		"Hint": "Grant the character features when they reach a certain level."
+	},
+	"Resource": {
+		"Title": "Resource",
+		"Hint": "Set up a resource that is displayed on the sheet (such as Influence or Genius)."
+	},
+	"ScaleValue": {
+		"Title": "Scale Value",
+		"Hint": "A single value that changes as a Hero increases in level and is made available in roll formulas.",
+		"IdentifierHint": "This scale value for the current level will be available using <strong data-copyable>@scale.{identifier}</strong> in a formula.",
+		"Values": {
+			"Label": "Scale Values"
+		},
+		"Type": {
+			"Label": "Scale Type",
+			"Dice": {
+				"Label": "Dice",
+				"Hint": "Use this for dice values like Influence, Smash Damage, or Weak Spot."
+			},
+			"Generic": {
+				"Label": "Generic",
+				"Hint": "Use this for scale values that don't fit into any other category."
+			},
+			"Number": {
+				"Label": "Numeric",
+				"Hint": "Use this for purely numerical values like flat damage bonuses."
+			}
+		}
+	},
+	"Trait": {
+		"Title": "Proficiency",
+		"Hint": "Grant the player proficiency in saves, skills, or equipment.",
+		"Choices": {
+			"Label": "Choices",
+			"Hint": "The player will be able to choose from among these {type}, limited by the number of selections allowed. If nothing is checked, they will be able to select from any available.",
+			"Summary": {
+				"Any": "Choose {number} {type}",
+				"Limited": "Choose {number} from {list}"
+			}
+		},
+		"Fixed": {
+			"Label": "Fixed",
+			"Hint": "These {type} will automatically get {improvement}."
+		},
+		"Mode": {
+			"Label": "Mode",
+			"Default": {
+				"Label": "Default",
+				"Hint": "Gain a proficiency."
+			},
+			"Expertise": {
+				"Label": "Expertise",
+				"Hint": "Gain expertise in something with which you already have proficiency."
+			},
+			"Upgrade": {
+				"Label": "Upgrade",
+				"Hint": "Gain proficiency unless you already have it, otherwise gain expertise."
+			}
+		},
+		"Points": {
+			"Label": "Count",
+			"Remaining[one]": "{points} Selection Remaining",
+			"Remaining[other]": "{points} Selections Remaining"
+		},
+		"Type": {
+			"Label": "Trait"
+		}
+	}
 },
 
 "Ammunition.Loaded": "Loaded Ammunition",
@@ -811,6 +896,12 @@
 "Number[7]": "seven",
 "Number[8]": "eight",
 "Number[9]": "nine",
+"Number": {
+	"Ordinal[one]": "{number}st",
+	"Ordinal[two]": "{number}nd",
+	"Ordinal[few]": "{number}rd",
+	"Ordinal[other]": "{number}th"
+},
 
 "Override.Label": "Overrides",
 "Override.Ability.Label": "Alternative Abilities",
