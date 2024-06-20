@@ -5,6 +5,8 @@
 @import "./npc.css";
 @import "./vehicle.css";
 
+@import "./concept-selection.css";
+
 .everyday-heroes.sheet [data-tab="biography"] img {
 	border: none;
 }

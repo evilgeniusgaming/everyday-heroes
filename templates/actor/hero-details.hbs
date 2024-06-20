@@ -10,33 +10,63 @@
 			</fieldset>
 			<fieldset class="class hero-id__50">
 				<label>{{localize "EH.Item.Type.Class[one]"}}</label>
-				<a data-action="item" data-type="edit" data-item-id="{{system.details.class.id}}">
-					{{system.details.class.name}}
-				</a>
+				{{#if system.details.class}}
+					<a data-action="item" data-type="edit" data-item-id="{{system.details.class.id}}">
+						{{system.details.class.name}}
+					</a>
+				{{else if system.details.archetype}}
+					<a data-action="select-concept" data-type="class">
+						{{localize "EH.ConceptSelection.Prompt.Class"}}
+					</a>
+				{{/if}}
 			</fieldset>
 			<fieldset class="archetype hero-id__50">
 				<label>{{localize "EH.Item.Type.Archetype[one]"}}</label>
-				<a data-action="item" data-type="edit" data-item-id="{{system.details.archetype.id}}">
-					{{system.details.archetype.name}}
-				</a>
+				{{#if system.details.archetype}}
+					<a data-action="item" data-type="edit" data-item-id="{{system.details.archetype.id}}">
+						{{system.details.archetype.name}}
+					</a>
+				{{else}}
+					<a data-action="select-concept" data-type="archetype">
+						{{localize "EH.ConceptSelection.Prompt.Archetype"}}
+					</a>
+				{{/if}}
 			</fieldset>
 			<fieldset class="origin hero-id__50">
 				<label>{{localize "EH.Item.Type.Origin[one]"}}</label>
-				<a data-action="item" data-type="edit" data-item-id="{{system.details.origin.id}}">
-					{{system.details.origin.name}}
-				</a>
+				{{#if system.details.origin}}
+					<a data-action="item" data-type="edit" data-item-id="{{system.details.origin.id}}">
+						{{system.details.origin.name}}
+					</a>
+				{{else}}
+					<a data-action="select-concept" data-type="origin">
+						{{localize "EH.ConceptSelection.Prompt.Origin"}}
+					</a>
+				{{/if}}
 			</fieldset>
 			<fieldset class="background hero-id__50">
 				<label>{{localize "EH.Item.Type.Background[one]"}}</label>
-				<a data-action="item" data-type="edit" data-item-id="{{system.details.background.id}}">
-					{{system.details.background.name}}
-				</a>
+				{{#if system.details.background}}
+					<a data-action="item" data-type="edit" data-item-id="{{system.details.background.id}}">
+						{{system.details.background.name}}
+					</a>
+				{{else}}
+					<a data-action="select-concept" data-type="background">
+						{{localize "EH.ConceptSelection.Prompt.Background"}}
+					</a>
+				{{/if}}
 			</fieldset>
 			<fieldset class="profession hero-id__100">
 				<label>{{localize "EH.Item.Type.Profession[one]"}}</label>
-				<a data-action="item" data-type="edit" data-item-id="{{system.details.profession.id}}">
-					{{system.details.profession.name}}
-				</a>
+				{{#if system.details.profession}}
+					<a data-action="item" data-type="edit" data-item-id="{{system.details.profession.id}}">
+						{{system.details.profession.name}}
+					</a>
+				{{else}}
+					<a data-action="select-concept" data-type="profession">
+						{{localize "EH.ConceptSelection.Prompt.Profession"}}
+					</a>
+				{{/if}}
 			</fieldset>
 			<fieldset class="level hero-id__25">
 				<label>{{localize "EH.Level.Label[one]"}}</label>

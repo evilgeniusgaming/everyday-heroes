@@ -466,6 +466,22 @@
 "CinematicAction.Warning.InsufficientSome": "Only {available} cinematic actions available, {required} needed.",
 "CinematicAction.Warning.NotFound": "Actor doesn't have cinematic actions to consume.",
 
+"ConceptSelection": {
+	"Title": "{type} Selection",
+	"Prompt": {
+		"Archetype": "Select an Archetype",
+		"Background": "Select a Background",
+		"Class": "Select a Class",
+		"Origin": "Select an Origin",
+		"Profession": "Select a Profession"
+	},
+	"Select": "Select",
+	"Show": {
+		"More": "Show More",
+		"Less": "Show Less"
+	}
+},
+
 "Condition.Label[one]": "Condition",
 "Condition.Label[other]": "Conditions",
 "Condition.Level.Label[one]": "Level",

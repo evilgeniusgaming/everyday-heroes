@@ -1,0 +1,29 @@
+<form>
+	{{#each items}}
+		<section class="item" data-uuid="{{item.uuid}}">
+			<div class="artwork-button">
+				<img src="{{item.img}}">
+				<button type="submit" class="skewed" data-uuid="{{item.uuid}}">
+					{{localize "EH.ConceptSelection.Select"}}
+				</button>
+			</div>
+			<div class="details">
+				<h2>
+					<div class="name">{{item.name}}</div>
+					<div class="spacer"></div>
+					<div class="source">{{item.system.description.source}}</div>
+				</h2>
+				<div class="collapsible collapsed">
+					<div class="collapsible-content">
+						<div class="wrapper">{{{description}}}</div>
+					</div>
+					<button type="button" class="collapsible-control skewed">
+						<span class="show-more">{{localize "EH.ConceptSelection.Show.More"}}</span>
+						<span class="show-less">{{localize "EH.ConceptSelection.Show.Less"}}</span>
+						<span class="arrow"><i class="fa-solid fa-chevron-down" inert></i></span>
+					</button>
+				</div>
+			</div>
+		</section>
+	{{/each}}
+</form>

@@ -88,6 +88,17 @@ export function list(type) {
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Fetch the source item for all registered items of the specified type.
+ * @param {string} type - Item type to list.
+ * @returns {Promise<Object<string, ItemEH>>}
+ */
+export function listSources(type) {
+	return Promise.all(Object.keys(all[type] ?? {}).map(identifier => getSource(type, identifier)));
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Registration                             */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 

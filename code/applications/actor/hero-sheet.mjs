@@ -1,5 +1,6 @@
 import AdvancementManager from "../advancement/advancement-manager.mjs";
 import BaseActorSheet from "./base-actor-sheet.mjs";
+import ConceptSelectionDialog from "./dialogs/concept-selection-dialog.mjs";
 
 /**
  * Sheet that represents a Hero actor.
@@ -98,6 +99,14 @@ export default class HeroSheet extends BaseActorSheet {
 		// Persona Action Listeners
 		for ( const element of html.querySelectorAll('[data-action="persona"]') ) {
 			element.addEventListener("click", this._onPersonaAction.bind(this));
+		}
+
+		// Select Concept Listeners
+		for ( const element of html.querySelectorAll('[data-action="select-concept"]') ) {
+			element.addEventListener("click", event => {
+				const type = event.currentTarget.dataset.type;
+				if ( type ) new ConceptSelectionDialog(this.actor, type).render(true);
+			});
 		}
 	}
 

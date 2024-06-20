@@ -1,0 +1,101 @@
+.everyday-heroes.concept-selection {
+	min-block-size: 300px;
+	max-block-size: 90vh;
+
+	form {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+
+		> section {
+			display: grid;
+			grid-template-columns: 120px auto;
+			gap: 12px;
+			overflow: clip;
+			border: 1px solid var(--eh-border-color-strong);
+			border-radius: 10px;
+			padding: 8px;
+			background-color: var(--eh-background-color-mid);
+
+			.artwork-button {
+				img {
+					border-radius: 16px;
+					border-start-end-radius: 0;
+					background-color: var(--eh-background-color-black);
+				}
+			}
+
+			.details {
+				> h2 {
+					margin-block: 0;
+					margin-inline-start: -12px;
+					margin-inline-end: -8px;
+					display: flex;
+					align-items: first baseline;
+					padding-block: 2px;
+					padding-inline-start: 12px;
+					padding-inline-end: 12px;
+					border: none;
+					background-color: var(--eh-background-color-black);
+					color: var(--eh-text-color-white);
+
+					.name {
+						text-transform: uppercase;
+					}
+					.spacer {
+						flex: 1;
+					}
+					.source {
+						font-size: var(--font-size-14);
+					}
+				}
+			}
+		}
+	}
+
+	.collapsible {
+		.collapsible-content {
+			display: grid;
+			grid-template-rows: 1fr;
+			transition: grid-template-rows 250ms ease;
+			> .wrapper { overflow: hidden; }
+		}
+		.collapsible-control {
+			display: grid;
+			grid-template-areas: "text arrow";
+			grid-template-columns: max-content min-content;
+			gap: 8px;
+			width: unset;
+			line-height: unset;
+			margin-inline-start: auto;
+			padding-inline: 16px;
+
+			.show-more {
+				grid-area: text;
+				opacity: 0;
+			}
+			.show-less {
+				grid-area: text;
+				opacity: 1;
+			}
+			.show-more, .show-less { transition: opacity 250ms ease; }
+			.arrow {
+				grid-area: arrow;
+				i {
+					transition: transform 250ms ease;
+					transform: rotate(180deg);
+				}
+			}
+		}
+		&.collapsed {
+			.collapsible-content {
+				grid-template-rows: 100px;
+			}
+			.collapsible-control {
+				.show-more { opacity: 1; }
+				.show-less { opacity: 0; }
+				.arrow i { transform: none; }
+			}
+		}
+	}
+}
