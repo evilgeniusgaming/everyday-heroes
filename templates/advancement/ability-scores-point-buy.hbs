@@ -1,0 +1,36 @@
+<div class="points">
+	<div class="point-list">
+		{{#each points.list}}
+			<div class="point {{#if spent}}spent{{/if}}"></div>
+		{{/each}}
+	</div>
+	<div class="point-totals">
+		{{points.remainingLabel}}
+	</div>
+</div>
+
+<div class="scores">
+	{{#each scores}}
+		<div class="score" data-key="{{key}}" data-score="{{score}}">
+			<span class="label">{{label}}</span>
+			<nav class="skewed point-controls">
+				<ul>
+					<li>
+						<button type="button" name="sell-{{key}}" data-points="sell" {{disabled isMin}}
+						        {{~#unless isMin}} data-tooltip="{{ previousCostTooltip }}"{{/unless}}>
+							<i class="fa-solid fa-angles-down" inert></i>
+						</button>
+					</li>
+					<li class="current-score">
+						<span>{{score}}</span>
+					</li>
+					<li>
+						<button type="button" name="buy-{{key}}" data-points="buy" {{disabled isMax}}
+						        {{~#unless isMax}} data-tooltip="{{ nextCostTooltip }}"{{/unless}}>
+							<i class="fa-solid fa-angles-up" inert></i>
+						</button>
+					</li>
+			</nav>
+		</div>
+	{{/each}}
+</div>

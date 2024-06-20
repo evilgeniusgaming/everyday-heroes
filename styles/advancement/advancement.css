@@ -3,6 +3,7 @@
 @import "./advancement-migration.css";
 @import "./advancement-selection.css";
 
+@import "./ability-scores.css";
 @import "./defense.css";
 @import "./hit-points.css";
 @import "./item-grant.css";

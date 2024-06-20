@@ -1,0 +1,20 @@
+<div class="scores">
+	{{#each scores}}
+		<div class="score" data-key="{{key}}">
+			<span class="label">{{label}}</span>
+			<nav class="skewed ability-radios">
+				<ul>
+					{{#each potentialValues}}
+						<li>
+							<label>
+								<input type="radio" name="assignments.{{../key}}" value="{{@index}}"
+											 {{#if dimmed}}class="dimmed"{{/if}} {{checked selected}}>
+								<span>{{ number }}</span>
+							</label>
+						</li>
+					{{/each}}
+				</ul>
+			</nav>
+		</div>
+	{{/each}}
+</div>

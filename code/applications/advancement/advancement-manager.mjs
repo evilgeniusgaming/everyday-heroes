@@ -413,7 +413,6 @@ export default class AdvancementManager extends Application {
 		// Render the step
 		this.step.flow._element = null;
 		await this.step.flow._render(force, options);
-		this.setPosition();
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

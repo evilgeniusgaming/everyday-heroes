@@ -46,7 +46,10 @@ export class AbilityScoresConfigurationData extends foundry.abstract.DataModel {
  *
  * @property {string} method - Ability score assignment method used.
  * @property {Roll[]} rolls - Ability score rolls performed.
- * @property {Record<string, number>} assignments - Assignments for each ability score.
+ * @property {Record<string, number>} assignments - Data necessary to determine final ability scores depending on
+ *                                                  assignment method. For starting array it is the index of the
+ *                                                  assigned value in the array, for rolling it is the index of the
+ *                                                  assigned roll, and for point buy it is the final ability score.
  */
 export class AbilityScoresValueData extends foundry.abstract.DataModel {
 	static defineSchema() {

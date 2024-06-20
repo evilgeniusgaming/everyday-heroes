@@ -19,6 +19,17 @@ export default class AdvancementFlow extends FormApplication {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	static get defaultOptions() {
+		return foundry.utils.mergeObject(super.defaultOptions, {
+			template: "systems/everyday-heroes/templates/advancement/advancement-flow.hbs",
+			popOut: false
+		});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Properties                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	/**
 	 * ID of the advancement this flow modifies.
 	 * @type {string}
@@ -53,15 +64,6 @@ export default class AdvancementFlow extends FormApplication {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			template: "systems/everyday-heroes/templates/advancement/advancement-flow.hbs",
-			popOut: false
-		});
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
 	get id() {
 		return `actor-${this.advancement.item.id}-advancement-${this.advancement.id}-${this.level}`;
 	}
@@ -85,6 +87,16 @@ export default class AdvancementFlow extends FormApplication {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * The advancement manager displaying this flow.
+	 * @type {AdvancementManager|void}
+	 */
+	get manager() {
+		return ui.windows[this._element[0].closest(".advancement.manager")?.dataset.appid];
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Set the retained data for this flow. This method gives the flow a change to do any additional prep
 	 * work required for the retained data before the application is rendered.
 	 * @param {object} data - Retained data associated with this flow.
@@ -93,6 +105,8 @@ export default class AdvancementFlow extends FormApplication {
 		this.retainedData = data;
 	}
 
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Rendering                                */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	getData() {
@@ -106,6 +120,15 @@ export default class AdvancementFlow extends FormApplication {
 		};
 	}
 
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	async _render(...args) {
+		await super._render(...args);
+		this.manager?.setPosition();
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Event Listeners & Handlers               */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async _updateObject(event, formData) {

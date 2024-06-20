@@ -1,0 +1,14 @@
+<div class="rolls">
+	{{#each rolls}}
+		<div class="roll" data-index="{{@index}}">
+			<button type="button" class="skewed" data-formula="{{formula}}" {{disabled roll}}>
+				{{formula}}
+			</button>
+			<span class="total">
+				{{#if roll}}{{ roll.total }}{{else}}—{{/if}}
+			</span>
+		</div>
+	{{/each}}
+</div>
+
+{{> "everydayHeroes.ability-scores-scores"}}

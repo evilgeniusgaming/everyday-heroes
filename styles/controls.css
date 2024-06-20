@@ -70,53 +70,72 @@
 /*  Skewed Buttons                           */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.everyday-heroes :is(nav, li).skewed {
-	transform: skew(-16deg);
-	margin-block-start: 1em;
-	margin-inline: 0.25em;
-	border: 2px solid var(--eh-border-color-strong);
-	background-color: var(--eh-background-color-white);
-	color: var(--eh-text-color-black);
-}
-.everyday-heroes nav.skewed ul {
-	display: flex;
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-.everyday-heroes nav.skewed li {
-	flex-grow: 1;
-	text-align: center;
-}
-.everyday-heroes :is(nav.skewed li, li.skewed):has(:is(a:not([data-action]), button:disabled)) {
-	cursor: none;
-}
-.everyday-heroes :is(nav.skewed li, li.skewed):hover:not(:has(:is(a:not([data-action]), button:disabled))) {
-	box-shadow: inset 0 0 5px var(--color-shadow-primary);
-}
-@supports not selector(:has(a)) {
-	.everyday-heroes nav.skewed li:hover {
-		box-shadow: inset 0 0 5px var(--color-shadow-primary);
+.everyday-heroes {
+	:is(nav, li).skewed {
+		transform: skew(-16deg);
+		margin-block-start: 1em;
+		margin-inline: 0.25em;
+		border: 2px solid var(--eh-border-color-strong);
+		background-color: var(--eh-background-color-white);
+		color: var(--eh-text-color-black);
 	}
-}
-.everyday-heroes nav.skewed li:not(:last-of-type) {
-	border-inline-end: 1px solid var(--eh-border-color-weak);
-}
-.everyday-heroes :is(nav.skewed li, li.skewed) > :is(a, button) {
-	display: block;
-	transform: skew(16deg);
-	margin: 0;
-	border: none;
-	padding: 0.25em;
-	background: none;
-}
-.everyday-heroes :is(nav.skewed li, li.skewed) > :is(a:not([data-action]), button:disabled) {
-	opacity: 0.5;
-	cursor: default;
-}
-.everyday-heroes :is(nav.skewed li, li.skewed) > :is(a, button):hover {
-	box-shadow: none;
-	text-shadow: none;
+	nav.skewed {
+		ul {
+			display: flex;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		li {
+			flex-grow: 1;
+			text-align: center;
+
+			@supports not selector(:has(a)) {
+				&:hover, &:focus-visible {
+					box-shadow: inset 0 0 5px var(--color-shadow-primary);
+				}
+				&:focus-visible {
+					outline: 2px solid var(--color-shadow-primary);
+					outline-offset: 4px;
+				}
+			}
+			&:not(:last-of-type) {
+				border-inline-end: 1px solid var(--eh-border-color-weak);
+			}
+		}
+	}
+	nav.skewed li, li.skewed {
+		&:has(:is(a:not([data-action]), button:disabled)) {
+			cursor: none;
+		}
+		&:not(:has(:is(a:not([data-action]), button:disabled))) {
+			&:hover, &:has(:focus-visible) {
+				box-shadow: inset 0 0 5px var(--color-shadow-primary);
+			}
+			&:has(:focus-visible) {
+				outline: 2px solid var(--color-shadow-primary);
+				outline-offset: 4px;
+			}
+		}
+		> a, > button {
+			display: block;
+			transform: skew(16deg);
+			margin: 0;
+			border: none;
+			padding: 0.25em;
+			background: none;
+
+			&:hover, &:focus, &:focus-visible {
+				box-shadow: none;
+				text-shadow: none;
+				outline: none;
+			}
+		}
+		> :is(a:not([data-action]), button:disabled) {
+			opacity: 0.5;
+			cursor: default;
+		}
+	}
 }
 
 button.skewed {
@@ -137,6 +156,26 @@ button.skewed {
 		border: 2px solid var(--eh-border-color-strong);
 		background-color: var(--eh-background-color-white);
 		transform: skew(-16deg);
+	}
+	&:hover, &:focus, &:focus-visible {
+		box-shadow: none;
+		outline: none;
+	}
+	&:not(:disabled) {
+		&:hover::before, &:focus-visible::before {
+			box-shadow: inset 0 0 5px var(--color-shadow-primary);
+		}
+		&:focus-visible::before {
+			outline: 2px solid var(--color-shadow-primary);
+			outline-offset: 2px;
+		}
+	}
+	&:disabled {
+		cursor: default;
+		color: color-mix(in oklab, var(--eh-text-color-black), transparent);
+		&::before {
+			border-color: color-mix(in oklab, var(--eh-border-color-strong), white 70%);
+		}
 	}
 }
 

@@ -1,0 +1,44 @@
+<form id="{{appId}}" data-level="{{level}}" data-id="{{advancement.id}}" data-type="{{type}}" autocomplete="off">
+	<h3 class="striped">
+		<span class="left stripes"></span>
+		<span class="center">{{{title}}}</span>
+		<span class="right stripes"></span>
+	</h3>
+
+	{{#if method}}
+		<div class="select-method">
+			<button type="button" class="skewed" data-method>
+				<i class="fa-solid fa-arrow-left-long" inert></i>
+				{{localize "EH.Advancement.AbilityScores.Method.Change"}}
+			</button>
+		</div>
+		{{#if (eq method "startingArray")}}
+			{{> "everydayHeroes.ability-scores-scores" }}
+		{{else if (eq method "pointBuy")}}
+			{{> "everydayHeroes.ability-scores-point-buy" }}
+		{{else if (eq method "rolling")}}
+			{{> "everydayHeroes.ability-scores-rolling" }}
+		{{/if}}
+	{{else}}
+		<div class="select-method">
+			<div>
+				<button type="button" class="skewed" data-method="startingArray">
+					{{localize "EH.Advancement.AbilityScores.StartingArray.Label"}}
+				</button>
+				<p class="hint">{{localize "EH.Advancement.AbilityScores.StartingArray.Hint"}}</p>
+			</div>
+			<div>
+				<button type="button" class="skewed" data-method="pointBuy">
+					{{localize "EH.Advancement.AbilityScores.PointBuy.Label"}}
+				</button>
+				<p class="hint">{{localize "EH.Advancement.AbilityScores.PointBuy.Hint"}}</p>
+			</div>
+			<div>
+				<button type="button" class="skewed" data-method="rolling">
+					{{localize "EH.Advancement.AbilityScores.Rolling.Label"}}
+				</button>
+				<p class="hint">{{localize "EH.Advancement.AbilityScores.Rolling.Hint"}}</p>
+			</div>
+		</div>
+	{{/if}}
+</form>

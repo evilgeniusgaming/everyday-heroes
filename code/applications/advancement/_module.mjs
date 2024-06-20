@@ -6,6 +6,7 @@ export {default as AdvancementMigrationDialog} from "./advancement-migration-dia
 export {default as AdvancementSelection} from "./advancement-selection.mjs";
 
 export {default as AbilityScoresConfig} from "./ability-scores-config.mjs";
+export {default as AbilityScoresFlow} from "./ability-scores-flow.mjs";
 export {default as DefenseConfig} from "./defense-config.mjs";
 export {default as HitPointsConfig} from "./hit-points-config.mjs";
 export {default as HitPointsFlow} from "./hit-points-flow.mjs";
