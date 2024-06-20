@@ -102,6 +102,11 @@
 				> .tag-input input {
 					background: none;
 				}
+
+				[data-action="select-concept"] {
+					font-style: italic;
+					font-weight: bold;
+				}
 			}
 		}
 
