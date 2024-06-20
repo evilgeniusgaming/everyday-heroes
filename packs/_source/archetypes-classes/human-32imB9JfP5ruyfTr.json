@@ -1,0 +1,94 @@
+{
+  "name": "Human",
+  "type": "origin",
+  "img": "icons/environment/people/commoner.webp",
+  "system": {
+    "description": {
+      "value": "<p>The default Origin in <em><strong>Everyday Heroes</strong></em> is the Human Origin. While not explicit in the <em><strong>Everyday Heroes Core Rulebook</strong></em>, the rules presented there for generating ability scores are the rules for making a hero with the Human Origin. This does not mean, however, that no other Origin is possible for humans. Instead, it is the case only because the Human Origin is the default assumption in the game.</p><p>In addition, you can use the Human Origin for heroes that are biologically different from humans, but have no special game mechanics to differentiate them.</p><h3>Human Ability Scores</h3><p><strong>Starting Array:</strong> 15, 14, 13, 12, 10, 8</p><p><strong>Point Buy:</strong> 27 points (15 maximum score)</p><p><strong>Rolling:</strong> 4d6 (drop the lowest) on 6 rolls</p><p><strong>Ability Score Limits:</strong> 20 for all ability scores</p>",
+      "chat": "",
+      "source": "Core Rulebook"
+    },
+    "advancement": [
+      {
+        "_id": "EVUNgHH1FrsdIcXw",
+        "_type": "AbilityScores",
+        "configuration": {
+          "maximums": {
+            "str": 20,
+            "dex": 20,
+            "con": 20,
+            "int": 20,
+            "wis": 20,
+            "cha": 20
+          },
+          "pointBuy": {
+            "points": 27,
+            "maximum": 15
+          },
+          "rolling": [
+            {
+              "formula": "dropLowest",
+              "bonus": null
+            },
+            {
+              "formula": "dropLowest",
+              "bonus": null
+            },
+            {
+              "formula": "dropLowest",
+              "bonus": null
+            },
+            {
+              "formula": "dropLowest",
+              "bonus": null
+            },
+            {
+              "formula": "dropLowest",
+              "bonus": null
+            },
+            {
+              "formula": "dropLowest",
+              "bonus": null
+            }
+          ],
+          "startingArray": [
+            15,
+            14,
+            13,
+            12,
+            10,
+            8
+          ]
+        },
+        "value": {
+          "rolls": [],
+          "assignments": {}
+        },
+        "level": 1,
+        "flags": {},
+        "title": "",
+        "icon": null
+      }
+    ],
+    "identifier": {
+      "value": "human"
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "everyday-heroes",
+    "systemVersion": "0.6.0",
+    "coreVersion": "11.315",
+    "createdTime": 1718649866923,
+    "modifiedTime": 1718916881581,
+    "lastModifiedBy": "everyday00heroes"
+  },
+  "_id": "32imB9JfP5ruyfTr",
+  "sort": 0,
+  "_key": "!items!32imB9JfP5ruyfTr"
+}
