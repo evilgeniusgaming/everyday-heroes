@@ -442,7 +442,7 @@ export const sheetSections = {
 	hero: [
 		{
 			tab: "features",
-			types: [{type: "origin", "system.type.value": "origin"}],
+			types: [{type: "talent", "system.type.value": "origin"}],
 			primaryType: {type: "origin"}
 		},
 		{
