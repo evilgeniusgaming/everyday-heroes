@@ -79,7 +79,10 @@ export default class AbilityScoresAdvancement extends Advancement {
 			if ( score === null ) {
 				throw new Advancement.ERROR(game.i18n.localize("EH.Advancement.AbilityScores.Error.Incomplete"));
 			}
-			abilities[key] = { value: (this.actor.system.abilities[key].value ?? 0) + score };
+			abilities[key] = {
+				value: Math.min((this.actor.system.abilities[key].value ?? 0) + score, this.configuration.maximums[key] ?? 20),
+				max: this.configuration.maximums[key] ?? 20
+			};
 		}
 
 		this.actor.updateSource({ "system.abilities": abilities });
@@ -101,7 +104,10 @@ export default class AbilityScoresAdvancement extends Advancement {
 		for ( const [key] of Object.entries(CONFIG.EverydayHeroes.abilities).filter(([, c]) => c.assignment) ) {
 			const score = this.calculateAssignmentValue(this.value.assignments[key], this.value.method, this.value.rolls);
 			const finalValue = this.actor.system.abilities[key].value - score;
-			abilities[key] = { value: finalValue > 0 ? finalValue : null };
+			abilities[key] = {
+				value: finalValue > 0 ? finalValue : null,
+				max: 20
+			};
 		}
 
 		const retainedData = this.value;
