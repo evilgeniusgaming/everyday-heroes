@@ -70,19 +70,7 @@ export default class ItemGrantAdvancement extends Advancement {
 		const updates = {};
 		for ( const [uuid, selected] of Object.entries(data.selected) ) {
 			if ( !selected ) continue;
-
-			let itemData = data.retained?.[uuid];
-			if ( !itemData ) {
-				const source = await fromUuid(uuid);
-				if ( !source ) continue;
-				itemData = source.clone({
-					_id: foundry.utils.randomID(),
-					sort: null,
-					"flags.everyday-heroes.sourceId": uuid,
-					"flags.everyday-heroes.advancementOrigin": `${this.item.id}.${this.id}`
-				}, {keepId: true}).toObject();
-			}
-
+			const itemData = data.retained?.[uuid] ?? await this.createItemData(uuid);
 			items.push(itemData);
 			updates[itemData._id] = uuid;
 		}

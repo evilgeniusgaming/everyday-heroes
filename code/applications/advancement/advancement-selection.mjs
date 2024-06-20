@@ -47,7 +47,7 @@ export default class AdvancementSelection extends Dialog {
 		for ( const [name, config] of Object.entries(CONFIG.EverydayHeroes.advancementTypes) ) {
 			const advancement = config.type;
 			if ( !(advancement.prototype instanceof EverydayHeroes.documents.advancement.Advancement)
-				|| !config.validItemTypes.has(this.item.type) ) continue;
+				|| !config.validItemTypes.has(this.item.type) || config.hidden ) continue;
 			context.types[name] = {
 				label: advancement.metadata.title,
 				icon: advancement.metadata.icon,

@@ -318,4 +318,31 @@ export default class Advancement extends BaseAdvancement {
 	 */
 	async reverse(level) { }
 
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Fetch an item and create a clone with the proper flags.
+	 * @param {string} uuid - UUID of the item to fetch.
+	 * @param {object} [options={}]
+	 * @param {object} [options.changes={}] - Additional changes to apply when creating the clone.
+	 * @param {string} [options.id] - Optional ID to use instead of the random one.
+	 */
+	async createItemData(uuid, { changes={}, id }={}) {
+		const source = await fromUuid(uuid);
+		if ( !source ) return null;
+		id ??= foundry.utils.randomID();
+		return source.clone(
+			foundry.utils.mergeObject(
+				{
+					_id: id,
+					folder: null,
+					sort: null,
+					"flags.everyday-heroes.sourceId": uuid,
+					"flags.everyday-heroes.advancementOrigin": `${this.item.id}.${this.id}`
+				},
+				changes
+			), {keepId: true}
+		).toObject();
+	}
+
 }

@@ -14,6 +14,7 @@ import { preLocalize } from "./utils.mjs";
  * @typedef {object} AdvancementTypeConfig
  * @property {typeof Advancement} type - Advancement type represented.
  * @property {Set<string>} validItemTypes - Types to which this advancement can be added.
+ * @property {boolean} [hidden] - Should this advancement type be hidden in the advancement selection dialog.
  */
 
 /**
