@@ -160,6 +160,10 @@
       "flags": {}
     }
   ],
+  "grid": {
+    "distance": 5,
+    "units": "foot"
+  },
   "gridDistance": 5,
   "gridUnits": "foot",
   "primaryTokenAttribute": "attributes.hp",
@@ -173,9 +177,9 @@
         "templates"
       ]
     },
-		"hotReload": {
-			"extensions": ["css", "hbs", "json"],
-			"paths": ["everyday-heroes.css", "templates", "lang"]
-		}
-	}
+    "hotReload": {
+      "extensions": ["css", "hbs", "json"],
+      "paths": ["everyday-heroes.css", "templates", "lang"]
+    }
+  }
 }
