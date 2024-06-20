@@ -7,6 +7,10 @@
 	border-radius: 10px;
 	padding: 0.5em;
 	background-color: var(--eh-background-color-mid);
+
+	&.single {
+		grid-template-columns: auto;
+	}
 }
 .everyday-heroes.dialog .main-form > p {
 	grid-column: 1 / -1;

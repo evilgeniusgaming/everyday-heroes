@@ -5,6 +5,7 @@ export default class AdvancementConfirmationDialog extends Dialog {
 
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
+			classes: ["dialog", "everyday-heroes"],
 			template: "systems/everyday-heroes/templates/advancement/advancement-confirmation-dialog.hbs",
 			jQuery: false
 		});
