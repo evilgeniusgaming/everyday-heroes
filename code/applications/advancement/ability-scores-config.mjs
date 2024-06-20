@@ -16,11 +16,11 @@ export default class AbilityScoresConfig extends AdvancementConfig {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	getData(options) {
-		const context = foundry.utils.mergeObject({
+		const context = foundry.utils.mergeObject(super.getData(options), {
 			showLevelSelector: false,
 			maximums: {},
 			pointBuy: this.advancement.configuration.pointBuy
-		}, super.getData(options));
+		});
 
 		let abilityCount = 0;
 		for ( const [key, config] of Object.entries(CONFIG.EverydayHeroes.abilities) ) {

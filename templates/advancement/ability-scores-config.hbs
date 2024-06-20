@@ -3,20 +3,6 @@
 		{{> "everydayHeroes.advancement-controls"}}
 	</section>
 
-	<section class="maximums">
-		<h3 class="striped">
-			<span class="left stripes"></span>
-			<span class="center">{{localize "EH.Ability.Max.Label"}}</span>
-			<span class="right stripes"></span>
-		</h3>
-		{{#each maximums}}
-			<fieldset>
-				<label>{{label}}</label>
-				<input type="number" name="configuration.maximums.{{@key}}" value="{{value}}" step="1" min="0">
-			</fieldset>
-		{{/each}}
-	</section>
-
 	<section class="starting-array">
 		<h3 class="striped">
 			<span class="left stripes"></span>
@@ -66,6 +52,20 @@
 				<input type="number" name="configuration.rolling.{{@index}}.bonus" value="{{bonus}}" step="1" min="0">
 			</div>
 		</fieldset>
+		{{/each}}
+	</section>
+
+	<section class="maximums">
+		<h3 class="striped">
+			<span class="left stripes"></span>
+			<span class="center">{{localize "EH.Advancement.AbilityScores.Limits.Label"}}</span>
+			<span class="right stripes"></span>
+		</h3>
+		{{#each maximums}}
+			<fieldset>
+				<label>{{label}}</label>
+				<input type="number" name="configuration.maximums.{{@key}}" value="{{value}}" step="1" min="0">
+			</fieldset>
 		{{/each}}
 	</section>
 </form>

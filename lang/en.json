@@ -239,6 +239,9 @@
 			"Label": "Assignment Method",
 			"Change": "Change Method"
 		},
+		"Limits": {
+			"Label": "Ability Score Limits"
+		},
 		"PointBuy": {
 			"Label": "Point Buy",
 			"Hint": "Spend a number of points to set starting abilities.",
