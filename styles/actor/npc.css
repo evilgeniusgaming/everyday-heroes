@@ -96,6 +96,7 @@
 	padding: 0.25em;
 }
 .everyday-heroes.npc.sheet [data-tab="details"] > section > fieldset.abilities > div {
+	flex: 1 1;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: first baseline;

@@ -97,7 +97,7 @@
 							<input class="value" type="number" name="system.abilities.{{key}}.value"
 								value="{{ability._source.value}}" step="1" min="1">
 						{{else}}
-							<input class="value" type="number" value="{{ability.value}}" disabled>
+							<input class="value" type="text" value="{{#if ability.valid}}{{ability.value}}{{else}}—{{/if}}" disabled>
 						{{/if}}
 						<div class="save">
 							{{> "everydayHeroes.actor-proficiency-selector" type="single"

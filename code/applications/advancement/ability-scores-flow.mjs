@@ -1,4 +1,3 @@
-import Advancement from "../../documents/advancement/advancement.mjs";
 import { numberFormat } from "../../utils.mjs";
 import AdvancementFlow from "./advancement-flow.mjs";
 
@@ -89,17 +88,18 @@ export default class AbilityScoresFlow extends AdvancementFlow {
 	 */
 	getRollingContext(context) {
 		context.rolls = this.advancement.configuration.rolling.map((rollConfig, index) => ({
+			index,
 			formula: this.advancement.buildRollFormula(rollConfig),
 			roll: this.rolls[index]
 		}));
-		const sortedRolls = context.rolls
-			.map(({ roll }, index) => ({ roll, index }))
+		const sortedRolls = Array.from(context.rolls)
 			.sort((lhs, rhs) => (rhs.roll?.total ?? -Infinity) - (lhs.roll?.total ?? -Infinity));
 		context.scores = this.abilities.map(([key, { label }]) => ({
 			key,
 			label,
 			value: this.assignments[key],
 			potentialValues: sortedRolls.map(({ roll, index }) => ({
+				index,
 				number: roll ? numberFormat(roll.total) : "—",
 				selected: this.assignments[key] === index,
 				dimmed: (this.assignments[key] !== index) && context.selectedSet.has(index)
@@ -171,6 +171,7 @@ export default class AbilityScoresFlow extends AdvancementFlow {
 			label,
 			value: this.assignments[key],
 			potentialValues: this.advancement.configuration.startingArray.map((number, index) => ({
+				index,
 				number: numberFormat(number),
 				selected: this.assignments[key] === index,
 				dimmed: (this.assignments[key] !== index) && context.selectedSet.has(index)
@@ -280,11 +281,6 @@ export default class AbilityScoresFlow extends AdvancementFlow {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async _updateObject(event, formData) {
-		if ( !this.method ) {
-			throw new Advancement.ERROR(game.i18n.localize("EH.Advancement.AbilityScores.Error.NoMethod"));
-		} else if ( Object.values(this.assignments).length < this.abilities.length ) {
-			throw new Advancement.ERROR(game.i18n.localize("EH.Advancement.AbilityScores.Error.Incomplete"));
-		}
 		await this.advancement.apply(this.level, {
 			method: this.method,
 			rolls: this.rolls,

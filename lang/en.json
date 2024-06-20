@@ -219,6 +219,7 @@
 			"Scores": "Scores"
 		},
 		"Error": {
+			"Duplicates": "All assignments must have different values.",
 			"NoMethod": "Ability Score Assignment method must be selected.",
 			"Incomplete": "All abilities must have an assigned score."
 		}

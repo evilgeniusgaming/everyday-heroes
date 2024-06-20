@@ -108,9 +108,9 @@
 				{{#if @root.editingMode}}
 					<input type="number" name="system.abilities.{{key}}.value" value="{{ability.value}}">
 				{{else}}
-					<span>{{everydayHeroes-number ability.value}}</span>
+					<span>{{#if ability.valid}}{{everydayHeroes-number ability.value}}{{else}}—{{/if}}</span>
 				{{/if}}
-				<span>({{ability.mod}})</span>
+				<span>{{#if ability.valid}}({{ability.mod}}){{/if}}</span>
 				{{#if @root.editingMode}}
 					{{> "everydayHeroes.actor-proficiency-selector" type="single"
 						name=(concat "system.abilities." key ".saveProficiency")

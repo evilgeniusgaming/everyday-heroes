@@ -7,7 +7,7 @@
 					{{#each potentialValues}}
 						<li>
 							<label>
-								<input type="radio" name="assignments.{{../key}}" value="{{@index}}"
+								<input type="radio" name="assignments.{{../key}}" value="{{index}}"
 											 {{#if dimmed}}class="dimmed"{{/if}} {{checked selected}}>
 								<span>{{ number }}</span>
 							</label>

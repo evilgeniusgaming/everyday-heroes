@@ -45,7 +45,7 @@ export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 		return {
 			abilities: new MappingField(new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.NumberField({
-					nullable: false, initial: 10, min: 0, integer: true, label: "EH.Ability.Score[one]"
+					min: 0, integer: true, label: "EH.Ability.Score[one]"
 				}),
 				max: new foundry.data.fields.NumberField({
 					integer: true, min: 0, initial: 20, label: "EH.Ability.Max.Label", hint: "EH.Ability.Max.Hint"
@@ -142,8 +142,9 @@ export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 		const globalCheckBonus = simplifyBonus(this.bonuses.ability.check, rollData);
 		const globalSaveBonus = simplifyBonus(this.bonuses.ability.save, rollData);
 		for ( const [key, ability] of Object.entries(this.abilities) ) {
+			ability.valid = ability.value !== null;
 			ability._source = this._source.abilities?.[key] ?? {};
-			ability.mod = Math.floor((ability.value - 10) / 2);
+			ability.mod = ability.valid ? Math.floor((ability.value - 10) / 2) : 0;
 
 			ability.checkProficiency = new Proficiency(
 				prof,
