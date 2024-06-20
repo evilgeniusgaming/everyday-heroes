@@ -1,60 +1,114 @@
 { "EH": {
 
-"Ability.Label[one]": "Ability",
-"Ability.Label[other]": "Abilities",
-"Ability.Score[one]": "Ability Score",
-"Ability.Score[other]": "Ability Scores",
-"Ability.Modifier": "Ability Modifier",
-"Ability.Charisma.Label": "Charisma",
-"Ability.Charisma.Abbreviation": "cha",
-"Ability.Constitution.Label": "Constitution",
-"Ability.Constitution.Abbreviation": "con",
-"Ability.Dexterity.Label": "Dexterity",
-"Ability.Dexterity.Abbreviation": "dex",
-"Ability.Intelligence.Label": "Intelligence",
-"Ability.Intelligence.Abbreviation": "int",
-"Ability.Strength.Label": "Strength",
-"Ability.Strength.Abbreviation": "str",
-"Ability.Wisdom.Label": "Wisdom",
-"Ability.Wisdom.Abbreviation": "wis",
-"Ability.Max.Label": "Maximum Ability Score",
-"Ability.Max.Hint": "Ability score cannot be increased above this value using ability score increases.",
-"Ability.Save.Label": "Saves",
-"Ability.Action.CheckGeneric": "Ability Check",
-"Ability.Action.CheckSpecific": "{ability} Check",
-"Ability.Action.SaveGeneric": "Saving Throw",
-"Ability.Action.SaveSpecificLong": "{ability} Saving Throw",
-"Ability.Action.SaveSpecificShort": "{ability} Save",
-"Ability.Alternate.Label": "Alternate Abilities",
-"Ability.Alternate.All.Label": "All Skills",
-"Ability.Alternate.All.Hint": "These other abilities will be provided as alternate choices for any skill that uses this ability as its default. The highest of the available ability mods will be used.",
-"Ability.Alternate.Proficient.Label": "Proficient skills",
-"Ability.Alternate.Proficient.Hint": "These other abilities will be provided as alternate choices only for proficient skills that uses this ability as its default. The highest of the available ability mods will be used.",
-"Ability.Bonus.Check.Label": "Ability Check Bonus",
-"Ability.Bonus.Check.GlobalHint": "Bonus formula applied to all ability checks.",
-"Ability.Bonus.Check.SpecificHint": "Bonus formula applied to all checks made with this ability.",
-"Ability.Bonus.DC.Label": "DC Bonus",
-"Ability.Bonus.DC.GlobalHint": "Bonus formula applied to the DCs of all abilities.",
-"Ability.Bonus.DC.SpecificHint": "Bonus formula applied to the DC created for each ability.",
-"Ability.Bonus.Save.Label": "Saving Throw Bonus",
-"Ability.Bonus.Save.GlobalHint": "Bonus formula applied to all saving throws made with this ability.",
-"Ability.Bonus.Save.SpecificHint": "Bonus formula applied to all saving throws.",
-"Ability.Configuration.Hint": "Bonuses apply to save or check formulas and minimums prevent the d20 roll from dropping below a certain number.",
-"Ability.Configuration.Global.Label": "Global Ability Configuration",
-"Ability.Configuration.Global.Hint": "The following options apply to all abilities.",
-"Ability.Configuration.Specific.Label": "{type} Configuration",
-"Ability.Override.Minimum.Check.Label": "Ability Check Minimum",
-"Ability.Override.Minimum.Check.GlobalHint": "When rolling any ability check, the result will never be lower than this value.",
-"Ability.Override.Minimum.Check.SpecificHint": "When rolling any check with this ability, the result will never be lower than this value.",
-"Ability.Override.Minimum.CheckProficiency.Label": "Ability Check Proficiency Floor",
-"Ability.Override.Minimum.CheckProficiency.Hint": "Minimum proficiency multiplier for all ability checks.",
-"Ability.Override.Minimum.Save.Label": "Saving Throw Minimum",
-"Ability.Override.Minimum.Save.GlobalHint": "When rolling any saving throw, the result will never be lower than this value.",
-"Ability.Override.Minimum.Save.SpecificHint": "When rolling any saving throw with this ability, the result will never be lower than this value.",
-"Ability.Override.Minimum.SaveProficiency.Label": "Saving Throw Proficiency Floor",
-"Ability.Override.Minimum.SaveProficiency.Hint": "Minimum proficiency multiplier for all saving throws.",
-"Ability.Proficiency.Label[one]": "Saving Throw Proficiency",
-"Ability.Proficiency.Label[other]": "Saving Throw Proficiencies",
+"Ability": {
+	"Label[one]": "Ability",
+	"Label[other]": "Abilities",
+	"Score[one]": "Ability Score",
+	"Score[other]": "Ability Scores",
+	"Modifier": "Ability Modifier",
+	"Charisma": {
+		"Label": "Charisma",
+		"Abbreviation": "cha"
+	},
+	"Constitution": {
+		"Label": "Constitution",
+		"Abbreviation": "con"
+	},
+	"Dexterity": {
+		"Label": "Dexterity",
+		"Abbreviation": "dex"
+	},
+	"Intelligence": {
+		"Label": "Intelligence",
+		"Abbreviation": "int"
+	},
+	"Strength": {
+		"Label": "Strength",
+		"Abbreviation": "str"
+	},
+	"Wisdom": {
+		"Label": "Wisdom",
+		"Abbreviation": "wis"
+	},
+	"Max": {
+		"Label": "Maximum Ability Score",
+		"Hint": "Ability score cannot be increased above this value using ability score increases."
+	},
+	"Save": {
+		"Label": "Saves"
+	},
+	"Action": {
+		"CheckGeneric": "Ability Check",
+		"CheckSpecific": "{ability} Check",
+		"SaveGeneric": "Saving Throw",
+		"SaveSpecificLong": "{ability} Saving Throw",
+		"SaveSpecificShort": "{ability} Save"
+	},
+	"Alternate": {
+		"Label": "Alternate Abilities",
+		"All": {
+			"Label": "All Skills",
+			"Hint": "These other abilities will be provided as alternate choices for any skill that uses this ability as its default. The highest of the available ability mods will be used."
+		},
+		"Proficient": {
+			"Label": "Proficient skills",
+			"Hint": "These other abilities will be provided as alternate choices only for proficient skills that uses this ability as its default. The highest of the available ability mods will be used."
+		}
+	},
+	"Bonus": {
+		"Check": {
+			"Label": "Ability Check Bonus",
+			"GlobalHint": "Bonus formula applied to all ability checks.",
+			"SpecificHint": "Bonus formula applied to all checks made with this ability."
+		},
+		"DC": {
+			"Label": "DC Bonus",
+			"GlobalHint": "Bonus formula applied to the DCs of all abilities.",
+			"SpecificHint": "Bonus formula applied to the DC created for each ability."
+		},
+		"Save": {
+			"Label": "Saving Throw Bonus",
+			"GlobalHint": "Bonus formula applied to all saving throws made with this ability.",
+			"SpecificHint": "Bonus formula applied to all saving throws."
+		}
+	},
+	"Configuration": {
+		"Hint": "Bonuses apply to save or check formulas and minimums prevent the d20 roll from dropping below a certain number.",
+		"Global": {
+			"Label": "Global Ability Configuration",
+			"Hint": "The following options apply to all abilities."
+		},
+		"Specific": {
+			"Label": "{type} Configuration"
+		}
+	},
+	"Override": {
+		"Minimum": {
+			"Check": {
+				"Label": "Ability Check Minimum",
+				"GlobalHint": "When rolling any ability check, the result will never be lower than this value.",
+				"SpecificHint": "When rolling any check with this ability, the result will never be lower than this value."
+			},
+			"CheckProficiency": {
+				"Label": "Ability Check Proficiency Floor",
+				"Hint": "Minimum proficiency multiplier for all ability checks."
+			},
+			"Save": {
+				"Label": "Saving Throw Minimum",
+				"GlobalHint": "When rolling any saving throw, the result will never be lower than this value.",
+				"SpecificHint": "When rolling any saving throw with this ability, the result will never be lower than this value."
+			},
+			"SaveProficiency": {
+				"Label": "Saving Throw Proficiency Floor",
+				"Hint": "Minimum proficiency multiplier for all saving throws."
+			}
+		}
+	},
+	"Proficiency": {
+		"Label[one]": "Saving Throw Proficiency",
+		"Label[other]": "Saving Throw Proficiencies"
+	}
+},
 
 "Action.AddGeneric": "Add",
 "Action.AddSpecific": "Add {type}",
