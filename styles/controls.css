@@ -10,61 +10,55 @@
 	color: var(--eh-text-color-white);
 	font-size: var(--font-size-14);
 	font-variant: small-caps;
+
+	> fieldset {
+		margin: 1px;
+		border-radius: 4px;
+		background-color: var(--eh-background-color-dark);
+
+		&:is(.add, .checked, .remove) {
+			background-color: var(--eh-background-color-light);
+			color: var(--eh-text-color-black);
+		}
+
+		label {
+			display: flex;
+			align-items: center;
+			gap: 0.25em;
+			padding-inline-end: 0.5em;
+		}
+		input {
+			appearance: none;
+			border: 1px solid var(--eh-border-color-strong);
+			border-radius: 50%;
+			background-color: var(--eh-background-color-white);
+			filter: none;
+
+			&[checked] { background-color: var(--eh-input-color-add); }
+			&[disabled] { background-color: var(--eh-input-color-disabled); }
+			&[checked][disabled] { background-color: var(--eh-input-color-disabled-checked); }
+		}
+
+		input[checked]::after {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			/* margin-block-start: -2px; */
+			font-size: var(--font-size-24);
+			font-weight: bold;
+		}
+		&.remove input[checked] {
+			background-color: var(--eh-input-color-remove);
+		}
+		&.add input[checked]::after { content: "+"; }
+		&.remove input[checked]::after { content: "-"; }
+
+		&:not(.disabled) :is(label, input) { cursor: pointer; }
+	}
 }
-.everyday-heroes .properties > fieldset {
-	margin: 1px;
-	border-radius: 4px;
-	background-color: var(--eh-background-color-dark);
-}
-/* .everyday-heroes .properties > fieldset:has([checked]) { */
-.everyday-heroes .properties > fieldset:is(.add, .checked, .remove) {
-	background-color: var(--eh-background-color-light);
-	color: var(--eh-text-color-black);
-}
-.everyday-heroes .properties > fieldset label {
-	display: flex;
-	align-items: center;
-	gap: 0.25em;
-	padding-inline-end: 0.5em;
-}
-.everyday-heroes .properties > fieldset input {
-	appearance: none;
-	border: 1px solid var(--eh-border-color-strong);
-	border-radius: 50%;
-	background-color: var(--eh-background-color-white);
-	filter: none;
-}
-.everyday-heroes .properties > fieldset input[checked] {
-	background-color: var(--eh-input-color-add);
-}
-.everyday-heroes .properties > fieldset input[disabled] {
-	background-color: var(--eh-input-color-disabled);
-}
-.everyday-heroes .properties > fieldset input[checked][disabled] {
-	background-color: var(--eh-input-color-disabled-checked);
-}
-.everyday-heroes .properties > fieldset.remove input[checked] {
-	background-color: var(--eh-input-color-remove);
-}
-.everyday-heroes .properties > fieldset input[checked]::after {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	/* margin-block-start: -2px; */
-	font-size: var(--font-size-24);
-	font-weight: bold;
-}
-.everyday-heroes .properties > fieldset.add input[checked]::after {
-	content: "+";
-}
-.everyday-heroes .properties > fieldset.remove input[checked]::after {
-	content: "-";
-}
-.everyday-heroes .properties > fieldset:not(.disabled) :is(label, input) {
-	cursor: pointer;
-}
+
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Skewed Buttons                           */
@@ -138,7 +132,7 @@
 	}
 }
 
-button.skewed {
+button.skewed, .dialog .dialog-buttons button {
 	position: relative;
 	isolation: isolate;
 	width: calc(100% - 0.5em);
@@ -178,6 +172,15 @@ button.skewed {
 		}
 	}
 }
+.dialog .dialog-buttons button {
+	&.default {
+		background: none;
+		border: none;
+	}
+	&:last-child {
+		margin-inline: 0.25em;
+	}
+}
 
 .hidden-dc { display: contents; }
 .visible-dc { display: none; }
@@ -196,20 +199,22 @@ button.skewed {
 	gap: 0.5em;
 	padding-inline: 0.25em;
 	padding-block: 0.25em;
-}
-.everyday-heroes fieldset .tag-input > .tag {
-	background-color: var(--eh-tag-color-property);
-	border-radius: 3px;
-	padding-inline: 0.5em;
-}
-.everyday-heroes fieldset .tag-input > .tag > [data-action="delete"] {
-	opacity: 75%;
-	padding-inline-start: 0.25em;
-}
-.everyday-heroes fieldset .tag-input > input {
-	flex: 1 0 3em;
-	width: unset;
-	min-width: 3em;
-	margin: -0.25em;
-	margin-inline-end: 0;
+
+	> .tag {
+		background-color: var(--eh-tag-color-property);
+		border-radius: 3px;
+		padding-inline: 0.5em;
+
+		> [data-action="delete"] {
+			opacity: 75%;
+			padding-inline-start: 0.25em;
+		}
+	}
+	> input {
+		flex: 1 0 3em;
+		width: unset;
+		min-width: 3em;
+		margin: -0.25em;
+		margin-inline-end: 0;
+	}
 }

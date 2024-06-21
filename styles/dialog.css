@@ -11,32 +11,47 @@
 	&.single {
 		grid-template-columns: auto;
 	}
-}
-.everyday-heroes.dialog .main-form > p {
-	grid-column: 1 / -1;
-}
-.everyday-heroes.dialog .main-form > p:first-child {
-	margin-block-start: 0;
-}
-.everyday-heroes.dialog .main-form > p:last-child {
-	margin-block-end: 0;
-}
-.everyday-heroes.dialog .main-form fieldset {
-	grid-column: 1 / -1;
-	display: grid;
-	grid-template-columns: subgrid;
-}
-.everyday-heroes.dialog .main-form fieldset > label {
-	font-weight: bold;
-	text-transform: uppercase;
-}
-.everyday-heroes.dialog .main-form fieldset > .hint {
-	grid-column: 1 / -1;
+	> p {
+		grid-column: 1 / -1;
+		&:first-child { margin-block-start: 0; }
+		&:last-child { margin-block-end: 0; }
+	}
+	fieldset {
+		grid-column: 1 / -1;
+		display: grid;
+		grid-template-columns: subgrid;
+
+		@supports not (grid-template-columns: subgrid) {
+			grid-template-columns: 33% auto;
+		}
+
+		> label {
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+		> .hint { grid-column: 1 / -1; }
+	}
 }
 
-@supports not (grid-template-columns: subgrid) {
-	.everyday-heroes.dialog .main-form fieldset {
-		grid-template-columns: 33% auto;
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Standard Dialogs                         */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+.dialog:not(:has(.main-form)) {
+	.window-content {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+	.dialog-content {
+		overflow: clip;
+		border: 1px solid var(--eh-border-color-strong);
+		border-radius: 10px;
+		padding: 0.5em;
+		background-color: var(--eh-background-color-mid);
+	}
+	.skewed:is(nav, li) {
+		margin-block-start: 0;
 	}
 }
 
@@ -52,34 +67,35 @@
 /*  Rolling                                  */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.everyday-heroes.roll .main-form {
-	grid-template-columns: 1fr 2fr;
-}
+.everyday-heroes.roll {
+	.main-form {
+		grid-template-columns: 1fr 2fr;
+	}
+	.formulas {
+		grid-column: 1 / -1;
+		margin-block: 0;
+		margin-inline: -0.5em;
+		padding: 0;
+		list-style: none;
+		font-size: var(--font-size-20);
 
-.everyday-heroes.roll .formulas {
-	grid-column: 1 / -1;
-	margin-block: 0;
-	margin-inline: -0.5em;
-	padding: 0;
-	list-style: none;
-	font-size: var(--font-size-20);
-}
-.everyday-heroes.roll .formulas li {
-	padding: 0.25em;
-	background-color: var(--eh-background-color-light);
-	text-align: center;
-}
-.everyday-heroes.roll .formulas li:not(:last-of-type) {
-	margin-block-end: 0.25em;
-}
-.everyday-heroes.roll .formulas.damage li {
-	contain: content;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 0.25em;
-	padding-inline: 0.5em;
-}
-.everyday-heroes.roll .formulas.damage span:not(.damage-type) {
-	flex-grow: 1;
+		li {
+			padding: 0.25em;
+			background-color: var(--eh-background-color-light);
+			text-align: center;
+
+			&:not(:last-of-type) { margin-block-end: 0.25em; }
+		}
+		&.damage {
+			li {
+				contain: content;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 0.25em;
+				padding-inline: 0.5em;
+			}
+			span:not(.damage-type) { flex-grow: 1; }
+		}
+	}
 }
