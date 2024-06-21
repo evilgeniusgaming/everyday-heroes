@@ -54,10 +54,13 @@
 				justify-content: center;
 				width: 150px;
 				min-height: 150px;
+				background-color: var(--eh-border-color-strong);
 
 				img {
-					aspect-ratio: 1 / 1;
 					border: none;
+					height: 100%;
+					object-fit: cover;
+					object-position: center top;
 				}
 			}
 			> div:not(.image) {
