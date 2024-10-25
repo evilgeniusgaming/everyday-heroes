@@ -57,7 +57,16 @@ export function insertBetween(array, toInsert, positions) {
  * @returns {string} - Link to the item or empty string if item wasn't found.
  */
 export function linkForUUID(uuid) {
-	return TextEditor._createContentLink(["", "UUID", uuid]).outerHTML;
+	let doc = fromUuidSync(uuid);
+	if ( !doc ) return "";
+	if ( uuid.startsWith("Compendium.") && !(doc instanceof foundry.abstract.Document) ) {
+		const { collection } = foundry.utils.parseUuid(uuid);
+		const cls = collection.documentClass;
+		// Minimal "shell" of a document using index data
+		doc = new cls(foundry.utils.deepClone(doc), { pack: collection.metadata.id });
+	}
+	const a = doc.toAnchor();
+	return a.outerHTML;
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
