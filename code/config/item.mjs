@@ -30,6 +30,11 @@ export const advancementTypes = {
 		type: advancement.ASIAdvancement,
 		validItemTypes: new Set(["background", "profession", "feat"])
 	},
+	Cybernetics: {
+		type: advancement.CyberneticsAdvancement,
+		validItemTypes: new Set(["origin"]),
+		hidden: false
+	},
 	Defense: {
 		type: advancement.DefenseAdvancement,
 		validItemTypes: new Set(["archetype"])
@@ -40,7 +45,7 @@ export const advancementTypes = {
 	},
 	ItemGrant: {
 		type: advancement.ItemGrantAdvancement,
-		validItemTypes: new Set(["origin", "archetype", "class", "background", "profession"])
+		validItemTypes: new Set(["origin", "archetype", "class", "subclass", "background", "profession"])
 	},
 	Resource: {
 		type: advancement.ResourceAdvancement,
@@ -52,7 +57,7 @@ export const advancementTypes = {
 	},
 	Trait: {
 		type: advancement.TraitAdvancement,
-		validItemTypes: new Set(["origin", "background", "profession", "class", "feat"])
+		validItemTypes: new Set(["origin", "background", "profession", "class", "subclass", "feat"])
 	}
 };
 
@@ -222,7 +227,7 @@ export const resourceRecoveryPeriods = filterObject(recoveryPeriods, p => !p.com
 export const itemCategories = {
 	concept: {
 		label: "EH.Item.Category.Concept.Label",
-		types: ["origin", "archetype", "class", "background", "profession"],
+		types: ["origin", "archetype", "class", "subclass", "background", "profession"],
 		sheet: {
 			application: itemSheet.ConceptSheet,
 			label: "EH.Sheet.Concept"
@@ -230,7 +235,7 @@ export const itemCategories = {
 	},
 	feature: {
 		label: "EH.Item.Category.Feature.Label",
-		types: ["talent", "specialFeature", "plan", "trick", "feat", "npcFeature"],
+		types: ["talent", "specialFeature", "plan", "trick", "feat", "mutation", "npcFeature"],
 		sheet: {
 			application: itemSheet.FeatureSheet,
 			label: "EH.Sheet.Feature"
@@ -239,7 +244,7 @@ export const itemCategories = {
 	physical: {
 		label: "EH.Item.Category.Physical.Label",
 		types: [
-			"armor", "weapon", "ammunition", "explosive", "gear", "clothes", "npcWeapon", "npcExplosive",
+			"armor", "weapon", "ammunition", "explosive", "gear", "clothes", "cybernetics", "npcWeapon", "npcExplosive",
 			"vehicleModification", "vehicleWeapon"
 		],
 		sheet: {
@@ -326,6 +331,15 @@ preLocalize("equipmentCategories", { key: "label" });
  * @enum {EquipmentPropertyConfiguration}
  */
 export const equipmentProperties = {
+	absolute: {
+		label: "EH.Armor.Property.Absolute.Label",
+		hint: "EH.Armor.Property.Absolute.Hint",
+		npcHint: "EH.Armor.Property.Absolute.Hint"
+	},
+	artillery: {
+		label: "EH.Weapon.Property.Artillery.Label",
+		hint: "EH.Weapon.Property.Artillery.Hint"
+	},
 	aquatic: {
 		label: "EH.Weapon.Property.Aquatic.Label",
 		hint: "EH.Weapon.Property.Aquatic.Hint",
@@ -348,6 +362,10 @@ export const equipmentProperties = {
 		hint: "EH.Weapon.Property.Blinding.Hint",
 		condition: "blinded"
 	},
+	blunted: {
+		label: "EH.Weapon.Property.Blunted.Label",
+		hint: "EH.Weapon.Property.Blunted.Hint"
+	},
 	burst: {
 		label: "EH.Weapon.Property.Burst.Label",
 		hint: "EH.Weapon.Property.Burst.Hint"
@@ -361,6 +379,10 @@ export const equipmentProperties = {
 		hint: "EH.Weapon.Property.Deafening.Hint",
 		condition: "deafened"
 	},
+	dirty: {
+		label: "EH.Weapon.Property.Dirty.Label",
+		hint: "EH.Weapon.Property.Dirty.Hint"
+	},
 	disguised: {
 		label: "EH.Weapon.Property.Disguised.Label",
 		hint: "EH.Weapon.Property.Disguised.Hint"
@@ -370,6 +392,10 @@ export const equipmentProperties = {
 		hint: "EH.Weapon.Property.Finesse.Hint",
 		restriction: {"system.type.value": "melee"}
 	},
+	fragile: {
+		label: "EH.Weapon.Property.Fragile.Label",
+		hint: "EH.Weapon.Property.Fragile.Hint"
+	},
 	fullAuto: {
 		label: "EH.Weapon.Property.FullAuto.Label",
 		hint: "EH.Weapon.Property.FullAuto.Hint"
@@ -377,6 +403,10 @@ export const equipmentProperties = {
 	grenade: {
 		label: "EH.Weapon.Property.Grenade.Label",
 		hint: "EH.Weapon.Property.Grenade.Hint"
+	},
+	hardened: {
+		label: "EH.Armor.Property.Hardened.Label",
+		hint: "EH.Armor.Property.Hardened.Hint"
 	},
 	heavy: {
 		label: "EH.Weapon.Property.Heavy.Label",
@@ -394,6 +424,14 @@ export const equipmentProperties = {
 		label: "EH.Weapon.Property.Indirect.Label",
 		hint: "EH.Weapon.Property.Indirect.Hint"
 	},
+	integrated: {
+		label: "EH.Weapon.Property.Integrated.Label",
+		hint: "EH.Weapon.Property.Integrated.Hint"
+	},
+	lancing: {
+		label: "EH.Weapon.Property.Lancing.Label",
+		hint: "EH.Weapon.Property.Lancing.Hint"
+	},
 	light: {
 		label: "EH.Weapon.Property.Light.Label",
 		hint: "EH.Weapon.Property.Light.Hint"
@@ -401,6 +439,22 @@ export const equipmentProperties = {
 	loud: {
 		label: "EH.Weapon.Property.Loud.Label",
 		hint: "EH.Weapon.Property.Loud.Hint"
+	},
+	masterwork: {
+		label: "EH.Weapon.Property.Masterwork.Label",
+		hint: "EH.Weapon.Property.Masterwork.Hint"
+	},
+	panoply: {
+		label: "EH.Armor.Property.Panoply.Label",
+		hint: "EH.Armor.Property.Panoply.Hint"
+	},
+	penetrable: {
+		label: "EH.Armor.Property.Penetrable.Label",
+		hint: "EH.Armor.Property.Penetrable.Hint"
+	},
+	propulsion: {
+		label: "EH.Armor.Property.Propulsion.Label",
+		hint: "EH.Armor.Property.Propulsion.Hint"
 	},
 	reach: {
 		label: "EH.Weapon.Property.Reach.Label",
@@ -415,9 +469,21 @@ export const equipmentProperties = {
 		label: "EH.Weapon.Property.Returning.Label",
 		hint: "EH.Weapon.Property.Returning.Hint"
 	},
+	sawedOff: {
+		label: "EH.Weapon.Property.SawedOff.Label",
+		hint: "EH.Weapon.Property.SawedOff.Hint"
+	},
+	sealed: {
+		label: "EH.Armor.Property.Sealed.Label",
+		hint: "EH.Armor.Property.Sealed.Hint"
+	},
 	semiAuto: {
 		label: "EH.Weapon.Property.SemiAuto.Label",
 		hint: "EH.Weapon.Property.SemiAuto.Hint"
+	},
+	shoddy: {
+		label: "EH.Weapon.Property.Shoddy.Label",
+		hint: "EH.Weapon.Property.Shoddy.Hint"
 	},
 	shot: {
 		label: "EH.Weapon.Property.Shot.Label",
@@ -480,19 +546,22 @@ preLocalize("equipmentProperties", { keys: ["label", "npcHint"], sort: true });
  */
 export const applicableProperties = {
 	armor: [
-		"awkward", "ballistic", "concealable", "restricted", "small", "stabProof"
+		"absolute", "awkward", "ballistic", "concealable", "hardened", "masterwork",
+		"panoply", "penetrable", "propulsion", "restricted", "sealed", "small", "stabProof"
 	],
 	explosive: [
-		"blinding", "deafening", "disguised", "grenade", "heavy", "illuminating", "improvised", "indirect", "loud", "restricted",
-		"special", "stunning", "thrown", "unreliable"
+		"blinding", "deafening", "disguised", "grenade", "heavy", "illuminating", "improvised",
+		"indirect", "loud", "restricted", "special", "stunning", "thrown", "unreliable"
 	],
 	vehicleModification: [
 		"special"
 	],
 	weapon: [
-		"aquatic", "belt", "blinding", "burst", "deafening", "disguised", "finesse", "fullAuto", "grenade", "heavy",
-		"improvised", "indirect", "light", "loud", "reach", "restricted", "returning", "semiAuto", "shot",
-		"slowFiring", "special", "stationary", "stunning", "thrown", "twoHanded", "unreliable", "versatile"
+		"artillery", "aquatic", "belt", "blinding", "blunted", "burst", "deafening", "dirty", "disguised",
+		"finesse", "fragile", "fullAuto", "grenade", "heavy", "improvised", "indirect", "integrated",
+		"lancing", "light", "loud", "masterwork", "reach", "restricted", "returning", "sawedOff",
+		"semiAuto", "shoddy", "shot", "slowFiring", "special", "stationary", "stunning", "thrown",
+		"twoHanded", "unreliable", "versatile"
 	]
 };
 applicableProperties.ammunition = applicableProperties.weapon;
@@ -560,6 +629,57 @@ export const conditionTypes = {
 preLocalize("conditionTypes");
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Cybernetics                              */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Types of cybernetics types.
+ * @enum {LabeledConfiguration}
+ */
+export const cyberneticsTypes = {
+	armHand: {
+		label: "EH.Cybernetics.Type.ArmHand"
+	},
+	internal: {
+		label: "EH.Cybernetics.Type.Internal"
+	},
+	legFoot: {
+		label: "EH.Cybernetics.Type.LegFoot"
+	},
+	mental: {
+		label: "EH.Cybernetics.Type.Mental"
+	},
+	nanite: {
+		label: "EH.Cybernetics.Type.Nanite"
+	},
+	sensory: {
+		label: "EH.Cybernetics.Type.Sensory"
+	},
+	skeletal: {
+		label: "EH.Cybernetics.Type.Skeletal"
+	},
+	skin: {
+		label: "EH.Cybernetics.Type.Skin"
+	},
+	other: {
+		label: "EH.Cybernetics.Type.Other"
+	}
+};
+preLocalize("cyberneticsTypes", { key: "label" });
+
+/**
+ * Complexity of cybernetics surgery.
+ * @enum {string}
+ */
+export const cyberneticsSurgeryComplexity = {
+	trivial: "EH.Cybernetics.SurgeryComplexity.Trivial",
+	minor: "EH.Cybernetics.SurgeryComplexity.Minor",
+	major: "EH.Cybernetics.SurgeryComplexity.Major",
+	extreme: "EH.Cybernetics.SurgeryComplexity.Extreme"
+};
+preLocalize("cyberneticsSurgeryComplexity");
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Explosive                                */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
@@ -609,6 +729,13 @@ export const featCategories = {
 	multiclass: {
 		label: "EH.Feat.Category.Multiclass.Label",
 		type: "major"
+	},
+	training: {
+		label: "EH.Feat.Category.Training.Label"
+	},
+	immortal: {
+		label: "EH.Feat.Category.Immortal.Label",
+		type: "minor"
 	}
 };
 preLocalize("featCategories", { key: "label" });
@@ -628,6 +755,27 @@ export const featTypes = {
 	}
 };
 preLocalize("featTypes", { key: "label" });
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Mutations                                */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Mutation categories.
+ * @enum {LabeledConfiguration}
+ */
+export const mutationCategories = {
+	cosmetic: {
+		label: "EH.Mutation.Category.Cosmetic"
+	},
+	beneficial: {
+		label: "EH.Mutation.Category.Beneficial"
+	},
+	detrimental: {
+		label: "EH.Mutation.Category.Detrimental"
+	}
+};
+preLocalize("mutationCategories", { key: "label" });
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Special Features                         */
@@ -671,6 +819,10 @@ export const talentTypes = {
 	class: {
 		label: "EH.Item.Type.Class[one]",
 		leveled: true
+	},
+	subclass: {
+		label: "EH.Item.Type.Subclass[one]",
+		leveled: true
 	}
 };
 preLocalize("talentTypes", { key: "label" });
@@ -698,6 +850,9 @@ export const gearTypes = {
 	},
 	carryingCase: {
 		label: "EH.Gear.Type.CarryingCase.Label"
+	},
+	combatGear: {
+		label: "EH.Gear.Type.CombatGear.Label"
 	},
 	electronics: {
 		label: "EH.Gear.Type.Electronics.Label"

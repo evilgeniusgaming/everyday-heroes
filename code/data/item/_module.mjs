@@ -5,9 +5,11 @@ import BackgroundData from "./background-data.mjs";
 import ClothesData from "./clothes-data.mjs";
 import ClassData from "./class-data.mjs";
 import ConditionData from "./condition-data.mjs";
+import CyberneticsData from "./cybernetics-data.mjs";
 import ExplosiveData from "./explosive-data.mjs";
 import FeatData from "./feat-data.mjs";
 import GearData from "./gear-data.mjs";
+import MutationData from "./mutation-data.mjs";
 import NPCExplosiveData from "./npc-explosive-data.mjs";
 import NPCFeatureData from "./npc-feature-data.mjs";
 import NPCWeaponData from "./npc-weapon-data.mjs";
@@ -15,6 +17,7 @@ import OriginData from "./origin-data.mjs";
 import PlanData from "./plan-data.mjs";
 import ProfessionData from "./profession-data.mjs";
 import SpecialFeatureData from "./special-feature-data.mjs";
+import SubclassData from "./subclass-data.mjs";
 import TalentData from "./talent-data.mjs";
 import TrickData from "./trick-data.mjs";
 import VehicleModificationData from "./vehicle-modification-data.mjs";
@@ -29,9 +32,11 @@ export {
 	ClothesData,
 	ClassData,
 	ConditionData,
+	CyberneticsData,
 	ExplosiveData,
 	FeatData,
 	GearData,
+	MutationData,
 	NPCExplosiveData,
 	NPCFeatureData,
 	NPCWeaponData,
@@ -39,6 +44,7 @@ export {
 	PlanData,
 	ProfessionData,
 	SpecialFeatureData,
+	SubclassData,
 	TalentData,
 	TrickData,
 	VehicleModificationData,
@@ -64,9 +70,11 @@ export const config = {
 	clothes: ClothesData,
 	class: ClassData,
 	condition: ConditionData,
+	cybernetics: CyberneticsData,
 	explosive: ExplosiveData,
 	feat: FeatData,
 	gear: GearData,
+	mutation: MutationData,
 	npcExplosive: NPCExplosiveData,
 	npcFeature: NPCFeatureData,
 	npcWeapon: NPCWeaponData,
@@ -74,6 +82,7 @@ export const config = {
 	plan: PlanData,
 	profession: ProfessionData,
 	specialFeature: SpecialFeatureData,
+	subclass: SubclassData,
 	talent: TalentData,
 	trick: TrickData,
 	vehicleModification: VehicleModificationData,

@@ -254,6 +254,8 @@ export const creatureTypes = {
 		label: "EH.Creature.Type.Person.Label",
 		subtypes: {
 			human: "EH.Creature.Type.Human.Label",
+			cyborg: "EH.Creature.Type.Cyborg.Label",
+			immortal: "EH.Creature.Type.Immortal.Label",
 			mutant: "EH.Creature.Type.Mutant.Label"
 		}
 	},
@@ -262,7 +264,8 @@ export const creatureTypes = {
 		subtypes: {
 			autonomous: "EH.Creature.Type.Autonomous.Label",
 			futuristic: "EH.Creature.Type.Futuristic.Label",
-			remoteControlled: "EH.Creature.Type.RemoteControlled.Label"
+			remoteControlled: "EH.Creature.Type.RemoteControlled.Label",
+			swarm: "EH.Creature.Type.Swarm.Label"
 		}
 	}
 };
@@ -399,7 +402,8 @@ export const roles = {
 	ranged: "EH.Role.Ranged.Label",
 	shadow: "EH.Role.Shadow.Label",
 	support: "EH.Role.Support.Label",
-	tank: "EH.Role.Tank.Label"
+	tank: "EH.Role.Tank.Label",
+	driver: "EH.Role.Driver.Label"
 };
 preLocalize("roles", { sort: true });
 
@@ -442,28 +446,33 @@ export const sheetSections = {
 	hero: [
 		{
 			tab: "features",
-			types: [{type: "talent", "system.type.value": "origin"}],
-			primaryType: {type: "origin"}
+			types: [{ type: "talent", "system.type.value": "origin" }],
+			primaryType: { type: "origin" }
 		},
 		{
 			tab: "features",
-			types: [{type: "talent", "system.type.value": "archetype"}],
-			primaryType: {type: "archetype"}
+			types: [{ type: "talent", "system.type.value": "archetype" }],
+			primaryType: { type: "archetype" }
 		},
 		{
 			tab: "features",
-			types: [{type: "talent", "system.type.value": "class"}],
-			primaryType: {type: "class"}
+			types: [{ type: "talent", "system.type.value": "class" }],
+			primaryType: { type: "class" }
 		},
 		{
 			tab: "features",
-			types: [{type: "specialFeature", "system.type.value": "background"}],
-			primaryType: {type: "background"}
+			types: [{ type: "talent", "system.type.value": "subclass" }],
+			primaryType: { type: "subclass" }
 		},
 		{
 			tab: "features",
-			types: [{type: "specialFeature", "system.type.value": "profession"}],
-			primaryType: {type: "profession"}
+			types: [{ type: "specialFeature", "system.type.value": "background" }],
+			primaryType: { type: "background" }
+		},
+		{
+			tab: "features",
+			types: [{ type: "specialFeature", "system.type.value": "profession" }],
+			primaryType: { type: "profession" }
 		},
 		{
 			tab: "features",
@@ -480,23 +489,33 @@ export const sheetSections = {
 			types: [{type: "feat"}]
 		},
 		{
-			tab: "inventory",
-			types: [{type: "armor"}],
-			options: { equippable: true }
-		},
-		{
-			tab: "inventory",
-			types: [{type: "weapon"}],
-			options: { equippable: true }
-		},
-		{
-			tab: "inventory",
-			types: [{type: "ammunition"}, {type: "explosive"}],
+			tab: "features",
+			types: [{ type: "mutation" }],
 			options: { autoHide: true }
 		},
 		{
 			tab: "inventory",
-			types: [{type: "clothes"}, {type: "gear"}]
+			types: [{ type: "armor" }],
+			options: { equippable: true }
+		},
+		{
+			tab: "inventory",
+			types: [{ type: "weapon" }],
+			options: { equippable: true }
+		},
+		{
+			tab: "inventory",
+			types: [{ type: "ammunition" }, { type: "explosive" }],
+			options: { autoHide: true }
+		},
+		{
+			tab: "inventory",
+			types: [{ type: "cybernetics" }],
+			options: { autoHide: true }
+		},
+		{
+			tab: "inventory",
+			types: [{ type: "clothes" }, { type: "gear" }]
 		}
 	],
 	npc: [
@@ -523,6 +542,11 @@ export const sheetSections = {
 		{
 			tab: "inventory",
 			types: [{type: "gear"}],
+			options: { autoHide: true }
+		},
+		{
+			tab: "inventory",
+			types: [{ type: "cybernetics" }],
 			options: { autoHide: true }
 		},
 		{
@@ -848,6 +872,10 @@ export const vehicleProperties = {
 	restricted: {
 		label: "EH.Weapon.Property.Restricted.Label",
 		hint: "EH.Weapon.Property.Restricted.Hint"
+	},
+	spaceflight: {
+		label: "EH.Vehicle.Property.Spaceflight.Label",
+		hint: "EH.Vehicle.Property.Spaceflight.Hint"
 	},
 	special: {
 		label: "EH.Weapon.Property.Special.Label",

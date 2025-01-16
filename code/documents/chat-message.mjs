@@ -245,11 +245,19 @@ export default class ChatMessageEH extends ChatMessage {
 	/**
 	 * Apply listeners to the chat log.
 	 * @param {ChatLog} app - The chat log being rendered.
-	 * @param {jQuery} jQuery - Rendered chat log.
+	 * @param {HTMLElement|jQuery} html - Rendered chat log.
 	 * @param {object} data - Data used to render the log.
 	 */
-	static attachChatListeners(app, jQuery, data) {
-		jQuery.on("click", ".chat-actions button", ChatMessageEH._onChatAction.bind(this));
+	static attachChatListeners(app, html, data) {
+		if ( game.release.generation < 13 ) {
+			html.on("click", ".chat-actions button", ChatMessageEH._onChatAction.bind(this));
+		} else {
+			html.addEventListener("click", event => {
+				if ( event.currentTarget.tagName === "BUTTON" && event.currentTarget.closest(".chat-actions") ) {
+					ChatMessageEH._onChatAction(event);
+				}
+			});
+		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

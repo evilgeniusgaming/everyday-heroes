@@ -1,0 +1,93 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+	<header>
+		<div class="image">
+			<img src="{{item.img}}" data-edit="img">
+		</div>
+		<div class="fields">
+			<fieldset class="primary">
+				<label>{{localize "Name"}}</label>
+				<input type="text" name="name" value="{{item.name}}">
+			</fieldset>
+			<fieldset>
+				<label>{{localize "EH.Item.Type.Label"}}</label>
+				<input value="{{#if item.system.type.label}}{{item.system.type.label}}{{else}}{{item.typeLabel}}{{/if}}" disabled>
+			</fieldset>
+			<fieldset>
+				<div class="fields">
+					<label>
+						<span>{{localize "EH.Equipment.Trait.PriceLevel.Label"}}</span>
+						<div class="prices">
+							<input type="number" name="system.price" value="{{system.price}}">
+							<span class="sep">&sol;</span>
+							<input type="number" name="system.priceLower" value="{{system.priceLower}}">
+						</div>
+					</label>
+					<label>
+						<span>{{localize "EH.Equipment.Trait.Strain.Label"}}</span>
+						<input type="number" name="system.strain" value="{{system.strain}}">
+					</label>
+				</div>
+			</fieldset>
+		</div>
+			<nav data-group="primary">
+				<a data-tab="description">{{localize "EH.Sheet.Section.Description"}}</a>
+				<a data-tab="details">{{localize "EH.Sheet.Section.Details"}}</a>
+				<a data-tab="effects">{{localize "EH.Sheet.Section.Effects"}}</a>
+			</nav>
+	</header>
+
+	<main>
+		<div class="tab" data-group="primary" data-tab="description">
+			{{> "everydayHeroes.item-description"}}
+		</div>
+		<div class="tab" data-group="primary" data-tab="details">
+			<section>
+				<fieldset>
+					<label>{{localize "EH.Item.Type.Label"}}</label>
+					<select name="system.type.value">
+						{{selectOptions system.types selected=system.type.value blank="" labelAttr="label"}}
+					</select>
+				</fieldset>
+				<fieldset>
+					<label>{{localize "EH.Cybernetics.Location"}}</label>
+					<input type="text" name="system.location" value="{{system.location}}">
+				</fieldset>
+				<fieldset>
+					<label>{{localize "EH.Cybernetics.SurgeryComplexity.Label"}}</label>
+					<select name="system.surgeryComplexity">
+						{{selectOptions CONFIG.cyberneticsSurgeryComplexity selected=system.surgeryComplexity
+						  blank=(localize "EH.Cybernetics.SurgeryComplexity.None")}}
+					</select>
+				</fieldset>
+				<h3 class="striped">
+					<span class="left stripes"></span>
+					<span class="center">{{localize "EH.Activation.Label"}}</span>
+					<span class="right stripes"></span>
+				</h3>
+				<fieldset>
+					<label>{{localize "EH.Activation.Cost.Label"}}</label>
+					<select name="system.activation.type">
+						{{selectOptions CONFIG.actionTypesStandard selected=system.activation.type blank=(localize "None")}}
+					</select>
+				</fieldset>
+				<fieldset>
+					<label>{{localize "EH.Activation.Condition.Label"}}</label>
+					<input type="text" name="system.activation.condition" value="{{system.activation.condition}}">
+				</fieldset>
+				{{#if system.hasActionPoints}}
+					<fieldset>
+						<label>{{localize "EH.Activation.Amount.ActionPoints.Label"}}</label>
+						<input type="number" name="system.activation.amount" value="{{source.activation.amount}}" placeholder="1">
+					</fieldset>
+				{{/if}}
+
+				{{> "everydayHeroes.item-consumption"}}
+			</section>
+		</div>
+		<div class="tab inventory" data-group="primary" data-tab="effects">
+			{{> "everydayHeroes.active-effects"}}
+		</div>
+	</main>
+
+</form>

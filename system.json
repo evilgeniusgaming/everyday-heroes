@@ -61,6 +61,9 @@
 			"condition": {
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
+			"cybernetics": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
 			"explosive": {
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
@@ -68,6 +71,9 @@
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
 			"gear": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"mutation": {
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
 			"npcExplosive": {
@@ -89,6 +95,9 @@
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
 			"specialFeature": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"subclass": {
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
 			"talent": {
