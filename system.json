@@ -27,6 +27,87 @@
   "styles": [
     "./everyday-heroes.css"
   ],
+	"documentTypes": {
+		"Actor": {
+			"hero": {
+				"htmlFields": ["biography.value", "biography.public", "biography.notes"]
+			},
+			"npc": {
+				"htmlFields": ["biography.value", "biography.public", "biography.notes"]
+			},
+			"vehicle": {
+				"htmlFields": ["biography.value", "biography.public", "biography.notes"]
+			}
+		},
+		"Item": {
+			"ammunition": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"archetype": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"armor": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"background": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"clothes": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"class": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"condition": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"explosive": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"feat": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"gear": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"npcExplosive": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"npcFeature": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"npcWeapon": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"origin": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"plan": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"profession": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"specialFeature": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"talent": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"trick": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"vehicleModification": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"vehicleWeapon": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			},
+			"weapon": {
+				"htmlFields": ["description.chat", "description.npc", "description.value"]
+			}
+		}
+	},
   "packs": [
     {
       "name": "archetypes-classes",
