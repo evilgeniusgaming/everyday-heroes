@@ -1,6 +1,6 @@
-{ "EH": {
-
-"Ability": {
+{
+	
+"EH.Ability": {
 	"Label[one]": "Ability",
 	"Label[other]": "Abilities",
 	"Score[one]": "Ability Score",
@@ -110,56 +110,90 @@
 	}
 },
 
-"Action.AddGeneric": "Add",
-"Action.AddSpecific": "Add {type}",
-"Action.Configure": "Configure {type}",
-"Action.Econonmy": "Action Economy",
-"Action.RemoveGeneric": "Remove",
-"Action.RemoveSpecific": "Remove {type}",
-"Action.Roll": "Roll {type}",
-"Action.Override.Critical.Multiplier.Label": "Critical Multiplier",
-"Action.Override.Critical.Multiplier.Hint": "Amount by which the damage dice are multiplied on critical hits.",
-"Action.Passive": "Passive",
-"Action.Reload.Action": "Action Reload",
-"Action.Reload.Bonus": "Bonus Reload",
-"Action.Reload.Free": "Free Reload",
-"Action.Reload.None": "No Reload",
-"Action.Spend": "Spend {type}",
-"Action.Type.Action[one]": "Action",
-"Action.Type.Action[other]": "Actions",
-"Action.Type.Attack[one]": "Attack Action",
-"Action.Type.Attack[other]": "Attack Actions",
-"Action.Type.Bonus[one]": "Bonus Action",
-"Action.Type.Bonus[other]": "Bonus Actions",
-"Action.Type.CinematicAction[one]": "Cinematic Action",
-"Action.Type.CinematicAction[other]": "Cinematic Actions",
-"Action.Type.Free[one]": "Free Action",
-"Action.Type.Free[other]": "Free Actions",
-"Action.Type.None": "No Action",
-"Action.Type.Reaction[one]": "Reaction",
-"Action.Type.Reaction[other]": "Reactions",
+"EH.Action": {
+	"AddGeneric": "Add",
+	"AddSpecific": "Add {type}",
+	"Configure": "Configure {type}",
+	"Econonmy": "Action Economy",
+	"RemoveGeneric": "Remove",
+	"RemoveSpecific": "Remove {type}",
+	"Roll": "Roll {type}",
+	"Override": {
+		"Critical": {
+			"Multiplier": {
+				"Label": "Critical Multiplier",
+				"Hint": "Amount by which the damage dice are multiplied on critical hits."
+			}
+		}
+	},
+	"Passive": "Passive",
+	"Reload": {
+		"Action": "Action Reload",
+		"Bonus": "Bonus Reload",
+		"Free": "Free Reload",
+		"None": "No Reload"
+	},
+	"Spend": "Spend {type}",
+	"Type": {
+		"Action[one]": "Action",
+		"Action[other]": "Actions",
+		"Attack[one]": "Attack Action",
+		"Attack[other]": "Attack Actions",
+		"Bonus[one]": "Bonus Action",
+		"Bonus[other]": "Bonus Actions",
+		"CinematicAction[one]": "Cinematic Action",
+		"CinematicAction[other]": "Cinematic Actions",
+		"Free[one]": "Free Action",
+		"Free[other]": "Free Actions",
+		"None": "No Action",
+		"Reaction[one]": "Reaction",
+		"Reaction[other]": "Reactions"
+	}
+},
 
-"Activation.Label": "Activation",
-"Activation.Amount.Label": "Activation Amount",
-"Activation.Amount.Hint": "Number of action points required when using cinematic actions.",
-"Activation.Amount.ActionPoints.Label": "Action Points",
-"Activation.Amount.ActionPoints.Abbreviation": "AP",
-"Activation.Condition.Label": "Activation Condition",
-"Activation.Condition.Hint": "Under what conditions can this item be activated?",
-"Activation.Cost.Label": "Activation Cost",
-"Activation.Cost.Hint": "What is the cost of activating this item under the action economy.",
+"EH.Activation": {
+	"Label": "Activation",
+	"Amount": {
+		"Label": "Activation Amount",
+		"Hint": "Number of action points required when using cinematic actions.",
+		"ActionPoints": {
+			"Label": "Action Points",
+			"Abbreviation": "AP"
+		}
+	},
+	"Condition": {
+		"Label": "Activation Condition",
+		"Hint": "Under what conditions can this item be activated?"
+	},
+	"Cost": {
+		"Label": "Activation Cost",
+		"Hint": "What is the cost of activating this item under the action economy."
+	}
+},
 
-"Actor.Category.People.Label": "People",
-"Actor.Category.Places.Label": "Places",
-"Actor.Category.Things.Label": "Things",
-"Actor.Type.Hero[one]": "Hero",
-"Actor.Type.Hero[other]": "Heroes",
-"Actor.Type.NPC[one]": "Non-Player Character",
-"Actor.Type.NPC[other]": "Non-Player Characters",
-"Actor.Type.Vehicle[one]": "Vehicle",
-"Actor.Type.Vehicle[other]": "Vehicles",
+"EH.Actor": {
+	"Category": {
+		"People": {
+			"Label": "People"
+		},
+		"Places": {
+			"Label": "Places"
+		},
+		"Things": {
+			"Label": "Things"
+		}
+	},
+	"Type": {
+		"Hero[one]": "Hero",
+		"Hero[other]": "Heroes",
+		"NPC[one]": "Non-Player Character",
+		"NPC[other]": "Non-Player Characters",
+		"Vehicle[one]": "Vehicle",
+		"Vehicle[other]": "Vehicles"
+	}
+},
 
-"Advancement": {
+"EH.Advancement": {
 	"Title[one]": "Advancement",
 	"Title[other]": "Advancements",
 	"Core": {
@@ -226,12 +260,13 @@
 	"Migration": {
 		"Title": "Migrate Advancement",
 		"Hint": "Select which of the following advancements will be added to {name}.",
-		"Action.Confirm": "Apply Migrations"
+		"Action": {
+			"Confirm": "Apply Migrations"
+		}
 	},
 	"Selection": {
 		"Title": "Select Advancement Type"
 	},
-
 	"AbilityScores": {
 		"Title": "Ability Score Assignment",
 		"Hint": "Provide player options for assigning initial ability scores.",
@@ -379,35 +414,71 @@
 	}
 },
 
-"Ammunition.Loaded": "Loaded Ammunition",
-"Ammunition.Empty.Label": "No Ammunition Chosen",
-"Ammunition.Standard.Label": "Standard {type} Rounds",
-"Ammunition.Properties.Hint": "Properties that will be added or removed from the weapon when this ammunition is equipped. A 1 indicates the property will be added while -1 indicated it will be removed.",
-"Ammunition.Rounds.Label[one]": "round",
-"Ammunition.Rounds.Label[other]": "rounds",
-"Ammunition.Type.Label": "Ammunition Type",
-"Ammunition.Type.Cannon.Label": "Cannon",
-"Ammunition.Type.MachineGun.Label": "Machine Gun",
-"Ammunition.Type.Pistol.Label": "Pistol",
-"Ammunition.Type.Rifle.Label": "Rifle",
-"Ammunition.Type.Shotgun.Label": "Shotgun",
+"EH.Ammunition": {
+	"Loaded": "Loaded Ammunition",
+	"Empty": {
+		"Label": "No Ammunition Chosen"
+	},
+	"Standard": {
+		"Label": "Standard {type} Rounds"
+	},
+	"Properties": {
+		"Hint": "Properties that will be added or removed from the weapon when this ammunition is equipped. A 1 indicates the property will be added while -1 indicated it will be removed."
+	},
+	"Rounds": {
+		"Label[one]": "round",
+		"Label[other]": "rounds"
+	},
+	"Type": {
+		"Label": "Ammunition Type",
+		"Cannon": {
+			"Label": "Cannon"
+		},
+		"MachineGun": {
+			"Label": "Machine Gun"
+		},
+		"Pistol": {
+			"Label": "Pistol"
+		},
+		"Rifle": {
+			"Label": "Rifle"
+		},
+		"Shotgun": {
+			"Label": "Shotgun"
+		}
+	}
+},
 
-"Any": "Any",
+"EH.Any": "Any",
 
-"Armor": {
-	"Damage.Label": "Damage",
-	"Damage.Hint": "Is this armor currently damaged? Damage armor imposes disadvantage on armor saving throws.",
-	"Action.Damage.Label": "Damage {type}",
-	"Action.Repair.Label": "Repair {type}",
-	"Action.Save.Label": "Armor Saving Throw",
-	"Action.Save.Short": "save {number}",
-	"Bonuses.Save.Label": "Armor Save Bonus",
-	"Bonuses.Save.Hint": "Formula for the bonus added to any saving throw made with this armor.",
+"EH.Armor": {
+	"Damage": {
+		"Label": "Damage",
+		"Hint": "Is this armor currently damaged? Damage armor imposes disadvantage on armor saving throws."
+	},
+	"Action": {
+		"Damage": {
+			"Label": "Damage {type}"
+		},
+		"Repair": {
+			"Label": "Repair {type}"
+		},
+		"Save": {
+			"Label": "Armor Saving Throw",
+			"Short": "save {number}"
+		}
+	},
+	"Bonuses": {
+		"Save": {
+			"Label": "Armor Save Bonus",
+			"Hint": "Formula for the bonus added to any saving throw made with this armor."
+		}
+	},
 	"Property": {
 		"Label": "Armor Properties",
 		"Absolute": {
 			"Label": "Absolute",
-			"Hint": "Only attacks from weapons with a Penetration Value greater than this Armor Value can harm the creature.",
+			"Hint": "Only attacks from weapons with a Penetration Value greater than this Armor Value can harm the creature."
 		},
 		"Awkward": {
 			"Label": "Awkward",
@@ -450,68 +521,104 @@
 			"Hint": "This armor defends only against piercing and slashing damage."
 		}
 	},
-	"State.Damaged": "Damaged",
-	"State.Hint": "Damaged armor imposes disadvantage on all armor saving throws made with it.",
-	"State.Intact": "Intact",
-	"Type.Label": "Armor Type",
-	"Type.Armor.Label": "Armor",
-	"Type.Shield.Label": "Shield"
+	"State": {
+		"Damaged": "Damaged",
+		"Hint": "Damaged armor imposes disadvantage on all armor saving throws made with it.",
+		"Intact": "Intact"
+	},
+	"Type": {
+		"Label": "Armor Type",
+		"Armor": {
+			"Label": "Armor"
+		},
+		"Shield": {
+			"Label": "Shield"
+		}
+	}
 },
 
-"Attributes.Label": "Attributes",
+"EH.Attributes": {
+	"Label": "Attributes"
+},
 
-"Biography.Label": "Biography",
-"Biography.Age": "Age",
-"Biography.Ancestry": "Ancestry",
-"Biography.Attachment[one]": "Attachment",
-"Biography.Attachment[other]": "Attachments",
-"Biography.Belief[one]": "Belief",
-"Biography.Belief[other]": "Beliefs",
-"Biography.Eyes": "Eyes",
-"Biography.Flaw[one]": "Flaw",
-"Biography.Flaw[other]": "Flaws",
-"Biography.Full": "Full Biography",
-"Biography.Hair": "Hair",
-"Biography.Height": "Height",
-"Biography.MaritalStatus": "Marital Status",
-"Biography.Motivation[one]": "Motivation",
-"Biography.Motivation[other]": "Motivations",
-"Biography.Notes": "Notes",
-"Biography.Pronouns": "Pronouns",
-"Biography.Public": "Public Biography",
-"Biography.Quirk[one]": "Quirk",
-"Biography.Quirk[other]": "Quirks",
-"Biography.Role": "Role",
-"Biography.Skin": "Skin",
-"Biography.Virtue[one]": "Virtue",
-"Biography.Virtue[other]": "Virtues",
-"Biography.Weight": "Weight",
+"EH.Biography": {
+	"Label": "Biography",
+	"Age": "Age",
+	"Ancestry": "Ancestry",
+	"Attachment[one]": "Attachment",
+	"Attachment[other]": "Attachments",
+	"Belief[one]": "Belief",
+	"Belief[other]": "Beliefs",
+	"Eyes": "Eyes",
+	"Flaw[one]": "Flaw",
+	"Flaw[other]": "Flaws",
+	"Full": "Full Biography",
+	"Hair": "Hair",
+	"Height": "Height",
+	"MaritalStatus": "Marital Status",
+	"Motivation[one]": "Motivation",
+	"Motivation[other]": "Motivations",
+	"Notes": "Notes",
+	"Pronouns": "Pronouns",
+	"Public": "Public Biography",
+	"Quirk[one]": "Quirk",
+	"Quirk[other]": "Quirks",
+	"Role": "Role",
+	"Skin": "Skin",
+	"Virtue[one]": "Virtue",
+	"Virtue[other]": "Virtues",
+	"Weight": "Weight"
+},
 
-"Bonus.Label[one]": "Bonus",
-"Bonus.Label[other]": "Bonuses",
-"Bonus.Global.Label[one]": "Global Bonus",
-"Bonus.Global.Label[other]": "Global Bonuses",
-"Bonus.Global.Attack.Label": "Global Attack Bonuses",
-"Bonus.Global.Attack.Hint": "Bonuses applied to all attacks based on type. Currently supported keys are 'all', 'melee', and 'ranged'.",
-"Bonus.Global.Damage.Label": "Global Damage Bonuses",
-"Bonus.Global.Damage.Hint": "Bonuses applied to base weapon damage based on type. Currently supported keys are 'all', 'melee', and 'ranged'.",
+"EH.Bonus": {
+	"Label[one]": "Bonus",
+	"Label[other]": "Bonuses",
+	"Global": {
+		"Label[one]": "Global Bonus",
+		"Label[other]": "Global Bonuses",
+		"Attack": {
+			"Label": "Global Attack Bonuses",
+			"Hint": "Bonuses applied to all attacks based on type. Currently supported keys are 'all', 'melee', and 'ranged'."
+		},
+		"Damage": {
+			"Label": "Global Damage Bonuses",
+			"Hint": "Bonuses applied to base weapon damage based on type. Currently supported keys are 'all', 'melee', and 'ranged'."
+		}
+	}
+},
 
-"Bulk.Label": "Bulk",
-"Bulk.Bonus.Label": "Bulk Bonus",
-"Bulk.Max.Label": "Max Bulk",
+"EH.Bulk": {
+	"Label": "Bulk",
+	"Bonus": {
+		"Label": "Bulk Bonus"
+	},
+	"Max": {
+		"Label": "Max Bulk"
+	}
+},
 
-"ChallengeRating.Label": "Challenge Rating",
-"ChallengeRating.Abbreviation": "CR",
-"ChallengeRating.Action": "DC {dc} {action}",
+"EH.ChallengeRating": {
+	"Label": "Challenge Rating",
+	"Abbreviation": "CR",
+	"Action": "DC {dc} {action}"
+},
 
-"CinematicAction.Max.Label": "Action Points",
-"CinematicAction.Max.Hint": "Total of number of cinamatic action points available per round.",
-"CinematicAction.Spent.Label": "Spent Action Points",
-"CinematicAction.Warning.InsufficientNone": "No cinematic actions remaining, {required} needed.",
-"CinematicAction.Warning.InsufficientSome": "Only {available} cinematic actions available, {required} needed.",
-"CinematicAction.Warning.NotFound": "Actor doesn't have cinematic actions to consume.",
+"EH.CinematicAction": {
+	"Max": {
+		"Label": "Action Points",
+		"Hint": "Total of number of cinamatic action points available per round."
+	},
+	"Spent": {
+		"Label": "Spent Action Points"
+	},
+	"Warning": {
+		"InsufficientNone": "No cinematic actions remaining, {required} needed.",
+		"InsufficientSome": "Only {available} cinematic actions available, {required} needed.",
+		"NotFound": "Actor doesn't have cinematic actions to consume."
+	}
+},
 
-"ConceptSelection": {
+"EH.ConceptSelection": {
 	"Title": "{type} Selection",
 	"Prompt": {
 		"Archetype": "Select an Archetype",
@@ -527,95 +634,201 @@
 	}
 },
 
-"Condition.Label[one]": "Condition",
-"Condition.Label[other]": "Conditions",
-"Condition.Level.Label[one]": "Level",
-"Condition.Level.Label[other]": "Levels",
-"Condition.Level.LabelSpecific": "Level {number}",
-"Condition.Level.Effect.Label": "Associated Effect",
-"Condition.Level.Effect.Hint": "Active Effect that will be added automatically at this level.",
-"Condition.Effects.LabelGeneric": "Condition Effects",
-"Condition.Effects.LabelSpecific": "{level} Effects",
-"Condition.Target.Label": "Applicable To",
-"Condition.Target.People": "People",
-"Condition.Target.Vehicles": "Vehicles",
-"Condition.Type.Label": "Type",
-"Condition.Type.Hint": "Method by which the different levels of this condition are applied.",
-"Condition.Type.Cumulative": "Multiple Levels",
-"Condition.Type.Single": "Single Level",
-"Condition.Effect.Multiple": "Gain the {conditions} conditions",
-"Condition.Effect.None": "No effect",
-"Condition.Effect.One": "Gain the {conditions} condition",
-"Condition.Blinded.Label": "Blinded",
-"Condition.BlownTires.Label": "Blown Tires",
-"Condition.BodyDamage.Label": "Body Damage",
-"Condition.Burning.Label": "Burning",
-"Condition.Deafened.Label": "Deafened",
-"Condition.Distracted.Label": "Distracted",
-"Condition.Encumbered.Label": "Encumbered",
-"Condition.Exhausted.Label": "Exhausted",
-"Condition.Frightened.Label": "Frightened",
-"Condition.Grappled.Label": "Grappled",
-"Condition.Incapacitated.Label": "Incapacitated",
-"Condition.Intoxicated.Label": "Intoxicated",
-"Condition.LossOfControl.Label": "Loss of Control",
-"Condition.LossOfPower.Label": "Loss of Power",
-"Condition.Paralyzed.Label": "Paralyzed",
-"Condition.Prone.Label": "Prone",
-"Condition.Restrained.Label": "Restrained",
-"Condition.Sickened.Label": "Sickened",
-"Condition.Stunned.Label": "Stunned",
-"Condition.Totaled.Label": "Totaled",
-"Condition.Unconcious.Label": "Unconcious",
-
-"Configuration.Title": "{type} Configuration",
-
-"Consumption.Label": "Consumption",
-"Consumption.Amount.Label": "Amount",
-"Consumption.Amount.Hint": "Quantity of resource consumed. Negative numbers will cause the targeted resource to be recovered.",
-"Consumption.Dice.Label": "Dice Count",
-"Consumption.Dice.Hint": "When a resource is consumed that has an associated die, how many dice should be rolled. This number is independant of the number of that resource consumed.",
-"Consumption.Dice.Bonus.Hint": "Bonus formula added to a resource roll made.",
-"Consumption.ResourceRolls.Label": "Resource Rolls",
-"Consumption.Target.Label": "Target",
-"Consumption.Target.Hint": "ID or identifier of the target resource being consumed. Format depends on what type of selected.",
-"Consumption.Type.Label": "Type",
-"Consumption.Type.Hint": "Type of resources is consumed when this item is activated (e.g. actor resource, hit dice, another item’s uses).",
-"Consumption.Warning.InsufficientNone": "No uses of {resource} available, {required} needed.",
-"Consumption.Warning.InsufficientSome": "Only {available} uses of {resource} available, {required} needed.",
-"Consumption.Warning.InvalidType": "Unrecognized resource {type} found for consumption",
-"Consumption.Warning.Max": "Maximum amount of {resource} accumulated.",
-"Consumption.Warning.NotFound": "Resource {target} not found to consume.",
-
-"Creature": {
+"EH.Condition": {
+	"Label[one]": "Condition",
+	"Label[other]": "Conditions",
+	"Level": {
+		"Label[one]": "Level",
+		"Label[other]": "Levels",
+		"LabelSpecific": "Level {number}",
+		"Effect": {
+			"Label": "Associated Effect",
+			"Hint": "Active Effect that will be added automatically at this level."
+		}
+	},
+	"Effects": {
+		"LabelGeneric": "Condition Effects",
+		"LabelSpecific": "{level} Effects"
+	},
+	"Target": {
+		"Label": "Applicable To",
+		"People": "People",
+		"Vehicles": "Vehicles"
+	},
 	"Type": {
-		"Label": "Creature Type",
-		"Tags.Label": "Type Tags",
-		"Alien.Label": "Alien",
-		"Animal.Label": "Animal",
-		"Autonomous.Label": "Autonomous",
-		"Cyborg": {
-			"Label": "Cyborg"
-		},
-		"Demon.Label": "Demon",
-		"Futuristic.Label": "Futuristic",
-		"Human.Label": "Human",
-		"Immortal": {
-			"Label": "Immortal"
-		},
-		"Monster.Label": "Monster",
-		"Mutant.Label": "Mutant",
-		"Person.Label": "Person",
-		"Prehistoric.Label": "Prehistoric",
-		"RemoteControlled.Label": "Remote-Controlled",
-		"Robot.Label": "Robot",
-		"Shifter.Label": "Shifter",
-		"Swarm.Label": "Swarm",
-		"Undead.Label": "Undead"
+		"Label": "Type",
+		"Hint": "Method by which the different levels of this condition are applied.",
+		"Cumulative": "Multiple Levels",
+		"Single": "Single Level"
+	},
+	"Effect": {
+		"Multiple": "Gain the {conditions} conditions",
+		"None": "No effect",
+		"One": "Gain the {conditions} condition"
+	},
+	"Blinded": {
+		"Label": "Blinded"
+	},
+	"BlownTires": {
+		"Label": "Blown Tires"
+	},
+	"BodyDamage": {
+		"Label": "Body Damage"
+	},
+	"Burning": {
+		"Label": "Burning"
+	},
+	"Deafened": {
+		"Label": "Deafened"
+	},
+	"Distracted": {
+		"Label": "Distracted"
+	},
+	"Encumbered": {
+		"Label": "Encumbered"
+	},
+	"Exhausted": {
+		"Label": "Exhausted"
+	},
+	"Frightened": {
+		"Label": "Frightened"
+	},
+	"Grappled": {
+		"Label": "Grappled"
+	},
+	"Incapacitated": {
+		"Label": "Incapacitated"
+	},
+	"Intoxicated": {
+		"Label": "Intoxicated"
+	},
+	"LossOfControl": {
+		"Label": "Loss of Control"
+	},
+	"LossOfPower": {
+		"Label": "Loss of Power"
+	},
+	"Paralyzed": {
+		"Label": "Paralyzed"
+	},
+	"Prone": {
+		"Label": "Prone"
+	},
+	"Restrained": {
+		"Label": "Restrained"
+	},
+	"Sickened": {
+		"Label": "Sickened"
+	},
+	"Stunned": {
+		"Label": "Stunned"
+	},
+	"Totaled": {
+		"Label": "Totaled"
+	},
+	"Unconcious": {
+		"Label": "Unconcious"
 	}
 },
 
-"Cybernetics": {
+"EH.Configuration": {
+	"Title": "{type} Configuration"
+},
+
+"EH.Consumption": {
+	"Label": "Consumption",
+	"Amount": {
+		"Label": "Amount",
+		"Hint": "Quantity of resource consumed. Negative numbers will cause the targeted resource to be recovered."
+	},
+	"Dice": {
+		"Label": "Dice Count",
+		"Hint": "When a resource is consumed that has an associated die, how many dice should be rolled. This number is independant of the number of that resource consumed.",
+		"Bonus": {
+			"Hint": "Bonus formula added to a resource roll made."
+		}
+	},
+	"ResourceRolls": {
+		"Label": "Resource Rolls"
+	},
+	"Target": {
+		"Label": "Target",
+		"Hint": "ID or identifier of the target resource being consumed. Format depends on what type of selected."
+	},
+	"Type": {
+		"Label": "Type",
+		"Hint": "Type of resources is consumed when this item is activated (e.g. actor resource, hit dice, another item’s uses)."
+	},
+	"Warning": {
+		"InsufficientNone": "No uses of {resource} available, {required} needed.",
+		"InsufficientSome": "Only {available} uses of {resource} available, {required} needed.",
+		"InvalidType": "Unrecognized resource {type} found for consumption",
+		"Max": "Maximum amount of {resource} accumulated.",
+		"NotFound": "Resource {target} not found to consume."
+	}
+},
+
+"EH.Creature": {
+	"Type": {
+		"Label": "Creature Type",
+		"Tags": {
+			"Label": "Type Tags"
+		},
+		"Alien": {
+			"Label": "Alien"
+		},
+		"Animal": {
+			"Label": "Animal"
+		},
+		"Autonomous": {
+			"Label": "Autonomous"
+		},
+		"Cyborg": {
+			"Label": "Cyborg"
+		},
+		"Demon": {
+			"Label": "Demon"
+		},
+		"Futuristic": {
+			"Label": "Futuristic"
+		},
+		"Human": {
+			"Label": "Human"
+		},
+		"Immortal": {
+			"Label": "Immortal"
+		},
+		"Monster": {
+			"Label": "Monster"
+		},
+		"Mutant": {
+			"Label": "Mutant"
+		},
+		"Person": {
+			"Label": "Person"
+		},
+		"Prehistoric": {
+			"Label": "Prehistoric"
+		},
+		"RemoteControlled": {
+			"Label": "Remote-Controlled"
+		},
+		"Robot": {
+			"Label": "Robot"
+		},
+		"Shifter": {
+			"Label": "Shifter"
+		},
+		"Swarm": {
+			"Label": "Swarm"
+		},
+		"Undead": {
+			"Label": "Undead"
+		}
+	}
+},
+
+"EH.Cybernetics": {
 	"Enhancement[one]": "Enhancement",
 	"Enhancement[other]": "Enhancements",
 	"Location": "Location",
@@ -640,277 +853,502 @@
 	}
 },
 
-"Damage.Multiple": "Multiple Types",
-"Damage.None": "No Damage",
-"Damage.Specific": "{type} Damage",
-"Damage.Plus": " plus ",
-"Damage.IgnoresArmor.Label": "Ignores Armor",
-"Damage.Immunity.Label": "Damage Immunity",
-"Damage.Immunity.Hint": "An actor cannot be damaged by these damage types.",
-"Damage.Reduction.Label": "Damage Reduction",
-"Damage.Reduction.Hint": "Any incoming damage of this type will be reduced by the specified amount.",
-"Damage.Action.ApplyDouble": "Apply Double Damage",
-"Damage.Action.ApplyHalf": "Apply Half Damage",
-"Damage.Action.ApplyNegative": "Apply as Healing",
-"Damage.Action.ApplyNormal": "Apply Damage",
-"Damage.Effect.Full": "Take full damage",
-"Damage.Effect.Half": "Take half damage",
-"Damage.Effect.None": "Take no damage",
-"Damage.Effect.Vehicle.Rolled": "Roll on vehicle damage table",
-"Damage.Effect.Vehicle.Totaled": "Vehicle is totaled",
-"Damage.Type.Label[one]": "Damage Type",
-"Damage.Type.Label[other]": "Damage Types",
-"Damage.Type.Acid": "Acid",
-"Damage.Type.Ballistic": "Ballistic",
-"Damage.Type.Bludgeoning": "Bludgeoning",
-"Damage.Type.Cold": "Cold",
-"Damage.Type.Electrical": "Electrical",
-"Damage.Type.Explosive": "Explosive",
-"Damage.Type.Fire": "Fire",
-"Damage.Type.Piercing": "Piercing",
-"Damage.Type.Poison": "Poison",
-"Damage.Type.Psychic": "Psychic",
-"Damage.Type.Slashing": "Slashing",
-
-"Death.Label[one]": "Death Save",
-"Death.Label[other]": "Death Saves",
-"Death.Bonus.Label": "Death Save Bonus",
-"Death.Bonus.Hint": "Bonus formula added to each death saving throw roll.",
-"Death.Success.Label": "Success",
-"Death.Success.Hint": "Number of successful death saving throws.",
-"Death.Failure.Label": "Failure",
-"Death.Failure.Hint": "Number of failed death saving throws.",
-"Death.Message.Label[one]": "death saving throw",
-"Death.Message.Label[other]": "death savings throws",
-"Death.Message.Counted": "{count} {label}",
-"Death.Message.CriticalSuccess": "{name} critically succeeded on a death saving throw and has regained 1 Hit Point!",
-"Death.Message.Failure": "{name} has died after failing {counted}…",
-"Death.Message.Success": "{name} has succeeded on {counted} and is now stable.",
-"Death.Override.Failure.Label": "Failures Required",
-"Death.Override.Failure.Hint": "Number of failures required before the actor dies.",
-"Death.Override.Success.Label": "Successes Required",
-"Death.Override.Success.Hint": "Number of successes required before the actor stabilizes.",
-"Death.Override.Target.Label": "Target Value",
-"Death.Override.Target.Hint": "Value that must be rolled to be considered a success.",
-"Death.Status.Label": "Status",
-"Death.Status.Alive": "Alive",
-"Death.Status.Dead": "Dead",
-"Death.Status.Dying": "Dying",
-"Death.Status.Stable": "Stable",
-
-"Defense.Label": "Defense",
-"Defense.Bonus.Label": "Defense Bonus",
-"Defense.Bonus.Hint": "Bonus formula added to the calculated defense value.",
-
-"Details.Label": "Details",
-"Details.Wealth.Label": "Wealth",
-"Details.Wealth.Profession.Hint": "Baseline wealth level provided by this profession.",
-"Details.Wealth.Bonus.Label": "Wealth Bonus",
-"Details.Wealth.Bonus.Hint": "Bonus added to the base wealth level provided by the hero's profession.",
-
-"Dice.Denomination": "Denomination",
-"Dice.ExtraTerms": "Extra Terms",
-"Dice.Formula": "Formula",
-"Dice.RollMode": "Roll Mode",
-"Dice.Action.Advantage": "Advantage",
-"Dice.Action.Critical": "Critical",
-"Dice.Action.Disadvantage": "Disadvantage",
-"Dice.Action.Normal": "Normal",
-"Dice.Action.Roll": "Roll",
-"Dice.Modification.Count[one]": "{number} Die",
-"Dice.Modification.Count[other]": "{number} Dice",
-"Dice.Modification.Denomination[one]": "{number} Step",
-"Dice.Modification.Denomination[other]": "{number} Steps",
-
-"DifficultyClass.Label": "Difficulty Class",
-"DifficultyClass.Abbreviation": "DC",
-"DifficultyClass.Tag": "DC {dc}",
-
-"EditingMode.Action.Disable": "Disable Editing Mode",
-"EditingMode.Action.Enable": "Enable Editing Mode",
-
-"Effect.New": "New Effect",
-"Effect.Action.Create": "Create Effect",
-"Effect.Action.Delete": "Delete Effect",
-"Effect.Action.Disable": "Disable Effect",
-"Effect.Action.Edit": "Enable Edit",
-"Effect.Action.Enable": "Enable Effect",
-"Effect.Action.View": "View Effect",
-"Effect.State.Passive": "Passive",
-"Effect.State.Inactive": "Inactive",
-"Effect.State.Temporary": "Temporary",
-
-"Equipment.Label[one]": "Equipment",
-"Equipment.Label[other]": "Equipment",
-"Equipment.Category.Label[one]": "Equipment Category",
-"Equipment.Category.Label[other]": "Equipment Categories",
-"Equipment.Category.Advanced.Label": "Advanced",
-"Equipment.Category.Basic.Label": "Basic",
-"Equipment.Category.Historical.Label": "Historical",
-"Equipment.Category.Improvised.Label": "Improvised",
-"Equipment.Category.Military.Label": "Military",
-"Equipment.Proficiency.Label[one]": "Equipment Proficiency",
-"Equipment.Proficiency.Label[other]": "Equipment Proficiencies",
-"Equipment.Proficiency.Hint": "Equipment proficiencies possessed by the hero.",
-"Equipment.Property.Label[one]": "Property",
-"Equipment.Property.Label[other]": "Properties",
-"Equipment.Trait.ArmorValue.Label": "Armor Value",
-"Equipment.Trait.ArmorValue.Abbreviation": "AV",
-"Equipment.Trait.ArmorValue.Hint": "Armor Value measures how well armor or a shield protects you against weapons.",
-"Equipment.Trait.Bulk.Label": "Bulk",
-"Equipment.Trait.Bulk.Hint": "Bulk provides an indicator for how heavy and/or unwieldy the item is.",
-"Equipment.Trait.Damage.Label": "Damage",
-"Equipment.Trait.Damage.Hint": "This is how much damage the weapon does before bonuses are applied, as well as what type of damage it deals.",
-"Equipment.Trait.Damage.Count.Label": "Dice Count",
-"Equipment.Trait.Damage.Count.Hint": "Number of dice rolled.",
-"Equipment.Trait.Damage.Denomination.Label": "Denomination",
-"Equipment.Trait.Damage.Denomination.Hint": "Type of die rolled.",
-"Equipment.Trait.Damage.Type.Label": "Damage Type",
-"Equipment.Trait.Damage.Type.Hint": "Type of damage caused.",
-"Equipment.Trait.Damage.Types.Label": "Damage Types",
-"Equipment.Trait.Damage.Types.Hint": "The attacker may choose whichever listed damage type is more favorable to the moment.",
-"Equipment.Trait.DamageModification.Label": "Damage Modification",
-"Equipment.Trait.DamageModification.Hint": "This is how much the damage of the base weapon is modified by this ammunition.",
-"Equipment.Trait.DamageModification.Count.Hint": "Change to the number of dice rolled. If a negative count reduces the number of dice to zero, then only 1 damage will be done.",
-"Equipment.Trait.DamageModification.Denomination.Hint": "Number of dice steps to shift the denomination. If denomination is stepped below a d4, then only 1 damage will be done.",
-"Equipment.Trait.DamageModification.Type.Hint": "Weapon damage will be changed to this.",
-"Equipment.Trait.DamageModification.NoChange": "No Change",
-"Equipment.Trait.PenetrationValue.Label": "Penetration Value",
-"Equipment.Trait.PenetrationValue.Abbreviation": "PV",
-"Equipment.Trait.PenetrationValue.Hint": "This measures a weapon’s ability to punch through armor and shields.",
-"Equipment.Trait.PriceLevel.Label": "Price Level",
-"Equipment.Trait.PriceLevel.Hint": "Price level is a general measure of how expensive something is. If the price level is equal or lower than your Wealth Level, then you can buy the item freely.",
-"Equipment.Trait.Quantity.Label": "Quantity",
-"Equipment.Trait.Quantity.Hint": "How many of this item are in a stack.",
-"Equipment.Trait.Radius.Label": "Radius",
-"Equipment.Trait.Radius.Hint": "This value lists the blast radius for explosives. Each combatant in that radius is subject to the effects of the explosion.",
-"Equipment.Trait.Range.Label": "Range",
-"Equipment.Trait.Range.Hint": "This is the distance at which you can target a ranged weapon. If two numbers are listed, the second number is its long range. Attacks made at a distance farther than its range but within its long range have disadvantage on the attack roll.",
-"Equipment.Trait.Range.Long.Label": "Long Range",
-"Equipment.Trait.Range.Long.Hint": "Weapon can fire within this extended range, but attacks will be at disadvantage.",
-"Equipment.Trait.Range.Reach.Label": "Reach",
-"Equipment.Trait.Range.Reach.Hint": "Reach of a weapon that has the ‘reach’ property.",
-"Equipment.Trait.Range.Short.Label": "Normal Range",
-"Equipment.Trait.Range.Short.Hint": "Range within which the weapon can fire without any penalty.",
-"Equipment.Trait.Reload.Label": "Reload",
-"Equipment.Trait.Reload.Hint": "Reload tells you what type of action you need to reload a weapon: an action, bonus action, or free action.",
-"Equipment.Trait.Reload.Actions.Label": "Reload Actions",
-"Equipment.Trait.Reload.Actions.Hint": "Number of subsequent actions required to reload this weapon.",
-"Equipment.Trait.Rounds.Label": "Rounds",
-"Equipment.Trait.Rounds.Hint": "This value shows how many rounds of ammunition you can fire before you must reload. Each time you fire the weapon, you use a number of rounds. Normally each attack uses a single round, but certain special attacks use more.",
-"Equipment.Trait.Rounds.Burst.Label": "Burst Rounds",
-"Equipment.Trait.Rounds.Burst.Hint": "Indicates the number of ammo rounds required when firing in burst mode.",
-"Equipment.Trait.Rounds.Capacity": "Capacity",
-"Equipment.Trait.Rounds.Remaining": "Remaining Rounds",
-"Equipment.Trait.Rounds.Spent": "Spent Rounds",
-"Equipment.Trait.Strain": {
-	"Label": "Strain",
-	"Current": "Current",
-	"Maximum": "Maximum",
-	"PenaltyOne": "Disadvantage on Dexterity and Constitution ability checks and saving throws.",
-	"PenaltyTwo": "Reduce movement speed by 10 feet; disadvantage on attack rolls.",
-	"PenaltyThree": "Can barely move; always considered Restrained."
+"EH.Damage": {
+	"Multiple": "Multiple Types",
+	"None": "No Damage",
+	"Specific": "{type} Damage",
+	"Plus": " plus ",
+	"IgnoresArmor": {
+		"Label": "Ignores Armor"
+	},
+	"Immunity": {
+		"Label": "Damage Immunity",
+		"Hint": "An actor cannot be damaged by these damage types."
+	},
+	"Reduction": {
+		"Label": "Damage Reduction",
+		"Hint": "Any incoming damage of this type will be reduced by the specified amount."
+	},
+	"Action": {
+		"ApplyDouble": "Apply Double Damage",
+		"ApplyHalf": "Apply Half Damage",
+		"ApplyNegative": "Apply as Healing",
+		"ApplyNormal": "Apply Damage"
+	},
+	"Effect": {
+		"Full": "Take full damage",
+		"Half": "Take half damage",
+		"None": "Take no damage",
+		"Vehicle": {
+			"Rolled": "Roll on vehicle damage table",
+			"Totaled": "Vehicle is totaled"
+		}
+	},
+	"Type": {
+		"Label[one]": "Damage Type",
+		"Label[other]": "Damage Types",
+		"Acid": "Acid",
+		"Ballistic": "Ballistic",
+		"Bludgeoning": "Bludgeoning",
+		"Cold": "Cold",
+		"Electrical": "Electrical",
+		"Explosive": "Explosive",
+		"Fire": "Fire",
+		"Piercing": "Piercing",
+		"Poison": "Poison",
+		"Psychic": "Psychic",
+		"Slashing": "Slashing"
+	}
 },
-"Equipment.Trait.SupplementalDamage.Label": "Supplemental Damage",
-"Equipment.Trait.SupplementalDamage.Hint": "Additional damage parts applied on top of the base item damage.",
-"Equipment.Trait.SupplementalDamage.CustomPV.Label": "Custom Penetration Value",
-"Equipment.Trait.SupplementalDamage.CustomPV.Hint": "Should this supplemental damage's custom PV be used rather than the weapon's default PV?",
 
-"Explosive.DC.Label": "Explosive Damage Save DC",
-"Explosive.DC.Hint": "Override the default save DC calculated base on the attacker's stats.",
-"Explosive.Properties.Label": "Explosive Properties",
-"Explosive.Type.Label": "Explosive Type",
-"Explosive.Type.Grenade.Label": "Grenade",
-"Explosive.Type.Rocket.Label": "Rocket",
-"Explosive.Type.Mine.Label": "Mine",
-"Explosive.Type.Mortar.Label": "Mortar",
+"EH.Death": {
+	"Label[one]": "Death Save",
+	"Label[other]": "Death Saves",
+	"Bonus": {
+		"Label": "Death Save Bonus",
+		"Hint": "Bonus formula added to each death saving throw roll."
+	},
+	"Success": {
+		"Label": "Success",
+		"Hint": "Number of successful death saving throws."
+	},
+	"Failure": {
+		"Label": "Failure",
+		"Hint": "Number of failed death saving throws."
+	},
+	"Message": {
+		"Label[one]": "death saving throw",
+		"Label[other]": "death savings throws",
+		"Counted": "{count} {label}",
+		"CriticalSuccess": "{name} critically succeeded on a death saving throw and has regained 1 Hit Point!",
+		"Failure": "{name} has died after failing {counted}…",
+		"Success": "{name} has succeeded on {counted} and is now stable."
+	},
+	"Override": {
+		"Failure": {
+			"Label": "Failures Required",
+			"Hint": "Number of failures required before the actor dies."
+		},
+		"Success": {
+			"Label": "Successes Required",
+			"Hint": "Number of successes required before the actor stabilizes."
+		},
+		"Target": {
+			"Label": "Target Value",
+			"Hint": "Value that must be rolled to be considered a success."
+		}
+	},
+	"Status": {
+		"Label": "Status",
+		"Alive": "Alive",
+		"Dead": "Dead",
+		"Dying": "Dying",
+		"Stable": "Stable"
+	}
+},
 
-"Feat": {
+"EH.Defense": {
+	"Label": "Defense",
+	"Bonus": {
+		"Label": "Defense Bonus",
+		"Hint": "Bonus formula added to the calculated defense value."
+	}
+},
+
+"EH.Details": {
+	"Label": "Details",
+	"Wealth": {
+		"Label": "Wealth",
+		"Profession": {
+			"Hint": "Baseline wealth level provided by this profession."
+		},
+		"Bonus": {
+			"Label": "Wealth Bonus",
+			"Hint": "Bonus added to the base wealth level provided by the hero's profession."
+		}
+	}
+},
+
+"EH.Dice": {
+	"Denomination": "Denomination",
+	"ExtraTerms": "Extra Terms",
+	"Formula": "Formula",
+	"RollMode": "Roll Mode",
+	"Action": {
+		"Advantage": "Advantage",
+		"Critical": "Critical",
+		"Disadvantage": "Disadvantage",
+		"Normal": "Normal",
+		"Roll": "Roll"
+	},
+	"Modification": {
+		"Count[one]": "{number} Die",
+		"Count[other]": "{number} Dice",
+		"Denomination[one]": "{number} Step",
+		"Denomination[other]": "{number} Steps"
+	}
+},
+
+"EH.DifficultyClass": {
+	"Label": "Difficulty Class",
+	"Abbreviation": "DC",
+	"Tag": "DC {dc}"
+},
+
+"EH.EditingMode": {
+	"Action": {
+		"Disable": "Disable Editing Mode",
+		"Enable": "Enable Editing Mode"
+	}
+},
+
+"EH.Effect": {
+	"New": "New Effect",
+	"Action": {
+		"Create": "Create Effect",
+		"Delete": "Delete Effect",
+		"Disable": "Disable Effect",
+		"Edit": "Enable Edit",
+		"Enable": "Enable Effect",
+		"View": "View Effect"
+	},
+	"State": {
+		"Passive": "Passive",
+		"Inactive": "Inactive",
+		"Temporary": "Temporary"
+	}
+},
+
+"EH.Equipment": {
+	"Label[one]": "Equipment",
+	"Label[other]": "Equipment",
+	"Category": {
+		"Label[one]": "Equipment Category",
+		"Label[other]": "Equipment Categories",
+		"Advanced": {
+			"Label": "Advanced"
+		},
+		"Basic": {
+			"Label": "Basic"
+		},
+		"Historical": {
+			"Label": "Historical"
+		},
+		"Improvised": {
+			"Label": "Improvised"
+		},
+		"Military": {
+			"Label": "Military"
+		}
+	},
+	"Proficiency": {
+		"Label[one]": "Equipment Proficiency",
+		"Label[other]": "Equipment Proficiencies",
+		"Hint": "Equipment proficiencies possessed by the hero."
+	},
+	"Property": {
+		"Label[one]": "Property",
+		"Label[other]": "Properties"
+	},
+	"Trait": {
+		"ArmorValue": {
+			"Label": "Armor Value",
+			"Abbreviation": "AV",
+			"Hint": "Armor Value measures how well armor or a shield protects you against weapons."
+		},
+		"Bulk": {
+			"Label": "Bulk",
+			"Hint": "Bulk provides an indicator for how heavy and/or unwieldy the item is."
+		},
+		"Damage": {
+			"Label": "Damage",
+			"Hint": "This is how much damage the weapon does before bonuses are applied, as well as what type of damage it deals.",
+			"Count": {
+				"Label": "Dice Count",
+				"Hint": "Number of dice rolled."
+			},
+			"Denomination": {
+				"Label": "Denomination",
+				"Hint": "Type of die rolled."
+			},
+			"Type": {
+				"Label": "Damage Type",
+				"Hint": "Type of damage caused."
+			},
+			"Types": {
+				"Label": "Damage Types",
+				"Hint": "The attacker may choose whichever listed damage type is more favorable to the moment."
+			}
+		},
+		"DamageModification": {
+			"Label": "Damage Modification",
+			"Hint": "This is how much the damage of the base weapon is modified by this ammunition.",
+			"Count": {
+				"Hint": "Change to the number of dice rolled. If a negative count reduces the number of dice to zero, then only 1 damage will be done."
+			},
+			"Denomination": {
+				"Hint": "Number of dice steps to shift the denomination. If denomination is stepped below a d4, then only 1 damage will be done."
+			},
+			"Type": {
+				"Hint": "Weapon damage will be changed to this."
+			},
+			"NoChange": "No Change"
+		},
+		"PenetrationValue": {
+			"Label": "Penetration Value",
+			"Abbreviation": "PV",
+			"Hint": "This measures a weapon’s ability to punch through armor and shields."
+		},
+		"PriceLevel": {
+			"Label": "Price Level",
+			"Hint": "Price level is a general measure of how expensive something is. If the price level is equal or lower than your Wealth Level, then you can buy the item freely."
+		},
+		"Quantity": {
+			"Label": "Quantity",
+			"Hint": "How many of this item are in a stack."
+		},
+		"Radius": {
+			"Label": "Radius",
+			"Hint": "This value lists the blast radius for explosives. Each combatant in that radius is subject to the effects of the explosion."
+		},
+		"Range": {
+			"Label": "Range",
+			"Hint": "This is the distance at which you can target a ranged weapon. If two numbers are listed, the second number is its long range. Attacks made at a distance farther than its range but within its long range have disadvantage on the attack roll.",
+			"Long": {
+				"Label": "Long Range",
+				"Hint": "Weapon can fire within this extended range, but attacks will be at disadvantage."
+			},
+			"Reach": {
+				"Label": "Reach",
+				"Hint": "Reach of a weapon that has the ‘reach’ property."
+			},
+			"Short": {
+				"Label": "Normal Range",
+				"Hint": "Range within which the weapon can fire without any penalty."
+			}
+		},
+		"Reload": {
+			"Label": "Reload",
+			"Hint": "Reload tells you what type of action you need to reload a weapon: an action, bonus action, or free action.",
+			"Actions": {
+				"Label": "Reload Actions",
+				"Hint": "Number of subsequent actions required to reload this weapon."
+			}
+		},
+		"Rounds": {
+			"Label": "Rounds",
+			"Hint": "This value shows how many rounds of ammunition you can fire before you must reload. Each time you fire the weapon, you use a number of rounds. Normally each attack uses a single round, but certain special attacks use more.",
+			"Burst": {
+				"Label": "Burst Rounds",
+				"Hint": "Indicates the number of ammo rounds required when firing in burst mode."
+			},
+			"Capacity": "Capacity",
+			"Remaining": "Remaining Rounds",
+			"Spent": "Spent Rounds"
+		},
+		"Strain": {
+			"Label": "Strain",
+			"Current": "Current",
+			"Maximum": "Maximum",
+			"PenaltyOne": "Disadvantage on Dexterity and Constitution ability checks and saving throws.",
+			"PenaltyTwo": "Reduce movement speed by 10 feet; disadvantage on attack rolls.",
+			"PenaltyThree": "Can barely move; always considered Restrained."
+		},
+		"SupplementalDamage": {
+			"Label": "Supplemental Damage",
+			"Hint": "Additional damage parts applied on top of the base item damage.",
+			"CustomPV": {
+				"Label": "Custom Penetration Value",
+				"Hint": "Should this supplemental damage's custom PV be used rather than the weapon's default PV?"
+			}
+		}
+	}
+},
+
+"EH.Explosive": {
+	"DC": {
+		"Label": "Explosive Damage Save DC",
+		"Hint": "Override the default save DC calculated base on the attacker's stats."
+	},
+	"Properties": {
+		"Label": "Explosive Properties"
+	},
+	"Type": {
+		"Label": "Explosive Type",
+		"Grenade": {
+			"Label": "Grenade"
+		},
+		"Rocket": {
+			"Label": "Rocket"
+		},
+		"Mine": {
+			"Label": "Mine"
+		},
+		"Mortar": {
+			"Label": "Mortar"
+		}
+	}
+},
+
+"EH.Feat": {
 	"Category": {
 		"Label": "Feat Category",
-		"Advanced.Label": "Advanced",
-		"Basic.Label": "Basic",
+		"Advanced": {
+			"Label": "Advanced"
+		},
+		"Basic": {
+			"Label": "Basic"
+		},
 		"Immortal": {
 			"Label": "Immortal"
 		},
-		"Multiclass.Label": "Multiclass",
+		"Multiclass": {
+			"Label": "Multiclass"
+		},
 		"Training": {
 			"Label": ""
 		}
 	},
 	"Type": {
-		"Major.Label": "Major",
-		"Minor.Label": "Minor"
+		"Major": {
+			"Label": "Major"
+		},
+		"Minor": {
+			"Label": "Minor"
+		}
 	}
 },
 
-"Feature.Type.LabelSpecific": "{action} Feature",
-
-"Gear": {
+"EH.Feature": {
 	"Type": {
-		"CarryingCase.Label": "Carrying Case",
+		"LabelSpecific": "{action} Feature"
+	},
+	"Limit": {
+		"Label": "Feature Limits",
+		"Hint": "Limits to the number of a certain feature type (such as plans or tricks) that the hero is allowed to have.",
+		"Formula": "Limit Formula"
+	}
+},
+
+"EH.Gear": {
+	"Type": {
+		"CarryingCase": {
+			"Label": "Carrying Case"
+		},
 		"CombatGear": {
 			"Label": "Combat Gear"
 		},
-		"Electronics.Label": "Electronics",
-		"EverydayStuff.Label": "Everyday Stuff",
-		"EquipmentPack.Label": "Equipment Pack",
-		"FirearmAccessory.Label": "Firearm Accessory",
-		"Hardware.Label": "Hardware",
-		"SpecialtyGoods.Label": "Specialty Goods",
-		"SpecializedKit.Label": "Specialized Kit",
-		"SportingGoods.Label": "Sporting Goods"
+		"Electronics": {
+			"Label": "Electronics"
+		},
+		"EverydayStuff": {
+			"Label": "Everyday Stuff"
+		},
+		"EquipmentPack": {
+			"Label": "Equipment Pack"
+		},
+		"FirearmAccessory": {
+			"Label": "Firearm Accessory"
+		},
+		"Hardware": {
+			"Label": "Hardware"
+		},
+		"SpecialtyGoods": {
+			"Label": "Specialty Goods"
+		},
+		"SpecializedKit": {
+			"Label": "Specialized Kit"
+		},
+		"SportingGoods": {
+			"Label": "Sporting Goods"
+		}
 	}
 },
 
-"Feature.Limit.Label": "Feature Limits",
-"Feature.Limit.Hint": "Limits to the number of a certain feature type (such as plans or tricks) that the hero is allowed to have.",
-"Feature.Limit.Formula": "Limit Formula",
+"EH.Health": {
+	"Label": "Health"
+},
 
-"Health.Label": "Health",
+"EH.HitDice": {
+	"Label[one]": "Hit Die",
+	"Label[other]": "Hit Dice",
+	"Spent": "Spent Hit Dice",
+	"Minimum": {
+		"Label": "Minimum Hit Dice Roll",
+		"Hint": "Minimum result of a hit dice roll."
+	},
+	"Recovery": {
+		"Label": "Hit Dice Recovery Percentage",
+		"Hint": "Percent of hit dice recovered during a long rest."
+	}
+},
 
-"HitDice.Label[one]": "Hit Die",
-"HitDice.Label[other]": "Hit Dice",
-"HitDice.Spent": "Spent Hit Dice",
-"HitDice.Minimum.Label": "Minimum Hit Dice Roll",
-"HitDice.Minimum.Hint": "Minimum result of a hit dice roll.",
-"HitDice.Recovery.Label": "Hit Dice Recovery Percentage",
-"HitDice.Recovery.Hint": "Percent of hit dice recovered during a long rest.",
+"EH.HitPoints": {
+	"Label[one]": "Hit Point",
+	"Label[other]": "Hit Points",
+	"Abbreviation": "hp",
+	"Damage": "Total DMG",
+	"Formula": {
+		"Label": "Formula",
+		"Hint": "Formula used for rolling hit points, if DM chooses not to use average value."
+	},
+	"Current": "Current HP",
+	"Max": "Max HP",
+	"Multiplier": {
+		"Label": "Max HP Multiplier",
+		"Hint": "Max hit points will be multiplied by this value and fractional results will be rounded down."
+	},
+	"Temp": "Temp HP",
+	"Bonus": {
+		"Level": {
+			"Label": "Per Level Bonus",
+			"Hint": "Bonus formula added to calculated hit points for each hero level."
+		},
+		"Overall": {
+			"Label": "Overall Bonus",
+			"Hint": "Bonus formula added to final calculated hit points once."
+		}
+	}
+},
 
-"HitPoints.Label[one]": "Hit Point",
-"HitPoints.Label[other]": "Hit Points",
-"HitPoints.Abbreviation": "hp",
-"HitPoints.Damage": "Total DMG",
-"HitPoints.Formula.Label": "Formula",
-"HitPoints.Formula.Hint": "Formula used for rolling hit points, if DM chooses not to use average value.",
-"HitPoints.Current": "Current HP",
-"HitPoints.Max": "Max HP",
-"HitPoints.Multiplier.Label": "Max HP Multiplier",
-"HitPoints.Multiplier.Hint": "Max hit points will be multiplied by this value and fractional results will be rounded down.",
-"HitPoints.Temp": "Temp HP",
-"HitPoints.Bonus.Level.Label": "Per Level Bonus",
-"HitPoints.Bonus.Level.Hint": "Bonus formula added to calculated hit points for each hero level.",
-"HitPoints.Bonus.Overall.Label": "Overall Bonus",
-"HitPoints.Bonus.Overall.Hint": "Bonus formula added to final calculated hit points once.",
+"EH.Identifier": {
+	"Label": "Identifier",
+	"Hint": "Simplified version of name used for internal lookups.",
+	"ClassArchetype": {
+		"Hint": "Identifier of the archetype to which this class belongs."
+	},
+	"PlanClass": {
+		"Hint": "Identifier of the class to which this plan belongs."
+	},
+	"TrickClass": {
+		"Hint": "Identifier of the class to which this trick belongs."
+	},
+	"SubclassClass": {
+		"Hint": "Identifier of the class to which this subclass belongs."
+	},
+	"Action": {
+		"Copy": "Copy Identifier"
+	},
+	"Error": {
+		"Invalid": "Identifier can only contain letters (a-z), numbers (0-9), dashes (-), and underscores (_)."
+	}
+},
 
-"Identifier.Label": "Identifier",
-"Identifier.Hint": "Simplified version of name used for internal lookups.",
-"Identifier.ClassArchetype.Hint": "Identifier of the archetype to which this class belongs.",
-"Identifier.PlanClass.Hint": "Identifier of the class to which this plan belongs.",
-"Identifier.TrickClass.Hint": "Identifier of the class to which this trick belongs.",
-"Identifier.SubclassClass.Hint": "Identifier of the class to which this subclass belongs.",
-"Identifier.Action.Copy": "Copy Identifier",
-"Identifier.Error.Invalid": "Identifier can only contain letters (a-z), numbers (0-9), dashes (-), and underscores (_).",
+"EH.Initiative": {
+	"Label": "Initiative",
+	"Bonus": {
+		"Label": "Initiative Bonus",
+		"Hint": "Bonus formula added to all initiative rolls."
+	},
+	"Turns": {
+		"Label": "Turns per Round",
+		"Hint": "Number of turns this actor gets in a round, with a seperate initiative roll for each.",
+		"Count[one]": "{count} turn per round",
+		"Count[other]": "{count} turns per round"
+	}
+},
 
-"Initiative.Label": "Initiative",
-"Initiative.Bonus.Label": "Initiative Bonus",
-"Initiative.Bonus.Hint": "Bonus formula added to all initiative rolls.",
-"Initiative.Turns.Label": "Turns per Round",
-"Initiative.Turns.Hint": "Number of turns this actor gets in a round, with a seperate initiative roll for each.",
-"Initiative.Turns.Count[one]": "{count} turn per round",
-"Initiative.Turns.Count[other]": "{count} turns per round",
-
-"Inline": {
+"EH.Inline": {
 	"CheckShort": "{check}",
 	"CheckLong": "{check} check",
 	"DC": "DC {dc} {check}",
@@ -928,7 +1366,7 @@
 	"SpecificCheck": "{ability} ({type})"
 },
 
-"Item": {
+"EH.Item": {
 	"Label[one]": "Item",
 	"Label[other]": "Items",
 	"Mode": {
@@ -1038,54 +1476,132 @@
 	}
 },
 
-"Keybinding.ChallengeRoll.Advantage.Label": "Fast Forward Challenge Roll with Advantage",
-"Keybinding.ChallengeRoll.Disadvantage.Label": "Fast Forward Challenge Roll with Disadvantage",
-"Keybinding.ChallengeRoll.Normal.Label": "Fast Forward Challenge Roll",
-"Keybinding.DamageRoll.Critical.Label": "Fast Forward Damage Roll as Critical",
-"Keybinding.DamageRoll.Normal.Label": "Fast Forward Damage Roll",
+"EH.Keybinding": {
+	"ChallengeRoll": {
+		"Advantage": {
+			"Label": "Fast Forward Challenge Roll with Advantage"
+		},
+		"Disadvantage": {
+			"Label": "Fast Forward Challenge Roll with Disadvantage"
+		},
+		"Normal": {
+			"Label": "Fast Forward Challenge Roll"
+		}
+	},
+	"DamageRoll": {
+		"Critical": {
+			"Label": "Fast Forward Damage Roll as Critical"
+		},
+		"Normal": {
+			"Label": "Fast Forward Damage Roll"
+		}
+	}
+},
 
-"Language.Label[one]": "Language",
-"Language.Label[other]": "Languages",
+"EH.Language": {
+	"Label[one]": "Language",
+	"Label[other]": "Languages"
+},
 
-"Level.Label[one]": "Level",
-"Level.Label[other]": "Levels",
-"Level.Hint": "Hero's current level.",
-"Level.Talent.Hint": "Level at which this talent is granted.",
-"Level.Action.Decrease": "Level Down",
-"Level.Action.Increase": "Level Up",
+"EH.Level": {
+	"Label[one]": "Level",
+	"Label[other]": "Levels",
+	"Hint": "Hero's current level.",
+	"Talent": {
+		"Hint": "Level at which this talent is granted."
+	},
+	"Action": {
+		"Decrease": "Level Down",
+		"Increase": "Level Up"
+	}
+},
 
-"Luck.Label": "Luck Saving Throw",
+"EH.Luck": {
+	"Label": "Luck Saving Throw"
+},
 
-"Measurement.Radius.Label": "Radius",
-"Measurement.Radius.Tag": "{size} Radius",
-"Measurement.Length.Feet.Label": "Feet",
-"Measurement.Length.Kilometers.Label": "Kilometers",
-"Measurement.Length.Meters.Label": "Meters",
-"Measurement.Length.Miles.Label": "Miles",
-"Measurement.Length.Space.Label[one]": "Space",
-"Measurement.Length.Space.Label[other]": "Spaces",
-"Measurement.Speed.Mach.Label": "Mach",
-"Measurement.Speed.MilePerHour.Label": "Miles per Hour",
-"Measurement.Speed.KilometerPerHour.Label": "Kilometers per Hour",
-"Measurement.Units": "Units",
+"EH.Measurement": {
+	"Radius": {
+		"Label": "Radius",
+		"Tag": "{size} Radius"
+	},
+	"Length": {
+		"Feet": {
+			"Label": "Feet"
+		},
+		"Kilometers": {
+			"Label": "Kilometers"
+		},
+		"Meters": {
+			"Label": "Meters"
+		},
+		"Miles": {
+			"Label": "Miles"
+		},
+		"Space": {
+			"Label[one]": "Space",
+			"Label[other]": "Spaces"
+		}
+	},
+	"Speed": {
+		"Mach": {
+			"Label": "Mach"
+		},
+		"MilePerHour": {
+			"Label": "Miles per Hour"
+		},
+		"KilometerPerHour": {
+			"Label": "Kilometers per Hour"
+		}
+	},
+	"Units": "Units"
+},
 
-"Movement.Base.Label": "Base Movement",
-"Movement.Base.Hint": "This actor's walking speed.",
-"Movement.Bonus.Label": "Speed Bonus",
-"Movement.Multiplier.Label": "Speed Multiplier",
-"Movement.Multiplier.Hint": "All movement types will be multiplied by this value and fractional results will be rounded down.",
-"Movement.Special.Label": "Special Movement",
-"Movement.Special.Hint": "Other types of movement possessed by this actor.",
-"Movement.Tags.Label": "Movement Tags",
-"Movement.Tags.Hint": "Tags that describe any special movement abilities for the actor.",
-"Movement.Tag.Hover.Label": "Hover",
-"Movement.Type.Burrow.Label": "Burrow",
-"Movement.Type.Climb.Label": "Climb",
-"Movement.Type.Fly.Label": "Fly",
-"Movement.Type.Swim.Label": "Swim",
-"Movement.Type.Walk.Label": "Walk",
+"EH.Movement": {
+	"Base": {
+		"Label": "Base Movement",
+		"Hint": "This actor's walking speed."
+	},
+	"Bonus": {
+		"Label": "Speed Bonus"
+	},
+	"Multiplier": {
+		"Label": "Speed Multiplier",
+		"Hint": "All movement types will be multiplied by this value and fractional results will be rounded down."
+	},
+	"Special": {
+		"Label": "Special Movement",
+		"Hint": "Other types of movement possessed by this actor."
+	},
+	"Tags": {
+		"Label": "Movement Tags",
+		"Hint": "Tags that describe any special movement abilities for the actor."
+	},
+	"Tag": {
+		"Hover": {
+			"Label": "Hover"
+		}
+	},
+	"Type": {
+		"Burrow": {
+			"Label": "Burrow"
+		},
+		"Climb": {
+			"Label": "Climb"
+		},
+		"Fly": {
+			"Label": "Fly"
+		},
+		"Swim": {
+			"Label": "Swim"
+		},
+		"Walk": {
+			"Label": "Walk"
+		}
+	}
+},
 
-"Mutation": {
+"EH.Mutation": {
 	"Category": {
 		"Label": "Mutation Category",
 		"Beneficial": "Beneficial",
@@ -1094,79 +1610,135 @@
 	}
 },
 
-"NotApplicable.Abbreviation": "N/A",
+"EH.NotApplicable": {
+	"Abbreviation": "N/A"
+},
 
-"Number[1]": "one",
-"Number[2]": "two",
-"Number[3]": "three",
-"Number[4]": "four",
-"Number[5]": "five",
-"Number[6]": "six",
-"Number[7]": "seven",
-"Number[8]": "eight",
-"Number[9]": "nine",
-"Number": {
+"EH.Number[1]": "one",
+"EH.Number[2]": "two",
+"EH.Number[3]": "three",
+"EH.Number[4]": "four",
+"EH.Number[5]": "five",
+"EH.Number[6]": "six",
+"EH.Number[7]": "seven",
+"EH.Number[8]": "eight",
+"EH.Number[9]": "nine",
+"EH.Number": {
 	"Ordinal[one]": "{number}st",
 	"Ordinal[two]": "{number}nd",
 	"Ordinal[few]": "{number}rd",
 	"Ordinal[other]": "{number}th"
 },
 
-"Override.Label": "Overrides",
-"Override.Ability.Label": "Alternative Abilities",
-"Override.Ability.Hint": "Alternative abilities will be considered against the default ability for this calculation and the one with the highest modifier will be chosen.",
-"Override.Ability.Defense.Label": "Alternative Defense Abilities",
-"Override.Ability.Defense.Hint": "Alternate abilities that can be used to calculate defense bonus in addition to those provided by your archetype. The ability with the highest modifier will be automatically chosen.",
-"Override.Ability.HitPoints.Label": "Alternative Hit Points Abilities",
-"Override.Ability.HitPoints.Hint": "Alternate abilities that can be used to calculate total hit points in addition to constitution. The ability with the highest modifier will be automatically chosen.",
-"Override.Ability.Initiative.Label": "Alternative Initiative Abilities",
-"Override.Ability.Initiative.Hint": "Alternate abilities that can be used when rolling for initiative in addition to dexterity. The ability with the highest modifier will be automatically chosen.",
-"Override.Ability.Melee.Label": "Alternative Melee Abilities",
-"Override.Ability.Melee.Hint": "Alternate abilities that can be used when making melee attacks in addition to strength. The ability with the highest modifier will be automatically chosen.",
-"Override.Ability.Ranged.Label": "Alternative Ranged Abilities",
-"Override.Ability.Ranged.Hint": "Alternate abilities that can be used when making ranged attacks in addition to dexterity. The ability with the highest modifier will be automatically chosen.",
+"EH.Override": {
+	"Label": "Overrides",
+	"Ability": {
+		"Label": "Alternative Abilities",
+		"Hint": "Alternative abilities will be considered against the default ability for this calculation and the one with the highest modifier will be chosen.",
+		"Defense": {
+			"Label": "Alternative Defense Abilities",
+			"Hint": "Alternate abilities that can be used to calculate defense bonus in addition to those provided by your archetype. The ability with the highest modifier will be automatically chosen."
+		},
+		"HitPoints": {
+			"Label": "Alternative Hit Points Abilities",
+			"Hint": "Alternate abilities that can be used to calculate total hit points in addition to constitution. The ability with the highest modifier will be automatically chosen."
+		},
+		"Initiative": {
+			"Label": "Alternative Initiative Abilities",
+			"Hint": "Alternate abilities that can be used when rolling for initiative in addition to dexterity. The ability with the highest modifier will be automatically chosen."
+		},
+		"Melee": {
+			"Label": "Alternative Melee Abilities",
+			"Hint": "Alternate abilities that can be used when making melee attacks in addition to strength. The ability with the highest modifier will be automatically chosen."
+		},
+		"Ranged": {
+			"Label": "Alternative Ranged Abilities",
+			"Hint": "Alternate abilities that can be used when making ranged attacks in addition to dexterity. The ability with the highest modifier will be automatically chosen."
+		}
+	}
+},
 
-"Proficiency.Label[one]": "Proficiency",
-"Proficiency.Label[other]": "Proficiencies",
-"Proficiency.Bonus.Label": "Proficiency Bonus",
-"Proficiency.Level.Expertise": "Expertise",
-"Proficiency.Level.Half": "Half Proficient",
-"Proficiency.Level.None": "Not Proficient",
-"Proficiency.Level.Proficient": "Proficient",
-"Proficiency.Multiplier": "Proficiency Multiplier",
-"Proficiency.Rounding": "Proficiency Rounding",
+"EH.Proficiency": {
+	"Label[one]": "Proficiency",
+	"Label[other]": "Proficiencies",
+	"Bonus": {
+		"Label": "Proficiency Bonus"
+	},
+	"Level": {
+		"Expertise": "Expertise",
+		"Half": "Half Proficient",
+		"None": "Not Proficient",
+		"Proficient": "Proficient"
+	},
+	"Multiplier": "Proficiency Multiplier",
+	"Rounding": "Proficiency Rounding"
+},
 
-"Range.Max": "Max",
-"Range.Min": "Min",
+"EH.Range": {
+	"Max": "Max",
+	"Min": "Min"
+},
 
-"Recharge.Label": "Recharge",
-"Recharge.State.Charged": "Charged",
-"Recharge.State.Uncharged": "Recharge {target}",
-"Recharge.Target.Label": "Target",
-"Recharge.Target.Hint": "After this feature has been used, a NPC must roll the provided number or higher on a d6 in order to regain use if it.",
-"Recharge.Warning.NotCharged": "Feature cannot be activated because it is not charged.",
+"EH.Recharge": {
+	"Label": "Recharge",
+	"State": {
+		"Charged": "Charged",
+		"Uncharged": "Recharge {target}"
+	},
+	"Target": {
+		"Label": "Target",
+		"Hint": "After this feature has been used, a NPC must roll the provided number or higher on a d6 in order to regain use if it."
+	},
+	"Warning": {
+		"NotCharged": "Feature cannot be activated because it is not charged."
+	}
+},
 
-"Rest.Action.Rest.Label": "Rest",
-"Rest.Action.Medical.Provide": "Provide Medical Care",
-"Rest.Action.Medical.Receive": "Receive Medical Care",
-"Rest.MedicalAttention.Label": "Medical Attention",
-"Rest.MedicalAttention.Hint": "A hero can provide medical attention to another during a short rest to give the receiving hero advantage on hit dice rolls. Any heroes providing medical attention cannot regain hit points of their own during that rest.",
-"Rest.MedicalAttention.Result.Failure": "Unsuccessful Care",
-"Rest.MedicalAttention.Result.Success": "Successful Care",
-"Rest.Result.Long.Basic": "{name} takes a long rest.",
-"Rest.Result.Long.Full": "{name} takes a long rest and recovers {hitPoints} {hitPointsLabel} and {hitDice} {hitDiceLabel}.",
-"Rest.Result.Long.HitDice": "{name} takes a long rest and recovers {hitDice} {hitDiceLabel}.",
-"Rest.Result.Long.HitPoints": "{name} takes a long rest and recovers {hitPoints} {hitPointsLabel}.",
-"Rest.Result.Short.Basic": "{name} takes a short rest.",
-"Rest.Result.Short.Full": "{name} takes a short rest and spends {hitDice} {hitDiceLabel} to recover {hitPoints} {hitPointsLabel}.",
-"Rest.Type.Long.Label": "Long Rest",
-"Rest.Type.Long.Abbreviation": "LR",
-"Rest.Type.Long.Hint": "At the end of a long rest, each participant recovers hit points up to their hit point maximum and regains a number of spent Hit Dice up to half their maximum Hit Dice (rounded up).",
-"Rest.Type.Short.Label": "Short Rest",
-"Rest.Type.Short.Abbreviation": "SR",
-"Rest.Type.Short.Hint": "At the end of a short rest, a character can spend one or more Hit Dice, up to their maximum number of Hit Dice, to recover lost hit points.",
+"EH.Rest": {
+	"Action": {
+		"Rest": {
+			"Label": "Rest"
+		},
+		"Medical": {
+			"Provide": "Provide Medical Care",
+			"Receive": "Receive Medical Care"
+		}
+	},
+	"MedicalAttention": {
+		"Label": "Medical Attention",
+		"Hint": "A hero can provide medical attention to another during a short rest to give the receiving hero advantage on hit dice rolls. Any heroes providing medical attention cannot regain hit points of their own during that rest.",
+		"Result": {
+			"Failure": "Unsuccessful Care",
+			"Success": "Successful Care"
+		}
+	},
+	"Result": {
+		"Long": {
+			"Basic": "{name} takes a long rest.",
+			"Full": "{name} takes a long rest and recovers {hitPoints} {hitPointsLabel} and {hitDice} {hitDiceLabel}.",
+			"HitDice": "{name} takes a long rest and recovers {hitDice} {hitDiceLabel}.",
+			"HitPoints": "{name} takes a long rest and recovers {hitPoints} {hitPointsLabel}."
+		},
+		"Short": {
+			"Basic": "{name} takes a short rest.",
+			"Full": "{name} takes a short rest and spends {hitDice} {hitDiceLabel} to recover {hitPoints} {hitPointsLabel}."
+		}
+	},
+	"Type": {
+		"Long": {
+			"Label": "Long Rest",
+			"Abbreviation": "LR",
+			"Hint": "At the end of a long rest, each participant recovers hit points up to their hit point maximum and regains a number of spent Hit Dice up to half their maximum Hit Dice (rounded up)."
+		},
+		"Short": {
+			"Label": "Short Rest",
+			"Abbreviation": "SR",
+			"Hint": "At the end of a short rest, a character can spend one or more Hit Dice, up to their maximum number of Hit Dice, to recover lost hit points."
+		}
+	}
+},
 
-"Resource": {
+"EH.Resource": {
 	"Label[one]": "Resource",
 	"Label[other]": "Resources",
 	"Bonus": {
@@ -1201,44 +1773,84 @@
 	"Config": {
 		"Manage": "Manage Resources",
 		"NoDice": "No Dice",
-		"Uses.Label": "Resource Uses",
-		"Label.Label": "Resource Label",
-		"Custom.Label": "Custom Resource",
-		"Custom.Create": "Create Custom",
-		"Warning.NoLabel": "Resources must be provided a label."
+		"Uses": {
+			"Label": "Resource Uses"
+		},
+		"Label": {
+			"Label": "Resource Label"
+		},
+		"Custom": {
+			"Label": "Custom Resource",
+			"Create": "Create Custom"
+		},
+		"Warning": {
+			"NoLabel": "Resources must be provided a label."
+		}
 	}
 },
 
-"Role": {
+"EH.Role": {
 	"Label[one]": "Role",
 	"Label[other]": "Roles",
-	"Driver.Label": "Driver",
-	"Fodder.Label": "Fodder",
-	"Hulk.Label": "Hulk",
-	"Killer.Label": "Killer",
-	"Leader.Label": "Leader",
-	"Loner.Label": "Loner",
-	"Melee.Label": "Melee",
-	"Ranged.Label": "Ranged",
-	"Shadow.Label": "Shadow",
-	"Support.Label": "Support",
-	"Tank.Label": "Tank"
+	"Driver": {
+		"Label": "Driver"
+	},
+	"Fodder": {
+		"Label": "Fodder"
+	},
+	"Hulk": {
+		"Label": "Hulk"
+	},
+	"Killer": {
+		"Label": "Killer"
+	},
+	"Leader": {
+		"Label": "Leader"
+	},
+	"Loner": {
+		"Label": "Loner"
+	},
+	"Melee": {
+		"Label": "Melee"
+	},
+	"Ranged": {
+		"Label": "Ranged"
+	},
+	"Shadow": {
+		"Label": "Shadow"
+	},
+	"Support": {
+		"Label": "Support"
+	},
+	"Tank": {
+		"Label": "Tank"
+	}
 },
 
-"Roll.Configuration.LabelGeneric": "Roll Configuration",
-"Roll.Configuration.LabelSpecific": "{type} Configuration",
-"Roll.Result.CriticalFailure": "Critical Failure",
-"Roll.Result.CriticalSuccess": "Critical Success",
-"Roll.Result.Failure": "Failure",
-"Roll.Result.Success": "Success",
+"EH.Roll": {
+	"Configuration": {
+		"LabelGeneric": "Roll Configuration",
+		"LabelSpecific": "{type} Configuration"
+	},
+	"Result": {
+		"CriticalFailure": "Critical Failure",
+		"CriticalSuccess": "Critical Success",
+		"Failure": "Failure",
+		"Success": "Success"
+	}
+},
 
-"Sense.Label[one]": "Sense",
-"Sense.Label[other]": "Senses",
-"Sense.Hint": "Special senses possessed by the actor.",
-"Sense.PassivePerception": "passive Perception {number}",
-"Sense.Nightvision.Label": "Nightvision",
+"EH.Sense": {
+	"Label[one]": "Sense",
+	"Label[other]": "Senses",
+	"Hint": "Special senses possessed by the actor.",
+	"PassivePerception": "passive Perception {number}",
+	"Nightvision": {
+		"Label": "Nightvision"
+	}
+},
 
-"Settings": {
+"EH.Settings": {
 	"ChallengeVisibility": {
 		"Name": "Challenge Visibility",
 		"Hint": "Control what roll DCs are visible to the players and whether successess/failures are highlighted.",
@@ -1260,9 +1872,9 @@
 	}
 },
 
-"Shared": "Shared",
+"EH.Shared": "Shared",
 
-"Sheet": {
+"EH.Sheet": {
 	"Concept": "Default Concept Item Sheet",
 	"Condition": "Default Condition Item Sheet",
 	"Cybernetics": "Default Cybernetics Sheet",
@@ -1285,322 +1897,676 @@
 	}
 },
 
-"Size.Label": "Size",
-"Size.Normal.Label": "Normal",
-"Size.Scale.Normal.Label": "Normal Scale",
-"Size.Scale.Titanic.Label": "Titanic Scale",
-"Size.Titan.LabelSpecific": "{size} Titan",
-"Size.Huge.Label": "Huge",
-"Size.Gargantuan.Label": "Gargantuan",
-"Size.Large.Label": "Large",
-"Size.Medium.Label": "Medium",
-"Size.Small.Label": "Small",
-"Size.Tiny.Label": "Tiny",
+"EH.Size": {
+	"Label": "Size",
+	"Normal": {
+		"Label": "Normal"
+	},
+	"Scale": {
+		"Normal": {
+			"Label": "Normal Scale"
+		},
+		"Titanic": {
+			"Label": "Titanic Scale"
+		}
+	},
+	"Titan": {
+		"LabelSpecific": "{size} Titan"
+	},
+	"Huge": {
+		"Label": "Huge"
+	},
+	"Gargantuan": {
+		"Label": "Gargantuan"
+	},
+	"Large": {
+		"Label": "Large"
+	},
+	"Medium": {
+		"Label": "Medium"
+	},
+	"Small": {
+		"Label": "Small"
+	},
+	"Tiny": {
+		"Label": "Tiny"
+	}
+},
 
-"Speed.Label": "Speed",
-"Speed.WithoutReduction": "{speed} without {type}",
+"EH.Speed": {
+	"Label": "Speed",
+	"WithoutReduction": "{speed} without {type}"
+},
 
-"Skill.Label[one]": "Skill",
-"Skill.Label[other]": "Skills",
-"Skill.Passive.Specific": "Passive {skill}",
-"Skill.Acrobatics.Label": "Acrobatics",
-"Skill.ArtsAndCrafts.Label": "Arts and Crafts",
-"Skill.Athletics.Label": "Athletics",
-"Skill.Computers.Label": "Computers",
-"Skill.Deception.Label": "Deception",
-"Skill.Endurance.Label": "Endurance",
-"Skill.Insight.Label": "Insight",
-"Skill.Intimidation.Label": "Intimidation",
-"Skill.Investigation.Label": "Investigation",
-"Skill.Mechanics.Label": "Mechanics",
-"Skill.Medicine.Label": "Medicine",
-"Skill.NaturalSciences.Label": "Natural Sciences",
-"Skill.Perception.Label": "Perception",
-"Skill.Performance.Label": "Performance",
-"Skill.Persuasion.Label": "Persuasion",
-"Skill.Security.Label": "Security",
-"Skill.SleightOfHand.Label": "Sleight of Hand",
-"Skill.SocialSciences.Label": "Social Sciences",
-"Skill.Stealth.Label": "Stealth",
-"Skill.Streetwise.Label": "Streetwise",
-"Skill.Survival.Label": "Survival",
-"Skill.Vehicles.Label": "Vehicles",
-"Skill.Abilities.Label": "Ability Choices",
-"Skill.Abilities.Hint": "Abilities that can be used when rolling this skill in addition to the default. The system will automatically select the ability with the highest modifier to use.",
-"Skill.Action.CheckGeneric": "Skill Check",
-"Skill.Action.CheckSpecific": "{skill} Check",
-"Skill.Action.CheckSpecificAbility": "{ability} ({skill}) Check",
-"Skill.Action.Check": "Skill Check Bonus",
-"Skill.Action.Passive": "Passive Bonus",
-"Skill.Bonus.Check.Label": "Skill Check Bonus",
-"Skill.Bonus.Check.GlobalHint": "Bonus formula added to all skill checks.",
-"Skill.Bonus.Check.SpecificHint": "Bonus formula added to checks using this skill.",
-"Skill.Bonus.Passive.Label": "Passive Skill Bonus",
-"Skill.Bonus.Passive.GlobalHint": "Bonus formula added to the calculated passive score for all skills.",
-"Skill.Bonus.Passive.SpecificHint": "Bonus formula added to the calculated passive score for this skill.",
-"Skill.Configuration.Hint": "The bonus applies to skill check formulas and the minimum prevents the d20 roll from dropping below a certain number.",
-"Skill.Configuration.Global.Label": "Global Skill Configuration",
-"Skill.Configuration.Global.Hint": "The following options apply to all skills.",
-"Skill.Expertise.Label[one]": "Skill Expertise",
-"Skill.Expertise.Label[other]": "Skill Expertise",
-"Skill.Configuration.Specific.Label": "{type} Configuration",
-"Skill.Override.Minimum.Label": "Skill Check Minimum",
-"Skill.Override.Minimum.GlobalHint": "When rolling any skill check, the result will never be lower than this value.",
-"Skill.Override.Minimum.SpecificHint": "When rolling a check with this skill, the result will never be lower than this value.",
-"Skill.Override.Minimum.Proficiency.Label": "Skill Check Proficiency Floor",
-"Skill.Override.Minimum.Proficiency.Hint": "Minimum proficiency multiplier for all skill checks.",
-"Skill.Proficiency.Label[one]": "Skill Proficiency",
-"Skill.Proficiency.Label[other]": "Skill Proficiencies",
+"EH.Skill": {
+	"Label[one]": "Skill",
+	"Label[other]": "Skills",
+	"Passive": {
+		"Specific": "Passive {skill}"
+	},
+	"Acrobatics": {
+		"Label": "Acrobatics"
+	},
+	"ArtsAndCrafts": {
+		"Label": "Arts and Crafts"
+	},
+	"Athletics": {
+		"Label": "Athletics"
+	},
+	"Computers": {
+		"Label": "Computers"
+	},
+	"Deception": {
+		"Label": "Deception"
+	},
+	"Endurance": {
+		"Label": "Endurance"
+	},
+	"Insight": {
+		"Label": "Insight"
+	},
+	"Intimidation": {
+		"Label": "Intimidation"
+	},
+	"Investigation": {
+		"Label": "Investigation"
+	},
+	"Mechanics": {
+		"Label": "Mechanics"
+	},
+	"Medicine": {
+		"Label": "Medicine"
+	},
+	"NaturalSciences": {
+		"Label": "Natural Sciences"
+	},
+	"Perception": {
+		"Label": "Perception"
+	},
+	"Performance": {
+		"Label": "Performance"
+	},
+	"Persuasion": {
+		"Label": "Persuasion"
+	},
+	"Security": {
+		"Label": "Security"
+	},
+	"SleightOfHand": {
+		"Label": "Sleight of Hand"
+	},
+	"SocialSciences": {
+		"Label": "Social Sciences"
+	},
+	"Stealth": {
+		"Label": "Stealth"
+	},
+	"Streetwise": {
+		"Label": "Streetwise"
+	},
+	"Survival": {
+		"Label": "Survival"
+	},
+	"Vehicles": {
+		"Label": "Vehicles"
+	},
+	"Abilities": {
+		"Label": "Ability Choices",
+		"Hint": "Abilities that can be used when rolling this skill in addition to the default. The system will automatically select the ability with the highest modifier to use."
+	},
+	"Action": {
+		"CheckGeneric": "Skill Check",
+		"CheckSpecific": "{skill} Check",
+		"CheckSpecificAbility": "{ability} ({skill}) Check",
+		"Check": "Skill Check Bonus",
+		"Passive": "Passive Bonus"
+	},
+	"Bonus": {
+		"Check": {
+			"Label": "Skill Check Bonus",
+			"GlobalHint": "Bonus formula added to all skill checks.",
+			"SpecificHint": "Bonus formula added to checks using this skill."
+		},
+		"Passive": {
+			"Label": "Passive Skill Bonus",
+			"GlobalHint": "Bonus formula added to the calculated passive score for all skills.",
+			"SpecificHint": "Bonus formula added to the calculated passive score for this skill."
+		}
+	},
+	"Configuration": {
+		"Hint": "The bonus applies to skill check formulas and the minimum prevents the d20 roll from dropping below a certain number.",
+		"Global": {
+			"Label": "Global Skill Configuration",
+			"Hint": "The following options apply to all skills."
+		},
+		"Specific": {
+			"Label": "{type} Configuration"
+		}
+	},
+	"Expertise": {
+		"Label[one]": "Skill Expertise",
+		"Label[other]": "Skill Expertise"
+	},
+	"Override": {
+		"Minimum": {
+			"Label": "Skill Check Minimum",
+			"GlobalHint": "When rolling any skill check, the result will never be lower than this value.",
+			"SpecificHint": "When rolling a check with this skill, the result will never be lower than this value.",
+			"Proficiency": {
+				"Label": "Skill Check Proficiency Floor",
+				"Hint": "Minimum proficiency multiplier for all skill checks."
+			}
+		}
+	},
+	"Proficiency": {
+		"Label[one]": "Skill Proficiency",
+		"Label[other]": "Skill Proficiencies"
+	}
+},
 
-"Target.Label[one]": "Target",
-"Target.Label[other]": "Targets",
-"Target.Conditions.Label": "Required Conditions",
-"Target.Conditions.Hint": "Creatures must have one of these conditions to be targeted.",
-"Target.Count.Label": "Target Count",
-"Target.Count.Hint": "Number of targets that can be affected.",
-"Target.Custom.Label": "Custom Text",
-"Target.Custom.Hint": "Custom text that will be used in place of auto-generated target description.",
-"Target.Description.Conditions": "{count} {conditions} {target}",
-"Target.Description.None": "no targets",
-"Target.Description.Simple": "{count} {target}",
-"Target.Description.Swarm": "{description} in the swarm's space",
+"EH.Target": {
+	"Label[one]": "Target",
+	"Label[other]": "Targets",
+	"Conditions": {
+		"Label": "Required Conditions",
+		"Hint": "Creatures must have one of these conditions to be targeted."
+	},
+	"Count": {
+		"Label": "Target Count",
+		"Hint": "Number of targets that can be affected."
+	},
+	"Custom": {
+		"Label": "Custom Text",
+		"Hint": "Custom text that will be used in place of auto-generated target description."
+	},
+	"Description": {
+		"Conditions": "{count} {conditions} {target}",
+		"None": "no targets",
+		"Simple": "{count} {target}",
+		"Swarm": "{description} in the swarm's space"
+	}
+},
 
-"Total": "Total",
+"EH.Total": "Total",
 
-"Traits.Label": "Traits",
+"EH.Traits": {
+	"Label": "Traits"
+},
 
-"Uses.Label": "Limited Uses",
-"Uses.AvailableGeneric.Label": "{available}/{max} uses",
-"Uses.AvailableSpecific.Label": "{available}/{max} per {period}",
-"Uses.Max.Label": "Max Uses",
-"Uses.Max.Hint": "Formula indicating how many times this item can be used during a period.",
-"Uses.Spent.Label": "Spent Uses",
-"Uses.Recovery.Formula.Label": "Amount Recovered",
-"Uses.Recovery.Mode.Label": "Recovery Mode",
-"Uses.Recovery.Mode.Recover.Label": "Regain Uses",
-"Uses.Recovery.Mode.Recover.Hint": "Uses will be reset back to maximum during the recovery period.",
-"Uses.Recovery.Mode.Reset.Label": "Reset Uses",
-"Uses.Recovery.Mode.Reset.Hint": "Any uses will be reset to zero during the recovery period.",
-"Uses.Recovery.Period.Label": "Recovery Period",
-"Uses.Recovery.Period.Hint": "Time over which this item's uses will be restored.",
-"Uses.Recovery.Period.Encounter.Label": "Encounter",
-"Uses.Recovery.Period.Round.Label": "Round",
-"Uses.Recovery.Period.Turn.Label": "Turn",
-"Uses.Warning.Insufficient": "No uses of this item remaining.",
+"EH.Uses": {
+	"Label": "Limited Uses",
+	"AvailableGeneric": {
+		"Label": "{available}/{max} uses"
+	},
+	"AvailableSpecific": {
+		"Label": "{available}/{max} per {period}"
+	},
+	"Max": {
+		"Label": "Max Uses",
+		"Hint": "Formula indicating how many times this item can be used during a period."
+	},
+	"Spent": {
+		"Label": "Spent Uses"
+	},
+	"Recovery": {
+		"Formula": {
+			"Label": "Amount Recovered"
+		},
+		"Mode": {
+			"Label": "Recovery Mode",
+			"Recover": {
+				"Label": "Regain Uses",
+				"Hint": "Uses will be reset back to maximum during the recovery period."
+			},
+			"Reset": {
+				"Label": "Reset Uses",
+				"Hint": "Any uses will be reset to zero during the recovery period."
+			}
+		},
+		"Period": {
+			"Label": "Recovery Period",
+			"Hint": "Time over which this item's uses will be restored.",
+			"Encounter": {
+				"Label": "Encounter"
+			},
+			"Round": {
+				"Label": "Round"
+			},
+			"Turn": {
+				"Label": "Turn"
+			}
+		}
+	},
+	"Warning": {
+		"Insufficient": "No uses of this item remaining."
+	}
+},
 
-"Vehicle": {
+"EH.Vehicle": {
 	"Cargo": "Cargo",
-	"Action.Exit": "Hop Out",
-	"Action.MakeDriver": "Take the Wheel",
-	"Action.MakePassenger": "Get in the Back",
-	"Bonus.LabelGeneric[one]": "Vehicle Bonus",
-	"Bonus.LabelGeneric[other]": "Vehicle Bonuses",
-	"Bonus.LabelSpecific[one]": "Vehicle {type} Bonus",
-	"Bonus.LabelSpecific[other]": "Vehicle {type} Bonuses",
-	"Bonus.Hint": "Bonuses applied to the vehicle from this driver.",
-	"Category.Label": "Category",
-	"Modifications.Label": "Modifications",
-	"People.Label[one]": "Person",
-	"People.Label[other]": "People",
-	"People.Hint": "People currently in this vehicle with additional context information.",
-	"People.Driver[one]": "Driver",
-	"People.Driver[other]": "Drivers",
-	"People.Driver.None": "No Driver",
-	"People.Passenger[one]": "Passenger",
-	"People.Passenger[other]": "Passengers",
-	"Type.Label": "Vehicle Type",
-	"Type.DetailedLabel": "{size} {category} {type}",
-	"Category.Civilian.Label": "Civilian",
-	"Category.Commercial.Label": "Commercial",
-	"Category.LawEnforcement.Label": "Law Enforcement",
-	"Category.Military.Label": "Military",
-	"Error.OnlyPeople": "Only people can be added to vehicles.",
-	"Error.NoPacks": "Actors within compendiums cannot be added to a vehicle.",
-	"Error.NoSpace": "This vehicle can only hold {number} {people}.",
-	"Prompt.Message": "This person is already in another vehicle, {other}. Would you like to move them over to {this}.",
-	"Prompt.Move": "Move to {vehicle}",
-	"Prompt.Stay": "Stay in {vehicle}",
-	"Prompt.Title": "Confirm Vehicle Switch",
+	"Action": {
+		"Exit": "Hop Out",
+		"MakeDriver": "Take the Wheel",
+		"MakePassenger": "Get in the Back"
+	},
+	"Bonus": {
+		"LabelGeneric[one]": "Vehicle Bonus",
+		"LabelGeneric[other]": "Vehicle Bonuses",
+		"LabelSpecific[one]": "Vehicle {type} Bonus",
+		"LabelSpecific[other]": "Vehicle {type} Bonuses",
+		"Hint": "Bonuses applied to the vehicle from this driver."
+	},
+	"Category": {
+		"Label": "Category",
+		"Civilian": {
+			"Label": "Civilian"
+		},
+		"Commercial": {
+			"Label": "Commercial"
+		},
+		"LawEnforcement": {
+			"Label": "Law Enforcement"
+		},
+		"Military": {
+			"Label": "Military"
+		}
+	},
+	"Modifications": {
+		"Label": "Modifications"
+	},
+	"People": {
+		"Label[one]": "Person",
+		"Label[other]": "People",
+		"Hint": "People currently in this vehicle with additional context information.",
+		"Driver[one]": "Driver",
+		"Driver[other]": "Drivers",
+		"Driver": {
+			"None": "No Driver"
+		},
+		"Passenger[one]": "Passenger",
+		"Passenger[other]": "Passengers"
+	},
+	"Type": {
+		"Label": "Vehicle Type",
+		"DetailedLabel": "{size} {category} {type}",
+		"Air": {
+			"Label": "Aircraft"
+		},
+		"Land": {
+			"Label": "Land Vehicle"
+		},
+		"Space": {
+			"Label": "Spacecraft"
+		},
+		"Water": {
+			"Label": "Boat"
+		}
+	},
+	"Error": {
+		"OnlyPeople": "Only people can be added to vehicles.",
+		"NoPacks": "Actors within compendiums cannot be added to a vehicle.",
+		"NoSpace": "This vehicle can only hold {number} {people}."
+	},
+	"Prompt": {
+		"Message": "This person is already in another vehicle, {other}. Would you like to move them over to {this}.",
+		"Move": "Move to {vehicle}",
+		"Stay": "Stay in {vehicle}",
+		"Title": "Confirm Vehicle Switch"
+	},
 	"Property": {
 		"Label": "Vehicle Properties",
-		"AccidentProne.Label": "Accident Prone",
-		"AccidentProne.Hint": "Checks made to avoid crashing with this vehicle have disadvantage. It crashes automatically if it has no driver.",
-		"Airspeed.Label": "Airspeed",
-		"Airspeed.Hint": "This vehicle travels at high speeds, easily outpacing any land vehicle.",
-		"AllTerrain.Label": "All-Terrain",
-		"AllTerrain.Hint": "This vehicle does not suffer disadvantage when driving off-road or in other harsh conditions.",
-		"Bulletproof.Label": "Bulletproof",
-		"Bulletproof.Hint": "The vehicle’s tires and windows are bulletproof and have an AV of 2.",
-		"Enclosed.Label": "Enclosed",
-		"Enclosed.Hint": "The vehicle is encased in armor. Passengers always have total cover if they are inside the vehicle.",
-		"Exposed.Label": "Exposed",
-		"Exposed.Hint": "This vehicle leaves its driver and passengers exposed to the elements.",
-		"ExtraWheels.Label": "Extra Wheels",
-		"ExtraWheels.Hint": "This vehicle has more wheels than usual. It does not suffer the Blown Tires condition until three or more tires have been destroyed.",
-		"Gliding.Label": "Gliding",
-		"Gliding.Hint": "This vehicle cannot fly under its own power and cannot gain altitude without the help of the wind.",
-		"MusclePowered.Label": "Muscle-Powered",
-		"MusclePowered.Hint": "This vehicle is powered by pedals or a similar mechanism. Add the driver’s Strength modifier to the vehicle’s. The driver uses Strength (Athletics) in place of Dexterity (Vehicles) when making checks to operate this vehicle.",
-		"Railed.Label": "Railed",
-		"Railed.Hint": "Railed vehicles such as trains travel using steel wheels on steel rails. They cannot suffer the Blown Tires condition.",
+		"AccidentProne": {
+			"Label": "Accident Prone",
+			"Hint": "Checks made to avoid crashing with this vehicle have disadvantage. It crashes automatically if it has no driver."
+		},
+		"Airspeed": {
+			"Label": "Airspeed",
+			"Hint": "This vehicle travels at high speeds, easily outpacing any land vehicle."
+		},
+		"AllTerrain": {
+			"Label": "All-Terrain",
+			"Hint": "This vehicle does not suffer disadvantage when driving off-road or in other harsh conditions."
+		},
+		"Bulletproof": {
+			"Label": "Bulletproof",
+			"Hint": "The vehicle’s tires and windows are bulletproof and have an AV of 2."
+		},
+		"Enclosed": {
+			"Label": "Enclosed",
+			"Hint": "The vehicle is encased in armor. Passengers always have total cover if they are inside the vehicle."
+		},
+		"Exposed": {
+			"Label": "Exposed",
+			"Hint": "This vehicle leaves its driver and passengers exposed to the elements."
+		},
+		"ExtraWheels": {
+			"Label": "Extra Wheels",
+			"Hint": "This vehicle has more wheels than usual. It does not suffer the Blown Tires condition until three or more tires have been destroyed."
+		},
+		"Gliding": {
+			"Label": "Gliding",
+			"Hint": "This vehicle cannot fly under its own power and cannot gain altitude without the help of the wind."
+		},
+		"MusclePowered": {
+			"Label": "Muscle-Powered",
+			"Hint": "This vehicle is powered by pedals or a similar mechanism. Add the driver’s Strength modifier to the vehicle’s. The driver uses Strength (Athletics) in place of Dexterity (Vehicles) when making checks to operate this vehicle."
+		},
+		"Railed": {
+			"Label": "Railed",
+			"Hint": "Railed vehicles such as trains travel using steel wheels on steel rails. They cannot suffer the Blown Tires condition."
+		},
 		"Spaceflight": {
 			"Label": "Spaceflight",
 			"Hint": "This vehicle can travel between planets unaided. Its top speed represents only its speed during non-space travel."
 		},
-		"Stable.Label": "Stable",
-		"Stable.Hint": "Attacks made while this vehicle is in motion do not suffer disadvantage due to that movement.",
-		"Special.Label": "Special",
-		"Special.Hint": "This vehicle has additional detailed rules listed in its description.",
-		"Tracked.Label": "Tracked",
-		"Tracked.Hint": "Tracked vehicles drive on large metal belts sitting on metal wheels. They cannot suffer the Blown Tires condition."
+		"Stable": {
+			"Label": "Stable",
+			"Hint": "Attacks made while this vehicle is in motion do not suffer disadvantage due to that movement."
+		},
+		"Special": {
+			"Label": "Special",
+			"Hint": "This vehicle has additional detailed rules listed in its description."
+		},
+		"Tracked": {
+			"Label": "Tracked",
+			"Hint": "Tracked vehicles drive on large metal belts sitting on metal wheels. They cannot suffer the Blown Tires condition."
+		}
 	},
-	"Roll.CrashCheck.Label": "Crash Check",
-	"Roll.DamageSave.Label": "Damage Save",
-	"Roll.ManeuverabilityContest.Label": "Maneuverability Contest",
-	"Roll.PassengerDamage.Label": "Passenger Damage",
-	"Roll.SpeedContest.Label": "Speed Contest",
-	"Roll.StuntCheck.Label": "Stunt Check",
-	"Roll.VehicleDamage.Label": "Vehicle Damage",
-	"Size.Label": "Vehicle Size",
-	"Trait.ArmorValue.Hint": "Like any object, a vehicle’s Armor Value determines what weapons can damage it. A vehicle’s windows and tires have their own AV of 1 by default.",
-	"Trait.ArmorValue.Body.Label": "Body AV",
-	"Trait.ArmorValue.WindowsTires.Label": "Windows & Tires AV",
-	"Trait.Passengers.Label": "Passengers",
-	"Trait.Passengers.Abbreviation": "PAX",
-	"Trait.Passengers.Hint": "The number of people who can comfortably fit in the vehicle, including the driver.",
-	"Trait.SpeedCategory.Label": "Speed Category",
-	"Trait.SpeedCategory.Hint": "Rough speed at which the vehicle is moving. Determines defense, certain DCs, and crash damage.",
-	"Trait.SpeedCategory.Stopped.Label": "Stopped",
-	"Trait.SpeedCategory.Stopped.Hint": "0 mph",
-	"Trait.SpeedCategory.Low.Label": "Low",
-	"Trait.SpeedCategory.Low.Hint": "Under 30 mph",
-	"Trait.SpeedCategory.Mid.Label": "Mid",
-	"Trait.SpeedCategory.Mid.Hint": "30–45 mph",
-	"Trait.SpeedCategory.High.Label": "High",
-	"Trait.SpeedCategory.High.Hint": "50–75 mph",
-	"Trait.SpeedCategory.Extreme.Label": "Extreme",
-	"Trait.SpeedCategory.Extreme.Hint": "80+ mph",
-	"Trait.SpeedCategory.Airspeed.Label": "Airspeed",
-	"Trait.SpeedCategory.Airspeed.Hint": "250+ mph",
-	"Trait.SpeedCategory.Airspeed.Death": "Death",
-	"Trait.SpeedCategory.Airspeed.Destruction": "Automatic destruction",
-	"Trait.TopSpeed.Label": "Top Speed",
-	"Trait.TopSpeed.Hint": "A vehicle’s top speed is included for comparison purposes but is not used in the game mechanics for chases or combat.",
-	"Type.Air.Label": "Aircraft",
-	"Type.Land.Label": "Land Vehicle",
-	"Type.Space.Label": "Spacecraft",
-	"Type.Water.Label": "Boat"
+	"Roll": {
+		"CrashCheck": {
+			"Label": "Crash Check"
+		},
+		"DamageSave": {
+			"Label": "Damage Save"
+		},
+		"ManeuverabilityContest": {
+			"Label": "Maneuverability Contest"
+		},
+		"PassengerDamage": {
+			"Label": "Passenger Damage"
+		},
+		"SpeedContest": {
+			"Label": "Speed Contest"
+		},
+		"StuntCheck": {
+			"Label": "Stunt Check"
+		},
+		"VehicleDamage": {
+			"Label": "Vehicle Damage"
+		}
+	},
+	"Size": {
+		"Label": "Vehicle Size"
+	},
+	"Trait": {
+		"ArmorValue": {
+			"Hint": "Like any object, a vehicle’s Armor Value determines what weapons can damage it. A vehicle’s windows and tires have their own AV of 1 by default.",
+			"Body": {
+				"Label": "Body AV"
+			},
+			"WindowsTires": {
+				"Label": "Windows & Tires AV"
+			}
+		},
+		"Passengers": {
+			"Label": "Passengers",
+			"Abbreviation": "PAX",
+			"Hint": "The number of people who can comfortably fit in the vehicle, including the driver."
+		},
+		"SpeedCategory": {
+			"Label": "Speed Category",
+			"Hint": "Rough speed at which the vehicle is moving. Determines defense, certain DCs, and crash damage.",
+			"Stopped": {
+				"Label": "Stopped",
+				"Hint": "0 mph"
+			},
+			"Low": {
+				"Label": "Low",
+				"Hint": "Under 30 mph"
+			},
+			"Mid": {
+				"Label": "Mid",
+				"Hint": "30–45 mph"
+			},
+			"High": {
+				"Label": "High",
+				"Hint": "50–75 mph"
+			},
+			"Extreme": {
+				"Label": "Extreme",
+				"Hint": "80+ mph"
+			},
+			"Airspeed": {
+				"Label": "Airspeed",
+				"Hint": "250+ mph",
+				"Death": "Death",
+				"Destruction": "Automatic destruction"
+			}
+		},
+		"TopSpeed": {
+			"Label": "Top Speed",
+			"Hint": "A vehicle’s top speed is included for comparison purposes but is not used in the game mechanics for chases or combat."
+		}
+	}
 },
 
-"VehicleModification.Ability.Label": "Ability Modifications",
-"VehicleModification.Ability.Hint": "Changes to a vehicle's ability modifiers from this modification.",
-"VehicleModification.ArmorValue.Label": "Armor Value Upgrade",
-"VehicleModification.ArmorValue.Hint": "The vehicle's body AV will be increased to this value.",
+"EH.VehicleModification": {
+	"Ability": {
+		"Label": "Ability Modifications",
+		"Hint": "Changes to a vehicle's ability modifiers from this modification."
+	},
+	"ArmorValue": {
+		"Label": "Armor Value Upgrade",
+		"Hint": "The vehicle's body AV will be increased to this value."
+	}
+},
 
-"Weapon": {
+"EH.Weapon": {
 	"Hit": "Hit",
 	"ToHit": "{mod} To Hit",
-	"Jammed.Label": "Jammed",
-	"Jammed.Hint": "Has this weapon been jammed?",
-	"Action.AttackGeneric": "Attack",
-	"Action.AttackSpecific": "{type} Attack",
-	"Action.Attack.Warning.Empty": "Weapon does not have enough rounds to fire.",
-	"Action.Attack.Warning.Jammed": "Weapon cannot be fired while it is jammed.",
-	"Action.Burst.Label": "Burst",
-	"Action.DamageGeneric.Label": "Damage",
-	"Action.DamageSourced.Label": "{source} Damage",
-	"Action.DamageSpecific.Label": "{type} Damage",
-	"Action.Melee.Label": "Melee",
-	"Action.Offhand.Label": "Off-hand",
-	"Action.Ranged.Label": "Ranged",
-	"Action.Reload.Label": "Reload",
-	"Action.Reload.MessageGeneric": "{actor} reloaded {number} of rounds into {weapon}.",
-	"Action.Reload.MessageSpecific": "{actor} reloaded {number} of {ammo} into {weapon}.",
-	"Action.Reload.Warning.Jammed": "Weapon cannot be reloaded while it is jammed.",
-	"Action.SuppressiveFire.Label": "Suppressive Fire",
-	"Action.SuppressiveFire.Message": "{actor} fills the battlefield with bullets from a {weapon}.",
-	"Action.SuppressiveFire.Place": "Place Suppressive Fire Template",
-	"Action.Thrown.Label": "Thrown",
-	"Action.ThrownExplosive.Label": "Thrown Explosive",
-	"Action.ClearJam.Label": "Clear Jam",
-	"Action.ClearJam.Message": "{actor} cleared a jam from {weapon}.",
-	"Bonus.Attack.Label": "Attack Bonus",
-	"Bonus.Attack.Hint": "Formula added to the default attack roll.",
-	"Bonus.Critical.Label": "Criticals",
-	"Bonus.Critical.Hint": "Extra dice added to base damage die and extra damage formula when critical damage is rolled. Both of these values are added after critical multiplication is performed.",
-	"Bonus.Critical.Damage.Label": "Critical Formula",
-	"Bonus.Critical.Damage.Hint": "Extra damage formula add when critical damage is rolled. This is added after normal critical multiplication is performed.",
-	"Bonus.Critical.Dice.Label": "Critical Dice",
-	"Bonus.Critical.Dice.Hint": "Number of additional dice of the base weapon damage dice added during a critical hit. This is added after normal critical multiplication is performed.",
-	"Bonus.Damage.Label": "Damage Bonus",
-	"Bonus.Damage.Hint": "Formula for additional damage applied.",
-	"Bonus.DC.Label": "DC Bonus",
-	"Bonus.DC.Hint": "Formula for a change to the auto-calculated DC.",
-	"Mode.Burst.Label": "Burst",
-	"Mode.Burst.NPCHint": "when using burst fire",
-	"Mode.Offhand.Label": "Off-hand",
-	"Mode.OneHanded.Label": "One-handed",
-	"Mode.SuppressiveFire.Label": "Suppressive Fire",
-	"Mode.Thrown.Label": "Thrown",
-	"Mode.TwoHanded.Label": "Two-handed",
-	"Mode.TwoHanded.NPCHint": "if wielded in two hands",
-	"Mode.Swarm.Label": "Swarm",
-	"Mode.Swarm.NPCHint": "if the swarm is at half its hit points or fewer",
-	"Overrides.Ability.Attack.Label": "Attack Ability",
-	"Overrides.Ability.Attack.Hint": "Force this weapon to use an alternate ability for attack rolls.",
-	"Overrides.Ability.Damage.Label": "Damage Ability",
-	"Overrides.Ability.Damage.Hint": "Force this weapon to use an alternate ability for damage rolls.",
-	"Overrides.Ability.Default": "Default",
-	"Overrides.Ability.None": "No Ability",
-	"Overrides.Critical.Threshold.Label": "Critical Threshold",
-	"Overrides.Critical.Threshold.GlobalHint": "Override the critical hit threshold for all weapons of the specified types. Currently supported keys are 'all', 'melee', and 'ranged'.",
-	"Overrides.Critical.Threshold.SpecificHint": "Override the critical hit threshold for this weapon. This is the number that must be rolled for this weapon to score a critical hit (so 18 will result in a critical if 18, 19, or 20 are rolled on the die).",
+	"Jammed": {
+		"Label": "Jammed",
+		"Hint": "Has this weapon been jammed?"
+	},
+	"Action": {
+		"AttackGeneric": "Attack",
+		"AttackSpecific": "{type} Attack",
+		"Attack": {
+			"Warning": {
+				"Empty": "Weapon does not have enough rounds to fire.",
+				"Jammed": "Weapon cannot be fired while it is jammed."
+			}
+		},
+		"Burst": {
+			"Label": "Burst"
+		},
+		"DamageGeneric": {
+			"Label": "Damage"
+		},
+		"DamageSourced": {
+			"Label": "{source} Damage"
+		},
+		"DamageSpecific": {
+			"Label": "{type} Damage"
+		},
+		"Melee": {
+			"Label": "Melee"
+		},
+		"Offhand": {
+			"Label": "Off-hand"
+		},
+		"Ranged": {
+			"Label": "Ranged"
+		},
+		"Reload": {
+			"Label": "Reload",
+			"MessageGeneric": "{actor} reloaded {number} of rounds into {weapon}.",
+			"MessageSpecific": "{actor} reloaded {number} of {ammo} into {weapon}.",
+			"Warning": {
+				"Jammed": "Weapon cannot be reloaded while it is jammed."
+			}
+		},
+		"SuppressiveFire": {
+			"Label": "Suppressive Fire",
+			"Message": "{actor} fills the battlefield with bullets from a {weapon}.",
+			"Place": "Place Suppressive Fire Template"
+		},
+		"Thrown": {
+			"Label": "Thrown"
+		},
+		"ThrownExplosive": {
+			"Label": "Thrown Explosive"
+		},
+		"ClearJam": {
+			"Label": "Clear Jam",
+			"Message": "{actor} cleared a jam from {weapon}."
+		}
+	},
+	"Bonus": {
+		"Attack": {
+			"Label": "Attack Bonus",
+			"Hint": "Formula added to the default attack roll."
+		},
+		"Critical": {
+			"Label": "Criticals",
+			"Hint": "Extra dice added to base damage die and extra damage formula when critical damage is rolled. Both of these values are added after critical multiplication is performed.",
+			"Damage": {
+				"Label": "Critical Formula",
+				"Hint": "Extra damage formula add when critical damage is rolled. This is added after normal critical multiplication is performed."
+			},
+			"Dice": {
+				"Label": "Critical Dice",
+				"Hint": "Number of additional dice of the base weapon damage dice added during a critical hit. This is added after normal critical multiplication is performed."
+			}
+		},
+		"Damage": {
+			"Label": "Damage Bonus",
+			"Hint": "Formula for additional damage applied."
+		},
+		"DC": {
+			"Label": "DC Bonus",
+			"Hint": "Formula for a change to the auto-calculated DC."
+		}
+	},
+	"Mode": {
+		"Burst": {
+			"Label": "Burst",
+			"NPCHint": "when using burst fire"
+		},
+		"Offhand": {
+			"Label": "Off-hand"
+		},
+		"OneHanded": {
+			"Label": "One-handed"
+		},
+		"SuppressiveFire": {
+			"Label": "Suppressive Fire"
+		},
+		"Thrown": {
+			"Label": "Thrown"
+		},
+		"TwoHanded": {
+			"Label": "Two-handed",
+			"NPCHint": "if wielded in two hands"
+		},
+		"Swarm": {
+			"Label": "Swarm",
+			"NPCHint": "if the swarm is at half its hit points or fewer"
+		}
+	},
+	"Overrides": {
+		"Ability": {
+			"Attack": {
+				"Label": "Attack Ability",
+				"Hint": "Force this weapon to use an alternate ability for attack rolls."
+			},
+			"Damage": {
+				"Label": "Damage Ability",
+				"Hint": "Force this weapon to use an alternate ability for damage rolls."
+			},
+			"Default": "Default",
+			"None": "No Ability"
+		},
+		"Critical": {
+			"Threshold": {
+				"Label": "Critical Threshold",
+				"GlobalHint": "Override the critical hit threshold for all weapons of the specified types. Currently supported keys are 'all', 'melee', and 'ranged'.",
+				"SpecificHint": "Override the critical hit threshold for this weapon. This is the number that must be rolled for this weapon to score a critical hit (so 18 will result in a critical if 18, 19, or 20 are rolled on the die)."
+			}
+		}
+	},
 	"Property": {
 		"Label": "Weapon Properties",
 		"Artillery": {
 			"Label": "Artillery",
 			"Hint": "Artillery weapons are simply too large to be used as personal weapons and must either be mounted on a vehicle, or on a stationary platform. They are used to fire very large projectiles at armored targets, or to deliver explosives across a battlefield. They cannot be used to target moving targets, unless the path of the target can be reliably predicted."
 		},
-		"Aquatic.Label": "Aquatic",
-		"Aquatic.Hint": "Aquatic ranged weapons can be used underwater without penalty.",
-		"Aquatic.NPCHint": "This attack can be used underwater normally.",
-		"Belt.Label": "Belt",
-		"Belt.Hint": "Belt-fed weapons have a chain of ammunition on a belt. The size of the belt can vary, but 100-round belts are a common length. You should note the size of the belt you are using.",
-		"Belt.Tag": "Belt Fed",
-		"Blinding.Label": "Blinding",
-		"Blinding.Hint": "Blinding weapons use chemical agents or intense light to temporarily blind opponents. In addition to the listed damage, the target must make a Constitution saving throw or be Blinded for 1 minute. A target can repeat the saving throw at the end of each of its turns, ending the effect on a successful save. Chemical blinding agents are ineffective against anyone wearing a full face covering or eye protection. Blinding weapons do not add an ability score bonus to their damage rolls.",
+		"Aquatic": {
+			"Label": "Aquatic",
+			"Hint": "Aquatic ranged weapons can be used underwater without penalty.",
+			"NPCHint": "This attack can be used underwater normally."
+		},
+		"Belt": {
+			"Label": "Belt",
+			"Hint": "Belt-fed weapons have a chain of ammunition on a belt. The size of the belt can vary, but 100-round belts are a common length. You should note the size of the belt you are using.",
+			"Tag": "Belt Fed"
+		},
+		"Blinding": {
+			"Label": "Blinding",
+			"Hint": "Blinding weapons use chemical agents or intense light to temporarily blind opponents. In addition to the listed damage, the target must make a Constitution saving throw or be Blinded for 1 minute. A target can repeat the saving throw at the end of each of its turns, ending the effect on a successful save. Chemical blinding agents are ineffective against anyone wearing a full face covering or eye protection. Blinding weapons do not add an ability score bonus to their damage rolls."
+		},
 		"Blunted": {
 			"Label": "Blunted",
 			"Hint": "This condition applies only to weapons and ammunition dealing slashing or piercing damage. Due to a lack of maintenance or malformation, blunted weapons deal half damage (the total damage dealt is halved) unless the wielder has Improvised Equipment proficiency. Remove this condition during a short rest by sharpening the weapon"
 		},
-		"Burst.Label": "Burst",
-		"Burst.Hint": "Weapons with the burst fire property can expend additional ammunition to deal increased damage. The number indicates the number of ammo rounds required. Using burst fire imposes disadvantage on the attack roll but adds one damage die if the attack succeeds. Combatants must declare they are using burst fire before they roll their attack. Burst fire cannot be used at long range.",
-		"Deafening.Label": "Deafening",
-		"Deafening.Hint": "Deafening weapons use intense noise to temporarily deafen opponents. In addition to any damage, the target must make a Constitution saving throw or gain the Deafened condition and suffer disadvantage on Dexterity ability checks due to temporary inner ear damage, both for 1 minute. A target can repeat the saving throw at the end of each of its turns, ending the effect on a successful save.",
+		"Burst": {
+			"Label": "Burst",
+			"Hint": "Weapons with the burst fire property can expend additional ammunition to deal increased damage. The number indicates the number of ammo rounds required. Using burst fire imposes disadvantage on the attack roll but adds one damage die if the attack succeeds. Combatants must declare they are using burst fire before they roll their attack. Burst fire cannot be used at long range."
+		},
+		"Deafening": {
+			"Label": "Deafening",
+			"Hint": "Deafening weapons use intense noise to temporarily deafen opponents. In addition to any damage, the target must make a Constitution saving throw or gain the Deafened condition and suffer disadvantage on Dexterity ability checks due to temporary inner ear damage, both for 1 minute. A target can repeat the saving throw at the end of each of its turns, ending the effect on a successful save."
+		},
 		"Dirty": {
 			"Label": "Dirty",
 			"Hint": "This condition only affects mechanical firearms. Dropping a weapon into mud, sand, loose soil, or other similar substances can make a weapon dirty. A dirty weapon temporarily has the Unreliable property, causing it to jam on a critical miss. Cleaning the weapon during a short rest removes this condition."
 		},
-		"Disguised.Label": "Disguised",
-		"Disguised.Hint": "This weapon is designed to look like a mundane item until it is readied for use. It can be identified only by a hands-on inspection.",
-		"Finesse.Label": "Finesse",
-		"Finesse.Hint": "When you use this weapon to make a melee attack, you can choose to use your Dexterity modifier for the attack and damage rolls instead of Strength.",
+		"Disguised": {
+			"Label": "Disguised",
+			"Hint": "This weapon is designed to look like a mundane item until it is readied for use. It can be identified only by a hands-on inspection."
+		},
+		"Finesse": {
+			"Label": "Finesse",
+			"Hint": "When you use this weapon to make a melee attack, you can choose to use your Dexterity modifier for the attack and damage rolls instead of Strength."
+		},
 		"Fragile": {
 			"Label": "Fragile",
 			"Hint": "This condition can affect any weapon that has been mistreated or not maintained over a significant period of time, and causes the weapon to break on a critical miss. Remove this condition during a short rest with a successful DC 15 Intelligence (Mechanics) check."
 		},
-		"FullAuto.Label": "Full-Auto",
-		"FullAuto.Hint": "A full-auto mechanism cocks the gun and loads a new round from the magazine each time a round is fired. The gun fires continuously as long as the trigger is held down. This allows you to use the Suppressive Fire action.",
-		"Grenade.Label": "Grenade",
-		"Grenade.Hint": "Grenades are explosives designed to be charged and then quickly thrown or launched. They require one hand to throw, and a free hand to arm them.",
-		"Heavy.Label": "Heavy",
-		"Heavy.Hint": "Heavy weapons are especially large and difficult to wield. Anyone with less than 15 Strength has disadvantage on attack rolls while wielding a heavy weapon. Heavy firearms can be fired without this penalty if they are fired from a stationary position, braced on the ground or a sturdy platform.",
-		"Illuminating.Label": "Illuminating",
-		"Illuminating.Hint": "This explosive creates a field of bright light within its radius. It is not blinding. It provides illumination for up to 30 minutes.",
-		"Improvised.Label": "Improvised",
-		"Improvised.Hint": "These objects are not well suited to be used as weapons. Wielders suffer disadvantage on attack rolls with these weapons unless they have the Improvised Equipment proficiency.",
-		"Indirect.Label": "Indirect",
-		"Indirect.Hint": " Indirect weapons are almost always some kind of thrown explosive.",
+		"FullAuto": {
+			"Label": "Full-Auto",
+			"Hint": "A full-auto mechanism cocks the gun and loads a new round from the magazine each time a round is fired. The gun fires continuously as long as the trigger is held down. This allows you to use the Suppressive Fire action."
+		},
+		"Grenade": {
+			"Label": "Grenade",
+			"Hint": "Grenades are explosives designed to be charged and then quickly thrown or launched. They require one hand to throw, and a free hand to arm them."
+		},
+		"Heavy": {
+			"Label": "Heavy",
+			"Hint": "Heavy weapons are especially large and difficult to wield. Anyone with less than 15 Strength has disadvantage on attack rolls while wielding a heavy weapon. Heavy firearms can be fired without this penalty if they are fired from a stationary position, braced on the ground or a sturdy platform."
+		},
+		"Illuminating": {
+			"Label": "Illuminating",
+			"Hint": "This explosive creates a field of bright light within its radius. It is not blinding. It provides illumination for up to 30 minutes."
+		},
+		"Improvised": {
+			"Label": "Improvised",
+			"Hint": "These objects are not well suited to be used as weapons. Wielders suffer disadvantage on attack rolls with these weapons unless they have the Improvised Equipment proficiency."
+		},
+		"Indirect": {
+			"Label": "Indirect",
+			"Hint": " Indirect weapons are almost always some kind of thrown explosive."
+		},
 		"Integrated": {
 			"Label": "Integrated",
 			"Hint": "A weapon with this quality is always mounted on a vehicle, cart, or fixed post. It cannot be operated and/or moved by a single person."
@@ -1609,55 +2575,93 @@
 			"Label": "Lancing",
 			"Hint": "A lancing weapon is intended for use from horseback as part of a charging attack. If used by a rider mounted on or riding in a vehicle, a successful hit adds one dice of damage so long as the mount or vehicle moves 10 feet or more during their turn."
 		},
-		"Light.Label": "Light",
-		"Light.Hint": " Light weapons are small enough to effectively wield one in each hand.",
-		"Loud.Label": "Loud",
-		"Loud.Hint": "Loud weapons can be heard up to 2 miles away and are easily detected through building walls.",
+		"Light": {
+			"Label": "Light",
+			"Hint": " Light weapons are small enough to effectively wield one in each hand."
+		},
+		"Loud": {
+			"Label": "Loud",
+			"Hint": "Loud weapons can be heard up to 2 miles away and are easily detected through building walls."
+		},
 		"Masterwork": {
 			"Label": "Masterwork",
 			"Hint": "Masterwork armor ignores the Awkward property. Melee Masterwork weapons add +1 to damage. Ranged Masterwork weapons do not have disadvantage at long range. Add +1 to the price level of any masterwork armor or weapon."
 		},
-		"Reach.Label": "Reach",
-		"Reach.Hint": "This is the distance at which you can strike an opponent with a melee weapon. Unless otherwise noted, melee weapons have a reach of 5 feet.",
-		"Restricted.Label": "Restricted",
-		"Restricted.Hint": "This equipment is limited to police and military in most or all of the US, and in many other jurisdictions worldwide. Even where it isn’t properly illegal, when in the hands of anyone but known authority figures, it raises eyebrows and draws attention.",
-		"Returning.Label": "Returning",
-		"Returning.Hint": "A returning weapon is designed to return to the person throwing it if the attack misses its target. If the thrower rolls a critical miss, the weapon does not return.",
+		"Reach": {
+			"Label": "Reach",
+			"Hint": "This is the distance at which you can strike an opponent with a melee weapon. Unless otherwise noted, melee weapons have a reach of 5 feet."
+		},
+		"Restricted": {
+			"Label": "Restricted",
+			"Hint": "This equipment is limited to police and military in most or all of the US, and in many other jurisdictions worldwide. Even where it isn’t properly illegal, when in the hands of anyone but known authority figures, it raises eyebrows and draws attention."
+		},
+		"Returning": {
+			"Label": "Returning",
+			"Hint": "A returning weapon is designed to return to the person throwing it if the attack misses its target. If the thrower rolls a critical miss, the weapon does not return."
+		},
 		"SawedOff": {
 			"Label": "Sawed Off",
 			"Hint": "This condition represents a long-barrel firearm having its barrel cut down to a short length. Once done, the condition is permanent. Quarter the range and long range of the firearm, but reduce the Bulk of the weapon by 1 (to a minimum of 1)."
 		},
-		"SemiAuto.Label": "Semi-Auto",
-		"SemiAuto.Hint": "A semi-auto mechanism cocks the gun and loads a new round from the magazine each time a round is fired. Each pull of the trigger fires one bullet.",
+		"SemiAuto": {
+			"Label": "Semi-Auto",
+			"Hint": "A semi-auto mechanism cocks the gun and loads a new round from the magazine each time a round is fired. Each pull of the trigger fires one bullet."
+		},
 		"Shoddy": {
 			"Label": "Shoddy",
 			"Hint": "A shoddy weapon is one with manufacturing defects, or that has permanent damage from use and no longer works well. Bent blades, damaged sights, and warped wood are all potential sources of the shoddy condition. Shoddy weapons impose disadvantage on all attack rolls made with them. Shoddy weapons cannot be repaired."
 		},
-		"Shot.Label": "Shot",
-		"Shot.Hint": "Shotguns typically fire buckshot rounds that make it easier to hit targets at close range. This weapon has advantage on attack rolls at ranges up to 30 feet.",
-		"Shot.NPCHint": "This attack is made at advantage against targets within 30 feet.",
-		"SlowFiring.Label": "Slow-Firing",
-		"SlowFiring.Hint": "A slow-firing weapon takes significant time to prepare each shot. As a result, you cannot attack more than once during your turn with a slow-firing weapon, even if you have the Advanced Combat Training talent.",
-		"Special.Label": "Special",
-		"Special.Hint": "This weapon has additional detailed rules listed in its description.",
-		"Stationary.Label": "Stationary",
-		"Stationary.Hint": "Guns with this property are too large to effectively fire while held. They are fired on the ground, from a platform, or mounted to a vehicle.",
-		"Stunning.Label": "Stunning",
-		"Stunning.Hint": "Stunning weapons use electrical pulses to temporarily incapacitate opponents. In addition to any electrical damage, a Medium size or smaller target must make a Constitution saving throw or gain the Stunned condition until the end of their next turn. Stunning weapons do not add an ability score bonus to their damage rolls.",
-		"Swarm.Label": "Swarm",
-		"Swarm.Hint": "",
-		"Thrown.Label": "Thrown",
-		"Thrown.Hint": "Melee weapons that have the thrown property can be used either for a melee attack or thrown at an opponent as a ranged attack. If thrown, they use the same ability modifier for attack and damage as for a melee attack. Once thrown, it must be recovered before it can be thrown again.",
-		"TwoHanded.Label": "Two-Handed",
-		"TwoHanded.Hint": "These weapons require two hands to attack with, but they can be carried in one hand.",
-		"Unreliable.Label": "Unreliable",
-		"Unreliable.Hint": "Firearms with the unreliable property jam on a critical miss. A jammed gun cannot fire until an action is used to clear the jam.",
-		"Versatile.Label": "Versatile",
-		"Versatile.Hint": "These melee weapons can be used in one hand or two. When used with two hands, their base damage is one dice step higher."
+		"Shot": {
+			"Label": "Shot",
+			"Hint": "Shotguns typically fire buckshot rounds that make it easier to hit targets at close range. This weapon has advantage on attack rolls at ranges up to 30 feet.",
+			"NPCHint": "This attack is made at advantage against targets within 30 feet."
+		},
+		"SlowFiring": {
+			"Label": "Slow-Firing",
+			"Hint": "A slow-firing weapon takes significant time to prepare each shot. As a result, you cannot attack more than once during your turn with a slow-firing weapon, even if you have the Advanced Combat Training talent."
+		},
+		"Special": {
+			"Label": "Special",
+			"Hint": "This weapon has additional detailed rules listed in its description."
+		},
+		"Stationary": {
+			"Label": "Stationary",
+			"Hint": "Guns with this property are too large to effectively fire while held. They are fired on the ground, from a platform, or mounted to a vehicle."
+		},
+		"Stunning": {
+			"Label": "Stunning",
+			"Hint": "Stunning weapons use electrical pulses to temporarily incapacitate opponents. In addition to any electrical damage, a Medium size or smaller target must make a Constitution saving throw or gain the Stunned condition until the end of their next turn. Stunning weapons do not add an ability score bonus to their damage rolls."
+		},
+		"Swarm": {
+			"Label": "Swarm",
+			"Hint": ""
+		},
+		"Thrown": {
+			"Label": "Thrown",
+			"Hint": "Melee weapons that have the thrown property can be used either for a melee attack or thrown at an opponent as a ranged attack. If thrown, they use the same ability modifier for attack and damage as for a melee attack. Once thrown, it must be recovered before it can be thrown again."
+		},
+		"TwoHanded": {
+			"Label": "Two-Handed",
+			"Hint": "These weapons require two hands to attack with, but they can be carried in one hand."
+		},
+		"Unreliable": {
+			"Label": "Unreliable",
+			"Hint": "Firearms with the unreliable property jam on a critical miss. A jammed gun cannot fire until an action is used to clear the jam."
+		},
+		"Versatile": {
+			"Label": "Versatile",
+			"Hint": "These melee weapons can be used in one hand or two. When used with two hands, their base damage is one dice step higher."
+		}
 	},
-	"Type.Label": "Weapon Type",
-	"Type.Melee.Label": "Melee",
-	"Type.Ranged.Label": "Ranged"
+	"Type": {
+		"Label": "Weapon Type",
+		"Melee": {
+			"Label": "Melee"
+		},
+		"Ranged": {
+			"Label": "Ranged"
+		}
+	}
 }
 
-} }
+}
