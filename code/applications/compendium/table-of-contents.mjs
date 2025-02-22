@@ -29,21 +29,46 @@ export default class TableOfContentsCompendium extends Compendium {
 	async getData(options={}) {
 		const context = await super.getData(options);
 		const documents = await this.collection.getDocuments();
-		context.parts = [{ chapters: [], sort: 0 }];
+		context.parts = [{ chapters: [], sort: 0, order: 0 }];
+		const chapters = new Map();
+		const parts = foundry.utils.getProperty(this.collection.metadata, "flags.everyday-heroes.parts") ?? {};
+		for ( let [order, name] of Object.entries(parts) ) {
+			order = Number(order);
+			context.parts.push({
+				name,
+				chapters: [],
+				sort: 10000 + (Number(order) * 100),
+				order
+			});
+		}
 		for ( const entry of documents ) {
 			const type = entry.getFlag("everyday-heroes", "type");
 			if ( ["part", "appendix"].includes(type) ) {
+				const order = entry.getFlag("everyday-heroes", "order");
 				context.parts.push({
 					id: entry.id,
 					name: entry.name,
-					chapters: this.buildChapters(entry),
-					sort: (type === "part" ? 10000 : 20000) + ((entry.getFlag("everyday-heroes", "order") ?? 0) * 100)
+					chapters: [],
+					sort: (type === "part" ? 10000 : 20000) + ((order ?? 0) * 100),
+					order
 				});
+				console.log(entry, order);
+				if ( !chapters.has(order) ) chapters.set(order, []);
+				chapters.get(order).push(...this.buildChapters(entry));
+			} else if ( type === "chapter" ) {
+				const part = entry.getFlag("everyday-heroes", "part");
+				const order = entry.getFlag("everyday-heroes", "order") ?? 0;
+				if ( !chapters.has(part) ) chapters.set(part, []);
+				chapters.get(part).push(...this.buildChapters(entry, 10000000 * order));
 			} else if ( type === "credits" ) {
 				context.parts[0].chapters = this.buildChapters(entry).concat(context.parts[0].chapters);
 			} else if ( type === "introduction" ) {
-				context.parts[0].chapters = context.parts[0].chapters.concat(this.buildChapters(entry));
+				context.parts[0].chapters = context.parts[0].chapters.concat(this.buildChapters(entry, 10000000));
 			}
+		}
+		for ( const part of context.parts ) {
+			part.chapters = part.chapters.concat(chapters.get(part.order) ?? []);
+			part.chapters.sort((lhs, rhs) => lhs.sort - rhs.sort);
 		}
 		context.parts = context.parts.sort((lhs, rhs) => lhs.sort - rhs.sort);
 		return context;
@@ -54,9 +79,10 @@ export default class TableOfContentsCompendium extends Compendium {
 	/**
 	 * Construct chapters for a section.
 	 * @param {JournalEntry} entry - Journal entry for this part.
+	 * @param {number} [sortModifier=0] - Amount to add to sorting value.
 	 * @returns {object}
 	 */
-	buildChapters(entry) {
+	buildChapters(entry, sortModifier=0) {
 		const chapters = [];
 		for ( const page of entry.pages.contents.sort((lhs, rhs) => lhs.sort - rhs.sort) ) {
 			const toc = page.getFlag("everyday-heroes", "toc");
@@ -66,7 +92,8 @@ export default class TableOfContentsCompendium extends Compendium {
 				pageId: page.id,
 				name: page.getFlag("everyday-heroes", "toc-name") ?? page.name,
 				level: (foundry.utils.getType(toc) === "number" ? Number(toc) : page.title.level) + 2,
-				style: page.getFlag("everyday-heroes", "toc-style")
+				style: page.getFlag("everyday-heroes", "toc-style"),
+				sort: page.sort + sortModifier
 			});
 		}
 		return chapters;

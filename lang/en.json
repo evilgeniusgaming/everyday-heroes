@@ -2064,6 +2064,10 @@
 	}
 },
 
+"EH.TableOfContents": {
+	"Title": "Table of Contents"
+},
+
 "EH.Target": {
 	"Label[one]": "Target",
 	"Label[other]": "Targets",
