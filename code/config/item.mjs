@@ -736,6 +736,9 @@ export const featCategories = {
 	immortal: {
 		label: "EH.Feat.Category.Immortal.Label",
 		type: "minor"
+	},
+	leveling: {
+		label: "EH.Feat.Category.Leveling.Label"
 	}
 };
 preLocalize("featCategories", { key: "label" });
