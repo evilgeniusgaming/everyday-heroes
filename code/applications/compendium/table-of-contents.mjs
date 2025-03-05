@@ -52,7 +52,6 @@ export default class TableOfContentsCompendium extends Compendium {
 					sort: (type === "part" ? 10000 : 20000) + ((order ?? 0) * 100),
 					order
 				});
-				console.log(entry, order);
 				if ( !chapters.has(order) ) chapters.set(order, []);
 				chapters.get(order).push(...this.buildChapters(entry));
 			} else if ( type === "chapter" ) {

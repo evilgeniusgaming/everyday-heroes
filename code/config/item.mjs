@@ -96,6 +96,10 @@ export const abilityScoreAssignment = {
 		dropHighest: {
 			label: "EH.Advancement.AbilityScores.Rolling.Formula.DropHighest",
 			formula: "4d6dh"
+		},
+		small: {
+			label: "EH.Advancement.AbilityScores.Rolling.Formula.Small",
+			formula: "2d6"
 		}
 	}
 };

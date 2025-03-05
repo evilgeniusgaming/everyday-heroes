@@ -302,7 +302,8 @@
 				"Label": "Formula",
 				"DropHighest": "4d6 (drop the highest)",
 				"DropLowest": "4d6 (drop the lowest)",
-				"Flat": "3d6"
+				"Flat": "3d6",
+				"Small": "2d6"
 			}
 		},
 		"StartingArray": {
