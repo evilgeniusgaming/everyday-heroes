@@ -394,8 +394,8 @@ async function enrichDamage(config, label, options) {
 	if ( config.average ) {
 		localizationType = "Long";
 		if ( config.average === true ) {
-			const minRoll = Roll.create(config.formula).evaluate({ minimize: true, async: true });
-			const maxRoll = Roll.create(config.formula).evaluate({ maximize: true, async: true });
+			const minRoll = Roll.create(config.formula).evaluateSync({ minimize: true });
+			const maxRoll = Roll.create(config.formula).evaluateSync({ maximize: true });
 			localizationData.average = Math.floor((await minRoll.total + await maxRoll.total) / 2);
 		} else if ( Number.isNumeric(config.average) ) {
 			localizationData.average = config.average;
