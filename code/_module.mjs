@@ -62,6 +62,12 @@ Hooks.once("setup", function() {
 	applications.compendium.setupCompendiumApps();
 	applications.registerSheets(Actor, config.actorCategories);
 	applications.registerSheets(Item, config.itemCategories);
+
+	DocumentSheetConfig.registerSheet(JournalEntry, game.system.id, applications.journal.JournalSheetEH, {
+		makeDefault: true,
+		label: "EH.Sheet.JournalEntry"
+	});
+
 	canvas.patchTokenHUD();
 	config.utils.configureStatusEffects();
 	settings.applyReduceTransparency();
@@ -82,7 +88,6 @@ Hooks.on("renderActorSheet", applications.renderDocumentSheet);
 Hooks.on("renderChatLog", documents.ChatMessageEH.attachChatListeners);
 Hooks.on("renderChatPopout", documents.ChatMessageEH.attachChatListeners);
 Hooks.on("renderItemSheet", applications.renderDocumentSheet);
-Hooks.on("renderJournalPageSheet", applications.journal.renderJournalPageSheet);
 config.registration.setupRegistrationHooks();
 
 export {

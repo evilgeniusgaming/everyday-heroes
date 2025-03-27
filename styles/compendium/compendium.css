@@ -165,9 +165,38 @@ figure.company-logo img {
 
 	.small-caps { font-variant: small-caps; }
 
+	.content-embed {
+		&.left {
+			float: inline-start;
+			margin-inline-end: 10px;
+		}
+		&.right {
+			float: inline-end;
+			margin-inline-start: 10px;
+		}
+		&.center {
+			display: flex;
+			justify-content: center;
+		}
+		img { border: none; }
+		&.half img { max-width: 400px; }
+		&.third img { max-width: 300px; }
+		&.quarter img { max-width: 200px; }
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Special Headers                          */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	h3.alt {
+		border-block-end: 1px solid currentcolor;
+		color: var(--eh-text-color-black);
+
+		strong {
+			float: right;
+			color: inherit;
+		}
+	}
 
 	h3.arrowed {
 		border: none;
@@ -255,16 +284,11 @@ figure.company-logo img {
 				background-color: rgba(247, 241, 193, 0.5);
 			}
 		}
-	}
-
-	table.full.internal-borders thead {
-		border: none;
-	}
-	table.full.internal-borders tr:not(:last-of-type) {
-		border-block: none;
-	}
-	table.full.internal-borders :is(th, td):not(:last-child) {
-		border-inline-end: 4px double var(--eh-border-color-weak);
+		&.internal-borders {
+			thead { border: none; }
+			tr:not(:last-of-type) { border-block: none; }
+			:is(th, td):not(:last-child) { border-inline-end: 4px double var(--eh-border-color-weak); }
+		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

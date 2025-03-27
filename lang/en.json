@@ -1210,7 +1210,7 @@
 			"Label": "Multiclass"
 		},
 		"Training": {
-			"Label": ""
+			"Label": "Training"
 		}
 	},
 	"Type": {
@@ -1884,9 +1884,10 @@
 	"Cybernetics": "Default Cybernetics Sheet",
 	"Feature": "Default Feature Item Sheet",
 	"Hero": "Default Hero Sheet",
+	"JournalEntry": "Everyday Heroes Journal Entry Sheet",
 	"NPC": "Default NPC Sheet",
 	"Vehicle": "Default Vehicle Sheet",
-	"VehicleModification": "Detaulf Vehicle Modification Sheet",
+	"VehicleModification": "Detault Vehicle Modification Sheet",
 	"Physical": "Default Physical Item Sheet",
 	"Section": {
 		"Advancement": "Advancement",
