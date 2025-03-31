@@ -18,13 +18,17 @@ export default class JournalSheetEH extends (foundry.appv1?.sheets?.JournalSheet
 	 * @param {object} context - Rendering context provided.
 	 */
 	static onRenderJournalPageSheet(page, jQuery, context) {
-		let element;
-		if ( context.editable ) element = jQuery[0];
-		else element = jQuery[0].parentElement;
-		if ( page.object.parent.sheet instanceof JournalSheetEH ) element?.classList.add("eh-journal");
-		const newClass = page.document.getFlag("everyday-heroes", "style")
-			?? page.document.parent?.getFlag("everyday-heroes", "style");
-		if ( newClass ) element.classList.add(newClass);
+		if ( page.object.parent.sheet instanceof JournalSheetEH ) {
+			let element;
+			if ( context.editable ) element = jQuery[0];
+			else element = jQuery[0].parentElement;
+			if ( !element ) return;
+
+			element?.classList.add("eh-journal");
+			const newClass = page.document.getFlag("everyday-heroes", "style")
+				?? page.document.parent?.getFlag("everyday-heroes", "style");
+			if ( newClass ) element.classList.add(newClass);
+		}
 	}
 
 	/* -------------------------------------------- */
