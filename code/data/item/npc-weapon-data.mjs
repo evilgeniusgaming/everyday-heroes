@@ -256,7 +256,7 @@ export default class NPCWeaponData extends ItemDataModel.mixin(
 		const damageBit = (damage, mod) => {
 			let bit = damage.average(mod);
 			if ( damage.denomination ) bit += ` (${damage.formula(mod)})`;
-			const damages = damage.type === "multiple" ? damage.alternateTypes : [damage.type];
+			const damages = damage.type ? damage.type === "multiple" ? damage.alternateTypes : [damage.type] : [];
 			bit += ` ${game.i18n.format("EH.Damage.Specific", { type: listFormatter.format(damages) }).toLowerCase()}`;
 			return bit;
 		};
