@@ -790,6 +790,9 @@
 		"Demon": {
 			"Label": "Demon"
 		},
+		"Elemental": {
+			"Label": "Elemental"
+		},
 		"Futuristic": {
 			"Label": "Futuristic"
 		},
@@ -799,11 +802,20 @@
 		"Immortal": {
 			"Label": "Immortal"
 		},
+		"Insect": {
+			"Label": "Insect"
+		},
+		"Mech": {
+			"Label": "Mech"
+		},
 		"Monster": {
 			"Label": "Monster"
 		},
 		"Mutant": {
 			"Label": "Mutant"
+		},
+		"Nightmare": {
+			"Label": "Nightmare"
 		},
 		"Person": {
 			"Label": "Person"
@@ -819,6 +831,9 @@
 		},
 		"Shifter": {
 			"Label": "Shifter"
+		},
+		"Spirit": {
+			"Label": "Spirit"
 		},
 		"Swarm": {
 			"Label": "Swarm"

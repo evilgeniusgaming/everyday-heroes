@@ -246,7 +246,11 @@ export const creatureTypes = {
 		subtypes: {
 			alien: "EH.Creature.Type.Alien.Label",
 			demon: "EH.Creature.Type.Demon.Label",
+			elemental: "EH.Creature.Type.Elemental.Label",
+			insect: "EH.Creature.Type.Insect.Label",
+			nightmare: "EH.Creature.Type.Nightmare.Label",
 			shifter: "EH.Creature.Type.Shifter.Label",
+			spirit: "EH.Creature.Type.Spirit.Label",
 			undead: "EH.Creature.Type.Undead.Label"
 		}
 	},
@@ -264,6 +268,7 @@ export const creatureTypes = {
 		subtypes: {
 			autonomous: "EH.Creature.Type.Autonomous.Label",
 			futuristic: "EH.Creature.Type.Futuristic.Label",
+			mech: "EH.Creature.Type.Mech.Label",
 			remoteControlled: "EH.Creature.Type.RemoteControlled.Label",
 			swarm: "EH.Creature.Type.Swarm.Label"
 		}
