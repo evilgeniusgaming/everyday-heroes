@@ -9,6 +9,7 @@ export default class BasePhysicalSheet extends BaseItemSheet {
 	/*  Context Preparation                      */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @inheritDoc */
 	async getData(options) {
 		const context = await super.getData(options);
 
@@ -37,6 +38,7 @@ export default class BasePhysicalSheet extends BaseItemSheet {
 	/*  Action Handlers                          */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @inheritDoc */
 	activateListeners(jQuery) {
 		super.activateListeners(jQuery);
 		const html = jQuery[0];
@@ -70,6 +72,7 @@ export default class BasePhysicalSheet extends BaseItemSheet {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @inheritDoc */
 	_getSubmitData(updateData={}) {
 		const formData = foundry.utils.expandObject(super._getSubmitData(updateData));
 

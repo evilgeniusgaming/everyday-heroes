@@ -89,6 +89,6 @@ export default class PhysicalSheet extends BasePhysicalSheet {
 			default:
 				return console.warn(`Everyday Heroes | Invalid damage action type clicked ${type}.`);
 		}
-		return this.item.update({"system.supplementalDamage": damageCollection});
+		return this.submit({ updateData: {"system.supplementalDamage": damageCollection} });
 	}
 }

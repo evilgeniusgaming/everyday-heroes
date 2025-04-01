@@ -34,7 +34,7 @@
 		text-transform: uppercase;
 	}
 
-	> :is(input, select, .tag-input) {
+	> :is(input, select, multi-select, .tag-input) {
 		grid-column: 3 / -1;
 		width: unset;
 	}

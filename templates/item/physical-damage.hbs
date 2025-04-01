@@ -37,8 +37,9 @@
 	{{#if (eq source.damage.type "multiple")}}
 		<fieldset>
 			<label>{{localize "EH.Equipment.Trait.Damage.Types.Label"}}</label>
-			{{everydayHeroes-tagInput source.damage.alternateTypes choices=CONFIG.damageTypes labelAttr="label"
-				name="system.damage.alternateTypes" validate=true}}
+			<multi-select name="system.damage.alternateTypes">
+				{{ selectOptions CONFIG.damageTypes selected=source.damage.alternateTypes labelAttr="label" }}
+			</multi-select>
 			<p class="hint">{{localize "EH.Equipment.Trait.Damage.Types.Hint"}}</p>
 		</fieldset>
 	{{/if}}

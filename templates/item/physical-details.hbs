@@ -113,8 +113,9 @@
 
 		<fieldset>
 			<label>{{localize "EH.Target.Conditions.Label"}}</label>
-			{{everydayHeroes-tagInput source.target.conditions choices=CONFIG.conditions labelAttr="label"
-				name="system.target.conditions" validate=true}}
+			<multi-select name="system.target.conditions">
+				{{ selectOptions CONFIG.conditions selected=source.target.conditions labelAttr="label" }}
+			</multi-select>
 			<p class="hint">{{localize "EH.Target.Conditions.Hint"}}</p>
 		</fieldset>
 
