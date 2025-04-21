@@ -294,7 +294,14 @@ export default class BaseActorSheet extends ActorSheet {
 	 */
 	_organizeItem(item, sections) {
 		const checkFilter = (item, filter) => Object.entries(filter)
-			.every(([key, value]) => foundry.utils.getProperty(item, key) === value);
+			.every(([key, value]) => {
+				const source = foundry.utils.getProperty(item, key);
+				switch ( foundry.utils.getType(source) ) {
+					case "Array": return source.includes(value);
+					case "Set": return source.has(value);
+					default: return source === value;
+				}
+			});
 
 		for ( const tab of Object.values(sections) ) {
 			for ( const section of Object.values(tab) ) {
