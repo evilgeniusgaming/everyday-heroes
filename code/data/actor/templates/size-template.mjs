@@ -56,10 +56,8 @@ export default class SizeTemplate extends foundry.abstract.DataModel {
 			if ( (newIsTitanic && (this.attributes.movement.units !== "space"))
 		  	|| (!newIsTitanic && (this.attributes.movement.units === "space"))) {
 				const adjustValue = keyPath => {
-					if ( foundry.utils.hasProperty(changed, keyPath) ) return;
-					foundry.utils.setProperty(changed, keyPath,
-						Math.floor(foundry.utils.getProperty(this.parent, keyPath) * (newIsTitanic ? 0.2 : 5))
-					);
+					const value = foundry.utils.getProperty(changed, keyPath) ?? foundry.utils.getProperty(this.parent, keyPath);
+					foundry.utils.setProperty(changed, keyPath, Math.floor(value * (newIsTitanic ? 0.2 : 5)));
 				};
 				adjustValue("system.attributes.movement.value");
 				Object.keys(this.attributes.movement.special).forEach(k => adjustValue(`system.attributes.movement.special.${k}`));
