@@ -23,7 +23,7 @@
 					{{/each}}
 				</fieldset>
 			{{/if}}
-			{{#with section.primary.item as |item|}}
+			{{#each section.primary.item as |item|}}
 				<div class="primary item" data-item-id="{{item.id}}">
 					<h3>
 						<figure data-action="item" data-type="chat" data-tooltip="EH.Item.Action.Chat"
@@ -50,7 +50,7 @@
 						{{/if}}
 					</fieldset>
 				</div>
-			{{/with}}
+			{{/each}}
 		</header>
 		<ol class="item-list">
 			{{#each section.items as |item|}}

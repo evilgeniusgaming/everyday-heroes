@@ -434,6 +434,7 @@ preLocalize("senses", { sort: true });
  * @property {object[]} types - Set of filters for object types that should appear in this section.
  * @property {object[]} create - Create controls presented. If not provided, controls will be generated for each type.
  * @property {object} [primaryType] - Filters for an object that will appear as the primary item of this section.
+ * @property {boolean} [primaryType.multiple] - Allow multiple items to be listed as primary.
  * @property {string} [label] - Label to use instead of auto-generating one.
  * @property {object} [options]
  * @property {boolean} [options.actions=true] - Should actions be displayed for items in this section?
@@ -467,17 +468,18 @@ export const sheetSections = {
 		{
 			tab: "features",
 			types: [{ type: "talent", "system.type.value": "subclass" }],
-			primaryType: { type: "subclass" }
+			primaryType: { type: "subclass" },
+			options: { autoHide: true }
 		},
 		{
 			tab: "features",
 			types: [{ type: "specialFeature", "system.type.value": "background" }],
-			primaryType: { type: "background" }
+			primaryType: { type: "background", multiple: true }
 		},
 		{
 			tab: "features",
 			types: [{ type: "specialFeature", "system.type.value": "profession" }],
-			primaryType: { type: "profession" }
+			primaryType: { type: "profession", multiple: true }
 		},
 		{
 			tab: "features",

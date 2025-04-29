@@ -136,7 +136,7 @@
     "no-throw-literal": "error",
     "no-trailing-spaces": "warn",
     "no-useless-escape": "warn",
-    "no-unused-vars": ["warn", {"args": "none"}],
+    "no-unused-vars": ["warn", { "args": "none", "ignoreRestSiblings": true }],
     "nonblock-statement-body-position": ["warn", "beside"],
     "one-var": ["warn", "never"],
     "operator-linebreak": ["warn", "before", {

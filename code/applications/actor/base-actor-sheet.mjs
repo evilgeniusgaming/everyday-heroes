@@ -227,9 +227,9 @@ export default class BaseActorSheet extends ActorSheet {
 			for ( const [key, section] of Object.entries(tab) ) {
 				if ( !this.editingMode && section.options?.autoHide
 						&& !section.items.length && !section.limits?.max ) delete tab[key];
-				else if ( section.primary && !section.primary?.item ) section.create.unshift({
-					label: section.primary.label, dataset: section.primary.dataset
-				});
+				else if ( section.primary && (!section.primary.item || section.primary.dataset.multiple) ) {
+					section.create.unshift({ label: section.primary.label, dataset: section.primary.dataset });
+				}
 			}
 		}
 
@@ -305,8 +305,10 @@ export default class BaseActorSheet extends ActorSheet {
 
 		for ( const tab of Object.values(sections) ) {
 			for ( const section of Object.values(tab) ) {
-				if ( section.primary && !section.primary.item && checkFilter(item, section.config.primaryType) ) {
-					section.primary.item = item;
+				const { multiple: _, ...primaryConfig } = section.config.primaryType ?? {};
+				if ( section.primary && checkFilter(item, primaryConfig) ) {
+					section.primary.item ??= [];
+					section.primary.item.push(item);
 					return section;
 				}
 				for ( const type of section.config?.types ?? [] ) {
