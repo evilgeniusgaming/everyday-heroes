@@ -14,6 +14,7 @@ import * as data from "./data/_module.mjs";
 import * as dice from "./dice/_module.mjs";
 import * as documents from "./documents/_module.mjs";
 import * as enrichers from "./enrichers.mjs";
+import { registerModuleData, setupModulePacks } from "./module-registration.mjs";
 import * as settings from "./settings.mjs";
 import * as utils from "./utils.mjs";
 
@@ -56,10 +57,12 @@ Hooks.once("init", function() {
 	settings.registerSettings();
 	utils.registerHandlebarsHelpers();
 	utils.registerHandlebarsPartials();
+
+	registerModuleData();
 });
 
 Hooks.once("setup", function() {
-	applications.compendium.setupCompendiumApps();
+	setupModulePacks();
 	applications.registerSheets(Actor, config.actorCategories);
 	applications.registerSheets(Item, config.itemCategories);
 

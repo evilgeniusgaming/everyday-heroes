@@ -78,10 +78,14 @@ export function linkForUUID(uuid) {
  * @param {string} message - Message to display.
  * @param {object} [options={}]
  * @param {string} [options.color="rebeccapurple"] - Color to use for the log.
+ * @param {any[]} [options.extras=[]] - Extra options passed to the logging method.
  * @param {string} [options.level="log"] - Console logging method to call.
  */
-export function systemLog(message, {color="rebeccapurple", level="log"}={}) {
-	console[level](`%cEveryday Heroes | %c${message}`, `color: ${color}; font-variant: small-caps`, `color: ${color}`);
+export function systemLog(message, {color="rebeccapurple", extras=[], level="log"}={}) {
+	console[level](
+		`%cEveryday Heroes | %c${message}`, `color: ${color}; font-variant: small-caps`, `color: ${color}`,
+		...extras
+	);
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
