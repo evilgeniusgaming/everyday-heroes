@@ -194,6 +194,16 @@ export default class NPCData extends ActorDataModel.mixin(
 	/*  Socket Event Handlers                    */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	async _preUpdateHP(changed, options, user) {
+		const changedMaxHP = foundry.utils.getProperty(changed, "system.attributes.hp.max");
+		if ( changedMaxHP !== undefined ) {
+			const maxHPDelta = changedMaxHP - this.attributes.hp.max;
+			foundry.utils.setProperty(changed, "system.attributes.hp.value", this.attributes.hp.value + maxHPDelta);
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	async _onUpdateHP(changed, options, userId) {
 		if ( game.user.id !== userId ) return;
 
