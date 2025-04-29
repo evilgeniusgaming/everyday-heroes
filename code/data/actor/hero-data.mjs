@@ -233,13 +233,14 @@ export default class HeroData extends ActorDataModel.mixin(
 	prepareBaseDetails() {
 		this.attributes.hd.max = this.details.level;
 		this.attributes.prof = Proficiency.calculateMod(this.details.level);
+		this.details.backgrounds = [];
+		this.details.professions = [];
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareEmbeddedConcept() {
 		for ( const item of this.parent.items ) {
-			// TODO: Add actor warning if more than one archetype, class, background, or profession exist
 			switch (item.type) {
 				case "origin":
 					this.details.origin = item;
@@ -251,10 +252,10 @@ export default class HeroData extends ActorDataModel.mixin(
 					this.details.class = item;
 					break;
 				case "background":
-					this.details.background = item;
+					this.details.backgrounds.push(item);
 					break;
 				case "profession":
-					this.details.profession = item;
+					this.details.professions.push(item);
 					break;
 			}
 		}
@@ -264,8 +265,8 @@ export default class HeroData extends ActorDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedDetails() {
-		this.details.wealth.value = (this.details.profession?.system.wealth ?? 0)
-			+ simplifyBonus(this.details.wealth.bonus, this.parent.getRollData());
+		const professionWealth = Math.max(...this.details.professions.map(p => p.system.wealth ?? 0));
+		this.details.wealth.value = professionWealth + simplifyBonus(this.details.wealth.bonus, this.parent.getRollData());
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

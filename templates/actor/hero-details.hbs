@@ -44,29 +44,25 @@
 					</a>
 				{{/if}}
 			</fieldset>
-			<fieldset class="background hero-id__50">
+			<fieldset class="background hero-id__{{ifThen (lt system.details.backgrounds.length 2) '50' '100' }}">
 				<label>{{localize "EH.Item.Type.Background[one]"}}</label>
-				{{#if system.details.background}}
-					<a data-action="item" data-type="edit" data-item-id="{{system.details.background.id}}">
-						{{system.details.background.name}}
-					</a>
+				{{#each system.details.backgrounds}}
+					<a data-action="item" data-type="edit" data-item-id="{{ id }}">{{ name }}</a>
 				{{else}}
 					<a data-action="select-concept" data-type="background">
 						{{localize "EH.ConceptSelection.Prompt.Background"}}
 					</a>
-				{{/if}}
+				{{/each}}
 			</fieldset>
 			<fieldset class="profession hero-id__100">
 				<label>{{localize "EH.Item.Type.Profession[one]"}}</label>
-				{{#if system.details.profession}}
-					<a data-action="item" data-type="edit" data-item-id="{{system.details.profession.id}}">
-						{{system.details.profession.name}}
-					</a>
+				{{#each system.details.professions}}
+					<a data-action="item" data-type="edit" data-item-id="{{ id }}">{{ name }}</a>
 				{{else}}
 					<a data-action="select-concept" data-type="profession">
 						{{localize "EH.ConceptSelection.Prompt.Profession"}}
 					</a>
-				{{/if}}
+				{{/each}}
 			</fieldset>
 			<fieldset class="level hero-id__25">
 				<label>{{localize "EH.Level.Label[one]"}}</label>
