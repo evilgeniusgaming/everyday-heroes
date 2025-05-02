@@ -4,7 +4,7 @@
   "description": "The core system for the Everyday Heroes role-playing game.",
   "version": "0.7.0",
   "compatibility": {
-    "minimum": "11.315",
+    "minimum": "12.331",
     "verified": "12"
   },
   "url": "https://github.com/evilgeniusgaming/everyday-heroes",
