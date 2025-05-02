@@ -265,7 +265,7 @@ export default class HeroData extends ActorDataModel.mixin(
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	prepareDerivedDetails() {
-		const professionWealth = Math.max(...this.details.professions.map(p => p.system.wealth ?? 0));
+		const professionWealth = Math.max(0, ...this.details.professions.map(p => p.system.wealth ?? 0));
 		this.details.wealth.value = professionWealth + simplifyBonus(this.details.wealth.bonus, this.parent.getRollData());
 	}
 
