@@ -16,8 +16,9 @@ export default class SkillConfigurationDialog extends ChallengeConfigurationDial
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	getData(options={}) {
-		return foundry.utils.mergeObject({
+		return {
+			...super.getData(options),
 			selectedAbility: this.rolls[0].data.abilityId
-		}, super.getData(options));
+		};
 	}
 }

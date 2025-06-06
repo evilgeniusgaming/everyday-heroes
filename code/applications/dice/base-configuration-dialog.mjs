@@ -69,7 +69,7 @@ export default class BaseConfigurationDialog extends FormApplication {
 			new this(
 				options.buildConfig,
 				rollConfig,
-				foundry.utils.mergeObject({ resolve, reject }, options.options)
+				{ ...options.options, resolve, reject }
 			).render(true);
 		});
 	}

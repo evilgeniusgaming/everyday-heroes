@@ -28,12 +28,13 @@ export default class DamageConfigurationDialog extends BaseConfigurationDialog {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	getData(options={}) {
-		return foundry.utils.mergeObject({
+		return {
+			...super.getData(options),
 			damageTypes: this.options.damageTypes ? Object.fromEntries(Object.entries(CONFIG.EverydayHeroes.damageTypes)
 				.filter(([k, v]) => this.options.damageTypes.has(k))
 			) : null,
 			selectedDamageType: this.rolls[0].options.type
-		}, super.getData(options));
+		};
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

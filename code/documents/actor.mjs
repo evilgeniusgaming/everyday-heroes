@@ -31,6 +31,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 	/*  Data Preparation                         */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @inheritDoc */
 	prepareData() {
 		super.prepareData();
 		this.items.forEach(i => i.system.prepareFinalData?.());
@@ -38,6 +39,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @inheritDoc */
 	applyActiveEffects() {
 		this.system.prepareEmbeddedData?.();
 		return super.applyActiveEffects();
@@ -45,6 +47,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @inheritDoc */
 	prepareDerivedData() {
 		super.prepareDerivedData();
 		for ( const doc of Object.values(this.linked ?? {}) ) {
