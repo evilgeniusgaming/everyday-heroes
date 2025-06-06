@@ -54,10 +54,6 @@ figure.company-logo img {
 		text-transform: uppercase;
 	}
 
-	p:empty:has(+ .content-embed), .content-embed + p:empty {
-		display: none;
-	}
-
 	ol li::marker {
 		font-size: 1.1em;
 		font-weight: bold;
@@ -165,7 +161,7 @@ figure.company-logo img {
 
 	.small-caps { font-variant: small-caps; }
 
-	.content-embed {
+	.content-embed, document-embed {
 		&.left {
 			float: inline-start;
 			margin-inline-end: 10px;

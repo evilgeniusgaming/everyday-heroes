@@ -6,9 +6,24 @@
 export const DocumentMixin = Base => class extends Base {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Enrichment                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/** @inheritDoc */
+	async _createInlineEmbed(content, config, options) {
+		const embed = await super._createInlineEmbed(content, config, options);
+		if ( config.label && embed.children[0] ) {
+			const firstElement = embed.children[0];
+			firstElement.innerHTML = `<strong>${config.label}.</strong> ${firstElement.innerHTML}`;
+		}
+		return embed;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Importing and Exporting                  */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @override */
 	static async createDialog(data={}, {parent=null, pack=null, ...options}={}) {
 
 		// Collect data
