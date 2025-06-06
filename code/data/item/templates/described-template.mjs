@@ -32,7 +32,7 @@ export default class DescribedTemplate extends foundry.abstract.DataModel {
 	 * @returns {Promise<string>}
 	 */
 	async npcDescription() {
-		return await TextEditor.enrichHTML(this.description.value ?? "", {
+		return await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.description.value ?? "", {
 			secrets: this.parent?.isOwner, rollData: this.getRollData(), async: true, relativeTo: this.parent
 		});
 	}

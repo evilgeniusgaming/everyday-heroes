@@ -177,14 +177,17 @@ export const DocumentMixin = Base => class extends Base {
 		}
 
 		// Render the document creation form
-		const html = await renderTemplate("systems/everyday-heroes/templates/item/dialogs/item-create.hbs", {
-			folders,
-			name: data.name || game.i18n.format("DOCUMENT.New", {type: label}),
-			folder: data.folder,
-			hasFolders: folders.length >= 1,
-			type: selectedType,
-			categories
-		});
+		const html = await foundry.applications.handlebars.renderTemplate(
+			"systems/everyday-heroes/templates/item/dialogs/item-create.hbs",
+			{
+				folders,
+				name: data.name || game.i18n.format("DOCUMENT.New", {type: label}),
+				folder: data.folder,
+				hasFolders: folders.length >= 1,
+				type: selectedType,
+				categories
+			}
+		);
 
 		// Render the confirmation dialog window
 		return Dialog.prompt({
@@ -193,7 +196,7 @@ export const DocumentMixin = Base => class extends Base {
 			label: title,
 			callback: html => {
 				const form = html[0].querySelector("form");
-				const fd = new FormDataExtended(form);
+				const fd = new foundry.applications.ux.FormDataExtended(form);
 				foundry.utils.mergeObject(data, fd.object, {inplace: true});
 				if ( !data.folder ) delete data.folder;
 				if ( types.length === 1 ) data.type = types[0];

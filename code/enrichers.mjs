@@ -508,7 +508,9 @@ async function embedTextPage(config, label, options) {
 	options = { ...options, _embedDepth: options._embedDepth + 1, relativeTo: config.doc };
 	config.inline ??= config.values.includes("inline");
 
-	const enrichedPage = await TextEditor.enrichHTML(config.doc.text.content, options);
+	const enrichedPage = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+		config.doc.text.content, options
+	);
 	if ( config.inline ) {
 		const section = document.createElement("section");
 		if ( config.classes ) section.className = config.classes;
@@ -630,11 +632,14 @@ async function rollAction(event) {
 		const chatData = {
 			user: game.user.id,
 			type: CONST.CHAT_MESSAGE_TYPES.OTHER,
-			content: await renderTemplate("systems/everyday-heroes/templates/chat/request-card.hbs", {
-				buttonLabel: createRollLabel({ ...target.dataset, format: "short", icon: true }),
-				hiddenLabel: createRollLabel({ ...target.dataset, format: "short", icon: true, hideDC: true }),
-				dataset: { ...target.dataset, action: "rollRequest" }
-			}),
+			content: await foundry.applications.handlebars.renderTemplate(
+				"systems/everyday-heroes/templates/chat/request-card.hbs",
+				{
+					buttonLabel: createRollLabel({ ...target.dataset, format: "short", icon: true }),
+					hiddenLabel: createRollLabel({ ...target.dataset, format: "short", icon: true, hideDC: true }),
+					dataset: { ...target.dataset, action: "rollRequest" }
+				}
+			),
 			flavor: game.i18n.localize("EH.Inline.RollRequest"),
 			speaker: MessageClass.getSpeaker({ user: game.user })
 		};

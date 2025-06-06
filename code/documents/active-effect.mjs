@@ -37,7 +37,12 @@ export default class ActiveEffectEH extends ActiveEffect {
 		// Convert input using field's _ehCastEffectValue if it exists
 		let delta;
 		try {
-			delta = field._ehCastDelta(this._parseOrString(change.value));
+			try {
+				delta = JSON.parse(change.value);
+			} catch(err) {
+				delta = change.value;
+			}
+			delta = field._ehCastDelta(delta);
 		} catch(err) {
 			console.warn(
 				`Actor ${document.name} [${document.id}] | Unable to parse active effect change `
@@ -143,8 +148,8 @@ export default class ActiveEffectEH extends ActiveEffect {
 		switch (type) {
 			case "add":
 				return this.document.createEmbeddedDocuments("ActiveEffect", [{
-					label: game.i18n.localize("EH.Effect.New"),
-					icon: this.document.constructor === ItemEH ? this.document.img : "icons/svg/aura.svg",
+					name: game.i18n.localize("EH.Effect.New"),
+					img: this.document.constructor === ItemEH ? this.document.img : "icons/svg/aura.svg",
 					origin: this.document.uuid,
 					duration: {
 						rounds: section === "temporary" ? 1 : undefined

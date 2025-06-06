@@ -10,7 +10,7 @@ class PlacementCanceledError extends Error {
 /**
  * A version of MeasuredTemplate with helper methods for placing it in the world.
  */
-export default class SuppressiveFireTemplate extends MeasuredTemplate {
+export default class SuppressiveFireTemplate extends foundry.canvas.placeables.MeasuredTemplate {
 	constructor(document, origin, maxWidth, maxRange) {
 		super(document);
 		this.origin = origin;

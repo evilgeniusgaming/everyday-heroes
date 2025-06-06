@@ -14,7 +14,7 @@ import SpeedConfig from "./dialogs/speed-config.mjs";
 /**
  * Base sheet that provides common features for Hero and NPC sheets.
  */
-export default class BaseActorSheet extends ActorSheet {
+export default class BaseActorSheet extends foundry.appv1.sheets.ActorSheet {
 	constructor(actor, options={}) {
 		const limited = !game.user.isGM && actor.limited;
 		if ( limited ) {
@@ -103,7 +103,7 @@ export default class BaseActorSheet extends ActorSheet {
 		context.system = context.actor.system;
 		context.source = context.system.toObject();
 
-		context.effects = ActiveEffectEH.prepareActiveEffectSections(context.actor.effects);
+		context.effects = ActiveEffectEH.prepareActiveEffectSections(this.actor.allApplicableEffects());
 
 		const modFormatter = new Intl.NumberFormat(game.i18n.lang, { signDisplay: "always" });
 
@@ -141,7 +141,9 @@ export default class BaseActorSheet extends ActorSheet {
 		};
 		context.enriched = {};
 		for ( const [key, path] of Object.entries(this.constructor.enrichedFields) ) {
-			context.enriched[key] = await TextEditor.enrichHTML(foundry.utils.getProperty(context, path), enrichmentContext);
+			context.enriched[key] = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+				foundry.utils.getProperty(context, path), enrichmentContext
+			);
 		}
 		context.editorSelected = this.editorSelected;
 
@@ -613,7 +615,7 @@ export default class BaseActorSheet extends ActorSheet {
 					// TODO: Remove this animation if core reduce animation setting is set
 				} else if ( item ) {
 					this.itemsExpanded.add(id);
-					const summary = $(await renderTemplate(
+					const summary = $(await foundry.applications.handlebars.renderTemplate(
 						"systems/everyday-heroes/templates/item/item-summary.hbs",
 						await item.chatContext({secrets: this.actor.isOwner})
 					));

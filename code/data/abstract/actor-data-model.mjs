@@ -18,7 +18,7 @@ export default class ActorDataModel extends SystemDataModel {
 	 */
 	async toEmbed(config, options={}) {
 		const description = foundry.utils.getProperty(this, "biography.value") ?? "";
-		const enriched = await TextEditor.enrichHTML(description, {
+		const enriched = await foundry.applications.ux.TextEditor.implementation.enrichHTML(description, {
 			...options, relativeTo: this.parent
 		});
 		const section = document.createElement("section");

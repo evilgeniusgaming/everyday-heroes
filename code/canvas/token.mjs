@@ -1,7 +1,7 @@
 /**
  * Extended version of `Token` class to draw custom HP bar.
  */
-export default class TokenEH extends Token {
+export default class TokenEH extends foundry.canvas.placeables.Token {
 
 	_drawBar(number, bar, data) {
 		if ( data.attribute === "attributes.hp" ) return this._drawHPBar(number, bar, data);

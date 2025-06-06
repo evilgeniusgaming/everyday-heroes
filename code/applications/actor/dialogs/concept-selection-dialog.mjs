@@ -57,7 +57,7 @@ export default class ConceptSelectionDialog extends DocumentSheet {
 			if ( archetypeIdentifier && item.system.identifier.archetype !== archetypeIdentifier ) continue;
 			context.items.push({
 				item,
-				description: await TextEditor.enrichHTML(item.system.description.value, {
+				description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system.description.value, {
 					async: true,
 					relativeTo: item,
 					secrets: false

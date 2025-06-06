@@ -203,7 +203,6 @@ export default class BaseRoll extends Roll {
 		// Prepare chat data
 		messageData = foundry.utils.mergeObject({
 			user: game.user.id,
-			type: CONST.CHAT_MESSAGE_TYPES.ROLL,
 			content: "total", // TODO: fix this
 			sound: CONFIG.sounds.dice
 		}, messageData);

@@ -205,6 +205,6 @@ export default class DamageRoll extends BaseRoll {
 			damageType: isPrivate ? "???" : this.options.type,
 			pv
 		};
-		return renderTemplate(template, chatData);
+		return foundry.applications.handlebars.renderTemplate(template, chatData);
 	}
 }

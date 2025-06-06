@@ -98,7 +98,7 @@ export default class AdvancementSelection extends Dialog {
 				buttons: {
 					submit: {
 						callback: html => {
-							const formData = new FormDataExtended(html.querySelector("form"));
+							const formData = new foundry.applications.ux.FormDataExtended(html.querySelector("form"));
 							const type = formData.get("type");
 							resolve(item.createAdvancement(type));
 						}

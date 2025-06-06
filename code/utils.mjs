@@ -523,5 +523,5 @@ export async function registerHandlebarsPartials() {
 		paths[`everydayHeroes.${path.split("/").pop().replace(".hbs", "")}`] = path;
 	}
 
-	return loadTemplates(paths);
+	return foundry.applications.handlebars.loadTemplates(paths);
 }

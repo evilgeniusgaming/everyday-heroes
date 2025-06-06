@@ -115,7 +115,7 @@ export default class ChallengeRoll extends BaseRoll {
 	 * @type {ChallengeDie|void}
 	 */
 	get challengeDie() {
-		if ( !(this.terms[0] instanceof Die) ) return undefined;
+		if ( !(this.terms[0] instanceof foundry.dice.terms.Die) ) return undefined;
 		return this.terms[0];
 	}
 
@@ -215,7 +215,7 @@ export default class ChallengeRoll extends BaseRoll {
 	 */
 	#createChallengeDie() {
 		if ( this.challengeDie instanceof CONFIG.Dice.ChallengeDie ) return;
-		if ( !(this.challengeDie instanceof Die) ) return;
+		if ( !(this.challengeDie instanceof foundry.dice.terms.Die) ) return;
 		this.challengeDie = new CONFIG.Dice.ChallengeDie({...this.challengeDie});
 	}
 }

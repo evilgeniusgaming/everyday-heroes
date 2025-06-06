@@ -1,5 +1,7 @@
 import { simplifyBonus } from "../utils.mjs";
 
+const { MODIFIER_KEYS } = foundry.helpers.interaction.KeyboardManager;
+
 /**
  * Determine which keys are pressed that might trigger the provided keybinding.
  * @param {Event} event - Triggering event.
@@ -9,9 +11,9 @@ import { simplifyBonus } from "../utils.mjs";
 export function areKeysPressed(event, action) {
 	if ( !event ) return false;
 	const activeModifiers = {
-		[KeyboardManager.MODIFIER_KEYS.CONTROL]: event.ctrlKey || event.metaKey,
-		[KeyboardManager.MODIFIER_KEYS.SHIFT]: event.shiftKey,
-		[KeyboardManager.MODIFIER_KEYS.ALT]: event.altKey
+		[MODIFIER_KEYS.CONTROL]: event.ctrlKey || event.metaKey,
+		[MODIFIER_KEYS.SHIFT]: event.shiftKey,
+		[MODIFIER_KEYS.ALT]: event.altKey
 	};
 	return game.keybindings.get("everyday-heroes", action).some(b => {
 		if ( !game.keyboard.downKeys.has(b.key) ) return false;

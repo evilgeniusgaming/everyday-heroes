@@ -438,8 +438,12 @@ export default class ItemEH extends DocumentMixin(Item) {
 			secrets: this.isOwner, rollData: this.getRollData(), async: true, relativeTo: this
 		}, enrichmentContext);
 		context.enriched = {
-			description: await TextEditor.enrichHTML(context.system.description.value, enrichmentContext),
-			chat: await TextEditor.enrichHTML(context.system.description.chat, enrichmentContext)
+			description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+				context.system.description.value, enrichmentContext
+			),
+			chat: await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+				context.system.description.chat, enrichmentContext
+			)
 		};
 		context.tags = this.system.chatTags ?? [];
 		return context;
@@ -462,7 +466,9 @@ export default class ItemEH extends DocumentMixin(Item) {
 			rollMode: game.settings.get("core", "rollMode"),
 			data: {
 				title: `${this.name}: ${this.actor.name}`,
-				content: await renderTemplate("systems/everyday-heroes/templates/chat/item-card.hbs", context),
+				content: await foundry.applications.handlebars.renderTemplate(
+					"systems/everyday-heroes/templates/chat/item-card.hbs", context
+				),
 				speaker: ChatMessage.getSpeaker({actor: this.actor})
 			}
 		}, message);

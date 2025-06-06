@@ -97,7 +97,9 @@ export default class AdvancementItemSheet extends BaseItemSheet {
 		 * @param {ContextMenuEntry[]} entryOptions - The context menu entries.
 		 */
 		Hooks.call("everydayHeroes.getItemAdvancementContext", jQuery, contextOptions);
-		if ( contextOptions ) new ContextMenu(jQuery, "[data-advancement-id]", contextOptions);
+		if ( contextOptions ) new foundry.applications.ux.ContextMenu.implementation(
+			html, "[data-advancement-id]", contextOptions, { jQuery: false }
+		);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -114,23 +116,23 @@ export default class AdvancementItemSheet extends BaseItemSheet {
 				name: "EH.Advancement.Core.Action.Edit",
 				icon: "<i class='fas fa-edit fa-fw'></i>",
 				condition,
-				callback: li => this._onAdvancementAction(li[0], "edit")
+				callback: li => this._onAdvancementAction(li, "edit")
 			},
 			{
 				name: "EH.Advancement.Core.Action.Duplicate",
 				icon: "<i class='fas fa-copy fa-fw'></i>",
 				condition: li => {
-					const id = li[0].closest("[data-advancement-id]")?.dataset.advancementId;
+					const id = li.closest("[data-advancement-id]")?.dataset.advancementId;
 					const advancement = this.item.system.advancement.get(id);
 					return condition(li) && advancement?.constructor.availableForItem(this.item);
 				},
-				callback: li => this._onAdvancementAction(li[0], "duplicate")
+				callback: li => this._onAdvancementAction(li, "duplicate")
 			},
 			{
 				name: "EH.Advancement.Core.Action.Delete",
 				icon: "<i class='fas fa-trash fa-fw' style='color: rgb(255, 65, 65);'></i>",
 				condition,
-				callback: li => this._onAdvancementAction(li[0], "delete")
+				callback: li => this._onAdvancementAction(li, "delete")
 			}
 		];
 	}

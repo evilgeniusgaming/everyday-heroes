@@ -263,7 +263,6 @@ export default class AbilityScoresFlow extends AdvancementFlow {
 			title: `${flavor}: ${this.advancement.actor.name}`,
 			speaker: cls.getSpeaker({ actor: this.advancement.actor }),
 			user: game.user.id,
-			type: CONST.CHAT_MESSAGE_TYPES.ROLL,
 			sound: CONFIG.sounds.dice,
 			rolls: [roll],
 			"flags.everyday-heroes.type": "abilityScore"

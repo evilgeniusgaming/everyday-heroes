@@ -6,7 +6,7 @@
 				<li {{~#if part.id}} data-entry-id="{{ part.id }}"{{/if}}>
 					{{#if part.name}}
 						<div {{~#if part.id}} data-document-id="{{ part.id }}"{{/if}}>
-							<h2>{{#if part.id}}<a>{{ part.name }}</a>{{else}}{{ part.name }}{{/if}}</h2>
+							<h2>{{#if part.id}}<a data-action="activateEntry">{{ part.name }}</a>{{else}}{{ part.name }}{{/if}}</h2>
 						</div>
 					{{/if}}
 					<ol>
@@ -15,7 +15,7 @@
 							    data-level="{{ chapter.level }}">
 								{{#unless part.id}}<div data-document-id="{{ chapter.entryId }}">{{/unless}}
 									<h{{ chapter.level }} {{#if chapter.style}}class="{{ chapter.style }}"{{/if}}>
-										<a>{{ chapter.name }}</a>
+										<a data-action="activateEntry">{{ chapter.name }}</a>
 									</h{{ chapter.level }}>
 								{{#unless part.id}}</div>{{/unless}}
 							</li>

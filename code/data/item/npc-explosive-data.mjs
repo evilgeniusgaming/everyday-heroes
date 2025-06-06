@@ -146,9 +146,10 @@ export default class NPCExplosiveData extends ItemDataModel.mixin(
 
 		// Effect
 		if ( this.description.chat ) {
-			description += ` <p><em>Effect:</em> ${await TextEditor.enrichHTML(this.description.chat ?? "", {
-				secrets: this.parent.isOwner, rollData: this.getRollData(), async: true, relativeTo: this.parent
-			})}</p>`;
+			description += ` <p><em>Effect:</em> ${await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+				this.description.chat ?? "",
+				{ secrets: this.parent.isOwner, rollData: this.getRollData(), async: true, relativeTo: this.parent }
+			)}</p>`;
 		}
 
 		return description;

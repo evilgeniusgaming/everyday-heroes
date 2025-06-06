@@ -26,14 +26,15 @@ export default class ChatMessageEH extends ChatMessage {
 	/*  Rendering                                */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	async getHTML() {
-		const jQuery = await super.getHTML();
-		if ( !this.isContentVisible ) return jQuery;
+	/** @inheritDoc */
+	async renderHTML(options={}) {
+		const html = await super.renderHTML(options);
+		if ( !this.isContentVisible ) return html;
 
-		await this._displayActions(jQuery[0]);
-		if ( this.isRoll ) this._highlightRollResults(jQuery[0]);
+		await this._displayActions(html);
+		if ( this.isRoll ) this._highlightRollResults(html);
 
-		return jQuery;
+		return html;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -65,9 +66,10 @@ export default class ChatMessageEH extends ChatMessage {
 			if ( this.shouldDisplayChallenge ) chatCard.dataset.displayChallenge = "";
 			const actions = this.getFlag("everyday-heroes", "actions");
 			if ( !actions?.length ) return;
-			const actionHTML = await renderTemplate("systems/everyday-heroes/templates/chat/card-actions.hbs", {
-				message: this, actions
-			});
+			const actionHTML = await foundry.applications.handlebars.renderTemplate(
+				"systems/everyday-heroes/templates/chat/card-actions.hbs",
+				{ message: this, actions }
+			);
 			html.querySelector(".message-content")?.insertAdjacentHTML("beforeend", actionHTML);
 		}
 	}

@@ -1,7 +1,7 @@
 /**
  * Extended version of `TokenLayer` class to handle Actors with multiple combat turns.
  */
-export default class TokenLayerEH extends TokenLayer {
+export default class TokenLayerEH extends foundry.canvas.layers.TokenLayer {
 	async toggleCombat(state=true, combat=null, {token=null}={}) {
 		if ( !state ) return super.toggleCombat(state, combat, {token});
 

@@ -1,7 +1,7 @@
 /**
  * Extended version of `Compendium` to display a table of contents for journal entries.
  */
-export default class TableOfContentsCompendium extends Compendium {
+export default class TableOfContentsCompendium extends foundry.applications.sidebar.apps.Compendium {
 	constructor(...args) {
 		super(...args);
 		const newClass = foundry.utils.getProperty(this.collection.metadata, "flags.everyday-heroes.style");
@@ -10,25 +10,75 @@ export default class TableOfContentsCompendium extends Compendium {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ["table-of-contents"],
-			template: "systems/everyday-heroes/templates/compendium/table-of-contents.hbs",
-			width: 800,
-			height: 950,
+	/** @override */
+	static DEFAULT_OPTIONS = {
+		classes: ["table-of-contents"],
+		window: {
 			resizable: true,
-			contextMenuSelector: "[data-document-id]",
-			dragDrop: [{dragSelector: "[data-document-id]", dropSelector: "article"}]
-		});
+			contentTag: "article"
+		},
+		position: {
+			width: 800,
+			height: 950
+		},
+		actions: {
+			activateEntry: this.prototype._onClickLink
+		}
+	};
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/** @override */
+	static PARTS = {
+		article: {
+			root: true,
+			template: "systems/everyday-heroes/templates/compendium/table-of-contents.hbs"
+		}
+	};
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Rendering                                */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/** @override */
+	_configureRenderParts(options) {
+		// Skip normal compendium render parts logic.
+		return foundry.utils.deepClone(this.constructor.PARTS);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Context Preparation                      */
+
+	/** @override */
+	_createContextMenus() {
+		this._createContextMenu(this._getEntryContextOptions, "[data-entry-id]", { fixed: true });
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	async getData(options={}) {
-		const context = await super.getData(options);
+	/** @inheritDoc */
+	async _onRender(context, options) {
+		await super._onRender(context, options);
+		new CONFIG.ux.DragDrop({
+			dragSelector: "[data-document-id]",
+			dropSelector: "article",
+			permissions: {
+				dragstart: this._canDragStart.bind(this),
+				drop: this._canDragDrop.bind(this)
+			},
+			callbacks: {
+				dragstart: this._onDragStart.bind(this),
+				drop: this._onDrop.bind(this)
+			}
+		}).bind(this.element);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/** @inheritDoc */
+	async _prepareContext(options) {
+		const context = await super._prepareContext(options);
 		const documents = await this.collection.getDocuments();
+
 		context.parts = [{ chapters: [], sort: 0, order: 0 }];
 		const chapters = new Map();
 		const parts = foundry.utils.getProperty(this.collection.metadata, "flags.everyday-heroes.parts") ?? {};
@@ -41,6 +91,7 @@ export default class TableOfContentsCompendium extends Compendium {
 				order
 			});
 		}
+
 		for ( const entry of documents ) {
 			const type = entry.getFlag("everyday-heroes", "type");
 			if ( ["part", "appendix"].includes(type) ) {
@@ -65,11 +116,13 @@ export default class TableOfContentsCompendium extends Compendium {
 				context.parts[0].chapters = context.parts[0].chapters.concat(this.buildChapters(entry, 10000000));
 			}
 		}
+
 		for ( const part of context.parts ) {
 			part.chapters = part.chapters.concat(chapters.get(part.order) ?? []);
 			part.chapters.sort((lhs, rhs) => lhs.sort - rhs.sort);
 		}
 		context.parts = context.parts.sort((lhs, rhs) => lhs.sort - rhs.sort);
+
 		return context;
 	}
 
@@ -99,31 +152,36 @@ export default class TableOfContentsCompendium extends Compendium {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Action Handlers                          */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	activateListeners(jQuery) {
-		super.activateListeners(jQuery);
-		const html = jQuery[0];
-
-		for ( const element of html.querySelectorAll("a") ) {
-			element.addEventListener("click", this._onClickLink.bind(this));
-		}
+	/** @inheritDoc */
+	async _renderFrame(options) {
+		const frame = await super._renderFrame(options);
+		frame.dataset.compendiumId = this.collection.metadata.id;
+		return frame;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Event Listeners & Handlers               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	async _onClickLink(event) {
-		const entryId = event.currentTarget.closest("[data-entry-id]")?.dataset.entryId;
+	/**
+	 * Handle clicking a link to a journal entry or page.
+	 * @param {PointerEvent} event - The triggering click event.
+	 * @param {HTMLElement} target - The action target.
+	 * @protected
+	 */
+	async _onClickLink(event, target) {
+		const entryId = target.closest("[data-entry-id]")?.dataset.entryId;
 		if ( !entryId ) return;
 		const entry = await this.collection.getDocument(entryId);
 		entry?.sheet.render(true, {
-			pageId: event.currentTarget.closest("[data-page-id]")?.dataset.pageId
+			pageId: target.closest("[data-page-id]")?.dataset.pageId
 		});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @inheritDoc */
 	_onDragStart(event) {
 		let dragData;
 		if ( ui.context ) ui.context.close({animate: false});

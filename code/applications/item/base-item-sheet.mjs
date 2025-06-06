@@ -3,7 +3,7 @@ import { registerTagInputListeners } from "../../utils.mjs";
 /**
  * Base sheet that provides common features for all items.
  */
-export default class BaseItemSheet extends ItemSheet {
+export default class BaseItemSheet extends foundry.appv1.sheets.ItemSheet {
 
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
@@ -54,7 +54,9 @@ export default class BaseItemSheet extends ItemSheet {
 		};
 		context.enriched = {};
 		for ( const [key, path] of Object.entries(this.constructor.enrichedFields) ) {
-			context.enriched[key] = await TextEditor.enrichHTML(foundry.utils.getProperty(context, path), enrichmentContext);
+			context.enriched[key] = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+				foundry.utils.getProperty(context, path), enrichmentContext
+			);
 		}
 		context.editorSelected = this.editorSelected;
 
@@ -117,7 +119,7 @@ export default class BaseItemSheet extends ItemSheet {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	_onDrop(event) {
-		const data = TextEditor.getDragEventData(event);
+		const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
 
 		/**
 		 * A hook event that fires when some useful data is dropped onto a ConceptSheet.

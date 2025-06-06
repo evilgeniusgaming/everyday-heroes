@@ -34,13 +34,13 @@ globalThis.EverydayHeroes = {
 Hooks.once("init", function() {
 	utils.systemLog(`Initializing the Everyday Heroes Game System - Version ${game.system.version}\n${config.ASCII}`);
 
-	CONFIG.compatibility.excludePatterns.push(/core\.sourceId/);
-	CONFIG.compatibility.excludePatterns.push(/filePicker/);
+	CONFIG.compatibility.excludePatterns.push(/The V1 Application framework is deprecated/);
+	// CONFIG.compatibility.excludePatterns.push(/filePicker/);
 	CONFIG.compatibility.excludePatterns.push(/select/);
-	CONFIG.compatibility.excludePatterns.push(/hallengeDie/);
-	CONFIG.compatibility.excludePatterns.push(/configureRoll/);
-	CONFIG.compatibility.excludePatterns.push(/preprocessFormula/);
-	CONFIG.compatibility.excludePatterns.push(/toMessage/);
+	// CONFIG.compatibility.excludePatterns.push(/hallengeDie/);
+	// CONFIG.compatibility.excludePatterns.push(/configureRoll/);
+	// CONFIG.compatibility.excludePatterns.push(/preprocessFormula/);
+	// CONFIG.compatibility.excludePatterns.push(/toMessage/);
 	if (game.release.generation < 12) Math.clamp = Math.clamped;
 
 	game.everydayHeroes = globalThis.EverydayHeroes;
@@ -66,10 +66,10 @@ Hooks.once("setup", function() {
 	applications.registerSheets(Actor, config.actorCategories);
 	applications.registerSheets(Item, config.itemCategories);
 
-	DocumentSheetConfig.registerSheet(JournalEntry, game.system.id, applications.journal.JournalSheetEH, {
-		makeDefault: true,
-		label: "EH.Sheet.JournalEntry"
-	});
+	foundry.applications.apps.DocumentSheetConfig.registerSheet(
+		JournalEntry, game.system.id, applications.journal.JournalSheetEH,
+		{ makeDefault: true, label: "EH.Sheet.JournalEntry" }
+	);
 
 	canvas.patchTokenHUD();
 	config.utils.configureStatusEffects();

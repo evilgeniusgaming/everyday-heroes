@@ -3,6 +3,8 @@ import * as actor from "./actor/_module.mjs";
 import * as item from "./item/_module.mjs";
 import * as journal from "./journal/_module.mjs";
 
+const { DocumentSheetConfig } = foundry.applications.apps;
+
 /**
  * Automatically register Document sheets using category information from config or metadata in SystemDataModels.
  * @param {typeof Document} documentType - Type of document to register (e.g. Actor or Item).

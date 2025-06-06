@@ -195,7 +195,7 @@ export default class NPCWeaponData extends ItemDataModel.mixin(
 			description += this.description.chat.replace(/^<p>/, " ");
 		} else description += "</p>";
 
-		return await TextEditor.enrichHTML(description, {
+		return await foundry.applications.ux.TextEditor.implementation.enrichHTML(description, {
 			secrets: this.parent.isOwner, rollData: this.getRollData(), async: true, relativeTo: this.parent
 		});
 	}
