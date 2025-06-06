@@ -93,7 +93,7 @@ export default class VehicleData extends ActorDataModel.mixin(ConditionsTemplate
 		return this.mergeSchema(super.defineSchema(), {
 			abilities: new MappingField(new foundry.data.fields.SchemaField({
 				mod: new foundry.data.fields.NumberField({
-					nullable: false, initial: 0, integer: true, label: "EH.Ability.Modifier"
+					required: true, nullable: false, initial: 0, integer: true, label: "EH.Ability.Modifier"
 				}),
 				bonuses: new foundry.data.fields.SchemaField({
 					check: new FormulaField({label: "EH.Ability.Bonus.Check.Label", hint: "EH.Ability.Bonus.Check.SpecificHint"}),

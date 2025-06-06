@@ -45,7 +45,7 @@ export default class AbilitiesTemplate extends foundry.abstract.DataModel {
 		return {
 			abilities: new MappingField(new foundry.data.fields.SchemaField({
 				value: new foundry.data.fields.NumberField({
-					min: 0, integer: true, label: "EH.Ability.Score[one]"
+					required: true, min: 0, integer: true, label: "EH.Ability.Score[one]"
 				}),
 				max: new foundry.data.fields.NumberField({
 					integer: true, min: 0, initial: 20, label: "EH.Ability.Max.Label", hint: "EH.Ability.Max.Hint"

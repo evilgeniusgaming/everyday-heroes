@@ -95,10 +95,10 @@ export default class HeroData extends ActorDataModel.mixin(
 				}, {label: "EH.HitDice.Label[other]"}),
 				hp: new SchemaField({
 					value: new NumberField({
-						nullable: false, initial: 0, min: 0, integer: true, label: "EH.HitPoints.Current"
+						required: true, nullable: false, initial: 0, min: 0, integer: true, label: "EH.HitPoints.Current"
 					}),
 					temp: new NumberField({
-						initial: null, min: 0, integer: true, label: "EH.HitPoints.Temp"
+						required: true, initial: null, min: 0, integer: true, label: "EH.HitPoints.Temp"
 					}),
 					bonuses: new SchemaField({
 						level: new FormulaField({

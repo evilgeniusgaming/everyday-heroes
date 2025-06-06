@@ -41,7 +41,6 @@ Hooks.once("init", function() {
 	// CONFIG.compatibility.excludePatterns.push(/configureRoll/);
 	// CONFIG.compatibility.excludePatterns.push(/preprocessFormula/);
 	// CONFIG.compatibility.excludePatterns.push(/toMessage/);
-	if (game.release.generation < 12) Math.clamp = Math.clamped;
 
 	game.everydayHeroes = globalThis.EverydayHeroes;
 	CONFIG.EverydayHeroes = config;

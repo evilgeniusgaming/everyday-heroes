@@ -251,15 +251,11 @@ export default class ChatMessageEH extends ChatMessage {
 	 * @param {object} data - Data used to render the log.
 	 */
 	static attachChatListeners(app, html, data) {
-		if ( game.release.generation < 13 ) {
-			html.on("click", ".chat-actions button", ChatMessageEH._onChatAction.bind(this));
-		} else {
-			html.addEventListener("click", event => {
-				if ( event.currentTarget.tagName === "BUTTON" && event.currentTarget.closest(".chat-actions") ) {
-					ChatMessageEH._onChatAction(event);
-				}
-			});
-		}
+		html.addEventListener("click", event => {
+			if ( event.currentTarget.tagName === "BUTTON" && event.currentTarget.closest(".chat-actions") ) {
+				ChatMessageEH._onChatAction(event);
+			}
+		});
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

@@ -48,13 +48,13 @@ export default class NPCData extends ActorDataModel.mixin(
 				defense: new foundry.data.fields.NumberField({initial: 10, min: 0, integer: true, label: "EH.Defense.Label"}),
 				hp: new foundry.data.fields.SchemaField({
 					value: new foundry.data.fields.NumberField({
-						nullable: false, initial: 0, min: 0, integer: true, label: "EH.HitPoints.Current"
+						required: true, nullable: false, initial: 0, min: 0, integer: true, label: "EH.HitPoints.Current"
 					}),
 					max: new foundry.data.fields.NumberField({
-						min: 0, integer: true, label: "EH.HitPoints.Max"
+						required: true, min: 0, integer: true, label: "EH.HitPoints.Max"
 					}),
 					temp: new foundry.data.fields.NumberField({
-						initial: null, min: 0, integer: true, label: "EH.HitPoints.Temp"
+						required: true, initial: null, min: 0, integer: true, label: "EH.HitPoints.Temp"
 					}),
 					formula: new FormulaField({label: "EH.HitPoints.Formula.Label", hint: "EH.HitPoints.Formula.Hint"})
 				}, {label: "EH.HitPoints.Label[other]"}),

@@ -82,13 +82,13 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 			}),
 			rounds: new SchemaField({
 				spent: new NumberField({
-					initial: 0, min: 0, integer: true, label: "EH.Equipment.Trait.Rounds.Spent"
+					required: true, initial: 0, min: 0, integer: true, label: "EH.Equipment.Trait.Rounds.Spent"
 				}),
 				capacity: new NumberField({
-					min: 0, integer: true, label: "EH.Equipment.Trait.Rounds.Capacity"
+					required: true, min: 0, integer: true, label: "EH.Equipment.Trait.Rounds.Capacity"
 				}),
 				burst: new NumberField({
-					min: 0, integer: true,
+					required: true, min: 0, integer: true,
 					label: "EH.Equipment.Trait.Rounds.Burst.Label", hint: "EH.Equipment.Trait.Rounds.Burst.Hint"
 				}),
 				type: new StringField({
