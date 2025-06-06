@@ -10,7 +10,8 @@ export default {
 	},
 	plugins: [
 		postcss({
-			extract: path.resolve("everyday-heroes.css")
+			extract: path.resolve("everyday-heroes.css"),
+			sourceMap: true
 		})
 	]
 };

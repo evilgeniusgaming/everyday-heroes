@@ -1,7 +1,7 @@
 /**
  * Variant of the standard journal sheet to add custom styling.
  */
-export default class JournalSheetEH extends (foundry.appv1?.sheets?.JournalSheet ?? JournalSheet) {
+export default class JournalSheetEH extends foundry.appv1.sheets.JournalSheet {
 	/** @inheritDoc */
 	static get defaultOptions() {
 		const options = super.defaultOptions;
@@ -11,24 +11,11 @@ export default class JournalSheetEH extends (foundry.appv1?.sheets?.JournalSheet
 
 	/* -------------------------------------------- */
 
-	/**
-	 * Add class to journal pages also.
-	 * @param {JournalPageSheet} page - The journal page application.
-	 * @param {jQuery} jQuery - The rendered Application HTML.
-	 * @param {object} context - Rendering context provided.
-	 */
-	static onRenderJournalPageSheet(page, jQuery, context) {
-		if ( page.object.parent.sheet instanceof JournalSheetEH ) {
-			let element;
-			if ( context.editable ) element = jQuery[0];
-			else element = jQuery[0].parentElement;
-			if ( !element ) return;
-
-			element?.classList.add("eh-journal");
-			const newClass = page.document.getFlag("everyday-heroes", "style")
-				?? page.document.parent?.getFlag("everyday-heroes", "style");
-			if ( newClass ) element.classList.add(newClass);
-		}
+	/** @override */
+	async _renderPageView(element, sheet) {
+		await super._renderPageView(element, sheet);
+		const newClass = this.document.getFlag("everyday-heroes", "style");
+		if ( newClass ) element.classList.add(newClass);
 	}
 
 	/* -------------------------------------------- */
@@ -42,7 +29,10 @@ export default class JournalSheetEH extends (foundry.appv1?.sheets?.JournalSheet
 	 */
 	static onRenderJournalEntryPageProseMirrorSheet(page, element, context, options) {
 		if ( page.document.parent.sheet instanceof JournalSheetEH ) {
+			const newClass = page.document.getFlag("everyday-heroes", "style")
+				?? page.document.parent?.getFlag("everyday-heroes", "style");
 			element.classList.add("eh-journal", "themed", "theme-light");
+			if ( newClass ) element.classList.add(newClass);
 		}
 	}
 }

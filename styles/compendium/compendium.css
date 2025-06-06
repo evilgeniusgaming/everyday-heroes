@@ -14,7 +14,7 @@ figure.company-logo img {
 /*  Journals                                 */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-:is(.journal-entry-page, .everyday-heroes.sheet .editor) {
+:is(.journal-entry-page :where(.journal-page-header, .journal-page-content), .everyday-heroes.sheet .editor) {
 	h1, h2, h3, h4:not(.window-title) {
 		font-weight: bold;
 		text-transform: uppercase;
