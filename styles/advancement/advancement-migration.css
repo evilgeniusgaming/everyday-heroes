@@ -1,14 +1,15 @@
-.everyday-heroes.advancement-migration .main-form > p {
-	text-align: center;
-	padding-block-start: 0.5em;
-}
-.everyday-heroes.advancement-migration ol.advancement-list {
-	grid-template-columns: auto min-content;
-	margin: -0.5em;
-	padding: 0.5em;
-	background-color:var(--eh-background-color-light);
-	border-radius: 5px;
-}
-.everyday-heroes.advancement-migration ol.advancement-list fieldset {
-	justify-items: end;
+.everyday-heroes.advancement-migration {
+	.main-form > p {
+		text-align: center;
+		padding-block-start: 0.5em;
+	}
+	ol.advancement-list {
+		grid-template-columns: auto min-content;
+		margin: -0.5em;
+		padding: 0.5em;
+		background-color:var(--eh-background-color-light);
+		border-radius: 5px;
+
+		fieldset { justify-items: flex-end; }
+	}
 }

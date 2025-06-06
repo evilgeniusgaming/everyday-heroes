@@ -1,6 +1,4 @@
-.everyday-heroes.advancement.manager [data-type="HitPoints"] .fields > * {
-	flex: 1 0 50%;
-}
-.everyday-heroes.advancement.manager [data-type="HitPoints"] .fields > .rollResult {
-	text-align: center;
+.everyday-heroes.advancement.manager [data-type="HitPoints"] .fields {
+	> * { flex: 1 0 50%; }
+	> .rollResult { text-align: center; }
 }

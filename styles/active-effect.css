@@ -1,33 +1,31 @@
-.active-effect-changes > header {
-	display: flex;
-	margin-inline: calc(-0.5rem - 1px);
-	border-block-start: 1px solid var(--eh-border-color-weak);
-	padding-block-start: 0.2em;
-	padding-inline: 0.5rem;
-	font-size: var(--font-size-12);
-	font-variant: small-caps;
-	font-weight: bold;
-}
-.active-effect-changes > ol {
-	align-items: center;
-	margin: 0;
-	padding: 0;
-	font-size: var(--font-size-12);
-}
-.active-effect-changes > ol > li {
-	display: flex;
-}
-.active-effect-changes > ol > li > fieldset > :is(input:not([type="checkbox"]), select) {
-	margin-inline: -0.25em;
-	padding-inline: 0.25em;
-}
-.active-effect-changes .key {
-	flex: 2;
-}
-.active-effect-changes :is(.mode, .value) {
-	flex: 1;
-}
-.active-effect-changes .effect-controls {
-	flex: 0 0 1.5em;
-	text-align: center;
+.active-effect-changes {
+	> header {
+		display: flex;
+		margin-inline: calc(-0.5rem - 1px);
+		border-block-start: 1px solid var(--eh-border-color-weak);
+		padding-block-start: 0.2em;
+		padding-inline: 0.5rem;
+		font-size: var(--font-size-12);
+		font-variant: small-caps;
+		font-weight: bold;
+	}
+	> ol {
+		align-items: center;
+		margin: 0;
+		padding: 0;
+		font-size: var(--font-size-12);
+		> li {
+			display: flex;
+			> fieldset > :is(input:not([type="checkbox"]), select) {
+				margin-inline: -0.25em;
+				padding-inline: 0.25em;
+			}
+		}
+	}
+	.key { flex: 2; }
+	:is(.mode, .value) { flex: 1; }
+	.effect-controls {
+		flex: 0 0 1.5em;
+		text-align: center;
+	}
 }

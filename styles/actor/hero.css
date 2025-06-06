@@ -11,101 +11,90 @@
 	padding: 0.5em 1em;
 	--eh-line-hover-color: rgb(196, 0, 0);
 	--eh-line-selected-color: rgb(103, 174, 59);
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies > h3 {
-	display: block;
-	font-size: var(--font-size-16);
-	font-weight: bold;
-	text-align: center;
-	text-transform: uppercase;
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies > div {
-	contain: content;
-	height: 8em;
-	margin-block-start: -0.75em;
-	font-size: var(--font-size-12);
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies > div > * {
-	position: absolute;
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies label {
-	display: flex;
-	align-items: center;
-	font-variant: small-caps;
-	z-index: 4;
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:not(.disabled) label {
-	cursor: pointer;
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies.disabled input {
-	cursor: default;
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:not(.disabled) label:hover {
-	text-shadow: 0 0 8px var(--color-shadow-primary);
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies label.basic {
-	top: calc(0.5em - 0.5px);
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies label:is(.advanced, .historical, .improvised) {
-	top: calc(3em - 0.5px);
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies label.military {
-	top: calc(5.5em - 0.5px);
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies label:is(.advanced, .military) {
-	left: calc(20% - 1em);
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies label:is(.basic, .historical) {
-	left: calc(50% - 1em + 0.5px);
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies label.improvised {
-	left: calc(80% - 1em + 1px);
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies input {
-	width: 1em;
-	height: 1em;
-	flex: 0 0 1em;
-	appearance: none;
-	border: 1px solid var(--eh-border-color-strong);
-	border-radius: 0.5em;
-	background-color: var(--eh-background-color-white);
-	-webkit-filter: unset;
-	filter: unset;
-	cursor: pointer;
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies input:checked {
-	background-color: var(--eh-input-color-add);
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies .background {
-	top: 0;
-	z-index: 1;
+
+	> h3 {
+		display: block;
+		font-size: var(--font-size-16);
+		font-weight: bold;
+		text-align: center;
+		text-transform: uppercase;
+	}
+	> div {
+		contain: content;
+		height: 8em;
+		margin-block-start: -0.75em;
+		font-size: var(--font-size-12);
+		> * { position: absolute; }
+	}
+
+	label {
+		display: flex;
+		align-items: center;
+		font-variant: small-caps;
+		z-index: 4;
+
+		&.basic { top: calc(0.5em - 0.5px); }
+		&:is(.advanced, .historical, .improvised) { top: calc(3em - 0.5px); }
+		&.military { top: calc(5.5em - 0.5px); }
+		&:is(.advanced, .military) { left: calc(20% - 1em); }
+		&:is(.basic, .historical) { left: calc(50% - 1em + 0.5px); }
+		&.improvised { left: calc(80% - 1em + 1px); }
+	}
+	&.disabled input { cursor: default; }
+	&:not(.disabled) label {
+		cursor: pointer;
+		&:hover { text-shadow: 0 0 8px var(--color-shadow-primary); }
+	}
+
+	input {
+		width: 1em;
+		height: 1em;
+		flex: 0 0 1em;
+		appearance: none;
+		border: 1px solid var(--eh-border-color-strong);
+		border-radius: 0.5em;
+		background-color: var(--eh-background-color-white);
+		-webkit-filter: unset;
+		filter: unset;
+		cursor: pointer;
+
+		&:checked { background-color: var(--eh-input-color-add); }
+	}
+
+	.background {
+		top: 0;
+		z-index: 1;
+
+		.line {
+			stroke: var(--eh-border-color-weak);
+			stroke-width: 2px;
+		}
+	}
+
+	&:has([data-category="advanced"]:checked) .line:is(.basic-center, .center-advanced) {
+		stroke: var(--eh-line-selected-color);
+	}
+	&:has([data-category="military"]:checked) .line:is(.basic-center, .center-advanced, .advanced-military) {
+		stroke: var(--eh-line-selected-color);
+	}
+	&:has([data-category="historical"]:checked) .line:is(.basic-center, .center-historical) {
+		stroke: var(--eh-line-selected-color);
+	}
+	&:has([data-category="improvised"]:checked) .line:is(.basic-center, .center-improvised) {
+		stroke: var(--eh-line-selected-color);
+	}
+	&:has(:is(label.advanced):hover) .line:is(.basic-center, .center-advanced) {
+		stroke: var(--eh-line-hover-color);
+	}
+	&:has(:is(label.military):hover) .line:is(.basic-center, .center-advanced, .advanced-military) {
+		stroke: var(--eh-line-hover-color);
+	}
+	&:has(:is(label.historical):hover) .line:is(.basic-center, .center-historical) {
+		stroke: var(--eh-line-hover-color);
+	}
+	&:has(:is(label.improvised):hover) .line:is(.basic-center, .center-improvised) {
+		stroke: var(--eh-line-hover-color);
+	}
 }
 
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies .background .line {
-	stroke: var(--eh-border-color-weak);
-	stroke-width: 2px;
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has([data-category="advanced"]:checked) .line:is(.basic-center, .center-advanced) {
-	stroke: var(--eh-line-selected-color);
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has([data-category="military"]:checked) .line:is(.basic-center, .center-advanced, .advanced-military) {
-	stroke: var(--eh-line-selected-color);
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has([data-category="historical"]:checked) .line:is(.basic-center, .center-historical) {
-	stroke: var(--eh-line-selected-color);
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has([data-category="improvised"]:checked) .line:is(.basic-center, .center-improvised) {
-	stroke: var(--eh-line-selected-color);
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has(:is(label.advanced):hover) .line:is(.basic-center, .center-advanced) {
-	stroke: var(--eh-line-hover-color);
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has(:is(label.military):hover) .line:is(.basic-center, .center-advanced, .advanced-military) {
-	stroke: var(--eh-line-hover-color);
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has(:is(label.historical):hover) .line:is(.basic-center, .center-historical) {
-	stroke: var(--eh-line-hover-color);
-}
-.everyday-heroes.hero [data-tab="inventory"] > section.proficiencies:has(:is(label.improvised):hover) .line:is(.basic-center, .center-improvised) {
-	stroke: var(--eh-line-hover-color);
-}
+

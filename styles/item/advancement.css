@@ -4,99 +4,100 @@
 	margin: 0;
 	padding: 0;
 	list-style: none;
+
+	&.level-list {
+		grid-template-columns: minmax(0, auto) minmax(0, max-content);
+		border: 1px solid var(--eh-border-color-weak);
+		border-radius: 10px;
+		background-color: var(--eh-background-color-light);
+	}
+	> li {
+		grid-column: 1 / -1;
+		display: grid;
+		grid-template-columns: subgrid;
+
+		&.primary.header { padding: 1em; }
+		&.section > .header {
+			grid-column: 1 / -1;
+			display: grid;
+			grid-template-columns: subgrid;
+			align-items: first baseline;
+			margin: 0 -1px;
+			border: 1px solid var(--eh-border-color-weak);
+			border-radius: 10px 10px 0 0;
+			padding: 0.25em 0.5em;
+			background-color: var(--eh-background-color-mid);
+
+			h3 {
+				grid-column: 1 / -2;
+				margin: 0;
+				border: none;
+				padding: 0;
+			}
+			fieldset {
+				grid-column: -2 / -1;
+				padding-inline-end: 0.5em;
+			}
+		}
+		> fieldset {
+			display: flex;
+			gap: 0.5em;
+			margin: 0;
+			border: none;
+			padding: 0;
+
+			a {
+				padding-inline: 0.5em;
+				align-self: center;
+			}
+			&:not(.configuration-mode-control) {
+				grid-column: 2;
+				justify-content: flex-end;
+			}
+			&.configuration-mode-control {
+				grid-column: 1;
+				justify-content: flex-start;
+			}
+		}
+		.advancement-name {
+			flex-grow: 1;
+			display: flex;
+			align-items: center;
+			gap: 0.5em;
+
+			figure {
+				width: 25px;
+				height: 25px;
+				margin: 0;
+				padding-inline-end: 0.5em;
+				background-size: contain;
+				background-repeat: no-repeat;
+			}
+			h4 { margin: 0; }
+		}
+		.summary {
+			flex: 1 0 100%;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 4px;
+			margin: 0.25em;
+			padding-inline: 2em;
+		}
+	}
 }
-.everyday-heroes ol.advancement.level-list {
-	grid-template-columns: minmax(0, auto) minmax(0, max-content);
-	border: 1px solid var(--eh-border-color-weak);
-	border-radius: 10px;
-	background-color: var(--eh-background-color-light);
-}
-.everyday-heroes ol.advancement > li {
-	grid-column: 1 / -1;
-	display: grid;
-	grid-template-columns: subgrid;
-}
-.everyday-heroes ol.advancement > li.primary.header {
-	padding: 1em;
-}
-.everyday-heroes ol.advancement > li.section > .header {
-	grid-column: 1 / -1;
-	display: grid;
-	grid-template-columns: subgrid;
-	align-items: first baseline;
-	margin: 0 -1px;
-	border: 1px solid var(--eh-border-color-weak);
-	border-radius: 10px 10px 0 0;
-	padding: 0.25em 0.5em;
-	background-color: var(--eh-background-color-mid);
-}
-.everyday-heroes ol.advancement > li.section > .header h3 {
-	grid-column: 1 / -2;
-	margin: 0;
-	border: none;
-	padding: 0;
-}
-.everyday-heroes ol.advancement > li.section > .header fieldset {
-	grid-column: -2 / -1;
-	padding-inline-end: 0.5em;
-}
+
 .everyday-heroes ol.advancement-list {
 	grid-column: 1 / -1;
 	gap: 0.2em;
 	margin: 0.5em;
-}
-.everyday-heroes ol.advancement-list > li {
-	display: flex;
-	flex-wrap: wrap;
-	margin-inline: -0.5em;
-	padding: 0.25em 0.5em;
-}
-.everyday-heroes ol.advancement-list > li:hover {
-	background-color: var(--eh-background-color-mid);
-}
-.everyday-heroes ol.advancement > li > fieldset {
-	display: flex;
-	gap: 0.5em;
-	margin: 0;
-	border: none;
-	padding: 0;
-}
-.everyday-heroes ol.advancement > li > fieldset a {
-	padding-inline: 0.5em;
-	align-self: center;
-}
-.everyday-heroes ol.advancement > li > fieldset:not(.configuration-mode-control) {
-	grid-column: 2;
-	justify-content: flex-end;
-}
-.everyday-heroes ol.advancement > li > fieldset.configuration-mode-control {
-	grid-column: 1;
-	justify-content: flex-start;
-}
-.everyday-heroes ol.advancement > li .advancement-name {
-	flex-grow: 1;
-	display: flex;
-	align-items: center;
-	gap: 0.5em;
-}
-.everyday-heroes ol.advancement > li .advancement-name figure {
-	width: 25px;
-	height: 25px;
-	margin: 0;
-	padding-inline-end: 0.5em;
-	background-size: contain;
-	background-repeat: no-repeat;
-}
-.everyday-heroes ol.advancement > li .advancement-name h4 {
-	margin: 0;
-}
-.everyday-heroes ol.advancement > li .summary {
-	flex: 1 0 100%;
-	display: flex;
-	flex-wrap: wrap;
-	gap: 4px;
-	margin: 0.25em;
-	padding-inline: 2em;
+
+	> li {
+		display: flex;
+		flex-wrap: wrap;
+		margin-inline: -0.5em;
+		padding: 0.25em 0.5em;
+		&:hover { background-color: var(--eh-background-color-mid); }
+	}
 }
 
 @supports not (grid-template-columns: subgrid) {

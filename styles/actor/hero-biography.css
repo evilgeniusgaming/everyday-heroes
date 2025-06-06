@@ -5,8 +5,9 @@
 	border: 4px solid var(--eh-border-color-strong);
 	border-radius: 20px;
 	background-color: var(--eh-background-color-white);
-}
-.everyday-heroes.sheet [data-tab="biography"] > section .editor {
-	height: 100%;
-	margin: 0.5em;
+
+	.editor {
+		height: 100%;
+		margin: 0.5em;
+	}
 }

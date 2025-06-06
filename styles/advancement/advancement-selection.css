@@ -1,42 +1,41 @@
 .everyday-heroes.advancement.selection .main-form {
 	background-color: var(--eh-background-color-light);
-}
-.everyday-heroes.advancement.selection .main-form ol {
-	grid-column: 1 / -1;
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-.everyday-heroes.advancement.selection .main-form ol li {
-	margin-inline: -0.5em;
-}
-.everyday-heroes.advancement.selection .main-form ol li:not(:first-of-type) {
-	margin-block-start: 0.25em;
-}
-.everyday-heroes.advancement.selection .main-form ol li label {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	gap: 0 1em;
-	padding-inline: 1em;
-	padding-block: 0.25em;
-}
-.everyday-heroes.advancement.selection .main-form ol li label:hover{
-	background-color: var(--eh-background-color-mid);
-}
-.everyday-heroes.advancement.selection .main-form ol li label figure {
-	width: 36px;
-	height: 36px;
-	margin: 0;
-	background-size: contain;
-	background-repeat: no-repeat;
-}
-.everyday-heroes.advancement.selection .main-form ol li label h3 {
-	flex-grow: 1;
-	margin: 0;
-	border: none;
-}
-.everyday-heroes.advancement.selection .main-form ol li label input {
-	width: 20px;
-	height: 20px;
+
+	ol {
+		grid-column: 1 / -1;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	ol li {
+		margin-inline: -0.5em;
+
+		&:not(:first-of-type) { margin-block-start: 0.25em; }
+		label {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 0 1em;
+			padding-inline: 1em;
+			padding-block: 0.25em;
+
+			&:hover{ background-color: var(--eh-background-color-mid); }
+			figure {
+				width: 36px;
+				height: 36px;
+				margin: 0;
+				background-size: contain;
+				background-repeat: no-repeat;
+			}
+			h3 {
+				flex-grow: 1;
+				margin: 0;
+				border: none;
+			}
+			input {
+				width: 20px;
+				height: 20px;
+			}
+		}
+	}
 }

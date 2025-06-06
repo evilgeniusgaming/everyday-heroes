@@ -2,14 +2,12 @@
 /*  Config                                   */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.everyday-heroes.advancement.config.scale-value form {
-	--advancement-config-columns: 2fr 1fr;
-}
-.everyday-heroes.advancement.config.scale-value .scale-values {
-	grid-template-columns: min-content auto;
-}
-.everyday-heroes.advancement.config.scale-value .scale-values select:not(.new-scale-value) {
-	color: var(--eh-text-color-placeholder);
+.everyday-heroes.advancement.config.scale-value {
+	form { --advancement-config-columns: 2fr 1fr; }
+	.scale-values {
+		grid-template-columns: min-content auto;
+		select:not(.new-scale-value) { color: var(--eh-text-color-placeholder); }
+	}
 }
 
 @supports not (grid-template-columns: subgrid) {
@@ -25,14 +23,16 @@
 /*  Flow                                     */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.everyday-heroes.advancement.manager :is([data-type="ScaleValue"], [data-type="Defense"], [data-type="Resource"]) p {
-	grid-column: 1 / -1;
-	font-size: var(--font-size-20);
-	text-align: center;
-}
-.everyday-heroes.advancement.manager :is([data-type="ScaleValue"], [data-type="Defense"], [data-type="Resource"]) span.scale-value {
-	margin-inline: 0.5em;	
-}
-.everyday-heroes.advancement.manager :is([data-type="ScaleValue"], [data-type="Defense"], [data-type="Resource"]) span.none {
-	font-style: italic;
+.everyday-heroes.advancement.manager :is([data-type="ScaleValue"], [data-type="Defense"], [data-type="Resource"]) {
+	p {
+		grid-column: 1 / -1;
+		font-size: var(--font-size-20);
+		text-align: center;
+	}
+	span.scale-value {
+		margin-inline: 0.5em;	
+	}
+	span.none {
+		font-style: italic;
+	}
 }

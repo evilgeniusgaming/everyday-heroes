@@ -21,11 +21,10 @@
 .everyday-heroes.chat-actions {
 	padding-inline: 0.5em;
 	font-size: var(--font-size-12);
-}
-.everyday-heroes.chat-actions p {
-	margin: 0.25em 0;
-}
-.everyday-heroes.chat-actions nav.skewed button {
-	font-size: var(--font-size-14);
-	line-height: 1.5em;
+
+	p { margin: 0.25em 0; }
+	nav.skewed button {
+		font-size: var(--font-size-14);
+		line-height: 1.5em;
+	}
 }

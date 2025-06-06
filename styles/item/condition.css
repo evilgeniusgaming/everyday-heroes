@@ -4,12 +4,13 @@
 	border-radius: 10px;
 	padding: 0.5em;
 	background-color: var(--eh-background-color-white);
-}
-.everyday-heroes.condition.sheet [data-tab="effects"] > fieldset > legend {
-	margin-inline-start: 10px;
-	border: 1px solid var(--eh-border-color-weak);
-	border-radius: 5px;
-	padding: 0.25em 0.5em;
-	background-color: var(--eh-background-color-white);
-	font-weight: bold;
+
+	> legend {
+		margin-inline-start: 10px;
+		border: 1px solid var(--eh-border-color-weak);
+		border-radius: 5px;
+		padding: 0.25em 0.5em;
+		background-color: var(--eh-background-color-white);
+		font-weight: bold;
+	}
 }

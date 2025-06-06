@@ -3,6 +3,17 @@
 	justify-content: center;
 	align-items: center;
 	gap: 0.25em;
+
+	.damage-type {
+		position: absolute;
+		left: 0.25em;
+		background-color: var(--eh-tag-color-type);
+	}
+	.pv {
+		position: absolute;
+		right: 0.25em;
+		background-color: var(--eh-tag-color-property);
+	}
 }
 :is(.damage.dice-roll .dice-total, .everyday-heroes.roll .formulas) :is(.damage-type, .pv) {
 	border: 1px solid var(--eh-border-color-weak);
@@ -13,14 +24,4 @@
 	font-variant: small-caps;
 	font-weight: normal;
 	line-height: initial;
-}
-.damage.dice-roll .dice-total .damage-type {
-	position: absolute;
-	left: 0.25em;
-	background-color: var(--eh-tag-color-type);
-}
-.damage.dice-roll .dice-total .pv {
-	position: absolute;
-	right: 0.25em;
-	background-color: var(--eh-tag-color-property);
 }

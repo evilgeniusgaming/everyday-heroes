@@ -33,28 +33,28 @@
 	border-radius: 10px;
 	padding: 0.5em;
 	background-color: var(--eh-background-color-light);
-}
-.everyday-heroes:is(.npc, .limited).sheet form > header figure {
-	overflow: clip;
-	flex-shrink: 0;
-	width: 2em;
-	height: 2em;
-	margin: 0;
-	border-radius: 5px;
-	background-color: var(--eh-background-color-dark);
-	background-size: contain;
-	background-repeat: no-repeat;
-}
-.everyday-heroes:is(.npc, .limited).sheet form > header figure img {
-	border: none;
-}
-.everyday-heroes:is(.npc, .limited).sheet form > header fieldset {
-	display: flex;
-	gap: 0.25em;
-	align-items: center;
-}
-.everyday-heroes:is(.npc, .limited).sheet form > header fieldset.name {
-	flex-grow: 1;
+
+	figure {
+		overflow: clip;
+		flex-shrink: 0;
+		width: 2em;
+		height: 2em;
+		margin: 0;
+		border-radius: 5px;
+		background-color: var(--eh-background-color-dark);
+		background-size: contain;
+		background-repeat: no-repeat;
+
+		img { border: none; }
+	}
+
+	fieldset {
+		display: flex;
+		gap: 0.25em;
+		align-items: center;
+
+		&.name { flex-grow: 1; }
+	}
 }
 
 .everyday-heroes.limited.sheet [data-tab="biography"] > section {
@@ -69,81 +69,73 @@
 :is(.hero, .vehicle).sheet {
 	container-type: size;
 	min-width: 430px;
-}
-:is(.hero, .vehicle).sheet .window-content {
-	padding: 0;
-}
-:is(.hero, .vehicle).sheet > header {
-	z-index: 5;
-}
 
-/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-/*  Navigation                               */
-/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	.window-content { padding: 0; }
+	> header { z-index: 5; }
 
-:is(.hero, .vehicle).sheet nav[data-group="primary"] {
-	position: absolute;
-	left: 0;
-	right: 0;
-	display: flex;
-	z-index: 4;
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Navigation                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	margin: 0 1rem;
-	padding: 0;
-	margin-block-start: -30px;
-	padding-block-start: 30px;
-	box-shadow: -10px 5px 20px 0px rgba(29, 43, 56, 0.75);
-	border-radius: 0 0 20px 20px;
-}
-:is(.hero, .vehicle).sheet nav[data-group="primary"] a {
-	display: block;
-	flex-grow: 1;
-	padding-block: 0.5rem;
-	border: 1px solid var(--eh-border-color-weak);
-	border-block-start: none;
-	background-color: var(--eh-background-color-mid);
-	text-align: center;
-}
-:is(.hero, .vehicle).sheet nav[data-group="primary"] a.active {
-	background-color: var(--eh-background-color-dark);
-	color: var(--eh-text-color-white);
-}
-:is(.hero, .vehicle).sheet nav[data-group="primary"] a:first-of-type {
-	border-bottom-left-radius: 20px;
-}
-:is(.hero, .vehicle).sheet nav[data-group="primary"] a:last-of-type {
-	border-bottom-right-radius: 20px;
-}
-:is(.hero, .vehicle).sheet nav[data-group="primary"] a:not(:last-of-type) {
-	border-inline-end: none;
-}
+	nav[data-group="primary"] {
+		position: absolute;
+		left: 0;
+		right: 0;
+		display: flex;
+		z-index: 4;
+	
+		margin: 0 1rem;
+		padding: 0;
+		margin-block-start: -30px;
+		padding-block-start: 30px;
+		box-shadow: -10px 5px 20px 0px rgba(29, 43, 56, 0.75);
+		border-radius: 0 0 20px 20px;
 
-:is(.hero, .vehicle).sheet main {
-	height: 100%;
-	padding: 0.5rem;
-	padding-block-start: 3rem;
-}
-:is(.hero, .vehicle).sheet main > [data-tab] {
-	height: 100%;
+		a {
+			display: block;
+			flex-grow: 1;
+			padding-block: 0.5rem;
+			border: 1px solid var(--eh-border-color-weak);
+			border-block-start: none;
+			background-color: var(--eh-background-color-mid);
+			text-align: center;
+
+			&.active {
+				background-color: var(--eh-background-color-dark);
+				color: var(--eh-text-color-white);
+			}
+			&:first-of-type { border-bottom-left-radius: 20px; }
+			&:last-of-type { border-bottom-right-radius: 20px; }
+			&:not(:last-of-type) { border-inline-end: none; }
+		}
+	}
+	
+	main {
+		height: 100%;
+		padding: 0.5rem;
+		padding-block-start: 3rem;
+
+		> [data-tab] { height: 100%; }
+	}
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Proficiency Selector                     */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.everyday-heroes.sheet [data-action="cycle-proficiency"]:not(.disabled) {
-	cursor: pointer;
-}
-.everyday-heroes.sheet [data-action="cycle-proficiency"]:not(.disabled):hover .selector-icon {
-	filter: drop-shadow(0 0 3px var(--color-shadow-primary));
-}
-.everyday-heroes.sheet [data-action="cycle-proficiency"] .selector-icon {
-	min-width: 1.25rem;
-	min-height: 1rem;
-	width: 100%;
-	background-size: 1.125rem;
-	background-repeat: no-repeat;
-	background-position-x: center;
+.everyday-heroes.sheet [data-action="cycle-proficiency"] {
+	&:not(.disabled) {
+		cursor: pointer;
+		&:hover .selector-icon { filter: drop-shadow(0 0 3px var(--color-shadow-primary)); }
+	}
+	.selector-icon {
+		min-width: 1.25rem;
+		min-height: 1rem;
+		width: 100%;
+		background-size: 1.125rem;
+		background-repeat: no-repeat;
+		background-position-x: center;
+	}
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -156,28 +148,27 @@
 	margin: 0;
 	padding: 0;
 	list-style: none;
-}
-.conditions .levels li {
-	flex: 2em 0 0;
-	border: 1px solid var(--eh-border-color-weak);
-	border-radius: 2px;
-	font-weight: bold;
-	text-align: center;
-}
-.conditions .levels li:not(.selected) {
-	color: var(--eh-text-color-white);
-	background: linear-gradient(180deg, rgb(78, 85, 89) 0%, rgb(117, 133, 155) 100%);
-}
-.conditions .levels li.selected {
-	color: var(--eh-text-color-black);
-	background: linear-gradient(0deg, rgb(193, 192, 225) 0%, rgb(240, 247, 255) 100%);
-}
-.conditions .levels li[data-action] {
-	cursor: pointer;
-}
-.conditions .levels li[data-action]:not(.selected):hover {
-	box-shadow: inset 0 0 2px 1px rgba(255, 255, 255, 0.8);
-}
-.conditions .levels li[data-action].selected:hover {
-	box-shadow: inset 0 0 2px 1px rgba(144, 17, 249, 0.5);
+
+	li {
+		flex: 2em 0 0;
+		border: 1px solid var(--eh-border-color-weak);
+		border-radius: 2px;
+		font-weight: bold;
+		text-align: center;
+
+		&:not(.selected) {
+			color: var(--eh-text-color-white);
+			background: linear-gradient(180deg, rgb(78, 85, 89) 0%, rgb(117, 133, 155) 100%);
+		}
+		&.selected {
+			color: var(--eh-text-color-black);
+			background: linear-gradient(0deg, rgb(193, 192, 225) 0%, rgb(240, 247, 255) 100%);
+		}
+		&[data-action] {
+			cursor: pointer;
+
+			&:not(.selected):hover { box-shadow: inset 0 0 2px 1px rgba(255, 255, 255, 0.8); }
+			&.selected:hover { box-shadow: inset 0 0 2px 1px rgba(144, 17, 249, 0.5); }
+		}
+	}
 }

@@ -73,7 +73,7 @@
 			fieldset {
 				min-block-size: 28px;
 				display: flex;
-				align-items: end;
+				align-items: flex-end;
 				border-block-end: 1px solid var(--eh-border-color-strong);
 
 				&.hero-id__100 { flex: 1 0 100%; }
@@ -129,7 +129,7 @@
 			grid-area: abilities-and-skills;
 			display: grid;
 			grid-template-areas: "abilities skills";
-			align-items: start;
+			align-items: flex-start;
 			border-radius: 0 20px 20px 0;
 			margin-inline-start: 1.5em;
 		}
