@@ -249,6 +249,8 @@ figure.company-logo img {
 		}
 		thead {
 			background: none;
+			border: none;
+			border-block-end: 1px solid var(--eh-border-color-strong);
 		}
 		th {
 			color: var(--eh-text-color-black);
