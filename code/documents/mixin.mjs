@@ -10,7 +10,7 @@ export const DocumentMixin = Base => class extends Base {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/** @inheritDoc */
-	async _createInlineEmbed(content, config, options) {
+	async _createInlineEmbed(content, config={}, options={}) {
 		const embed = await super._createInlineEmbed(content, config, options);
 		if ( config.label && embed.children[0] ) {
 			const firstElement = embed.children[0];
