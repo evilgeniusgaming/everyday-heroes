@@ -2,6 +2,8 @@ import DamageConfigurationDialog from "../applications/dice/damage-configuration
 import BaseRoll from "./base-roll.mjs";
 import { areKeysPressed } from "./utils.mjs";
 
+const { DiceTerm, FunctionTerm, NumericTerm, OperatorTerm, ParentheticalTerm, StringTerm } = foundry.dice.terms;
+
 /**
  * Damage roll configuration data.
  *
@@ -120,7 +122,7 @@ export default class DamageRoll extends BaseRoll {
 			}
 
 			// Merge any parenthetical terms followed by string terms
-			else if ( (term instanceof ParentheticalTerm || term instanceof MathTerm) && (nextTerm instanceof StringTerm)
+			else if ( (term instanceof ParentheticalTerm || term instanceof FunctionTerm) && (nextTerm instanceof StringTerm)
 				&& nextTerm.term.match(/^d[0-9]*$/)) {
 				if ( term.isDeterministic ) {
 					const newFormula = `${term.evaluate().total}${nextTerm.term}`;
