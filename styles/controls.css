@@ -124,6 +124,7 @@
 				text-shadow: none;
 				outline: none;
 			}
+			&::before { border: none; }
 		}
 		> :is(a:not([data-action]), button:disabled) {
 			opacity: 0.5;
@@ -132,7 +133,7 @@
 	}
 }
 
-button.skewed, .dialog .dialog-buttons button {
+button.skewed, .dialog .dialog-buttons:not(.skewed) button {
 	position: relative;
 	isolation: isolate;
 	width: calc(100% - 0.5em);
@@ -172,13 +173,16 @@ button.skewed, .dialog .dialog-buttons button {
 		}
 	}
 }
-.dialog .dialog-buttons button {
-	&.default {
-		background: none;
-		border: none;
+.dialog .dialog-buttons {
+	&.skewed > ul {
+		&, > li { flex-grow: 1; }
 	}
-	&:last-child {
-		margin-inline: 0.25em;
+	button {
+		&.default {
+			background: none;
+			border: none;
+		}
+		&:last-child { margin-inline: 0.25em; }
 	}
 }
 

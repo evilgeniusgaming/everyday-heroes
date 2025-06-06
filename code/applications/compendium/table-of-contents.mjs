@@ -95,7 +95,7 @@ export default class TableOfContentsCompendium extends foundry.applications.side
 		for ( const entry of documents ) {
 			const type = entry.getFlag("everyday-heroes", "type");
 			if ( ["part", "appendix"].includes(type) ) {
-				const order = entry.getFlag("everyday-heroes", "order");
+				const order = (type === "part" ? 0 : 100) + (entry.getFlag("everyday-heroes", "order") ?? 0);
 				context.parts.push({
 					id: entry.id,
 					name: entry.name,

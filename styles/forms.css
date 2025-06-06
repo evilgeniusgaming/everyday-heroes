@@ -43,4 +43,10 @@
 		}
 		.seperator + input:not(:disabled) { text-align: start; }
 	}
+
+	.flexrow > .sep {
+		flex: 0;
+		align-content: center;
+		margin-inline: 4px;
+	}
 }
