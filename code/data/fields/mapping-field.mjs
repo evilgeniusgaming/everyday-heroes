@@ -38,10 +38,12 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 		 * @type {DataField}
 		 */
 		this.model = model;
+		model.parent = this;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @inheritDoc */
 	static get _defaults() {
 		return foundry.utils.mergeObject(super._defaults, {
 			initialKeys: null,
@@ -52,8 +54,12 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @override */
 	_cleanType(value, options) {
-		Object.entries(value).forEach(([k, v]) => value[k] = this.model.clean(v, options));
+		Object.entries(value).forEach(([k, v]) => {
+			if ( k.startsWith("-=") ) return;
+			value[k] = this.model.clean(v, options);
+		});
 		return value;
 	}
 
@@ -74,6 +80,7 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @inheritDoc */
 	getInitialValue(data) {
 		const keys = this._getInitialKeys();
 		const initial = super.getInitialValue(data);
@@ -97,10 +104,15 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @override */
 	_validateType(value, options={}) {
 		if ( foundry.utils.getType(value) !== "Object" ) throw new Error("must be an Object");
 		const errors = this._validateValues(value, options);
-		if ( !foundry.utils.isEmpty(errors) ) throw new foundry.data.fields.ModelValidationError(errors);
+		if ( !foundry.utils.isEmpty(errors) ) {
+			const failure = new foundry.data.validation.DataModelValidationFailure();
+			failure.elements = Object.entries(errors).map(([id, failure]) => ({ id, failure }));
+			throw failure.asError();
+		}
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -114,6 +126,7 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 	_validateValues(value, options) {
 		const errors = {};
 		for ( const [k, v] of Object.entries(value) ) {
+			if ( k.startsWith("-=") ) continue;
 			const error = this.model.validate(v, options);
 			if ( error ) errors[k] = error;
 		}
@@ -122,6 +135,7 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @override */
 	initialize(value, model, options={}) {
 		if ( !value ) return value;
 		const obj = {};
@@ -136,6 +150,7 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @override */
 	_getField(path) {
 		if ( path.length === 0 ) return this;
 		else if ( path.length === 1 ) return this.model;

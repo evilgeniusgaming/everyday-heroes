@@ -27,14 +27,13 @@ export default class SpeedConfig extends BaseConfig {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	async _updateObject(event, formData) {
-		const specials = foundry.utils.getProperty(
-			foundry.utils.expandObject(formData), "system.attributes.movement.special"
-		);
+		const updates = foundry.utils.expandObject(formData);
+		const specials = foundry.utils.getProperty(updates, "system.attributes.movement.special");
 		for ( const [key, value] of Object.entries(specials) ) {
 			if ( value ) continue;
-			delete formData[`system.attributes.movement.special.${key}`];
-			formData[`system.attributes.movement.special.-=${key}`] = null;
+			delete specials[key];
+			specials[`-=${key}`] = null;
 		}
-		return this.object.update(formData);
+		return this.object.update(updates);
 	}
 }
