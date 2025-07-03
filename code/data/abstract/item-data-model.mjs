@@ -123,6 +123,6 @@ export default class ItemDataModel extends SystemDataModel {
 		const variant = CONFIG.EverydayHeroes.itemVariants[this.constructor.metadata.variant];
 		if ( !variant || !this.parent.isEmbedded ) return;
 		const type = variant[this.parent.parent.type] ?? this.constructor.metadata.variant;
-		if ( type !== this.parent.type ) this.parent.updateSource({ type });
+		if ( type !== this.parent.type ) this.parent.updateSource({ type, "==system": data.system });
 	}
 }
