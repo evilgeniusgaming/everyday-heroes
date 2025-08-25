@@ -119,38 +119,6 @@ figure.company-logo img {
 		font-weight: 400;
 	}
 
-	a:is(.content-link, .inline-roll), .roll-link a {
-		background: transparent;
-		border: none;
-		text-decoration: underline currentcolor;
-		text-underline-offset: 2px;
-
-		> i {
-			color: currentcolor;
-			opacity: 75%;
-			transition: opacity 250ms ease;
-		}
-
-		&:hover {
-			text-shadow: none;
-			> i { opacity: 1; }
-		}
-	}
-
-	.roll-link a[data-action="request"] {
-		margin-inline-start: 10px;
-		text-decoration: none;
-
-		&::before {
-			content: "\f105";
-			font-family: var(--font-awesome);
-			font-weight: bold;
-			margin: 0 4px 0 -6px;
-			font-size: var(--font-size-10);
-			color: var(--color-text-light-6);
-		}
-	}
-
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Utility Methods                          */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -370,6 +338,42 @@ figure.company-logo img {
 		}
 		table:is(.yellow, .blue, .red).narrow td {
 			text-align: center;
+		}
+	}
+}
+
+:is(.journal-entry-page :where(.journal-page-header, .journal-page-content),
+.everyday-heroes.sheet .editor),
+.everyday-heroes.npc.sheet {
+	a:is(.content-link, .inline-roll, .roll-link), .roll-link-group a {
+		background: transparent;
+		border: none;
+		text-decoration: underline currentcolor;
+		text-underline-offset: 2px;
+	
+		> i {
+			color: currentcolor;
+			opacity: 75%;
+			transition: opacity 250ms ease;
+		}
+	
+		&:hover {
+			text-shadow: none;
+			> i { opacity: 1; }
+		}
+	}
+	
+	.roll-link-group a[data-action="request"] {
+		margin-inline-start: 10px;
+		text-decoration: none;
+	
+		&::before {
+			content: "\f105";
+			font-family: var(--font-awesome);
+			font-weight: bold;
+			margin: 0 4px 0 -6px;
+			font-size: var(--font-size-10);
+			color: var(--color-text-light-6);
 		}
 	}
 }
