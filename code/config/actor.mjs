@@ -237,6 +237,8 @@ export const creatureTypes = {
 	animal: {
 		label: "EH.Creature.Type.Animal.Label",
 		subtypes: {
+			arachnid: "EH.Creature.Type.Arachnid.Label",
+			mutant: "EH.Creature.Type.Mutant.Label",
 			prehistoric: "EH.Creature.Type.Prehistoric.Label",
 			swarm: "EH.Creature.Type.Swarm.Label"
 		}
@@ -245,6 +247,7 @@ export const creatureTypes = {
 		label: "EH.Creature.Type.Monster.Label",
 		subtypes: {
 			alien: "EH.Creature.Type.Alien.Label",
+			arachnid: "EH.Creature.Type.Arachnid.Label",
 			demon: "EH.Creature.Type.Demon.Label",
 			elemental: "EH.Creature.Type.Elemental.Label",
 			insect: "EH.Creature.Type.Insect.Label",
