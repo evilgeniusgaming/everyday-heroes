@@ -781,6 +781,9 @@
 		"Animal": {
 			"Label": "Animal"
 		},
+		"Arachnid": {
+			"Label": "Arachnid"
+		},
 		"Autonomous": {
 			"Label": "Autonomous"
 		},

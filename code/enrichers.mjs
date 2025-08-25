@@ -2,7 +2,7 @@ import { numberFormat, simplifyBonus, systemLog } from "./utils.mjs";
 
 const MAX_EMBED_DEPTH = 5;
 
-const slugify = value => value?.slugify().replaceAll("-", "");
+const slugify = value => value?.slugify().replaceAll("-", "").replaceAll("(", "").replaceAll(")", "");
 
 /**
  * Set up the custom text enricher.
@@ -136,7 +136,7 @@ function prepareLegacyConfig(raw) {
  */
 function prepareConfig(match) {
 	const config = { _config: match, values: [] };
-	for ( const part of match.match(/(?:[^\s"]+|"[^"]*")+/g) ) {
+	for ( const part of match.match(/(?:[^\s"]+|"[^"]*")+/g) ?? [] ) {
 		if ( !part ) continue;
 		const [key, value] = part.split("=");
 		const valueLower = value?.toLowerCase();
@@ -160,9 +160,9 @@ function prepareConfig(match) {
  */
 function _addDataset(element, dataset) {
 	for ( const [key, value] of Object.entries(dataset) ) {
-		if ( !["_config", "_input", "values"].includes(key) && ![null, undefined].includes(value) ) {
-			element.dataset[key] = value;
-		}
+		if ( key.startsWith("_") || (key === "values") || [null, undefined].includes(value) ) continue;
+		if ( ["Array", "Object"].includes(foundry.utils.getType(value)) ) element.dataset[key] = JSON.stringify(value);
+		else element.dataset[key] = value;
 	}
 }
 
@@ -226,33 +226,50 @@ function createRollLabel(config) {
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
- * Create a rollable link.
- * @param {string} label - Label to display.
+ * Create a rollable link with a request section for GMs.
+ * @param {HTMLElement|string} label - Label to display
  * @param {object} dataset - Data that will be added to the link for the rolling method.
  * @returns {HTMLElement}
  */
-function createRollLink(label, dataset) {
+function createRequestLink(label, dataset) {
 	const span = document.createElement("span");
-	span.classList.add("roll-link");
+	span.classList.add("roll-link-group");
 	_addDataset(span, dataset);
-
-	// Add main link
-	const link = document.createElement("a");
-	link.dataset.action = "roll";
-	link.innerHTML = `<i class="fa-solid fa-dice-d20"></i> ${label}`;
-	span.insertAdjacentElement("afterbegin", link);
+	if ( label instanceof HTMLTemplateElement ) span.append(label.content);
+	else span.append(label);
 
 	// Add chat request link for GMs
-	if ( game.user.isGM && (dataset.type !== "damage") ) {
+	if ( game.user.isGM ) {
 		const gmLink = document.createElement("a");
+		gmLink.classList.add("enricher-action");
 		gmLink.dataset.action = "request";
 		gmLink.dataset.tooltip = "EH.Inline.RequestRoll";
 		gmLink.setAttribute("aria-label", game.i18n.localize(gmLink.dataset.tooltip));
-		gmLink.innerHTML = '<i class="fa-solid fa-comment-dots"></i>';
+		gmLink.insertAdjacentHTML("afterbegin", '<i class="fa-solid fa-comment-dots"></i>');
 		span.insertAdjacentElement("beforeend", gmLink);
 	}
 
 	return span;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Create a rollable link.
+ * @param {string} label - Label to display.
+ * @param {object} [dataset={}] - Data that will be added to the link for the rolling method.
+ * @param {object} [options={}]
+ * @param {boolean} [options.classes="roll-link"] - Class to add to the link.
+ * @param {string} [options.tag="a"] - Tag to use for the main link.
+ * @returns {HTMLElement}
+ */
+function createRollLink(label, dataset={}, { classes="roll-link", tag="a" }={}) {
+	const link = document.createElement(tag);
+	link.className = classes;
+	link.insertAdjacentHTML("afterbegin", '<i class="fa-solid fa-dice-d20" inert></i>');
+	link.append(label);
+	_addDataset(link, dataset);
+	return link;
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -267,43 +284,108 @@ function createRollLink(label, dataset) {
  * @returns {HTMLElement|null} - A HTML link if the check could be built, otherwise null.
  */
 async function enrichCheck(config, label, options) {
+	config.skill = config.skill?.replaceAll("/", "|").split("|") ?? [];
+	const LOOKUP = CONFIG.EverydayHeroes.enrichmentLookup;
 	for ( let value of config.values ) {
-		value = foundry.utils.getType(value) === "string" ? slugify(value) : value;
-		if ( value in CONFIG.EverydayHeroes.enrichmentLookup.abilities ) config.ability = value;
-		else if ( value in CONFIG.EverydayHeroes.enrichmentLookup.skills ) config.skill = value;
+		const slug = foundry.utils.getType(value) === "string" ? slugify(value) : value;
+		if ( slug in LOOKUP.abilities ) config.ability = LOOKUP.abilities[slug].key;
+		else if ( slug in LOOKUP.skills ) config.skill.push(slug);
 		else if ( Number.isNumeric(value) ) config.dc = Number(value);
 		else config[value] = true;
 	}
-
+	
+	const groups = new Map();
 	let invalid = false;
-
-	const skillConfig = CONFIG.EverydayHeroes.enrichmentLookup.skills[slugify(config.skill)];
-	if ( config.skill && !skillConfig ) {
-		systemLog(`Skill ${config.skill} not found while enriching ${config._input}.`, { level: "warn" });
-		invalid = true;
-	} else if ( config.skill && !config.ability ) {
-		config.ability = skillConfig.ability;
-	}
-	if ( skillConfig?.key ) config.skill = skillConfig.key;
-
+	
 	let abilityConfig = CONFIG.EverydayHeroes.enrichmentLookup.abilities[slugify(config.ability)];
 	if ( config.ability && !abilityConfig ) {
 		systemLog(`Ability ${config.ability} not found while enriching ${config._input}.`, { level: "warn" });
 		invalid = true;
-	} else if ( !abilityConfig ) {
-		systemLog(`No ability provided while enriching check ${config._input}.`, { level: "warn" });
+	} else if ( abilityConfig?.key ) config.ability = abilityConfig.key;
+
+	for ( let [index, skill] of config.skill.entries() ) {
+		const skillConfig = LOOKUP.skills[slugify(skill)];
+		if ( skillConfig ) {
+			if ( skillConfig.key ) skill = config.skill[index] = skillConfig.key;
+			const ability = config.ability || skillConfig.ability;
+			if ( !groups.has(ability) ) groups.set(ability, []);
+			groups.get(ability).push({ key: skill, type: "skill", label: skillConfig.label });
+		} else {
+			systemLog(`Skill ${config.skill} not found while enriching ${config._input}.`, { level: "warn" });
+			invalid = true;
+		}
+	}
+
+	if ( !abilityConfig && !groups.size ) {
+		systemLog(`No ability or skill provided while enriching check ${config._input}.`, { level: "warn" });
 		invalid = true;
 	}
-	if ( abilityConfig?.key ) config.ability = abilityConfig.key;
 
-	if ( config.dc && !Number.isNumeric(config.dc) ) config.dc = simplifyBonus(config.dc, options.rollData ?? {});
+	const complex = config.skill.length > 1;
+	if ( label && complex ) {
+		systemLog(`Multiple skills and a custom label found while enriching ${config._input}, which aren't supported together.`);
+		invalid = true;
+	}
+	
+	if ( config.dc && !Number.isNumeric(config.dc) ) {
+		config.dc = simplifyBonus(config.dc, options.rollData ?? options.relativeTo?.getRollData?.() ?? {});
+	}
 
 	if ( invalid ) return null;
 
+	if ( complex ) {
+		const formatter = game.i18n.getListFormatter({ type: "disjunction" });
+		const parts = [];
+		for ( const [ability, associated] of groups.entries() ) {
+			const makeConfig = ({ key, type }) => ({ type, [type]: key, ability: groups.size > 1 ? ability : undefined });
+
+			// Multiple associated proficiencies, link each individually
+			if ( associated.length > 1 ) parts.push(
+				game.i18n.format("EH.Inline.SpecificCheck", {
+					ability: CONFIG.EverydayHeroes.enrichmentLookup.abilities[ability].label,
+					type: formatter.format(associated.map(a => createRollLink(a.label, makeConfig(a)).outerHTML ))
+				})
+			);
+
+			// Only single associated proficiency, wrap whole thing in roll link
+			else {
+				const associatedConfig = makeConfig(associated[0]);
+				parts.push(createRollLink(createRollLabel({ ...associatedConfig, ability }), associatedConfig).outerHTML);
+			}
+		}
+		label = formatter.format(parts);
+		if ( config.dc && !config.hideDC ) {
+			label = game.i18n.format("EH.Inline.DC", { dc: config.dc, check: label });
+		}
+		label = game.i18n.format(`EH.Inline.Check${config.format === "long" ? "Long" : "Short"}`, { check: label });
+		const template = document.createElement("template");
+		template.innerHTML = label;
+		return createRequestLink(template, { type: "check", ...config, skill: config.skill.join("|") });
+	}
+
 	const type = config.skill ? "skill" : "ability-check";
-	config = { type, ...config };
+	config = { type, ability: Array.from(groups.keys())[0], ...config, skill: config.skill[0] };
 	if ( !label ) label = createRollLabel(config);
-	return config.passive ? createPassiveTag(label, config) : createRollLink(label, config);
+	return config.passive ? createPassiveTag(label, config) : createRequestLink(createRollLink(label), config);
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Create the buttons for a check requested in chat.
+ * @param {object} dataset
+ * @returns {object[]}
+ */
+function createCheckRequestButtons(dataset) {
+	const skills = dataset.skill?.split("|") ?? [];
+	if ( skills.length <= 1 ) return [createRequestButton(dataset)];
+	const baseDataset = { ...dataset };
+	delete baseDataset.skill;
+	return [
+		...skills.map(skill => createRequestButton({
+			ability: CONFIG.EverydayHeroes.skills[skill].ability, ...baseDataset, format: "short", skill, type: "skill"
+		}))
+	];
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -334,8 +416,11 @@ async function enrichCheck(config, label, options) {
  * ```
  */
 async function enrichSave(config, label, options) {
+	const LOOKUP = CONFIG.EverydayHeroes.enrichmentLookup;
+	config.ability = LOOKUP.abilities[slugify(config.ability)]?.key ?? slugify(config.ability);
 	for ( const value of config.values ) {
-		if ( value in CONFIG.EverydayHeroes.enrichmentLookup.abilities ) config.ability = value;
+		const slug = slugify(value);
+		if ( slug in LOOKUP.abilities ) config.ability = LOOKUP.abilities[slug].key;
 		else if ( Number.isNumeric(value) ) config.dc = Number(value);
 		else config[value] = true;
 	}
@@ -351,7 +436,19 @@ async function enrichSave(config, label, options) {
 
 	config = { type: "ability-save", ...config };
 	if ( !label ) label = createRollLabel(config);
-	return createRollLink(label, config);
+	return createRequestLink(createRollLink(label), config);
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Create the buttons for a save requested in chat.
+ * @param {object} dataset
+ * @returns {object[]}
+ */
+function createSaveRequestButtons(dataset) {
+	return (dataset.ability?.split("|") ?? [])
+		.map(ability => createRequestButton({ ...dataset, format: "long", ability }));
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -596,21 +693,27 @@ function enrichLookup(config, fallback, options) {
  * @returns {Promise|void}
  */
 async function rollAction(event) {
-	const target = event.target.closest('.roll-link, [data-action="rollRequest"]');
+	const target = event.target.closest('.roll-link-group, [data-action="rollRequest"]');
 	if ( !target ) return;
 	event.stopPropagation();
+	window.getSelection().empty();
 
-	const { type, ability, skill, dc } = target.dataset;
+	const dataset = {
+		...((event.target.closest(".roll-link-group") ?? target)?.dataset ?? {}),
+		...(event.target.closest(".roll-link")?.dataset ?? {})
+	};
+	const { type, ability, skill, dc } = dataset;
 	const config = { event };
 	if ( ability ) config.ability = ability;
 	if ( skill ) config.skill = skill;
 	if ( dc ) config.options = { target: Number(dc) };
 
 	const action = event.target.closest("a")?.dataset.action ?? "roll";
+	const link = event.target.closest("a") ?? event.target;
 
 	// Direct roll
 	if ( (action === "roll") || !game.user.isGM ) {
-		target.disabled = true;
+		link.disabled = true;
 		try {
 			// Fetch the actor that should perform the roll
 			let actor;
@@ -622,29 +725,45 @@ async function rollAction(event) {
 			if ( !actor ) return ui.notifications.warn(game.i18n.localize("EH.Inline.NoActorWarning"));
 			return actor.roll(type, config);
 		} finally {
-			target.disabled = false;
+			link.disabled = false;
 		}
 	}
 
 	// Roll request
 	else {
 		const MessageClass = getDocumentClass("ChatMessage");
+
+		let buttons;
+		if ( dataset.type === "check" ) buttons = createCheckRequestButtons(dataset);
+		else if ( dataset.type === "save" ) buttons = createSaveRequestButtons(dataset);
+		else buttons = [createRequestButton({ ...dataset, format: "short" })];
+
 		const chatData = {
 			user: game.user.id,
 			type: CONST.CHAT_MESSAGE_TYPES.OTHER,
 			content: await foundry.applications.handlebars.renderTemplate(
-				"systems/everyday-heroes/templates/chat/request-card.hbs",
-				{
-					buttonLabel: createRollLabel({ ...target.dataset, format: "short", icon: true }),
-					hiddenLabel: createRollLabel({ ...target.dataset, format: "short", icon: true, hideDC: true }),
-					dataset: { ...target.dataset, action: "rollRequest" }
-				}
+				"systems/everyday-heroes/templates/chat/request-card.hbs", { buttons }
 			),
 			flavor: game.i18n.localize("EH.Inline.RollRequest"),
 			speaker: MessageClass.getSpeaker({ user: game.user })
 		};
 		return MessageClass.create(chatData);
 	}
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Create a button for a chat request.
+ * @param {object} dataset
+ * @returns {object}
+ */
+function createRequestButton(dataset) {
+	return {
+		buttonLabel: createRollLabel({ ...dataset, icon: true }),
+		hiddenLabel: createRollLabel({ ...dataset, icon: true, hideDC: true }),
+		dataset: { ...dataset, action: "rollRequest", visibility: "all" }
+	};
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

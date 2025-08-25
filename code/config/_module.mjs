@@ -38,9 +38,10 @@ Object.defineProperty(config, "enrichmentLookup", {
 				abilities: foundry.utils.deepClone(this.abilities),
 				skills: foundry.utils.deepClone(this.skills)
 			};
-			const addFullKeys = key => Object.entries(this[key]).forEach(([k, v]) =>
-				_enrichmentLookup[key][slugify(v.fullKey)] = { ...v, key: k }
-			);
+			const addFullKeys = key => Object.entries(this[key]).forEach(([k, v]) => {
+				_enrichmentLookup[key][k].key = k;
+				_enrichmentLookup[key][slugify(v.fullKey)] = { ...v, key: k };
+			});
 			addFullKeys("abilities");
 			addFullKeys("skills");
 		}
