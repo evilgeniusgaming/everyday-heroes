@@ -214,8 +214,9 @@ export default class ChallengeRoll extends BaseRoll {
 	 * Ensure the challenge die for this roll is a proper ChallengeDie, not a regular Die.
 	 */
 	#createChallengeDie() {
-		if ( this.challengeDie instanceof CONFIG.Dice.ChallengeDie ) return;
-		if ( !(this.challengeDie instanceof foundry.dice.terms.Die) ) return;
-		this.challengeDie = new CONFIG.Dice.ChallengeDie({...this.challengeDie});
+		if ( this.terms[0] instanceof CONFIG.Dice.ChallengeDie ) return;
+		if ( !(this.terms[0] instanceof foundry.dice.terms.Die) ) return;
+		const { number, faces, ...data } = this.terms[0];
+		this.terms[0] = new CONFIG.Dice.ChallengeDie({ ...data, number, faces });
 	}
 }
