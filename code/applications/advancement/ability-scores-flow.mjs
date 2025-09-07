@@ -134,7 +134,7 @@ export default class AbilityScoresFlow extends AdvancementFlow {
 			spent: number >= context.points.remaining
 		}));
 		context.scores = this.abilities.map(([key, { label }]) => {
-			const score = this.assignments[key] ?? minScore;
+			const score = this.assignments[key] ??= minScore;
 			const data = {
 				key,
 				label,
