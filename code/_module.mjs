@@ -14,7 +14,7 @@ import * as data from "./data/_module.mjs";
 import * as dice from "./dice/_module.mjs";
 import * as documents from "./documents/_module.mjs";
 import * as enrichers from "./enrichers.mjs";
-import { registerModuleData, setupModulePacks } from "./module-registration.mjs";
+import { displayAdventureImports, registerModuleData, setupModulePacks } from "./module-registration.mjs";
 import * as settings from "./settings.mjs";
 import * as utils from "./utils.mjs";
 
@@ -83,6 +83,8 @@ Hooks.once("i18nInit", function() {
 Hooks.once("ready", function() {
 	config.registration.registerItemTypes();
 	settings.enableTitanicSizes();
+
+	displayAdventureImports();
 });
 
 Hooks.on("getChatLogEntryContext", documents.ChatMessageEH.getContextOptions);

@@ -20,6 +20,29 @@ export function registerModuleData() {
 const methods = [];
 
 /* <><><><> <><><><> <><><><> <><><><> <><><><> <><><><> */
+/*                   Adventure Imports                   */
+/* <><><><> <><><><> <><><><> <><><><> <><><><> <><><><> */
+
+/**
+ * Display the adventure import dialog for any non-imported adventures that have the setting configured.
+ */
+export async function displayAdventureImports() {
+	for ( const manifest of game.modules.filter(m => m.active) ) {
+		const uuid = manifest.flags?.[game.system.id]?.adventureUuid;
+		const imported = game.settings.get("core", "adventureImports")?.[uuid];
+		if ( !uuid || imported || !game.user.isGM ) continue;
+		const adventure = await fromUuid(uuid);
+		if ( !adventure ) {
+			systemLog(`Auto-imported adventure specified in ${manifest.id} that couldn't be found.`, {
+				extras: [uuid], level: "error"
+			});
+			continue;
+		}
+		adventure.sheet.render({ force: true });
+	}
+}
+
+/* <><><><> <><><><> <><><><> <><><><> <><><><> <><><><> */
 /*                    Compendium Packs                   */
 /* <><><><> <><><><> <><><><> <><><><> <><><><> <><><><> */
 
