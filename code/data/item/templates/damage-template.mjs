@@ -225,7 +225,7 @@ export default class Damage extends foundry.abstract.DataModel {
 	 * @type {boolean}
 	 */
 	get hasDamage() {
-		return this.damage.type !== "";
+		return (this.constructor.damageMode === "regular") && (this.damage.type !== "");
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
