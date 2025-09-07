@@ -39,6 +39,7 @@ export default class DocumentContextField extends foundry.data.fields.ObjectFiel
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @inheritDoc */
 	static get _defaults() {
 		return foundry.utils.mergeObject(super._defaults, {
 			foreign: false
@@ -47,17 +48,23 @@ export default class DocumentContextField extends foundry.data.fields.ObjectFiel
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @override */
 	_cleanType(value, options) {
-		Object.entries(value).forEach(([k, v]) => value[k] = this.schema.clean(v, options));
+		Object.entries(value).forEach(([k, v]) => {
+			if (k.startsWith("-=")) return;
+			value[k] = this.schema.clean(v, options);
+		});
 		return value;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @inheritDoc */
 	_validateType(value, options={}) {
 		super._validateType(value, options);
 		const errors = {};
 		for ( const [k, v] of Object.entries(value) ) {
+			if ( k.startsWith("-=") ) continue;
 			const error = this.schema.validate(v, options);
 			if ( error ) errors[k] = error;
 		}
@@ -66,6 +73,7 @@ export default class DocumentContextField extends foundry.data.fields.ObjectFiel
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @override */
 	initialize(value, model, options={}) {
 		if ( !value ) return new Collection();
 		const collection = new Collection();
@@ -86,6 +94,7 @@ export default class DocumentContextField extends foundry.data.fields.ObjectFiel
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @override */
 	toObject(value) {
 		return Object.fromEntries(value.values());
 	}
