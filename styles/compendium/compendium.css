@@ -196,7 +196,7 @@ figure.company-logo img {
 	h4.alt {
 		border-block-end: 1px solid currentcolor;
 		color: var(--eh-background-color-blue);
-		
+
 		strong {
 			float: right;
 			color: inherit;
@@ -270,16 +270,16 @@ figure.company-logo img {
 		border-radius: 40px;
 		border-spacing: 0;
 		background: none;
-	
-		.narrow {
+
+		&.narrow {
 			width: calc(100% - 16em);
 			margin-inline: 8em;
 		}
-		.wide {
+		&.wide {
 			width: calc(100% - 2em);
 			margin-inline: 1em;
 		}
-	
+
 		thead {
 			background: none;
 		}
@@ -350,23 +350,23 @@ figure.company-logo img {
 		border: none;
 		text-decoration: underline currentcolor;
 		text-underline-offset: 2px;
-	
+
 		> i {
 			color: currentcolor;
 			opacity: 75%;
 			transition: opacity 250ms ease;
 		}
-	
+
 		&:hover {
 			text-shadow: none;
 			> i { opacity: 1; }
 		}
 	}
-	
+
 	.roll-link-group a[data-action="request"] {
 		margin-inline-start: 10px;
 		text-decoration: none;
-	
+
 		&::before {
 			content: "\f105";
 			font-family: var(--font-awesome);
