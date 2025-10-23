@@ -1,5 +1,5 @@
 {
-	
+
 "EH.Ability": {
 	"Label[one]": "Ability",
 	"Label[other]": "Abilities",
@@ -1696,6 +1696,19 @@
 	"Rounding": "Proficiency Rounding"
 },
 
+"EH.ProseMirror": {
+	"Command": {
+		"Callout": "Callout",
+		"CharacterQuote": "Character Quote",
+		"HeaderH3Alt": "Heading 3 (alt)",
+		"HeaderH3Rounded": "Heading 3 (rounded)",
+		"HeaderH4Alt": "Heading 4 (alt)",
+		"HeaderH4Rounded": "Heading 4 (rounded)",
+		"HeaderQuote": "Header Quote",
+		"ReadAloud": "Read Aloud"
+	}
+},
+
 "EH.Range": {
 	"Max": "Max",
 	"Min": "Min"
@@ -1879,6 +1892,10 @@
 		"All": "Show all",
 		"None": "Hide all",
 		"Player": "Show only from other players"
+	},
+	"DeveloperTools": {
+		"Label": "Developer Tools",
+		"Hint": "Enable additional controls in ProseMirror to aid in creating journals."
 	},
 	"InitiativeTiebreaker": {
 		"Label": "Initiative Tiebreaker",

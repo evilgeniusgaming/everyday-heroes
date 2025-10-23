@@ -60,3 +60,4 @@ export * as advancement from "./advancement/_module.mjs";
 export {default as CombatTrackerEH} from "./combat-tracker.mjs";
 export * as dice from "./dice/_module.mjs";
 export * as compendium from "./compendium/_module.mjs";
+export * as proseMirror from "./prose-mirror/_module.mjs";

@@ -123,6 +123,16 @@ export function registerSettings() {
 		onChange: applyReduceTransparency
 	});
 
+	// Enable developer tools
+	game.settings.register("everyday-heroes", "developerTools", {
+		name: "EH.Settings.DeveloperTools.Label",
+		hint: "EH.Settings.DeveloperTools.Hint",
+		scope: "user",
+		config: true,
+		default: false,
+		type: Boolean
+	});
+
 	// Last created types
 	game.settings.register("everyday-heroes", "_lastCreateTypeItem", {
 		scope: "client",

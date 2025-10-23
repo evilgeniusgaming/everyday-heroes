@@ -35,12 +35,7 @@ Hooks.once("init", function() {
 	utils.systemLog(`Initializing the Everyday Heroes Game System - Version ${game.system.version}\n${config.ASCII}`);
 
 	CONFIG.compatibility.excludePatterns.push(/The V1 Application framework is deprecated/);
-	// CONFIG.compatibility.excludePatterns.push(/filePicker/);
 	CONFIG.compatibility.excludePatterns.push(/select/);
-	// CONFIG.compatibility.excludePatterns.push(/hallengeDie/);
-	// CONFIG.compatibility.excludePatterns.push(/configureRoll/);
-	// CONFIG.compatibility.excludePatterns.push(/preprocessFormula/);
-	// CONFIG.compatibility.excludePatterns.push(/toMessage/);
 
 	game.everydayHeroes = globalThis.EverydayHeroes;
 	CONFIG.EverydayHeroes = config;
@@ -64,6 +59,7 @@ Hooks.once("setup", function() {
 	setupModulePacks();
 	applications.registerSheets(Actor, config.actorCategories);
 	applications.registerSheets(Item, config.itemCategories);
+	applications.proseMirror.registerHooks();
 
 	foundry.applications.apps.DocumentSheetConfig.registerSheet(
 		JournalEntry, game.system.id, applications.journal.JournalSheetEH,

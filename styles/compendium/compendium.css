@@ -389,3 +389,18 @@ ul {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 }
+
+#prosemirror-dropdown .eh-menu-item {
+	> span {
+		width: 100%;
+		display: flex;
+		gap: 4px;
+		justify-content: space-between;
+	}
+	> span::after {
+		content: "EH";
+		color: var(--eh-text-color-red);
+		font-size: var(--font-size-11);
+		font-weight: bold;
+	}
+}
