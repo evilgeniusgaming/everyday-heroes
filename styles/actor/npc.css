@@ -125,7 +125,7 @@
 	[data-tab="details"] > section.actions > fieldset {
 		display: block;
 
-		p { display: inline; }
+		label + p { display: inline; }
 		label span {
 			font-style: italic;
 			text-transform: none;
