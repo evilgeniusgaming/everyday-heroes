@@ -452,7 +452,11 @@
       "offsetX": 0,
       "offsetY": 0,
       "rotation": 0,
-      "tint": null
+      "tint": "#ffffff",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "alphaThreshold": 0.75
     },
     "width": 1,
     "height": 1,
@@ -488,7 +492,9 @@
       "darkness": {
         "min": 0,
         "max": 1
-      }
+      },
+      "negative": false,
+      "priority": 0
     },
     "sight": {
       "enabled": false,
@@ -505,7 +511,29 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null
   },
   "items": [
     {
@@ -541,18 +569,17 @@
       "ownership": {
         "default": 0
       },
-      "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.weapon-armor.uO7kSaMcKfY218lJ"
-        }
-      },
+      "flags": {},
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.1.0",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1679549440145,
         "modifiedTime": 1680558053885,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": "Compendium.eh-core-rulebook.weapon-armor.uO7kSaMcKfY218lJ",
+        "duplicateSource": null,
+        "exportSource": null
       },
       "folder": null,
       "sort": 0,
@@ -597,18 +624,17 @@
       "ownership": {
         "default": 0
       },
-      "flags": {
-        "core": {
-          "sourceId": "Actor.CKnfgbcCTGuzW6Os.Item.mfwEKIeZFJ4Bv60v"
-        }
-      },
+      "flags": {},
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.1.0",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1680559033901,
         "modifiedTime": 1680559078493,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": "Actor.CKnfgbcCTGuzW6Os.Item.mfwEKIeZFJ4Bv60v",
+        "duplicateSource": null,
+        "exportSource": null
       },
       "_key": "!actors.items!O99p9PV4ozvJTrbe.mfwEKIeZFJ4Bv60v"
     },
@@ -679,18 +705,17 @@
       "ownership": {
         "default": 0
       },
-      "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.weapon-armor.OAs52Pja98Hu3f7f"
-        }
-      },
+      "flags": {},
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.1.0",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1679547575798,
         "modifiedTime": 1680559112328,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": "Compendium.eh-core-rulebook.weapon-armor.OAs52Pja98Hu3f7f",
+        "duplicateSource": null,
+        "exportSource": null
       },
       "folder": null,
       "sort": 0,
@@ -765,18 +790,17 @@
       "ownership": {
         "default": 0
       },
-      "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.weapon-armor.uua9V0JEpMVcBW7L"
-        }
-      },
+      "flags": {},
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.1.0",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1679627690071,
         "modifiedTime": 1680559107921,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": "Compendium.eh-core-rulebook.weapon-armor.uua9V0JEpMVcBW7L",
+        "duplicateSource": null,
+        "exportSource": null
       },
       "folder": null,
       "sort": 0,
@@ -806,18 +830,17 @@
       "ownership": {
         "default": 0
       },
-      "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.other-equipment.FDx6c3gtWfoPCzFR"
-        }
-      },
+      "flags": {},
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.1.0",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1679630335973,
         "modifiedTime": 1680559367017,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": "Compendium.eh-core-rulebook.other-equipment.FDx6c3gtWfoPCzFR",
+        "duplicateSource": null,
+        "exportSource": null
       },
       "folder": null,
       "sort": 0,
@@ -847,18 +870,17 @@
       "ownership": {
         "default": 0
       },
-      "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.other-equipment.uo0eYfOK6gk7RoRP"
-        }
-      },
+      "flags": {},
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.1.0",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1679627478786,
         "modifiedTime": 1680559369817,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": "Compendium.eh-core-rulebook.other-equipment.uo0eYfOK6gk7RoRP",
+        "duplicateSource": null,
+        "exportSource": null
       },
       "folder": null,
       "sort": 0,
@@ -879,10 +901,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.4",
-    "coreVersion": "11.308",
+    "coreVersion": "13.350",
     "createdTime": 1680557912562,
     "modifiedTime": 1693000748830,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": null,
   "sort": 0,

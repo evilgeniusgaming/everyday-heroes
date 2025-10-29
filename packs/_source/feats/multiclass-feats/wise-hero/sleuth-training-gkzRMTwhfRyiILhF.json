@@ -74,7 +74,6 @@
   },
   "effects": [
     {
-      "icon": "systems/everyday-heroes/artwork/icons/classes/sleuth.webp",
       "origin": "Compendium.everyday-heroes.feats.gkzRMTwhfRyiILhF",
       "duration": {
         "rounds": null,
@@ -94,16 +93,27 @@
           "value": "+1"
         }
       ],
-      "tint": null,
+      "tint": "#ffffff",
       "transfer": true,
-      "flags": {
-        "core": {
-          "sourceId": "Compendium.everyday-heroes.feats.89n6BZEK8HJFr9Jf.ActiveEffect.IW9751pkJcSfp9KU"
-        }
-      },
+      "flags": {},
       "name": "Sleuth Training",
       "description": "",
       "statuses": [],
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": "Compendium.everyday-heroes.feats.89n6BZEK8HJFr9Jf.ActiveEffect.IW9751pkJcSfp9KU",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/everyday-heroes/artwork/icons/classes/sleuth.webp",
+      "type": "base",
+      "system": {},
+      "sort": 0,
       "_key": "!items.effects!gkzRMTwhfRyiILhF.XBwmXbcO1zEMO5YK"
     }
   ],
@@ -114,10 +124,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.5.0",
-    "coreVersion": "11.315",
+    "coreVersion": "13.350",
     "createdTime": 1680041499426,
     "modifiedTime": 1705442211241,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": "WUjQvIJr7gmCIJwL",
   "sort": 150000,

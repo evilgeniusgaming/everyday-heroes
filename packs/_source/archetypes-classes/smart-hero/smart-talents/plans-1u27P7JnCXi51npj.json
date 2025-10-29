@@ -34,8 +34,6 @@
   },
   "effects": [
     {
-      "label": "Plan Limit",
-      "icon": "systems/everyday-heroes/artwork/icons/archetypes/plans.svg",
       "origin": "Compendium.everyday-heroes.archetypes-classes.1u27P7JnCXi51npj",
       "duration": {
         "rounds": null,
@@ -55,9 +53,27 @@
           "value": "floor(@details.level / 2) + max(@abilities.int.mod, 1)"
         }
       ],
-      "tint": null,
+      "tint": "#ffffff",
       "transfer": true,
       "flags": {},
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Plan Limit",
+      "img": "systems/everyday-heroes/artwork/icons/archetypes/plans.svg",
+      "type": "base",
+      "system": {},
+      "description": "",
+      "statuses": [],
+      "sort": 0,
       "_key": "!items.effects!1u27P7JnCXi51npj.LitSHe6bUR1iUyiv"
     }
   ],
@@ -68,10 +84,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.8",
-    "coreVersion": "11.315",
+    "coreVersion": "13.350",
     "createdTime": 1679161506923,
     "modifiedTime": 1705283399594,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": "1fSyqlGetAr8frkD",
   "sort": 100000,

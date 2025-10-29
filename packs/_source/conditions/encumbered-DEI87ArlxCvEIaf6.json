@@ -24,8 +24,6 @@
   "effects": [
     {
       "name": "Encumbered",
-      "label": "Encumbered",
-      "icon": "systems/everyday-heroes/artwork/icons/conditions/encumbered.svg",
       "flags": {
         "core": {
           "statusId": "encumbered"
@@ -53,6 +51,22 @@
       "statuses": [
         "encumbered"
       ],
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/everyday-heroes/artwork/icons/conditions/encumbered.svg",
+      "type": "base",
+      "system": {},
+      "tint": "#ffffff",
+      "sort": 0,
       "_key": "!items.effects!DEI87ArlxCvEIaf6.adydmQ85GGlVtL6A"
     }
   ],
@@ -63,10 +77,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.0",
-    "coreVersion": "10.303",
+    "coreVersion": "13.350",
     "createdTime": 1686607041015,
     "modifiedTime": 1691861691526,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": null,
   "sort": 0,

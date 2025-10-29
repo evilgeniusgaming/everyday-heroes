@@ -54,7 +54,6 @@
   },
   "effects": [
     {
-      "icon": "systems/everyday-heroes/artwork/icons/classes/mastermind.webp",
       "origin": "Compendium.everyday-heroes.feats.89n6BZEK8HJFr9Jf",
       "duration": {
         "rounds": null,
@@ -79,12 +78,27 @@
           "value": "+1"
         }
       ],
-      "tint": null,
+      "tint": "#ffffff",
       "transfer": true,
       "flags": {},
       "name": "Mastermind Training",
       "description": "",
       "statuses": [],
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/everyday-heroes/artwork/icons/classes/mastermind.webp",
+      "type": "base",
+      "system": {},
+      "sort": 0,
       "_key": "!items.effects!89n6BZEK8HJFr9Jf.IW9751pkJcSfp9KU"
     }
   ],
@@ -95,10 +109,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.5.0",
-    "coreVersion": "11.315",
+    "coreVersion": "13.350",
     "createdTime": 1680041478430,
     "modifiedTime": 1705442296272,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": "kPmDsCMMdrZbWPUN",
   "sort": 150000,

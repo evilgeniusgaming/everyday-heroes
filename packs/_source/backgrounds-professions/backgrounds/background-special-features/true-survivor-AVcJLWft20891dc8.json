@@ -33,8 +33,6 @@
   },
   "effects": [
     {
-      "label": "True Survivor",
-      "icon": "systems/everyday-heroes/artwork/icons/backgrounds/true-survivor.svg",
       "origin": "Item.0KI9tkDbZU9wxqr5",
       "duration": {
         "rounds": null,
@@ -54,10 +52,27 @@
           "value": "2"
         }
       ],
-      "tint": null,
+      "tint": "#ffffff",
       "transfer": true,
       "flags": {},
       "sort": 0,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "True Survivor",
+      "img": "systems/everyday-heroes/artwork/icons/backgrounds/true-survivor.svg",
+      "type": "base",
+      "system": {},
+      "description": "",
+      "statuses": [],
       "_key": "!items.effects!AVcJLWft20891dc8.uGKZ5FtxqhKnwMwP"
     }
   ],
@@ -68,10 +83,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.8",
-    "coreVersion": "11.315",
+    "coreVersion": "13.350",
     "createdTime": 1679370743949,
     "modifiedTime": 1705284041298,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": "MzFsDv4I57wZ6nX6",
   "sort": 112500,

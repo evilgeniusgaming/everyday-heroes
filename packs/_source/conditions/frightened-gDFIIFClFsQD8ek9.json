@@ -24,8 +24,6 @@
   "effects": [
     {
       "name": "Frightened",
-      "label": "Frightened",
-      "icon": "systems/everyday-heroes/artwork/icons/conditions/frightened.svg",
       "flags": {
         "core": {
           "statusId": "frightened"
@@ -53,6 +51,22 @@
       "statuses": [
         "frightened"
       ],
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/everyday-heroes/artwork/icons/conditions/frightened.svg",
+      "type": "base",
+      "system": {},
+      "tint": "#ffffff",
+      "sort": 0,
       "_key": "!items.effects!gDFIIFClFsQD8ek9.NYCjsCHYX9vx8yLI"
     }
   ],
@@ -63,10 +77,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.0",
-    "coreVersion": "10.303",
+    "coreVersion": "13.350",
     "createdTime": 1686607051230,
     "modifiedTime": 1691861691579,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": null,
   "sort": 0,

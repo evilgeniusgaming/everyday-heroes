@@ -465,7 +465,11 @@
       "offsetX": 0,
       "offsetY": 0,
       "rotation": 0,
-      "tint": null
+      "tint": "#ffffff",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "alphaThreshold": 0.75
     },
     "width": 1,
     "height": 1,
@@ -501,7 +505,9 @@
       "darkness": {
         "min": 0,
         "max": 1
-      }
+      },
+      "negative": false,
+      "priority": 0
     },
     "sight": {
       "enabled": false,
@@ -518,7 +524,29 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null
   },
   "items": [
     {
@@ -562,10 +590,13 @@
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.1.1",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1680897337472,
         "modifiedTime": 1680897433644,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
       },
       "_key": "!actors.items!nlUCFeDEQNdsVObS.TpxjxvN2x4Pd4FmS"
     },
@@ -610,10 +641,13 @@
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.1.1",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1680897338335,
         "modifiedTime": 1680897438867,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
       },
       "_key": "!actors.items!nlUCFeDEQNdsVObS.pXCVDkEk2NpfoS7V"
     },
@@ -658,10 +692,13 @@
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.1.1",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1680897339255,
         "modifiedTime": 1680897454546,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
       },
       "_key": "!actors.items!nlUCFeDEQNdsVObS.XyIyn0hOS1rCgpTL"
     },
@@ -751,10 +788,13 @@
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.2.0",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1680897341987,
         "modifiedTime": 1685210477469,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
       },
       "_key": "!actors.items!nlUCFeDEQNdsVObS.zj6kyxpJIen4kIwa"
     },
@@ -842,10 +882,13 @@
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.1.1",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1680897342168,
         "modifiedTime": 1680898372547,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
       },
       "_key": "!actors.items!nlUCFeDEQNdsVObS.8wPhnRAOkO5UR6AM"
     },
@@ -879,10 +922,13 @@
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.1.1",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1680897346425,
         "modifiedTime": 1680897378467,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
       },
       "_key": "!actors.items!nlUCFeDEQNdsVObS.zEJwrsg0ZOUPodhY"
     },
@@ -909,18 +955,17 @@
       "ownership": {
         "default": 0
       },
-      "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.other-equipment.uo0eYfOK6gk7RoRP"
-        }
-      },
+      "flags": {},
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.1.1",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1679627478786,
         "modifiedTime": 1680897390720,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": "Compendium.eh-core-rulebook.other-equipment.uo0eYfOK6gk7RoRP",
+        "duplicateSource": null,
+        "exportSource": null
       },
       "folder": null,
       "sort": 0,
@@ -959,8 +1004,6 @@
       },
       "effects": [
         {
-          "label": "Undead Nature",
-          "icon": "systems/everyday-heroes/artwork/svg/items/feature.svg",
           "origin": "Item.9F1CpqQyjVLVNLWB",
           "duration": {
             "rounds": null,
@@ -981,9 +1024,27 @@
               "priority": null
             }
           ],
-          "tint": null,
+          "tint": "#ffffff",
           "transfer": true,
           "flags": {},
+          "_stats": {
+            "coreVersion": "13.350",
+            "systemId": null,
+            "systemVersion": null,
+            "createdTime": null,
+            "modifiedTime": null,
+            "lastModifiedBy": null,
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null
+          },
+          "name": "Undead Nature",
+          "img": "systems/everyday-heroes/artwork/svg/items/feature.svg",
+          "type": "base",
+          "system": {},
+          "description": "",
+          "statuses": [],
+          "sort": 0,
           "_key": "!actors.items.effects!nlUCFeDEQNdsVObS.LdeIrHgkX3SRqiGj.d5x8ZHmw10IWwHkw"
         }
       ],
@@ -992,18 +1053,17 @@
       "ownership": {
         "default": 0
       },
-      "flags": {
-        "core": {
-          "sourceId": "Actor.qrN8LxLQYL8Iompu.Item.SOGgEhPG70IMQYdd"
-        }
-      },
+      "flags": {},
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.1.1",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1680902827969,
         "modifiedTime": 1680902980159,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": "Actor.qrN8LxLQYL8Iompu.Item.SOGgEhPG70IMQYdd",
+        "duplicateSource": null,
+        "exportSource": null
       },
       "_id": "LdeIrHgkX3SRqiGj",
       "_key": "!actors.items!nlUCFeDEQNdsVObS.LdeIrHgkX3SRqiGj"
@@ -1011,8 +1071,6 @@
   ],
   "effects": [
     {
-      "label": "Undead Nature",
-      "icon": "systems/everyday-heroes/artwork/svg/items/feature.svg",
       "origin": "Compendium.eh-core-rulebook.npcs.nlUCFeDEQNdsVObS.Item.LdeIrHgkX3SRqiGj",
       "duration": {
         "rounds": null,
@@ -1033,9 +1091,27 @@
           "priority": null
         }
       ],
-      "tint": null,
+      "tint": "#ffffff",
       "transfer": false,
       "flags": {},
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Undead Nature",
+      "img": "systems/everyday-heroes/artwork/svg/items/feature.svg",
+      "type": "base",
+      "system": {},
+      "description": "",
+      "statuses": [],
+      "sort": 0,
       "_key": "!actors.effects!nlUCFeDEQNdsVObS.8ASamD6BI5rxWC3K"
     }
   ],
@@ -1051,10 +1127,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.4",
-    "coreVersion": "11.308",
+    "coreVersion": "13.350",
     "createdTime": 1680897016131,
     "modifiedTime": 1693000839352,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": null,
   "sort": 0,

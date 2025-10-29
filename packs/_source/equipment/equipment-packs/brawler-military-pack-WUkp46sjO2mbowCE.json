@@ -26,10 +26,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.5.0",
-    "coreVersion": "11.315",
+    "coreVersion": "13.350",
     "createdTime": 1693001020206,
     "modifiedTime": 1705442650838,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "_id": "WUkp46sjO2mbowCE",
   "sort": 200000,

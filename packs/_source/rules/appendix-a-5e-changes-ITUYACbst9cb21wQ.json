@@ -30,6 +30,18 @@
           "toc": false
         }
       },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "category": null,
       "_key": "!journal.pages!ITUYACbst9cb21wQ.Y4YCTjPBALxXRM6r"
     }
   ],
@@ -48,13 +60,17 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.1.0",
-    "coreVersion": "10.291",
+    "coreVersion": "13.350",
     "createdTime": 1680310676162,
     "modifiedTime": 1680320446249,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": null,
   "sort": 0,
   "_id": "ITUYACbst9cb21wQ",
+  "categories": [],
   "_key": "!journal!ITUYACbst9cb21wQ"
 }

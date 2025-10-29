@@ -24,8 +24,6 @@
   "effects": [
     {
       "name": "Deafened",
-      "label": "Deafened",
-      "icon": "systems/everyday-heroes/artwork/icons/conditions/deafened.svg",
       "flags": {
         "core": {
           "statusId": "deafened"
@@ -53,6 +51,22 @@
       "statuses": [
         "deafened"
       ],
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/everyday-heroes/artwork/icons/conditions/deafened.svg",
+      "type": "base",
+      "system": {},
+      "tint": "#ffffff",
+      "sort": 0,
       "_key": "!items.effects!h5xGy2CcAL3R1l8x.3erUfyNK0Y0AqgO8"
     }
   ],
@@ -63,10 +77,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.0",
-    "coreVersion": "10.303",
+    "coreVersion": "13.350",
     "createdTime": 1686112447817,
     "modifiedTime": 1691861691591,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": null,
   "sort": 0,

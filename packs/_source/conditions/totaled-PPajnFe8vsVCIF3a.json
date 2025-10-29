@@ -24,8 +24,6 @@
   "effects": [
     {
       "name": "Totaled",
-      "label": "Totaled",
-      "icon": "systems/everyday-heroes/artwork/icons/conditions/totaled.svg",
       "flags": {
         "core": {
           "statusId": "totaled"
@@ -49,10 +47,26 @@
       },
       "origin": null,
       "transfer": true,
-      "tint": null,
+      "tint": "#ffffff",
       "statuses": [
         "totaled"
       ],
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/everyday-heroes/artwork/icons/conditions/totaled.svg",
+      "type": "base",
+      "system": {},
+      "description": "",
+      "sort": 0,
       "_key": "!items.effects!PPajnFe8vsVCIF3a.3g8oMeCVh52SIddo"
     }
   ],
@@ -63,10 +77,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.0",
-    "coreVersion": "10.303",
+    "coreVersion": "13.350",
     "createdTime": 1686607598935,
     "modifiedTime": 1691861691558,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": null,
   "sort": 0,

@@ -24,8 +24,6 @@
   "effects": [
     {
       "name": "Paralyzed",
-      "label": "Paralyzed",
-      "icon": "systems/everyday-heroes/artwork/icons/conditions/paralyzed.svg",
       "flags": {
         "core": {
           "statusId": "paralyzed"
@@ -53,6 +51,22 @@
       "statuses": [
         "paralyzed"
       ],
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/everyday-heroes/artwork/icons/conditions/paralyzed.svg",
+      "type": "base",
+      "system": {},
+      "tint": "#ffffff",
+      "sort": 0,
       "_key": "!items.effects!Wbznh1iBzfdbtk2e.oXmHLCbdyRWh4zh4"
     }
   ],
@@ -63,10 +77,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.0",
-    "coreVersion": "10.303",
+    "coreVersion": "13.350",
     "createdTime": 1686607074660,
     "modifiedTime": 1691861691565,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": null,
   "sort": 0,

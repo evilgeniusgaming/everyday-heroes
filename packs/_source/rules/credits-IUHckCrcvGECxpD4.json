@@ -30,6 +30,18 @@
           "toc": 2
         }
       },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "category": null,
       "_key": "!journal.pages!IUHckCrcvGECxpD4.baJwNa2uoV0aH7N6"
     },
     {
@@ -61,6 +73,18 @@
           "toc": false
         }
       },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "category": null,
       "_key": "!journal.pages!IUHckCrcvGECxpD4.76wKFI2N9BwrWnfj"
     }
   ],
@@ -78,13 +102,17 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.2.0",
-    "coreVersion": "10.291",
+    "coreVersion": "13.350",
     "createdTime": 1680130282703,
     "modifiedTime": 1685396854549,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": null,
   "sort": 0,
   "_id": "IUHckCrcvGECxpD4",
+  "categories": [],
   "_key": "!journal!IUHckCrcvGECxpD4"
 }

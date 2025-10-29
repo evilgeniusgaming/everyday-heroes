@@ -4,67 +4,107 @@
   "description": "While affected by this poison, a target must roll a d10 at the start of each of its turns to determine what it does:",
   "results": [
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         1,
         1
       ],
       "drawn": false,
-      "documentCollection": "",
       "_id": "h6Kb3YYQcQURwmqH",
-      "text": "The target uses all its movement to move in a random direction. To determine the direction, roll a [[/r d8]] and assign a direction to each die face. The target doesn’t take an action this turn.",
       "img": "icons/svg/d20-black.svg",
-      "documentId": null,
       "flags": {},
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The target uses all its movement to move in a random direction. To determine the direction, roll a [[/r d8]] and assign a direction to each die face. The target doesn’t take an action this turn.",
+      "name": "",
       "_key": "!tables.results!cKRtsGh2488X9WJX.h6Kb3YYQcQURwmqH"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         2,
         6
       ],
       "drawn": false,
-      "documentCollection": "",
       "_id": "aADW6eABwM4Kyd98",
-      "text": "The target doesn’t move or take actions this turn.",
       "img": "icons/svg/d20-black.svg",
-      "documentId": null,
       "flags": {},
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The target doesn’t move or take actions this turn.",
+      "name": "",
       "_key": "!tables.results!cKRtsGh2488X9WJX.aADW6eABwM4Kyd98"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         7,
         9
       ],
       "drawn": false,
-      "documentCollection": "",
       "_id": "e1BfXR2PdhLx7gie",
-      "text": "The target uses its action to make an attack with whatever it is holding against a randomly determined target within range.",
       "img": "icons/svg/d20-black.svg",
-      "documentId": null,
       "flags": {},
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The target uses its action to make an attack with whatever it is holding against a randomly determined target within range.",
+      "name": "",
       "_key": "!tables.results!cKRtsGh2488X9WJX.e1BfXR2PdhLx7gie"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         10,
         10
       ],
       "drawn": false,
-      "documentCollection": "",
       "_id": "zCzyERg86B88thR7",
-      "text": "The target can act and move normally but is poisoned during this turn.",
       "img": "icons/svg/d20-black.svg",
-      "documentId": null,
       "flags": {},
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The target can act and move normally but is poisoned during this turn.",
+      "name": "",
       "_key": "!tables.results!cKRtsGh2488X9WJX.zCzyERg86B88thR7"
     }
   ],
@@ -78,10 +118,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.1.0",
-    "coreVersion": "10.291",
+    "coreVersion": "13.350",
     "createdTime": 1679521202560,
     "modifiedTime": 1679521345326,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": null,
   "sort": 0,

@@ -36,8 +36,6 @@
   "effects": [
     {
       "name": "Intoxicated (level one)",
-      "label": "Intoxicated (level one)",
-      "icon": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
       "flags": {
         "core": {
           "statusId": "intoxicated"
@@ -61,16 +59,30 @@
       },
       "origin": null,
       "transfer": true,
-      "tint": null,
+      "tint": "#ffffff",
       "statuses": [
         "intoxicated"
       ],
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
+      "type": "base",
+      "system": {},
+      "description": "",
+      "sort": 0,
       "_key": "!items.effects!vzUDWHyJUxiIVNPT.GrOJuhLJtbAP8Apq"
     },
     {
       "name": "Intoxicated (level two)",
-      "label": "Intoxicated (level two)",
-      "icon": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
       "flags": {
         "core": {
           "statusId": "intoxicated"
@@ -101,16 +113,30 @@
       },
       "origin": null,
       "transfer": true,
-      "tint": null,
+      "tint": "#ffffff",
       "statuses": [
         "intoxicated"
       ],
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
+      "type": "base",
+      "system": {},
+      "description": "",
+      "sort": 0,
       "_key": "!items.effects!vzUDWHyJUxiIVNPT.CskTVEMpmVyEzQDR"
     },
     {
       "name": "Intoxicated (level three)",
-      "label": "Intoxicated (level three)",
-      "icon": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
       "flags": {
         "core": {
           "statusId": "intoxicated"
@@ -134,16 +160,30 @@
       },
       "origin": null,
       "transfer": true,
-      "tint": null,
+      "tint": "#ffffff",
       "statuses": [
         "intoxicated"
       ],
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
+      "type": "base",
+      "system": {},
+      "description": "",
+      "sort": 0,
       "_key": "!items.effects!vzUDWHyJUxiIVNPT.SbRWej0UI2K33RBL"
     },
     {
       "name": "Intoxicated (level four)",
-      "label": "Intoxicated (level four)",
-      "icon": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
       "flags": {
         "core": {
           "statusId": "intoxicated"
@@ -167,10 +207,26 @@
       },
       "origin": null,
       "transfer": true,
-      "tint": null,
+      "tint": "#ffffff",
       "statuses": [
         "intoxicated"
       ],
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/everyday-heroes/artwork/icons/conditions/intoxicated.svg",
+      "type": "base",
+      "system": {},
+      "description": "",
+      "sort": 0,
       "_key": "!items.effects!vzUDWHyJUxiIVNPT.TdNX9QU2Mvmmzd6w"
     }
   ],
@@ -181,10 +237,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.0",
-    "coreVersion": "10.303",
+    "coreVersion": "13.350",
     "createdTime": 1686607191448,
     "modifiedTime": 1691861691601,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": null,
   "sort": 0,

@@ -35,8 +35,6 @@
   },
   "effects": [
     {
-      "label": "Investments",
-      "icon": "systems/everyday-heroes/artwork/icons/feats/investments.svg",
       "origin": "Compendium.eh-core-rulebook.feats.LveRtTGxW1fgfBgb",
       "duration": {
         "rounds": null,
@@ -56,10 +54,27 @@
           "value": "+1"
         }
       ],
-      "tint": null,
+      "tint": "#ffffff",
       "transfer": true,
       "flags": {},
       "sort": 0,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Investments",
+      "img": "systems/everyday-heroes/artwork/icons/feats/investments.svg",
+      "type": "base",
+      "system": {},
+      "description": "",
+      "statuses": [],
       "_key": "!items.effects!LveRtTGxW1fgfBgb.nKWzF5gd1t0veG2k"
     }
   ],
@@ -70,10 +85,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.8",
-    "coreVersion": "11.315",
+    "coreVersion": "13.350",
     "createdTime": 1679977454351,
     "modifiedTime": 1705284311929,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": "WruVA2XadYfBtc60",
   "sort": 125000,

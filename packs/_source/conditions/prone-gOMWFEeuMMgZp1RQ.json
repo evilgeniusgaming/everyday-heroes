@@ -24,8 +24,6 @@
   "effects": [
     {
       "name": "Prone",
-      "label": "Prone",
-      "icon": "systems/everyday-heroes/artwork/icons/conditions/prone.svg",
       "flags": {
         "core": {
           "statusId": "prone"
@@ -53,6 +51,22 @@
       "statuses": [
         "prone"
       ],
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/everyday-heroes/artwork/icons/conditions/prone.svg",
+      "type": "base",
+      "system": {},
+      "tint": "#ffffff",
+      "sort": 0,
       "_key": "!items.effects!gOMWFEeuMMgZp1RQ.1WNWecKTl9kmwb2L"
     }
   ],
@@ -63,10 +77,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.0",
-    "coreVersion": "10.303",
+    "coreVersion": "13.350",
     "createdTime": 1686607078672,
     "modifiedTime": 1691861691583,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": null,
   "sort": 0,

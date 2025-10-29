@@ -35,8 +35,6 @@
   },
   "effects": [
     {
-      "label": "Jack of All Trades",
-      "icon": "systems/everyday-heroes/artwork/icons/feats/jack-of-all-trades.svg",
       "origin": "Compendium.eh-core-rulebook.feats.d0wKJfUcSBC9ry5g",
       "duration": {
         "rounds": null,
@@ -56,10 +54,27 @@
           "value": "0.5"
         }
       ],
-      "tint": null,
+      "tint": "#ffffff",
       "transfer": true,
       "flags": {},
       "sort": 0,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Jack of All Trades",
+      "img": "systems/everyday-heroes/artwork/icons/feats/jack-of-all-trades.svg",
+      "type": "base",
+      "system": {},
+      "description": "",
+      "statuses": [],
       "_key": "!items.effects!d0wKJfUcSBC9ry5g.WnbUuiHlU4HXvvvd"
     }
   ],
@@ -70,10 +85,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.8",
-    "coreVersion": "11.315",
+    "coreVersion": "13.350",
     "createdTime": 1679978329040,
     "modifiedTime": 1705284420802,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": "KzXc6lJhFwFqdN6F",
   "sort": 150000,

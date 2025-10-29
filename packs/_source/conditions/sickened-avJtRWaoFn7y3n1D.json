@@ -24,8 +24,6 @@
   "effects": [
     {
       "name": "Sickened",
-      "label": "Sickened",
-      "icon": "systems/everyday-heroes/artwork/icons/conditions/sickened.svg",
       "flags": {
         "core": {
           "statusId": "sickened"
@@ -53,6 +51,22 @@
       "statuses": [
         "sickened"
       ],
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/everyday-heroes/artwork/icons/conditions/sickened.svg",
+      "type": "base",
+      "system": {},
+      "tint": "#ffffff",
+      "sort": 0,
       "_key": "!items.effects!avJtRWaoFn7y3n1D.g65PERkwdhuip5Fy"
     }
   ],
@@ -63,10 +77,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.0",
-    "coreVersion": "10.303",
+    "coreVersion": "13.350",
     "createdTime": 1686607089138,
     "modifiedTime": 1691861691573,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": null,
   "sort": 0,

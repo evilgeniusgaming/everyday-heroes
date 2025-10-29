@@ -56,8 +56,6 @@
   },
   "effects": [
     {
-      "label": "Smart Hero Training",
-      "icon": "systems/everyday-heroes/artwork/icons/archetypes/smart.webp",
       "origin": "Compendium.everyday-heroes.feats.OfSRLXjSZ6K8uiY5",
       "duration": {
         "rounds": null,
@@ -77,14 +75,27 @@
           "value": "+2"
         }
       ],
-      "tint": null,
+      "tint": "#ffffff",
       "transfer": true,
-      "flags": {
-        "core": {
-          "sourceId": "Compendium.everyday-heroes.archetypes-classes.1u27P7JnCXi51npj.ActiveEffect.LitSHe6bUR1iUyiv"
-        }
-      },
+      "flags": {},
       "sort": 0,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": "Compendium.everyday-heroes.archetypes-classes.1u27P7JnCXi51npj.ActiveEffect.LitSHe6bUR1iUyiv",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Smart Hero Training",
+      "img": "systems/everyday-heroes/artwork/icons/archetypes/smart.webp",
+      "type": "base",
+      "system": {},
+      "description": "",
+      "statuses": [],
       "_key": "!items.effects!OfSRLXjSZ6K8uiY5.aDzdbHQIwCbx9sET"
     }
   ],
@@ -95,10 +106,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.8",
-    "coreVersion": "11.315",
+    "coreVersion": "13.350",
     "createdTime": 1680041347524,
     "modifiedTime": 1705284362263,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": "kPmDsCMMdrZbWPUN",
   "sort": 100000,

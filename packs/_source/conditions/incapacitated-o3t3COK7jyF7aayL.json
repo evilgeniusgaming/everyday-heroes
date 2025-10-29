@@ -24,8 +24,6 @@
   "effects": [
     {
       "name": "Incapacitated",
-      "label": "Incapacitated",
-      "icon": "systems/everyday-heroes/artwork/icons/conditions/incapacitated.svg",
       "flags": {
         "core": {
           "statusId": "incapacitated"
@@ -53,6 +51,22 @@
       "statuses": [
         "incapacitated"
       ],
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/everyday-heroes/artwork/icons/conditions/incapacitated.svg",
+      "type": "base",
+      "system": {},
+      "tint": "#ffffff",
+      "sort": 0,
       "_key": "!items.effects!o3t3COK7jyF7aayL.NqL1JqHv0k7tZ8Jx"
     }
   ],
@@ -63,10 +77,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.0",
-    "coreVersion": "10.303",
+    "coreVersion": "13.350",
     "createdTime": 1686607067387,
     "modifiedTime": 1691861691593,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": null,
   "sort": 0,

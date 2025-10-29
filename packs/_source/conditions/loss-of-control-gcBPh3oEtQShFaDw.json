@@ -32,8 +32,6 @@
   "effects": [
     {
       "name": "Loss of Control (level one)",
-      "label": "Loss of Control (level one)",
-      "icon": "systems/everyday-heroes/artwork/icons/conditions/loss-of-control.svg",
       "flags": {
         "core": {
           "statusId": "loss-of-control"
@@ -70,16 +68,30 @@
       },
       "origin": null,
       "transfer": true,
-      "tint": null,
+      "tint": "#ffffff",
       "statuses": [
         "loss-of-control"
       ],
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/everyday-heroes/artwork/icons/conditions/loss-of-control.svg",
+      "type": "base",
+      "system": {},
+      "description": "",
+      "sort": 0,
       "_key": "!items.effects!gcBPh3oEtQShFaDw.0R4yk5ZVckj9zTk3"
     },
     {
       "name": "Loss of Control (level two)",
-      "label": "Loss of Control (level two)",
-      "icon": "systems/everyday-heroes/artwork/icons/conditions/loss-of-control.svg",
       "flags": {
         "core": {
           "statusId": "loss-of-control"
@@ -103,16 +115,30 @@
       },
       "origin": null,
       "transfer": true,
-      "tint": null,
+      "tint": "#ffffff",
       "statuses": [
         "loss-of-control"
       ],
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/everyday-heroes/artwork/icons/conditions/loss-of-control.svg",
+      "type": "base",
+      "system": {},
+      "description": "",
+      "sort": 0,
       "_key": "!items.effects!gcBPh3oEtQShFaDw.MmC2nocMfZJws8Pg"
     },
     {
       "name": "Loss of Control (level three)",
-      "label": "Loss of Control (level three)",
-      "icon": "systems/everyday-heroes/artwork/icons/conditions/loss-of-control.svg",
       "flags": {
         "core": {
           "statusId": "loss-of-control"
@@ -143,10 +169,26 @@
       },
       "origin": null,
       "transfer": true,
-      "tint": null,
+      "tint": "#ffffff",
       "statuses": [
         "loss-of-control"
       ],
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/everyday-heroes/artwork/icons/conditions/loss-of-control.svg",
+      "type": "base",
+      "system": {},
+      "description": "",
+      "sort": 0,
       "_key": "!items.effects!gcBPh3oEtQShFaDw.o2DtkYll030kVsT3"
     }
   ],
@@ -157,10 +199,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.0",
-    "coreVersion": "10.303",
+    "coreVersion": "13.350",
     "createdTime": 1686607575655,
     "modifiedTime": 1691861691587,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": null,
   "sort": 0,

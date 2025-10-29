@@ -449,7 +449,11 @@
       "offsetX": 0,
       "offsetY": 0,
       "rotation": 0,
-      "tint": null
+      "tint": "#ffffff",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "alphaThreshold": 0.75
     },
     "width": 1,
     "height": 1,
@@ -485,7 +489,9 @@
       "darkness": {
         "min": 0,
         "max": 1
-      }
+      },
+      "negative": false,
+      "priority": 0
     },
     "sight": {
       "enabled": false,
@@ -502,7 +508,29 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null
   },
   "items": [
     {
@@ -538,18 +566,17 @@
       "ownership": {
         "default": 0
       },
-      "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.weapon-armor.uO7kSaMcKfY218lJ"
-        }
-      },
+      "flags": {},
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.1.0",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1679549440145,
         "modifiedTime": 1680498331782,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": "Compendium.eh-core-rulebook.weapon-armor.uO7kSaMcKfY218lJ",
+        "duplicateSource": null,
+        "exportSource": null
       },
       "folder": null,
       "sort": 0,
@@ -626,18 +653,17 @@
       "ownership": {
         "default": 0
       },
-      "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.weapon-armor.LDomK7GPOw9lLlqh"
-        }
-      },
+      "flags": {},
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.1.0",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1679624671397,
         "modifiedTime": 1680498440375,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": "Compendium.eh-core-rulebook.weapon-armor.LDomK7GPOw9lLlqh",
+        "duplicateSource": null,
+        "exportSource": null
       },
       "folder": null,
       "sort": 200000,
@@ -674,10 +700,13 @@
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.1.0",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1680498378464,
         "modifiedTime": 1680498389592,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
       },
       "_key": "!actors.items!DTQIN5XDrQCoURvn.s7Nc4NHSXrWhy0Ds"
     },
@@ -704,18 +733,17 @@
       "ownership": {
         "default": 0
       },
-      "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.other-equipment.uo0eYfOK6gk7RoRP"
-        }
-      },
+      "flags": {},
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.1.0",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1679627478786,
         "modifiedTime": 1680498393243,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": "Compendium.eh-core-rulebook.other-equipment.uo0eYfOK6gk7RoRP",
+        "duplicateSource": null,
+        "exportSource": null
       },
       "folder": null,
       "sort": 0,
@@ -791,18 +819,17 @@
       "ownership": {
         "default": 0
       },
-      "flags": {
-        "core": {
-          "sourceId": "Compendium.eh-core-rulebook.weapon-armor.FrkzzZrHeCSqCp17"
-        }
-      },
+      "flags": {},
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.1.0",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1679547781179,
         "modifiedTime": 1680498445287,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": "Compendium.eh-core-rulebook.weapon-armor.FrkzzZrHeCSqCp17",
+        "duplicateSource": null,
+        "exportSource": null
       },
       "folder": null,
       "sort": 100000,
@@ -851,10 +878,13 @@
       "_stats": {
         "systemId": "everyday-heroes",
         "systemVersion": "0.1.0",
-        "coreVersion": "10.291",
+        "coreVersion": "13.350",
         "createdTime": 1680498413843,
         "modifiedTime": 1680498458596,
-        "lastModifiedBy": "everyday00heroes"
+        "lastModifiedBy": "everyday00heroes",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
       },
       "_key": "!actors.items!DTQIN5XDrQCoURvn.51FwbtFePLwo27Ez"
     }
@@ -872,10 +902,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.4",
-    "coreVersion": "11.308",
+    "coreVersion": "13.350",
     "createdTime": 1680390675798,
     "modifiedTime": 1693000824003,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": null,
   "sort": 0,

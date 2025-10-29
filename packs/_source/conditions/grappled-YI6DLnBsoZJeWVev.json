@@ -24,8 +24,6 @@
   "effects": [
     {
       "name": "Grappled",
-      "label": "Grappled",
-      "icon": "systems/everyday-heroes/artwork/icons/conditions/grappled.svg",
       "flags": {
         "core": {
           "statusId": "grappled"
@@ -53,6 +51,22 @@
       "statuses": [
         "grappled"
       ],
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/everyday-heroes/artwork/icons/conditions/grappled.svg",
+      "type": "base",
+      "system": {},
+      "tint": "#ffffff",
+      "sort": 0,
       "_key": "!items.effects!YI6DLnBsoZJeWVev.4mZ4AZ49I2QWRRj8"
     }
   ],
@@ -63,10 +77,13 @@
   "_stats": {
     "systemId": "everyday-heroes",
     "systemVersion": "0.4.0",
-    "coreVersion": "10.303",
+    "coreVersion": "13.350",
     "createdTime": 1686607056426,
     "modifiedTime": 1691861691570,
-    "lastModifiedBy": "everyday00heroes"
+    "lastModifiedBy": "everyday00heroes",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": null,
   "sort": 0,
