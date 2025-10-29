@@ -1702,9 +1702,11 @@
 		"CharacterQuote": "Character Quote",
 		"HeaderH3Alt": "Heading 3 (alt)",
 		"HeaderH3Rounded": "Heading 3 (rounded)",
+		"HeaderH3Arrowed": "Heading 3 (arrowed)",
 		"HeaderH4Alt": "Heading 4 (alt)",
 		"HeaderH4Rounded": "Heading 4 (rounded)",
 		"HeaderQuote": "Header Quote",
+		"InlineBiography": "Inline Biography",
 		"ReadAloud": "Read Aloud"
 	}
 },

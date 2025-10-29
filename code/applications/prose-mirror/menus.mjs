@@ -19,7 +19,7 @@ export default function getProseMirrorMenuDropDowns(proseMirrorMenu, dropdowns) 
 const MENUS = {
 	format: {
 		headings: [headers],
-		block: [readAloud, calloutBlock],
+		block: [readAloud, calloutBlock, inlineBiography],
 		inline: [characterQuote]
 	}
 };
@@ -93,7 +93,7 @@ function characterQuote(proseMirrorMenu) {
  * ```
  */
 function headers(proseMirrorMenu) {
-	const headers = [[3, "alt"], [3, "rounded"], [4, "alt"], [4, "rounded"]];
+	const headers = [[3, "alt"], [3, "rounded"], [3, "arrowed"], [4, "alt"], [4, "rounded"]];
 	return headers.map(([level, variant]) => ({
 		action: `eh-h${level}${variant}`,
 		title: game.i18n.localize(`EH.ProseMirror.Command.HeaderH${level}${variant.capitalize()}`),
@@ -132,6 +132,35 @@ function headingQuote(proseMirrorMenu) {
 		cmd: ProseMirror.commands.chainCommands(
 			ProseMirror.commands.toggleMark(proseMirrorMenu.schema.marks.q),
 			ProseMirror.commands.wrapIn(proseMirrorMenu.schema.nodes.paragraph, { _preserve: { class: "header" } })
+		)
+	}];
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Generate a menu item for turning selected text into a inline biography block.
+ * @param {ProseMirrorMenu} proseMirrorMenu
+ * @returns {ProseMirrorMenuItem[]}
+ *
+ * @example
+ * ```html
+ * <div class="inline-biography">
+ *   <p>This is the description of an NPC.</p>
+ * </div>
+ * ```
+ */
+function inlineBiography(proseMirrorMenu) {
+	return [{
+		action: "eh-inlineBiography",
+		title: game.i18n.localize("EH.ProseMirror.Command.InlineBiography"),
+		class: "eh-menu-item",
+		node: proseMirrorMenu.schema.marks.div,
+		attrs: { _preserve: { class: "inline-biography" } },
+		cmd: () => proseMirrorMenu._toggleBlock(
+			proseMirrorMenu.schema.nodes.div,
+			ProseMirror.commands.wrapIn,
+			{ attrs: { _preserve: { class: "inline-biography" } } }
 		)
 	}];
 }
