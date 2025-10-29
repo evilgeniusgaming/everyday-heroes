@@ -551,7 +551,7 @@ preLocalize("equipmentProperties", { keys: ["label", "npcHint"], sort: true });
 export const applicableProperties = {
 	armor: [
 		"absolute", "awkward", "ballistic", "concealable", "hardened", "masterwork",
-		"panoply", "penetrable", "propulsion", "restricted", "sealed", "small", "stabProof"
+		"panoply", "penetrable", "propulsion", "restricted", "sealed", "small", "special", "stabProof"
 	],
 	explosive: [
 		"blinding", "deafening", "disguised", "grenade", "heavy", "illuminating", "improvised",
@@ -818,6 +818,12 @@ preLocalize("specialFeatureTypes", { key: "label" });
 export const talentTypes = {
 	origin: {
 		label: "EH.Item.Type.Origin[one]"
+	},
+	background: {
+		label: "EH.Item.Type.Background[one]"
+	},
+	profession: {
+		label: "EH.Item.Type.Profession[one]"
 	},
 	archetype: {
 		label: "EH.Item.Type.Archetype[one]",
