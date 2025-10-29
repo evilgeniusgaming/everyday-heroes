@@ -163,6 +163,7 @@
 
 		.editor {
 			min-height: 30em;
+			.editor-edit { z-index: 1; }
 
 			&.prosemirror {
 				margin: -0.5em;

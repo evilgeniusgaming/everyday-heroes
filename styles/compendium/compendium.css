@@ -102,6 +102,49 @@ figure.company-logo img {
 		}
 	}
 
+	.inline-biography {
+		--bw: 2px;
+		--bs: 10px;
+		--is: calc(tan(90 * pi / 720) * var(--bw));
+
+		position: relative;
+		min-block-size: 30px;
+		margin-block-end: 4px;
+		padding-block: 5px;
+		padding-inline: 15px;
+		font-style: italic;
+
+		&::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: rgb(0 0 0 / .5);
+			pointer-events: none;
+			clip-path: polygon(
+				0px var(--bs),
+				var(--bs) 0px,
+				calc(100% - var(--bs)) 0,
+				100% var(--bs),
+				100% calc(100% - var(--bs)),
+				calc(100% - var(--bs)) 100%,
+				var(--bs) 100%,
+				0 calc(100% - var(--bs)),
+
+				0px var(--bs),
+
+				var(--bw) calc(var(--bs) + var(--is)),
+				var(--bw) calc(100% - var(--bs) - var(--is)),
+				calc(var(--bs) + var(--is)) calc(100% - var(--bw)),
+				calc(100% - var(--bs) - var(--is)) calc(100% - var(--bw)),
+				calc(100% - var(--bw)) calc(100% - var(--bs) - var(--is)),
+				calc(100% - var(--bw)) calc(var(--bs) + var(--is)),
+				calc(100% - var(--bs) - var(--is)) var(--bw),
+				calc(var(--bs) + var(--is)) var(--bw),
+				var(--bw) calc(var(--bs) + var(--is))
+			);
+		}
+	}
+
 	.journal-sheet strong.archetype {
 		color: var(--eh-text-color-red);
 		text-transform: uppercase;
@@ -226,6 +269,7 @@ figure.company-logo img {
 			text-align: center;
 			text-shadow: none;
 			text-transform: uppercase;
+			word-break: normal;
 		}
 	}
 	table.full {
