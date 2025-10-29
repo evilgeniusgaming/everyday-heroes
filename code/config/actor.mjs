@@ -476,12 +476,18 @@ export const sheetSections = {
 		},
 		{
 			tab: "features",
-			types: [{ type: "specialFeature", "system.type.value": "background" }],
+			types: [
+				{ type: "specialFeature", "system.type.value": "background" },
+				{ type: "talent", "system.type.value": "background" }
+			],
 			primaryType: { type: "background", multiple: true }
 		},
 		{
 			tab: "features",
-			types: [{ type: "specialFeature", "system.type.value": "profession" }],
+			types: [
+				{ type: "specialFeature", "system.type.value": "profession" },
+				{ type: "talent", "system.type.value": "profession" }
+			],
 			primaryType: { type: "profession", multiple: true }
 		},
 		{
