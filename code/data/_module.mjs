@@ -29,7 +29,9 @@ export function registerDataModels(documentType, models, module) {
 		if ( model.metadata.icon ) config.typeIcons[type] = model.metadata.icon;
 		if ( config.categories?.[model.metadata.category] ) {
 			const types = config.categories[model.metadata.category].types;
-			if ( !types.includes(type) ) insertBetween(types, type, model.metadata.categoryPosition);
+			if ( !types.includes(type) && model.metadata.categoryPosition ) {
+				insertBetween(types, type, model.metadata.categoryPosition);
+			}
 		}
 	}
 }

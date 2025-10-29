@@ -11,7 +11,7 @@ const { DocumentSheetConfig } = foundry.applications.apps;
  * @param {Object<CategoryConfiguration>} categories - Categories to register.
  */
 export function registerSheets(documentType, categories) {
-	systemLog(`Registering ${documentType.name} sheets`, {level: "groupCollapsed"});
+	systemLog(`Registering ${documentType.name} sheets`, { level: "groupCollapsed" });
 	const models = CONFIG[documentType.name].dataModels;
 	const registered = new Set();
 	for ( const [key, category] of Object.entries(categories) ) {
@@ -33,7 +33,7 @@ export function registerSheets(documentType, categories) {
 		systemLog(`Registered ${type} sheet`);
 	}
 	DocumentSheetConfig.unregisterSheet(
-		documentType, "core", {name: `${documentType.name}Sheet`}, {types: Array.from(registered)}
+		documentType, "core", { name: `${documentType.name}Sheet` }, { types: Array.from(registered) }
 	);
 	console.groupEnd();
 }

@@ -31,6 +31,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 	 * @property {string} localization - Base localization key for this type. This should be a localization key that
 	 *                                   accepts plural types (e.g. `EH.Item.Type.Weapon` becomes
 	 *                                   `EH.Item.Type.Weapon[few]` and `EH.Item.Type.Weapon[other]`).
+	 * @property {boolean} [hidden] - Hide document type in Create Document dialog.
 	 * @property {string} [icon] - Font awesome icon string used for links to this type.
 	 * @property {string} [image] - Default image used when creating a Document of this type.
 	 */

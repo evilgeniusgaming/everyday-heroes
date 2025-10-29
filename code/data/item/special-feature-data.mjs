@@ -19,6 +19,7 @@ export default class SpecialFeatureData extends ItemDataModel.mixin(
 			type: "specialFeature",
 			category: "feature",
 			localization: "EH.Item.Type.SpecialFeature",
+			hidden: true,
 			icon: "fa-solid fa-users-rectangle",
 			image: "systems/everyday-heroes/artwork/svg/items/feature.svg",
 			advancement: {

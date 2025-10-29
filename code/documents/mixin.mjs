@@ -40,6 +40,7 @@ export const DocumentMixin = Base => class extends Base {
 		for ( const [key, value] of Object.entries(CONFIG[documentName]?.categories) ) {
 			categories[key] = { label: value.label, children: {} };
 			for ( const type of value.types ) {
+				if ( CONFIG[documentName].dataModels[type]?.metadata?.hidden ) continue;
 				categories[key].children[type] = {
 					label: game.i18n.localize(CONFIG[documentName]?.typeLabels?.[type] ?? type),
 					chosen: type === selectedType
