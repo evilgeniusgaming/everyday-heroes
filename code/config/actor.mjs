@@ -608,6 +608,15 @@ export const sheetSections = {
 	]
 };
 
+Object.defineProperty(sheetSections, "insertSection", {
+	value: (actorType, baseType, sectionConfig, insertLocation) => {
+		const sheetConfigs = CONFIG.EverydayHeroes.sheetSections[actorType];
+		const existingSection = sheetConfigs.find(s => s.types.find(t => t.type === baseType));
+		if ( existingSection ) existingSection.types.push(...sectionConfig.types.map(t => ({ ...t, hidden: true })));
+		else EverydayHeroes.utils.insertBetween(sheetConfigs, sectionConfig, insertLocation);
+	}
+});
+
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**

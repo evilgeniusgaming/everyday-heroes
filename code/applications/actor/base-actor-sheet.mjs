@@ -254,8 +254,10 @@ export default class BaseActorSheet extends foundry.appv1.sheets.ActorSheet {
 		for ( const config of CONFIG.EverydayHeroes.sheetSections[type] ?? [] ) {
 			const tab = sections[config.tab] ??= {};
 			const primaryType = typeModels[config.primaryType?.type];
-			const types = config.types.map(t => ({ dataset: t, model: typeModels[t.type] })).filter(t => t.model);
-			const id = config.id ?? (primaryType ? primaryType.metadata.type : types.map(t => t.model.metadata.type).join("-"));
+			let types = config.types
+				.map(({ hidden, ...t }) => ({ dataset: t, hidden, model: typeModels[t.type], type: t.type }))
+				.filter(t => t.model && !t.hidden);
+			const id = config.id ?? (primaryType ? primaryType.metadata.type : types.map(t => t.type).join("_"));
 			const section = tab[id] = { config, items: [], options: config.options };
 
 			// Use custom label, singular for primary items, or plural list for others
@@ -272,7 +274,7 @@ export default class BaseActorSheet extends foundry.appv1.sheets.ActorSheet {
 			if ( config.create ) {
 				section.create = config.create;
 			} else {
-				section.create = types.map(({dataset, model}) => ({
+				section.create = types.map(({ dataset, model }) => ({
 					label: `${model.metadata.sheetLocalization ?? model.metadata.localization}[one]`,
 					dataset
 				}));
@@ -296,6 +298,7 @@ export default class BaseActorSheet extends foundry.appv1.sheets.ActorSheet {
 	 */
 	_organizeItem(item, sections) {
 		const checkFilter = (item, filter) => Object.entries(filter)
+			.filter(([k]) => k !== "hidden")
 			.every(([key, value]) => {
 				const source = foundry.utils.getProperty(item, key);
 				switch ( foundry.utils.getType(source) ) {
