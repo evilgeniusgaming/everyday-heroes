@@ -83,7 +83,7 @@
 		right: 0;
 		display: flex;
 		z-index: 4;
-	
+
 		margin: 0 1rem;
 		padding: 0;
 		margin-block-start: -30px;
@@ -109,7 +109,7 @@
 			&:not(:last-of-type) { border-inline-end: none; }
 		}
 	}
-	
+
 	main {
 		height: 100%;
 		padding: 0.5rem;
@@ -118,6 +118,8 @@
 		> [data-tab] { height: 100%; }
 	}
 }
+
+[data-tab="biography"] > section .editor .editor-edit { z-index: 1; }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Proficiency Selector                     */
