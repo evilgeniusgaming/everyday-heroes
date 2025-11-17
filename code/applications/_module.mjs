@@ -58,6 +58,7 @@ export function renderDocumentSheet(app, jQuery, options) {
 export {actor, item, journal};
 export * as advancement from "./advancement/_module.mjs";
 export {default as CombatTrackerEH} from "./combat-tracker.mjs";
+export {default as CreateDocumentDialog} from "./create-document-dialog.mjs";
 export * as dice from "./dice/_module.mjs";
 export * as compendium from "./compendium/_module.mjs";
 export * as proseMirror from "./prose-mirror/_module.mjs";

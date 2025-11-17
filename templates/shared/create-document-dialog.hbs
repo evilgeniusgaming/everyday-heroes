@@ -1,16 +1,16 @@
-<form id="document-create" autocomplete="off">
+<div class="flexcol">
 	<div class="form-group">
-		<label>{{localize "Name"}}</label>
+		<label>{{ localize "Name" }}</label>
 			<div class="form-fields">
-				<input type="text" name="name" placeholder="{{name}}" autofocus>
+				<input type="text" name="name" placeholder="{{ name }}" autofocus>
 			</div>
 	</div>
 
-	<div class="form-group">
-		<label>{{localize "Type"}}</label>
+	<div class="form-group">{{log this}}
+		<label>{{ localize "Type" }}</label>
 		<div class="form-fields">
 			<select name="type">
-				{{everydayHeroes-groupedSelectOptions categories selected=type}}
+				{{ selectOptions types }}
 			</select>
 		</div>
 	</div>
@@ -23,7 +23,7 @@
 					{{#select folder}}
 						<option value=""></option>
 						{{#each folders}}
-							<option value="{{ this.id }}">{{ this.name }}</option>
+							<option value="{{ id }}">{{ name }}</option>
 						{{/each}}
 					{{/select}}
 				</select>
@@ -31,5 +31,5 @@
 		</div>
 	{{/if}}
 
-	{{{content}}}
-</form>
+	{{{ content }}}
+</div>

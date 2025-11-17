@@ -1014,6 +1014,12 @@
 	"Tag": "DC {dc}"
 },
 
+"EH.Document": {
+	"Warning": {
+		"SelectType": "{name} type must be selected for creation."
+	}
+},
+
 "EH.EditingMode": {
 	"Action": {
 		"Disable": "Disable Editing Mode",
