@@ -103,7 +103,7 @@ export default class CreateDocumentDialog extends HandlebarsApplicationMixin(App
 		}
 		context.folders = this.options.folders ?? collection?._formatFolderSelectOptions() ?? [];
 		context.hasFolders = !!context.folders.length;
-		context.folders.unshift({ id: "", name: game.i18n.localize("DOCUMENT.Folder"), rule: true });
+		context.folders.unshift({ id: "", name: "" });
 
 		context.name = this.options.createData.name;
 		context.folder = this.options.createData.folder;
