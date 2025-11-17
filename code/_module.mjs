@@ -62,8 +62,12 @@ Hooks.once("setup", function() {
 	applications.proseMirror.registerHooks();
 
 	foundry.applications.apps.DocumentSheetConfig.registerSheet(
-		JournalEntry, game.system.id, applications.journal.JournalSheetEH,
+		JournalEntry, game.system.id, applications.journal.JournalEntrySheetEH,
 		{ makeDefault: true, label: "EH.Sheet.JournalEntry" }
+	);
+	foundry.applications.apps.DocumentSheetConfig.registerSheet(
+		JournalEntry, game.system.id, applications.journal.JournalSheetEH,
+		{ canConfigure: false, canBeDefault: false, label: "EH.Sheet.JournalEntryLegacy" }
 	);
 
 	canvas.patchTokenHUD();

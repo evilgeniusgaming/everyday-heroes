@@ -9,7 +9,7 @@ export default class JournalSheetEH extends foundry.appv1.sheets.JournalSheet {
 		return options;
 	}
 
-	/* -------------------------------------------- */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/** @override */
 	async _renderPageView(element, sheet) {
@@ -18,7 +18,7 @@ export default class JournalSheetEH extends foundry.appv1.sheets.JournalSheet {
 		if ( newClass ) element.classList.add(newClass);
 	}
 
-	/* -------------------------------------------- */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
 	 * Add class to journal ProseMirror editor.
