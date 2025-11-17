@@ -4,12 +4,12 @@
   "description": "The core system for the Everyday Heroes role-playing game.",
   "version": "0.8.3",
   "compatibility": {
-    "minimum": "13.334",
+    "minimum": "13.351",
     "verified": "13"
   },
   "url": "https://github.com/evilgeniusgaming/everyday-heroes",
   "manifest": "https://github.com/evilgeniusgaming/everyday-heroes/releases/latest/download/system.json",
-  "download": "https://github.com/evilgeniusgaming/everyday-heroes/releases/download/release-0.8.2/everyday-heroes-release-0.8.2.zip",
+  "download": "https://github.com/evilgeniusgaming/everyday-heroes/releases/download/release-0.8.3/everyday-heroes-release-0.8.3.zip",
   "authors": [
     {
       "name": "Jeff ‘Arbron’ Hitchcock",
@@ -44,18 +44,27 @@
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
 			"archetype": {
+				"filePathFields": {
+					"advancement.*.icon": ["IMAGE"]
+				},
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
 			"armor": {
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
 			"background": {
+				"filePathFields": {
+					"advancement.*.icon": ["IMAGE"]
+				},
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
 			"clothes": {
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
 			"class": {
+				"filePathFields": {
+					"advancement.*.icon": ["IMAGE"]
+				},
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
 			"condition": {
@@ -68,6 +77,9 @@
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
 			"feat": {
+				"filePathFields": {
+					"advancement.*.icon": ["IMAGE"]
+				},
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
 			"gear": {
@@ -86,18 +98,27 @@
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
 			"origin": {
+				"filePathFields": {
+					"advancement.*.icon": ["IMAGE"]
+				},
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
 			"plan": {
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
 			"profession": {
+				"filePathFields": {
+					"advancement.*.icon": ["IMAGE"]
+				},
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
 			"specialFeature": {
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
 			"subclass": {
+				"filePathFields": {
+					"advancement.*.icon": ["IMAGE"]
+				},
 				"htmlFields": ["description.chat", "description.npc", "description.value"]
 			},
 			"talent": {
