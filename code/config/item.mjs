@@ -100,6 +100,10 @@ export const abilityScoreAssignment = {
 		small: {
 			label: "EH.Advancement.AbilityScores.Rolling.Formula.Small",
 			formula: "2d6"
+		},
+		smallest: {
+			label: "EH.Advancement.AbilityScores.Rolling.Formula.Smallest",
+			formula: "1d6"
 		}
 	}
 };
