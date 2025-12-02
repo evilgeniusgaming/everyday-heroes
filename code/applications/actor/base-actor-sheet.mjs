@@ -310,7 +310,7 @@ export default class BaseActorSheet extends foundry.appv1.sheets.ActorSheet {
 
 		for ( const tab of Object.values(sections) ) {
 			for ( const section of Object.values(tab) ) {
-				const { multiple: _, ...primaryConfig } = section.config.primaryType ?? {};
+				const { multiple: _, ...primaryConfig } = section.config?.primaryType ?? {};
 				if ( section.primary && checkFilter(item, primaryConfig) ) {
 					section.primary.item ??= [];
 					section.primary.item.push(item);
