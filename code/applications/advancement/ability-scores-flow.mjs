@@ -268,7 +268,7 @@ export default class AbilityScoresFlow extends AdvancementFlow {
 			"flags.everyday-heroes.type": "abilityScore"
 		};
 		const message = new cls(messageData);
-		await cls.create(message.toObject(), { rollMode: game.settings.get("core", "rollMode") });
+		await cls.create(message.toObject(), { messageMode: CONFIG.Dice.BaseRoll.getMessageMode() });
 
 		// Save roll
 		const index = event.target.closest("[data-index]").dataset.index;

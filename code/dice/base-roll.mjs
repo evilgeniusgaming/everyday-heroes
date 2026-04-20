@@ -118,7 +118,7 @@ export default class BaseRoll extends Roll {
 		if ( options.configure !== false ) {
 			const DialogClass = options.applicationClass ?? this.DefaultConfigurationDialog;
 			try {
-				rolls = await DialogClass.configure(configs, options);
+				rolls = await DialogClass.configure(configs, options, message);
 			} catch(err) {
 				if ( !err ) return;
 				throw err;
@@ -136,7 +136,7 @@ export default class BaseRoll extends Roll {
 			const messageData = foundry.utils.expandObject(message?.data ?? {});
 			const messageId = configs[0]?.event?.target.closest("[data-message-id]")?.dataset.messageId;
 			if ( messageId ) foundry.utils.setProperty(messageData, "flags.everyday-heroes.originatingMessage", messageId);
-			await this.toMessage(rolls, messageData, { rollMode: rolls[0].options.rollMode ?? message.rollMode });
+			await this.toMessage(rolls, messageData, { rollMode: message.rollMode });
 		}
 		return rolls;
 	}
@@ -195,28 +195,40 @@ export default class BaseRoll extends Roll {
 	 * @returns {Promise<ChatMessage|object>} - A promise which resolves to the created ChatMessage document if create is
 	 *                                         true, or the Object of prepared chatData otherwise.
 	 */
-	static async toMessage(rolls, messageData={}, {rollMode, create=true}={}) {
+	static async toMessage(rolls, messageData={}, { rollMode, create=true }={}) {
 		for ( const roll of rolls ) {
-			if ( !roll._evaluated ) await roll.evaluate({async: true});
+			if ( !roll._evaluated ) await roll.evaluate({ allowInteractive: rollMode !== "blind" });
+			rollMode ??= roll.options.rollMode;
 		}
+		rollMode ??= BaseRoll.getMessageMode();
 
 		// Prepare chat data
-		messageData = foundry.utils.mergeObject({
-			user: game.user.id,
-			content: "total", // TODO: fix this
-			sound: CONFIG.sounds.dice
-		}, messageData);
-		messageData.rolls = rolls;
+		messageData = foundry.utils.mergeObject({ sound: CONFIG.sounds.dice }, messageData);
+		messageData.rolls = rolls.map(r => this.fromData(r.toJSON()));
 
 		// Either create the message or just return the chat data
 		const cls = getDocumentClass("ChatMessage");
 		const msg = new cls(messageData);
 
 		// Either create or return the data
-		if ( create ) return cls.create(msg.toObject(), { rollMode });
+		if ( create ) return cls.create(msg.toObject(), { messageMode: rollMode });
 		else {
-			if ( rollMode ) msg.applyRollMode(rollMode);
+			if ( rollMode ) msg.applyMode(rollMode);
 			return msg.toObject();
 		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Helpers                                  */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Retrieve the message mode to use, treating in-character as public by default.
+	 * @param {boolean} [ignoreIC=true] - Ignore in-character message mode.
+	 * @returns {string}}
+	 */
+	static getMessageMode(ignoreIC=true) {
+		const mode = game.settings.get("core", "messageMode");
+		return ignoreIC && (mode === "ic") ? "public" : mode;
 	}
 }

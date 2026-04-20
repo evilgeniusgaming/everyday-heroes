@@ -463,7 +463,7 @@ export default class ItemEH extends DocumentMixin(Item) {
 		context.rollHTML = "";
 		for ( const roll of message.data?.rolls ?? [] ) context.rollHTML += await roll.render();
 		const messageConfig = foundry.utils.mergeObject({
-			rollMode: game.settings.get("core", "rollMode"),
+			messageMode: CONFIG.Dice.BaseRoll.getMessageMode(),
 			data: {
 				title: `${this.name}: ${this.actor.name}`,
 				content: await foundry.applications.handlebars.renderTemplate(
@@ -473,7 +473,7 @@ export default class ItemEH extends DocumentMixin(Item) {
 			}
 		}, message);
 		if ( messageConfig.create === false ) return messageConfig;
-		ChatMessage.applyRollMode(messageConfig.data, messageConfig.rollMode);
+		ChatMessage.applyMode(messageConfig.data, messageConfig.rollMode);
 		return await ChatMessage.create(messageConfig.data);
 	}
 
@@ -557,7 +557,7 @@ export default class ItemEH extends DocumentMixin(Item) {
 
 		// Display chat message
 		if ( messageConfig.create !== false ) {
-			ChatMessage.applyRollMode(messageConfig.data, game.settings.get("core", "rollMode"));
+			ChatMessage.applyMode(messageConfig.data, CONFIG.Dice.BaseRoll.getMessageMode());
 			await ChatMessage.create(messageConfig.data);
 		}
 
@@ -636,7 +636,7 @@ export default class ItemEH extends DocumentMixin(Item) {
 
 		// Display chat message
 		if ( messageConfig.create !== false ) {
-			ChatMessage.applyRollMode(messageConfig.data, game.settings.get("core", "rollMode"));
+			ChatMessage.applyMode(messageConfig.data, CONFIG.Dice.BaseRoll.getMessageMode());
 			await ChatMessage.create(messageConfig.data);
 		}
 
@@ -735,7 +735,7 @@ export default class ItemEH extends DocumentMixin(Item) {
 
 		// Display chat message
 		if ( messageConfig.create !== false ) {
-			ChatMessage.applyRollMode(messageConfig.data, game.settings.get("core", "rollMode"));
+			ChatMessage.applyMode(messageConfig.data, CONFIG.Dice.BaseRoll.getMessageMode());
 			await ChatMessage.create(messageConfig.data);
 		}
 

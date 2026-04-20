@@ -337,7 +337,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 			rolls: result.rolls,
 			content: game.i18n.format(localizationString, localizationData)
 		};
-		ChatMessage.applyRollMode(chatData, game.settings.get("core", "rollMode"));
+		ChatMessage.applyMode(chatData, CONFIG.Dice.BaseRoll.getMessageMode());
 		return ChatMessage.create(chatData);
 	}
 
@@ -706,7 +706,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 				content: game.i18n.format(details.chatString, {name: this.name, counted}),
 				speaker: messageConfig.data.speaker
 			};
-			ChatMessage.applyRollMode(chatData, roll.options.rollMode);
+			ChatMessage.applyMode(chatData, roll.options.rollMode);
 			await ChatMessage.create(chatData);
 		}
 
@@ -952,7 +952,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 		let rolls;
 		if ( dialogConfig.configure ) {
 			try {
-				rolls = await Roll.DefaultConfigurationDialog.configure(configs, dialogConfig);
+				rolls = await Roll.DefaultConfigurationDialog.configure(configs, dialogConfig, message);
 			} catch(err) {
 				if ( !err ) return;
 				throw err;

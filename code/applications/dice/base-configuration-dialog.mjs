@@ -6,7 +6,7 @@
  * @param {BaseConfigurationDialogOptions} [options={}] - Dialog rendering options.
  */
 export default class BaseConfigurationDialog extends FormApplication {
-	constructor(buildConfig, rollConfig=[], options={}) {
+	constructor(buildConfig, rollConfig=[], { message, ...options }={}) {
 		super(null, options);
 
 		/**
@@ -22,6 +22,7 @@ export default class BaseConfigurationDialog extends FormApplication {
 		Object.defineProperty(this, "rollConfig", { value: rollConfig, writable: false, enumerable: true });
 
 		this.object = this._buildRolls(foundry.utils.deepClone(this.rollConfig));
+		this.#message = message;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -36,6 +37,20 @@ export default class BaseConfigurationDialog extends FormApplication {
 			jQuery: false,
 			rollType: CONFIG.Dice.BaseRoll
 		});
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Properties                               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Configuration information for the roll message.
+	 * @type {BasicRollMessageConfiguration}
+	 */
+	#message;
+
+	get message() {
+		return this.#message;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -60,16 +75,17 @@ export default class BaseConfigurationDialog extends FormApplication {
 
 	/**
 	 * A helper constructor that displays the roll configuration dialog.
-	 * @param {BaseRollConfiguration[]} [rollConfig] - Initial roll configuration.
-	 * @param {BaseDialogConfiguration} [options] - Configuration information for the dialog.
+	 * @param {BaseRollConfiguration[]} [config={}] - Initial roll configuration.
+	 * @param {BaseDialogConfiguration} [dialog={}] - Roll dialog configuration.
+	 * @param {BaseMessageConfiguration} [message={}] - Message configuration.
 	 * @returns {Promise}
 	 */
-	static async configure(rollConfig={}, options={}) {
+	static async configure(config={}, dialog={}, message={}) {
 		return new Promise((resolve, reject) => {
 			new this(
-				options.buildConfig,
-				rollConfig,
-				{ ...options.options, resolve, reject }
+				dialog.buildConfig,
+				config,
+				{ ...dialog.options, message, resolve, reject }
 			).render(true);
 		});
 	}
@@ -98,7 +114,10 @@ export default class BaseConfigurationDialog extends FormApplication {
 			CONFIG: CONFIG.EverydayHeroes,
 			default: this.options.default ?? {},
 			rolls: this.rolls,
-			rollModes: CONFIG.Dice.rollModes,
+			rollMode: this.message.rollMode ?? this.options.default?.rollMode ?? CONFIG.Dice.BaseRoll.getMessageMode(),
+			rollModes: Object.entries(CONFIG.ChatMessage.modes)
+				.filter(([k]) => k !== "ic")
+				.map(([value, { label }]) => ({ value, label: _loc(label) })),
 			bonus: this.rolls[0].data.bonus,
 			buttons: this.getButtons()
 		}, super.getData(options));
@@ -193,6 +212,7 @@ export default class BaseConfigurationDialog extends FormApplication {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	_updateObject(event, formData) {
+		if ( formData.rollMode ) this.message.rollMode = formData.rollMode;
 		this.object = this._buildRolls(foundry.utils.deepClone(this.rollConfig), formData);
 		this.render();
 	}

@@ -573,7 +573,7 @@ export default class VehicleData extends ActorDataModel.mixin(ConditionsTemplate
 			}, message);
 
 			if ( message.create === false ) return;
-			ChatMessage.applyRollMode(messageConfig.data, game.settings.get("core", "rollMode"));
+			ChatMessage.applyMode(messageConfig.data, CONFIG.Dice.BaseRoll.getMessageMode());
 			return ChatMessage.create(messageConfig.data);
 		}
 
