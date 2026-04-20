@@ -24,6 +24,7 @@ export default class LocalDocumentField extends foundry.data.fields.DocumentIdFi
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @inheritDoc */
 	static get _defaults() {
 		return foundry.utils.mergeObject(super._defaults, {
 			nullable: true,
@@ -34,6 +35,7 @@ export default class LocalDocumentField extends foundry.data.fields.DocumentIdFi
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @override */
 	_cast(value) {
 		if ( typeof value === "string" ) return value;
 		if ( (value instanceof this.model) ) return value._id;
@@ -42,10 +44,44 @@ export default class LocalDocumentField extends foundry.data.fields.DocumentIdFi
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @inheritDoc */
+	_validateType(value) {
+		if ( !this.options.fallback ) super._validateType(value);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Step up through model's parents to find the specified collection.
+	 * @param {DataModel} model
+	 * @param {string} collection
+	 * @returns {EmbeddedCollection|void}
+	 */
+	_findCollection(model, collection) {
+		if ( !model.parent ) return;
+		try {
+			return model.parent.getEmbeddedCollection(collection);
+		} catch(err) {
+			return model.parent[collection] ?? this._findCollection(model.parent, collection);
+		}
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/** @override */
 	initialize(value, model, options={}) {
-		if ( this.idOnly ) return value;
-		const collection = model.parent?.[this.model.metadata.collection];
-		return () => collection?.get(value) ?? null;
+		if ( this.idOnly ) return this.options.fallback || foundry.data.validators.isValidId(value) ? value : null;
+		const collection = this._findCollection(model, this.model.metadata.collection);
+		return () => {
+			const document = collection?.get(value);
+			if ( !document ) return this.options.fallback ? value : null;
+			if ( this.options.fallback ) Object.defineProperty(document, "toString", {
+				value: () => document.name,
+				configurable: true,
+				enumerable: false
+			});
+			return document;
+		};
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

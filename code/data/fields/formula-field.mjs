@@ -13,6 +13,7 @@
  */
 export default class FormulaField extends foundry.data.fields.StringField {
 
+	/** @inheritDoc */
 	static get _defaults() {
 		return foundry.utils.mergeObject(super._defaults, {
 			deterministic: false
@@ -21,83 +22,89 @@ export default class FormulaField extends foundry.data.fields.StringField {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	static _ehSupportedModes = [
-		CONST.ACTIVE_EFFECT_MODES.MULTIPLY, CONST.ACTIVE_EFFECT_MODES.ADD,
-		CONST.ACTIVE_EFFECT_MODES.DOWNGRADE, CONST.ACTIVE_EFFECT_MODES.UPGRADE
-	];
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
+	/** @inheritDoc */
 	_validateType(value) {
-		if ( this.options.deterministic ) {
-			const roll = new Roll(value);
-			if ( !roll.isDeterministic ) throw new Error("must not contain dice terms");
-			Roll.safeEval(roll.formula);
-		}
-		else Roll.validate(value);
+		const roll = new Roll(value.replace(/@([a-z.0-9_-]+)/gi, "1"));
+		roll.evaluateSync({ strict: false });
+		if ( this.options.deterministic && !roll.isDeterministic ) throw new Error(`must not contain dice terms: ${value}`);
 		super._validateType(value);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Active Effect Application                */
+	/*  Form Field Integration                   */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	_ehCastDelta(value) {
-		return this._cast(value).trim();
+	/** @inheritDoc */
+	toFormGroup(groupConfig={}, inputConfig={}) {
+		groupConfig.classes ||= [];
+		groupConfig.classes.push("formula-input");
+		return super.toFormGroup(groupConfig, inputConfig);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	_ehApplyAdd(actor, change, current, delta, changes) {
-		if ( !current ) {
-			changes[change.key] = delta;
-			return;
-		}
-		let operator = "+";
-		if ( delta.startsWith("+") ) {
-			delta = delta.replace("+", "").trim();
-		} else if ( delta.startsWith("-") ) {
-			delta = delta.replace("-", "").trim();
-			operator = "-";
-		}
-		changes[change.key] = `${current} ${operator} ${delta}`;
+	/** @inheritDoc */
+	_toInput(config) {
+		const input = super._toInput(config);
+		if ( input.tagName !== "INPUT" ) return input;
+		config.value ??= this.getInitialValue({}) ?? "";
+		return foundry.applications.elements.HTMLFormulaInputElement.create(config);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Active Effect Integration                */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/** @override */
+	_castChangeDelta(delta, replacementData={}) {
+		return this._cast(delta).trim();
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	_ehApplyMultiply(actor, change, current, delta, changes) {
-		if ( !current ) {
-			changes[change.key] = delta;
-			return;
-		}
-		const terms = (new Roll(current)).terms;
-		if ( terms.length > 1 ) changes[change.key] = `(${current}) * ${delta}`;
-		else changes[change.key] = `${current} * ${delta}`;
+	/** @override */
+	_applyChangeAdd(value, delta, model, change) {
+		if ( !value ) return delta;
+		const operator = delta.startsWith("-") ? "-" : "+";
+		delta = delta.replace(/^[+-]/, "").trim();
+		return `${value} ${operator} ${delta}`;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	_ehApplyUpgrade(actor, change, current, delta, changes) {
-		if ( !current ) {
-			changes[change.key] = delta;
-			return;
-		}
-		const terms = (new Roll(current)).terms;
-		if ( (terms.length === 1) && (terms[0].fn === "max") ) {
-			changes[change.key] = current.replace(/\)$/, `, ${delta})`);
-		} else changes[change.key] = `max(${current}, ${delta})`;
+	/** @override */
+	_applyChangeSubtract(value, delta, model, change) {
+		if ( !value ) return `-(${delta})`;
+		return `${value} - (${delta})`;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	_ehApplyDowngrade(actor, change, current, delta, changes) {
-		if ( !current ) {
-			changes[change.key] = delta;
-			return;
-		}
-		const terms = (new Roll(current)).terms;
-		if ( (terms.length === 1) && (terms[0].fn === "min") ) {
-			changes[change.key] = current.replace(/\)$/, `, ${delta})`);
-		} else changes[change.key] = `min(${current}, ${delta})`;
+	/** @override */
+	_applyChangeMultiply(value, delta, model, change) {
+		if ( !value ) return value;
+		if ( new Roll(value).terms.length > 1 ) value = `(${value})`;
+		if ( new Roll(delta).terms.length > 1 ) delta = `(${delta})`;
+		return `${value} * ${delta}`;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/** @override */
+	_applyChangeUpgrade(value, delta, model, change) {
+		if ( !value ) return delta;
+		const terms = new Roll(value).terms;
+		if ( (terms.length === 1) && (terms[0].fn === "max") ) return value.replace(/\)$/, `, ${delta})`);
+		return `max(${value}, ${delta})`;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/** @override */
+	_applyChangeDowngrade(value, delta, model, change) {
+		if ( !value ) return delta;
+		const terms = new Roll(value).terms;
+		if ( (terms.length === 1) && (terms[0].fn === "min") ) return value.replace(/\)$/, `, ${delta})`);
+		return `min(${value}, ${delta})`;
 	}
 }

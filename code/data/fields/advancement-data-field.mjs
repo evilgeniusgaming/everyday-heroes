@@ -11,6 +11,7 @@ export default class AdvancementDataField extends foundry.data.fields.ObjectFiel
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @inheritDoc */
 	static get _defaults() {
 		return foundry.utils.mergeObject(super._defaults, {required: true});
 	}
@@ -37,6 +38,7 @@ export default class AdvancementDataField extends foundry.data.fields.ObjectFiel
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @override */
 	_cleanType(value, options) {
 		if ( !(typeof value === "object") ) value = {};
 
@@ -52,6 +54,7 @@ export default class AdvancementDataField extends foundry.data.fields.ObjectFiel
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @override */
 	initialize(value, model, options={}) {
 		const cls = this.getModel();
 		if ( cls ) return new cls(value, {parent: model, ...options});
@@ -60,14 +63,16 @@ export default class AdvancementDataField extends foundry.data.fields.ObjectFiel
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @override */
 	toObject(value) {
 		return value.toObject instanceof Function ? value.toObject(false) : foundry.utils.deepClone(value);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	migrateSource(sourceData, fieldData) {
+	/** @override */
+	_migrate(value, options, _state) {
 		const cls = this.getModel();
-		if ( cls ) cls.migrateDataSafe(fieldData);
+		if ( cls ) cls.migrateDataSafe(value);
 	}
 }

@@ -6,16 +6,12 @@
 			<fieldset class="medical">
 				<label>{{localize "EH.Rest.MedicalAttention.Label"}}</label>
 				<select name="medical" {{disabled result.medicalRoll}}>
-					{{#select result.medicalAttention}}
-						<option value="">{{localize "None"}}</option>
-						<option value="provide">{{localize "EH.Rest.Action.Medical.Provide"}}</option>
-						<option value="receive">{{localize "EH.Rest.Action.Medical.Receive"}}</option>
-					{{/select}}
+					{{ selectOptions medicalOptions selected=result.medicalAttention localize=true }}
 				</select>
 				<p class="hint">{{localize "EH.Rest.MedicalAttention.Hint"}}</p>
 			</fieldset>
 		{{/if}}
-	
+
 		{{#if (eq result.medicalAttention "provide")}}
 			<fieldset>
 				<button data-action="roll-medicine" {{disabled result.medicalRoll}}>

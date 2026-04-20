@@ -26,19 +26,18 @@
  *
  * @copyright Adapted from the [dnd5e system]{@link https://github.com/foundryvtt/dnd5e}
  */
-export default class MappingField extends foundry.data.fields.ObjectField {
-	constructor(model, options) {
+export default class MappingField extends foundry.data.fields.TypedObjectField {
+	constructor(model, options, context) {
 		if ( !(model instanceof foundry.data.fields.DataField) ) {
 			throw new Error("MappingField must have a DataField as its contained element");
 		}
-		super(options);
+		super(model, options, context);
 
 		/**
 		 * The embedded DataField definition which is contained in this field.
 		 * @type {DataField}
 		 */
-		this.model = model;
-		model.parent = this;
+		this.model = this.element;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -98,39 +97,8 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 	 * @returns {*} - Initial value based on provided field type.
 	 */
 	_getInitialValueForKey(key, object) {
-		const initial = this.model.getInitialValue();
+		const initial = this.element.getInitialValue();
 		return this.initialValue?.(key, initial, object) ?? initial;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/** @override */
-	_validateType(value, options={}) {
-		if ( foundry.utils.getType(value) !== "Object" ) throw new Error("must be an Object");
-		const errors = this._validateValues(value, options);
-		if ( !foundry.utils.isEmpty(errors) ) {
-			const failure = new foundry.data.validation.DataModelValidationFailure();
-			failure.elements = Object.entries(errors).map(([id, failure]) => ({ id, failure }));
-			throw failure.asError();
-		}
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Validate each value of the object.
-	 * @param {object} value - The object to validate.
-	 * @param {object} options - Validation options.
-	 * @returns {Object<Error>} - An object of value-specific errors by key.
-	 */
-	_validateValues(value, options) {
-		const errors = {};
-		for ( const [k, v] of Object.entries(value) ) {
-			if ( k.startsWith("-=") ) continue;
-			const error = this.model.validate(v, options);
-			if ( error ) errors[k] = error;
-		}
-		return errors;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -143,7 +111,7 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 		const keys = this.prepareKeys ? initialKeys : Object.keys(value);
 		for ( const key of keys ) {
 			const data = value[key] ?? this._getInitialValueForKey(key, value);
-			obj[key] = this.model.initialize(data, model, options);
+			obj[key] = this.element.initialize(data, model, options);
 		}
 		return obj;
 	}
@@ -153,21 +121,7 @@ export default class MappingField extends foundry.data.fields.ObjectField {
 	/** @override */
 	_getField(path) {
 		if ( path.length === 0 ) return this;
-		else if ( path.length === 1 ) return this.model;
-		path.shift();
-		return this.model._getField(path);
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Migrate this field's candidate source data.
-	 * @param {object} sourceData - Candidate source data of the root model
-	 * @param {any} fieldData - The value of this field within the source data
-	 */
-	migrateSource(sourceData, fieldData) {
-		if (!(this.model.migrateSource instanceof Function)) return;
-		if (foundry.utils.getType(fieldData) !== "Object") return;
-		for (const entry of Object.values(fieldData)) this.model.migrateSource(sourceData, entry);
+		else path.pop();
+		return this.element._getField(path, options);
 	}
 }

@@ -6,7 +6,6 @@ import TokenEH from "./token.mjs";
  */
 export function registerCanvas() {
 	CONFIG.Canvas.layers.tokens.layerClass = TokenLayerEH;
-	CONFIG.Token.layerClass = TokenLayerEH;
 	CONFIG.Token.objectClass = TokenEH;
 }
 

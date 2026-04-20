@@ -3,18 +3,15 @@
 		<span class="left stripes"></span>
 		<span class="center">
 			<select name="editorSelected">
-				{{#select editorSelected}}
-					<option value="description">{{localize "EH.Item.Description.Label"}}</option>
-					<option value="chat">{{localize "EH.Item.Description.Chat.Label"}}</option>
-				{{/select}}
+				{{ selectOptions editor.options selected=editor.selected localize=true }}
 			</select>
 		</span>
 		<span class="right stripes"></span>
 	</h3>
-	{{#if (eq editorSelected "description")}}
+	{{#if (eq editor.selected "description")}}
 		{{editor enriched.description target="system.description.value" button=true editable=editable
 			engine="prosemirror" collaborate=false}}
-	{{else if (eq editorSelected "chat")}}
+	{{else if (eq editor.selected "chat")}}
 		{{editor enriched.chat target="system.description.chat" button=true editable=editable
 			engine="prosemirror" collaborate=false}}
 	{{/if}}

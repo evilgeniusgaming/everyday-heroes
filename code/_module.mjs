@@ -35,7 +35,6 @@ Hooks.once("init", function() {
 	utils.systemLog(`Initializing the Everyday Heroes Game System - Version ${game.system.version}\n${config.ASCII}`);
 
 	CONFIG.compatibility.excludePatterns.push(/The V1 Application framework is deprecated/);
-	CONFIG.compatibility.excludePatterns.push(/select/);
 
 	game.everydayHeroes = globalThis.EverydayHeroes;
 	CONFIG.EverydayHeroes = config;

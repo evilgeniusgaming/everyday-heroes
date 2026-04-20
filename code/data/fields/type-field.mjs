@@ -36,6 +36,7 @@ export default class TypeField extends foundry.data.fields.ObjectField {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @override */
 	_cleanType(value, options) {
 		if ( !(typeof value === "object") ) value = {};
 
@@ -46,6 +47,7 @@ export default class TypeField extends foundry.data.fields.ObjectField {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @override */
 	initialize(value, model, options={}) {
 		const cls = this.getModel(value, model);
 		if ( cls ) return new cls(value, {parent: model, ...options});
@@ -54,8 +56,9 @@ export default class TypeField extends foundry.data.fields.ObjectField {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	migrateSource(sourceData, fieldData) {
-		const cls = this.getModel(fieldData, sourceData);
-		if ( cls ) cls.migrateDataSafe(fieldData);
+	/** @override */
+	_migrate(value, options, _state) {
+		const cls = this.getModel(value, _state.modelSource);
+		if ( cls ) cls.migrateDataSafe(value);
 	}
 }

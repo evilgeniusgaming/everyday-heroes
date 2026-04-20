@@ -43,18 +43,15 @@
 					<span class="left stripes"></span>
 					<span class="center">
 						<select name="editorSelected">
-							{{#select editorSelected}}
-								<option value="biography">{{localize "EH.Biography.Label"}}</option>
-								<option value="public">{{localize "EH.Biography.Public"}}</option>
-							{{/select}}
+							{{ selectOptions editor.options selected=editor.selected localize=true }}
 						</select>
 					</span>
 					<span class="right stripes"></span>
 				</h2>
-				{{#if (eq editorSelected "biography")}}
+				{{#if (eq editor.selected "biography")}}
 					{{editor enriched.biography target="system.biography.value" button=true editable=editable
 						engine="prosemirror" collaborate=false}}
-				{{else if (eq editorSelected "public")}}
+				{{else if (eq editor.selected "public")}}
 					{{editor enriched.public target="system.biography.public" button=true editable=editable
 						engine="prosemirror" collaborate=false}}
 				{{/if}}

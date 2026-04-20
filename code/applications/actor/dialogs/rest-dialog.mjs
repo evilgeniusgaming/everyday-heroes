@@ -86,6 +86,11 @@ export default class RestDialog extends Dialog {
 		context.hd = this.actor.system.attributes.hd;
 		context.showHitDice = (this.data.config.type === "short") && context.hd.denomination;
 		context.showMedical = this.data.config.type === "short";
+		context.medicalOptions = [
+			{ value: "", label: "EH.Rest.Action.Medical.None" },
+			{ value: "provide", label: "EH.Rest.Action.Medical.Provide" },
+			{ value: "receive", label: "EH.Rest.Action.Medical.Receive" }
+		];
 		return context;
 	}
 

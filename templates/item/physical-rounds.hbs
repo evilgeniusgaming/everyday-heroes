@@ -7,15 +7,7 @@
 <fieldset>
 	<label>{{localize "EH.Ammunition.Type.Label"}}</label>
 	<select name="system.rounds.type">
-		{{#select source.rounds.type}}
-			<option value="">{{localize "None"}}</option>
-			<optgroup label="{{localize 'EH.Item.Type.Ammunition[other]'}}">
-				{{selectOptions CONFIG.ammunitionTypes labelAttr="label"}}
-			</optgroup>
-			<optgroup label="{{localize 'EH.Item.Type.Explosive[other]'}}">
-				{{selectOptions CONFIG.explosiveTypes labelAttr="label"}}
-			</optgroup>
-		{{/select}}
+		{{ selectOptions roundTypeOptions selected=source.rounds.type }}
 	</select>
 </fieldset>
 

@@ -19,9 +19,22 @@ export default class PhysicalSheet extends BasePhysicalSheet {
 	async getData(options) {
 		const context = await super.getData(options);
 
+		context.abilityOverrideOptions = [
+			{ value: "", label: _loc("EH.Weapon.Overrides.Ability.Default") },
+			{ value: "none", label: _loc("EH.Weapon.Overrides.Ability.None") },
+			...Object.entries(CONFIG.EverydayHeroes.abilities).map(([value, { label }]) => ({ value, label }))
+		];
+
 		if ( ["npcExplosive", "npcWeapon"].includes(this.item.type) ) {
 			context.activationCosts = CONFIG.EverydayHeroes.actionTypesWeapon;
 		}
+
+		context.damageTypeOptions = [
+			{ value: "", label: _loc("EH.Damage.None") },
+			...Object.entries(CONFIG.EverydayHeroes.damageTypes).map(([value, { label }]) => ({ value, label })),
+			{ rule: true },
+			{ value: "multiple", label: _loc("EH.Damage.Multiple") }
+		];
 
 		context.diceSteps = Object.fromEntries(CONFIG.EverydayHeroes.diceSteps.map(n => [n, `d${n}`]));
 
@@ -45,6 +58,14 @@ export default class PhysicalSheet extends BasePhysicalSheet {
 		if ( (isTitanic === true) || (isTitanic === undefined) ) context.lengthUnits.space = {
 			label: game.i18n.localize("EH.Measurement.Length.Space.Label[other]")
 		};
+
+		context.roundTypeOptions = [
+			{ value: "", label: _loc("EH.Ammunition.Rounds.None") },
+			...Object.entries(CONFIG.EverydayHeroes.ammunitionTypes)
+				.map(([value, { label }]) => ({ value, label, group: _loc("EH.Item.Type.Ammunition[other]") })),
+			...Object.entries(CONFIG.EverydayHeroes.explosiveTypes)
+				.map(([value, { label }]) => ({ value, label, group: _loc("EH.Item.Type.Explosive[other]") }))
+		];
 
 		return context;
 	}

@@ -145,7 +145,14 @@ export default class BaseActorSheet extends foundry.appv1.sheets.ActorSheet {
 				foundry.utils.getProperty(context, path), enrichmentContext
 			);
 		}
-		context.editorSelected = this.editorSelected;
+		context.editor = {
+			options: [
+				{ value: "biography", label: "EH.Biography.Label" },
+				{ value: "public", label: "EH.Biography.Public" },
+				{ value: "notes", label: "EH.Biography.Notes" }
+			],
+			selected: this.editorSelected
+		};
 
 		return context;
 	}

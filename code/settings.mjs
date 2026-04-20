@@ -1,7 +1,7 @@
 import { systemLog } from "./utils.mjs";
 
 const requireTitanicScale = () => game.modules.map(m =>
-	m.flags?.["everyday-heroes"]?.requireTitanicScale ?? false
+	(m.active && m.flags?.["everyday-heroes"]?.requireTitanicScale) ?? false
 ).some(b => b);
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

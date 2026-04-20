@@ -24,10 +24,7 @@
 			<label>
 				<span>{{localize "EH.Equipment.Trait.Damage.Type.Label"}}</span>
 				<select name="system.damage.type">
-					{{#select source.damage.type}}
-						{{selectOptions CONFIG.damageTypes blank=(localize "EH.Damage.None") labelAttr="label"}}
-						<option value="multiple">{{localize "EH.Damage.Multiple"}}</option>
-					{{/select}}
+					{{ selectOptions damageTypeOptions selected=source.damage.type localize=true }}
 				</select>
 			</label>
 		</div>
@@ -53,7 +50,7 @@
 				<p class="hint">{{localize "EH.Equipment.Trait.PenetrationValue.Hint"}}</p>
 			</fieldset>
 		{{/if}}
-	
+
 		<fieldset class="supplemental-damage">
 			<label>{{localize "EH.Equipment.Trait.SupplementalDamage.Label"}}</label>
 			<span class="control">

@@ -5,8 +5,6 @@
 export default function applyEffectApplicationPatches() {
 
 	// Note: OVERRIDE and CUSTOM are always supported modes, _ehSupportedModes defines other modes that can be used
-	const MODES = CONST.ACTIVE_EFFECT_MODES;
-	const ALL = [MODES.MULTIPLY, MODES.ADD, MODES.DOWNGRADE, MODES.UPGRADE];
 	let field;
 
 	// DataField
@@ -28,7 +26,6 @@ export default function applyEffectApplicationPatches() {
 
 	// ArrayField
 	field = foundry.data.fields.ArrayField;
-	field._ehSupportedModes = [MODES.ADD];
 	field.prototype._ehApplyAdd = function(document, change, current, delta, changes) {
 		changes[change.key] = current.concat(delta);
 	};
@@ -42,7 +39,6 @@ export default function applyEffectApplicationPatches() {
 
 	// BooleanField
 	field = foundry.data.fields.BooleanField;
-	field._ehSupportedModes = [MODES.DOWNGRADE, MODES.UPGRADE];
 	field.prototype._ehApplyUpgrade = function(document, change, current, delta, changes) {
 		if ( (current === null) || (current === undefined) || (delta > current) ) changes[change.key] = delta;
 	};
@@ -52,7 +48,6 @@ export default function applyEffectApplicationPatches() {
 
 	// NumberField
 	field = foundry.data.fields.NumberField;
-	field._ehSupportedModes = ALL;
 	field.prototype._ehApplyAdd = function(document, change, current, delta, changes) {
 		changes[change.key] = current + delta;
 	};
@@ -79,18 +74,7 @@ export default function applyEffectApplicationPatches() {
 
 	// StringField
 	field = foundry.data.fields.StringField;
-	field._ehSupportedModes = [MODES.ADD];
 	field.prototype._ehApplyAdd = function(document, change, current, delta, changes) {
 		changes[change.key] = current + delta;
 	};
-
-	// ColorField
-	// TODO: Probably some fancy color merging that can be done here
-
-	// Set of string fields that shouldn't support ADD mode
-	foundry.data.fields.DocumentIdField._ehSupportedModes = [];
-	foundry.data.fields.FilePathField._ehSupportedModes = [];
-
-	// JSONField
-	// TODO: Probably deserialize the data and then treat it as an ObjectField
 }

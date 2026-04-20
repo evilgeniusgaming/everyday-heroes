@@ -13,12 +13,7 @@
 					</h4>
 					<div>
 						<select name="crewWeapon">
-							{{#select ctx.crewedWeapon}}
-								<option value="">No Weapon</option>
-								{{#each ctx.weapons}}
-									<option value="{{this.id}}" {{disabled this.disabled}}>{{this.name}}</option>
-								{{/each}}
-							{{/select}}
+							{{ selectOptions ctx.weaponOptions }}
 						</select>
 					</div>
 					<fieldset>

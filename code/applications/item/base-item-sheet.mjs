@@ -58,7 +58,13 @@ export default class BaseItemSheet extends foundry.appv1.sheets.ItemSheet {
 				foundry.utils.getProperty(context, path), enrichmentContext
 			);
 		}
-		context.editorSelected = this.editorSelected;
+		context.editor = {
+			options: [
+				{ value: "description", label: "EH.Item.Description.Label" },
+				{ value: "chat", label: "EH.Item.Description.Chat.Label" }
+			],
+			selected: this.editorSelected
+		};
 
 		return context;
 	}

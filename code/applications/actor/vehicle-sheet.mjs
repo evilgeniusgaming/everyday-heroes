@@ -89,15 +89,15 @@ export default class VehicleSheet extends BaseActorSheet {
 			if ( !actor ) continue;
 			const ctx = context.personContext[actor.id] ??= {};
 			ctx.isDriver = actor === context.actor.system.details.driver;
-			ctx.weapons = context.contents.vehicleWeapon.items.reduce((arr, weapon) => {
-				arr.push({
-					id: weapon.id,
-					name: weapon.name,
-					disabled: weapon.system.user && weapon.system.user !== actor
-				});
-				if ( weapon.system.user === actor ) ctx.crewedWeapon = weapon.id;
-				return arr;
-			}, []);
+			ctx.weaponOptions = [
+				{ value: "", label: _loc("EH.Vehicle.People.Weapon.None") },
+				...context.contents.vehicleWeapon.items.map(weapon => ({
+					value: weapon.id,
+					label: weapon.name,
+					disabled: weapon.system.user && weapon.system.user !== actor,
+					selected: weapon.system.user === actor
+				}))
+			];
 			context.people[ctx.isDriver ? "driver" : "passengers"].actors.push(actor);
 		}
 	}

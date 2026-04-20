@@ -40,9 +40,9 @@ export default class ActorEH extends DocumentMixin(Actor) {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/** @inheritDoc */
-	applyActiveEffects() {
-		this.system.prepareEmbeddedData?.();
-		return super.applyActiveEffects();
+	applyActiveEffects(phase) {
+		if ( phase === "initial" ) this.system.prepareEmbeddedData?.();
+		return super.applyActiveEffects(phase);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

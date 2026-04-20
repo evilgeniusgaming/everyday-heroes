@@ -429,7 +429,8 @@
 	},
 	"Rounds": {
 		"Label[one]": "round",
-		"Label[other]": "rounds"
+		"Label[other]": "rounds",
+		"None": "None"
 	},
 	"Type": {
 		"Label": "Ammunition Type",
@@ -1745,6 +1746,7 @@
 			"Label": "Rest"
 		},
 		"Medical": {
+			"None": "None",
 			"Provide": "Provide Medical Care",
 			"Receive": "Receive Medical Care"
 		}
@@ -2239,7 +2241,10 @@
 			"None": "No Driver"
 		},
 		"Passenger[one]": "Passenger",
-		"Passenger[other]": "Passengers"
+		"Passenger[other]": "Passengers",
+		"Weapon": {
+			"None": "No Weapon"
+		}
 	},
 	"Type": {
 		"Label": "Vehicle Type",

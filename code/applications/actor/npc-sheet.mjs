@@ -32,11 +32,15 @@ export default class NPCSheet extends BaseActorSheet {
 		}, {});
 
 		context.cr = { 0.125: "⅛", 0.25: "¼", 0.5: "½" }[context.system.details.cr] ?? context.system.details.cr;
-		context.sizes = {
-			normal: filterObject(CONFIG.EverydayHeroes.sizes, v => !v.titanic),
-			titanic: game.settings.get("everyday-heroes", "titanicSizes")
-				? filterObject(CONFIG.EverydayHeroes.sizes, v => v.titanic) : null
-		};
+		const includeTitanic = game.settings.get("everyday-heroes", "titanicSizes");
+		context.sizeOptions = Object.entries(CONFIG.EverydayHeroes.sizes)
+			.filter(([, { titanic }]) => includeTitanic || !titanic)
+			.map(([value, { label, titanic }]) => ({
+				value, label,
+				group: includeTitanic ? _loc(`EH.Size.Scale.${titanic ? "Titanic" : "Normal"}.Label`) : undefined
+			}));
+
+		context.editor.options = context.editor.options.filter(o => o.value !== "notes");
 
 		return context;
 	}
