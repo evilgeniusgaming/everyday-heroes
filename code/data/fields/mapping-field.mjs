@@ -53,17 +53,6 @@ export default class MappingField extends foundry.data.fields.TypedObjectField {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	/** @override */
-	_cleanType(value, options) {
-		Object.entries(value).forEach(([k, v]) => {
-			if ( k.startsWith("-=") ) return;
-			value[k] = this.model.clean(v, options);
-		});
-		return value;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
 	/**
 	 * Ensure the initial keys are in a usable format.
 	 * @returns {string[]|void}

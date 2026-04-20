@@ -99,7 +99,7 @@ export default class ItemGrantAdvancement extends Advancement {
 			if ( item ) added.push(item.toObject());
 			this.actor.items.delete(id);
 		}
-		this.updateSource({[keyPath.replace(/\.([\w\d]+)$/, ".-=$1")]: null});
+		this.updateSource({ [keyPath]: _del });
 		return { added };
 	}
 

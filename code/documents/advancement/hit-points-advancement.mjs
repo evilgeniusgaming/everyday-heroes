@@ -166,7 +166,7 @@ export default class HitPointsAdvancement extends Advancement {
 			"system.attributes.hp.value": this.actor.system.attributes.hp.value - this.#getApplicableValue(value)
 		});
 		const retainedData = { [level]: this.value[level] };
-		this.updateSource({ [`value.granted.-=${level}`]: null });
+		this.updateSource({ [`value.granted.${level}`]: _del });
 		return retainedData;
 	}
 }

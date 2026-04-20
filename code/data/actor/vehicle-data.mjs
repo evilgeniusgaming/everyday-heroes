@@ -399,12 +399,12 @@ export default class VehicleData extends ActorDataModel.mixin(ConditionsTemplate
 	 */
 	async removePerson(actor) {
 		if ( !this.people.get(actor.id) ) throw new Error(`Actor ${actor.name} not found in the vehicle.`);
-		const updates = { [`system.people.-=${actor.id}`]: null };
+		const updates = { [`system.people.${actor.id}`]: _del };
 		if ( this.details.driver === actor ) updates["system.details.driver"] = null;
 		await this.parent.update(updates);
 		delete actor.linked[this.parent.uuid];
 		if ( (actor.system.vehicle?.actor === this.parent) && actor.isOwner ) {
-			await actor.update({"system.vehicle.actor": null});
+			await actor.update({ "system.vehicle.actor": null });
 		}
 	}
 

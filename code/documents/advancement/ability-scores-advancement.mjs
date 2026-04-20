@@ -112,7 +112,7 @@ export default class AbilityScoresAdvancement extends Advancement {
 
 		const retainedData = this.value;
 		this.actor.updateSource({ "system.abilities": abilities });
-		this.updateSource({ "value.-=method": null, "value.-=rolls": null, "value.-=assignments": null });
+		this.updateSource({ "value.method": _del, "value.rolls": _del, "value.assignments": _del });
 		return retainedData;
 	}
 }

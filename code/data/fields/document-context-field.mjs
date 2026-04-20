@@ -10,15 +10,15 @@
  * @param {object} schema - Schema for each context entry.
  * @param {DocumentContextFieldOptions} options - Options which configure the behavior of the field.
  */
-export default class DocumentContextField extends foundry.data.fields.ObjectField {
-	constructor(model, schema, options) {
+export default class DocumentContextField extends foundry.data.fields.TypedObjectField {
+	constructor(model, schema, options, context) {
 		if ( !foundry.utils.isSubclass(model, foundry.abstract.DataModel) ) {
 			throw new Error("DocumentContextField must have a DataModel subclass as its model.");
 		}
 
-		super(options);
+		super(new foundry.data.fields.SchemaField(schema), options, context);
 		this.model = model;
-		this.schema = new foundry.data.fields.SchemaField(schema);
+		this.schema = this.element;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -49,34 +49,9 @@ export default class DocumentContextField extends foundry.data.fields.ObjectFiel
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/** @override */
-	_cleanType(value, options) {
-		Object.entries(value).forEach(([k, v]) => {
-			if (k.startsWith("-=")) return;
-			value[k] = this.schema.clean(v, options);
-		});
-		return value;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/** @inheritDoc */
-	_validateType(value, options={}) {
-		super._validateType(value, options);
-		const errors = {};
-		for ( const [k, v] of Object.entries(value) ) {
-			if ( k.startsWith("-=") ) continue;
-			const error = this.schema.validate(v, options);
-			if ( error ) errors[k] = error;
-		}
-		if ( !foundry.utils.isEmpty(errors) ) throw new foundry.data.fields.ModelValidationError(errors);
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/** @override */
 	initialize(value, model, options={}) {
-		if ( !value ) return new Collection();
 		const collection = new Collection();
+		if ( !value ) return collection;
 		for ( const [k, v] of Object.entries(value) ) {
 			const data = this.schema.initialize(v, model, options);
 			Object.defineProperty(data, "document", {
@@ -90,12 +65,5 @@ export default class DocumentContextField extends foundry.data.fields.ObjectFiel
 			collection.set(k, data);
 		}
 		return collection;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/** @override */
-	toObject(value) {
-		return Object.fromEntries(value.values());
 	}
 }

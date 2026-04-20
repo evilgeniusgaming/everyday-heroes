@@ -95,13 +95,13 @@ export default class ResourceConfig extends BaseConfig {
 					const data = foundry.utils.expandObject(this._getSubmitData());
 					if ( !data.custom.label ) return ui.notifications.warn(game.i18n.localize("EH.Resource.Config.Warning.NoLabel"));
 					resource = data.custom;
-					this.resourceId = resource.label.slugify({strict: true});
+					this.resourceId = resource.label.slugify({ strict: true });
 				}
 				if ( !resource ) return;
-				await this.document.update({[`system.resources.${this.resourceId}`]: resource});
+				await this.document.update({ [`system.resources.${this.resourceId}`]: resource });
 				break;
 			case "delete":
-				await this.document.update({[`system.resources.-=${key}`]: null});
+				await this.document.update({ [`system.resources.${key}`]: _del });
 				break;
 		}
 

@@ -1195,7 +1195,7 @@ export default class ItemEH extends DocumentMixin(Item) {
 
 		// Clear actor/item relationship information
 		if ( this.parent.system.items?.[this.id] ) {
-			this.parent.update({[`system.items.-=${this.id}`]: null});
+			this.parent.update({ [`system.items.${this.id}`]: _del });
 		}
 	}
 }
