@@ -1233,7 +1233,6 @@ export default class ActorEH extends DocumentMixin(Actor) {
 			data.abilityId = abilityId;
 
 			const rollConfig = foundry.utils.mergeObject(baseConfig, {
-				data,
 				options: {
 					minimum: buildMinimum([
 						skill.minimum, ability?.minimums.check,
@@ -1241,6 +1240,7 @@ export default class ActorEH extends DocumentMixin(Actor) {
 					], data)
 				}
 			}, { inplace: false });
+			rollConfig.data = { ...(baseConfig.data ?? {}), ...data };
 			rollConfig.parts = parts.concat(config.parts ?? []);
 
 			return rollConfig;
