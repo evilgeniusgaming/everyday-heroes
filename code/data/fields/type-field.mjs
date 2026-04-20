@@ -59,6 +59,7 @@ export default class TypeField extends foundry.data.fields.ObjectField {
 	/** @override */
 	_migrate(value, options, _state) {
 		const cls = this.getModel(value, _state.modelSource);
-		if ( cls ) cls.migrateDataSafe(value);
+		if ( cls ) cls.migrateDataSafe(value, options, _state);
+		return value;
 	}
 }

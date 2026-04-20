@@ -23,7 +23,7 @@ export default class AdvancementTemplate extends foundry.abstract.DataModel {
 					determineType: value => value._type,
 					modelLookup: type => CONFIG.EverydayHeroes.advancementTypes[type]?.type ?? null
 				}),
-				{label: "EH.Advancement.Title[other]"}
+				{ label: "EH.Advancement.Title[other]" }
 			)
 		};
 	}
