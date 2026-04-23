@@ -563,7 +563,7 @@ export default class BaseItemSheetV2 extends PrimarySheetMixin(EHDocumentSheet) 
 	 * @returns {boolean}
 	 */
 	static hasDetailsTab(item) {
-		return item.system.metadata?.hasDetails
+		return item.system.metadata?.sheet?.hasDetails
 			?? CONFIG.EverydayHeroes.itemCategories[item.system.metadata?.category]?.sheet?.hasDetails
 			?? false;
 	}
@@ -576,7 +576,7 @@ export default class BaseItemSheetV2 extends PrimarySheetMixin(EHDocumentSheet) 
 	 * @returns {boolean}
 	 */
 	static hasEffectsTab(item) {
-		return item.system.metadata?.hasEffects
+		return item.system.metadata?.sheet?.hasEffects
 			?? CONFIG.EverydayHeroes.itemCategories[item.system.metadata?.category]?.sheet?.hasEffects
 			?? false;
 	}

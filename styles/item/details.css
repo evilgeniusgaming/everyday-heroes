@@ -1,4 +1,4 @@
-.everyday-heroes.item.sheet [data-tab="details"] {
+.everyday-heroes.item.sheet.app [data-tab="details"] {
 
 	> section {
 		display: grid;
@@ -97,20 +97,20 @@
 			.hint { flex-basis: 100%; }
 		}
 	}
-	
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Properties                               */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	
+
 	.properties {
 		grid-column: 1 / -1;
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 	}
-	
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Supplemental Damage                      */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	
+
 	.supplemental-damage .control {
 		grid-column: -1;
 		display: flex;

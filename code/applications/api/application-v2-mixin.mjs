@@ -131,7 +131,7 @@ export default function ApplicationV2Mixin(Base, { handlebars=true }={}) {
 		async _onRender(context, options) {
 			await super._onRender(context, options);
 
-			// Add special styling for label-top hints.
+			// Add special styling for label-top & label-hinted hints
 			this.element.querySelectorAll(":is(.label-top, .label-hinted) > p.hint").forEach(hint => {
 				const label = hint.parentElement.querySelector(":scope > label");
 				if ( !label ) return;
@@ -140,6 +140,15 @@ export default function ApplicationV2Mixin(Base, { handlebars=true }={}) {
 				hint.innerHTML = "";
 				label.classList.add("hinted-label");
 				label.insertAdjacentElement("beforeend", hint);
+			});
+
+			// Move label contents to aria-label for .label-hidden
+			this.element.querySelectorAll(".label-hidden").forEach(group => {
+				const label = group.querySelector(":scope > label");
+				if ( !label?.innerText ) return;
+				const input = group.querySelector(":scope > .form-fields > :is(input, select)");
+				if ( !input || input.ariaLabel || input.ariaLabeledBy ) return;
+				input.ariaLabel = label.innerText;
 			});
 		}
 

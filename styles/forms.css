@@ -57,6 +57,9 @@
 			font-weight: bold;
 			text-transform: uppercase;
 		}
+		.form-fields {
+			.separator { flex: 0; }
+		}
 
 		&.label-top {
 			align-items: stretch;
@@ -94,6 +97,8 @@
 				}
 			}
 		}
+
+		&.label-hidden > label { display: none; }
 
 		&.split-group > .form-fields {
 			.field-group {

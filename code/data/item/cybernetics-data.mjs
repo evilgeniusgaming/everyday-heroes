@@ -10,6 +10,7 @@ const { NumberField, StringField } = foundry.data.fields;
 export default class CyberneticsData extends ItemDataModel.mixin(
 	DescribedTemplate, ActivatableTemplate, PhysicalTemplate, TypedTemplate
 ) {
+	/** @inheritDoc */
 	static get metadata() {
 		return {
 			type: "cybernetics",
@@ -19,6 +20,8 @@ export default class CyberneticsData extends ItemDataModel.mixin(
 			image: "systems/everyday-heroes/artwork/svg/items/cybernetics.svg",
 			sheet: {
 				application: CyberneticsSheet,
+				hasDetails: true,
+				hasEffects: true,
 				label: "EH.Sheet.Cybernetics"
 			}
 		};
@@ -26,12 +29,13 @@ export default class CyberneticsData extends ItemDataModel.mixin(
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @inheritDoc */
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
-			location: new StringField(),
-			priceLower: new NumberField({min: 0, integer: true}),
-			strain: new NumberField({initial: 0, min: 0, integer: true}),
-			surgeryComplexity: new StringField()
+			location: new StringField({ label: "EH.Cybernetics.Location" }),
+			priceLower: new NumberField({ min: 0, integer: true, label: "EH.Cybernetics.PriceLower" }),
+			strain: new NumberField({ initial: 0, min: 0, integer: true, label: "EH.Equipment.Trait.Strain.Label" }),
+			surgeryComplexity: new StringField({ label: "EH.Cybernetics.SurgeryComplexity.Label" })
 		});
 	}
 
@@ -39,12 +43,14 @@ export default class CyberneticsData extends ItemDataModel.mixin(
 	/*  Properties                               */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @override */
 	get npcDisplay() {
 		return false;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @override */
 	get types() {
 		return CONFIG.EverydayHeroes.cyberneticsTypes;
 	}
@@ -59,6 +65,7 @@ export default class CyberneticsData extends ItemDataModel.mixin(
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
+	/** @override */
 	static typeLabel(type, plural=false) {
 		if ( !type.value ) return game.i18n.localize("EH.Item.Type.Cybernetics[one]");
 		return game.i18n.format("EH.Item.Type.DetailedLabel", {

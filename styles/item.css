@@ -87,12 +87,13 @@
 		--section-background: var(--eh-background-color-mid);
 		--section-border: 1px solid var(--eh-border-color-strong);
 		--section-border-radius: 10px;
+		--section-padding: 0.5em;
 
 		&:not(.multiple), &.multiple > div {
 			background-color: var(--section-background);
 			border: var(--section-border);
 			border-radius: var(--section-border-radius);
-			padding: 0.5em;
+			padding: var(--section-padding);
 			overflow: clip;
 		}
 		&.active.contents {
@@ -203,7 +204,10 @@
 	/*  Details                                  */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-	/*  Effects                                  */
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	[data-tab="details"] {
+		h3 {
+			margin-block: 0;
+			margin-inline: calc(var(--section-padding) * -1);
+		}
+	}
 }

@@ -853,6 +853,7 @@
 	"Enhancement[one]": "Enhancement",
 	"Enhancement[other]": "Enhancements",
 	"Location": "Location",
+	"PriceLower": "Reduced Price",
 	"SurgeryComplexity": {
 		"Label": "Surgery Complexity",
 		"Extreme": "Extreme",
