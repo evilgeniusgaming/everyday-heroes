@@ -9,6 +9,8 @@ export default class ItemDataModel extends SystemDataModel {
 	 * Metadata that describes an item data type.
 	 *
 	 * @typedef {SystemDataMetadata} ItemDataMetadata
+	 * @property {boolean} [hasDetails] - Should the details tab be displayed on the sheet?
+	 * @property {boolean} [hasEffects] - Should the effects tab be displayed on the sheet?
 	 * @property {string} [sheetLocalization] - Alternate localization key used when displaying an item on an actor sheet.
 	 * @property {boolean} [register] - Register all items of this type within the central list. Only used on Items.
 	 * @property {string} [variant] - Key used to register this item in the automatic item variant system. Should match

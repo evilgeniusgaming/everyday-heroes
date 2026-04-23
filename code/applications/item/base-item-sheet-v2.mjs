@@ -563,7 +563,9 @@ export default class BaseItemSheetV2 extends PrimarySheetMixin(EHDocumentSheet) 
 	 * @returns {boolean}
 	 */
 	static hasDetailsTab(item) {
-		return true; // TODO
+		return item.system.metadata?.hasDetails
+			?? CONFIG.EverydayHeroes.itemCategories[item.system.metadata?.category]?.sheet?.hasDetails
+			?? false;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -574,6 +576,8 @@ export default class BaseItemSheetV2 extends PrimarySheetMixin(EHDocumentSheet) 
 	 * @returns {boolean}
 	 */
 	static hasEffectsTab(item) {
-		return true; // TODO
+		return item.system.metadata?.hasEffects
+			?? CONFIG.EverydayHeroes.itemCategories[item.system.metadata?.category]?.sheet?.hasEffects
+			?? false;
 	}
 }

@@ -23,10 +23,10 @@ export default class FeatureSheetV2 extends BaseItemSheetV2 {
 		const itemCategories = foundry.utils.getProperty(CONFIG.EverydayHeroes, `${type}Categories`);
 		context.fields = [
 			!foundry.utils.isEmpty(itemCategories) ? this._createFormField(context, "type.category", {
-				options: createFormOptions(itemCategories, { blank: true })
+				options: createFormOptions(itemCategories)
 			}) : null,
 			context.system.types ? this._createFormField(context, "type.value", {
-				options: createFormOptions(context.system.types, { blank: true })
+				options: createFormOptions(context.system.types)
 			}) : null,
 			this._createFormField(context, "activation.type", {
 				hint: false,

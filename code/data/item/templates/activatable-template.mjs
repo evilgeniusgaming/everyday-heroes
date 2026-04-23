@@ -271,7 +271,7 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 			fields: [
 				this._createFormField(context, "resource.type", {
 					classes: "label-top",
-					options: createFormOptions(CONFIG.EverydayHeroes.consumptionTypes, { blank: true })
+					options: createFormOptions(CONFIG.EverydayHeroes.consumptionTypes)
 				}),
 				context.source.resource.type
 					? this._createFormField(context, "resource.amount", { classes: "label-top" }) : null,
@@ -280,7 +280,7 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 					? this._createFormField(context, "resource.target", {
 						classes: "label-top",
 						options: context.system.consumptionTargets
-							? createFormOptions(context.system.consumptionTargets, { blank: true })
+							? createFormOptions(context.system.consumptionTargets)
 							: undefined
 					}) : null
 				],
@@ -292,7 +292,7 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 					this._createFormField(context, "uses.max", { classes: "label-top" }),
 					this._createFormField(context, "uses.period", {
 						classes: "label-top",
-						options: createFormOptions(CONFIG.EverydayHeroes.recoveryPeriods, { blank: true })
+						options: createFormOptions(CONFIG.EverydayHeroes.recoveryPeriods)
 					})
 				],
 				group: { label: "EH.Uses.Label" }

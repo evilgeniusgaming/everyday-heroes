@@ -237,7 +237,9 @@ export const itemCategories = {
 		label: "EH.Item.Category.Concept.Label",
 		types: ["origin", "archetype", "class", "subclass", "background", "profession"],
 		sheet: {
-			application: itemSheet.ConceptSheet,
+			application: itemSheet.ConceptSheetV2,
+			hasDetails: false,
+			hasEffects: false,
 			label: "EH.Sheet.Concept"
 		}
 	},
@@ -245,7 +247,7 @@ export const itemCategories = {
 		label: "EH.Item.Category.Feature.Label",
 		types: ["talent", "specialFeature", "plan", "trick", "feat", "mutation", "npcFeature"],
 		sheet: {
-			application: itemSheet.FeatureSheet,
+			application: itemSheet.FeatureSheetV2,
 			label: "EH.Sheet.Feature"
 		}
 	},

@@ -96,10 +96,10 @@ export function systemLog(message, {color="rebeccapurple", extras=[], level="log
  * Generate form options from a configuration object.
  * @param {Record<string, string|{ label }>} obj
  * @param {object} [options={}]
- * @param {boolean|string} [options.blank=false]
+ * @param {boolean|string} [options.blank=true]
  * @returns {FormSelectOption[]}
  */
-export function createFormOptions(obj, { blank=false }={}) {
+export function createFormOptions(obj, { blank=true }={}) {
 	const options = [];
 	if ( blank !== false ) options.push({ value: "", label: blank === true ? "" : _loc(blank) });
 	for ( const [key, value] of Object.entries(obj) ) {
