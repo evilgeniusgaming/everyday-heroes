@@ -1,4 +1,4 @@
-.everyday-heroes fieldset {
+.everyday-heroes.app fieldset {
 	margin: 0;
 	border: none;
 	padding: 0;
@@ -31,7 +31,7 @@
 		display: flex;
 		gap: 0.25em;
 	}
-	
+
 	.range {
 		flex: 0 1 8em;
 		display: flex;
@@ -48,5 +48,73 @@
 		flex: 0;
 		align-content: center;
 		margin-inline: 4px;
+	}
+}
+
+.everyday-heroes.application {
+	.form-group {
+		> label {
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+
+		&.label-top {
+			align-items: stretch;
+			flex-direction: column;
+			gap: 2px;
+
+			> * { flex: unset; }
+			> label {
+				font-size: var(--font-size-11);
+				line-height: var(--label-height);
+				height: var(--label-height);
+
+				> p.hint {
+					line-height: var(--label-height);
+					height: var(--label-height);
+				}
+			}
+		}
+
+		&.label-top, &.hinted-label {
+			> label > p.hint {
+				cursor: help;
+				font-size: var(--font-size-10);
+				display: inline-block;
+				margin: 0 0 0 3px;
+
+				&:empty { min-height: unset; }
+				&:hover { text-shadow: 0 0 6px var(--color-shadow-primary); }
+
+				&::before {
+					content: "\f059";
+					font-family: var(--font-awesome);
+					font-weight: normal;
+					color: var(--hint-icon-color);
+				}
+			}
+		}
+
+		&.split-group > .form-fields {
+			.field-group {
+				display: flex;
+				gap: 4px;
+				> .form-group { flex: 1; }
+			}
+
+			.form-group {
+				flex-wrap: nowrap;
+				&:not(.label-top, .checkbox) { gap: 4px; }
+				> * { flex: unset; }
+			}
+		}
+	}
+
+	input[type="text"], input[type="number"], input[type="password"], input[type="date"],
+	input[type="time"], input[type="datetime-local"], input[type="search"], input[type="file"],
+	select {
+		--input-background-color: var(--eh-background-color-white);
+		--input-border-color: transparent;
+		--input-placeholder-color: var(--eh-text-color-placeholder);
 	}
 }

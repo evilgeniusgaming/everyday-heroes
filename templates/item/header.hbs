@@ -1,0 +1,20 @@
+<div class="item-header">
+	<div class="image">
+		<img src="{{ item.img }}" alt="{{ item.name }}" data-edit="img">
+	</div>
+	<div class="fields standard-form">
+		{{> "everydayHeroes.fieldlist" headerFields }}
+	</div>
+	{{#if showTabs}}
+	<nav class="tabs" data-group="primary" aria-roledescription="{{ localize 'SHEETS.FormNavLabel' }}">
+		{{#each tabs}}
+		<button type="button" data-action="tab" data-group="{{ group }}" data-tab="{{ id }}"
+						{{~#if (or active cssClass)}} class="{{#if active}}active{{/if}} {{ tab.cssClass }}"{{/if}}
+						{{~#if tooltip}} data-tooltip="{{ tooltip }}"{{/if}}
+						{{~#if active}} aria-pressed="true"{{/if}}>
+			{{#if icon}}<i class="{{ icon }}" inert></i>{{/if}}
+			{{#if label}}<span>{{ localize label }}</span>{{/if}}
+		{{/each}}
+	</nav>
+	{{/if}}
+</div>

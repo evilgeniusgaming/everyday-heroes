@@ -1,48 +1,51 @@
 {{#each effects as |section id|}}
-	<section data-section-id="{{id}}">
-		<header>
-			<h2>{{localize section.label}}</h2>
-			<fieldset>
+	<div class="document-list-section" data-section-id="{{id}}">
+		<div class="document-list-header flexrow">
+			<h3>{{ localize section.label }}</h3>
+			<div class="effect-controls header-controls flexrow">
 				{{#if (and (ne @root.editingMode false) @root.editable)}}
-					<a data-action="effect" data-type="add" data-tooltip="{{localize 'EH.Effect.Action.Create'}}">
-						<i class="fa-solid fa-plus"></i> {{localize "EH.Action.AddGeneric"}}
-					</a>
+				<button type="button" class="link-button" data-action="addDocument" data-tooltip
+				        aria-label="{{ localize 'EH.Effect.Action.Create' }}">
+					<i class="fa-solid fa-plus" inert></i>
+					<span>{{ localize "EH.Action.AddGeneric" }}</span>
+				</button>
 				{{/if}}
-			</fieldset>
-		</header>
-		<ol class="item-list">
+			</div>
+		</div>
+		<ol class="document-list">
 			{{#each section.effects as |effect|}}
-				<li class="item" data-effect-id="{{effect.id}}">
-					<h4>
-						<figure style="background-image: url('{{effect.img}}')"></figure>
-						<span>{{effect.name}}</a>
-					</h4>
-					<div class="traits">
-						<div class="source">{{effect.sourceName}}</div>
-						<div class="duration">{{effect.duration.label}}</div>
-					</div>
-					<fieldset>
-						{{#if @root.editable}}
-							<a data-action="effect" data-type="toggle"
-								data-tooltip="EH.Effect.Action.{{#if effect.disabled}}Enable{{else}}Disable{{/if}}">
-								<i class="fa-solid fa-{{#if effect.disabled}}check{{else}}times{{/if}}"></i>
-							</a>
-						{{/if}}
-						{{#if (and (ne @root.editingMode false) @root.editable)}}
-							<a data-action="effect" data-type="edit" data-tooltip="{{localize 'EH.Effect.Action.Edit'}}">
-								<i class="fa-solid fa-edit"></i>
-							</a>
-							<a data-action="effect" data-type="delete" data-tooltip="{{localize 'EH.Effect.Action.Delete'}}">
-								<i class="fa-solid fa-trash"></i>
-							</a>
-						{{else}}
-							<a data-action="effect" data-type="edit" data-tooltip="{{localize 'EH.Effect.Action.View'}}">
-								<i class="fa-regular fa-eye"></i>
-							</a>
-						{{/if}}
-					</fieldset>
-				</li>
+			<li class="entry flexrow" data-uuid="{{ effect.uuid }}" data-effect-id="{{ effect.id }}"
+					{{~#if effect.item.actor}} data-parent-id="{{ effect.item.id }}"{{/if}}>
+				<div class="entry-header flexrow">
+					{{ everydayHeroes-icon effect.img alt=effect.name classes="entry-image" }}
+					<div class="entry-name">{{ effect.name }}</div>
+				</div>
+				<div class="traits flexrow">
+					<div class="source">{{effect.sourceName}}</div>
+					<div class="duration">{{effect.duration.label}}</div>
+				</div>
+				<div class="effect-controls entry-controls flexrow">
+					{{#if @root.editable}}
+					{{#if effect.disabled}}
+					<button type="button" class="icon fa-solid fa-check" data-action="toggleEffect" data-tooltip
+									aria-label="{{ localize 'EH.Effect.Action.Enable' }}"></button>
+					{{else}}
+					<button type="button" class="icon fa-solid fa-times" data-action="toggleEffect" data-tooltip
+									aria-label="{{ localize 'EH.Effect.Action.Disable' }}"></button>
+					{{/if}}
+					{{/if}}
+					{{#if (and (ne @root.editingMode false) @root.editable)}}
+					<button type="button" class="icon fa-solid fa-edit" data-action="editDocument" data-tooltip
+									aria-label="{{ localize 'EH.Effect.Action.Edit' }}"></button>
+					<button type="button" class="icon fa-solid fa-trash" data-action="deleteDocument" data-tooltip
+									aria-label="{{ localize 'EH.Effect.Action.Delete' }}"></button>
+					{{else}}
+					<button type="button" class="icon fa-solid fa-eye" data-action="showDocument" data-tooltip
+									aria-label="{{ localize 'EH.Effect.Action.View' }}"></button>
+					{{/if}}
+				</div>
+			</li>
 			{{/each}}
 		</ol>
-	</section>
+	</div>
 {{/each}}

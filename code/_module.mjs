@@ -69,6 +69,15 @@ Hooks.once("setup", function() {
 		{ canConfigure: false, canBeDefault: false, label: "EH.Sheet.JournalEntryLegacy" }
 	);
 
+	foundry.applications.apps.DocumentSheetConfig.registerSheet(
+		Item, game.system.id, applications.item.BaseItemSheetV2,
+		{ canBeDefault: false, makeDefault: false, label: "New Sheet!" }
+	);
+	foundry.applications.apps.DocumentSheetConfig.registerSheet(
+		Item, game.system.id, applications.item.FeatureSheetV2,
+		{ canBeDefault: false, makeDefault: false, label: "New Feature Sheet!" }
+	);
+
 	canvas.patchTokenHUD();
 	config.utils.configureStatusEffects();
 	settings.applyReduceTransparency();

@@ -1035,7 +1035,8 @@
 		"Create": "Create Effect",
 		"Delete": "Delete Effect",
 		"Disable": "Disable Effect",
-		"Edit": "Enable Edit",
+		"Duplicate": "Duplicate Effect",
+		"Edit": "Edit Effect",
 		"Enable": "Enable Effect",
 		"View": "View Effect"
 	},

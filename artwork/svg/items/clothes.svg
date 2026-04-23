@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg style="height: 512px; width: 512px;" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" width="512" height="512">
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" width="512" height="512">
   <defs>
     <linearGradient x1="0" x2="0" y1="0" y2="1" id="delapouite-poncho-gradient-0">
       <stop offset="0" stop-color="#b9b9b9" stop-opacity="1"/>

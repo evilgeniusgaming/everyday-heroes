@@ -1,0 +1,86 @@
+<section class="tab {{~#if tab.active}} active{{/if}} transparent" data-group="{{ tab.group }}" data-tab="{{ tab.id }}">
+	<ol class="advancement level-list">
+		{{#if editable}}
+		<li class="primary-header header-controls">
+			{{#if item.isEmbedded}}
+			{{#if advancementEditable}}
+			<button type="button" class="link-button" data-action="toggleAdvancementConfiguration"
+			        data-tooltip="EH.Advancement.Core.Action.Disable">
+				<i class="fa-solid fa-lock-open" inert></i>
+				<span>{{ localize "EH.Advancement.Core.State.Enabled" }}</span>
+			</button>
+			{{else}}
+			<button type="button" class="link-button" data-action="toggleAdvancementConfiguration"
+							data-tooltip="EH.Advancement.Core.Action.Enable">
+				<i class="fa-solid fa-lock" inert></i>
+				<span>{{ localize "EH.Advancement.Core.State.Disabled" }}</span>
+			</button>
+			{{/if}}
+			{{/if}}
+			{{#if advancementEditable}}
+			<button type="button" class="icon fa-solid fa-plus" data-action="addDocument" data-tooltip
+			        aria-label="{{ localize 'EH.Advancement.Core.Action.Create' }}"></button>
+			{{/if}}
+		</li>
+		{{/if}}
+
+		{{#each advancement as |data level|}}
+		<li class="section" data-level="{{level}}">
+			{{> ".level" }}
+		</li>
+		{{/each}}
+	</ol>
+</section>
+
+
+{{#*inline ".level"}}
+
+<div class="document-list-header">
+	<h3>
+		{{#if (eq @key "unconfigured")}}
+		{{ localize "EH.Advancement.Core.Level.None" }}
+		{{else}}
+		{{ localize "EH.Advancement.Core.Level.Specific" level=@key }}
+		{{/if}}
+	</h3>
+	<div class="header-controls flexrow">
+		{{#if (and @root.editable configured (ne @key "unconfigured"))}}
+		<button type="button" data-action="modifyAdvancementChoices">
+			{{ localize "EH.Advancement.Core.Action.Modify" }}
+		</button>
+		{{/if}}
+	</div>
+</div>
+
+<ol class="advancement advancement-list document-list">
+	{{#each items}}
+	<li class="entry" data-uuid="{{ uuid }}" data-advancement-id="{{ id }}">
+		{{> ".advancement" }}
+	</li>
+	{{/each}}
+</ol>
+
+{{/inline}}
+
+
+{{#*inline ".advancement"}}
+
+<div class="entry-header flexrow">
+	{{ everydayHeroes-icon icon alt=title classes="entry-image" }}
+	<div class="entry-name">{{{ title }}}</div>
+</div>
+
+<div class="entry-controls flexrow">
+	{{#if @root.advancementEditable}}
+	<button type="button" class="icon fa-solid fa-edit fa-fw" data-action="editDocument"
+	        data-tooltip aria-label="{{ localize 'EH.Advancement.Core.Action.Edit' }}"></button>
+	<button type="button" class="icon fa-solid fa-trash fa-fw" data-action="deleteDocument"
+	        data-tooltip aria-label="{{ localize 'EH.Advancement.Core.Action.Delete' }}"></button>
+	{{/if}}
+</div>
+
+{{#if summary}}
+<div class="summary">{{{ summary }}}</div>
+{{/if}}
+
+{{/inline}}

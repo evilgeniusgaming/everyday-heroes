@@ -1,0 +1,11 @@
+<section class="tab {{~#if tab.active}} active{{/if}} multiple" data-group="{{ tab.group }}" data-tab="{{ tab.id }}">
+	{{#if fields}}
+	<div class="standard-form">
+		{{> "everydayHeroes.fieldlist" fields }}
+	</div>
+	{{/if}}
+
+	{{#each parts as |part|}}
+	{{> (part) @root }}
+	{{/each}}
+</section>

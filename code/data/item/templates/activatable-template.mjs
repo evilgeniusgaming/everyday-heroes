@@ -1,4 +1,4 @@
-import { numberFormat, simplifyBonus } from "../../../utils.mjs";
+import { createFormOptions, numberFormat, simplifyBonus } from "../../../utils.mjs";
 import FormulaField from "../../fields/formula-field.mjs";
 
 /**
@@ -259,6 +259,51 @@ export default class ActivatableTemplate extends foundry.abstract.DataModel {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Helpers                                  */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Prepare form fields for consumption & uses.
+	 * @param {ApplicationRenderContext} context
+	 * @returns {object[]}
+	 */
+	createConsumptionFormFields(context) {
+		return [{
+			fields: [
+				this._createFormField(context, "resource.type", {
+					classes: "label-top",
+					options: createFormOptions(CONFIG.EverydayHeroes.consumptionTypes, { blank: true })
+				}),
+				context.source.resource.type
+					? this._createFormField(context, "resource.amount", { classes: "label-top" }) : null,
+				context.source.resource.type
+					&& CONFIG.EverydayHeroes.consumptionTypes[context.source.resource.type]?.target !== false
+					? this._createFormField(context, "resource.target", {
+						classes: "label-top",
+						options: context.system.consumptionTargets
+							? createFormOptions(context.system.consumptionTargets, { blank: true })
+							: undefined
+					}) : null
+				],
+				group: { label: "EH.Consumption.Label" }
+			},
+			// TODO: Dice consumption
+			{
+				fields: [
+					this._createFormField(context, "uses.max", { classes: "label-top" }),
+					this._createFormField(context, "uses.period", {
+						classes: "label-top",
+						options: createFormOptions(CONFIG.EverydayHeroes.recoveryPeriods, { blank: true })
+					})
+				],
+				group: { label: "EH.Uses.Label" }
+			},
+			"recharge" in context.system ? {
+				fields: [this._createFormField(context, "recharge.target", { classes: "label-top" })],
+				group: { label: "EH.Recharge.Label" }
+			} : null
+		];
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**

@@ -1,0 +1,25 @@
+.everyday-heroes.app {
+	--eh-background-color-black: rgb(28, 31, 31);
+	--eh-background-color-dark: rgb(119, 125, 126);
+	--eh-background-color-mid: rgb(207, 210, 205);
+	--eh-background-color-light: rgb(244, 244, 240);
+	--eh-background-color-blue: rgb(15, 20, 62);
+	--eh-background-color-white: rgb(255, 255, 255);
+	--eh-background-color-failure: rgb(255, 217, 215);
+	--eh-background-color-success: rgb(217, 231, 202);
+	--eh-background-color-read-aloud: rgb(230, 230, 239);
+}
+
+@scope (.theme-light) to (.themed) {
+	:scope {
+		--eh-background-color-black: rgb(28, 31, 31);
+		--eh-background-color-dark: rgb(119, 125, 126);
+		--eh-background-color-mid: rgb(207, 210, 205);
+		--eh-background-color-light: rgb(244, 244, 240);
+		--eh-background-color-blue: rgb(15, 20, 62);
+		--eh-background-color-white: rgb(255, 255, 255);
+		--eh-background-color-failure: rgb(255, 217, 215);
+		--eh-background-color-success: rgb(217, 231, 202);
+		--eh-background-color-read-aloud: rgb(230, 230, 239);
+	}
+}

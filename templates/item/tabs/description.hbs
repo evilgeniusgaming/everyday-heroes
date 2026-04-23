@@ -1,0 +1,21 @@
+<section class="tab {{~#if tab.active}} active{{/if}}" data-group="{{ tab.group }}" data-tab="{{ tab.id }}">
+	<h3 class="striped">
+		<span class="left stripes"></span>
+		<span class="center">
+			<select class="always-interactive" name="editorSelected">
+				{{ selectOptions editor.options selected=editor.selected localize=true }}
+			</select>
+		</span>
+		<span class="right stripes"></span>
+	</h3>
+
+	<prose-mirror class="description" name="{{ editor.name }}" data-document-uuid="{{ item.uuid }}"
+	              value="{{ editor.value }}" toggled>
+		{{{ editor.enriched }}}
+	</prose-mirror>
+
+	<footer>
+		{{ formField systemFields.description.fields.source value=source.description.source classes="label-hinted"
+		             localize=true rootId=partId }}
+	</footer>
+</section>

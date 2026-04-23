@@ -61,4 +61,5 @@ export {default as CombatTrackerEH} from "./combat-tracker.mjs";
 export {default as CreateDocumentDialog} from "./create-document-dialog.mjs";
 export * as dice from "./dice/_module.mjs";
 export * as compendium from "./compendium/_module.mjs";
+export * as components from "./components/_module.mjs";
 export * as proseMirror from "./prose-mirror/_module.mjs";

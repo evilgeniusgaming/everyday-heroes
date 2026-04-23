@@ -93,6 +93,25 @@ export function systemLog(message, {color="rebeccapurple", extras=[], level="log
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
+ * Generate form options from a configuration object.
+ * @param {Record<string, string|{ label }>} obj
+ * @param {object} [options={}]
+ * @param {boolean|string} [options.blank=false]
+ * @returns {FormSelectOption[]}
+ */
+export function createFormOptions(obj, { blank=false }={}) {
+	const options = [];
+	if ( blank !== false ) options.push({ value: "", label: blank === true ? "" : _loc(blank) });
+	for ( const [key, value] of Object.entries(obj) ) {
+		if ( foundry.utils.getType(value) === "string" ) options.push({ value: key, label: value });
+		else options.push({ value: key, label: value.label ?? value.name ?? key });
+	}
+	return options;
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
  * Filter an object using the provided function.
  * @param {object} obj - Object to filter.
  * @param {Function} filter - Function to use for filtering.
@@ -204,6 +223,34 @@ function dataset(context, options) {
 		entries.push(`data-${key}="${value}"`);
 	}
 	return new Handlebars.SafeString(entries.join(" "));
+}
+
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/**
+ * Create an icon element dynamically based on the provided icon string, supporting FontAwesome class strings
+ * or paths to SVG or other image types.
+ * @param {string} icon - Icon class or path.
+ * @param {object} [options={}]
+ * @param {string} [options.alt] - Alt text for the icon.
+ * @param {string} [options.classes] - Classes to add to the icon.
+ * @returns {HTMLElement|null}
+ */
+export function generateIcon(icon, { alt, classes }={}) {
+	let element;
+	if ( icon?.startsWith("fa") ) {
+		element = document.createElement("i");
+		element.className = icon;
+	} else if ( icon ) {
+		element = document.createElement(icon.endsWith(".svg") ? "eh-icon" : "img");
+		element.draggable = false;
+		element.src = icon;
+	} else {
+		return null;
+	}
+	if ( alt ) element[element.tagName === "IMG" ? "alt" : "ariaLabel"] = alt;
+	if ( classes ) element.classList.add(...classes.split(" "));
+	return element;
 }
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -472,6 +519,11 @@ export function registerHandlebarsHelpers() {
 		"everydayHeroes-dataset": dataset,
 		"everydayHeroes-groupedSelectOptions": (choices, options) => groupedSelectOptions(choices, options.hash),
 		"everydayHeroes-has": has,
+		"everydayHeroes-icon": (icon, { hash: options }) => {
+			let element = generateIcon(icon, options);
+			if ( !element && options.fallback ) element = generateIcon(options.fallback, options);
+			return element ? new Handlebars.SafeString(element.outerHTML) : "";
+		},
 		"everydayHeroes-jsonStringify": jsonStringify,
 		"everydayHeroes-linkForUUID": linkForUUID,
 		"everydayHeroes-number": (value, options) => numberFormat(value, options.hash),
@@ -513,7 +565,8 @@ export async function registerHandlebarsPartials() {
 		"item/physical-damage.hbs",
 		"item/physical-details.hbs",
 		"item/physical-rounds.hbs",
-		"shared/active-effects.hbs"
+		"shared/active-effects.hbs",
+		"shared/fields/fieldlist.hbs"
 	];
 
 	const paths = {};

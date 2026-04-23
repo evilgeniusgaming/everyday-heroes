@@ -79,6 +79,23 @@ export default class ItemDataModel extends SystemDataModel {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
+	 * Create form field configuration for a specific field within system data.
+	 * @param {ApplicationRenderContext} context
+	 * @param {string} keyPath,
+	 * @param {object} [options={}]
+	 */
+	_createFormField(context, keyPath, options={}) {
+		return {
+			field: this.schema.getField(keyPath),
+			localize: true,
+			value: foundry.utils.getProperty(context.source, keyPath),
+			...options
+		};
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
 	 * Type-specific roll data preparation.
 	 * @param {object} [options={}]
 	 * @param {ActorEH} [options.actor] - Actor to use when compiling roll data.

@@ -95,7 +95,25 @@ export default class Advancement extends BaseAdvancement {
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Existing sheets of a specific type for a specific document.
+	 * @type {Map<[PseudoDocument, typeof ApplicationV2], ApplicationV2>}
+	 */
+	static _sheets = new Map();
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Instance Properties                      */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Actor to which this advancement's item belongs, if the item is embedded.
+	 * @type {ActorEH|null}
+	 */
+	get actor() {
+		return this.item.parent ?? null;
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
@@ -104,6 +122,45 @@ export default class Advancement extends BaseAdvancement {
 	 */
 	get id() {
 		return this._id;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Item to which this advancement belongs.
+	 * @type {ItemEH}
+	 */
+	get item() {
+		return this.parent.parent;
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * List of levels in which this advancement object should be displayed. Will be a list of class levels if this
+	 * advancement is being applied to classes or subclasses, otherwise a list of character levels.
+	 * @returns {number[]}
+	 */
+	get levels() {
+		return this.level !== undefined ? [this.level] : [];
+	}
+
+	/* -------------------------------------------- */
+
+	/**
+	 * Lazily obtain a Application instance used to configure this PseudoDocument, or null if no sheet is available.
+	 * @type {Application|ApplicationV2|null}
+	 */
+	get sheet() {
+		const cls = this.constructor.metadata.apps.config;
+		if ( !cls ) return null;
+		if ( !this.constructor._sheets.has(this.uuid) ) {
+			let sheet;
+			if ( Application.isPrototypeOf(cls) ) sheet = new cls(this);
+			else sheet = new cls({ document: this });
+			this.constructor._sheets.set(this.uuid, sheet);
+		}
+		return this.constructor._sheets.get(this.uuid);
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -124,37 +181,6 @@ export default class Advancement extends BaseAdvancement {
 	 */
 	get uuid() {
 		return `${this.item.uuid}.Advancement.${this.id}`;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Item to which this advancement belongs.
-	 * @type {ItemEH}
-	 */
-	get item() {
-		return this.parent.parent;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * Actor to which this advancement's item belongs, if the item is embedded.
-	 * @type {ActorEH|null}
-	 */
-	get actor() {
-		return this.item.parent ?? null;
-	}
-
-	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
-
-	/**
-	 * List of levels in which this advancement object should be displayed. Will be a list of class levels if this
-	 * advancement is being applied to classes or subclasses, otherwise a list of character levels.
-	 * @returns {number[]}
-	 */
-	get levels() {
-		return this.level !== undefined ? [this.level] : [];
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -237,6 +263,45 @@ export default class Advancement extends BaseAdvancement {
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Editing Methods                          */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Delete this Advancement, removing it from the database.
+	 * @param {object} [options={}] - Additional context which customizes the deletion workflow.
+	 * @returns {Promise<Advancement>} - The deleted Advancement instance.
+	 */
+	async delete(options={}) {
+		if ( this.item.isEmbedded ) {
+			const manager = EverydayHeroes.applications.advancement.AdvancementManager
+				.forDeletedAdvancement(this.item.actor, this.item.id, this.id);
+			if ( manager.steps.length ) return manager.render({ force: true });
+		}
+		return await this.item.deleteAdvancement(this.id, options);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Present a Dialog form to confirm deletion of this Advancement.
+	 * @param {object} [options] - Positioning and sizing options for the resulting dialog.
+	 * @returns {Promise<Advancement>} - A Promise which resolves to the deleted Advancement.
+	 */
+	async deleteDialog({ sheet, ...options }={}) {
+		const type = game.i18n.localize("EH.Advancement.Title[one]");
+		const config = foundry.utils.mergeObject({
+			window: { title: `${game.i18n.format("DOCUMENT.Delete", { type })}: ${this.title}` },
+			content: `
+				<p>
+					<strong>${game.i18n.localize("COMMON.AreYouSure")}</strong> ${
+						game.i18n.format("SIDEBAR.DeleteWarning", { type })}
+				</p>
+			`,
+			yes: { callback: this.delete.bind(this) }
+		}, options);
+		if ( sheet ) return sheet._confirmDialog(config);
+		return foundry.applications.api.DialogV2.confirm(config);
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
@@ -345,4 +410,65 @@ export default class Advancement extends BaseAdvancement {
 		).toObject();
 	}
 
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Event Listeners & Handlers               */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+	/**
+	 * Construct context menu options for this Advancement.
+	 * @returns {ContextMenuEntry[]}
+	 */
+	getContextMenuOptions() {
+		if ( this.item.isOwner && !this.item.collection?.locked ) return [
+			{
+				label: "EH.Advancement.Core.Action.Edit",
+				icon: "<i class='fas fa-edit fa-fw'></i>",
+				onClick: () => this.item.sheet._renderChild(this.sheet)
+			},
+			{
+				label: "EH.Advancement.Core.Action.Duplicate",
+				icon: "<i class='fas fa-copy fa-fw'></i>",
+				visible: () => this?.constructor.availableForItem(this.item),
+				onClick: () => this.item.duplicateAdvancement(this.id)
+			},
+			{
+				label: "EH.Advancement.Core.Action.Delete",
+				icon: "<i class='fas fa-trash fa-fw' style='color: rgb(255, 65, 65);'></i>",
+				onClick: () => this.deleteDialog()
+			}
+		];
+
+		return [{
+			label: "EH.Advancement.Core.Action.View",
+			icon: "<i class='fas fa-eye fa-fw'></i>",
+			onClick: () => this.item.sheet._renderChild(this.sheet)
+		}];
+	}
+
+	/* -------------------------------------------- */
+
+	/**
+	 * Handle context menu events on advancement.
+	 * @param {Item5e} item - The Item the Advancement belongs to.
+	 * @param {HTMLElement} target - The element the menu was triggered on.
+	 */
+	static onContextMenu(item, target) {
+		const { advancementId } = target.closest("[data-advancement-id]")?.dataset ?? {};
+		const advancement = item.system.advancement?.get(advancementId);
+		if ( !advancement ) return;
+
+		const menuItems = advancement.getContextMenuOptions();
+
+		/**
+		 * A hook event that fires when the context menu for the advancements list is constructed.
+		 * @function everydayHeroes.getItemAdvancementContext
+		 * @memberof hookEvents
+		 * @param {Advancement} advancement - The Advancement.
+		 * @param {HTMLElement} target - The element that menu was triggered on.
+		 * @param {ContextMenuEntry[]} menuItems - The context menu entries.
+		 */
+		Hooks.call("everydayHeroes.getItemAdvancementContext", advancement, target, menuItems);
+
+		ui.context.menuItems = menuItems;
+	}
 }

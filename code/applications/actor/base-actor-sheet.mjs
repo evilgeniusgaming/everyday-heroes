@@ -404,7 +404,7 @@ export default class BaseActorSheet extends foundry.appv1.sheets.ActorSheet {
 		}
 
 		// Effect Listeners
-		for ( const element of html.querySelectorAll('[data-action="effect"]') ) {
+		for ( const element of html.querySelectorAll('.effect-controls [data-action]') ) {
 			element.addEventListener("click", ActiveEffectEH.onEffectAction.bind(this));
 		}
 
