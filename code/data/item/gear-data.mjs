@@ -20,6 +20,9 @@ export default class GearData extends ItemDataModel.mixin(DescribedTemplate, Phy
 			image: "systems/everyday-heroes/artwork/svg/items/gear.svg",
 			advancement: {
 				grantable: true
+			},
+			sheet: {
+				hasDetails: false
 			}
 		};
 	}

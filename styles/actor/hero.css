@@ -40,9 +40,9 @@
 		&:is(.basic, .historical) { left: calc(50% - 1em + 0.5px); }
 		&.improvised { left: calc(80% - 1em + 1px); }
 	}
-	&.disabled input { cursor: default; }
+	&.disabled input { cursor: var(--cursor-default); }
 	&:not(.disabled) label {
-		cursor: pointer;
+		cursor: var(--cursor-pointer);
 		&:hover { text-shadow: 0 0 8px var(--color-shadow-primary); }
 	}
 
@@ -56,7 +56,7 @@
 		background-color: var(--eh-background-color-white);
 		-webkit-filter: unset;
 		filter: unset;
-		cursor: pointer;
+		cursor: var(--cursor-pointer);
 
 		&:checked { background-color: var(--eh-input-color-add); }
 	}

@@ -109,7 +109,7 @@
 	.ability-radios {
 		margin: 0;
 
-		* { cursor: pointer; }
+		* { cursor: var(--cursor-pointer); }
 		label {
 			display: block;
 			width: 100%;

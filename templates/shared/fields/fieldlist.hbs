@@ -1,22 +1,45 @@
 {{#each this}}
 {{#if field}}
-{{ formField field value=value input=input options=options disabled=disabled readonly=readonly
-             autofocus=autofocus localize=localize placeholder=placeholder
+
+{{!-- Normal Field --}}
+{{#if name}} {{!-- TODO: Work around core issue with providing undefined name --}}
+{{ formField field name=name value=value input=input options=options disabled=disabled
+						 readonly=readonly autofocus=autofocus localize=localize placeholder=placeholder
 						 label=label hint=hint classes=classes rootId=@root.partId }}
+{{else}}
+{{ formField field value=value input=input options=options disabled=disabled
+             readonly=readonly autofocus=autofocus localize=localize placeholder=placeholder
+						 label=label hint=hint classes=classes rootId=@root.partId }}
+{{/if}}
+
 {{else if fields}}
-<div class="form-group split-group {{ group.classes }}">
+
+{{!-- Split Field --}}
+<div class="form-group split-group {{ group.classes }}" {{ everydayHeroes-dataset group.dataset }}>
 	{{#if group.label}}<label>{{ localize group.label }}</label>{{/if}}
 	<div class="form-fields">
 		{{> "everydayHeroes.fieldlist" fields }}
 	</div>
+	{{#if group.hint}}<p class="hint">{{ localize group.hint }}</p>{{/if}}
 </div>
+
 {{else if header}}
+
+{{!-- Striped Header --}}
 <h{{ifThen header.level header.level '3'}} class="striped">
 	<span class="left stripes"></span>
 	<span class="center">{{ localize header.text }}</span>
 	<span class="right stripes"></span>
 </h{{ifThen header.level header.level '3'}}>
+
+{{else if template}}
+
+{{> (lookup . 'template') @root }}
+
 {{else if html}}
+
+{{!-- Raw HTML --}}
 {{{ html }}}
+
 {{/if}}
 {{/each}}

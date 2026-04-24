@@ -60,6 +60,7 @@ export default class BaseExplosiveTemplate extends foundry.abstract.DataModel {
 					min: 0, step: 0.1, label: "EH.Equipment.Trait.Radius.Label", hint: "EH.Equipment.Trait.Radius.Hint"
 				}),
 				units: new foundry.data.fields.StringField({
+					required: true, blank: false,
 					initial: () => CONFIG.EverydayHeroes.defaultUnits.length, label: "EH.Measurement.Units",
 					suggestions: [...Object.keys(CONFIG.EverydayHeroes.lengthUnits), "spaces"]
 				})

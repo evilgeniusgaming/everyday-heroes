@@ -1,0 +1,10 @@
+<div class="properties properties-grid">
+	{{#each itemProperties}}
+	<label {{~#if hint}} data-tooltip="{{ hint }}"{{/if}}>
+		<eh-{{ control }} name="system.properties.{{ @key }}"
+		                  {{~#if (eq control "property")}} {{ checked value }}{{else}}value="{{ value }}"{{/if~}}
+											></eh-{{ control }}>
+		<span>{{ label }}</span>
+	</label>
+	{{/each}}
+</div>

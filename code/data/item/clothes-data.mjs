@@ -18,6 +18,9 @@ export default class ClothesData extends ItemDataModel.mixin(DescribedTemplate, 
 			image: "systems/everyday-heroes/artwork/svg/items/clothes.svg",
 			advancement: {
 				grantable: true
+			},
+			sheet: {
+				hasDetails: false
 			}
 		};
 	}

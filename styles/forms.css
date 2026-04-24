@@ -101,6 +101,8 @@
 		&.label-hidden > label { display: none; }
 
 		&.split-group > .form-fields {
+			--label-height: 10px;
+
 			.field-group {
 				display: flex;
 				gap: 4px;
@@ -109,9 +111,15 @@
 
 			.form-group {
 				flex-wrap: nowrap;
+
 				&:not(.label-top, .checkbox) { gap: 4px; }
 				> * { flex: unset; }
+				&.third-width { flex: 1 0 30%; }
+				&.half-width { flex: 1 0 48%; }
+				&.collapse-width { flex: 0; }
 			}
+
+			> .separator, > button { margin-block-start: calc(var(--label-height) + 2px); }
 		}
 	}
 

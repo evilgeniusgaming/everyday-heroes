@@ -50,7 +50,9 @@ export default class NPCExplosiveData extends ItemDataModel.mixin(
 	static defineSchema() {
 		return this.mergeSchema(super.defineSchema(), {
 			activation: new foundry.data.fields.SchemaField({
-				type: new foundry.data.fields.StringField({initial: "attack"})
+				type: new foundry.data.fields.StringField({
+					required: true, blank: false, initial: "attack", suggestions: CONFIG.EverydayHeroes.actionTypesWeapon
+				})
 			}),
 			range: new foundry.data.fields.SchemaField({
 				short: new foundry.data.fields.NumberField({

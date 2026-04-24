@@ -562,6 +562,7 @@ export async function registerHandlebarsPartials() {
 		"item/item-consumption.hbs",
 		"item/item-description.hbs",
 		"item/item-summary.hbs",
+		"item/parts/item-properties.hbs",
 		"item/physical-damage.hbs",
 		"item/physical-details.hbs",
 		"item/physical-rounds.hbs",

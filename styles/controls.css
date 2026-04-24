@@ -2,7 +2,7 @@
 /*  Property Lists                           */
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
-.everyday-heroes .properties {
+.everyday-heroes .properties:not(.properties-grid) {
 	display: grid;
 	border: 1px solid var(--eh-border-color-strong);
 	border-radius: 4px;
@@ -55,10 +55,40 @@
 		&.add input[checked]::after { content: "+"; }
 		&.remove input[checked]::after { content: "-"; }
 
-		&:not(.disabled) :is(label, input) { cursor: pointer; }
+		&:not(.disabled) :is(label, input) { cursor: var(--cursor-pointer); }
 	}
 }
 
+.everyday-heroes .properties-grid {
+	background-color: var(--eh-background-color-black);
+	border: 1px solid var(--eh-border-color-strong);
+	border-radius: 4px;
+	color: var(--eh-text-color-white);
+	display: grid;
+	font-size: var(--font-size-14);
+	font-variant: small-caps;
+	grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+
+	label {
+		align-items: center;
+		background-color: var(--eh-background-color-dark);
+		border-radius: 4px;
+		display: flex;
+		gap: 4px;
+		margin: 1px;
+		outline: 1px solid transparent;
+		outline-offset: 2px;
+		padding-inline-end: 8px;
+
+		&:focus-within {
+			outline: 1px solid var(--eh-text-color-red);
+			z-index: 1;
+		}
+		&:not(:has([disabled])) {
+			cursor: var(--cursor-pointer);
+		}
+	}
+}
 
 /* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 /*  Skewed Buttons                           */
@@ -128,7 +158,7 @@
 		}
 		> :is(a:not([data-action]), button:disabled) {
 			opacity: 0.5;
-			cursor: default;
+			cursor: var(--cursor-default);
 		}
 	}
 }
@@ -166,7 +196,7 @@ button.skewed, .dialog .dialog-buttons:not(.skewed) button {
 		}
 	}
 	&:disabled {
-		cursor: default;
+		cursor: var(--cursor-default);
 		color: color-mix(in oklab, var(--eh-text-color-black), transparent);
 		&::before {
 			border-color: color-mix(in oklab, var(--eh-border-color-strong), white 70%);

@@ -79,7 +79,7 @@
 			background-color: var(--eh-background-color-dark);
 			background-repeat: no-repeat;
 			background-size: cover;
-			cursor: pointer;
+			cursor: var(--cursor-pointer);
 
 			&[data-action] {
 				display: flex;
@@ -141,7 +141,7 @@
 		
 			&:is(.disabled, :not([data-action])) { opacity: 0.5; }
 			&:not(:is(.disabled, :not([data-action]))) {
-				cursor: pointer;
+				cursor: var(--cursor-pointer);
 				&:hover { outline: 2px solid var(--eh-border-color-strong); }
 			}
 			> span { white-space: nowrap; }

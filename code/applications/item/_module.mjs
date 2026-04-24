@@ -8,4 +8,5 @@ export {default as CyberneticsSheet} from "./cybernetics-sheet.mjs";
 export {default as FeatureSheet} from "./feature-sheet.mjs";
 export {default as FeatureSheetV2} from "./feature-sheet-v2.mjs";
 export {default as PhysicalSheet} from "./physical-sheet.mjs";
+export {default as PhysicalSheetV2} from "./physical-sheet-v2.mjs";
 export {default as VehicleModificationSheet} from "./vehicle-modification-sheet.mjs";

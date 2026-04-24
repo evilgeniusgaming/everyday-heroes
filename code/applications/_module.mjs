@@ -25,7 +25,7 @@ export function registerSheets(documentType, categories) {
 	}
 	for ( const type of new Set(Object.keys(models)).difference(registered) ) {
 		const metadata = models[type]?.metadata?.sheet;
-		if ( !metadata ) continue;
+		if ( !metadata?.application ) continue;
 		registered.add(type);
 		DocumentSheetConfig.registerSheet(documentType, "everyday-heroes", metadata.application, {
 			types: [type], makeDefault: true, label: metadata.label

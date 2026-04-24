@@ -1,6 +1,6 @@
 import ActiveEffectEH from "../../documents/active-effect.mjs";
 import Advancement from "../../documents/advancement/advancement.mjs";
-import { createFormOptions } from "../../utils.mjs";
+import { createFormOptions, objectToSet } from "../../utils.mjs";
 import AdvancementManager from "../advancement/advancement-manager.mjs";
 import AdvancementMigrationDialog from "../advancement/advancement-migration-dialog.mjs";
 import AdvancementSelection from "../advancement/advancement-selection.mjs";
@@ -38,17 +38,21 @@ export default class BaseItemSheetV2 extends PrimarySheetMixin(EHDocumentSheet) 
 			template: "systems/everyday-heroes/templates/item/header.hbs"
 		},
 		advancement: {
+			container: { classes: ["item-main", "scrollable"], id: "main" },
 			template: "systems/everyday-heroes/templates/item/tabs/advancement.hbs",
 			visible: this.hasAdvancementTab.bind(this)
 		},
 		description: {
+			container: { classes: ["item-main", "scrollable"], id: "main" },
 			template: "systems/everyday-heroes/templates/item/tabs/description.hbs"
 		},
 		details: {
+			container: { classes: ["item-main", "scrollable"], id: "main" },
 			template: "systems/everyday-heroes/templates/item/tabs/details.hbs",
 			visible: this.hasDetailsTab.bind(this)
 		},
 		effects: {
+			container: { classes: ["item-main", "scrollable"], id: "main" },
 			template: "systems/everyday-heroes/templates/item/tabs/effects.hbs",
 			visible: this.hasEffectsTab.bind(this)
 		}
@@ -257,6 +261,23 @@ export default class BaseItemSheetV2 extends PrimarySheetMixin(EHDocumentSheet) 
 	 * @protected
 	 */
 	async _prepareDetailsContext(context, options) {
+		const applicableProperties = CONFIG.EverydayHeroes.applicableProperties[
+			this.item.system.metadata?.type ?? this.item.type
+		];
+		if ( applicableProperties && ("properties" in context.source) ) {
+			const prop = context.source.properties;
+			const isModification = foundry.utils.getType(prop) === "Object";
+			context.itemProperties = Object.entries(CONFIG.EverydayHeroes.equipmentProperties)
+				.reduce((obj, [k, v]) => {
+					if ( applicableProperties.includes(k) ) obj[k] = {
+						...v,
+						control: isModification ? "property-modification" : "property",
+						value: isModification ? prop[k] : (prop.has?.(k) ?? prop.includes?.(k))
+					};
+					return obj;
+				}, {});
+		}
+
 		return context;
 	}
 
@@ -285,14 +306,17 @@ export default class BaseItemSheetV2 extends PrimarySheetMixin(EHDocumentSheet) 
 	 */
 	async _prepareHeaderContext(context, options) {
 		context.showTabs = !foundry.utils.isEmpty(context.tabs);
+		const editableType = ("types" in this.item.system) && !BaseItemSheetV2.hasDetailsTab(this.item);
 		context.headerFields = [
 			{ field: context.fields.name, value: this.item.name },
-			{
-				field: new foundry.data.fields.StringField(),
-				label: _loc("EH.Item.Type.Label"),
-				readonly: true,
-				value: this.item.system.type?.label ?? this.item.typeLabel
-			}
+			editableType
+				? this._createFormField(context, "type.value", { options: createFormOptions(this.item.system.types) })
+				: {
+					field: new foundry.data.fields.StringField(),
+					label: _loc("EH.Item.Type.Label"),
+					readonly: true,
+					value: this.item.system.type?.label ?? this.item.typeLabel
+				}
 		];
 
 		return context;
@@ -353,7 +377,7 @@ export default class BaseItemSheetV2 extends PrimarySheetMixin(EHDocumentSheet) 
 		}
 	}
 
-	/* -------------------------------------------- */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
 	 * Handle modifying the choices for an advancement level.
@@ -367,7 +391,7 @@ export default class BaseItemSheetV2 extends PrimarySheetMixin(EHDocumentSheet) 
 		if ( manager.steps.length ) this._renderChild(manager);
 	}
 
-	/* -------------------------------------------- */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
 	 * Handle toggling configuration mode for advancement.
@@ -529,6 +553,22 @@ export default class BaseItemSheetV2 extends PrimarySheetMixin(EHDocumentSheet) 
 		this.item.update({"system.advancement": advancementCollection});
 	}
 
+	/* -------------------------------------------- */
+	/*  Form Handling                               */
+	/* -------------------------------------------- */
+
+	/** @inheritDoc */
+	_processFormData(event, form, formData) {
+		const submitData = super._processFormData(event, form, formData);
+
+		if ( this.item.system.hasOwnProperty("properties") && submitData.system?.properties
+			&& foundry.utils.getType(this.item.system.properties) === "Set" ) {
+			submitData.system.properties = objectToSet(submitData.system.properties);
+		}
+
+		return submitData;
+	}
+
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 	/*  Helpers                                  */
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
@@ -563,6 +603,10 @@ export default class BaseItemSheetV2 extends PrimarySheetMixin(EHDocumentSheet) 
 	 * @returns {boolean}
 	 */
 	static hasDetailsTab(item) {
+		if ( "hasDetails" in item.system ) {
+			// TODO: Add compatibility warning
+			return item.system.hasDetails;
+		}
 		return item.system.metadata?.sheet?.hasDetails
 			?? CONFIG.EverydayHeroes.itemCategories[item.system.metadata?.category]?.sheet?.hasDetails
 			?? false;

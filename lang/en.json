@@ -1587,7 +1587,8 @@
 			"Label": "Kilometers per Hour"
 		}
 	},
-	"Units": "Units"
+	"Units": "Units",
+	"Value": "Value"
 },
 
 "EH.Movement": {

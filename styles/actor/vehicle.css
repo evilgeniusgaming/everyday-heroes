@@ -121,7 +121,7 @@
 			flex: 1 0;
 			margin-inline: -1px;
 			filter: drop-shadow(5px 0 5px rgba(0, 0, 0, 0.5));
-			cursor: pointer;
+			cursor: var(--cursor-pointer);
 
 			&:first-child {
 				margin-inline-start: -5em;
@@ -144,7 +144,7 @@
 				color: var(--eh-text-color-white);
 				text-align: center;
 				font-size: var(--font-size-14);
-				cursor: pointer;
+				cursor: var(--cursor-pointer);
 
 				input { display: none; }
 			}

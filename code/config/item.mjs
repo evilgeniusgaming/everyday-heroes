@@ -238,8 +238,6 @@ export const itemCategories = {
 		types: ["origin", "archetype", "class", "subclass", "background", "profession"],
 		sheet: {
 			application: itemSheet.ConceptSheetV2,
-			hasDetails: false,
-			hasEffects: false,
 			label: "EH.Sheet.Concept"
 		}
 	},
@@ -248,6 +246,8 @@ export const itemCategories = {
 		types: ["talent", "specialFeature", "plan", "trick", "feat", "mutation", "npcFeature"],
 		sheet: {
 			application: itemSheet.FeatureSheetV2,
+			hasDetails: true,
+			hasEffects: true,
 			label: "EH.Sheet.Feature"
 		}
 	},
@@ -258,7 +258,8 @@ export const itemCategories = {
 			"vehicleModification", "vehicleWeapon"
 		],
 		sheet: {
-			application: itemSheet.PhysicalSheet,
+			application: itemSheet.PhysicalSheetV2,
+			hasDetails: true,
 			label: "EH.Sheet.Physical"
 		}
 	},

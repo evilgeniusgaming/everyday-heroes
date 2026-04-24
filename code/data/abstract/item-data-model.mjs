@@ -85,14 +85,16 @@ export default class ItemDataModel extends SystemDataModel {
 	 * @param {ApplicationRenderContext} context
 	 * @param {string} keyPath,
 	 * @param {object} [options={}]
+	 * @returns {object|null}
 	 */
 	_createFormField(context, keyPath, options={}) {
-		return {
-			field: this.schema.getField(keyPath),
+		const field = this.schema.getField(keyPath);
+		return field ? {
+			field,
 			localize: true,
 			value: foundry.utils.getProperty(context.source, keyPath),
 			...options
-		};
+		} : null;
 	}
 
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */

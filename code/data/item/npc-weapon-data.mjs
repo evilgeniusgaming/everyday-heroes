@@ -24,7 +24,7 @@ import TypedTemplate from "./templates/typed-template.mjs";
  * @property {string} description.npc - Description that appears for weapon on NPC details tab.
  * @property {object} target
  * @property {number} target.value - Number of targets for this weapon.
- * @property {string[]} target.conditions - Conditions required on the target to make the attack.
+ * @property {Set<string>} target.conditions - Conditions required on the target to make the attack.
  * @property {string} target.custom - Custom target text that replaces automatically generated version.
  */
 export default class NPCWeaponData extends ItemDataModel.mixin(
@@ -53,7 +53,7 @@ export default class NPCWeaponData extends ItemDataModel.mixin(
 		return this.mergeSchema(super.defineSchema(), {
 			activation: new foundry.data.fields.SchemaField({
 				type: new foundry.data.fields.StringField({
-					initial: "attack", suggestions: CONFIG.EverydayHeroes.actionTypesWeapon
+					required: true, blank: false, initial: "attack", suggestions: CONFIG.EverydayHeroes.actionTypesWeapon
 				})
 			}),
 			description: new foundry.data.fields.SchemaField({
@@ -63,7 +63,7 @@ export default class NPCWeaponData extends ItemDataModel.mixin(
 				value: new foundry.data.fields.NumberField({
 					initial: 1, min: 0, integer: true, label: "EH.Target.Count.Label", hint: "EH.Target.Count.Hint"
 				}),
-				conditions: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField({
+				conditions: new foundry.data.fields.SetField(new foundry.data.fields.StringField({
 					suggestions: CONFIG.EverydayHeroes.conditions
 				}), {
 					label: "EH.Target.Conditions.Label", hint: "EH.Target.Conditions.Hint"
@@ -122,9 +122,9 @@ export default class NPCWeaponData extends ItemDataModel.mixin(
 			const target = game.i18n.localize(`EH.Target.Label[${pluralRules.select(this.target.value)}]`).toLowerCase();
 
 			// Conditions required to target
-			if ( this.target.conditions.length ) {
+			if ( this.target.conditions.size ) {
 				const listFormatter = new Intl.ListFormat(game.i18n.lang, { style: "long", type: "disjunction" });
-				const conditions = this.target.conditions.map(c => CONFIG.EverydayHeroes.conditions[c]?.label);
+				const conditions = Array.from(this.target.conditions).map(c => CONFIG.EverydayHeroes.conditions[c]?.label);
 				this.target.generated = game.i18n.format("EH.Target.Description.Conditions", {
 					count, target,
 					conditions: listFormatter.format(conditions.filter(c => c))

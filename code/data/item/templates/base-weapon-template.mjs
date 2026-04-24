@@ -67,13 +67,14 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 					min: 0, step: 0.1, label: "EH.Equipment.Trait.Range.Reach.Label", hint: "EH.Equipment.Trait.Range.Reach.Hint"
 				}),
 				units: new StringField({
+					required: true, blank: false, initial: () => CONFIG.EverydayHeroes.defaultUnits.length,
 					label: "EH.Measurement.Units", suggestions: [...Object.keys(CONFIG.EverydayHeroes.lengthUnits), "spaces"]
 				})
 			}, {label: "EH.Equipment.Trait.Range.Label", hint: "EH.Equipment.Trait.Range.Hint"}),
 			reload: new SchemaField({
 				value: new NumberField({
-					initial: 1, integer: true, label: "Equipment.Trait.Reload.Actions.Label",
-					hint: "Equipment.Trait.Reload.Actions.Hint"
+					initial: 1, integer: true, label: "EH.Equipment.Trait.Reload.Actions.Label",
+					hint: "EH.Equipment.Trait.Reload.Actions.Hint"
 				}),
 				type: new StringField({
 					label: "EH.Equipment.Trait.Reload.Label", hint: "EH.Equipment.Trait.Reload.Hint",
@@ -85,7 +86,8 @@ export default class BaseWeaponTemplate extends foundry.abstract.DataModel {
 					required: true, initial: 0, min: 0, integer: true, label: "EH.Equipment.Trait.Rounds.Spent"
 				}),
 				capacity: new NumberField({
-					required: true, min: 0, integer: true, label: "EH.Equipment.Trait.Rounds.Capacity"
+					required: true, min: 0, integer: true, label: "EH.Equipment.Trait.Rounds.Capacity",
+					hint: "EH.Equipment.Trait.Rounds.Hint"
 				}),
 				burst: new NumberField({
 					required: true, min: 0, integer: true,
