@@ -206,7 +206,8 @@
 			"Duplicate": "Duplicate Advancement",
 			"Edit": "Edit Advancement",
 			"Enable": "Enable Configuration",
-			"Modify": "Modify Choices"
+			"Modify": "Modify Choices",
+			"View": "View Advancement"
 		},
 		"Level": {
 			"None": "No Level",

@@ -16,18 +16,18 @@ export default function PrimarySheetMixin(Base) {
 			}
 		};
 
-		/* -------------------------------------------- */
-		/*  Properties                                  */
-		/* -------------------------------------------- */
+		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+		/*  Properties                               */
+		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 		/** @override */
 		get title() {
 			return this.document.name;
 		}
 
-		/* -------------------------------------------- */
-		/*  Rendering                                   */
-		/* -------------------------------------------- */
+		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+		/*  Rendering                                */
+		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 		/** @inheritDoc */
 		async _preparePartContext(partId, context, options) {
@@ -36,9 +36,17 @@ export default function PrimarySheetMixin(Base) {
 			return context;
 		}
 
-		/* -------------------------------------------- */
-		/*  Event Listeners and Handlers                */
-		/* -------------------------------------------- */
+		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+		/** @inheritDoc */
+		_toggleDisabled(disabled) {
+			super._toggleDisabled(disabled);
+			this.element.querySelectorAll(".always-interactive").forEach(input => input.disabled = false);
+		}
+
+		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+		/*  Event Listeners and Handlers             */
+		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 		/**
 		 * Handle adding an document.
@@ -50,7 +58,7 @@ export default function PrimarySheetMixin(Base) {
 			await this._onAddDocument(event, target);
 		}
 
-		/* -------------------------------------------- */
+		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 		/**
 		 * Handle creating a new embedded child.
@@ -62,7 +70,7 @@ export default function PrimarySheetMixin(Base) {
 		 */
 		_onAddDocument(event, target) {}
 
-		/* -------------------------------------------- */
+		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 		/**
 		 * Handle removing an document.
@@ -77,7 +85,7 @@ export default function PrimarySheetMixin(Base) {
 			doc?.deleteDialog({ sheet: this });
 		}
 
-		/* -------------------------------------------- */
+		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 		/**
 		 * Handle removing an document.
@@ -87,7 +95,7 @@ export default function PrimarySheetMixin(Base) {
 		 */
 		async _onDeleteDocument(event, target) {}
 
-		/* -------------------------------------------- */
+		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 		/**
 		 * Open a document's sheet, rendering it as a child of this application if supported.
@@ -99,7 +107,7 @@ export default function PrimarySheetMixin(Base) {
 			if ( doc?.sheet ) this._renderChild(doc.sheet, options);
 		}
 
-		/* -------------------------------------------- */
+		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 		/** @override */
 		_onRevealSecret(event) {
@@ -111,7 +119,7 @@ export default function PrimarySheetMixin(Base) {
 			this.document.update({ [target]: modified });
 		}
 
-		/* -------------------------------------------- */
+		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 		/**
 		 * Handle opening a document sheet.
@@ -127,7 +135,7 @@ export default function PrimarySheetMixin(Base) {
 			this._openDocumentSheet(doc, { force: true });
 		}
 
-		/* -------------------------------------------- */
+		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 		/**
 		 * Handle opening a document sheet.
@@ -137,7 +145,7 @@ export default function PrimarySheetMixin(Base) {
 		 */
 		async _onShowDocument(event, target) {}
 
-		/* -------------------------------------------- */
+		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 		/**
 		 * Handle toggling an active effect.

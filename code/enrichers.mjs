@@ -293,10 +293,10 @@ async function enrichCheck(config, label, options) {
 		else if ( Number.isNumeric(value) ) config.dc = Number(value);
 		else config[value] = true;
 	}
-	
+
 	const groups = new Map();
 	let invalid = false;
-	
+
 	let abilityConfig = CONFIG.EverydayHeroes.enrichmentLookup.abilities[slugify(config.ability)];
 	if ( config.ability && !abilityConfig ) {
 		systemLog(`Ability ${config.ability} not found while enriching ${config._input}.`, { level: "warn" });
@@ -326,7 +326,7 @@ async function enrichCheck(config, label, options) {
 		systemLog(`Multiple skills and a custom label found while enriching ${config._input}, which aren't supported together.`);
 		invalid = true;
 	}
-	
+
 	if ( config.dc && !Number.isNumeric(config.dc) ) {
 		config.dc = simplifyBonus(config.dc, options.rollData ?? options.relativeTo?.getRollData?.() ?? {});
 	}
@@ -591,7 +591,7 @@ function embedImagePage(config, label, options) {
 	return figure;
 }
 
-/* -------------------------------------------- */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
  * Embed a text page.

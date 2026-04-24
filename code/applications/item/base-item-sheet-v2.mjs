@@ -553,9 +553,9 @@ export default class BaseItemSheetV2 extends PrimarySheetMixin(EHDocumentSheet) 
 		this.item.update({"system.advancement": advancementCollection});
 	}
 
-	/* -------------------------------------------- */
-	/*  Form Handling                               */
-	/* -------------------------------------------- */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+	/*  Form Handling                            */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/** @inheritDoc */
 	_processFormData(event, form, formData) {

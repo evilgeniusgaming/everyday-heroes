@@ -145,7 +145,7 @@ export default class Advancement extends BaseAdvancement {
 		return this.level !== undefined ? [this.level] : [];
 	}
 
-	/* -------------------------------------------- */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
 	 * Lazily obtain a Application instance used to configure this PseudoDocument, or null if no sheet is available.
@@ -445,7 +445,7 @@ export default class Advancement extends BaseAdvancement {
 		}];
 	}
 
-	/* -------------------------------------------- */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/**
 	 * Handle context menu events on advancement.

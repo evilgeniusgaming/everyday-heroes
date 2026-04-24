@@ -19,7 +19,7 @@ export default function AdoptedStyleSheetMixin(Base) {
 		 */
 		static CSS = "";
 
-		/* -------------------------------------------- */
+		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 		/** @inheritDoc */
 		adoptedCallback() {
@@ -28,7 +28,7 @@ export default function AdoptedStyleSheetMixin(Base) {
 			if ( sheet ) this._adoptStyleSheet(this._getStyleSheet());
 		}
 
-		/* -------------------------------------------- */
+		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 		/**
 		 * Retrieves the cached stylesheet, or generates a new one.
@@ -45,7 +45,7 @@ export default function AdoptedStyleSheetMixin(Base) {
 			return sheet;
 		}
 
-		/* -------------------------------------------- */
+		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 		/**
 		 * Adopt the stylesheet into the Shadow DOM.

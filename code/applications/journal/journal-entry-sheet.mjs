@@ -25,7 +25,7 @@ export default class JournalEntrySheetEH extends foundry.applications.sheets.jou
 		}
 	}
 
-	/* -------------------------------------------- */
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/** @override */
 	async _renderPageView(element, sheet) {

@@ -5,6 +5,16 @@ import { registerTagInputListeners } from "../../utils.mjs";
  */
 export default class BaseItemSheet extends foundry.appv1.sheets.ItemSheet {
 
+	constructor(...args) {
+		super(...args);
+		foundry.utils.logCompatibilityWarning(
+			"The BaseItemSheet and other Application V2 subclasses have been reprecated and replaced with V2 versions.",
+			{ since: "Everyday Heroes 1.0", until: "Everyday Heroes 1.1" }
+		);
+	}
+
+	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			tabs: [{navSelector: 'nav[data-group="primary"]', contentSelector: "main", initial: "description"}],

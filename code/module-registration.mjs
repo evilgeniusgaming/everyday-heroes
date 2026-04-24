@@ -19,9 +19,9 @@ export function registerModuleData() {
 
 const methods = [];
 
-/* <><><><> <><><><> <><><><> <><><><> <><><><> <><><><> */
-/*                   Adventure Imports                   */
-/* <><><><> <><><><> <><><><> <><><><> <><><><> <><><><> */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Adventure Imports                        */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
  * Display the adventure import dialog for any non-imported adventures that have the setting configured.
@@ -42,9 +42,9 @@ export async function displayAdventureImports() {
 	}
 }
 
-/* <><><><> <><><><> <><><><> <><><><> <><><><> <><><><> */
-/*                    Compendium Packs                   */
-/* <><><><> <><><><> <><><><> <><><><> <><><><> <><><><> */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+/*  Compendium Packs                         */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
  * Apply any changes to compendium packs during the setup hook.
@@ -65,7 +65,7 @@ export function setupModulePacks() {
 
 const setupMethods = [setupPackDisplay, setupPackSorting];
 
-/* -------------------------------------------- */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 /**
  * Set application based on `flags.everyday-heroes.sorting`.
@@ -79,7 +79,7 @@ function setupPackDisplay(pack) {
 	return "table of contents";
 }
 
-/* -------------------------------------------- */
+/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 let collectionSortingModes;
 let sortingChanged = false;
