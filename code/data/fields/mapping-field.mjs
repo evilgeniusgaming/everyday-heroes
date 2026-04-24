@@ -108,7 +108,7 @@ export default class MappingField extends foundry.data.fields.TypedObjectField {
 	/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 	/** @override */
-	_getField(path) {
+	_getField(path, options={}) {
 		if ( path.length === 0 ) return this;
 		else path.pop();
 		return this.element._getField(path, options);
