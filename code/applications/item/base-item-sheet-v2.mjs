@@ -134,7 +134,7 @@ export default class BaseItemSheetV2 extends PrimarySheetMixin(EHDocumentSheet) 
 
 	/** @inheritDoc */
 	async _prepareContext(options) {
-		context = await super._prepareContext(options);
+		const context = await super._prepareContext(options);
 		context.item = this.item;
 		context.source = context.editable ? this.item.system._source : this.item.system;
 		context.system = this.item.system;
