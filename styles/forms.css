@@ -54,7 +54,10 @@
 .everyday-heroes.application {
 	.form-group {
 		> label {
+			align-content: center;
 			font-weight: bold;
+			line-height: normal;
+			min-block-size: var(--input-height);
 			text-transform: uppercase;
 		}
 		.form-fields {
