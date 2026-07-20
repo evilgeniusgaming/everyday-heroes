@@ -195,6 +195,54 @@ export default function ApplicationV2Mixin(Base, { handlebars=true }={}) {
 		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
 
 		/**
+		 * Edit a Document image. Not restricted to `<img>` elements to allow editing `<eh-icon>` elements.
+		 * @this {DocumentSheetV2}
+		 * @param {Event} event - Triggering click event.
+		 * @param {HTMLElement} target - Button that was clicked.
+		 */
+		static async _onEditImage(event, target) {
+			const attr = target.dataset.edit;
+			const current = foundry.utils.getProperty(this.document._source, attr);
+			const defaultArtwork = this.document.constructor.getDefaultArtwork?.(this.document._source) ?? {};
+			const defaultImage = foundry.utils.getProperty(defaultArtwork, attr);
+			const fp = new foundry.applications.apps.FilePicker.implementation({
+				current,
+				type: target.dataset.type || "image",
+				redirectToRoot: defaultImage ? [defaultImage] : [],
+				callback: path => {
+					const isVideo = foundry.helpers.media.VideoHelper.hasVideoExtension(path);
+					if ( ((target instanceof HTMLVideoElement) && isVideo)
+						|| ((target instanceof HTMLImageElement) && !isVideo) ) target.src = path;
+					else {
+						const repl = document.createElement(isVideo ? "video" : "img");
+						Object.assign(repl.dataset, target.dataset);
+						if ( isVideo ) Object.assign(repl, {
+							autoplay: true, muted: true, disablePictureInPicture: true, loop: true, playsInline: true
+						});
+						repl.src = path;
+						target.replaceWith(repl);
+					}
+
+					if ( this.options.form.submitOnChange ) {
+						if ( attr.startsWith("token.") ) this.token.update({ [attr.slice(6)]: path });
+						else {
+							const submit = new Event("submit", { cancelable: true });
+							this.form.dispatchEvent(submit);
+						}
+					}
+				},
+				position: {
+					top: this.position.top + 40,
+					left: this.position.left + 10
+				},
+				document: this.document
+			});
+			await fp.browse();
+		}
+
+		/* ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+		/**
 		 * Handle toggling the collapsed state of collapsible sections.
 		 * @this {BaseApplicationV2}
 		 * @param {Event} event - Triggering click event.

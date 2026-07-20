@@ -10,6 +10,7 @@ export default function PrimarySheetMixin(Base) {
 			actions: {
 				addDocument: EHPrimarySheet.#onAddDocument,
 				editDocument: EHPrimarySheet.#onShowDocument,
+				editImage: EHPrimarySheet._onEditImage,
 				deleteDocument: EHPrimarySheet.#onDeleteDocument,
 				showDocument: EHPrimarySheet.#onShowDocument,
 				toggleEffect: EHPrimarySheet.#onToggleEffect
