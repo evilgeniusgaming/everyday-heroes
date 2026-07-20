@@ -1,6 +1,8 @@
 import { createFormOptions, numberFormat, simplifyBonus } from "../../../utils.mjs";
 import FormulaField from "../../fields/formula-field.mjs";
 
+const { NumberField, SchemaField, StringField } = foundry.data.fields;
+
 /**
  * Data model template for an item that can be activated.
  *
@@ -22,40 +24,40 @@ import FormulaField from "../../fields/formula-field.mjs";
 export default class ActivatableTemplate extends foundry.abstract.DataModel {
 	static defineSchema() {
 		return {
-			activation: new foundry.data.fields.SchemaField({
-				amount: new foundry.data.fields.NumberField({
+			activation: new SchemaField({
+				amount: new NumberField({
 					label: "EH.Activation.Amount.Label", hint: "EH.Activation.Amount.Hint"
 				}),
-				type: new foundry.data.fields.StringField({
+				type: new StringField({
 					label: "EH.Activation.Cost.Label", hint: "EH.Activation.Cost.Hint",
 					suggestions: CONFIG.EverydayHeroes.actionTypesStandard
 				}),
-				condition: new foundry.data.fields.StringField({
+				condition: new StringField({
 					label: "EH.Activation.Condition.Label", hint: "EH.Activation.Condition.Hint"
 				})
-			}, {required: true, initial: {}, label: "EH.Activation.Label"}),
-			resource: new foundry.data.fields.SchemaField({
-				amount: new foundry.data.fields.NumberField({
+			}, { required: true, label: "EH.Activation.Label" }),
+			resource: new SchemaField({
+				amount: new NumberField({
 					label: "EH.Consumption.Amount.Label", hint: "EH.Consumption.Amount.Hint"
 				}),
-				target: new foundry.data.fields.StringField({
+				target: new StringField({
 					label: "EH.Consumption.Target.Label", hint: "EH.Consumption.Target.Hint"
 				}),
-				type: new foundry.data.fields.StringField({
+				type: new StringField({
 					label: "EH.Consumption.Type.Label", hint: "EH.Consumption.Type.Hint"
 				})
-			}, {required: true, initial: {}, label: "EH.Consumption.Label"}),
-			uses: new foundry.data.fields.SchemaField({
-				spent: new foundry.data.fields.NumberField({initial: 0, min: 0, integer: true, label: "EH.Uses.Spent.Label"}),
+			}, { required: true, label: "EH.Consumption.Label" }),
+			uses: new SchemaField({
+				spent: new NumberField({ initial: 0, min: 0, integer: true, label: "EH.Uses.Spent.Label" }),
 				max: new FormulaField({
 					deterministic: true, label: "EH.Uses.Max.Label", hint: "EH.Uses.Max.Hint"
 				}),
-				period: new foundry.data.fields.StringField({
+				period: new StringField({
 					label: "EH.Uses.Recovery.Period.Label", hint: "EH.Uses.Recovery.Period.Hint",
 					suggestions: CONFIG.EverydayHeroes.recoveryPeriods
 				}),
-				formula: new FormulaField({label: "EH.Uses.Recovery.Formula.Label", unused: true})
-			}, {required: true, initial: {}, label: "EH.Uses.Label"})
+				formula: new FormulaField({ label: "EH.Uses.Recovery.Formula.Label", unused: true })
+			}, { required: true, label: "EH.Uses.Label" })
 		};
 	}
 
