@@ -32,9 +32,6 @@ export function registerSheets(documentType, categories) {
 		});
 		systemLog(`Registered ${type} sheet`);
 	}
-	DocumentSheetConfig.unregisterSheet(
-		documentType, "core", { name: `${documentType.name}Sheet` }, { types: Array.from(registered) }
-	);
 	console.groupEnd();
 }
 
